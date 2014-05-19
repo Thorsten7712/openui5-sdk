@@ -1,0 +1,13 @@
+<mvc:View
+	controllerName="sap.m.sample.BusyDialogLight.C"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+	<l:VerticalLayout
+		class="marginVerticalContent"
+		width="100%">
+		<l:content>
+			<Button text="Show Light Busy Dialog" press="handlePress" />
+		</l:content>
+	</l:VerticalLayout>
+</mvc:View>

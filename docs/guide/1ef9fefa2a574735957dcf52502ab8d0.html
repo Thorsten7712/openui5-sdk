@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+
+
+
+<meta name="abstract" content=""/>
+<meta name="description" content=""/>
+
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9932304396787626"/>
+<title>Writing Data to the HTML DOM as DATA-* Attribute</title>
+
+
+  <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/themes/base/highlight-query-terms.css" />
+  </head>
+<body class="sap_bluecrystal" id="loio1ef9fefa2a574735957dcf52502ab8d0">
+<div id="wrapper"><div id="container">
+<h1 class="title topictitle1">Writing Data to the HTML DOM as DATA-* Attribute</h1>
+<div class="body"><p class="shortdesc"/>
+<p class="p">It can be useful to write the custom data to the HTML DOM, for example to generate
+			markers in the HTML from data binding which then can be used for data-dependent styling,
+			or to create stable anchors in the HTML which can be used for automated tests.</p>
+<p class="p">A "data-" prefix is added to the key and the result is then written as attribute into the
+			root HTML element of the control. The <samp class="ph codeph">CustomData</samp> value is written as
+			attribute value. </p>
+<p class="p">This only works when the key is a valid HTML ID and the value is a string (otherwise an
+			error is logged). Note that HTML attribute names are case-insensitive and browsers may
+			convert the key to lowercase.</p>
+<div class="note note" id="loio1ef9fefa2a574735957dcf52502ab8d0__note_N10024_N10011_N10001"><span class="notetitle">Note</span> Do not write too much data into DOM.</div>
+<p class="p">In JavaScript the flag can be set like this: </p>
+<div><pre class="pre codeblock">myButton.data("mydata", "Hello", true); // attach some data to the Button and mark it as
+          "write to HTML"</pre></div>
+<p class="p">In XMLViews the aggregation has currently to be written in expanded notation to set the
+				<samp class="ph codeph">writeToDom</samp> flag: </p>
+<div><pre class="pre codeblock">&lt;Button ... &gt;
+  &lt;customData&gt;
+  &lt;core:CustomData key="mydata" value="Hello" writeToDom="true" /&gt;
+  &lt;/customData&gt;
+&lt;/Button&gt;</pre></div>
+<p class="p">Resulting HTML: </p>
+<div><pre class="pre codeblock">&lt;button ...  data-myData="Hello"  ... &gt;</pre></div>
+<p class="p">Now CSS can use attribute selectors to check presence or the value of the custom data
+			attribute: </p>
+<div><pre class="pre codeblock">button[data-mydata="Hello"] { border: 3px solid red !important; }</pre></div>
+</div>
+<div class="related-links"> 
+
+<div class="familylinks">
+</div>
+</div>
+</div></div>
+<SCRIPT LANGUAGE="JavaScript"><!--
+ var page_title="Writing Data to the HTML DOM as DATA-* Attribute";
+
+        if (page_title !='' &&
+        parent.document.title != null) {
+ parent.document.title =
+          page_title;
+ } 
+ var
+        anchor = document.getElementById(location.hash.substring(+1)); if (typeof (anchor)
+        !='undefined' && anchor !=null){
+        var top = anchor.getBoundingClientRect().top; } 
+//-->
+</SCRIPT>
+</body>
+</html>

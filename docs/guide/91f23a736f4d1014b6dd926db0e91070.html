@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7636408800017654"/>
+<title>Modularization and Dependency Management</title>
+
+
+  <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/themes/base/highlight-query-terms.css" />
+  </head>
+<body class="sap_bluecrystal" id="loio91f23a736f4d1014b6dd926db0e91070">
+<div id="wrapper"><div id="container">
+<h1 class="title topictitle1">Modularization and Dependency Management</h1>
+<div class="body"><p class="p">The SAPUI5 framework has built-in support for modularizing comprehensive JavaScript applications.
+			That means, instead of defining and loading one large bundle of JavaScript code, an
+			application can be splitted into smaller parts which then can be loaded at runtime at
+			the time when they are needed. These smaller individual files are called
+				<dfn class="term">modules</dfn>. </p>
+<p class="p">To load a module, the 
+		<samp class="ph codeph">jQuery.sap.require</samp>
+		function must be used. Assume the following page: 
+	 </p>
+<div><pre class="pre codeblock">
+
+    &lt;!-- UI5 bootstrap tag --&gt;
+    &lt;script id="sap-ui-bootstrap" src="./resources/sap-ui-core.js" data-sap-ui-libraries="sap.ui.commons"&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+        jQuery.sap.require("sap.ui.commons.MessageBox");
+
+        function onPressButton() {
+            sap.ui.commons.MessageBox.alert("Hello World!");
+        }
+
+    &lt;/script&gt;</pre></div>
+<p class="p">At first, the SAPUI5 framework initializes and then loads the
+				<samp class="ph codeph">sap.ui.commons.MessageBox</samp> module. Internally, the framework
+			analyzes the module name and derives the module URL from it: </p>
+<div><pre class="pre codeblock">    ./resources/sap/ui/commons/MessageBox.js</pre></div>
+<p class="p">The module script is then loaded from that URL and
+		executed. 
+	 </p>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_AEAD343584944C74AF7F7C45E87C395B"><div class="section_title">What is a Module</div><div type="What is a Module"> 
+		 
+		<p class="p">A module simply is a JavaScript file that can be loaded and executed in a browser. There are no
+				rules or definitions what code belongs to a module, and what code does <strong class="ph b">not</strong>.
+				It is up to the developer what content to bundle into a single module. But
+				typically, the content of a module has some topic in common. Either it forms a
+				JavaScript class or namespace, or the contained functions address a specific topic,
+				for example client to server communication, mathematical functions, and so on.</p>
+ 
+		<p class="p">There is also no special syntax or structure
+		  defined for modules. However, there are some features that module developers
+		  should be aware of and that they can use: 
+		</p>
+ 
+		<p class="p"><strong class="ph b">Name</strong>: A module is loaded by calling <samp class="ph codeph">jQuery.sap.require</samp> with the name of
+				the module. So, all modules are identified by a name. Human readers often associate
+				a module with the main JavaScript object declared in it. Therefore, the module names
+				by convention are a hierarchical sequence of dot-separated identifiers (like
+					<samp class="ph codeph">sap.ui.core.Core</samp>). It is best practice to use all but the last
+				identifier to group modules in a logical and/or organizational way (much like
+				packages in Java) and to use the last identifier to give the module a meaningful,
+				semantical name, for example, the 'topic' common to the code in the module. </p>
+ 
+		<p class="p"><strong class="ph b">Declaration</strong>: Modules can declare themselves by calling the static
+					<samp class="ph codeph">jQuery.sap.declare</samp> function with their name. This helps SAPUI5
+				to check at runtime whether a loaded module really contains the expected content
+				(compare the required name against the declared name). As a side effect,
+					<samp class="ph codeph">jQuery.sap.declare</samp> will ensure that the parent namespace of the
+				module name exists in the current global namespace (window). More details can be
+				found in the API documentation of declare. </p>
+ 
+		<p class="p">If a module does not contain a declaration, the framework assumes that the module has the
+				expected content and automatically declares it with the name used for loading it. In
+				some rare cases - which are explained below - a module declaration is mandatory.</p>
+ 
+		<p class="p"><strong class="ph b">Description</strong>: Furthermore, modules can contain a description which helps others to decide
+				whether a module is useful for them, or not. By convention, any JavaScript comment
+				preceeding a module's declaration (<samp class="ph codeph">jQuery.sap.declare</samp> statement) is
+				interpreted as its description. The configuration UI displays such descriptions next
+				to the module name.</p>
+ 
+		<p class="p"><strong class="ph b">Dependencies</strong>: Last but not least, modules can use the
+					<samp class="ph codeph">jQuery.sap.require</samp> method to load other modules that they
+				depend on. While <samp class="ph codeph">jQuery.sap.require</samp> internally has the effect of a
+				"loadModule" call, it can also be regarded as a dependency declaration (therefore
+				its name 'require'). These dependency declarations can be evaluated at runtime (as
+				explained above), but they can also be analyzed at built time or at runtime on the
+				server. </p>
+ 
+		<p class="p"><strong class="ph b">Example</strong>: </p>
+ 
+		<p class="p">A typical module that uses all of the above features might look like this (the module name is
+					<samp class="ph codeph">my.useful.SampleModule</samp>); </p>
+ 
+		<div><pre class="pre codeblock">
+
+   /*
+    * A short documentation of the module. This documentation is not evaluated at runtime, only during build time
+    */    
+   jQuery.sap.declare("my.useful.SampleModule"); // declaration of the module. Will ensure that the containing namespace 'my.useful' exists.
+
+   // list of dependencies of this module
+   jQuery.sap.require("sap.ui.core.Core");
+   jQuery.sap.require("some.other.Module");
+   jQuery.sap.require("you.can.Also", "list.multiple.Modules", "if.you.Want");
+   ...
+
+   // create the 'main' object of the module
+   my.useful.SampleModule = {};</pre></div>
+ 
+	 </div></div>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_3CE4E8CBC895413BAD43B189FBAFC7D2"><div class="section_title">Loading a Module</div><div type="Loading a Module"> 
+		 
+		<p class="p">As mentioned already, modules are loaded by calling function
+					<samp class="ph codeph">jQuery.sap.require</samp> with the name of a required module. The
+				framework then checks whether the named module is loaded already. If so, the
+				function simply returns. Otherwise it tries to load and execute the module
+				synchronously. If any of these two steps fails, an exception is thrown and execution
+				of the calling module thereby is disrupted.</p>
+
+			<p class="p">To summarize it: A call to <samp class="ph codeph">jQuery.sap.require</samp> ensures that the
+				required module is loaded and has been executed before execution of the caller
+				continues (*). (*) this is only true as long as no cyclic dependencies occur. </p>
+ 
+		<p class="p">When loading a module, its dot-separated name must
+		  be transformed to an URL. This is done by replacing all dots ('.') with slashes
+		  ('/') and appending the standard suffix '.js' to it. This transformed name is
+		  then appended to the UI5 resource root URL (a prefix of the URL where UI5 has
+		  been loaded from, see explanation of bootstrap). The resulting URL is then used
+		  to load the module as a text. If loading succeeds, the module is first declared
+		  with the original module name and then executed in a global context (window).
+		  If either loading the module or executing it fails, the module name is
+		  internally marked as "failed" and an exception is thrown indicating the cause
+		  for the failure. Any further tries to load the same module will fail
+		  immediately, reproducing the same error message. 
+		</p>
+ 
+	 </div></div>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_BB13FE115C734DC490D61C6E45AE648C"><div class="section_title">Multiple Module Locations</div><div type="Multiple Module Locations"> 
+		 
+		<p class="p">It is a common use case for web applications that different modules are located in different
+				locations (servers, web apps). Imagine for example that your web application is
+				deployed as an individual web app and that it contains some very important modules
+				to be loaded at runtime. But for administrative reasons, SAPUI5 and its provided
+				modules have to be loaded from a content delivery network (CDN) or from a centrally
+				deployed web app. As explained above, SAPUI5 by default will try to load any
+				required modules from its resource root URL, namely from the centrally deployed web
+				application. This would fail for the modules contained in your web application. </p>
+ 
+		<p class="p">Such mixed location scenarios are supported with
+		  the 
+		  <samp class="ph codeph">jQuery.sap.registerModulePath</samp>
+		  function: 
+		</p>
+ 
+		<div><pre class="pre codeblock">   jQuery.sap.registerModulePath = function(sModuleNamePrefix, sURL);</pre></div>
+ 
+		<p class="p">It associates a module name prefix with an URL
+		  prefix. Any module whose name starts with the module name prefix will be loaded
+		  from the registered URL instead of the standard resource root URL. In the
+		  scenario prethought above, this can be used to redirect the request for the
+		  application-specific modules to the corresponding web application: 
+		</p>
+ 
+		<div><pre class="pre codeblock">
+
+   &lt;!-- bootstrap tag which implicitly defines the resource root as 'http://www.sap.com/sapui5/1.0/resources/' --&gt;
+   &lt;script src="http://www.sap.com/sapui5/1.0/resources/sap-ui-core.js" &gt;&lt;/script&gt;
+
+   &lt;script&gt;
+      // request will be mapped to http://www.sap.com/sapui5/1.0/resources/sap/ui/core/Core.js
+      jQuery.sap.require('sap.ui.core.Core'); 
+
+      // redirect the 'my.webapp' package to the local web app
+      jQuery.sap.registerModulePath('my.webapp', '/my-webapp/resources/my/webapp/');
+
+      // loads /my-webapp/resources/my/webapp/MyModule01.js
+      jQuery.sap.require('my.webapp.MyModule01');
+   &lt;/script&gt;</pre></div>
+ 
+		<div class="note note" id="loio91f23a736f4d1014b6dd926db0e91070__note_N100D3_N100B1_N10013_N10001"><span class="notetitle">Note</span>  
+		  <p class="p">The registered URL above contains the transformed module name prefix 'my/webapp/'. While this
+					seems to be an unnecessary redundancy in the registration, it allows a more
+					flexible packaging of the modules. For example, a company might decide to deploy
+					all its specific modules named 'my.company.*' to the central URL
+					'http://my.company/shared/' without packaging them into a two level hierarchy of
+					subfolders: </p>
+ 
+		  <div><pre class="pre codeblock">jQuery.sap.registerModulePath('my.company', 'http://my.company/shared/');</pre></div>
+ 
+		</div>
+ 
+		<p class="p">However, when the standard build tools of the
+		  SAPUI5 framework are used, the full package name will be part of the runtime
+		  file hierarchy and the registration must contain the transformed package
+		  hierarchy as above. 
+		</p>
+ 
+	 </div></div>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_4BF103BDCFB64467BCD4621E16054206"><div class="section_title">Dependency Resolution Tools</div><div type="Dependency Resolution Tools"> 
+		 
+		<p class="p">The previous section contained some explanations
+		  how dependencies between modules are resolved on the client at runtime. During
+		  development, this is the typical use case. Modules can be modified in the
+		  development environment and can be deployed as individual entities to some
+		  runtime. When the client then is refreshed - and if caching is configured
+		  properly - it will reload only the modified modules. 
+		</p>
+ 
+		<p class="p">In productive systems however, it might be
+		  desirable to bundle again several modules into one single file. This helps
+		  reducing the number of necessary roundtrips and can thereby help to reduce the
+		  impact of network latency. However, one doesn't want to loose the flexibility
+		  and transparency of the dependency management. 
+		</p>
+ 
+		<p class="p">The SAPUI5 framework supports this with a dependency resolution tool. It analyzes a module file
+				and all its dependencies and creates a new file containing the original module
+				content, as well as any required modules. It automatically avoids double inclusion
+				of modules. The tool can be used in two ways: Either via an Ant task at build time
+				to create a merged super module which then can be referenced in any HTML page
+				instead of the original file; or at runtime, then using a servlet on server side. </p>
+ 
+	 </div></div>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_B88837EDEC2B46019FFD329681554C97"><div class="section_title">How to Avoid Duplicates</div><div type="How to Avoid Duplicates"> 
+		 
+		<p class="p">When the runtime dependency resolution is used, the
+		  runtime maintains a list of the loaded modules. Before a new module is loaded
+		  and executed, the list is searched for it and if found, the module is not
+		  loaded again. But when the server or build-time tool is used, it creates a
+		  bigger file potentially containing multiple modules. The runtime then can only
+		  check in advance whether that bigger module has been loaded already. It does
+		  not know about the contained modules and therefore can not avoid double-loading
+		  of them. To compensate this, the dependency resolution tool wraps any embedded
+		  module with a few lines of additional coding. These additional checks will be
+		  evaluated during execution of the merged module and will have the same effect
+		  as the original runtime checks in an unmerged scenario: 
+		</p>
+ 
+		<div><pre class="pre codeblock">   ...
+
+    // code of enclosing module 
+    ...
+
+    // location of a jQuery.sap.require('xyz');
+
+    if ( !jQuery.sap.isDeclared('xyz') ) { // check whether module 'xyz' has been loaded already
+      
+
+        jQuery.sap.declare('xyz'); // will only be added if the module 'xyz' doesn't contain a declaration
+    
+
+        // original text of module 'xyz'
+        ...
+    }        
+
+    ...
+    // further code of enclosing module
+    ...</pre></div>
+ 
+		<div class="note note" id="loio91f23a736f4d1014b6dd926db0e91070__note_N1010A_N100F9_N10013_N10001"><span class="notetitle">Note</span> The generated wrapper coding will also
+		  contain a module declaration if the module doesn't contain one. The wrapper
+		  avoids double loading no matter whether a module has been loaded as an
+		  individual file or as part of a bigger, merged module. It is even possible to
+		  recursively merge files (merged module A includes a merged module B). 
+		</div>
+ 
+	 </div></div>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_E66099BC9EC04B7893B7B76C4B3B4063"><div class="section_title">Why not Simply Concatenating Modules?</div><div type="Why not Simply Concatenating Modules?"> 
+		 
+		<p class="p">One might wonder why multiple modules can not
+		  simply be concatenated into a bigger module. Why have the modules to be parsed
+		  and to be nested according to the original 
+		  <samp class="ph codeph">jQuery.sap.require</samp>
+		  calls? The answer simply is that this makes the runtime behavior of the merged
+		  file more predictable. As soon as you look at concrete modules with complex (or
+		  even cyclic) dependencies, order of module execution becomes significant. The
+		  main promise of 
+		  <samp class="ph codeph">jQuery.sap.require</samp>
+		  that the caller continues only after the required module has been successfully
+		  loaded and executed can be hold only if the required module is embedded exactly
+		  at the place where the 
+		  <samp class="ph codeph">jQuery.sap.require</samp>
+		  call was located. 
+		</p>
+ 
+		<p class="p">In cases where a use of the dependency resolution
+		  tool is not possible at all, one might indeed simply concatenate modules. But
+		  then the following two criteria must be ensured 'manually' by the developer: 
+		</p>
+ 
+		<ul class="ul"><li class="li"> 
+			 <p class="p">The order of the files must obey the dependencies. A module must not 'require' another module
+						that is only merged later on.</p>
+ 
+		  </li>
+<li class="li"> 
+			 <p class="p">All merged modules must do a declaration with <samp class="ph codeph">jQuery.sap.declare</samp>, otherwise
+						the framework will not know that the modules have been loaded and
+						potentially load them again. </p>
+ 
+		  </li>
+</ul>
+ 
+	 </div></div>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_A0630C165A34411EA2AAABB3F4F93D10"><div class="section_title">Configurator Servlet</div><div type="Configurator Servlet"> 
+		 
+		<p class="p">As mentioned already, one way of executing the dependency resolution tool is to call it via a
+				servlet. Such a servlet has been included in the <samp class="ph codeph">sapui5-internal</samp>
+				application that is part of our drop. By default, the servlet is configured to react
+				on the URL <samp class="ph codeph">http://</samp>
+				<em class="ph i">host:port</em>
+				<samp class="ph codeph">/sapui5/download/configurator</samp>. It accepts several parameters </p>
+ 
+		<table summary="" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d540597e248" class="stentry">URL
+				Parameter</th>
+<th valign="bottom" align="left" id="d540597e250" class="stentry">Default</th>
+<th valign="bottom" align="left" id="d540597e252" class="stentry">Description</th>
+</tr>
+<tr class="strow"><td valign="top" headers="d540597e248" class="stentry">modules
+				
+			 </td>
+<td valign="top" headers="d540597e250" class="stentry">None 
+			 </td>
+<td valign="top" headers="d540597e252" class="stentry"><em class="ph i">Mandatory</em>: A comma separated, ordered list of
+				module names that should be included in the resulting module. If the parameter
+				occurs multiple times, the values will be concatened 
+			 </td>
+</tr>
+<tr class="strow"><td valign="top" headers="d540597e248" class="stentry">out</td>
+<td valign="top" headers="d540597e250" class="stentry">"sap-ui-custom.js" 
+			 </td>
+<td valign="top" headers="d540597e252" class="stentry">Name of the resulting
+				module. The resulting module will contain a declaration with that name. When
+				the servlet is used from the configurator Web UI, then the name will also be
+				suggested in the download dialog. 
+			 </td>
+</tr>
+<tr class="strow"><td valign="top" headers="d540597e248" class="stentry">minimize</td>
+<td valign="top" headers="d540597e250" class="stentry">False</td>
+<td valign="top" headers="d540597e252" class="stentry">Activates the JavaScript minimization for the output
+				(experimental feature) 
+			 </td>
+</tr>
+</table>
+ 
+		<p class="p">The Configurator WebUI, which is part of <samp class="ph codeph">sapui5-internal</samp> as well, uses the
+				servlet to create a downloadable JavaScript file containg all selected modules. </p>
+ 
+		<p class="p">But it is also possible to use the servlet directly
+		  from within an application page and to load UI5 and the required controls etc.
+		  in one step. The following HTML fragment shows an example (line breaks added
+		  for better readability): 
+		</p>
+ 
+		<div><pre class="pre codeblock">	&lt;script id="sap-ui-bootstrap" 
+		data-sap-ui-theme="sap_platinum"
+		type="text/javascript"
+		data-sap-ui-libs="sap.ui.commons"  
+		src="/sapui5/download/configurator?modules=jquery-1.4.2,jquery.sap.global,sap.ui.core.Core,
+sap.ui.commons.Button,sap.ui.commons.ButtonRenderer,
+sap.ui.commons.layout.MatrixLayout,sap.ui.commons.layout.MatrixLayoutRow,sap.ui.commons.layout.MatrixLayoutCell,
+sap.ui.commons.layout.MatrixLayoutRenderer"
+	&gt;
+	&lt;/script&gt;</pre></div>
+ 
+	 </div></div>
+<div class="section" id="loio91f23a736f4d1014b6dd926db0e91070__section_B82548714A4F4FA1B70FF94919A10585"><div class="section_title">Special Cases</div><div type="Special Cases"> 
+		 
+		<p class="p"><strong class="ph b">How to Load
+			 jquery.sap.require? 
+		  </strong> 
+		</p>
+ 
+		<p class="p">Obviously, modules can only be loaded as soon as the jQuery.sap.require function is available.
+				The implementation of this function is located in module 'jquery.sap.global' which
+				in turn requires jQuery itself (located in module 'jquery-1.7.1'). At runtime, these
+				two modules can not be loaded with 'jquery.sap.require' but must be loaded by some
+				other mean. The SAPUI5 framework includes both modules in its bootstrap files
+					<samp class="ph codeph">sap-ui-core.js</samp> and <samp class="ph codeph">sap-ui-core-lean.js</samp>. The
+				first one also embeds the SAPUI5 core functionality and needs no further modules.
+				The second one only contains the two bootstrap modules and a require statement for
+				the core. It is better suited for the development scenario described above (loading
+				the modules separately). </p>
+ 
+		<p class="p">If you create a new bootstrap file with the configuration UI and decide to include the
+				jquery.sap.global or jquery modules, they always will be the first modules in the
+				created file, and they will always be embedded. This ensures the availability of
+					<samp class="ph codeph">jQuery.sap.require</samp>. </p>
+ 
+		<p class="p"><strong class="ph b">Cyclic
+			 Dependencies</strong> 
+		</p>
+ 
+		<p class="p">Sometimes, the functionality in two modules A and B might be interdependent. That means module
+				A requires module B to execute and module B requires module A. We stated above that
+					<samp class="ph codeph">jQuery.sap.require</samp> ensures that the execution of a calling
+				module doesn't continue until the required module has been loaded and executed.
+				Taking this serious, cyclic dependencies could not be resolved but would lead to an
+				endless series of requests (A-&gt;B-&gt;A-&gt;B-&gt;...). </p>
+ 
+		<p class="p">This situation can be avoided by a workaround: As
+		  soon as a module A has been loaded and is about to execute, it is regarded as 
+		  <em class="ph i">declared</em>. So, when this module A
+		  embeds another module B which has not been loaded, module B will be loaded and
+		  executed. If B now again requires A, then the dependency resolution runtime
+		  will find that A has been declared already (despite the fact that its execution
+		  has not been finished yet) and simply returns. This workaround helps to break
+		  the endless loop, but it doesn't re-ensure the original promise of 
+		  <samp class="ph codeph">jQuery.sap.require</samp>. 
+		</p>
+ 
+		<p class="p">Cyclic modules have to deal with that gap on their
+		  own. There are several ways/best practices how to do this: 
+		</p>
+ 
+		<ul class="ul"><li class="li"> 
+			 <p class="p">Variant 1: Merge A and B 
+			 </p>
+ 
+			 <p class="p">If the conflicts can not be resolved easily, or
+				if the modules are so highly related that they will be used together most of
+				the time, then merging them into one module is the most simple solution. 
+			 </p>
+ 
+		  </li>
+<li class="li"> 
+			 <p class="p"> Variant 2: Interlaced Execution of A and B 
+			 </p>
+ 
+			 <p class="p">This variant makes use of the fact that the
+				module loading takes place exactly at the source location where the
+				jQuery.sap.require function is executed. Let's assume that the content of
+				modules A and B can be structured as follows: 
+			 </p>
+ 
+			 <div><pre class="pre codeblock">// Module A, Part A.1
+   
+
+    // Module Section A.1, does not depend on Module B and provides all code that module B depends on.
+
+
+    jQuery.sap.require("B");
+
+
+    // Module Section A.2, might depend on code in Module Section B.1</pre></div>
+ 
+			 <div><pre class="pre codeblock">// Module B, Part B.1
+  
+
+    // Module Section B.1, does not depend on Module A and provides all code that module A depends on.
+
+
+    jQuery.sap.require("A");
+
+
+    // Module Section B.2, might depend on code in Module Section A.1</pre></div>
+ 
+			 <p class="p">Further assume (WLOG) that module A is loaded
+				first. Then section A.1 will be executed and will be available to the outside
+				world before the 
+				<samp class="ph codeph">require('B')</samp> is
+				executed. During the require, the framework will detect that B is not available
+				yet, will load and execute it. The execution starts with section B.1 which
+				succeeds as it does not depend on A. When the execution of B reaches the 
+				<samp class="ph codeph">require('A')</samp>
+				statement, the framework detects that A has been loaded already and continues
+				without loading A again. But remember, that the code from section A.2 is not
+				available yet. The execution of B however continues and succeeds as - by
+				assumption - B.2 does not depend on A.2. Now, the first 
+				<samp class="ph codeph">require('B')</samp>
+				succeeds and returns and section A.2 will be executed. And it might use the
+				code from section B.1. 
+			 </p>
+ 
+		  </li>
+</ul>
+ 
+		<p class="p">Procedure and result are similar in the case that B
+		  is loaded first. 
+		</p>
+ 
+	 </div></div>
+</div>
+<div class="related-links"> 
+
+<div class="familylinks">
+</div>
+</div>
+</div></div>
+<SCRIPT LANGUAGE="JavaScript"><!--
+ var page_title="Modularization and Dependency Management";
+
+        if (page_title !='' &&
+        parent.document.title != null) {
+ parent.document.title =
+          page_title;
+ } 
+ var
+        anchor = document.getElementById(location.hash.substring(+1)); if (typeof (anchor)
+        !='undefined' && anchor !=null){
+        var top = anchor.getBoundingClientRect().top; } 
+//-->
+</SCRIPT>
+</body>
+</html>

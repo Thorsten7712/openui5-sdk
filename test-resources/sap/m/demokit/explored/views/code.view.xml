@@ -1,0 +1,50 @@
+<mvc:View
+	controllerName="views.code"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+	<Page
+		id="page"
+		icon="img/144_iPad_Retina_Web_Clip.png" >
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Button
+						icon="sap-icon://download"
+						press="onDownload" />
+				</contentLeft>
+				<contentMiddle>
+					<Label text="{/title}" />
+				</contentMiddle>
+				<contentRight>
+					<Button
+						type="Emphasized"
+						icon="sap-icon://paper-plane"
+						press="handleNavBack" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Text
+				class="description marginTopLeft"
+				text="{/description}"
+				visible="{/showDescription}" />
+			<IconTabBar
+				class="iconTabBarPaddingTop"
+				expandable="false"
+				selectedKey="{/selectedTab}"
+				items="{/files}" >
+				<items>
+					<IconTabFilter
+						key="{name}"
+						text="{name}" >
+						<content>
+							<core:HTML content="{code}" />
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

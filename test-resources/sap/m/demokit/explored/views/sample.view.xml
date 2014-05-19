@@ -1,0 +1,16 @@
+<mvc:View
+	controllerName="views.sample"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		id="page"
+		showNavButton="{device>/isPhone}"
+		navButtonPress="handleNavBack" >
+		<headerContent>
+			<Button
+				type="Emphasized"
+				icon="sap-icon://lightbulb"
+				press="handleNavToCode" />
+		</headerContent>
+	</Page>
+</mvc:View>

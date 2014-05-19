@@ -1,0 +1,13 @@
+.sapUiFormM .sapMLabel,
+.sapUiFormL .sapMLabel{
+  height:48px;
+  line-height:48px;
+}
+
+.sapUiSimpleForm .sapUiFormM .sapMLabel,
+.sapUiSimpleForm .sapUiFormL .sapMLabel,
+.isReadonly.sapUiFormM .sapMLabel,
+.isReadonly.sapUiFormL .sapMLabel{
+  height:auto;
+  line-height:inherit;
+}

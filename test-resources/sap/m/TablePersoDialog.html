@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<title>sap.m.TablePersoDialog Test</title>
+		<script src="../../../resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-compatVersion="1.16">
+		</script>
+		
+		<script type="text/javascript">
+		
+		jQuery.sap.require("sap.m.TablePersoDialog");
+
+		var oData = {
+			items: [
+				{ name: "Michelle", color: "orange", number: 3.14 },
+				{ name: "Joseph", color: "blue", number: 1.618 },
+				{ name: "David", color: "green", number: 0 },
+			],
+			cols: ["Name", "Color", "Number"]
+		};
+
+		//make sure table id suffix is set (this is necessary for personalization)
+		var oTable = new sap.m.Table('testTable', {
+			headerToolbar: new sap.m.Toolbar({
+				content: [
+					new sap.m.Label({text: "Info"}),
+					new sap.m.ToolbarSpacer({}),
+					new sap.m.Button("idPersonalizationButton", {
+						icon: "sap-icon://person-placeholder"
+					})
+				]
+			}),
+			columns: oData.cols.map(function (colname) {
+				//make sure column id suffix is set
+				return new sap.m.Column(colname, { header: new sap.m.Label({ text: colname })})
+			})
+		});
+
+
+		oTable.setModel(new sap.ui.model.json.JSONModel(oData));
+		oTable.bindAggregation("items", "/items", new sap.m.ColumnListItem({
+			cells: oData.cols.map(function (colname) {
+				return new sap.m.Label({ text: "{" + colname.toLowerCase() + "}" })
+			})
+		}));
+
+		var oPersoService = {
+			getPersData : function () {
+				var oDeferred = new jQuery.Deferred();
+				var oBundle = this._oBundle;
+				oDeferred.resolve(oBundle);
+				return oDeferred.promise();
+			},
+
+			setPersData : function (oBundle) {
+				var oDeferred = new jQuery.Deferred();
+				this._oBundle = oBundle;
+				oDeferred.resolve();
+				return oDeferred.promise();
+			},
+			
+			getCaption : function(oColumn) {
+				if(oColumn.getHeader() && oColumn.getHeader().getText) {
+					if( oColumn.getHeader().getText() == "Color") {
+						return "Color: this is a very very very very long Column Name to check how the TablePersoDialog deals with it";
+					}
+				}
+				return null;
+			}
+		};
+
+		jQuery.sap.require("sap.m.TablePersoController");
+
+		var oTPC = new sap.m.TablePersoController({
+			table: oTable,
+			persoService: oPersoService
+		});
+		oTPC.activate();
+
+
+		sap.ui.getCore().byId("idPersonalizationButton").attachPress(function() {
+			oTPC.openDialog();
+		});
+		
+		var oHBox = new sap.m.HBox({
+			items: [
+				new sap.m.RadioButton("idWidthNormal", {
+					groupName: "contentWidth",
+					text: "Normal",
+					selected: true,
+					select: function(oEvent) {
+						if (oEvent.getParameter("selected")) {
+							oTablePersoDialog.setContentWidth("");
+						}
+					}
+				}),
+				new sap.m.RadioButton("idWidthWide", {
+					groupName: "contentWidth",
+					text: "Wide",
+					select: function(oEvent) {
+						if (oEvent.getParameter("selected")) {
+							oTablePersoDialog.setContentWidth("700px");
+						}
+					}
+				}),
+			]
+		});
+
+		var app = new sap.m.App("myApp", {initialPage:"page"}),
+		 	page = new sap.m.Page("page", 
+				{title: "TablePersoDialog Testpage",
+				content: [oHBox, oTable]}
+			);
+		
+		app.addPage(page);
+		app.placeAt("body");
+		
+		</script>
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+</html>
