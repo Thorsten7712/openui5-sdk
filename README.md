@@ -1,3 +1,5 @@
+[![Bower version](https://badge.fury.io/bo/openui5-sdk.svg)](http://badge.fury.io/bo/openui5-sdk)
+
 This is a port from the [OpenUi5 SDK](http://sap.github.io/openui5/download.html). 
 Version 1.20.5 (2014-05-12)
 
