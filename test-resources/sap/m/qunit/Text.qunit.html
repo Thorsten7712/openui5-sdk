@@ -146,8 +146,9 @@
 			oDom = jQuery.sap.domById('Text1');
 			equals(oDom.innerHTML,"Hello World!", "Text entered again");
 		});
-
-		test("no-wrapping", function() {
+		
+		test("wrapping & no-wrapping", function() {
+			strictEqual(t1.$().css("white-space"), "pre-line", "Text has correct white-spece style for wrapping");
 			strictEqual(t4.$().hasClass("sapMTextNoWrap"), true, "Text has correct class for non-wrapping");
 			strictEqual(t4.$().css("white-space"), "nowrap", "Text has correct white-spece style for non-wrapping");
 			strictEqual(t4.$().css("word-wrap"), "normal", "Text has correct word-wrap style for non-wrapping");
@@ -214,6 +215,18 @@
 			sut.setWidth("10rem");
 			sap.ui.getCore().applyChanges();
 			ok(!sut.$().hasClass("sapMTextMaxWidth"), "Text has width and does not have max width restriction.");
+			sut.destroy();
+		});
+		
+		test("getTextDomRef should respect maxlines", function() {
+			var sut = new sap.m.Text({text : "line1\nline2\nline3", maxLines: 2}).placeAt("qunit-fixture");
+			sap.ui.getCore().applyChanges();
+			ok(sut.getDomRef("inner") === sut.getTextDomRef(), "TextDomRef is the inner wrapper.");
+			
+			sut.setMaxLines(1);
+			sap.ui.getCore().applyChanges();
+			ok(sut.getDomRef() === sut.getTextDomRef(), "TextDomRef is the controls dom ref.");
+			sut.destroy();
 		});
 
 	</script>

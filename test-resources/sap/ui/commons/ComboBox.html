@@ -313,6 +313,28 @@
 					new sap.ui.core.ListItem({text:"Earth", key: "B"}),
 					new sap.ui.core.ListItem({text:"Moon", key: "C"})]
 				}).placeAt("target13");
+
+			// 2 ComboBoxes using the same Lisbox bound to a model
+			var oModel2 = new sap.ui.model.json.JSONModel({
+				items2:[{text: "Item X", key: "I1"},
+				        {text: "Item Y", key: "I2"},
+				        {text: "Item Z", key: "I3"}]
+				});
+			var oListBox13 = new sap.ui.commons.ListBox("List13");
+			oListBox13.bindAggregation("items", "/items2",
+				new sap.ui.core.ListItem({
+					key : "{key}",
+					text : "{text}"
+			}));
+
+			var oHLayout = new sap.ui.commons.layout.HorizontalLayout({
+				content: [ new sap.ui.commons.Label({ text: "ComboBox using ListBox with Databinding: ", labelFor: "Combo13"}),
+				           new sap.ui.commons.ComboBox("Combo13",{listBox: oListBox13}),
+				           new sap.ui.commons.Label({ text: "ComboBox using same ListBox with Databinding: ", labelFor: "Combo14"}),
+				           new sap.ui.commons.ComboBox("Combo14",{listBox: oListBox13})
+				          ]
+			}).placeAt("target14");
+			oHLayout.setModel(oModel2);
 		</script>
 	</head>
 	<body class="sapUiBody" role="application">
@@ -361,6 +383,9 @@
 
 		<br>
 		<div id="target13"></div>
+
+		<br>
+		<div id="target14"></div>
 
 		<div id="currentElement" style="position:absolute;bottom:0px;left:0px;"></div>
 	</body>

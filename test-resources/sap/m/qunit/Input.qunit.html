@@ -165,12 +165,12 @@
 		strictEqual(oInput.$().css("padding-right"), "40px", "Wrapper DIV has right padding of 2.5rem when value help icon is enabled");
 
 		// temporarily overwrite function to get a placeholder on all browsers
-		var tmp = oInput._showLabelAsPlaceholder;
-		oInput._showLabelAsPlaceholder = function() {return true;}
+		var tmp = oInput._bShowLabelAsPlaceholder;
+		oInput._bShowLabelAsPlaceholder = true;
 		oInput.rerender();
 		jQuery(oInput.$()).find("label").css("display","block");
 		strictEqual(jQuery(oInput.$()).find("label").css("padding-right"), "12px", "Placeholder label has right padding of 12px when value help icon is enabled");
-		oInput._showLabelAsPlaceholder = tmp;
+		oInput._bShowLabelAsPlaceholder = tmp;
 
 		// event check
 		sap.ui.getCore().byId(oInputId + "__vhi").firePress();

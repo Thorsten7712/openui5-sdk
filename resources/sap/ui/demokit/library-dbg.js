@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.demokit (1.20.5)
+ * Initialization Code and shared classes of library sap.ui.demokit (1.20.6)
  */
 jQuery.sap.declare("sap.ui.demokit.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -49,7 +49,7 @@ sap.ui.getCore().initLibrary({
     "sap.ui.demokit.Tag",
     "sap.ui.demokit.UIAreaSubstitute"
   ],
-  version: "1.20.5"});
+  version: "1.20.6"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
@@ -69,7 +69,7 @@ jQuery.sap.declare("sap.ui.demokit.UI5EntityCueCardStyle");
 /**
  * @class different styles for an entity cue card.
  *
- * @version 1.20.5
+ * @version 1.20.6
  * @static
  * @public
  */

@@ -392,6 +392,23 @@
 						"2nd col visibility is correct");
 
 			});
+	
+	//Need to delay 'destroy' call because otherwise button press of previous
+	//test (which has an inherent delay) will fail because int interferes with the destroyed
+	//table perso controller
+	asyncTest("Destroy TablePersoController", function() {
+		setTimeout(function() {
+			oTPC.destroy();
+			setTimeout(function() {
+				ok(!oTPC._mDelegateMap, "Delegate map is destroyed");	
+				ok(!oTPC._oPersService, "Service is destroyed");	
+				ok(!oTPC._mTablePersMap, "Perso Map is nulled");	
+				start();
+			}, 600);
+		}, 600);
+	});	
+
+	
 </script>
 </head>
 <body id="body" class="sapUiBody">

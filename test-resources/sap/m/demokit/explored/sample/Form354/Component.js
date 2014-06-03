@@ -4,7 +4,6 @@ sap.ui.core.UIComponent.extend("sap.m.sample.Form354.Component", {
 
 	metadata : {
 		rootView : "sap.m.sample.Form354.Page",
-		includes : [ "Form354/style.css" ],
 		config : {
 			sample : {
 				stretch : true,

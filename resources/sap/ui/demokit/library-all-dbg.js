@@ -651,7 +651,7 @@ if ( !jQuery.sap.isDeclared('sap.ui.demokit.library') ) {
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.demokit (1.20.5)
+ * Initialization Code and shared classes of library sap.ui.demokit (1.20.6)
  */
 jQuery.sap.declare("sap.ui.demokit.library");
 jQuery.sap.require('sap.ui.core.Core'); // unlisted dependency retained
@@ -693,7 +693,7 @@ sap.ui.getCore().initLibrary({
     "sap.ui.demokit.Tag",
     "sap.ui.demokit.UIAreaSubstitute"
   ],
-  version: "1.20.5"});
+  version: "1.20.6"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
@@ -713,7 +713,7 @@ jQuery.sap.declare("sap.ui.demokit.UI5EntityCueCardStyle");
 /**
  * @class different styles for an entity cue card.
  *
- * @version 1.20.5
+ * @version 1.20.6
  * @static
  * @public
  */
@@ -933,7 +933,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -1330,7 +1330,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -1810,7 +1810,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -2068,7 +2068,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -2382,7 +2382,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -2595,7 +2595,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author SAP AG 
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -3305,7 +3305,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @extends sap.ui.core.Element
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -3458,7 +3458,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -3776,7 +3776,7 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public
@@ -4393,7 +4393,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @extends sap.ui.core.Element
  *
  * @author  
- * @version 1.20.5
+ * @version 1.20.6
  *
  * @constructor   
  * @public

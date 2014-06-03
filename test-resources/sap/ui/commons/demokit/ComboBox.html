@@ -171,8 +171,11 @@ var oLayout = new sap.ui.commons.layout.MatrixLayout("Matrix1",{
 	<p>
 	At first, the items are added to a ListBox control. The ListBox also contains additional texts. The ListBox is assigned to the ComboBox using the <code>setListBox</code> method.
 	Assigning the ListBox to the ComboBox allows a reuse of the same ListBox in multiple ComboBoxes. A typical use case for this is a table where the possible values are the same in every row.
-	The <code>change</code> event is assigned to a function that fills the TextField next to the ComboBox. So you can see when the <code>change</code> event is fired.
-	Control creation and property assignment in the example are done using an alternative constructor syntax. 		
+	In this case, the ListBox must not be rendered somewhere. But if you want to bind the items to a model the ListBox must be part of the control tree. So we suggest to add it as dependent to the view 
+	or the fist uses ComboBox.
+	<br>
+	In the example the <code>change</code> event is assigned to a function that fills the TextField next to the ComboBox. So you can see when the <code>change</code> event is fired.
+	Control creation and property assignment in the example are done using an alternative constructor syntax.
 	</p>
 	<br>
 	<div code-sample="sample2" script="ComboBoxListBox"></div>

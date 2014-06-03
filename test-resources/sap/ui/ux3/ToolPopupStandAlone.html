@@ -28,12 +28,12 @@
 		at += " " + oDropAtVertical.getSelectedKey();
 		oPosition.at = at;
 
-		if(oCBOffset.getChecked()){
+		if (oCBOffset.getChecked()) {
 			var aOffset = oTextOffset.getValue().split(" ");
-			var aSign = [parseInt(aOffset[0]) < 0 ? "" : "+", parseInt(aOffset[1]) < 0 ? "" : "+"]; // no "-" sign because already in numer of offset
+			var aSign = [ parseInt(aOffset[0]) < 0 ? "" : "+", parseInt(aOffset[1]) < 0 ? "" : "+" ]; // no "-" sign because already in numer of offset
 			oPosition.my = oDropMyHorizontal.getSelectedKey() + aSign[0] + aOffset[0] + " " + oDropMyVertical.getSelectedKey() + aSign[1] + aOffset[1];
 			oPosition.offset = undefined;
-		}else {
+		} else {
 			oPosition.offset = oTextOffset.getValue();
 		}
 		oPosition.collision = oDropCollision.getSelectedKey();
@@ -106,8 +106,8 @@
 	}).placeAt("offset_input");
 
 	var oCBOffset = new sap.ui.commons.CheckBox("CB_newOffset", {
-		text: "use new jQuery UI logic (offset inside my)", 
-		enabled: false,
+		text : "use new jQuery UI logic (offset inside my)",
+		enabled : false,
 		change : fixPosition
 	}).placeAt("offset_input");
 
@@ -137,7 +137,7 @@
 	jQuery.sap.require("sap.ui.thirdparty.jqueryui.jquery-ui-effect-scale")
 
 	// open ToolPopup below button
-	var oButton = new sap.ui.commons.Button({
+	var oButton = new sap.ui.commons.Button("openerButton", {
 		text : "Open ToolPopup",
 		press : function() {
 			if (oToolPopup.isOpen()) {
@@ -163,7 +163,10 @@
 				oToolPopup.close();
 			}
 		}) ],
-		opener : oButton
+		opener : oButton,
+		opened : function() {
+			this.oPopup.setFollowOf(true);
+		}
 	});
 
 	var oCheck = new sap.ui.commons.CheckBox({
@@ -187,6 +190,47 @@
 			oToolPopup.setInverted(this.getChecked());
 		}
 	}).placeAt("checkInvert");
+
+	var oCheck3 = new sap.ui.commons.CheckBox({
+		text : "Move Opener Button",
+		checked : false,
+		change : function() {
+			if (sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version < 10) {
+				alert("Use a modern browser damnit :-)");
+			} else {
+				if (this.getChecked()) {
+					oButton.addStyleClass("animate");
+					oButtonOpenToolPopFollowOf.setEnabled(true);
+				} else {
+					oButton.removeStyleClass("animate");
+					oButtonOpenToolPopFollowOf.setEnabled(false);
+				}
+			}
+		}
+	}).placeAt("checkFollowOf");
+	var oButtonOpenToolPopFollowOf = new sap.ui.commons.Button({
+		text : "Open the ToolPopup with 'FollowOf'",
+		enabled : false,
+		press : function() {
+			if (oToolPopup.isOpen()) {
+				oToolPopup.close();
+			} else {
+				oToolPopup.open();
+			}
+		}
+	}).addStyleClass("followOfButton").placeAt("checkFollowOf");
+
+	var oButtonInvalidateOpener = new sap.ui.commons.Button({
+		text : "Set Text for Opener Button",
+		press : function() {
+			oButton.setText(oTextField.getValue());
+		}
+	}).addStyleClass("followOfButton").placeAt("checkFollowOf");
+	var oTextField = new sap.ui.commons.TextField({
+		change : function() {
+			oButton.setText(this.getValue());
+		}
+	}).placeAt("checkFollowOf");
 
 	var scale = 100;
 
@@ -231,6 +275,69 @@
 	margin: 50px;
 }
 
+.followOfButton {
+	margin-left: 10px;
+}
+
+.animate {
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+	animation-name: changePos;
+	-webkit-animation-name: changePos;
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@
+-webkit-keyframes changePos {from { left:0px;
+	
+}
+
+50%
+{
+margin
+
+
+:
+
+ 
+
+200
+px
+
+
+;
+}
+to {
+	margin: 0px;
+}
+
+}
+@
+keyframes changePos {from { left:0px;
+	
+}
+
+50%
+{
+margin
+
+
+:
+
+ 
+
+200
+px
+
+
+;
+}
+to {
+	margin: 0px;
+}
+
+}
 html[dir='rtl'] .opener {
 	left: 50px;
 }
@@ -255,6 +362,7 @@ html[dir='rtl'] .opener {
 
 	<div id="checkInvert"></div>
 	<div id="checkDefault"></div>
+	<div id="checkFollowOf"></div>
 	<div style="padding-bottom: 20px;">
 		<b>my:</b>
 		<div id="my_horizontal"></div>
