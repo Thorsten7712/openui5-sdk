@@ -77,8 +77,25 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.tdg.Component", {
 		});
 		this.setModel(i18nModel, "i18n");
 
-		// Create and set domain model to the component
 		var sServiceUrl = mConfig.serviceConfig.serviceUrl;
+
+		/* ATTENTION: please do not copy this code its a workaround to get TDG working with UI5 version 1.20 */
+		var bIsMocked = jQuery.sap.getUriParameters().get("responderOn") === "true";
+		// start the mock server for the domain model
+		if (bIsMocked) {
+			jQuery.sap.require("sap.ui.demo.tdg.util.LocalMockServer");
+			var oMockServer = new sap.ui.demo.tdg.util.LocalMockServer({
+				rootUri: sServiceUrl
+			});
+			oMockServer.simulate("model/metadata.xml", "model/");
+			oMockServer.start();
+
+			sap.m.MessageToast.show("Running in demo mode with mock data.", {
+				duration: 2000
+			});
+		}
+
+		// Create and set domain model to the component
 		var oModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 		this.setModel(oModel);
 

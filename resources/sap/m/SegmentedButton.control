@@ -16,6 +16,9 @@
 		<property group="Appearance" name="visible" type="boolean" defaultValue="true">
 			<documentation>boolean property to make the control visible or invisible</documentation>
 		</property>
+		<property group="Behavior" name="enabled" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>If disabled all buttons look grey, you cannot focus on them, you can not even click on them.</documentation>
+		</property>
 	</properties>
 	<events>
 		<event name="select">

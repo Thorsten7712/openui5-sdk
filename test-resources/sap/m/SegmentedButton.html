@@ -136,6 +136,7 @@
 					contentRight: [new sap.m.Button('Button1', {text: "Edit"})]
 				});
 				page.setCustomHeader(Bar);
+			        
 			
 			//---CONTENT---
 			var Segmented2 = new sap.m.SegmentedButton('SegmentedCnt1', {
@@ -242,6 +243,23 @@
 					SegmentedSecondPage.setSelectedButton(SegmentedSecondPage.getButtons()[i]);
 				}
 			}));
+			
+			
+			 var oButton1 = new sap.m.Button("segbtn1", {text:"first button"}),
+		     oButton2 = new sap.m.Button("segbtn2", {text:"disabled button"}),
+		     oButton3 = new sap.m.Button("segbtn3", {text:"third button"}),
+		     Segmented5 = new sap.m.SegmentedButton();
+		        
+		     page.addContent(Segmented5);
+		     Segmented5.addButton(oButton1);
+		     Segmented5.addButton(oButton2);
+		     Segmented5.addButton(oButton3);
+		     
+		     window.setTimeout(function(){
+		    	 oButton2.setEnabled(false);
+				},1000);
+		     
+		     
 		</script>
 </head>
 <body id="body" class="sapUiBody">

@@ -335,6 +335,38 @@
 				          ]
 			}).placeAt("target14");
 			oHLayout.setModel(oModel2);
+
+			// model change only changes order of items
+			var oModel3 = new sap.ui.model.json.JSONModel({
+				items3:[{text: "Item 1"},
+				        {text: "Item 2"},
+				        {text: "Item 3"}],
+				value: "Item 1"
+				});
+			var oItemTemplate = new sap.ui.core.ListItem();
+			oItemTemplate.bindProperty("text", "text").bindProperty("key", "key");
+
+			oLabel = new sap.ui.commons.Label({ text: "Databinding (change order of items): ", labelFor: "Combo12"}).placeAt("target15");
+			var oCombo15 = new sap.ui.commons.ComboBox("Combo15").placeAt("target15");
+			oCombo15.setModel(oModel3);
+
+			oCombo15.bindProperty("value", "/value");
+			oCombo15.bindAggregation("items", "/items3",
+					new sap.ui.core.ListItem({
+						key : "{key}",
+						text : "{text}"
+					}));
+
+			oButton = new sap.ui.commons.Button("BtnUpdModel2",{
+				text: "update model",
+				press: function(oEvent){
+					oModel3.setProperty("/value", "Item 3");
+					oModel3.oData.items3 = [{text: "Item 2"},
+					                        {text: "Item 3"},
+					                        {text: "Item 1"}];
+					oModel3.checkUpdate();
+				}}).placeAt("target15");
+
 		</script>
 	</head>
 	<body class="sapUiBody" role="application">
@@ -386,6 +418,9 @@
 
 		<br>
 		<div id="target14"></div>
+
+		<br>
+		<div id="target15"></div>
 
 		<div id="currentElement" style="position:absolute;bottom:0px;left:0px;"></div>
 	</body>

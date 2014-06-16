@@ -288,56 +288,34 @@
 	-webkit-animation-iteration-count: infinite;
 }
 
-@
--webkit-keyframes changePos {from { left:0px;
-	
+@-webkit-keyframes changePos {
+	from { 
+		left:0px;
+	}
+
+	50% {
+		margin : 200px;
+	}
+
+	to {
+		margin: 0px;
+	}
 }
 
-50%
-{
-margin
+@keyframes changePos {
+	from { 
+		left:0px;
+	}
 
+	50% {
+		margin : 200px;
+	}
 
-:
-
- 
-
-200
-px
-
-
-;
-}
-to {
-	margin: 0px;
+	to {
+		margin: 0px;
+	}
 }
 
-}
-@
-keyframes changePos {from { left:0px;
-	
-}
-
-50%
-{
-margin
-
-
-:
-
- 
-
-200
-px
-
-
-;
-}
-to {
-	margin: 0px;
-}
-
-}
 html[dir='rtl'] .opener {
 	left: 50px;
 }

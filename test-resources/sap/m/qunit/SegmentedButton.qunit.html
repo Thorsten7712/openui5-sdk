@@ -240,7 +240,85 @@
 			// cleanup
 			oPage.removeAllContent();
 			oSegmentedButton.destroy();
-		})
+		});
+		
+		test("Disbale single button", function() {
+			var oButton1 = new sap.m.Button("segbtn1", {text:"first button"}),
+		    oButton2 = new sap.m.Button("segbtn2", {text:"second button"}),
+		    oButton3 = new sap.m.Button("segbtn3", {text:"third button"}),
+		    oSegmentedButton = new sap.m.SegmentedButton();
+		    oPage.addContent(oSegmentedButton);
+		        
+		    oSegmentedButton.addButton(oButton1);
+		    oSegmentedButton.addButton(oButton2);
+		    oSegmentedButton.addButton(oButton3);
+		    sap.ui.getCore().applyChanges();
+		     
+		    oButton1.setEnabled(false);
+		    sap.ui.getCore().applyChanges();
+		     
+		    ok(oButton1.$().hasClass("sapMSegBBtnDis"), "the first button is disabled");
+		     
+		  	// cleanup
+			oPage.removeAllContent();
+			oSegmentedButton.destroy();
+		});
+ 
+		test("remove button", function() {
+	    	var oButton1 = new sap.m.Button("segbtn1", {text:"first button"}),
+			oButton2 = new sap.m.Button("segbtn2", {text:"second button"}),
+			oButton3 = new sap.m.Button("segbtn3", {text:"third button"}),
+			oSegmentedButton = new sap.m.SegmentedButton("TestSegButton");
+			oPage.addContent(oSegmentedButton);
+	     
+			oSegmentedButton.addButton(oButton1);
+			oSegmentedButton.addButton(oButton2);
+			oSegmentedButton.addButton(oButton3);
+			sap.ui.getCore().applyChanges();
+	     
+			oSegmentedButton.removeButton(oButton2);
+			sap.ui.getCore().applyChanges();
+	     
+			var iButtonCount = 0;
+			if(sap.ui.getCore().byId("TestSegButton") && sap.ui.getCore().byId("TestSegButton").$().children()){
+	    		iButtonCount = sap.ui.getCore().byId("TestSegButton").$().children().length;
+			}
+	
+			strictEqual(iButtonCount, 2, "the second button is removed");
+	  		
+			// cleanup
+	  		oSegmentedButton.addButton(oButton2);
+			oPage.removeAllContent();
+			oSegmentedButton.destroy();
+		});
+  
+		test("remove all buttons", function() {
+		        
+		    var oButton1 = new sap.m.Button("segbtn1", {text:"first button"}),
+		    oButton2 = new sap.m.Button("segbtn2", {text:"second button"}),
+		    oButton3 = new sap.m.Button("segbtn3", {text:"third button"}),
+		    oSegmentedButton = new sap.m.SegmentedButton("TestSegButton");
+		    oPage.addContent(oSegmentedButton);
+		    
+		    oSegmentedButton.addButton(oButton1);
+		    oSegmentedButton.addButton(oButton2);
+		    oSegmentedButton.addButton(oButton3);
+		    sap.ui.getCore().applyChanges();
+		    
+		    oSegmentedButton.removeAllButtons(oSegmentedButton);
+		    sap.ui.getCore().applyChanges();
+		    
+		    var iButtonCount = 3;
+		    if(sap.ui.getCore().byId("TestSegButton") && sap.ui.getCore().byId("TestSegButton").$().children()){
+		   	 iButtonCount = sap.ui.getCore().byId("TestSegButton").$().children().length;
+		    }
+		
+		    strictEqual(iButtonCount, 0, "the second button is removed");
+		 	
+		    // cleanup
+			oPage.removeAllContent();
+			oSegmentedButton.destroy();
+		});
 		
 		</script>
 	</head>

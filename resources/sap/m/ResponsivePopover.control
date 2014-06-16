@@ -112,6 +112,9 @@
 		<aggregation cardinality="0..1" name="endButton" type="sap.m/Button">
 			<documentation>EndButton is supported by both variants. It is always show in the right part (left part in RTL mode) of the footer which is located at the bottom of the ResponsivePopover. If buttons need to be displayed in header, please use customHeader instead.</documentation>
 		</aggregation>
+		<aggregation cardinality="0..1" name="_popup" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>The internal popup instance which is either a dialog on phone or a popover on the rest of platforms</documentation>
+		</aggregation>
 	</aggregations>
 	<associations>
 		<association cardinality="0..1" name="initialFocus" type="sap.ui.core/Control">

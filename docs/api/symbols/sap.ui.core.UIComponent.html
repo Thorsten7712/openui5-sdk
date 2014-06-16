@@ -522,6 +522,14 @@ the UIComponent once the routes in the routing metadata has been defined.
 											Returns the reference to the router instance. The passed controller or view
 have to be created in the context of a UIComponent to return the router 
 instance. Otherwise this function will return undefined.
+You may define the routerClass property in the config section of the routing to make the Component create your router extension.
+eg: 
+routing: {
+	config: {
+		routerClass : myAppNamespace.MyRouterClass
+		...
+}
+...
 											
 											
 											

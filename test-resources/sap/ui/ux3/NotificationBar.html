@@ -257,10 +257,25 @@
 		press : destroyAllMessages
 	});
 
+	var oButtonRemoveAllAndAddOneMessage = new sap.ui.commons.Button({
+		text : "Remove all message and add one message",
+		press : function() {
+			var aNotifiers = oNotificationBar.getNotifiers();
+			for (var i = 0, l = aNotifiers.length; i < l; i++) {
+				aNotifiers[i].destroyMessages();
+			}
+
+			destroyAllMessages();
+
+			addMessageMessage();
+		}
+	});
+
 	oLayout.createRow(oButtonAddMonitor, oButtonAddMessage);
 	oLayout.createRow(oButtonAddMonitor, oButtonAddMessage);
 	oLayout.createRow(oButtonRemoveMonitor, oButtonRemoveMessage);
 	oLayout.createRow(oButtonNewNotifier, oButtonRemoveAllMessages);
+	oLayout.createRow(oButtonRemoveAllAndAddOneMessage);
 
 	var oCheckClickListener = new sap.ui.commons.CheckBox({
 		text : "Use a message selected event listener",
@@ -275,7 +290,7 @@
 					oMessageNotifier.attachEvent("messageSelected", pressHandler);
 				}
 
-				for ( var i = 0; i < j; i++) {
+				for (var i = 0; i < j; i++) {
 					aNotifiers[i].attachEvent("messageSelected", pressHandler);
 				}
 			} else {
@@ -283,14 +298,14 @@
 					oMessageNotifier.detachEvent("messageSelected", pressHandler);
 				}
 
-				for ( var i = 0; i < j; i++) {
+				for (var i = 0; i < j; i++) {
 					aNotifiers[i].detachEvent("messageSelected", pressHandler);
 				}
 			}
 		}
 	});
 	oLayout.createRow(oCheckClickListener);
-	
+
 	var oCheckReadOnly = new sap.ui.commons.CheckBox({
 		text : "Message Read Only",
 		checked : false,

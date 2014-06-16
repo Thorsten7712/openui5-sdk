@@ -41,13 +41,37 @@
 		}
 	}).placeAt("RFLcheckBreak");
 
+	var bResponsive = true;
+	var oCheckRFL = new sap.ui.commons.CheckBox({
+		text : "Set Layout to responsive",
+		checked : true,
+		change : function() {
+			bResponsive = this.getChecked();
+			
+			oInnerFirst.setResponsive(bResponsive);
+			oInnerLast.setResponsive(bResponsive);
+			oAddress.setResponsive(bResponsive);
+			oRFL.setResponsive(bResponsive);
+		}
+	}).placeAt("RFLcheckResponsive");
+	var oButtonInvalidate = new sap.ui.commons.Button({
+		text : "Invalidate Layouts",
+		press : function() {
+			oInnerFirst.invalidate();
+			oInnerLast.invalidate();
+			oAddress.invalidate();
+			oRFL.invalidate();
+		}
+	}).placeAt("RFLcheckResponsive");
+
 	/*
 	 * Inner layout for first name
 	 */
 	var oInnerFirst = new rfl("rfl_firstname");
 	oInnerFirst.setLayoutData(new rflLD({
 		minWidth : 250,
-		margin : false
+		margin : false,
+		responsive : bResponsive
 	}));
 
 	var oLblFirst = new sap.ui.commons.Label({
@@ -69,7 +93,8 @@
 	 */
 	var oInnerLast = new rfl("rfl_lastname");
 	oInnerLast.setLayoutData(new rflLD({
-		minWidth : 250
+		minWidth : 250,
+		responsive : bResponsive
 	}));
 
 	var oLblLast = new sap.ui.commons.Label({
@@ -92,7 +117,8 @@
 	var oAddress = new rfl("rfl_address");
 	oAddress.setLayoutData(new rflLD({
 		minWidth : 250,
-		linebreak : true
+		linebreak : true,
+		responsive : bResponsive
 	}));
 
 	var oLblStreet = new sap.ui.commons.Label({
@@ -122,7 +148,9 @@
 	oAddress.addContent(oTFStreetNo);
 
 	// outer layout for the form stuff
-	var oRFL = new rfl("rfl_outer");
+	var oRFL = new rfl("rfl_outer", {
+		responsive : bResponsive
+	});
 	oRFL.placeAt("RFL1");
 
 	oRFL.addContent(oInnerFirst);
@@ -223,6 +251,7 @@
 	</h1>
 	<br />
 	<div id="RFLcheckBreak" style="padding-left: 10px;"></div>
+	<div id="RFLcheckResponsive" style="padding-left: 10px;"></div>
 	<br />
 	<div id="RFL1" class="sampleButtonBox" style="min-width: 250px;"></div>
 	<br />
