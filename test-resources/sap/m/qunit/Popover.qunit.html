@@ -226,7 +226,8 @@
 				oPopover.setPlacement(sap.m.PlacementType.Bottom);
 				var fnBeforeOpen = this.spy(),
 					fnAfterOpen = this.spy(),
-					fnSetArrowPosition = this.spy(oPopover, "_fnSetArrowPosition");
+					fnSetArrowPosition = this.spy(oPopover, "_fnSetArrowPosition"),
+					$Button = jQuery(oButton.getFocusDomRef());
 				
 				oPopover.attachBeforeOpen(fnBeforeOpen);
 				oPopover.attachAfterOpen(fnAfterOpen);
@@ -237,7 +238,7 @@
 				var $popover = jQuery.sap.byId("popover");
 				ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
 				ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
-				ok(Math.ceil($popover.offset().top - iArrowOffset) >= Math.floor(oButton.$().offset().top + oButton.$().outerHeight()), "Popover should be opened at the bottom of the button");
+				ok(Math.ceil($popover.offset().top - iArrowOffset) >= Math.floor($Button.offset().top + $Button.outerHeight()), "Popover should be opened at the bottom of the button");
 				if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
 					ok(jQuery.sap.containsOrEquals(oPopover.$()[0], document.activeElement), "Popover should have the focus")
 				}
@@ -294,10 +295,11 @@
 				oButton.firePress();
 				ok(oPopover.isOpen(), "Popover is already open");
 				this.clock.tick(500);
-				var $popover = jQuery.sap.byId("popover");
+				var $popover = jQuery.sap.byId("popover"),
+					$Button = jQuery(oButton.getFocusDomRef());
 				ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
 				ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
-				ok(Math.floor($popover.offset().left + $popover.outerWidth() + iArrowOffset) <= Math.ceil(oButton.$().offset().left), "Popover should be opened at the left side of the button");
+				ok(Math.floor($popover.offset().left + $popover.outerWidth() + iArrowOffset) <= Math.ceil($Button.offset().left), "Popover should be opened at the left side of the button");
 				//the window size of the test machine is too small, this test can't be executed successfully
 // 				ok($popover.position().top >= iBarHeight + 2, "popover is not overlapping the Page Header");
 // 				ok(($popover.position().top + $popover.outerHeight()) <= (jQuery(window).height() - 20), "popover is not overlapping bottom border");
@@ -316,12 +318,13 @@
 				oButton.firePress();
 				ok(oPopover.isOpen(), "Popover is already open");
 				this.clock.tick(500);
-				var $popover = jQuery.sap.byId("popover");
+				var $popover = jQuery.sap.byId("popover"),
+					$Button = jQuery(oButton.getFocusDomRef());
 				ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
 				ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
 				if(jQuery(window).height() > 150){
 					// when the browser window is really short, this has to be disabled.
-					ok(Math.floor($popover.offset().top + $popover.outerHeight() + iArrowOffset) <= Math.ceil(oButton.$().offset().top), "Popover should be opened at the top of the button");
+					ok(Math.floor($popover.offset().top + $popover.outerHeight() + iArrowOffset) <= Math.ceil($Button.offset().top), "Popover should be opened at the top of the button");
 				}
 				//the window size of the test machine is too small, this test can't be executed successfully
 // 				ok($popover.position().top >= iBarHeight + 2, "popover is not overlapping the Page Header");

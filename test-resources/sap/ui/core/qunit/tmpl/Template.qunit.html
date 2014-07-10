@@ -77,14 +77,53 @@
 			});
 
 			test("Unsupported Type", 1, function() {
-				
 				var theEx;
 				try {
 					sap.ui.template("theSecondTemplate");
 				} catch (ex) {
 					theEx = ex;					
 				}
+
 				ok(theEx !== undefined, "Unknown template type not found. Exception was raised!");
+			});
+			
+			asyncTest("Binding Path in Template", 1, function() {
+				var sTitle = "Test123";
+
+				sap.ui.controller("test.myController", {
+					model: new sap.ui.model.json.JSONModel({ 
+						title: sTitle
+					}),
+		    
+					onInit: function(){
+						sap.ui.getCore().setModel(this.model, "navigation");
+					}
+				});
+				
+				var html = '' +
+					'<template data-controller-name="test.myController">' +
+						'<div id="myTemplate" data-type="text/x-handlebars-template">' +
+							'<div>Binding in Template:</div>' +
+							'<span id="templateContent">{{text path="navigation>/title"}}</span>' +
+						'</div>' +
+					'</template>';
+				
+				var myView = sap.ui.htmlview({viewContent:html});
+				myView.placeAt("templateWithBinding");
+				
+				jQuery.sap.registerModulePath('test', './');
+				
+				setTimeout(function(){
+					sap.ui.template({
+						id: "myTemplate"
+					});
+					
+					setTimeout(function() {
+						start();
+						var sResult = jQuery(document.getElementById("templateContent")).text()
+						ok(sResult === sTitle, "Binding resolved properly");
+					}, 10);
+				}, 10);
 				
 			});
 
@@ -105,5 +144,9 @@
 	<div id="theThirdEmbeddedTemplate" style="display: none;">
 		<code>Hello {{value}}</code>
 	</div>
+
+	<div id="templateWithBinding" style="display: none;">
+	</div>
+
 	</body>
 </html>

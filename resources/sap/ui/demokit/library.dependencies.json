@@ -3,7 +3,7 @@
     {
       "name" : "sap/ui/demokit/CodeSampleContainer.js",
       "description" : "Provides control sap.ui.demokit.CodeSampleContainer.",
-      "size" : 13843,
+      "size" : 13844,
       "compressedSize" : 3635,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "sap/ui/core/ResizeHandler.js", "jquery.sap.global.js"],
       "includes" : []
@@ -19,7 +19,7 @@
     {
       "name" : "sap/ui/demokit/CodeViewer.js",
       "description" : "Provides control sap.ui.demokit.CodeViewer.",
-      "size" : 15162,
+      "size" : 15163,
       "compressedSize" : 2731,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "sap/ui/commons/Button.js", "sap/ui/commons/Dialog.js", "jquery.sap.global.js"],
       "includes" : []
@@ -43,7 +43,7 @@
     {
       "name" : "sap/ui/demokit/FileUploadIntrospector.js",
       "description" : "Provides control sap.ui.demokit.FileUploadIntrospector.",
-      "size" : 8056,
+      "size" : 8057,
       "compressedSize" : 1735,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "jquery.sap.global.js"],
       "includes" : []
@@ -59,7 +59,7 @@
     {
       "name" : "sap/ui/demokit/HexagonButton.js",
       "description" : "Provides control sap.ui.demokit.HexagonButton.",
-      "size" : 10401,
+      "size" : 10402,
       "compressedSize" : 1432,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "jquery.sap.global.js"],
       "includes" : []
@@ -67,7 +67,7 @@
     {
       "name" : "sap/ui/demokit/HexagonButtonGroup.js",
       "description" : "Provides control sap.ui.demokit.HexagonButtonGroup.",
-      "size" : 6896,
+      "size" : 6897,
       "compressedSize" : 613,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "jquery.sap.global.js"],
       "includes" : []
@@ -91,7 +91,7 @@
     {
       "name" : "sap/ui/demokit/IndexLayout.js",
       "description" : "Provides control sap.ui.demokit.IndexLayout.",
-      "size" : 16728,
+      "size" : 16729,
       "compressedSize" : 6354,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "sap/ui/Device.js", "sap/ui/core/IntervalTrigger.js", "jquery.sap.global.js"],
       "includes" : []
@@ -123,7 +123,7 @@
     {
       "name" : "sap/ui/demokit/Tag.js",
       "description" : "Provides control sap.ui.demokit.Tag.",
-      "size" : 4621,
+      "size" : 4622,
       "compressedSize" : 623,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Element.js", "jquery.sap.global.js"],
       "includes" : []
@@ -131,7 +131,7 @@
     {
       "name" : "sap/ui/demokit/TagCloud.js",
       "description" : "Provides control sap.ui.demokit.TagCloud.",
-      "size" : 10044,
+      "size" : 10045,
       "compressedSize" : 833,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "jquery.sap.global.js"],
       "includes" : []
@@ -147,7 +147,7 @@
     {
       "name" : "sap/ui/demokit/UI5EntityCueCard.js",
       "description" : "Provides control sap.ui.demokit.UI5EntityCueCard.",
-      "size" : 21186,
+      "size" : 21187,
       "compressedSize" : 6372,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Control.js", "sap/ui/commons/Link.js", "jquery.sap.global.js"],
       "includes" : []
@@ -163,22 +163,22 @@
     {
       "name" : "sap/ui/demokit/UIAreaSubstitute.js",
       "description" : "Provides control sap.ui.demokit.UIAreaSubstitute.",
-      "size" : 6297,
+      "size" : 6298,
       "compressedSize" : 590,
       "required" : ["sap/ui/demokit/library.js", "sap/ui/core/Element.js", "jquery.sap.global.js"],
       "includes" : []
     },
     {
       "name" : "sap/ui/demokit/library.js",
-      "description" : "Initialization Code and shared classes of library sap.ui.demokit (1.20.9)",
-      "size" : 7161,
-      "compressedSize" : 3711,
+      "description" : "Initialization Code and shared classes of library sap.ui.demokit (1.20.10)",
+      "size" : 7164,
+      "compressedSize" : 3712,
       "required" : ["sap/ui/core/Core.js", "sap/ui/core/library.js", "sap/ui/commons/library.js", "sap/ui/demokit/js/highlight-query-terms.js", "jquery.sap.global.js"],
       "includes" : ["sap/ui/demokit/UI5EntityCueCardStyle.js"]
     },
     {
       "name" : "sap/ui/demokit/library.properties",
-      "size" : 877,
+      "size" : 878,
       "required" : [],
       "includes" : []
     }

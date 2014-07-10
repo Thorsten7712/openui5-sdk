@@ -402,7 +402,7 @@
 			var sOldElementId = oLabel.getParent().getId();
 			var sOldContainerId = oLabel.getParent().getParent().getId();
 			oSimpleForm2.removeAllContent();
-			ok(!oSimpleForm2.getContent(), "No content");
+			equal(oSimpleForm2.getContent().length, 0, "No content");
 			var aContainers = oSimpleForm2.getAggregation("form").getFormContainers();
 			equal(aContainers.length, 0, "No FormContainers");
 			ok(!oLabel.getLayoutData(), "Label has no LayoutData");
@@ -424,7 +424,7 @@
 			var sOldElementId = oLabel.getParent().getId();
 			var sOldContainerId = oLabel.getParent().getParent().getId();
 			oSimpleForm3.destroyContent();
-			ok(!oSimpleForm3.getContent(), "No content");
+			equal(oSimpleForm3.getContent().length, 0, "No content");
 			var aContainers = oSimpleForm3.getAggregation("form").getFormContainers();
 			equal(aContainers.length, 0, "No FormContainers");
 			var oLabel = sap.ui.getCore().byId("SF3-L1");

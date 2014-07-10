@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <library  version="2.0" name="sap.ui.demokit">
-  <module name="sap/ui/demokit/CodeSampleContainer.js" size="13843" compressedSize="3635">
+  <module name="sap/ui/demokit/CodeSampleContainer.js" size="13844" compressedSize="3635">
     <description>Provides control sap.ui.demokit.CodeSampleContainer.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -15,7 +15,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/CodeViewer.js" size="15162" compressedSize="2731">
+  <module name="sap/ui/demokit/CodeViewer.js" size="15163" compressedSize="2731">
     <description>Provides control sap.ui.demokit.CodeViewer.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -48,7 +48,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/FileUploadIntrospector.js" size="8056" compressedSize="1735">
+  <module name="sap/ui/demokit/FileUploadIntrospector.js" size="8057" compressedSize="1735">
     <description>Provides control sap.ui.demokit.FileUploadIntrospector.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -62,7 +62,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/HexagonButton.js" size="10401" compressedSize="1432">
+  <module name="sap/ui/demokit/HexagonButton.js" size="10402" compressedSize="1432">
     <description>Provides control sap.ui.demokit.HexagonButton.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -70,7 +70,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/HexagonButtonGroup.js" size="6896" compressedSize="613">
+  <module name="sap/ui/demokit/HexagonButtonGroup.js" size="6897" compressedSize="613">
     <description>Provides control sap.ui.demokit.HexagonButtonGroup.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -90,7 +90,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/IndexLayout.js" size="16728" compressedSize="6354">
+  <module name="sap/ui/demokit/IndexLayout.js" size="16729" compressedSize="6354">
     <description>Provides control sap.ui.demokit.IndexLayout.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -123,7 +123,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/Tag.js" size="4621" compressedSize="623">
+  <module name="sap/ui/demokit/Tag.js" size="4622" compressedSize="623">
     <description>Provides control sap.ui.demokit.Tag.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -131,7 +131,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/TagCloud.js" size="10044" compressedSize="833">
+  <module name="sap/ui/demokit/TagCloud.js" size="10045" compressedSize="833">
     <description>Provides control sap.ui.demokit.TagCloud.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -145,7 +145,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/UI5EntityCueCard.js" size="21186" compressedSize="6372">
+  <module name="sap/ui/demokit/UI5EntityCueCard.js" size="21187" compressedSize="6372">
     <description>Provides control sap.ui.demokit.UI5EntityCueCard.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -160,7 +160,7 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/UIAreaSubstitute.js" size="6297" compressedSize="590">
+  <module name="sap/ui/demokit/UIAreaSubstitute.js" size="6298" compressedSize="590">
     <description>Provides control sap.ui.demokit.UIAreaSubstitute.</description>
     <requires>
       <module name="sap/ui/demokit/library.js"/>
@@ -168,8 +168,8 @@
       <module name="jquery.sap.global.js"/>
     </requires>
   </module>
-  <module name="sap/ui/demokit/library.js" size="7161" compressedSize="3711">
-    <description>Initialization Code and shared classes of library sap.ui.demokit (1.20.9)</description>
+  <module name="sap/ui/demokit/library.js" size="7164" compressedSize="3712">
+    <description>Initialization Code and shared classes of library sap.ui.demokit (1.20.10)</description>
     <requires>
       <module name="sap/ui/core/Core.js"/>
       <module name="sap/ui/core/library.js"/>
@@ -181,6 +181,6 @@
       <module name="sap/ui/demokit/UI5EntityCueCardStyle.js"/>
     </includes>
   </module>
-  <module name="sap/ui/demokit/library.properties" size="877">
+  <module name="sap/ui/demokit/library.properties" size="878">
   </module>
 </library>
