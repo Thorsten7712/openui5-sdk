@@ -427,6 +427,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 		function fnError(oError) {
 			that.oRequestHandle = null;
 			that.bPendingRequest = false;
+			// reset data and trigger update
+			that.aKeys = [];
+			that.iLength = 0;
+			that.bLengthFinal = true;
+			that.bDataAvailable = true;
+			that._fireChange({reason: sap.ui.model.ChangeReason.Change});
 			that.fireDataReceived();
 		}
 		
@@ -522,7 +528,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			var sUrl = this.oModel._createRequestUrl(sPath + "/$count", null, aParams);
 			var oRequest = this.oModel._createRequest(sUrl, "GET", false);
 			// count needs other accept header
-			oRequest.headers["Accept"] = "text/plain";
+			oRequest.headers["Accept"] = "text/plain, */*;q=0.5";
 		
 			// execute the request and use the metadata if available
 			// (since $count requests are synchronous we skip the withCredentials here)

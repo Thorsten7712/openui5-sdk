@@ -55,7 +55,7 @@
 			},
 			{
 				"text" : "Application Best Practices",
-				"ref": "test-resources/sap/m/demokit/tdg/index.html",
+				"ref": "test-resources/sap/m/demokit/tdg/index.html?responderOn=true",
 				"icon": "sapmdemo/tdg",
 				"desc": "The reference app \"Application Best Practices\" of the developer guide"
 			}

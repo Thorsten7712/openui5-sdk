@@ -61,7 +61,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  *
  * @author SAP AG 
- * @version 1.20.6
+ * @version 1.20.8
  *
  * @constructor   
  * @public
@@ -1360,6 +1360,11 @@ sap.m.IconTabBar.prototype._handleActivation = function(oEvent) {
 					}
 				}
 			}
+		} else {
+			//no target id, so we have to check if showAll is set, because clicking on the number then also leads to selecting the item
+			if (oControl.getMetadata().isInstanceOf("sap.m.IconTab") && !(oControl instanceof sap.m.IconTabSeparator) && oControl.getShowAll()) {
+				this.setSelectedItem(oControl);
+			}
 		}
 	}
 };
@@ -1457,6 +1462,11 @@ sap.m.IconTabBar.prototype._adjustAndShowArrow = function() {
 	this._adjustArrow();
 	this._$bar && this._$bar.toggleClass("sapMITBScrolling", false);
 	this._$bar = null;
+
+	//update the arrows on desktop
+	if (sap.ui.Device.system.desktop) {
+		this._checkOverflow(this.getDomRef("head"), this.$());
+	}
 };
 
 /**

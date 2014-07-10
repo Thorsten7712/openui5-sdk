@@ -249,18 +249,7 @@ asyncTest("Remove all pages from second carousel and add pages which were used i
 	}, 600);
 });  
 
-
-
-
-
-
-
-
-
-
 module("Events"); 
-
-
 
 asyncTest("Listen to 'pageChanged' event" , function() {
 	oPictureCarousel.addPage(img2);
@@ -285,6 +274,48 @@ asyncTest("Listen to 'pageChanged' event" , function() {
 	}, 600);
 }); 
 
+asyncTest("Should fire pageChanged only once even if it is invalidated meanwhile", function() {
+	// Arrange
+	var callCount = 0,
+		oNestedCarousel = new sap.m.Carousel({
+			pages : [ new sap.m.Page() ]
+		}),
+		oPageOfNestedCarousel = new sap.m.Page({
+			content : oNestedCarousel
+		});
+
+
+	// System under Test
+	var oCarousel = new sap.m.Carousel({
+		pages : [ oPageOfNestedCarousel, new sap.m.Page()]
+	});
+
+	// Act
+	oCarousel.placeAt("qunit-fixture");
+	sap.ui.getCore().applyChanges();
+
+	oCarousel.attachPageChanged(shouldOnlyBeCalledOnce);
+	oCarousel.next();
+
+	function shouldOnlyBeCalledOnce () {
+		callCount ++;
+
+		if(callCount === 1) {
+			//Act part 2;
+			oNestedCarousel.invalidate();
+			//The bug that is tested here triggered a recursion at this point.
+			sap.ui.getCore().applyChanges();
+		}
+
+		// Assert
+		strictEqual(callCount, 1, "Did only call it once");
+
+		//Cleanup
+		oCarousel.destroy();
+		start();
+	}
+});
+
 module("Clean up");
 test("Destroy both carousels" , function() {
 	oPictureCarousel.destroy();
@@ -296,15 +327,7 @@ test("Destroy both carousels" , function() {
 	var oNotRenderedCarousel = new sap.m.Carousel();
 	oNotRenderedCarousel.destroy();
 	ok(!oNotRenderedCarousel._mScrollContainerMap, "Empty Carousel's container map has been cleaned up");
-}); 
-
-
-
-
-
-
-
-
+});
 
 </script>
 
@@ -323,6 +346,7 @@ test("Destroy both carousels" , function() {
 	<h2 id="qunit-userAgent"></h2>
 	<div id="qunit-testrunner-toolbar"></div>
 	<ol id="qunit-tests"></ol>
-	<div id="carousel-test-content"></div>
+	<div id="carousel-test-content"></div>	
+	<div id="qunit-fixture"></div>
 </body>
 </html>

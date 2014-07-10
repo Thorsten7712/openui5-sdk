@@ -186,6 +186,39 @@
 			
 			equal(counter, 0, "the handler should not be executed");
 		});
+
+		test("removeDelegate from within delegate", function() {
+			// BUG: Removing the delegate while it is called modifies the array of delegates, 
+			//      the second delegate is not called
+			//      Fixed in 1.20.7
+			// CSS: 0120061532 0001150709 2014
+			
+			var oDelegate1 = {
+		        onAfterRendering:function() {
+		            ok(true, "Invoke onAfterRendering on delegate #1");
+					element.removeEventDelegate(oDelegate1);
+		        }
+		    };
+			
+			var oDelegate2 = {
+		        onAfterRendering:function() {
+		            ok(true, "Invoke onAfterRendering on delegate #2");
+					element.removeEventDelegate(oDelegate2);
+					
+					equal(element.aBeforeDelegates.length, 0, "Element should have no before delegates");
+					equal(element.aDelegates.length, 0, "Element should have no after delegates");
+		        }
+		    };
+							
+		    element.addEventDelegate(oDelegate1);
+			element.addEventDelegate(oDelegate2);
+
+			equal(element.aBeforeDelegates.length, 0, "Element should have no before delegates");
+			equal(element.aDelegates.length, 2, "Element should have two after delegates");
+			
+			var oEvent = jQuery.Event("AfterRendering");
+			element._handleEvent(oEvent);
+		});
 	</script>
 </head>
 <body>

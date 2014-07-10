@@ -416,7 +416,7 @@
 
 
 			asyncTest("PaneBarItemSelected Event", function() {
-				expect(7);
+				expect(8);
 				
 				// pane should be closed
 				equal(jQuery.sap.byId(oShell.getId() + "-paneBar").hasClass("sapUiUx3ShellPaneBarOpen"), false, "Pane bar should be closed");
@@ -430,6 +430,8 @@
 					equal(jQuery.sap.byId(oShell.getId() + "-paneBar").hasClass("sapUiUx3ShellPaneBarOpen"), true, "Pane bar should be open");
 					equal(jQuery.sap.byId("paneContent").length, 1, "Pane content should exist");
 					
+					equal(document.activeElement.id, "paneContent", "Pane content has focus after opening");
+
 					// close again
 					qutils.triggerMouseEvent("pb_people", "click", 1, 1, 1, 1);
 					

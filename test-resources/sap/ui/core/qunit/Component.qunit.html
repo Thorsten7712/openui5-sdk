@@ -130,6 +130,26 @@
 		equal(sNestedComponentId, oNestedControl._sOwnerId /* INTERNAL ONLY! */, "The nested control has the correct component context");
 	});
 
+	module("Routing");
+
+	test("Should create a custom router class", function() {
+		//Arrange + System under test 
+		var oComponent = sap.ui.getCore().createComponent({
+			name: "samples.components.routing",
+		});
+
+
+		//Act - initialize the component to create the router
+		oComponent.init();
+		var oRouter = oComponent.getRouter();
+
+		//Assert
+		ok(oRouter instanceof samples.components.routing.RouterExtension, "the created router was an extension");
+
+		//Cleanup
+		oComponent.destroy();
+	});
+
 	</script>
 	</head>
 	<body><h1 id="qunit-header">QUnit tests: Components</h1>

@@ -3251,6 +3251,12 @@ input.sapMSFI[type="search"]:focus {
 .sapMSegB.sapMSegBHide {
 	visibility: hidden;
 }
+
+.sapMSegBBtn.sapMSegBBtnDis{
+	text-shadow:      none;
+	cursor:           default;
+	opacity:          0.5;
+}
 /* ====================================================== */
 /* CSS for control sap.m/Select.control                   */
 /* ====================================================== */
@@ -4478,6 +4484,10 @@ html[dir=rtl] .sapMStdTileInfo{
 	overflow: auto; /* remove scrollbars if not needed */
 	-webkit-transform: none; /* transform is blocking scroll */
 	resize: none;
+}
+
+.sapMTextArea > .sapMTextAreaInner{
+	height: 100%;
 	width: 100%;
 }
 /* ====================================== */

@@ -1,6 +1,6 @@
 jQuery.sap.declare("sap.ui.demo.explored.MyRouter");
-
-sap.ui.demo.explored.MyRouter = {
+jQuery.sap.require("sap.ui.core.routing.Router");
+sap.ui.core.routing.Router.extend("sap.ui.demo.explored.MyRouter", {
 
 	/**
 	 * to monkey patch the router with the mobile nav back handling
@@ -27,4 +27,4 @@ sap.ui.demo.explored.MyRouter = {
 		app.addPage(view, master);
 		app.toDetail(view.getId(), "show", data);
 	}
-};
+});

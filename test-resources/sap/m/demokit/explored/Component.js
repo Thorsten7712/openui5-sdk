@@ -1,10 +1,12 @@
 
 jQuery.sap.declare("sap.ui.demo.explored.Component");
+jQuery.sap.require("sap.ui.demo.explored.MyRouter");
 sap.ui.core.UIComponent.extend("sap.ui.demo.explored.Component", {
 
 	metadata : {
 		routing : {
 			config : {
+				routerClass : sap.ui.demo.explored.MyRouter,
 				viewType : "XML",
 				viewPath : "views",
 				targetControl : "splitApp",
@@ -73,7 +75,6 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.explored.Component", {
 		jQuery.sap.require("sap.ui.core.routing.History");
 		jQuery.sap.require("sap.m.InstanceManager");
 		jQuery.sap.require("sap.m.routing.RouteMatchedHandler");
-		jQuery.sap.require("sap.ui.demo.explored.MyRouter");
 		jQuery.sap.require("model.Navigation");
 
 		// 2. call overridden init (calls createContent)
@@ -81,8 +82,6 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.explored.Component", {
 
 		// 3a. monkey patch the router
 		var router = this.getRouter();
-		router.myNavBack = sap.ui.demo.explored.MyRouter.myNavBack;
-		router.myNavToWithoutHash = sap.ui.demo.explored.MyRouter.myNavToWithoutHash;
 
 		// 4. nav to initial pages
 		if (!sap.ui.Device.system.phone) {

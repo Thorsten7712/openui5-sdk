@@ -18,36 +18,51 @@
 
 <script type="text/javascript">
 
-	var domRef = null;
-	var tableTxt = null;
 	var eventHandler = function (oEvent) {
-		domRef = oEvent.getParameters().domRef;		
-	}
-	
-	var eventHandlerForTableRow = function (oEvent) {
-		tableTxt = "Not Null";
+		ok(true, "press event for attribute was fired");
 	}
 
-	var oa1 = new sap.m.ObjectAttribute("oa1",{
-		text : "Contract #D1234567890",
-		active : true
+	var eventHandlerForTableRow = function (oEvent) {
+		ok(true, "press event for table was fired");
+	}
+
+	var oa1 = new sap.m.ObjectAttribute("oa1", {
+		title: "Title",
+		text: "Contract #D1234567890",
+		active: true,
+		press: eventHandler
+		});
+
+	var oa2 = new sap.m.ObjectAttribute("oa2", {
+		text: "Created by John Doe",
+		active: true,
+		press: eventHandler
+		});
+
+	var oa3 = new sap.m.ObjectAttribute("oa3", {
+		text: "Update by Mary Smith",
+		active: true,
+		press: eventHandler
+		});
+
+	var oa4 = new sap.m.ObjectAttribute("oa4", {
+		text : "",
+		press: eventHandler
 		});
 	
-	var oa2 = new sap.m.ObjectAttribute("oa2",{
-		text : "Created by John Doe",
-		active : true
+	var oa5 = new sap.m.ObjectAttribute("oa5", {
+		press: eventHandler
+	});
+
+	var oa6 = new sap.m.ObjectAttribute("oa6", {
+		text: "    \n \n \t\n \t   ",
+		press: eventHandler
 		});
 	
-	var oa3 = new sap.m.ObjectAttribute("oa3",{
-		text : "Update by Mary Smith",
-		active : true,
-		press : eventHandler
-		});
-	
-	var oa7 = new sap.m.ObjectAttribute("oa7",{
-		text : "Joe Smith",
-		active : true,
-		press : eventHandler
+	var oa7 = new sap.m.ObjectAttribute("oa7", {
+		text: "Joe Smith",
+		active: true,
+		press: eventHandler
 		});
 	
 	var oTable = new sap.m.Table("table",{
@@ -64,7 +79,7 @@
 						})
 					],
 					items : [
-						new sap.m.ColumnListItem({
+						new sap.m.ColumnListItem("table-item", {
 							cells : [ oa7 ],
 							press : eventHandlerForTableRow,
 							type : "Navigation",
@@ -90,12 +105,7 @@
 	/******************************************************************/
 
 	module("Internal API");
-	
-	var oa4 = new sap.m.ObjectAttribute("oa4",{text : ""});
-	
-	var oa5 = new sap.m.ObjectAttribute("oa5");
-	var oa6 = new sap.m.ObjectAttribute("oa6",{ text: "    \n \n \t\n \t   "});
-	
+
 	test ("TestIsEmpty", function() {
 		
 		ok(!oa1._isEmpty(), "Object attribute #1 is not empty");
@@ -105,47 +115,36 @@
 		ok(oa5._isEmpty(), "Object attribute #5 is empty");
 		ok(oa6._isEmpty(), "Object attribute #6 is empty");
 	});
-	
+
 	/******************************************************************/
 
 	module("Events");
-	
+
 	test("TestTap", function() {
+		expect(3);
+		qutils.triggerEvent("tap", "oa1-text"); //should fire event
+		qutils.triggerEvent("tap", "oa2-text"); //should fire event
+		qutils.triggerEvent("tap", "oa3-text"); //should fire event
+		qutils.triggerEvent("tap", "oa4-text"); //should not fire event
+		qutils.triggerEvent("tap", "oa5-text"); //should not fire event
+		qutils.triggerEvent("tap", "oa6-text"); //should not fire event
+	});
 
-		qutils.triggerEvent("tap", "oa1");
-		ok(domRef===null, "Object attribute #1 should be clickable");
-		domRef = null;
-
-		qutils.triggerEvent("tap", "oa2");
-		ok(domRef===null, "Object attribute #2 should be clickable");
-		domRef = null;
-		
-		qutils.triggerEvent("tap", "oa3");
-		ok(domRef, "domRef is set");
-		equal(domRef.id, "oa3", "Object attribute #3  should be clickable");
-		domRef = null; 
-	});	
-	
 	test("Test table row is not clickable when ObjectAttribute is active", function() {
-		
-		qutils.triggerEvent("tap", "oa7");
-		ok(domRef, "domRef is set by oa7 press");
-		equal(domRef.id, "oa7", "Object attribute #7  should be clickable");
-		ok(tableTxt===null, "tableTxt should be null");
-		domRef = null;
+		expect(1);
+		qutils.triggerEvent("tap", "oa7-text");
+		qutils.triggerEvent("tap", "table-item");
 	});
-	
+
 	asyncTest("Test table row is clickable when ObjectAttribute is not active", function() {
-		
+		expect(3);
 		oa7.setActive(false);
-		qutils.triggerEvent("tap", "oa7");
-		setTimeout(function() {
-			ok(domRef===null, "Object attribute #7 should not be clickable");
-			ok(tableTxt!=null, "tableTxt should be set");
+		qutils.triggerEvent("tap", "oa7-text");
+		setTimeout( function() {
 			start();
-		}, 400);
+		}, 500);
 	});
-	
+
 </script>
 </head>
 
