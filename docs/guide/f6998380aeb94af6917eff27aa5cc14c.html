@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=04631386266382587"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7110845488433012"/>
 <title>Step 1: Index</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -33,7 +35,7 @@
 			<p class="p">The heart of an application is defined in its Component part, which means that we
 				should aim for very minimal content in the index.html file itself. Like this:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!text/html</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!text/html</samp>
 &lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
 
@@ -156,7 +158,7 @@ We also have the UI5
 			<p class="p">This is the first step, so we're not expecting much. All we have is the index.html
 				file. </p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- index.html
@@ -171,7 +173,7 @@ tdg/
 				is from the Blue Crystal theme. Most importantly, we see the significant error in
 				the developer console:</p>
 
-			<div><pre class="pre codeblock">Uncaught Error: failed to load 'sap/ui/demo/tdg/Component.js' from ./Component.js: 404 -
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">Uncaught Error: failed to load 'sap/ui/demo/tdg/Component.js' from ./Component.js: 404 -
         Not Found</pre></div>
 
 			<p class="p">This is not unexpected. The Component Container has been instantiated and is trying

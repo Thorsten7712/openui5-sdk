@@ -37,7 +37,7 @@
 		<method name="updatePosition" type="sap.ui.core/void">
 			<documentation>Updates the position properties of the container according to the given position in JSON style.</documentation>
 			<parameters>
-				<parameter name="oPos" type="sap.ui.core/object">
+				<parameter name="pos" type="sap.ui.core/object">
 					<documentation>JSON-like object which defines the position of the child control in the absolute layout. The object is expected 
 					to have one or more out of the attributes top, bottom, left, right (each with a value of type sap.ui.core.CSSSize). If no object 
 					is given, nothing is updated.</documentation>

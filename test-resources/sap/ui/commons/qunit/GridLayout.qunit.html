@@ -10,13 +10,12 @@
 	<script id="sap-ui-bootstrap"
 		type="text/javascript"
 		src="../../../../../resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-theme="sap_bluecrystal"
 		data-sap-ui-noConflict="true"
 		data-sap-ui-libs="sap.ui.commons">
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<script language="javascript">
@@ -30,7 +29,7 @@
 			layout: oLayout1,
 			formContainers: [
 				// container with text-title
-			  new sap.ui.commons.form.FormContainer("C1",{
+				new sap.ui.commons.form.FormContainer("C1",{
 					title: "Container1",
 					tooltip: "Container tooltip",
 					formElements: [
@@ -299,7 +298,7 @@
 			title: new sap.ui.commons.Title("F2T",{text: "16 cells without separator", level: sap.ui.commons.TitleLevel.H1}),
 			layout: oLayout2,
 			formContainers: [
-			     			new sap.ui.commons.form.FormContainer("F2C1",{
+							new sap.ui.commons.form.FormContainer("F2C1",{
 								formElements: [
 												new sap.ui.commons.form.FormElement("F2C1E1",{
 													label: "Label",
@@ -319,7 +318,7 @@
 												})
 								]
 							})
-			  ]
+				]
 			}).placeAt("uiArea2");
 
 		var oLayout3 = new sap.ui.commons.form.GridLayout("Layout3", {singleColumn: true});
@@ -328,8 +327,8 @@
 			title: "8 cells without separator",
 			layout: oLayout3,
 			formContainers: [
-			     			new sap.ui.commons.form.FormContainer("F3C1",{
-			     			title: "full container",
+							new sap.ui.commons.form.FormContainer("F3C1",{
+								title: "full container",
 								formElements: [
 												new sap.ui.commons.form.FormElement("F3C1E1",{
 													label: "Label",
@@ -341,8 +340,8 @@
 												})
 								]
 							}),
-			     			new sap.ui.commons.form.FormContainer("F3C2",{
-			     			title: "Half container",
+							new sap.ui.commons.form.FormContainer("F3C2",{
+								title: "Half container",
 								formElements: [
 												new sap.ui.commons.form.FormElement("F3C2E1",{
 													label: "Label",
@@ -351,8 +350,8 @@
 								],
 								layoutData: new sap.ui.commons.form.GridContainerData({halfGrid: true})
 							}),
-			     			new sap.ui.commons.form.FormContainer("F3C3",{
-			     			title: "another Half container",
+							new sap.ui.commons.form.FormContainer("F3C3",{
+								title: "another Half container",
 								formElements: [
 												new sap.ui.commons.form.FormElement("F3C3E1",{
 													label: "Label",
@@ -365,7 +364,7 @@
 								],
 								layoutData: new sap.ui.commons.form.GridContainerData({halfGrid: true})
 							})
-			  ]
+				]
 			}).placeAt("uiArea3");
 
 		var countCells = function(sID, iMax){
@@ -400,7 +399,7 @@
 			ok(jQuery.sap.domById("Layout1"), "Grid1 is rendered");
 			ok(jQuery("#Layout1").is("table"), "Grid1 is rendered as table");
 			ok(jQuery.sap.domById("F1T"), "Form1 title is rendered");
-			ok(jQuery("#F1T").is("h3"), "Form title is rendered as H3 as default");
+			ok(jQuery("#F1T").is("h5"), "Form title is rendered as H5 as default");
 			ok(jQuery("#F1T").parent().is("th"), "Form1 title is in <TH>");
 			equal(jQuery("#F1T").parent().attr("colspan"), "17", "Form1 title is stretched over full width");
 			ok(jQuery("#F2T").is("h1"), "Form title is rendered as H1 as defined on control");
@@ -411,8 +410,8 @@
 
 		test("Container Full-Size", function() {
 			ok(!jQuery.sap.domById("C1--Exp"), "Container1 no expander is rendered");
-			ok(jQuery('h4:contains("Container1")').get(0), "Title (as text) is renderd");
-			equal(jQuery('h4:contains("Container1")').parent().attr("title"), "Container tooltip", "Container tooltip is renderd");
+			ok(jQuery('h3:contains("Container1")').get(0), "Title (as text) is renderd");
+			equal(jQuery('h3:contains("Container1")').parent().attr("title"), "Container tooltip", "Container tooltip is renderd");
 		});
 
 		test("Element", function() {
@@ -523,19 +522,20 @@
 
 		module("Interaction");
 
- 		test("Container expander", function() {
- 			//expander function
- 			var oContainer = sap.ui.getCore().byId("C3");
- 			qutils.triggerMouseEvent("C3--Exp", "click");
- 			ok(!jQuery.sap.domById("C3E1_T1"), "Container3 content area is not visible after click on expander");
+		test("Container expander", function() {
+			//expander function
+			var oContainer = sap.ui.getCore().byId("C3");
+			qutils.triggerMouseEvent("C3--Exp", "click");
+			sap.ui.getCore().applyChanges();
+			ok(!jQuery.sap.domById("C3E1_T1"), "Container3 content area is not visible after click on expander");
 			ok((jQuery("#C2E1_T1").parent().next().next().is("td") && jQuery("#C2E1_T1").parent().next().next().attr("colspan") == "8" && jQuery("#C2E1_T1").parent().next().next().children().length == 0), "Container3 - empty dummy cell rendered");
 			ok(!(jQuery("#C2E1_L1").parent().parent().next().children().first().is("td") && jQuery("#C2E1_L1").parent().parent().next().children().first().attr("colspan") == "8" && jQuery("#C2E1_L1").parent().parent().next().children().first().children().length == 0), "Container2 - NO empty dummy cell rendered");
- 			equal(oContainer.getExpanded(), false, "Container3 getExpanded()")
- 		});
+			equal(oContainer.getExpanded(), false, "Container3 getExpanded()")
+		});
 
- 		test("change LayoutData", function() {
- 			var oControl = sap.ui.getCore().byId("F3C3E2_T1");
- 			ok(!oControl.getLayoutData(), "Field initial has no LayoutData");
+		test("change LayoutData", function() {
+			var oControl = sap.ui.getCore().byId("F3C3E2_T1");
+			ok(!oControl.getLayoutData(), "Field initial has no LayoutData");
 			equal(jQuery("#F3C3E2_T1").parent().attr("colspan"), "8", "Field initial without LayoutData - colspan 8");
 			var oLayoutData = new sap.ui.commons.form.GridElementData({hCells: "3"});
 			oControl.setLayoutData(oLayoutData);
@@ -556,71 +556,71 @@
 			oControl.setLayoutData(null);
 			sap.ui.getCore().applyChanges();
 			equal(jQuery("#F3C3E2_T1").parent().attr("colspan"), "8", "Field after deleting multiple LayoutData - colspan 8");
- 		});
+		});
 
- 		test("Keyboard Navigation", function() {
- 			jQuery.sap.byId("C1E1_T1").focus();
- 			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "Mouseclick: Container 1, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E1_T1", "ARROW_DOWN");
- 			equal(jQuery.sap.byId("C1E2_T1").is(":focus"), true, "Arrow Down: Container 1, Element 2, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E2_T1", "ARROW_RIGHT");
- 			equal(jQuery.sap.byId("C1E2_T2").is(":focus"), true, "Arrow Right: Container 1, Element 2, Field 2 - Selected");
- 			qutils.triggerKeyboardEvent("C1E2_T2", "ARROW_DOWN");
- 			equal(jQuery.sap.byId("C1E3_T2").is(":focus"), true, "Arrow Down: Container 1, Element 3, Field 2 - Selected");
- 			qutils.triggerKeyboardEvent("C1E3_T2", "ARROW_RIGHT");
- 			equal(jQuery.sap.byId("C1E3_T3").is(":focus"), true, "Arrow Right: Container 1, Element 3, Field 3 - Selected");
- 			qutils.triggerKeyboardEvent("C1E3_T3", "ARROW_UP");
- 			equal(jQuery.sap.byId("C1E2_T2").is(":focus"), true, "Arrow Up: Container 1, Element 2, Field 2 - Selected");
- 			qutils.triggerKeyboardEvent("C1E2_T2", "ARROW_LEFT");
- 			equal(jQuery.sap.byId("C1E2_T1").is(":focus"), true, "Arrow Left: Container 1, Element 2, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E2_T1", "F6");
- 			equal(jQuery.sap.byId("C2E1_T1").is(":focus"), true, "F6: Container 2, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C2E1_T1", "F6", true, false, false);
- 			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "Shift + F6: Container 1, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E1_T1", "END", false, false, true);
- 			equal(jQuery.sap.byId("C7E6_T1").is(":focus"), true, "Ctrl + End: Container 7, Element 6, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C7E6_T1", "HOME");
- 			equal(jQuery.sap.byId("C7E1_T1").is(":focus"), true, "HOME: Container 7, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C7E1_T1", "F6");
- 			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "F6: Container 1, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E1_T1", "F6");
- 			equal(jQuery.sap.byId("C2E1_T1").is(":focus"), true, "F6: Container 2, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C2E1_T1", "ARROW_RIGHT");
- 			equal(jQuery.sap.byId("C4E1_T1").is(":focus"), true, "Arrow Right: Container 4, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C4E1_T1", "ARROW_LEFT");
- 			equal(jQuery.sap.byId("C2E1_T1").is(":focus"), true, "Arrow Left: Container 2, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C2E1_T1", "HOME", false, false, true);
- 			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "Ctrl + Home: Container 1, Element 1, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E1_T1", "END");
- 			equal(jQuery.sap.byId("C1E19_T1").is(":focus"), true, "END: Container 1, Element 19, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E19_T1", "HOME");
- 			qutils.triggerKeyboardEvent("C1E1_T1", "ARROW_DOWN");
- 			qutils.triggerKeyboardEvent("C1E2_T1", "ARROW_DOWN");
- 			qutils.triggerKeyboardEvent("C1E3_T1", "ARROW_DOWN");
- 			qutils.triggerKeyboardEvent("C1E4_T1", "ARROW_DOWN");
- 			qutils.triggerKeyboardEvent("C1E5_T1", "ARROW_DOWN");
- 			equal(jQuery.sap.byId("C1E6_T1").is(":focus"), true, "Home + 5 times Arrow Down: Container 1, Element 6, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E6_T1", "ARROW_RIGHT");
- 			equal(jQuery.sap.byId("C1E6_T3").is(":focus"), true, "Arrow Right: Container 1, Element 6, Field 3 - Selected");
- 			qutils.triggerKeyboardEvent("C1E6_T3", "ARROW_RIGHT");
- 			equal(jQuery.sap.byId("C1E7_T1").is(":focus"), true, "Arrow Right: Container 1, Element 7, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E7_T1", "ARROW_RIGHT");
- 			equal(jQuery.sap.byId("C1E7_T2").is(":focus"), true, "Arrow Right: Container 1, Element 7, Field 2 - Selected");
- 			qutils.triggerKeyboardEvent("C1E7_T2", "ARROW_RIGHT");
- 			equal(jQuery.sap.byId("C1E7_T3").is(":focus"), true, "Arrow Right: Container 1, Element 7, Field 3 - Selected");
- 			qutils.triggerKeyboardEvent("C1E7_T3", "ARROW_LEFT");
- 			equal(jQuery.sap.byId("C1E7_T2").is(":focus"), true, "Arrow Left: Container 1, Element 7, Field 2 - Selected");
- 			qutils.triggerKeyboardEvent("C1E7_T2", "ARROW_LEFT");
- 			equal(jQuery.sap.byId("C1E7_T1").is(":focus"), true, "Arrow Left: Container 1, Element 7, Field 1 - Selected");
- 			qutils.triggerKeyboardEvent("C1E7_T1", "ARROW_LEFT");
- 			equal(jQuery.sap.byId("C1E6_T3").is(":focus"), true, "Arrow Left: Container 1, Element 6, Field 3 - Selected");
- 			qutils.triggerKeyboardEvent("C1E6_T3", "ARROW_LEFT");
- 			equal(jQuery.sap.byId("C1E6_T1").is(":focus"), true, "Arrow Left: Container 1, Element 6, Field 1 - Selected");
- 		});
+		test("Keyboard Navigation", function() {
+			jQuery.sap.byId("C1E1_T1").focus();
+			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "Mouseclick: Container 1, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E1_T1", "ARROW_DOWN");
+			equal(jQuery.sap.byId("C1E2_T1").is(":focus"), true, "Arrow Down: Container 1, Element 2, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E2_T1", "ARROW_RIGHT");
+			equal(jQuery.sap.byId("C1E2_T2").is(":focus"), true, "Arrow Right: Container 1, Element 2, Field 2 - Selected");
+			qutils.triggerKeyboardEvent("C1E2_T2", "ARROW_DOWN");
+			equal(jQuery.sap.byId("C1E3_T2").is(":focus"), true, "Arrow Down: Container 1, Element 3, Field 2 - Selected");
+			qutils.triggerKeyboardEvent("C1E3_T2", "ARROW_RIGHT");
+			equal(jQuery.sap.byId("C1E3_T3").is(":focus"), true, "Arrow Right: Container 1, Element 3, Field 3 - Selected");
+			qutils.triggerKeyboardEvent("C1E3_T3", "ARROW_UP");
+			equal(jQuery.sap.byId("C1E2_T2").is(":focus"), true, "Arrow Up: Container 1, Element 2, Field 2 - Selected");
+			qutils.triggerKeyboardEvent("C1E2_T2", "ARROW_LEFT");
+			equal(jQuery.sap.byId("C1E2_T1").is(":focus"), true, "Arrow Left: Container 1, Element 2, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E2_T1", "F6");
+			equal(jQuery.sap.byId("C2E1_T1").is(":focus"), true, "F6: Container 2, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C2E1_T1", "F6", true, false, false);
+			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "Shift + F6: Container 1, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E1_T1", "END", false, false, true);
+			equal(jQuery.sap.byId("C7E6_T1").is(":focus"), true, "Ctrl + End: Container 7, Element 6, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C7E6_T1", "HOME");
+			equal(jQuery.sap.byId("C7E1_T1").is(":focus"), true, "HOME: Container 7, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C7E1_T1", "F6");
+			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "F6: Container 1, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E1_T1", "F6");
+			equal(jQuery.sap.byId("C2E1_T1").is(":focus"), true, "F6: Container 2, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C2E1_T1", "ARROW_RIGHT");
+			equal(jQuery.sap.byId("C4E1_T1").is(":focus"), true, "Arrow Right: Container 4, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C4E1_T1", "ARROW_LEFT");
+			equal(jQuery.sap.byId("C2E1_T1").is(":focus"), true, "Arrow Left: Container 2, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C2E1_T1", "HOME", false, false, true);
+			equal(jQuery.sap.byId("C1E1_T1").is(":focus"), true, "Ctrl + Home: Container 1, Element 1, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E1_T1", "END");
+			equal(jQuery.sap.byId("C1E19_T1").is(":focus"), true, "END: Container 1, Element 19, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E19_T1", "HOME");
+			qutils.triggerKeyboardEvent("C1E1_T1", "ARROW_DOWN");
+			qutils.triggerKeyboardEvent("C1E2_T1", "ARROW_DOWN");
+			qutils.triggerKeyboardEvent("C1E3_T1", "ARROW_DOWN");
+			qutils.triggerKeyboardEvent("C1E4_T1", "ARROW_DOWN");
+			qutils.triggerKeyboardEvent("C1E5_T1", "ARROW_DOWN");
+			equal(jQuery.sap.byId("C1E6_T1").is(":focus"), true, "Home + 5 times Arrow Down: Container 1, Element 6, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E6_T1", "ARROW_RIGHT");
+			equal(jQuery.sap.byId("C1E6_T3").is(":focus"), true, "Arrow Right: Container 1, Element 6, Field 3 - Selected");
+			qutils.triggerKeyboardEvent("C1E6_T3", "ARROW_RIGHT");
+			equal(jQuery.sap.byId("C1E7_T1").is(":focus"), true, "Arrow Right: Container 1, Element 7, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E7_T1", "ARROW_RIGHT");
+			equal(jQuery.sap.byId("C1E7_T2").is(":focus"), true, "Arrow Right: Container 1, Element 7, Field 2 - Selected");
+			qutils.triggerKeyboardEvent("C1E7_T2", "ARROW_RIGHT");
+			equal(jQuery.sap.byId("C1E7_T3").is(":focus"), true, "Arrow Right: Container 1, Element 7, Field 3 - Selected");
+			qutils.triggerKeyboardEvent("C1E7_T3", "ARROW_LEFT");
+			equal(jQuery.sap.byId("C1E7_T2").is(":focus"), true, "Arrow Left: Container 1, Element 7, Field 2 - Selected");
+			qutils.triggerKeyboardEvent("C1E7_T2", "ARROW_LEFT");
+			equal(jQuery.sap.byId("C1E7_T1").is(":focus"), true, "Arrow Left: Container 1, Element 7, Field 1 - Selected");
+			qutils.triggerKeyboardEvent("C1E7_T1", "ARROW_LEFT");
+			equal(jQuery.sap.byId("C1E6_T3").is(":focus"), true, "Arrow Left: Container 1, Element 6, Field 3 - Selected");
+			qutils.triggerKeyboardEvent("C1E6_T3", "ARROW_LEFT");
+			equal(jQuery.sap.byId("C1E6_T1").is(":focus"), true, "Arrow Left: Container 1, Element 6, Field 1 - Selected");
+		});
 
 		module("Error handling");
 
- 		test("too much fields", function() {
+		test("too much fields", function() {
 			var aLogEntries = jQuery.sap.log.getLogEntries();
 			var findLogEntry = function(sMessage, iLevel){
 				for( var i=0; i < aLogEntries.length;i++){
@@ -661,9 +661,9 @@
 			equal(jQuery("#C7E4_T1").parent().attr("rowspan"), "2", "Element4: Field 1 (with vCells=2) rendered with rowspan 2");
 			ok(!jQuery.sap.domById("C7E5_T1"), "Element5: TextField1 (full size) is not rendered");
 			ok(findLogEntry('Element "C7E5" - Too much fields for one row!',1),"Error entry in log found for Element5");
- 		});
+		});
 
- 		test("More hCells than Elements", function() {
+		test("More hCells than Elements", function() {
 			equal(jQuery("#C6E2_T1").parent().attr("rowspan"), "3", "Container6 - Element2: Field 1 (with vCells=2, hCells=3) rendered with rowspan 3");
 			equal(jQuery("#C6E2_T1").parent().parent().next().children().length, 0, "Container6 - Element2: first dummy row to fill up rowspan");
 			equal(jQuery("#C6E2_T1").parent().parent().next().next().children().length, 0, "Container6 - Element2: second dummy row to fill up rowspan");
@@ -671,9 +671,9 @@
 			equal(jQuery("#C7E6_T1").parent().attr("rowspan"), "3", "Container7 - Element6: Field 1 (with vCells=2, hCells=3) rendered with rowspan 3");
 			equal(jQuery("#C7E6_T1").parent().parent().next().children().length, 0, "Container7 - Element6: first dummy row to fill up rowspan");
 			equal(jQuery("#C7E6_T1").parent().parent().next().next().children().length, 0, "Container7 - Element6: second dummy row to fill up rowspan");
- 		});
+		});
 
- 		</script>
+		</script>
 
 	<title>qUnit Test for GridLayout</title>
 	<link rel="shortcut icon" type="image/x-icon" href="../images/controls/sap.ui.commons.form.GridLayout.gif">
@@ -683,7 +683,7 @@
 <body class="sapUiBody">
 	<h1 id="qunit-header">QUnit tests: sap.ui.commons.form.GridLayout</h1>
 	<h2 id="qunit-banner"></h2>
- 	<h2 id="qunit-userAgent"></h2>
+	<h2 id="qunit-userAgent"></h2>
 	<div id="qunit-testrunner-toolbar"></div>
 	<ol id="qunit-tests"></ol>
 	<br>

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7849933469525303"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8772933632211476"/>
 <title>Step 11: AddProduct View</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -44,7 +46,7 @@
 				controls in the master and detail views, this Page also has a Bar in the footer, and
 				in this case, there are two buttons on the right hand side.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;mvc:View
 	controllerName="sap.ui.demo.tdg.view.AddProduct"
 	xmlns:mvc="sap.ui.core.mvc"
@@ -57,7 +59,7 @@
 			<p class="p">This should be familiar by now; we're declaring our view with the namespaces for the
 				controls we're going to use within.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 	&lt;Page
 		class="sapUiFioriObjectPage"
 		title="{i18n&gt;addProductTitle}"&gt;
@@ -89,7 +91,7 @@
 					<span class="ph uicontrol">Discontinued</span> and <span class="ph uicontrol">Supplier &amp;
 					Category</span> texts visible in the screenshot above).</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 
 						&lt;!-- Basic info --&gt;
 						&lt;c:Title text="{i18n&gt;addProductTitleBasic}" /&gt;
@@ -124,7 +126,7 @@
 					<samp class="ph codeph">sap.m.RatingIndicator</samp> control to "Full" to cause the values to
 				be rounded to the nearest integer value.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 					&lt;!-- Discontinued? --&gt;
 					&lt;c:Title text="{i18n&gt;addProductTitleDiscontinued}" /&gt;
 					&lt;Label text="{i18n&gt;addProductLabelDiscontinuedFlag}" /&gt;
@@ -148,7 +150,7 @@
 				field for the date appear. This is done just with property bindings on a model,
 				without controller logic.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 	&lt;!-- Supplier &amp; Category --&gt;
 						&lt;c:Title text="{i18n&gt;addProductTitleSupplierCategory}" /&gt;
 						&lt;Label text="{i18n&gt;addProductLabelSupplier}" /&gt;
@@ -177,7 +179,7 @@
 				there's no binding in this form that would be relevant for any relative
 				connection.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;footer&gt;
 			&lt;Bar&gt;
 				&lt;contentRight&gt;
@@ -197,7 +199,7 @@
 		</div></div>
 <div class="section"><div class="section_title">Controller</div><div type="Controller">
 			
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.AddProduct", {
 
 	oAlertDialog : null,
@@ -211,7 +213,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.AddProduct", {
 			<div class="note note"><span class="notetitle">Note</span> In this demo app, there is little to no client side validation. That is left as an
 				exercise for you, dear reader!</div>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 initializeNewProductData : function() {
 		this.getView().getModel("newProduct").setData({
 			Detail: {
@@ -225,7 +227,7 @@ initializeNewProductData : function() {
 				in the JSON model, effectively clearing the values in the form fields. We're holding
 				the properties within a single member "Detail" to make it simpler to reset.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 onInit : function() {
 		this.getView().setModel(new sap.ui.model.json.JSONModel(), "newProduct");
 		this.initializeNewProductData();
@@ -235,7 +237,7 @@ onInit : function() {
 			<p class="p">This is the named model that is used to communicate data between the form in the view
 				and controller. </p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 showErrorAlert : function(sMessage) {
 		jQuery.sap.require("sap.m.MessageBox");
 		sap.m.MessageBox.alert(sMessage);
@@ -248,7 +250,7 @@ showErrorAlert : function(sMessage) {
 				places in this controller, we use the static method
 					<samp class="ph codeph">sap.m.MessageBox.alert</samp> as a convenience.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	dateFromString : function(sDate) {
 		// Try to create date directly, otherwise assume dd/mm/yyyy
 		var oDate = new Date(sDate);
@@ -278,7 +280,7 @@ showErrorAlert : function(sMessage) {
 				First, the data in the JSON model is retrieved and unpacked, and a payload for the
 					<samp class="ph codeph">CREATE</samp> operation is created.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 // Add supplier &amp; category associations
 		["Supplier", "Category"].forEach(function(sRelation) {
 			var oSelect = this.getView().byId("idSelect" + sRelation);
@@ -299,7 +301,7 @@ showErrorAlert : function(sMessage) {
 
 			<p class="p">Here's an example of what that payload looks like:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 {
    "ID":9,
    "Name":"Galaxy S4",
@@ -324,7 +326,7 @@ showErrorAlert : function(sMessage) {
 					(<samp class="ph codeph">/Suppliers(1)</samp>) and category "Electronics"
 					(<samp class="ph codeph">/Categories(2)</samp>).</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	// Send OData Create request
 		var oModel = this.getView().getModel();
 		oModel.create("/Products", mPayload, {
@@ -355,7 +357,7 @@ showErrorAlert : function(sMessage) {
 				to the display of the new Product entry. Otherwise a simple alert message is shown
 				using the <samp class="ph codeph">showAlertError</samp> function that we've already seen.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 
 	onSave : function() {
 		// Show message if no product name has been entered
@@ -379,7 +381,7 @@ showErrorAlert : function(sMessage) {
 				JavaScript, you can and should declare it using the same approach (XML) as the rest
 				of your UI. See below for the XML fragment where this Dialog is defined.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	} else {
 			if (!this.oBusyDialog) {
 				this.oBusyDialog = new sap.m.BusyDialog();
@@ -417,7 +419,7 @@ showErrorAlert : function(sMessage) {
 					<samp class="ph codeph">$select</samp> query options: "Give me the ID property of the entity
 				that has the highest ID in the Products entityset"</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	onCancel : function() {
 		sap.ui.core.UIComponent.geRouterFor(this).backWithoutHash(this.getView());
 	},
@@ -431,7 +433,7 @@ showErrorAlert : function(sMessage) {
 				control, the <samp class="ph codeph">sap.m.SplitApp</samp>. On finding this, it can call the
 				appropriate back function. </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 onDialogClose : function(oEvent) {
 		oEvent.getSource().getParent().close();
 	}
@@ -448,7 +450,7 @@ onDialogClose : function(oEvent) {
 			<p class="p">The XML fragment <span class="ph filepath">NameRequiredDialog.fragment.xml</span> is where the
 				alert Dialog is defined, and looks like this:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;core:FragmentDefinition
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m"&gt;
@@ -479,7 +481,7 @@ onDialogClose : function(oEvent) {
 			
 			<p class="p">Ok, we're almost there. Our app folder content now looks like this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- i18n/

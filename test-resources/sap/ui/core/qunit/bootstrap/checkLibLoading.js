@@ -33,6 +33,21 @@
 		return iAjaxCalls;
 	} 
 }());
+
+
+var _aExpectedAjaxCalls = {
+	/*
+	"sap.ui.commons" : [
+		"sap/ui/unified/FileUploaderParameter.js",
+		"sap/ui/unified/library.js",
+		"sap/ui/unified/MenuItem.js",
+		"sap/ui/unified/MenuItemBase.js",
+		"sap/ui/unified/MenuTextFieldItem.js",
+		"sap/ui/unified/FileUploader.js",
+		"sap/ui/unified/Menu.js"
+	]
+	*/
+};
 		
 
 function checkLibrary(sLibraryName, bExpectLazyStubs) {
@@ -110,6 +125,7 @@ function checkLibrary(sLibraryName, bExpectLazyStubs) {
     	ok(typeof oClass.prototype.getMetadata === "function", "Control class " + sControl + " should have been loaded and initialized");
 	});
 
-	deepEqual(ajaxCalls(), [], "no additional ajax calls should have happened");
+	var aExpectedCalls = bExpectLazyStubs ? (_aExpectedAjaxCalls[sLibraryName] || []) : [];
+	deepEqual(ajaxCalls(), aExpectedCalls, (aExpectedCalls.length == 0 ? "no" : "only some expected") + " additional ajax calls should have happened");
 	
 }

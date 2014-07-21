@@ -216,6 +216,12 @@
 	});
 	oShell.placeAt("content");
 	
+	oShell.setUser(new sap.ui.unified.ShellHeadUserItem({
+		image: "images/person.jpg",
+		username: "Karl Mustermann",
+		press: function(){alert("User Item pressed");}
+	}));
+	
 	setState("HOME");
 
 	</script>

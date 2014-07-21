@@ -89,6 +89,10 @@
 				text: "IconTabBar with no parameters and no items."
 			});
 			label10.addStyleClass("label");
+			var label11 = new sap.m.Label({
+				text: "IconTabBar with images as items."
+			});
+			label11.addStyleClass("label");
 
 			// create and add a page with icon tab bar 
 			var page = new sap.m.Page("tabBarPage", {
@@ -560,6 +564,7 @@
 					}),
 					label4,
 					new sap.m.IconTabBar({
+						upperCase: true,
 						items: [
 							new sap.m.IconTabFilter({
 								iconColor: sap.ui.core.IconColor.Default,
@@ -598,6 +603,7 @@
 					}),
 					label4a,
 					new sap.m.IconTabBar({
+						upperCase: true,
 						items: [
 							new sap.m.IconTabFilter({
 								iconColor: sap.ui.core.IconColor.Default,
@@ -633,6 +639,7 @@
 					}),
 					label5,
 					new sap.m.IconTabBar({
+						upperCase: true,
 						items: [
 							new sap.m.IconTabFilter({
 								iconColor: sap.ui.core.IconColor.Negative,
@@ -761,11 +768,59 @@
 					label10,
 					new sap.m.IconTabBar({
 					}),
+					label11,
+					new sap.m.IconTabBar({
+						expanded: true,
+						expandable: true,
+						selectedKey: "key3",
+						items: [
+							new sap.m.IconTabFilter({
+								icon: "sap-icon://hint",
+								iconColor: sap.ui.core.IconColor.Neutral,
+								count: "2 out of 10",
+								design: sap.m.IconTabFilterDesign.Horizontal,
+								key: "key1",
+								text: "Neutral with long long long text"
+								
+							}),
+							new sap.m.IconTabSeparator({icon: "sap-icon://process"}),
+							new sap.m.IconTabFilter({
+								icon: "images/candy_v_46x46.png",
+								iconColor: sap.ui.core.IconColor.Critical,
+								design: sap.m.IconTabFilterDesign.Horizontal,
+								key: "key2",
+								text: "Critical lorem long text"
+							}),
+							new sap.m.IconTabSeparator({icon: "sap-icon://process"}),
+							new sap.m.IconTabFilter({
+								icon: "images/candy_x_46x46.png",
+								count: "50 / 934 long counter",
+								design: sap.m.IconTabFilterDesign.Horizontal,
+								iconColor: sap.ui.core.IconColor.Negative,
+								text: "Short text",
+								key: "key3"
+							}),
+							new sap.m.IconTabSeparator({icon: "sap-icon://process"}),
+							new sap.m.IconTabFilter({
+								icon: "images/candy_star_46x46.png",
+								count: "42",
+								design: sap.m.IconTabFilterDesign.Horizontal,
+								iconColor: sap.ui.core.IconColor.Negative,
+								text: "Negative lorem",
+								key: "key3"
+							})
+						],
+						content: [
+									new sap.m.Label({
+										text: "info info info"
+									}),
+								]
+					}),
 					new sap.m.Label({text: " "}), // placeholder to see content below
 				]
 			});
 			app.addPage(page);
-		
+			
 		</script>
 	</head>
 	<body id="body" class="sapUiBody">

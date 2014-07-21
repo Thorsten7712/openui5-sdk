@@ -12,9 +12,11 @@
 <meta name="abstract" content="A platform attribute is added to the HTML tag when running on mobile devices."/>
 <meta name="description" content="A platform attribute is added to the HTML tag when running on mobile devices."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8340328553939768"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7488358234017121"/>
 <title>Checking the Operating System your Application is Running on</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -61,7 +63,7 @@
 					<p class="p">To provide a different font on Android devices, you specify your font by
 						directly using the CSS class <samp class="ph codeph">sap-android</samp>.</p>
 
-					<div><pre class="pre codeblock"><samp class="ph codeph">#!css</samp>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!css</samp>
 .sap-android{
 	     font-family: Roboto;
 }</pre></div>
@@ -71,7 +73,7 @@
 					<p class="p">Example for providing a different font when running on <samp class="ph codeph">Android
 							2.x</samp>:</p>
 
-					<div><pre class="pre codeblock"><samp class="ph codeph">#!css</samp>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!css</samp>
 html[data-sap-ui-os^='Android2'] .sap-android{
 	font-family: "Droid Sans";
 }</pre></div>

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7260582987544181"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=49459674597851333"/>
 <title>Registering Component Resources</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -41,7 +43,7 @@
 			stylesheet and JavaScript modules are loaded relative to the application root.</p>
 <p class="p">The resources root is the foundation for <samp class="ph codeph">jQuery.sap.require();</samp> and is defined
 			relative to the application in the application's bootstrap:</p>
-<div><pre class="pre codeblock">&lt;SCRIPT SRC="../../../../resources/sap-ui-core.js"&gt; </pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;SCRIPT SRC="../../../../resources/sap-ui-core.js"&gt; </pre></div>
 <p class="p">The resources root in this example is <samp class="ph codeph">../../../..resources</samp></p>
 <p class="p">The following code loads <samp class="ph codeph">../../../../resources/sap/ui/table/Table.js</samp>, the
 			resources root, name space and prefix:
@@ -63,7 +65,7 @@
 			folder: If resource name is converted to a URL, any dots ('.') are converted to slashes
 			('/').</p>
 <p class="p">The following code snippet shows an example:</p>
-<div><pre class="pre codeblock">   // Let UI5 know that resources, whose name starts with "com.mycompany.myapp"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">   // Let UI5 know that resources, whose name starts with "com.mycompany.myapp"
    // should be loaded from the URL location "./com/mycompany/myapp"
    sap.ui.localResources("com.mycompany.myapp");
 
@@ -74,9 +76,9 @@
 </pre></div>
 <p class="p">If the application needs a more flexible mapping between resource names and their location, use
 			the following code:</p>
-<div><pre class="pre codeblock">jQuery.sap.registerModulePath("my.example.component", "example/component/"); </pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.registerModulePath("my.example.component", "example/component/"); </pre></div>
 <p class="p">After the registration, SAPUI5 knows multiple resources locations for different namespaces: </p>
-<div><pre class="pre codeblock">		RESOURCE ROOT: { 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">		RESOURCE ROOT: { 
 			"": "../../../../resources/" 
 			"example.component": "example/component"
 			"my.example.component": "example/component/"

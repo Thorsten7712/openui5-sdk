@@ -20,8 +20,8 @@
 		<property name="value" type="float" defaultValue="0" group="Behavior" bindable="bindable">
 			<documentation>The indicated value of the rating</documentation>
 		</property>
-		<property name="iconSize" type="CSSSize" defaultValue="1.375rem" group="Behavior">
-			<documentation>The Size of the image or icon to be displayed. Please be sure that the size is corresponding to a full pixel value as some browsers don't support subpixel calculations.</documentation>
+		<property name="iconSize" type="CSSSize" group="Behavior">
+			<documentation>The Size of the image or icon to be displayed. The default value depends on the theme. Please be sure that the size is corresponding to a full pixel value as some browsers don't support subpixel calculations. Recommended size is 1.375rem (22px) for normal, 1rem (16px) for small, and 2rem (32px) for large icons correspondingly.</documentation>
 		</property>
 		<property name="iconSelected" type="sap.ui.core/URI" group="Behavior">
 			<documentation>The URI to the icon font icon or image that will be displayed for selected rating symbols. A star icon will be used if the property is not set</documentation>

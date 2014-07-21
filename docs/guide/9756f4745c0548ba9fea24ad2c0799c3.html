@@ -12,9 +12,11 @@
 <meta name="abstract" content="An HTML View is defined by declarative HTML. Like the declarative support, the HTML view supports embedded HTML."/>
 <meta name="description" content="An HTML View is defined by declarative HTML. Like the declarative support, the HTML view supports embedded HTML."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9602692859992302"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6118686179878212"/>
 <title>HTML Views</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 		supports embedded HTML.</p>
 <p class="p">The view file ends with view.html, for example <samp class="ph codeph">myview.view.html</samp>. </p>
 <p class="p">Example: </p>
-<div><pre class="pre codeblock">&lt;template data-controller-name="example.mvc.test"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;template data-controller-name="example.mvc.test"&gt;
    Hello
   &lt;h1&gt;Title&lt;/h1&gt;
   &lt;div&gt;Embedded HTML&lt;/div&gt;

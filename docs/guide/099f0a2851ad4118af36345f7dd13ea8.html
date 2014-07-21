@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3111113866057237"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8513055888299212"/>
 <title>Using Extended Syntax to Add Filters and Sorters</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 <div class="body"><p class="shortdesc"/>
 <p class="p">You can use the extended syntax to add filters and sorters for aggregation binding. You can
    define one or multiple objects.</p>
-<div><pre class="pre codeblock">&lt;table:Table rows="{
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;table:Table rows="{
                     path:'/table', 
                     filters: {
                               path:'/table/field3', 

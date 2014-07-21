@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8808738658806611"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=35319480994684316"/>
 <title>Methods</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -40,7 +42,7 @@
 				item <samp class="ph codeph">swipeContent</samp> is shown. </li>
 </ul>
 <p class="p">The following example shows a delete scenario:</p>
-<div><pre class="pre codeblock">var list3 = new sap.m.List({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var list3 = new sap.m.List({
     swipeContent : new sap.m.Button({
         text : "Delete",
         type : "Reject",

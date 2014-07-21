@@ -17,8 +17,8 @@
 			</FlexBox>
 		</content>
 		<footer>
-			<Bar>
-			</Bar>
+			<Toolbar>
+			</Toolbar>
 		</footer>
 	</Page>
 </mvc:View>

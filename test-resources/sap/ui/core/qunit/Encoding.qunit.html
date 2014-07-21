@@ -13,7 +13,7 @@
 <!-- Initialization -->
 <script id="sap-ui-bootstrap" type="text/javascript"
 	src="../../../../../resources/sap-ui-core.js"
-	data-sap-ui-theme="sap_platinum" >
+	data-sap-ui-theme="sap_bluecrystal" >
 	</script>
 
 <link rel="stylesheet"
@@ -21,8 +21,6 @@
 	media="screen" />
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript"
-	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
@@ -91,6 +89,15 @@ test("encode URL", function(){
 	equal(jQuery.sap.encodeURL("ä"), "%c3%a4", "Umlaut");
 	equal(jQuery.sap.encodeURL("\x00\x01\x02"), "%00%01%02", "0x00 0x01 0x02");
 	equal(jQuery.sap.encodeURL(">&<\"\'\\/"), "%3e%26%3c%22%27%5c%2f", ">&<\"\'\\/");
+});
+test("encode URL parameters", function(){
+	equal(jQuery.sap.encodeURLParameters({
+		"?": "=",
+		"&": "?",
+		">&<\"\'\\/": String.fromCharCode(256)
+	}),  "%3f=%3d&%26=%3f&%3e%26%3c%22%27%5c%2f=%c4%80", "parameter map");
+	equal(jQuery.sap.encodeURLParameters({}), "", "empty parameter map");
+	equal(jQuery.sap.encodeURLParameters(), "", "no parameter map");
 });
 test("should not encode", function(){
 	equal(jQuery.sap.encodeURL("nothingtoencode123-._"), "nothingtoencode123-._", "nothingtoencode123-._");

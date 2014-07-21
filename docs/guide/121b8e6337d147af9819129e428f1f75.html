@@ -12,9 +12,11 @@
 <meta name="abstract" content="A controller in SAPUI5 is used to separate view logic from model logic. All methods for controlling the data flow should be implemented in a controller."/>
 <meta name="description" content="A controller in SAPUI5 is used to separate view logic from model logic. All methods for controlling the data flow should be implemented in a controller."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3594186583195004"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6296444712324841"/>
 <title>Controllers</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,7 +31,7 @@
 			
 			<p class="p">You define a simple controller without functions as follows: </p>
 
-			<div><pre class="pre codeblock">sap.ui.controller("sap.hcm.Address", {
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.hcm.Address", {
    // controller logic goes here
 });</pre></div>
 
@@ -81,7 +83,7 @@
 				hooks are called.</div>
 
 			<div class="note Example" id="loio121b8e6337d147af9819129e428f1f75__note_N1005D_N10018_N10013_N10001"><span class="Exampletitle"/> 
-				<div><pre class="pre codeblock">sap.ui.controller("sap.hcm.Address", {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.hcm.Address", {
    onInit: function() {
       this.counter = 0;
    }
@@ -96,7 +98,7 @@
 				as event handlers or additional functionality offered by the controller. </p>
 
 			<div class="note Example" id="loio121b8e6337d147af9819129e428f1f75__note_N10075_N10069_N10013_N10001"><span class="Exampletitle"/> 
-				<div><pre class="pre codeblock">sap.ui.controller("sap.hcm.Address", {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.hcm.Address", {
    increaseCounter: function() {
       this.counter++;
    }

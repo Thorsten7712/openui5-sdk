@@ -13,7 +13,6 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript">
 
@@ -28,8 +27,7 @@
 				ok(true, "This should be executed when the link is triggered");
 			}
 		}).placeAt("uiArea1");
-
-
+		
 		// test property accessor methods 
 
 		test("Text in HTML", function() {
@@ -70,6 +68,19 @@
 			ok(!sut.$().hasClass("sapMLnkMaxWidth"), "Link has width and does not have max width restriction.");
 		});
 
+		test("Subtle", function() {
+			oLink1.setSubtle(true);
+			sap.ui.getCore().applyChanges();
+			ok(oLink1.$().hasClass('sapMLnkSubtle'), "Link is subtle.");
+			
+		});
+		
+		test("Emphasized", function() {
+			oLink1.setEmphasized(true);
+			sap.ui.getCore().applyChanges();
+			ok(oLink1.$().hasClass('sapMLnkEmphasized'), "Link is emphasized.");
+			
+		});
 		</script>
 
 	</head>
@@ -82,6 +93,5 @@
 		<ol id="qunit-tests"></ol>	
 		
 		<div id="uiArea1"></div>
-
 	</body>
 </html>

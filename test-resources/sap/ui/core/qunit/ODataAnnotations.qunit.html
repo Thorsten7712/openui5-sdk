@@ -16,8 +16,6 @@
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
 <script type="text/javascript"
-	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
-<script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <script type="text/javascript">
@@ -49,12 +47,12 @@ var aServices = [{
 	annotations      : "fakeService://testdata/odata/northwind-annotations-normal.xml",
 	serviceValid     : true,
 	annotationsValid : true
-},{
+}, {
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/northwind-annotations-malformed.xml",
 	serviceValid     : true,
 	annotationsValid : false
-},{
+}, {
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
 	serviceValid     : true,
@@ -64,12 +62,31 @@ var aServices = [{
 	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
 	serviceValid     : false,
 	annotationsValid : false
+},{
+	service          : "fakeService://testdata/odata/northwind/",
+	annotations      : "fakeService://testdata/odata/northwind-annotations-normal.xml",
+	serviceValid     : true,
+	annotationsValid : true,
+	sharedMetadata   : true
+}, {
+	service          : "fakeService://testdata/odata/northwind/",
+	annotations      : "fakeService://testdata/odata/northwind-annotations-malformed.xml",
+	serviceValid     : true,
+	annotationsValid : false,
+	sharedMetadata   : true
+}, {
+	service          : "fakeService://testdata/odata/northwind/",
+	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
+	serviceValid     : true,
+	annotationsValid : false,
+	sharedMetadata   : true
+},{
+	service          : "fakeService://testdata/odata/NOT_EXISTANT/",
+	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
+	serviceValid     : false,
+	annotationsValid : false,
+	sharedMetadata   : true
 }];
-
-// Number of milliseconds to wait for the asynchronous answer. 
-// Can be very low when using the FakeService
-var iAsyncTimeout = 100;
-
 
 sap.ui.test.qunit.delayTestStart();
 
@@ -84,29 +101,34 @@ for (var i = 0; i < aServices.length; ++i) {
 	var bServiceValid     = aServices[i].serviceValid;
 	var bAnnotationsValid = aServices[i].annotationsValid;
 	var bShouldFail = !bServiceValid || !bAnnotationsValid;
+	var bSharedMetadata = aServices[i].sharedMetadata;
 	
 	var sTestType = 
 		(bServiceValid ? "Valid Service" : "Broken Service") + "/" + 
-		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations");
+		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations") +
+		(bSharedMetadata ?  "/Shared Metadata" : "");
 	
 	// Check synchronous loading
 	mModelOptions.loadAnnotationsJoined = false;
 	mModelOptions.loadMetadataAsync = false;
-	
-	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid) {
+
+	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid, bSharedMetadata) {
 		return function() {
+			if (!bSharedMetadata){
+				sap.ui.model.odata.ODataModel.mServiceData = {};
+			}
 			var oModel = new sap.ui.model.odata.ODataModel(sServiceURI, mModelOptions);
 			// Since this is synchronous, everything should be ready right now.
 			if (bServiceValid && bAnnotationsValid) {
 				// This should have worked.
 				ok(!!oModel.getServiceMetadata(), "Metadata is available.");
 				ok(!!oModel.getServiceAnnotations(), "Annotations are available.");
-				
+
 			} else if (bServiceValid && !bAnnotationsValid) {
 				// Service Metadata should be there, annotations should not be loaded
 				ok(!!oModel.getServiceMetadata(), "Metadata is available.");
 				ok(!oModel.getServiceAnnotations(), "Annotations are not available.");
-				
+
 			} else if (!bServiceValid) {
 				// Service is invalid, so both should not be there
 				ok(!oModel.getServiceMetadata(), "Metadata is available.");
@@ -114,17 +136,17 @@ for (var i = 0; i < aServices.length; ++i) {
 			}
 		};
 	})(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid);
-	
+
 	test(sTestType, fnTest);
 }
 
  module("Asynchronous loading");
 
 for (var i = 0; i < aServices.length; ++i) {
-	
+
 	var mService = 	aServices[i];
-	
-	var sServiceURI = mService.service
+
+	var sServiceURI = mService.service;
 	var mModelOptions = {
 		annotationURI : mService.annotations,
 		json : true
@@ -132,21 +154,26 @@ for (var i = 0; i < aServices.length; ++i) {
 	var bServiceValid     = mService.serviceValid;
 	var bAnnotationsValid = mService.annotationsValid;
 	var bShouldFail = !bServiceValid || !bAnnotationsValid;
+	var bSharedMetadata = mService.sharedMetadata;
 	
 	// Check asynchronous loading
 	mModelOptions.loadAnnotationsJoined = false;
 	mModelOptions.loadMetadataAsync = true;
-	
+
 	var sTestType = 
 		(bServiceValid ? "Valid Service" : "Broken Service") + "/" + 
-		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations");
+		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations")+
+		(bSharedMetadata ?  "/Shared Metadata" : "");
+	
 	jQuery.sap.log.debug("testtype: " + sTestType);
-	
-	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid) {
+
+	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid, bSharedMetadata) {
 		return function() {
-	
+			if (!bSharedMetadata){
+				sap.ui.model.odata.ODataModel.mServiceData = {};
+			}
 			var oModel = new sap.ui.model.odata.ODataModel(sServiceURI, mModelOptions);
-			
+
 			var bMetadataFailed = false;
 			var bMetadataLoaded = false;
 			var bAnnotationsLoaded = false;
@@ -169,14 +196,14 @@ for (var i = 0; i < aServices.length; ++i) {
 						jQuery.sap.log.debug("check for both");
 						start();
 					break;
-					
+
 					case "MetadataFailed": 
 						// Nothing should be loaded
 						ok(!bServiceValid && !bAnnotationsLoaded, "Check: Invalid Service - Annotations and Metadata NOT loaded");
 						jQuery.sap.log.debug("check for none");
 						start();
 					break;
-					
+
 					case "AnnotationsFailed":
 						// Metadata should be loaded, but no annotations
 						ok(bMetadataLoaded && !bAnnotationsLoaded, "Check: Invalid Annotations - Only Metadata loaded");
@@ -188,7 +215,7 @@ for (var i = 0; i < aServices.length; ++i) {
 
 			var metadataDfd = jQuery.Deferred();
 			var annotationsDfd = jQuery.Deferred();
-			
+
 			// Metadata must be loaded before annotations
 			oModel.attachMetadataLoaded(function() {
 				bMetadataLoaded = true;
@@ -223,17 +250,18 @@ for (var i = 0; i < aServices.length; ++i) {
 					//make sure annotations really don't load an we're not just too quick
 					fnOriginalSetTimeout(function() {
 						fnOnLoaded("AnnotationsFailed");
-					}, iAsyncTimeout);
+					}, 50);
 				});
 			} else if (!bServiceValid){
 				jQuery.when(metadataDfd).fail(function(e){
 					jQuery.sap.log.debug("metadata failed fulfilled");
 					fnOnLoaded("MetadataFailed");});
 			}
+			this.clock.tick(50);
 		};
 	})(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid);
-	
-	
+
+
 	asyncTest("Asynchronous loading - " + sTestType, fnTest); 
 
 }
@@ -244,7 +272,7 @@ module("Asynchronous loading (joined events)");
 
 for (var i = 0; i < aServices.length; ++i) {
 	var mService = 	aServices[i];
-		
+
 	var sServiceURI = mService.service
 	var mModelOptions = {
 		annotationURI : mService.annotations,
@@ -253,26 +281,31 @@ for (var i = 0; i < aServices.length; ++i) {
 	var bServiceValid     = mService.serviceValid;
 	var bAnnotationsValid = mService.annotationsValid;
 	var bShouldFail = !bServiceValid || !bAnnotationsValid;
+	var bSharedMetadata = mService.sharedMetadata;
 	
 	// Check asynchronous loading
 	mModelOptions.loadAnnotationsJoined = true;
 	mModelOptions.loadMetadataAsync = true;
-	
+
 	var sTestType = "[" 
 		+ (bServiceValid ? "Valid Service" : "Broken Service") 
 		+ "/"
 		+ (bAnnotationsValid ? "Valid Annotations" : "Broken Annotations")
+		+ (bSharedMetadata ?  "/Shared Metadata" : "")
 		+ "]: ";
-	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid) {
+	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid, bSharedMetadata) {
 		return function() {
+			if (!bSharedMetadata){
+				sap.ui.model.odata.ODataModel.mServiceData = {};
+			}
 			var oModel = new sap.ui.model.odata.ODataModel(sServiceURI, mModelOptions);
-			
+			var that = this;
 			var bMetadataLoaded = false;
 			var bAnnotationsLoaded = false;
 			var bInternalMetadataLoaded = false;
-			
+
 			var fnOnLoaded = function(sWhat) {
-				
+
 				switch (sWhat) {
 
 					case "InternalMetadata":
@@ -283,18 +316,13 @@ for (var i = 0; i < aServices.length; ++i) {
 						ok(bMetadataLoaded, "Metadata loaded successfully");
 						ok(bAnnotationsLoaded, "Metadata loaded after annotations");
 					break;
-					
-					case "Annotations":
-						ok(!bMetadataLoaded, "Metadata loaded after annotations");
-						ok(bAnnotationsLoaded, "Annotations loaded successfully");
-					break;
 
 					case "Both":
 						ok(bMetadataLoaded && bAnnotationsLoaded, "Check: Annotations and Metadata loaded");
 						jQuery.sap.log.debug("check for both");
 						start();
 					break;
-					
+
 					case "MetadataFailed": 
 						// Nothing should be loaded
 						ok(!bInternalMetadataLoaded && !bAnnotationsLoaded, "Check: Invalid Service - Annotations and Metadata NOT loaded");
@@ -309,15 +337,31 @@ for (var i = 0; i < aServices.length; ++i) {
 						start();
 					break;
 				} 
-					
+
 			};
 			var metadataDfd = jQuery.Deferred();
 			var internalMetadataDfd = jQuery.Deferred();
 			var annotationsDfd = jQuery.Deferred();
-
+			// Use internal metadata loaded event, because in case of joined loading, the real one
+			// does not fire until Annotations are there
+			if(oModel.oMetadata.getServiceMetadata()){
+				bInternalMetadataLoaded = true;
+				fnOnLoaded("InternalMetadata");
+				internalMetadataDfd.resolve();
+			} else {
+				oModel.oMetadata.attachLoaded(function() {
+					bInternalMetadataLoaded = true;
+					fnOnLoaded("InternalMetadata");
+					internalMetadataDfd.resolve();
+				});
+			}
 			// Metadata must be loaded before annotations
 			oModel.attachMetadataLoaded(function() {
 				bMetadataLoaded = true;
+				if(oModel.bLoadMetadataAsync && oModel.bLoadAnnotationsJoined){
+					// Metadata loaded event is only fired after both metadata and annotations have been loaded successfully, so we can also set bAnnotationsloaded to true
+					bAnnotationsLoaded = true;
+				}
 				fnOnLoaded("Metadata");
 				metadataDfd.resolve();
 			});
@@ -325,17 +369,8 @@ for (var i = 0; i < aServices.length; ++i) {
 			oModel.attachMetadataFailed(function() {
 				metadataDfd.reject();
 			});
-			// Use internal metadata loaded event, because in case of joined loading, the real one
-			// does not fire until Annotations are there
-			oModel.attachEvent("internalMetadataLoaded", function() {
-				bInternalMetadataLoaded = true;
-				fnOnLoaded("InternalMetadata");
-				internalMetadataDfd.resolve();
-			});
-
 			oModel.attachAnnotationsLoaded(function() {
 				bAnnotationsLoaded = true;
-				fnOnLoaded("Annotations");
 			});
 
 			if (bServiceValid && bAnnotationsValid){
@@ -344,21 +379,20 @@ for (var i = 0; i < aServices.length; ++i) {
 					fnOnLoaded("Both");
 				}).fail(function(e){
 				jQuery.sap.log.debug("metadata promise failed");
-				ok(false, 'Metadata promise rejected')
+				ok(false, 'Metadata promise rejected');
 			}); 
 			} else if (bServiceValid && !bAnnotationsValid){
-				jQuery.when(internalMetadataDfd).done(function(e){
-						jQuery.sap.log.debug("metadata promise fulfilled");
-						fnOriginalSetTimeout(function() {
-							fnOnLoaded("AnnotationsFailed");
-						}, iAsyncTimeout);
-					});
+				//internal metadata needs to be sucessful prior to the failed annotations
+				jQuery.when(internalMetadataDfd).done(function(){
+					jQuery.sap.log.debug("metadata promise rejected");
+					oModel.attachAnnotationsFailed(function(){fnOnLoaded("AnnotationsFailed");}, that);
+				});
 			} else if (!bServiceValid){
 				jQuery.when(metadataDfd).fail(function(e){
 					jQuery.sap.log.debug("metadata failed fulfilled");
 					fnOnLoaded("MetadataFailed");});
 			}
-
+			this.clock.tick(100);
 		}
 	})(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid);
 

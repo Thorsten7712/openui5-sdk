@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5849881341558367"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5642533554920389"/>
 <title>Declarative Support: Associations</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -24,7 +26,7 @@
 <div class="body"><div class="p">An association is defined as a data attribute of the HTML tag. Instead of passing the reference
 			to another control you define the ID of another control. The following code gives an
 			example:
-			<div><pre class="pre codeblock">&lt;div data-sap-ui-type="sap.ui.commons.Label" data-text="Message:" data-label-for="message"&gt;&lt;/div&gt;
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;div data-sap-ui-type="sap.ui.commons.Label" data-text="Message:" data-label-for="message"&gt;&lt;/div&gt;
 &lt;div data-sap-ui-type="sap.ui.commons.TextField" id="message"&gt;&lt;/div&gt;</pre></div>
 
 		</div>

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5639387111350983"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7687367968634324"/>
 <title>Step 9: Detail View</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -30,7 +32,7 @@
 
 			<p class="p">Here's what the view declaration looks like.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;mvc:View
 	controllerName="sap.ui.demo.tdg.view.Detail"
 	xmlns:mvc="sap.ui.core.mvc"
@@ -45,7 +47,7 @@
 				going to pull in a couple of XML fragments using
 					<samp class="ph codeph">sap.ui.core.Fragment</samp>.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;Page
 		showNavButton="{device&gt;/isPhone}"
 		navButtonPress="onNavBack"
@@ -72,7 +74,7 @@
 				specify the <samp class="ph codeph">&lt;content&gt;</samp> tag here, we should do as it's good
 				practice.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 			&lt;ObjectHeader
 				title="{Name}"
 				number="{
@@ -117,7 +119,7 @@
 				highlight a discontinued product status with a semantic color - red, via the Error
 				state.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 			&lt;IconTabBar
 				select="onDetailSelect"
 				id="idIconTabBar"&gt;
@@ -155,7 +157,7 @@
 				control the navigation to the appropriate information display and data binding in
 				the RouteMatched handler in the controller. </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;/content&gt;
 		&lt;footer&gt;
 			&lt;Bar&gt;
@@ -174,7 +176,7 @@
 			<p class="p">The bulk of the detail view's controller is for handling the navigation events that
 				are initiated through the Router. </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Detail", {
 
 	onInit : function() {
@@ -242,7 +244,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Detail", {
 				is handling the navigation from entity to entity for us automatically, following the
 				navigation properties that are described in the OData service metadata thus:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;EntityType Name="Product"&gt;
   &lt;Key&gt;
     &lt;PropertyRef Name="ProductID" /&gt;
@@ -257,7 +259,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Detail", {
 				implicitly. You can see this in the browser's developer console in the Network tab:
 				two GET requests are made:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 GET 
 http://localhost:8080/uilib-sample/proxy/http/services.odata.org/V2/(S(sapuidemotdg))/OData/OData.svc/Products(2)/Supplier
 GET 
@@ -267,7 +269,7 @@ http://localhost:8080/uilib-sample/proxy/http/services.odata.org/V2/(S(sapuidemo
 			<p class="p">So - you don't need to "drive" the ODataModel to navigate your service; embrace it
 				and let it do the hard work for you!</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 onNavBack : function() {
 		// This is only relevant when running on phone devices
 		sap.ui.core.UIComponent.getRouterFor(this).myNavBack("main");
@@ -303,7 +305,7 @@ onNavBack : function() {
 			<p class="p">With our skeleton <span class="ph filepath">Detail.view.xml </span>file replaced, and a corresponding
 				controller added, our app folder content now looks like this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- i18n/

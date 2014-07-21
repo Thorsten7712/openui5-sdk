@@ -51,7 +51,12 @@
 		iconInset : false,
 		type : "Detail",
 		unread: true,
-		counter: 99,
+		counter: {
+			path : "{test>Price/Amount}",
+			formatter : function(value) {
+				return +value;
+			}
+		},
 		selected: false,
 		info: "{test>Price/CurrencyCode}",
 		infoState: "Warning"
@@ -90,7 +95,7 @@
 	function bindListData(data, itemTemplate, list) {
 		jQuery.sap.require("sap.ui.model.odata.ODataModel");
 		// set the data for the model
-		var oModel = new sap.ui.model.odata.ODataModel(aServices[1].serviceUrl, true, "anzeiger", "display");
+		oModel = new sap.ui.model.odata.ODataModel(aServices[1].serviceUrl, true, "anzeiger", "display");
 		// set the model to the list
 		list.setModel(oModel, "test");
 		//sap.ui.getCore().setModel(oModel);
@@ -105,7 +110,10 @@
 		itemTemplate.addCustomData(oDataTemplate);
 
 		// bind Aggregation
-		list.bindAggregation("items", "test>/ProductCollection", itemTemplate);
+		list.bindItems({
+			path : "test>/ProductCollection",
+			template : itemTemplate
+		});
 	}
 
 
@@ -120,6 +128,29 @@
 	listOverview.addContent(new sap.m.CheckBox({
 		text : "Set scrollToLoad",
 		selected: "{/scrollToLoad}"
+	}));
+
+	listOverview.addContent(new sap.m.Button({
+		text : "Group",
+		press : function () {
+			var oBinding = oList.getBinding("items");
+			oBinding.sort([
+				new sap.ui.model.Sorter("Category", false, function(oContext) {
+					var sCategory = oContext.getProperty("Category");
+					return {
+						key : sCategory,
+						text : sCategory
+					}
+				})
+			]);
+		}
+	}));
+
+	listOverview.addContent(new sap.m.Button({
+		text : "Ungroup",
+		press : function () {
+			oList.getBinding("items").sort([]);
+		}
 	}));
 
 	listOverview.addContent(oList);

@@ -2,11 +2,11 @@
 <library xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>sap.m</name>
-  <vendor>SAP</vendor>
+  <vendor>SAP AG</vendor>
   <copyright>SAP UI development toolkit for HTML5 (SAPUI5)
 
 (c) Copyright 2009-2014 SAP AG. All rights reserved</copyright>
-  <version>1.20.10</version>
+  <version>1.22.4</version>
   
   <documentation>SAPUI5 library with controls specialized for mobile devices.</documentation>
   
@@ -27,7 +27,9 @@
     <jscoverage xmlns="http://www.sap.com/ui5/buildext/jscoverage" >
         <exclude name="sap.m.js." />
     </jscoverage>
-    <documentation xmlns="http://www.sap.com/ui5/buildext/documentation" indexUrl="test-resources/sap/m/demokit/docuindex.json"/>
+    <documentation xmlns="http://www.sap.com/ui5/buildext/documentation"
+        indexUrl="../../../test-resources/sap/m/demokit/docuindex.json"
+        resolve="lib" />
   </appData>
 
 </library>

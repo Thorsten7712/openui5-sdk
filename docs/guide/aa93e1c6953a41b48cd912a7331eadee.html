@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9437623565504955"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=1805312539010624"/>
 <title>View Modification</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -35,13 +37,13 @@
 <p class="p">The following code snippets give an example for a view modification. The
 				<samp class="ph codeph">someCustomizableTextControl</samp> control of the standard view
 				<samp class="ph codeph">Sub3.view.xml</samp> shall not be visible in the modified view:</p>
-<div><pre class="pre codeblock">&lt;mvc:View xmlns="sap.ui.commons" xmlns:mvc="sap.ui.core.mvc"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;mvc:View xmlns="sap.ui.commons" xmlns:mvc="sap.ui.core.mvc"&gt;
     &lt;TextView text="SAP View 'Sub3' - the text after this one is hidden by customizing: "&gt;&lt;/TextView&gt;
     &lt;TextView id="someCustomizableTextControl" text="This text is made invisible by customization"&gt;&lt;/TextView&gt;  
 &lt;/mvc:View&gt;</pre></div>
 <p class="p">In customizing, you identify the <samp class="ph codeph">customizableText</samp> controller and set the
 				<samp class="ph codeph">visible</samp> property to <samp class="ph codeph">false</samp>:</p>
-<div><pre class="pre codeblock">customizing: {  
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">customizing: {  
     "sap.ui.viewModifications": {
         "samples.components.ext.sap.Sub3": {
             "someCustomizableTextControl": {

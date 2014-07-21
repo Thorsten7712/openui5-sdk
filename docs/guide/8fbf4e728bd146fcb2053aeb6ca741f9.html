@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=28785023123715725"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=921694262496887"/>
 <title>Providing Hooks in the Standard Controller</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -50,7 +52,7 @@
 
 			<p class="p">Standard controller:</p>
 
-			<div><pre class="pre codeblock">// ...data object oSomeData has been received, possibly from an Ajax response...
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// ...data object oSomeData has been received, possibly from an Ajax response...
    if (this.onDataReceived) {         // check whether any extension has implemented the hook...
       this.onDataReceived(oSomeData); // ...and call it
    }
@@ -58,7 +60,7 @@
 
 			<p class="p">New controller: </p>
 
-			<div><pre class="pre codeblock">sap.ui.controller("customer.xy.Sub2ControllerExtension", {
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("customer.xy.Sub2ControllerExtension", {
    onDataReceived: function(oData){ // oSomeData will be passed in
       if (oData &amp;&amp; oData.status === "important") {
          oData.message = oData.message + "!!!"; // modify some part of the data object, adding exclamation marks to a message text

@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4875416760040443"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3485943434240515"/>
 <title>noJQuery Variant for Bootstrapping</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
                 <samp class="ph codeph">resources/sap-ui-core-noJQuery.js</samp> file in your HTML page. Make sure
             that jQuery and <samp class="ph codeph">jquery-ui-position</samp> have been loaded beforehand. See the
             following code snippet for an example.</p>
-<div><pre class="pre codeblock">    &lt;!-- include some jQuery version --&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">    &lt;!-- include some jQuery version --&gt;
     &lt;script src="my-jQuery-min.js" &gt;&lt;/script&gt;
 
     &lt;!-- application does not have its own jquery-ui-position, so it might use the one from SAPUI5 --&gt;

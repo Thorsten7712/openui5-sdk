@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=17333266292006544"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6780202033465238"/>
 <title>Assigning the Model to the UI</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -44,7 +46,7 @@
 							core object. This is useful for simple form applications or demo
 							applications. </p>
 
-						<div><pre class="pre codeblock">sap.ui.getCore().setModel(oModel);</pre></div>
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.getCore().setModel(oModel);</pre></div>
 
 					</li>
 <li class="li choice">
@@ -52,7 +54,7 @@
 							example, inside a panel or for a table control. In this case, you can
 							use the <samp class="ph codeph">setModel</samp> method available on any control: </p>
 
-						<div><pre class="pre codeblock">var oTable = sap.ui.getCore().byId("table");
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oTable = sap.ui.getCore().byId("table");
 oTable.setModel(oModel);</pre></div>
 
 					</li>

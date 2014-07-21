@@ -10,8 +10,17 @@
 		<property group="Appearance" name="showSecondaryContent" type="boolean">
 			<documentation>Shows / Hides the secondary area.</documentation>
 		</property>
-		<property group="Appearance" name="secondaryContentWidth" type="sap.ui.core/CSSSize" defaultValue="250px">
+		<property group="Appearance" name="secondaryContentSize" type="sap.ui.core/CSSSize" defaultValue="250px">
 			<documentation>The width if the secondary content. The height is always 100%.</documentation>
+		</property>
+		<property group="Appearance" name="secondaryContentWidth" type="sap.ui.core/CSSSize" defaultValue="250px">
+			<documentation>Do not use. Use secondaryContentSize instead.</documentation>
+			<deprecation since="1.22">
+				Only available for backwards compatibility.
+			</deprecation>
+		</property>
+		<property group="Appearance" name="orientation" type="sap.ui.core/Orientation" defaultValue="Horizontal" since="1.22.0">
+			<documentation>Whether to show the secondary content on the left (&quot;Horizontal&quot;, default) or on the top (&quot;Vertical&quot;).</documentation>
 		</property>
 	</properties>
 	<events>

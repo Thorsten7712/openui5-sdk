@@ -7,11 +7,11 @@ html, body {
 
 body {
 	background-color: #ffffff;
-	background-image: url(img/bg_white_transparent.png), linear-gradient(to bottom,  rgba(255,255,255,0.3) 0%,rgba(0,124,192,0.2) 100%);
-	background-image: url(img/bg_white_transparent.png), -webkit-linear-gradient(top,  rgba(255,255,255,0.3) 0%,rgba(0,124,192,0.2) 100%);
-	background-image: url(img/bg_white_transparent.png), -ms-linear-gradient(top,  rgba(255,255,255,0.3) 0%,rgba(0,124,192,0.2) 100%);
+	background-image: linear-gradient(to bottom, #E0F2F4 0px, #DCECF0 50%, #DDE4EC 100%);
+	background-image: -webkit-linear-gradient(to bottom, #E0F2F4 0px, #DCECF0 50%, #DDE4EC 100%);
+	background-image: -ms-linear-gradient(to bottom, #E0F2F4 0px, #DCECF0 50%, #DDE4EC 100%);
 	background-attachment: fixed;
-	background-repeat: repeat, no-repeat;
+	background-repeat: no-repeat;
 }
 
 html, body, table, th, td, p, div {

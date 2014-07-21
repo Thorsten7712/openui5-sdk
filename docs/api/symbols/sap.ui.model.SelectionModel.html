@@ -177,6 +177,11 @@
 									<span class='description'>Sets the selection mode.</span>
 								</div>
 							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Slices a the indices between the two indices from the selection."><a href="../symbols/sap.ui.model.SelectionModel.html#sliceSelectionInterval">sliceSelectionInterval</a></b><span class='signature'>(<span title="(int) one end of the interval.">iFromIndex</span>, <span title="(int) other end of the interval">iToIndex</span>)</span>
+									<span class='description'>Slices a the indices between the two indices from the selection.</span>
+								</div>
+							
 							</div>
 						</div>
 						
@@ -404,7 +409,7 @@ If this call results in a change to the current selection or lead selection, the
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    The object, that should be passed along with the event-object when firing the event.
@@ -429,7 +434,7 @@ If this call results in a change to the current selection or lead selection, the
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Object on which to call the given function. If empty, this Model is used.
@@ -624,7 +629,7 @@ Expects following event parameters:
 													  <span class="light">{int[]}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments.rowIndices</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments.rowIndices</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Other selected indices (if available)
@@ -1002,6 +1007,80 @@ selection modes:
 										
 										
 										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="sliceSelectionInterval"> </a>
+										<div class="itemTitle icon">
+											sliceSelectionInterval<span class="signature">(<span title="(int) one end of the interval.">iFromIndex</span>, <span title="(int) other end of the interval">iToIndex</span>)</span>
+											<span class="light" title="returns sap.ui.model.SelectionModel">: <a href="../symbols/sap.ui.model.SelectionModel.html">sap.ui.model.SelectionModel</a></span>
+										</div>
+										<div class="full-description">
+											Slices a the indices between the two indices from the selection.
+If <code>iFromIndex</code> is smaller than <code>iToIndex</code>, both parameters are swapped.
+</p><p>
+If the range of removed selection indices includes the current lead selection,
+then the lead selection will be unset (set to -1).
+</p><p>
+If this call results in a change to the current selection or lead selection, then a
+<code>SelectionChanged</code> event is fired.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iFromIndex</b>
+													</td>
+													<td class="methodItemDesc">
+												    one end of the interval.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iToIndex</b>
+													</td>
+													<td class="methodItemDesc">
+												    other end of the interval
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.model.SelectionModel.html">sap.ui.model.SelectionModel</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										

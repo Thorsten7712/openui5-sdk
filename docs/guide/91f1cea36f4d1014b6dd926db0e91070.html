@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8010909108990637"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=18314793648182948"/>
 <title>Bootstrapping: Loading and Initializing SAPUI5 in HTML Pages</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,11 +30,11 @@
 <p class="p">The following table gives an overview of the most important resources and the respective use
 			cases. The resource names refer to the <samp class="ph codeph">resources/</samp> folder in the SAPUI5
 			installation. The actual base URL depends on your platform and administrative setup.</p>
-<table summary="" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d515217e21" class="stentry">Resource</th>
-<th valign="bottom" align="left" id="d515217e23" class="stentry">Description</th>
+<table summary="" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d787176e21" class="stentry">Resource</th>
+<th valign="bottom" align="left" id="d787176e23" class="stentry">Description</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d515217e21" class="stentry"><samp class="ph codeph">sap-ui-core.js</samp></td>
-<td valign="top" headers="d515217e23" class="stentry"> 
+<tr class="strow"><td valign="top" headers="d787176e21" class="stentry"><samp class="ph codeph">sap-ui-core.js</samp></td>
+<td valign="top" headers="d787176e23" class="stentry"> 
 			 <p class="p">This is the standard bootstrap file. It already contains jQuery,
 							<samp class="ph codeph">jquery-ui-position</samp> and only the minimum required parts
 						of the SAPUI5 core library (<samp class="ph codeph">sap.ui.core</samp>). Required files
@@ -42,8 +44,8 @@
 							Variant for Bootstrapping</a>. </p>
 </td>
 </tr>
-<tr class="strow"><td valign="top" headers="d515217e21" class="stentry"><samp class="ph codeph">sap-ui-core-nojQuery.js</samp></td>
-<td valign="top" headers="d515217e23" class="stentry"> 
+<tr class="strow"><td valign="top" headers="d787176e21" class="stentry"><samp class="ph codeph">sap-ui-core-nojQuery.js</samp></td>
+<td valign="top" headers="d787176e23" class="stentry"> 
 			 <p class="p">You use this bootstrap file for applications with their own jQuery version. It also contains
 						the minimum required parts of the SAPUI5 core library, but <strong class="ph b">not</strong> jQuery
 						and <samp class="ph codeph">jquery-ui-position</samp>.</p>
@@ -53,8 +55,8 @@
  
 		  </td>
 </tr>
-<tr class="strow"><td valign="top" headers="d515217e21" class="stentry"><samp class="ph codeph">sap-ui-core-all.js</samp></td>
-<td valign="top" headers="d515217e23" class="stentry"> 
+<tr class="strow"><td valign="top" headers="d787176e21" class="stentry"><samp class="ph codeph">sap-ui-core-all.js</samp></td>
+<td valign="top" headers="d787176e23" class="stentry"> 
 			 <p class="p">This bootstrap file contains almost all resources of the <samp class="ph codeph">sap.ui.core</samp>
 						library. Only a few duplicates, such as multiple jQuery versions, testing
 						resources, and so on, are omitted. If you use this file for bootstrapping,
@@ -77,8 +79,8 @@
  
 		  </td>
 </tr>
-<tr class="strow"><td valign="top" headers="d515217e21" class="stentry"><samp class="ph codeph">sap/ui/core/library-preload.js</samp></td>
-<td valign="top" headers="d515217e23" class="stentry"> 
+<tr class="strow"><td valign="top" headers="d787176e21" class="stentry"><samp class="ph codeph">sap/ui/core/library-preload.js</samp></td>
+<td valign="top" headers="d787176e23" class="stentry"> 
 			 <p class="p">This bootstrap file is similar to the <samp class="ph codeph">sap-ui-core-all.js</samp> file, but the
 						modules are parsed and executed only on demand, and not immmediately.</p>
 
@@ -91,8 +93,8 @@
  
 		  </td>
 </tr>
-<tr class="strow"><td valign="top" headers="d515217e21" class="stentry"><samp class="ph codeph">sap-ui-core-lean.js</samp></td>
-<td valign="top" headers="d515217e23" class="stentry"> 
+<tr class="strow"><td valign="top" headers="d787176e21" class="stentry"><samp class="ph codeph">sap-ui-core-lean.js</samp></td>
+<td valign="top" headers="d787176e23" class="stentry"> 
 			 <p class="p">This bootstrap file is similar to the <samp class="ph codeph">sap-ui-core.js</samp> file, but in this use
 						case only the jQuery and one SAPUI5 file are loaded immediately and the
 						other files are loaded dynamically.</p>
@@ -103,8 +105,8 @@
 					</div>
 </td>
 </tr>
-<tr class="strow"><td valign="top" headers="d515217e21" class="stentry"><samp class="ph codeph">sap-ui5.js</samp></td>
-<td valign="top" headers="d515217e23" class="stentry">
+<tr class="strow"><td valign="top" headers="d787176e21" class="stentry"><samp class="ph codeph">sap-ui5.js</samp></td>
+<td valign="top" headers="d787176e23" class="stentry">
 			 <p class="p">This bootstrap file contains all JavaScript modules from the <samp class="ph codeph">sap.ui.core</samp>,
 							<samp class="ph codeph">sap.ui.commons</samp>, <samp class="ph codeph">sap.ui.table</samp> and
 							<samp class="ph codeph">sap.ui.ux3</samp> libraries. If you use this file for
@@ -121,8 +123,8 @@
  
 		  </td>
 </tr>
-<tr class="strow"><td valign="top" headers="d515217e21" class="stentry"><samp class="ph codeph">sap-ui-custom*.js</samp></td>
-<td valign="top" headers="d515217e23" class="stentry"> 
+<tr class="strow"><td valign="top" headers="d787176e21" class="stentry"><samp class="ph codeph">sap-ui-custom*.js</samp></td>
+<td valign="top" headers="d787176e23" class="stentry"> 
 			 <p class="p">This bootstrap file is reserved for custom merged files created by the application.</p>
 
 			 <div class="note note" id="loio91f1cea36f4d1014b6dd926db0e91070__note_N10120_N10119_N10112_N1001F_N10013_N10001"><span class="notetitle">Note</span> The proposed naming scheme for these files needs to be adapted

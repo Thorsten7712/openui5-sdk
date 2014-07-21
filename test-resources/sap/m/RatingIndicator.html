@@ -48,7 +48,6 @@
 
 		<script type="text/javascript">
 			jQuery.sap.require("sap.ui.core.IconPool");
-			jQuery.sap.initMobile();
 
 			var oApp = new sap.m.App("myApp");
 
@@ -102,6 +101,11 @@
 				value: 2.5
 			});
 
+			var oLabel6 = new sap.m.Label({text:'Default active rating'});
+			var oRating6 = new sap.m.RatingIndicator({
+				value: 2.5
+			});
+
 			var oVBox = new sap.m.VBox({
 				items: [
 					oLabel0,
@@ -115,7 +119,9 @@
 					oLabel4,
 					oRating4,
 					oLabel5,
-					oRating5
+					oRating5,
+					oLabel6,
+					oRating6
 				]
 			});
 

@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=17328213042155127"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5676668943041465"/>
 <title>Cache Buster</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -45,7 +47,7 @@
 		requests to JavaScript resources can be handled via the cache buster mechanism.
 		Typically this is used for the initial request for the bootstrap JavaScript: 
 	 </p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 
   &lt;script type="text/javascript" 
   	id="sap-ui-bootstrap"
@@ -63,7 +65,7 @@
 		  JavaScript it now serves a JavaScript file with the following content: 
 		</p>
  
-		<div><pre class="pre codeblock">
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 
 (function() {
   var sTimeStamp = '~20120716-0201~';
@@ -95,7 +97,7 @@
 		  the reponses now look like the following: 
 		</p>
  
-		<div><pre class="pre codeblock">Date: Mon, 16 Jul 2012 05:17:54 GMT
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">Date: Mon, 16 Jul 2012 05:17:54 GMT
 Expires: Thu, 14 Jul 2022 05:17:54 GMT
 Cache-Control: max-age=315360000, public</pre></div>
  

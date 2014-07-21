@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=20219860458693373"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=030456032469563965"/>
 <title>View Extension</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
             customized content. You insert the extension point in a standard view. In the code
             snippet below, three extension points are defined: <samp class="ph codeph">extension1</samp>,
                 <samp class="ph codeph">extension2</samp>. and <samp class="ph codeph">extension</samp>.</p>
-<div><pre class="pre codeblock">&lt;mvc:View xmlns="sap.ui.commons"  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;mvc:View xmlns="sap.ui.commons"  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"&gt;
     &lt;core:ExtensionPoint name="extension1" /&gt;
     &lt;TextView text="SAP View 'Sub2' - this one is extended by the customer and there should be a button after this text"&gt;&lt;/TextView&gt;    
     &lt;core:ExtensionPoint name="extension2" /&gt;   
@@ -36,7 +38,7 @@
 &lt;/mvc:View&gt;</pre></div>
 <p class="p">In the component customizing you can then assign the customized view to the respective
             extension point:</p>
-<div><pre class="pre codeblock">customizing: {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">customizing: {
         
     "sap.ui.viewExtensions": {
         "samples.components.ext.sap.Sub2": {
@@ -55,7 +57,7 @@
 </pre></div>
 <p class="p">The following code snippet gives an example of a customized view that is assigned to
                 <samp class="ph codeph">extension2</samp>:</p>
-<div><pre class="pre codeblock">&lt;mvc:View xmlns="sap.ui.commons"  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;mvc:View xmlns="sap.ui.commons"  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"&gt;
     &lt;core:ExtensionPoint name="extension1" /&gt;
     &lt;TextView text="Customer View 'SubSubView1' - this one extends the original SAP View 'Sub2' - and even custom Views can be extended:"&gt;&lt;/TextView&gt;   
     &lt;core:ExtensionPoint name="extension2" /&gt;   

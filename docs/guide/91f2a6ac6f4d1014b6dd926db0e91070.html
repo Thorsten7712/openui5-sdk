@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=15627410944522746"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6513920551916605"/>
 <title>OData Write Support</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -53,7 +55,7 @@
 				<p class="p">The following code triggers a new entry in the <samp class="ph codeph">Products</samp>
 					collection: </p>
 
-				<div><pre class="pre codeblock">var oEntry = {};
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oEntry = {};
 oEntry.Name = "IPad";
 oEntry.Price = "499$";
 oModel.create('/Products', oEntry, null, function(){
@@ -87,7 +89,7 @@ oModel.create('/Products', oEntry, null, function(){
 				<p class="p">The following code delets the product entry with ID=1 from the
 						<samp class="ph codeph">Products</samp> collection of the data service: </p>
 
-				<div><pre class="pre codeblock">oModel.remove('/Products(1)', null, function(){
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oModel.remove('/Products(1)', null, function(){
  		alert("Delete successful");
  	},function(){
 		alert("Delete failed");});</pre></div>
@@ -110,7 +112,7 @@ oModel.create('/Products', oEntry, null, function(){
 			<div class="note Example" id="loio91f2a6ac6f4d1014b6dd926db0e91070__note_N100D5_N100B9_N10013_N10001"><span class="Exampletitle"/> 
 				<p class="p">The following code updates the price: </p>
 
-				<div><pre class="pre codeblock">var oEntry = {};
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oEntry = {};
 oEntry.Price = "599$";
 oModel.update('/Products(1)', oEntry, null, function(){
  		alert("Update successful");
@@ -132,7 +134,7 @@ oModel.update('/Products(1)', oEntry, null, function(){
 			<p class="p">The retrieved data is returned in the success callback handler function. </p>
 
 			<div class="note Example" id="loio91f2a6ac6f4d1014b6dd926db0e91070__note_N10109_N100F1_N10013_N10001"><span class="Exampletitle"/> 
-				<div><pre class="pre codeblock">oModel.read('/Products(1)', null, null, true, function(oData, oResponse){
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oModel.read('/Products(1)', null, null, true, function(oData, oResponse){
  		alert("Read successful: " + JSON.stringify(oData));
  	},function(){
 		alert("Read failed");});</pre></div>

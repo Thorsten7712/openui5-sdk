@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=06048898794242097"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=07049433670340244"/>
 <title>Step 10: Detail XML Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -41,7 +43,7 @@
 			<p class="p">First up is the SupplierAddressForm fragment, in file
 					<span class="ph filepath">SupplierAddressForm.fragment.xml</span>.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;core:FragmentDefinition
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
@@ -57,7 +59,7 @@
 				change during maintenance. The container element doesn't have any representation in
 				the HTML.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;l:Grid
 		defaultSpan="L12 M12 S12"
 		width="auto"&gt;
@@ -97,7 +99,7 @@
 				as a <samp class="ph codeph">ComplexType</samp> in the OData service and this type is used in the
 				definition of the Supplier entity:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;Schema Namespace="ODataDemo" ...&gt;
   &lt;EntityType Name="Supplier"&gt;
     &lt;Key&gt;
@@ -130,7 +132,7 @@
 			
 			<p class="p">Here's the CategoryInfoForm fragment.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;core:FragmentDefinition
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
@@ -174,7 +176,7 @@
 			<p class="p">With the fragment files added to the view subfolder, our app folder content now looks
 				like this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- i18n/
@@ -202,7 +204,7 @@ tdg/
 
 			<p class="p">And when we uncomment the fragment insertion points in the detail view (see the <a class="xref" href="08887a263aa94c14838593aecddf1529.html">Detail View </a>section)</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 &lt;items&gt;
 	&lt;IconTabFilter
 		key="supplier"

@@ -51,15 +51,15 @@
 	var oColumn = new sap.ui.table.Column({multiLabels: [
 			new sap.ui.commons.Label({text: "Last Name"}),
 			new sap.ui.commons.Label({text: "Second level header"})
-		], template: oControl, sortProperty: "lastName", filterProperty: "lastName"});
-	oTable.addColumn(oColumn);
+		], template: oControl, sortProperty: "lastName", filterProperty: "lastName", headerSpan: [2,1], autoResizable: true});
+	oTable.addColumn(oColumn, {autoResizable: true});
 	oControl = new sap.ui.commons.TextField().bindProperty("value", "name");
-	oTable.addColumn(new sap.ui.table.Column({multiLabels: [
-			new sap.ui.commons.Label({text: "First Name", textAlign: "Right"}),
-			new sap.ui.commons.Label({text: "Name of the person"})
-		], template: oControl, sortProperty: "name", filterProperty: "name"}));
+	oTable.addColumn(new sap.ui.table.Column({ multiLabels: [
+	        new sap.ui.commons.Label({text: "First Name", textAlign: "Right"}),
+	        new sap.ui.commons.Label({text: "Name of the person"})
+	       ],template: oControl, sortProperty: "name", filterProperty: "name", autoResizable: true}));
 	oControl = new sap.ui.commons.CheckBox().bindProperty("checked", "checked");
- 	oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Checked (very long label text to show wrapping behavior)" /*, wrapping: true */}), template: oControl, sortProperty: "checked", filterProperty: "checked", hAlign: "Center"}));
+ 	oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Checked (very long label text to show wrapping behavior)" /*, wrapping: true */}), template: oControl, sortProperty: "checked", filterProperty: "checked", hAlign: "Center", autoResizable: true}));
 	
 	var oModel = new sap.ui.model.json.JSONModel();
 	oModel.setData({modelData: aData});

@@ -12,9 +12,11 @@
 <meta name="abstract" content="The resource model is used as a wrapper for resource bundles. You can, for example, bind texts of a control to language-dependent resource bundle properties."/>
 <meta name="description" content="The resource model is used as a wrapper for resource bundles. You can, for example, bind texts of a control to language-dependent resource bundle properties."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=39997477628703815"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=34598733481991495"/>
 <title>Creating a Resource Model Instance</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -30,12 +32,12 @@
 <li class="li step stepexpand"><span class="ph cmd">With a <samp class="ph codeph">bundleUrl</samp> that points to the resource bundle </span> If you use the bundle name, the file must have the
 						<samp class="ph codeph">.properties</samp> suffix. If you do not specify a
 						<samp class="ph codeph">locale</samp>, the system uses the login
-						language<div><pre class="pre codeblock">var oModel = new sap.ui.model.resource.ResourceModel({bundleName:"myBundle",locale:"en"});</pre></div>
+						language<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.resource.ResourceModel({bundleName:"myBundle",locale:"en"});</pre></div>
 <div class="note note" id="loio91f122a36f4d1014b6dd926db0e91070__note_N10058_N10018_N10013_N10001"><span class="notetitle">Note</span> In this ResourceModel implementation
 						you cannot pass parameters to your texts within the resource bundle. If you
 						have to pass parameters, you must do this on your own. Therefore, you can
 						load the bundle yourself or retrieve it from the model.
-						<div><pre class="pre codeblock">var myBundle = oModel.getResourceBundle();</pre></div>
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var myBundle = oModel.getResourceBundle();</pre></div>
 </div>
 <div class="itemgroup stepresult">
 					<p class="p">After the instance has been created, you have a model containing the resource

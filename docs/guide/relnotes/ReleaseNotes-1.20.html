@@ -38,141 +38,12 @@
       <div class="wikipage searchable">
         
           <p>
-</p>
-<p>
+</p><p>
 </p>
 <h1 id="ReleaseNotesfor1.20">Release Notes for 1.20</h1>
 <p>
 This page contains the release notes for the patches of the 1.20 release.
 </p>
-<h2 id="Version1.20.10July2014">Version 1.20.10 (July 2014)</h2>
-<p>
-A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
-</p>
-<p>
-<strong>Core</strong><br />
-</p>
-<ul><li>[FIX] FocusHandler: Error Handling / Ensure complete processing of event queue 
-</li><li>[FIX] Template.js: Fix Binding Path in Content 
-</li><li>[FIX] XMLTemplateProcessor: Added Error Message When Control Can't Be Created 
-</li><li>[FIX] sap.m.IconTabBar: uneven scrolling in Android Fiori Client 
-</li></ul><p>
-<strong>Desktop</strong><br />
-</p>
-<ul><li>[FIX] CalloutBase: Added Check for "oPopup" when Popup is Used
-</li><li>[FIX] ComboBox: no liveChange event by opening List
-</li><li>[FIX] DropdownBox: shows only one entry in Firefox 
-</li><li>[FIX] NotificationBar: Fixed Using the Animation With jQuery Version 1.7.1 
-</li><li>[FIX] RichTooltip: security issue of FormattedTextView in ValueStateText and Text 
-</li><li>[FIX] SimpleForm: getContent returns null instead of [] 
-</li><li>[FIX] SimpleForm: width ResponsiveLayout, addContent brings error 
-</li><li>[FIX] Slider, RangeSlider: no change event for HOME/END 
-</li><li>[FIX] Slider, RangeSlider: no change event if value set 
-</li><li>[FIX] UX3/NotificationBar: Wrong translation string 
-</li><li>[FIX] commons.DatePicker: allow to clear date on mobile device 
-</li><li>[FIX] commons/Splitter: Lost events with absolute position elements
-</li><li>[FIX] Form, Simpleform: return this; for overwritten setters 
-</li></ul><p>
-<strong>Mobile</strong><br />
-</p>
-<ul><li>[FIX] sap.m.(Table): SelectDialog fix for margin calculation
-</li><li>[FIX] sap.m.IconTabBar: uneven scrolling in Android Fiori Client 
-</li><li>[FIX] sap.m.Popover: setOffsetX/Y doesn't update the UI when placement is Vertical, Horizontal or Auto 
-</li></ul><p>
-<strong>Others</strong><br />
-</p>
-<ul><li>[FIX] Form: Form with ResponsiveGridLayout - misalignment on iOS 
-</li></ul>
-
-
-
-
-<h2 id="Version1.20.9June2014">Version 1.20.9 (June 2014)</h2>
-<p>
-A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
-</p>
-<p>
-<strong>Core</strong><br />
-</p>
-<ul><li>[FIX] ODataModel: Revert reset of list binding in case of error
-</li></ul><p>
-<strong>Desktop</strong><br />
-</p>
-<ul><li>[FIX] Table: fixed the sort/filter icon padding for the column 
-</li></ul>
-<h2 id="Version1.20.8June2014">Version 1.20.8 (June 2014)</h2>
-<p>
-A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
-</p>
-<p>
-<strong>Core</strong><br />
-</p>
-<ul><li>[FIX] ODataModel: Reset list binding in case of error 
-</li><li>[FIX] ODataModel: Use null literal in filter expressions 
-</li><li>[FIX] ResourceHandler: workaround for IE issue EOT files and Vary header 
-</li><li>[FIX] core.BusyIndicator: Position at Top and Use CSS Animation 
-</li><li>[FIX] sap.ui.Device: Chrome WebView returns physical pixel instead of logic pixel from window.screen.width/height 
-</li></ul><p>
-<strong>Desktop</strong><br />
-</p>
-<ul><li>[FIX] sap.ui.commons.FileUploader: sameFilenameAllowed 
-</li><li>[FIX] sap.ui.layout.form.ResponsiveGridLayout: typo in API doc (GitHub issue 73)
-</li><li>[FIX] sap.ui.table.Table: Infinity row count if table runs in IFRAME
-</li></ul><p>
-<strong>Mobile</strong><br />
-</p>
-<ul><li>[FIX] ApplicationBestPractice - link correction
-</li><li>[FIX] sap.m.Carousel pageChanged event 
-</li><li>[FIX] sap.m.IconTabBar fixed click on showAll variant 
-</li><li>[FIX] sap.m.List / Table - Never ending loading animation issue is fixed.
-</li><li>[FIX] sap.m.ObjectAttribute fire press event only if clicked on text 
-</li></ul>
-<h2 id="Version1.20.7June2014">Version 1.20.7 (June 2014)</h2>
-<p>
-A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
-</p>
-<p>
-<strong>Core</strong><br />
-</p>
-<ul><li>[FIX] Accept header for $count to restrictive 
-</li><li>[FIX] ClientTreeBinding: Apply filter on root level for arrays 
-</li><li>[FIX] Custom theming: missing base.less (github issue 42)
-</li><li>[FIX] DateFormat: 12:00 defaults to 12:00 PM 
-</li><li>[FIX] Delegates not correctly changed during execution 
-</li><li>[FIX] LocalBusyIndicator: Clear delayed call when DOMRef was removed 
-</li><li>[FIX] Routing: Added documentation for extend function 
-</li><li>[FIX] Table: Don't resize Table when LocalBusyIndicator is shown
-</li><li>[FIX] Tree: Ignore null values when processing nodes
-</li></ul><p>
-<strong>Desktop</strong><br />
-</p>
-<ul><li>[FIX] ColorPicker: Enable addStyleClass on control 
-</li><li>[FIX] ColorPicker: Hue 360 calculates wrong color 
-</li><li>[FIX] ComboBox changing order of items in model 
-</li><li>[FIX] ResponsiveFlowLayout: Fixed  Rendering for Property 'Responsive' 
-</li><li>[FIX] ResponsiveFlowLayout: Fixed Flickering in RTL-mode 
-</li><li>[FIX] Table Column: Filter state check for custom menus
-</li><li>[FIX] Table: Don't resize Table when LocalBusyIndicator is shown
-</li><li>[FIX] commons.Dialog: Focusing Control Instead if DOM-Ref 
-</li><li>[FIX] sap.ui.commons.RoadMap: Label truncation with ellipses 
-</li><li>[FIX][ACC] UX3/Shell: Focus PaneBar content after opening
-</li></ul><p>
-<strong>Mobile</strong><br />
-</p>
-<ul><li>[FIX] sap.m.Dialog: dialog isn't position at the center when keyboard is shown before opening dialog. 
-</li><li>[FIX] sap.m.IconTabHeader update scroll arrows on desktop after scrolling
-</li><li>[FIX] sap.m.List/Table - "No data" text during busy state is removed. 
-</li><li>[FIX] sap.m.Popover: popover closes itself when content of popover gets bigger. 
-</li><li>[FIX] sap.m.ResponsivePopover: javascript exception during destroy. 
-</li><li>[FIX] sap.m.ResponsivePopover: model can't be propagated from ResponsivePopover to the inner Popover control. 
-</li><li>[FIX] sap.m.SegmentedButton: disable segments in segmented button 
-</li><li>[FIX] sap.m.Select: escape the curly brackets (databinding issue) 
-</li><li>[FIX] Facet Filter Search Box issue 
-</li></ul><p>
-<strong>Others</strong><br />
-</p>
-<ul><li>[FIX] sap.ui.unified.Shell: Optimize header hiding on Win 8 / Chrome 
-</li></ul>
 <h2 id="Version1.20.6May2014">Version 1.20.6 (May 2014)</h2>
 <p>
 A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
@@ -207,9 +78,7 @@ A patch for the rel-1.20 code line. It contains the following fixes for the UI5 
 <ul><li>[FIX] Demokit: correct links from dev guide to API reference
 </li><li>[FIX] TinyMCE language update
 </li><li>[FIX] TinyMCE update to 3.5.10 (IE11 compatibility) 
-</li></ul>
-
-<h2 id="Version1.20.5May2014">Version 1.20.5 (May 2014)</h2>
+</li></ul><h2 id="Version1.20.5May2014">Version 1.20.5 (May 2014)</h2>
 <p>
 A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
 </p>
@@ -229,7 +98,7 @@ A patch for the rel-1.20 code line. It contains the following fixes for the UI5 
 <strong>Mobile</strong><br />
 </p>
 <ul><li>[FIX] Added missing Demo App for TDG
-</li><li>[FIX] Shopping Cart: remove dependency to sap.me (github issue <a class="closed ticket" href="/trac/sapui5/ticket/41" title="task: Perforce structures: test structure, documentation structure (closed)">#41</a>)
+</li><li>[FIX] Shopping Cart: remove dependency to sap.me (github issue <a class="closed ticket" href="http://vesapui5.dhcp.wdf.sap.corp:1080/trac/sapui5/ticket/41" title="task: Perforce structures: test structure, documentation structure (closed)">#41</a>)
 </li><li>[FIX] Tiles initially not shown on Android devices
 </li><li>[FIX] Toolbar should not be invalidated during the rendering with setDesign calls from the parent. 
 </li><li>[FIX] sap.m.Dialog: fix the detached select popup issue when select is inside a dialog. 
@@ -241,9 +110,7 @@ A patch for the rel-1.20 code line. It contains the following fixes for the UI5 
 </p>
 <ul><li>[FIX] Include current version of docu in OpenUI5 SDK (add "Application Best Practices"/TDG section)
 </li><li>[FIX] RichTextEditor: Fixed to work properly in ThingInspector 
-</li></ul>
-
-<h2 id="Version1.20.4April2014">Version 1.20.4 (April 2014)</h2>
+</li></ul><h2 id="Version1.20.4April2014">Version 1.20.4 (April 2014)</h2>
 <p>
 A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
 </p>
@@ -328,9 +195,7 @@ A patch for the rel-1.20 code line. It contains the following fixes for the UI5 
 </li><li>[FIX] Positioning of the background in Blue Crystal theme in IE9 
 </li><li>[FIX] RichTextEditor: Enable browser spell checking 
 </li><li>[FIX] sap.ui.unified.Shell: Fix logo alignment 
-</li></ul>
-
-<h2 id="Version1.20.3March2014">Version 1.20.3/1.20.2 (March 2014)</h2>
+</li></ul><h2 id="Version1.20.31.20.2March2014">Version 1.20.3/1.20.2 (March 2014)</h2>
 <p>
 A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
 </p>
@@ -383,15 +248,11 @@ A patch for the rel-1.20 code line. It contains the following fixes for the UI5 
 </li><li>[FIX] sap.m.Carousel: Focus painting and event handling issues fixed - painting focus on desktop did not work after mouse activation - swipe event was propagated even if not necessary 
 </li><li>[FIX] sap.m.Select: long items are truncated in IE9 
 </li><li>[FIX] sap.m.List fixing Multi select List
-</li></ul>
-<p>
+</li></ul><p>
 <strong>Others</strong><br />
 </p>
 <ul><li>[FIX] SDK: Highlighting of empty search terms runs endlessly 
-</li></ul>
-
-
-<h2 id="Version1.20.1March2014">Version 1.20.1 (March 2014)</h2>
+</li></ul><h2 id="Version1.20.1March2014">Version 1.20.1 (March 2014)</h2>
 <p>
 A patch for the rel-1.20 code line. It contains the following fixes for the UI5 Core and Controls:
 </p>
@@ -421,7 +282,7 @@ A release for the master code line. It contains the following fixes for the UI5 
 <p>
 <strong>Core</strong><br />
 </p>
-<ul><li>[FEATURE] Device API: add browser.msie, browser.mozilla and
+<ul><li>[FEATURE] Device API: add browser.msie, browser.mozilla and and browser.webkit; deprecate browser.internet_explorer as it was unnecessarily long
 </li><li>[FEATURE] Document default aggregations of controls.
 </li><li>[FEATURE] Enable portal themeroot
 </li><li>[FEATURE] Exclude test-resources from the optimized runtime archives
@@ -482,7 +343,7 @@ A release for the master code line. It contains the following fixes for the UI5 
 </li><li>[FIX] Include developer texts in default set of supported languages
 </li><li>[FIX] JSONTreeBinding: Fix binding of array 
 </li><li>[FIX] ManagedObject: fix correct detaching of modelRefreshHandler 
-</li><li>[FIX] MockServer: fix problems with encoded urls
+</li><li>[FIX] MockServer: fix problems with encoded urls 
 </li><li>[FIX] MockServer: added metadata support for entity values
 </li><li>[FIX] Models: new getObject function and XMLModel: fix changeDetection for nodes 
 </li><li>[FIX] NotificationBar: Enable Read-Only Messages 
@@ -855,6 +716,15 @@ A release for the master code line. It contains the following fixes for the UI5 
 </li><li>[FIX] sap.m.SearchField: layout issues in IE9 
 </li><li>[FIX] sap.ui.unified.ContentSwitcher/ShellOverlay: Fix JSDoc 
 </li><li>[FIX] sap.ui.unified.Shell: Fix Close Button Design in BlueChrystal Theme
+</li></ul><p>
+<strong>Suite UI Commons</strong><br />
+</p>
+<ul><li>[FEATURE]: <tt>sap.suite.ui.commons.AreaMicroChart</tt> control provides an ability to display the history of values as a line or an area mini chart. It can display actual value and target value as segmented lines and thresholds as semantically colored background area. Actual value and target can also be set as a static number. In this case it is displayed as a straight line. The same is also true for the threshold areas. This control also allows you to display or hide the labels for the start and end dates, start and end values and the min and max values. It is possible to set the fixed horizontal and vertical scales for this mini-chart.
+</li><li>[FEATURE]: <tt>sap.suite.ui.commons.BulletMicroChart</tt> control provides an ability to display an actual value as a horizontal bar in semantic color on top of the background bar along with the value and a scaling factor. A target value is displayed as a vertical bar along with the value and a scaling factor. Up to 4 threshold values can be displayed as vertical bars in semantic colors. You can show or hide the numeric values for the actual and target values. The fixed scale can be set for this control. This control can be displayed in one of the three predefined sizes (Small, Medium, or Large) or its size can be set to Auto to fit the size of the device. The XS size has been developed for using in tables. To fit in the table row of the standard height, it does not display the numeric values even if these values are set for the control. 
+</li><li>[FEATURE]: <tt>sap.suite.ui.commons.ComparisonMicroChart</tt> control provides an ability to display up to 3 bars along with the title, value, and scaling factor in semantic colors. This control can be displayed in one of the three predefined sizes (Small, Medium, or Large) or its size can be set to Auto to fit the size of the device.
+</li><li>[FEATURE]: <tt>sap.suite.ui.commons.NumericContent</tt> control provides an ability to display the numeric value in semantic colors. This control displays the value scale provided by the backend. The deviation (up, down, or none) can be displayed. This control can be displayed in one of the three predefined sizes (Small, Medium, or Large) or its size can be set to Auto to fit the size of the device.
+</li><li>[FEATURE]: <tt>sap.suite.ui.commons.HeaderContainer</tt> control provides an ability to display a set of controls in a horizontal strip. On mobile devices, this control is swipeable. On desktop, buttons are used to display the next or previous set of containers.
+</li><li>[FEATURE]: <tt>sap.suite.ui.commons.HeaderCell</tt> control provides an ability to display one or more controls in different layouts. The controls are arranged and resized to fit in one or more of the following regions: north, south, east, and west. Each aggregation must contain only one instance of HeaderCellItem.
 </li></ul><p>
 <strong>Experimental Features:</strong>
 </p>

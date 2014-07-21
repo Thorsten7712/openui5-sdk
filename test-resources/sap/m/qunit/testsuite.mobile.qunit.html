@@ -5,7 +5,6 @@
 			id="sap-ui-bootstrap"
 			src='../../../../resources/sap-ui-core.js'>
 		</script>
-		<script src="/jsunit-testrunner/app/jsUnitCore.js"></script>
 	</head>
 	<body>
 		<script>
@@ -34,6 +33,9 @@
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/App.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/AppWithBackground.qunit.html");
 
+				//Bar in page 
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/BarInPageEnabler.qunit.html");
+
 				// Bar
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/Bar.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/Bar.qunit.html?sap-ui-rtl=true");
@@ -59,6 +61,12 @@
 
 				// ColumnListItem
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/ColumnListItem.qunit.html");
+				
+				// ColumnMergeDuplicates
+				suite.addTestPage(contextPath + "test-resources/sap/m/qunit/ColumnMergeDuplicates.qunit.html");
+
+				// ComboBox
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/ComboBox.qunit.html");
 
 				// CSSClassesFromParameters
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/CSSClassesFromParameters.qunit.html");
@@ -76,6 +84,9 @@
 
 				// FacetFilter
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/FacetFilter.qunit.html");
+
+				// FeedInput
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/FeedInput.qunit.html");
 
 				// FlexBox
 				if (!ie9) {
@@ -98,6 +109,7 @@
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/Image.qunit.html");
 
 				// Input
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/InputBase.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/Input.qunit.html");
 
 				// InstanceManager
@@ -200,6 +212,11 @@
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/Select.qunit.html?sap-ui-xx-fakeOS=android");	// design differences on the phone
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/Select.qunit.html?sap-ui-xx-fakeOS=ios");	// design differences on the phone
 
+				// MultiComboBox
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/MultiComboBox.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/MultiComboBox.qunit.html?sap-ui-xx-fakeOS=android");	// design differences on the phone
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/MultiComboBox.qunit.html?sap-ui-xx-fakeOS=ios");	// design differences on the phone
+
 				// SelectDialog
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/SelectDialog.qunit.html");
 
@@ -256,6 +273,9 @@
 
 				// ViewSettingsDialog
 				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/ViewSettingsDialog.qunit.html");
+
+				// DatePicker
+				suite.addTestPage(contextPath + "/test-resources/sap/m/qunit/DatePicker.qunit.html");
 			}
 
 			return suite;

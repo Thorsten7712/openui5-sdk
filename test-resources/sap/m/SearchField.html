@@ -3,9 +3,6 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>SearchField - sap.m</title>
-<style type="text/css">
-	.testV { margin: 0.45em 0em; }
-</style>
 <script src="../../../resources/sap-ui-core.js"
 	type="text/javascript" 
 	id="sap-ui-bootstrap"
@@ -85,29 +82,32 @@
 			]
 		}),
 		content : [
-			new sap.m.SearchField("SF1", {placeholder: "search for...", search:onSearch}).addStyleClass("testV"),
+			new sap.m.SearchField("SF1", {placeholder: "search for...", search:onSearch}),
 			new sap.m.SearchField("SF2", {
 					value: "selectOnFocus:false", placeholder: "selectOnFocus:false..", selectOnFocus: false,
-					search:onSearch, liveChange:onLiveChange, showRefreshButton: true
-				}).addStyleClass("testV"),
+					showRefreshButton: true, refreshButtonTooltip: "Reload..",
+					search:onSearch, liveChange:onLiveChange
+				}),
 			new sap.m.SearchField("SF3", {
-					placeholder: "disabled...", value: "disabled", enabled: false, search:onSearch, liveChange:onLiveChange
-				}).addStyleClass("testV"),
+					placeholder: "disabled...", value: "disabled", enabled: false,
+					showRefreshButton: true, refreshButtonTooltip: "Reload..",
+					search:onSearch, liveChange:onLiveChange
+				}),
 			new sap.m.SearchField("SF4", {
 					placeholder: "maxLength=5..", maxLength: 5, search:onSearch, liveChange:onLiveChange
-				}).addStyleClass("testV"),
+				}),
 			new sap.m.SearchField("SF5", {
 					placeholder: "width=50%", width: "50%", search:onSearch, liveChange:onLiveChange
-				}).addStyleClass("testV"),
+				}),
 			new sap.m.SearchField("SF6", { // remove default placeholder
 					placeholder: "", search:onSearch, liveChange:onLiveChange
-				}).addStyleClass("testV"),
+				}),
 			new sap.m.Button({
 					text: "Open a Dialog",
 					press : function() {
 						oDialog.open();
 					}
-				}).addStyleClass("testV"),
+				}),
 		]
 	});
 
@@ -142,10 +142,10 @@
 		content : [ 
 			new sap.m.SearchField("SF12", {
 					placeholder: "search for...", search:onSearch, liveChange:onLiveChange
-				}).addStyleClass("testV"),
+				}),
 			new sap.m.SearchField("SF22", {
 					placeholder: "search for..", search:onSearch, liveChange:onLiveChange
-				}).addStyleClass("testV")
+				})
 		]
 	});
 

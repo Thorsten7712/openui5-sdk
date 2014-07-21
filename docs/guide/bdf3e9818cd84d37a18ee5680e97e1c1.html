@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=64775403229131"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6120787733919859"/>
 <title>Event Handler Methods</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -37,7 +39,7 @@
 			whether the user wants to navigate to the next item. The <samp class="ph codeph">evt</samp> object
 			that is passed to the handler method contains more information. These methods are
 			private methods and must only be called by SAPUI5 core.</p>
-<div><pre class="pre codeblock">onclick: function(evt) {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">onclick: function(evt) {
 
      alert("Control " + this.getId() + " was clicked.");
 

@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=751514202412901"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2833907103300646"/>
 <title>Compiling Declarative HTML</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 			loaded and added to the DOM you can call the
 				<samp class="ph codeph">sap.ui.core.plugin.DeclarativeSupport</samp>.compile method, see the
 			following code snippet:
-			<div><pre class="pre codeblock">&lt;div id="button"&gt;
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;div id="button"&gt;
   &lt;div data-sap-ui-type="sap.ui.commons.Button" data-text="This button is added dynamically"&gt;&lt;/div&gt;
 &lt;/div&gt;
 

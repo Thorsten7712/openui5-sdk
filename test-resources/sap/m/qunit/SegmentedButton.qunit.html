@@ -14,7 +14,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script>
@@ -174,9 +174,8 @@
 		asyncTest("SegmentedButton in Dialog's header", function(){
 			var oButton1 = new sap.m.Button("segbtn1", {text:"first button"}),
 				oButton2 = new sap.m.Button("segbtn2", {text:"second button"}),
-				oButton3 = new sap.m.Button("segbtn3", {text:"third button"});
-			var oDialog = new sap.m.Dialog({
-				subHeader: new sap.m.Bar({
+				oButton3 = new sap.m.Button("segbtn3", {text:"third button"}),
+				oBar = new sap.m.Bar({
 					contentMiddle: [
 						new sap.m.SegmentedButton({
 							width: "100%",
@@ -184,8 +183,10 @@
 								oButton1, oButton2, oButton3
 							]
 						})
-					]
-				}),
+					]});
+
+			var oDialog = new sap.m.Dialog({
+				subHeader: oBar,
 				content: [
 					new sap.m.Button({
 						text: "long button",
@@ -198,7 +199,7 @@
 			setTimeout(function(){
 				ok(Math.abs(oButton1.$().width() - oButton2.$().width()) <= 2 , "Buttons in SegmentedButton should have identical width");
 				ok(Math.abs(oButton1.$().width() - oButton3.$().width()) <= 2 , "Buttons in SegmentedButton should have identical width");
-				ok(Math.abs(oDialog.$().width() - oButton1.$().outerWidth() - oButton2.$().outerWidth() - oButton3.$().outerWidth()) <= 3, "SegmentedButton should occupy the whole width of dialog");
+				ok(Math.abs(oBar.$().find(".sapMBarPH").width() - oButton1.$().outerWidth() - oButton2.$().outerWidth() - oButton3.$().outerWidth()) <= 3, "SegmentedButton should occupy the whole width of dialog");
 				oDialog.destroy();
 				start();
 			}, 500);

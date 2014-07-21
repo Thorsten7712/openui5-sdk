@@ -12,9 +12,11 @@
 <meta name="abstract" content="This section provides information about bootstrapping and configuration options for SAPUI5."/>
 <meta name="description" content="This section provides information about bootstrapping and configuration options for SAPUI5."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9884679783018842"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5494787423530505"/>
 <title>Initializing and Loading SAPUI5</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -33,7 +35,7 @@
 <p class="p">Additionally, you can specify the set of SAPUI5 libraries and the theme used for your
 			application in the configuration settings.</p>
 <p class="p">The following code snippet shows a typical bootstrap script tag:</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 	&lt;script id="sap-ui-bootstrap" 
 		type="text/javascript"
 		src="resources/sap-ui-core.js"

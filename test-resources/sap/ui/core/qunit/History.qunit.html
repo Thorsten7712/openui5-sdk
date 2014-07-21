@@ -22,8 +22,6 @@
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
 <script type="text/javascript"
-	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
-<script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script src="../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 <script src="../../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -49,7 +47,7 @@
         var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
         var sut = sap.ui.core.routing.History.getInstance(),
             oHashChanged = this.spy(sut, "_hashChangedByApp"),
-            lengthBefore = sut._aHistory.length;
+            lengthBefore = sut.aHistory.length;
 
         //Act
         oHashChanger.setHash("foo");
@@ -63,8 +61,8 @@
         ok(oHashChanged.firstCall.calledWithExactly("foo", false), "Should register to setHash");
         ok(oHashChanged.secondCall.calledWithExactly("bar", true), "Should register to replaceHash");
 
-        strictEqual(sut._aHistory.length, lengthBefore + 1, "should have 1 entries in the history");
-        strictEqual(sut._aHistory[lengthBefore], "bar");
+        strictEqual(sut.aHistory.length, lengthBefore + 1, "should have 1 entry in the history");
+        strictEqual(sut.aHistory[lengthBefore], "bar");
 
     });
 

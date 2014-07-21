@@ -100,10 +100,10 @@
 		<aggregation cardinality="0..n" name="content" type="sap.ui.core/Control">
 			<documentation>Content is supported by both variants. Please see the documentation on {@linkcode sap.m.Popover#content sap.m.Popover} and {@linkcode sap.m.Dialog#content sap.m.Dialog}</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" name="customHeader" type="sap.m/Bar">
+		<aggregation cardinality="0..1" name="customHeader" type="sap.m/IBar">
 			<documentation>CustomHeader is supported by both variants. Please see the documentation on {@linkcode sap.m.Popover#customHeader sap.m.Popover} and {@linkcode sap.m.Dialog#customHeader sap.m.Dialog}</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" name="subHeader" type="sap.m/Bar">
+		<aggregation cardinality="0..1" name="subHeader" type="sap.m/IBar">
 			<documentation>SubHeader is supported by both variants. Please see the documentation on {@linkcode sap.m.Popover#subHeader sap.m.Popover} and {@linkcode sap.m.Dialog#subHeader sap.m.Dialog}</documentation>
 		</aggregation>
 		<aggregation cardinality="0..1" name="beginButton" type="sap.m/Button">

@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7596269726884249"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9432539095698029"/>
 <title>Declarative Support</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -47,7 +49,7 @@
 		  an alert box: 
 		</p>
  
-		<div><pre class="pre codeblock">
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 &lt;!Doctype HTML&gt;
 &lt;html&gt;  &lt;title&gt;Declarative Programming for SAPUI5 - sample01&lt;/title&gt;
 &lt;script id="sap-ui-bootstrap"
@@ -75,38 +77,38 @@
 		  declarative support and gives examples. 
 		</p>
  
-		<table summary="" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d493001e46" class="stentry">Attribute</th>
-<th valign="bottom" align="left" id="d493001e48" class="stentry">Description</th>
-<th valign="bottom" align="left" id="d493001e50" class="stentry">Example</th>
+		<table summary="" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d761999e46" class="stentry">Attribute</th>
+<th valign="bottom" align="left" id="d761999e48" class="stentry">Description</th>
+<th valign="bottom" align="left" id="d761999e50" class="stentry">Example</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d493001e46" class="stentry"><samp class="ph codeph">data-sap-ui-type</samp></td>
-<td valign="top" headers="d493001e48" class="stentry">Type of control</td>
-<td valign="top" headers="d493001e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Button"&gt;&lt;/div&gt;</samp></td>
+<tr class="strow"><td valign="top" headers="d761999e46" class="stentry"><samp class="ph codeph">data-sap-ui-type</samp></td>
+<td valign="top" headers="d761999e48" class="stentry">Type of control</td>
+<td valign="top" headers="d761999e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Button"&gt;&lt;/div&gt;</samp></td>
 </tr>
-<tr class="strow"><td valign="top" headers="d493001e46" class="stentry"><samp class="ph codeph">data-sap-ui-aggregation</samp></td>
-<td valign="top" headers="d493001e48" class="stentry">Defines the aggregation that shall be used for the
+<tr class="strow"><td valign="top" headers="d761999e46" class="stentry"><samp class="ph codeph">data-sap-ui-aggregation</samp></td>
+<td valign="top" headers="d761999e48" class="stentry">Defines the aggregation that shall be used for the
 				element or child element</td>
-<td valign="top" headers="d493001e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Panel"&gt;&lt;div
+<td valign="top" headers="d761999e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Panel"&gt;&lt;div
 							data-sap-ui-aggregation="title" data-sap-ui-type="sap.ui.commons.Title"
 							data-text="My Panel"&gt;&lt;/div&gt;&lt;/div&gt;</samp></td>
 </tr>
-<tr class="strow"><td valign="top" headers="d493001e46" class="stentry"><samp class="ph codeph">data-sap-ui.default-aggregation</samp></td>
-<td valign="top" headers="d493001e48" class="stentry">Sets or overrides the default aggregation of a
+<tr class="strow"><td valign="top" headers="d761999e46" class="stentry"><samp class="ph codeph">data-sap-ui.default-aggregation</samp></td>
+<td valign="top" headers="d761999e48" class="stentry">Sets or overrides the default aggregation of a
 				control</td>
-<td valign="top" headers="d493001e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Panel"
+<td valign="top" headers="d761999e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Panel"
 							data-sap-ui-default-aggregation="title"&gt;&lt;div
 							data-sap-ui-type="sap.ui.commons.Title" data-text="My
 							Panel"&gt;&lt;/div&gt;&lt;/div&gt;</samp>
 					</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d493001e46" class="stentry"><samp class="ph codeph">id</samp></td>
-<td valign="top" headers="d493001e48" class="stentry">Defines the ID property of a control</td>
-<td valign="top" headers="d493001e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Button" id="myButton"&gt;&lt;/div&gt;</samp>
+<tr class="strow"><td valign="top" headers="d761999e46" class="stentry"><samp class="ph codeph">id</samp></td>
+<td valign="top" headers="d761999e48" class="stentry">Defines the ID property of a control</td>
+<td valign="top" headers="d761999e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Button" id="myButton"&gt;&lt;/div&gt;</samp>
 					</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d493001e46" class="stentry"><samp class="ph codeph">class</samp></td>
-<td valign="top" headers="d493001e48" class="stentry">Adds a style class to the control</td>
-<td valign="top" headers="d493001e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Button"
+<tr class="strow"><td valign="top" headers="d761999e46" class="stentry"><samp class="ph codeph">class</samp></td>
+<td valign="top" headers="d761999e48" class="stentry">Adds a style class to the control</td>
+<td valign="top" headers="d761999e50" class="stentry"><samp class="ph codeph">&lt;div data-sap-ui-type="sap.ui.commons.Button"
 							class="myButton"&gt;&lt;/div&gt;</samp>
 					</td>
 </tr>

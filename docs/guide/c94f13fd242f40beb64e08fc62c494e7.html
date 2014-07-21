@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8990811907202408"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=05093362553010239"/>
 <title>Sharing the SAPUI5 Application Project with the SAPUI5 Repository</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -41,54 +43,7 @@
 
 			</li>
 </ul>
-<div class="section" id="loioc94f13fd242f40beb64e08fc62c494e7__section_N1002D_N10011_N10001"><div class="section_title">Step 1: Creating a BSP Application (optional, not always required)</div><div type="Step 1: Creating a BSP Application (optional, not always required)">
-			
-			<p class="p">It is possible to create the BSP application with all required ICF nodes on the ABAP
-				server remotely from Eclipse. However there might be cases in which this is not
-				possible automatically: </p>
-
-			<ul class="ul" id="loioc94f13fd242f40beb64e08fc62c494e7__ul_vlm_tx2_bj"><li class="li">if the ABAP system is an SAP system (not a customer system) and the name of the
-					BSP application and ICF node is in the customer namespace (for example, ZMYAPP) </li>
-<li class="li">if the BSP application contains a namespace and that namespace has already been
-					created in another system (for example, /ABC/MYAPP). </li>
-</ul>
-
-			<p class="p">In these cases the BSP application has to be created manually with the following
-				steps before sharing: </p>
-
-			<ol class="ol" id="loioc94f13fd242f40beb64e08fc62c494e7__ol_emm_tx2_bj"><li class="li">In the ABAP system, call transaction <samp class="ph codeph">SE80</samp>. Go to the <span class="ph uicontrol">Repository
-						Browser</span>, and select <span class="ph uicontrol">BSP Application</span> from
-					the dropdown menu. </li>
-<li class="li">Create a BSP application and enter <samp class="ph codeph">/UI5/CL_UI5_BSP_APPLICATION</samp> as the name
-					of the application class. </li>
-<li class="li">Save and activate the application. </li>
-<li class="li">Next, call transaction <samp class="ph codeph">SICF</samp>, where you create a SAPUI5 application-specific
-					ICF node. <ol class="ol" type="a" id="loioc94f13fd242f40beb64e08fc62c494e7__ol_fmm_tx2_bj"><li class="li">In the <span class="ph uicontrol">Service Path</span> field, select
-								<samp class="ph codeph">/sap/bc/ui5_ui5/sap</samp> as the path (or alternatively
-							the respective customer namespace <em class="ph i">/sap/bc/ui5_ui5/&lt;namespace</em>),
-							and choose <span class="ph uicontrol">Execute</span>. </li>
-<li class="li">In the context menu for the <em class="ph i">sap</em> (or the respective customer
-							namespace) node, choose <span class="ph uicontrol">New Sub-Element</span>. </li>
-<li class="li">In the <span class="ph uicontrol">Create a Service Element</span> dialog, use the
-							same name as for the BSP application you created as the <span class="ph uicontrol">Name
-								of Service Element to Be Created</span> and choose
-								<span class="ph uicontrol">Enter</span>. </li>
-<li class="li">Provide a description text for the ICF node and choose
-								<span class="ph uicontrol">Save</span>. </li>
-<li class="li">Return to the tree and position the cursor on the new service node. </li>
-<li class="li">Right-click the new service node to call the context menu, and choose
-								<span class="ph uicontrol">Activate Service</span>, then
-								<span class="ph uicontrol">Yes</span>. </li>
-</ol>
-
-				</li>
-</ol>
-
-		</div></div>
-<div class="section" id="loioc94f13fd242f40beb64e08fc62c494e7__section_N100B9_N10011_N10001"><div class="section_title">Step 2: Sharing the SAPUI5 Application with the SAPUI5 repository</div><div type="Step 2: Sharing the SAPUI5 Application with the SAPUI5 repository">
-			
-		</div></div>
-<p class="p">The SAPUI5 application project can be shared with the SAPUI5 Repository as follows: </p>
+<p class="p">To share the SAPUI5 application project with the SAPUI5 repository, proceed as follows:</p>
 <ol class="ol" id="loioc94f13fd242f40beb64e08fc62c494e7__ol_omm_tx2_bj"><li class="li">
 				<p class="p">In Eclipse, go to the <span class="ph uicontrol">Project Explorer</span> view and select the
 					required SAPUI5 application project. </p>

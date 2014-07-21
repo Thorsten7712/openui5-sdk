@@ -19,17 +19,16 @@
 			</Button>
 		</headerContent>
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						icon="sap-icon://accept"
-						text="done"
-						press="toggleUiModel"
-						tooltip="Finish Deleting Favorites"
-						visible="{ui>/inEdit}">
-					</Button>
-				</contentRight>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					icon="sap-icon://accept"
+					text="done"
+					press="toggleUiModel"
+					tooltip="Finish Deleting Favorites"
+					visible="{ui>/inEdit}">
+				</Button>
+			</Toolbar>
 		</footer>
 		<content>
 			<List

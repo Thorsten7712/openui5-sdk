@@ -76,8 +76,8 @@ point for UI related JavaScript functionality provided by SAP.</p>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
-										<b class="icon" title="SAPUI5 library with most common controls."><a href="../symbols/sap.ui.commons.html">commons</a></b>
-										<span class='description'>SAPUI5 library with most common controls.</span>
+										<b class="icon" title="Common basic controls, mainly intended for desktop scenarios"><a href="../symbols/sap.ui.commons.html">commons</a></b>
+										<span class='description'>Common basic controls, mainly intended for desktop scenarios</span>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
@@ -106,18 +106,18 @@ point for UI related JavaScript functionality provided by SAP.</p>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
-										<b class="icon" title="SAPUI5 library with table controls."><a href="../symbols/sap.ui.table.html">table</a></b>
-										<span class='description'>SAPUI5 library with table controls.</span>
+										<b class="icon" title="Table-like controls, mainly for desktop scenarios."><a href="../symbols/sap.ui.table.html">table</a></b>
+										<span class='description'>Table-like controls, mainly for desktop scenarios.</span>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
-										<b class="icon" title="SAPUI5 unified library"><a href="../symbols/sap.ui.unified.html">unified</a></b>
-										<span class='description'>SAPUI5 unified library</span>
+										<b class="icon" title="Unified controls intended for both, mobile and desktop scenarios"><a href="../symbols/sap.ui.unified.html">unified</a></b>
+										<span class='description'>Unified controls intended for both, mobile and desktop scenarios</span>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
-										<b class="icon" title="SAPUI5 library with controls that implement the SAP User Experience (UX) Guidelines 3.0"><a href="../symbols/sap.ui.ux3.html">ux3</a></b>
-										<span class='description'>SAPUI5 library with controls that implement the SAP User Experience (UX) Guidelines 3.0</span>
+										<b class="icon" title="Controls that implement the SAP User Experience (UX) Guidelines 3.0"><a href="../symbols/sap.ui.ux3.html">ux3</a></b>
+										<span class='description'>Controls that implement the SAP User Experience (UX) Guidelines 3.0</span>
 									</div>
 								
 								</div>
@@ -159,6 +159,11 @@ point for UI related JavaScript functionality provided by SAP.</p>
 								<div class="sectionItem classMethod static">
 									<b class="icon" title="Instantiate a Fragment - this method loads the Fragment content, instantiates it, and returns this content."><a href="../symbols/sap.ui.html#.fragment">sap.ui.fragment</a></b><span class='signature'>(<span title="(string) the Fragment name">sName</span>, <span title="(string) the Fragment type, e.g.">sType</span>, <span title="(sap.ui.core.Controller) the Controller which should be used by the controls in the Fragment.">oController</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Instantiate a Fragment - this method loads the Fragment content, instantiates it, and returns this content.</span>
+								</div>
+							
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Loads the version info file (resources/sap-ui-version.json) and returns it or if a library name is specified then the version info of the individual library will be returned."><a href="../symbols/sap.ui.html#.getVersionInfo">sap.ui.getVersionInfo</a></b><span class='signature'>(<span title="(string) name of the library (e.g.">sLibName</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Loads the version info file (resources/sap-ui-version.json) and returns it or if a library name is specified then the version info of the individual library will be returned.</span>
 								</div>
 							
 								<div class="sectionItem classMethod static">
@@ -340,7 +345,7 @@ object into this function:
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oComponent.url</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oComponent.url</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    an alternate location from where to load the Component
@@ -352,7 +357,7 @@ object into this function:
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oComponent.componentData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oComponent.componentData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    initial data of the Component (@see sap.ui.core.Component#getComponentData)
@@ -364,7 +369,7 @@ object into this function:
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oComponent.id</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oComponent.id</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the sId of the new Component
@@ -376,7 +381,7 @@ object into this function:
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oComponent.settings</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oComponent.settings</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the mSettings of the new Component
@@ -491,7 +496,7 @@ all contained controls.
 													  <span class="light">{sap.ui.core.Controller}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oController</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oController</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the Controller which should be used by the controls in the Fragment. Note that some Fragments may not need a Controller and other may need one - and even rely on certain methods implemented in the Controller.
@@ -513,6 +518,66 @@ all contained controls.
 													</td>
 													<td class="methodItemDesc">
 														the root Control(s) of the Fragment content
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static'>
+										<a name=".getVersionInfo"> </a>
+										<div class="itemTitle icon">
+											sap.ui.getVersionInfo<span class="signature">(<span title="(string) name of the library (e.g.">sLibName</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns object">: object</span>
+										</div>
+										<div class="full-description">
+											Loads the version info file (resources/sap-ui-version.json) and returns 
+it or if a library name is specified then the version info of the individual 
+library will be returned.
+</p><p>
+In case of the version info file is not available an error will occur when
+calling this function.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sLibName</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    name of the library (e.g. "sap.ui.core")
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{object}</span> 
+													</td>
+													<td class="methodItemDesc">
+														either the full version info or the library specific one
 													</td>
 												</tr>
 											
@@ -566,7 +631,7 @@ Again, if oController is given, the methods referenced in the Fragment will be c
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created Fragment
@@ -590,7 +655,7 @@ Again, if oController is given, the methods referenced in the Fragment will be c
 													  <span class="light">{<a href="../symbols/sap.ui.core.mvc.Controller.html">sap.ui.core.mvc.Controller</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oController</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oController</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a Controller to be used for event handlers in the Fragment
@@ -659,7 +724,7 @@ be created automatically.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created view, only allowed for instance creation
@@ -750,7 +815,7 @@ Note that Fragments may require a Controller to be given and certain methods to 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created Fragment
@@ -774,7 +839,7 @@ Note that Fragments may require a Controller to be given and certain methods to 
 													  <span class="light">{<a href="../symbols/sap.ui.core.mvc.Controller.html">sap.ui.core.mvc.Controller</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oController</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oController</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a Controller to be used for event handlers in the Fragment
@@ -841,7 +906,7 @@ Like with any other control, an id is optional and will be created when missing.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created view
@@ -924,7 +989,7 @@ be created automatically.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created view, only allowed for instance creation
@@ -1034,7 +1099,7 @@ class is created <b>immediately</b>.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sModuleName</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sModuleName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    name of the module to load, defaults to the class name
@@ -1290,7 +1355,7 @@ The properties of the configuration object are the following:
 													  <span class="light">{string|DomRef|object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oTemplate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oTemplate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the id or the DOM reference to the template to lookup or an configuration object containing the src, type and eventually the id of the Template.
@@ -1360,7 +1425,7 @@ be created automatically.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created view, only allowed for instance creation
@@ -1456,7 +1521,7 @@ during the whole lifecycle of the view and the controller</li>
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>vView</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>vView</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the view configuration object
@@ -1543,7 +1608,7 @@ Again, if oController is given, the methods referenced in the Fragment will be c
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created Fragment
@@ -1567,7 +1632,7 @@ Again, if oController is given, the methods referenced in the Fragment will be c
 													  <span class="light">{<a href="../symbols/sap.ui.core.mvc.Controller.html">sap.ui.core.mvc.Controller</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oController</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oController</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a Controller to be used for event handlers in the Fragment
@@ -1635,7 +1700,7 @@ Like with any other control, id is optional and one will be created automaticall
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id of the newly created view
@@ -1724,7 +1789,7 @@ If only a name is given, a new instance of the named Controller class is returne
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oControllerImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oControllerImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An object literal defining the methods and properties of the Controller

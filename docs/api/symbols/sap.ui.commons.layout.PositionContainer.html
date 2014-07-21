@@ -181,7 +181,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Updates the position properties of the container according to the given position in JSON style."><a href="../symbols/sap.ui.commons.layout.PositionContainer.html#updatePosition">updatePosition</a></b><span class='signature'>(<span title="(object) JSON-like object which defines the position of the child control in the absolute layout.">oOPos</span>)</span>
+									<b class="icon" title="Updates the position properties of the container according to the given position in JSON style."><a href="../symbols/sap.ui.commons.layout.PositionContainer.html#updatePosition">updatePosition</a></b><span class='signature'>(<span title="(object) JSON-like object which defines the position of the child control in the absolute layout.">oPos</span>)</span>
 									<span class='description'>Updates the position properties of the container according to the given position in JSON style.</span>
 								</div>
 							
@@ -370,7 +370,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -382,7 +382,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -1141,7 +1141,7 @@ Default value is empty/<code>undefined</code>
 									<div class='sectionItem classMethod'>
 										<a name="updatePosition"> </a>
 										<div class="itemTitle icon">
-											updatePosition<span class="signature">(<span title="(object) JSON-like object which defines the position of the child control in the absolute layout.">oOPos</span>)</span>
+											updatePosition<span class="signature">(<span title="(object) JSON-like object which defines the position of the child control in the absolute layout.">oPos</span>)</span>
 											<span class="light" title="returns void">: void</span>
 										</div>
 										<div class="full-description">
@@ -1162,12 +1162,12 @@ Default value is empty/<code>undefined</code>
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oOPos</b>
+													  <b>oPos</b>
 													</td>
 													<td class="methodItemDesc">
 												    JSON-like object which defines the position of the child control in the absolute layout. The object is expected
-to have one or more out of the attributes top, bottom, left, right (each with a value of type sap.ui.core.CSSSize). If no object
-is given, nothing is updated.
+        to have one or more out of the attributes top, bottom, left, right (each with a value of type sap.ui.core.CSSSize). If no object
+        is given, nothing is updated.
 													</td>
 												</tr>
 											

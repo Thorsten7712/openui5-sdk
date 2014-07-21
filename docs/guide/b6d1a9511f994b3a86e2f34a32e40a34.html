@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5339662268369025"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7097361983773541"/>
 <title>Step 4: Internationalization</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -32,7 +34,7 @@
 <p class="p">Let's examine the relevant code that we briefly saw earlier in the Component section. The
 			i18n model is set up in the Component's initialization section, based upon configuration
 			in the component's metadata: </p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
  // always use absolute paths relative to our own component
         // (relative paths will fail if running in the Fiori Launchpad)
         var rootPath = jQuery.sap.getModulePath("sap.ui.demo.tdg");
@@ -50,7 +52,7 @@
 				<samp class="ph codeph">jQuery.sap.getModulePath</samp> utility function, and then used to create
 			the named model, before it it set on the component. Here's an exerpt from the
 				<span class="ph filepath">messageBundle.properties</span> file in the i18n folder:</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 masterTitle=Products
 masterFooterAddButtonTooltip=Add new product
 masterListNoDataText=No products
@@ -86,7 +88,7 @@ addProductButtonSave=Save
 			<p class="p">We've added the i18n subfolder, and the <span class="ph filepath">messageBundle.properties</span> file in
 				it, so our app folder content looks like this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- i18n/

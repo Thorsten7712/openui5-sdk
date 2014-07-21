@@ -4,12 +4,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>sap.m.TextArea</title>
 
-<style>
-	body{
-		overflow: hidden;
-	}
-</style>
-
 <script src="../../../resources/sap-ui-core.js"
 	id="sap-ui-bootstrap" data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal">
 </script>
@@ -37,6 +31,7 @@
 		content : [taComment = new sap.m.TextArea({
 			placeholder : "Please add your comment",
 			rows : 6,
+			value: lorem,
 			maxLength: 255,
 			width: "100%"
 		})],
@@ -62,7 +57,6 @@
 		headerContent : new sap.m.Button({
 			text : "Approve",
 			press : function() {
-				taComment.setValue("");
 				dialog.open();
 			}
 		}),

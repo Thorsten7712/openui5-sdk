@@ -12,9 +12,11 @@
 <meta name="abstract" content="The simple concept of table personalization allows the user to personalize a table and to persist these settings."/>
 <meta name="description" content="The simple concept of table personalization allows the user to personalize a table and to persist these settings."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8953656265247391"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=012461990565915793"/>
 <title>Table Personalization</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -56,25 +58,25 @@
 				aColumns, the value of which is an array of column objects each with the following
 				properties:</p>
 
-			<table summary="" id="loio1c60212834c049ed9f65d743dfeb3d9a__simpletable_fpk_tlh_nn" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d92837e58" class="stentry" width="33.333333333333336%">Property</th>
-<th valign="bottom" align="left" id="d92837e60" class="stentry" width="33.333333333333336%">Type</th>
-<th valign="bottom" align="left" id="d92837e62" class="stentry" width="33.333333333333336%">Description</th>
+			<table summary="" id="loio1c60212834c049ed9f65d743dfeb3d9a__simpletable_fpk_tlh_nn" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d135837e58" class="stentry" width="33.333333333333336%">Property</th>
+<th valign="bottom" align="left" id="d135837e60" class="stentry" width="33.333333333333336%">Type</th>
+<th valign="bottom" align="left" id="d135837e62" class="stentry" width="33.333333333333336%">Description</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d92837e58" class="stentry"><samp class="ph codeph">id</samp></td>
-<td valign="top" headers="d92837e60" class="stentry">string</td>
-<td valign="top" headers="d92837e62" class="stentry">the SAPUI5 id of the column</td>
+<tr class="strow"><td valign="top" headers="d135837e58" class="stentry"><samp class="ph codeph">id</samp></td>
+<td valign="top" headers="d135837e60" class="stentry">string</td>
+<td valign="top" headers="d135837e62" class="stentry">the SAPUI5 id of the column</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d92837e58" class="stentry"><samp class="ph codeph">order</samp></td>
-<td valign="top" headers="d92837e60" class="stentry">integer</td>
-<td valign="top" headers="d92837e62" class="stentry">the order of the column. Starts with <samp class="ph codeph">0 </samp></td>
+<tr class="strow"><td valign="top" headers="d135837e58" class="stentry"><samp class="ph codeph">order</samp></td>
+<td valign="top" headers="d135837e60" class="stentry">integer</td>
+<td valign="top" headers="d135837e62" class="stentry">the order of the column. Starts with <samp class="ph codeph">0 </samp></td>
 </tr>
-<tr class="strow"><td valign="top" headers="d92837e58" class="stentry"><samp class="ph codeph">text</samp></td>
-<td valign="top" headers="d92837e60" class="stentry">string</td>
-<td valign="top" headers="d92837e62" class="stentry"> the text of the column header</td>
+<tr class="strow"><td valign="top" headers="d135837e58" class="stentry"><samp class="ph codeph">text</samp></td>
+<td valign="top" headers="d135837e60" class="stentry">string</td>
+<td valign="top" headers="d135837e62" class="stentry"> the text of the column header</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d92837e58" class="stentry"><samp class="ph codeph">visible</samp></td>
-<td valign="top" headers="d92837e60" class="stentry">boolean</td>
-<td valign="top" headers="d92837e62" class="stentry">whether the column is visible (true) or not (false)</td>
+<tr class="strow"><td valign="top" headers="d135837e58" class="stentry"><samp class="ph codeph">visible</samp></td>
+<td valign="top" headers="d135837e60" class="stentry">boolean</td>
+<td valign="top" headers="d135837e62" class="stentry">whether the column is visible (true) or not (false)</td>
 </tr>
 </table>
 
@@ -86,7 +88,7 @@
 
 			<p class="p">Here is an example of how you would use a table personalization dialog:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 // Create the table, with a button to invoke the personalization dialog
 var oTable = new sap.m.Table({
     ...
@@ -136,7 +138,7 @@ oTablePersoDialog.attachClose(function() {
 				running in the context of the unified shell, which provides backend services such as
 				persistence.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 // Create a persistence key
 var oPersId = {container: "mycontainer-1", item: "myitem-1"};
 

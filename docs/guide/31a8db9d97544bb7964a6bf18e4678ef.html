@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9953199249585751"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9067901507945847"/>
 <title>Step 7: Model View Controller</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -35,7 +37,7 @@
 <p class="p">Further, there's no requirement for any great detail in the <samp class="ph codeph">SplitApp</samp>, as the
 			aggregation content is also controlled by the Router. This is what the App view looks
 			like, in its entirety:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;mvc:View
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true"
@@ -58,7 +60,7 @@
 			sections. We've already seen the component overview schematic in Part 1, so let's look
 			at a tree-based summary of the controls and MVC elements now (all filenames are relative
 			to the app's root folder):</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 control:UIComponent (Component.js)
  |
  +-- view:App (view/App.view.xml)
@@ -89,13 +91,13 @@ control:UIComponent (Component.js)
 				the Master and Detail views (this is mostly so we can see a little bit of progress).
 				Our skeleton XML declarations for the Master and Detail views look like this:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;mvc:View xmlns:mvc="sap.ui.core.mvc" /&gt;</pre></div>
 
 			<p class="p">In other words, completely empty views. Now our app folder content now looks like
 				this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- i18n/

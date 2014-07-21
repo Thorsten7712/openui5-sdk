@@ -12,9 +12,11 @@
 <meta name="abstract" content="As the JSONModel only consists of named objects (properties, arrays, or nested objects), it has a simple binding path syntax."/>
 <meta name="description" content="As the JSONModel only consists of named objects (properties, arrays, or nested objects), it has a simple binding path syntax."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3778846838978489"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9827149106765958"/>
 <title>Binding Path Syntax for JSON Models</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 <div class="body conbody"><p class="shortdesc">As the JSONModel only consists of named objects (properties, arrays, or nested objects),
 		it has a simple binding path syntax.</p>
 <p class="p"> The following example shows a simple JSONModel with the different binding paths: </p>
-<div><pre class="pre codeblock">{
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{
     company: {
         name: "Treefish Inc",
         info: {
@@ -49,15 +51,15 @@
     }
 }</pre></div>
 <p class="p">Absolute binding paths within this model: </p>
-<div><pre class="pre codeblock">/company/name
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">/company/name
 /company/info/employees
 /company/contacts</pre></div>
 <p class="p">Relative binding paths within the "/company" context: </p>
-<div><pre class="pre codeblock">name
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">name
 info/employees
 contacts</pre></div>
 <p class="p">Relative binding paths within an aggregation binding of "/company/contacts": </p>
-<div><pre class="pre codeblock">name
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">name
 phone</pre></div>
 </div>
 <div class="related-links"> 

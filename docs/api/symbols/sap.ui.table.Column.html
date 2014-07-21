@@ -41,6 +41,8 @@
 					
 					
 					
+						<div class="classRelation subclasses"><span class="caption">known direct subclasses: </span><a title="sap.ui.table.AnalyticalColumn" href="../symbols/sap.ui.table.AnalyticalColumn.html">AnalyticalColumn</a></div>
+					
 					
 					<hr/>
 
@@ -131,6 +133,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property autoResizable."><a href="../symbols/sap.ui.table.Column.html#getAutoResizable">getAutoResizable</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>autoResizable</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property filtered."><a href="../symbols/sap.ui.table.Column.html#getFiltered">getFiltered</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>filtered</code>.</span>
 								</div>
@@ -168,6 +175,11 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property hAlign."><a href="../symbols/sap.ui.table.Column.html#getHAlign">getHAlign</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>hAlign</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property headerSpan."><a href="../symbols/sap.ui.table.Column.html#getHeaderSpan">getHeaderSpan</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>headerSpan</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -256,6 +268,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property autoResizable."><a href="../symbols/sap.ui.table.Column.html#setAutoResizable">setAutoResizable</a></b><span class='signature'>(<span title="(boolean) new value for property autoResizable">bAutoResizable</span>)</span>
+									<span class='description'>Setter for property <code>autoResizable</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Setter for property filtered."><a href="../symbols/sap.ui.table.Column.html#setFiltered">setFiltered</a></b><span class='signature'>(<span title="(boolean) new value for property filtered">bFiltered</span>)</span>
 									<span class='description'>Setter for property <code>filtered</code>.</span>
 								</div>
@@ -291,8 +308,13 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Setter for property hAlign."><a href="../symbols/sap.ui.table.Column.html#setHAlign">setHAlign</a></b><span class='signature'>(<span title="(sap.ui.commons.layout.HAlign) new value for property hAlign">oHAlign</span>)</span>
+									<b class="icon" title="Setter for property hAlign."><a href="../symbols/sap.ui.table.Column.html#setHAlign">setHAlign</a></b><span class='signature'>(<span title="(sap.ui.core.HorizontalAlign) new value for property hAlign">oHAlign</span>)</span>
 									<span class='description'>Setter for property <code>hAlign</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property headerSpan."><a href="../symbols/sap.ui.table.Column.html#setHeaderSpan">setHeaderSpan</a></b><span class='signature'>(<span title="(any) new value for property headerSpan">oHeaderSpan</span>)</span>
+									<span class='description'>Setter for property <code>headerSpan</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -301,7 +323,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Setter for the aggregated menu."><a href="../symbols/sap.ui.table.Column.html#setMenu">setMenu</a></b><span class='signature'>(<span title="(sap.ui.commons.Menu) sap.ui.commons.Menu">oMenu</span>)</span>
+									<b class="icon" title="Setter for the aggregated menu."><a href="../symbols/sap.ui.table.Column.html#setMenu">setMenu</a></b><span class='signature'>(<span title="(sap.ui.unified.Menu) sap.ui.unified.Menu">oMenu</span>)</span>
 									<span class='description'>Setter for the aggregated <code>menu</code>.</span>
 								</div>
 							
@@ -435,7 +457,7 @@ The supported settings are:
 <li><a href="#getWidth">width</a> : sap.ui.core.CSSSize</li>
 <li><a href="#getFlexible">flexible</a> : boolean (default: true)</li>
 <li><a href="#getResizable">resizable</a> : boolean (default: true)</li>
-<li><a href="#getHAlign">hAlign</a> : sap.ui.commons.layout.HAlign (default: sap.ui.commons.layout.HAlign.Begin)</li>
+<li><a href="#getHAlign">hAlign</a> : sap.ui.core.HorizontalAlign (default: sap.ui.core.HorizontalAlign.Begin)</li>
 <li><a href="#getSorted">sorted</a> : boolean (default: false)</li>
 <li><a href="#getSortOrder">sortOrder</a> : sap.ui.table.SortOrder (default: sap.ui.table.SortOrder.Ascending)</li>
 <li><a href="#getSortProperty">sortProperty</a> : string</li>
@@ -448,14 +470,16 @@ The supported settings are:
 <li><a href="#getFilterType">filterType</a> : any</li>
 <li><a href="#getName">name</a> : string</li>
 <li><a href="#getShowFilterMenuEntry">showFilterMenuEntry</a> : boolean (default: true)</li>
-<li><a href="#getShowSortMenuEntry">showSortMenuEntry</a> : boolean (default: true)</li></ul>
+<li><a href="#getShowSortMenuEntry">showSortMenuEntry</a> : boolean (default: true)</li>
+<li><a href="#getHeaderSpan">headerSpan</a> : any (default: 1)</li>
+<li><a href="#getAutoResizable">autoResizable</a> : boolean (default: false)</li></ul>
 </li>
 <li>Aggregations
 <ul>
 <li><a href="#getLabel">label</a> <strong>(default aggregation)</strong> : sap.ui.core.Control</li>
 <li><a href="#getMultiLabels">multiLabels</a> : sap.ui.core.Control[]</li>
 <li><a href="#getTemplate">template</a> : sap.ui.core.Control</li>
-<li><a href="#getMenu">menu</a> : sap.ui.commons.Menu</li></ul>
+<li><a href="#getMenu">menu</a> : sap.ui.unified.Menu</li></ul>
 </li>
 <li>Associations
 <ul></ul>
@@ -569,7 +593,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -581,7 +605,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -835,6 +859,52 @@ named <code>template</code>.
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="getAutoResizable"> </a>
+										<div class="itemTitle icon">
+											getAutoResizable<span class="signature">()</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>autoResizable</code>.
+Enables auto-resizing of the column on doubleclicking the resizer. Currently only implemented to work with the following controls: sap.m.Text, sap.m.Label, sap.m.Link , sap.m.Input, sap.ui.commons.TextView, sap.ui.commons.Label, sap.ui.commons.Link and sap.ui.commons.TextField, sap.ui.commons.Checkbox, sap.m.Checkbox
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.1</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>autoResizable</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="getFiltered"> </a>
 										<div class="itemTitle icon">
 											getFiltered<span class="signature">()</span>
@@ -975,7 +1045,7 @@ Default value is empty/<code>undefined</code>
 										</div>
 										<div class="full-description">
 											Getter for property <code>filterType</code>.
-Type of Filter. This is used to transform the search term to the specified type, to make sure that the right columns are displayed. This should be the same as defined in binding for this column. Alternativly, you can pass a function which does the conversion. The functions only parameter is the string to convert. By default the filter type is String.
+Type of Filter. This is used to transform the search term to the specified type, to make sure that the right columns are displayed. This should be the same as defined in binding for this column. Alternativly, you can pass a function which does the conversion or the classname of the type, e.g.: sap.ui.model.type.Date. The functions only parameter is the string to convert. By default the filter type is sap.ui.model.type.String.
 </p><p>
 Default value is empty/<code>undefined</code>
 											
@@ -1140,7 +1210,7 @@ Default value is <code>false</code>
 										<a name="getHAlign"> </a>
 										<div class="itemTitle icon">
 											getHAlign<span class="signature">()</span>
-											<span class="light" title="returns sap.ui.commons.layout.HAlign">: <a href="../symbols/sap.ui.commons.layout.HAlign.html">sap.ui.commons.layout.HAlign</a></span>
+											<span class="light" title="returns sap.ui.core.HorizontalAlign">: <a href="../symbols/sap.ui.core.HorizontalAlign.html">sap.ui.core.HorizontalAlign</a></span>
 										</div>
 										<div class="full-description">
 											Getter for property <code>hAlign</code>.
@@ -1164,10 +1234,51 @@ Default value is <code>Begin</code>
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.ui.commons.layout.HAlign.html">sap.ui.commons.layout.HAlign</a>}</span> 
+														<span class="light">{<a href="../symbols/sap.ui.core.HorizontalAlign.html">sap.ui.core.HorizontalAlign</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
 														the value of property <code>hAlign</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getHeaderSpan"> </a>
+										<div class="itemTitle icon">
+											getHeaderSpan<span class="signature">()</span>
+											<span class="light" title="returns any">: any</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>headerSpan</code>.
+If this property is set a span is applied for the header. When moving columns all columns which are part of the header will be moved. This can be either an integer or an array of integers (if you use the multi header feature of the table). If you only specify an integer this span is applied for all header rows, with multiple integers you can specify a seperate span for each header row.
+</p><p>
+Default value is <code>1</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{any}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>headerSpan</code>
 													</td>
 												</tr>
 											
@@ -1222,7 +1333,7 @@ Label (header renderer) of the column which is displayed in the column header. D
 										<a name="getMenu"> </a>
 										<div class="itemTitle icon">
 											getMenu<span class="signature">()</span>
-											<span class="light" title="returns sap.ui.commons.Menu">: <a href="../symbols/sap.ui.commons.Menu.html">sap.ui.commons.Menu</a></span>
+											<span class="light" title="returns sap.ui.unified.Menu">: <a href="../symbols/sap.ui.unified.Menu.html">sap.ui.unified.Menu</a></span>
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>menu</code>.<br/>
@@ -1244,7 +1355,7 @@ The menu used by the column. By default the <a href="../symbols/sap.ui.table.Col
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.ui.commons.Menu.html">sap.ui.commons.Menu</a>}</span> 
+														<span class="light">{<a href="../symbols/sap.ui.unified.Menu.html">sap.ui.unified.Menu</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
 														
@@ -1975,6 +2086,68 @@ Additionally unregisters them from the hosting UIArea.
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="setAutoResizable"> </a>
+										<div class="itemTitle icon">
+											setAutoResizable<span class="signature">(<span title="(boolean) new value for property autoResizable">bAutoResizable</span>)</span>
+											<span class="light" title="returns sap.ui.table.Column">: <a href="../symbols/sap.ui.table.Column.html">sap.ui.table.Column</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>autoResizable</code>.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bAutoResizable</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>autoResizable</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.1</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Column.html">sap.ui.table.Column</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="setFiltered"> </a>
 										<div class="itemTitle icon">
 											setFiltered<span class="signature">(<span title="(boolean) new value for property filtered">bFiltered</span>)</span>
@@ -2381,7 +2554,7 @@ Default value is <code>false</code>
 									<div class='sectionItem classMethod'>
 										<a name="setHAlign"> </a>
 										<div class="itemTitle icon">
-											setHAlign<span class="signature">(<span title="(sap.ui.commons.layout.HAlign) new value for property hAlign">oHAlign</span>)</span>
+											setHAlign<span class="signature">(<span title="(sap.ui.core.HorizontalAlign) new value for property hAlign">oHAlign</span>)</span>
 											<span class="light" title="returns sap.ui.table.Column">: <a href="../symbols/sap.ui.table.Column.html">sap.ui.table.Column</a></span>
 										</div>
 										<div class="full-description">
@@ -2401,13 +2574,70 @@ Default value is <code>Begin</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.ui.commons.layout.HAlign.html">sap.ui.commons.layout.HAlign</a>}</span> 
+													  <span class="light">{<a href="../symbols/sap.ui.core.HorizontalAlign.html">sap.ui.core.HorizontalAlign</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oHAlign</b>
 													</td>
 													<td class="methodItemDesc">
 												    new value for property <code>hAlign</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Column.html">sap.ui.table.Column</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="setHeaderSpan"> </a>
+										<div class="itemTitle icon">
+											setHeaderSpan<span class="signature">(<span title="(any) new value for property headerSpan">oHeaderSpan</span>)</span>
+											<span class="light" title="returns sap.ui.table.Column">: <a href="../symbols/sap.ui.table.Column.html">sap.ui.table.Column</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>headerSpan</code>.
+</p><p>
+Default value is <code>1</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{any}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oHeaderSpan</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>headerSpan</code>
 													</td>
 												</tr>
 											
@@ -2493,7 +2723,7 @@ Default value is <code>Begin</code>
 									<div class='sectionItem classMethod'>
 										<a name="setMenu"> </a>
 										<div class="itemTitle icon">
-											setMenu<span class="signature">(<span title="(sap.ui.commons.Menu) sap.ui.commons.Menu">oMenu</span>)</span>
+											setMenu<span class="signature">(<span title="(sap.ui.unified.Menu) sap.ui.unified.Menu">oMenu</span>)</span>
 											<span class="light" title="returns sap.ui.table.Column">: <a href="../symbols/sap.ui.table.Column.html">sap.ui.table.Column</a></span>
 										</div>
 										<div class="full-description">
@@ -2511,7 +2741,7 @@ Default value is <code>Begin</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.ui.commons.Menu.html">sap.ui.commons.Menu</a>}</span> 
+													  <span class="light">{<a href="../symbols/sap.ui.unified.Menu.html">sap.ui.unified.Menu</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oMenu</b>

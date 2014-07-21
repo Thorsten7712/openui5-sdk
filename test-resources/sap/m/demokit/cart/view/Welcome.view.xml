@@ -7,8 +7,8 @@
 		title="{i18n>WELCOME_TITLE}"
 		enableScrolling="false">
 		<footer>
-			<Bar>
-			</Bar>
+			<Toolbar>
+			</Toolbar>
 		</footer>
 		<content>
 			<Text

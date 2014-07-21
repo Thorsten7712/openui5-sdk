@@ -5,7 +5,7 @@
 	<author>SAP AG</author>
 	<documentation>The display list item consists of a label and a value.</documentation>
 
-	<baseType>ListItemBase</baseType>
+	<baseType>sap.m/ListItemBase</baseType>
 	<properties>
 		<property group="Misc" name="label" type="sap.ui.core/string">
 			<documentation>List item label</documentation>

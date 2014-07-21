@@ -12,9 +12,11 @@
 <meta name="abstract" content="In addition to the adaptations done automatically by SAPUI5, the application can apply further platform adaptations."/>
 <meta name="description" content="In addition to the adaptations done automatically by SAPUI5, the application can apply further platform adaptations."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6355055124319402"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6260532720343434"/>
 <title>Options for Further Adaptation</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -39,7 +41,7 @@
 				sap.ui.Device.system.desktop;</samp><p class="p">Similarly, when not running on desktop
 				browsers, one of the following is true:
 				</p>
-<div><pre class="pre codeblock">var runningOnTablet = sap.ui.Device.system.tablet;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var runningOnTablet = sap.ui.Device.system.tablet;
 var runningOnPhone = sap.ui.Device.system.phone;</pre></div>
 <p class="p">On
 				iOS the separation is clear, on Android the border between these classes is assumed
@@ -47,14 +49,14 @@ var runningOnPhone = sap.ui.Device.system.phone;</pre></div>
 <p class="p">For your CSS, the same information
 				is available on the html root tag as one of these three CSS classes:
 				</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 sap-desktop
 sap-tablet
 sap-phone</pre></div>
 <p class="p">So you can provide
 				style for the phone case using CSS cascades as follows:
 				</p>
-<div><pre class="pre codeblock">.sap-phone .myControl {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">.sap-phone .myControl {
       font-size: small;
 }</pre></div>
 <p class="p">You
@@ -67,7 +69,7 @@ sap-phone</pre></div>
 
 			<ul class="ul" id="loio04eb5203d1c649b796fab12a09e600ef__ul_vgj_1jc_2j"><li class="li"><span class="keyword parmname">name</span>: Operating system as string (<span class="keyword parmname">ios</span>,
 						<span class="keyword parmname">android</span>, <span class="keyword parmname">winphone</span>, or
-						<span class="keyword parmname">blackberry</span>) </li>
+						<span class="keyword parmname">bb</span>) </li>
 <li class="li"><span class="keyword parmname">ios</span>, <span class="keyword parmname">android</span>, <span class="keyword parmname">windows_phone</span>,
 						<span class="keyword parmname">blackberry</span>: Boolean flags for the respective platform </li>
 <li class="li"><span class="keyword parmname">version</span>: the operating system version as float number  </li>
@@ -92,7 +94,7 @@ sap-phone</pre></div>
 			<p class="p">You can use the CSS class directly in cascades, the other two need attribute selectors which
 				can also be used to match substrings: </p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 /* make my control red on Apple devices only */
 .sap-ios .myControl {
    color: red;  
@@ -126,8 +128,7 @@ html[data-sap-ui-os="iOS5.0"] .myControl {
 				browser's window resize event (which on mobile devices happens when the orientation
 				is changed): </p>
 
-			<div><pre class="pre codeblock">
-sap.ui.Device.orientation.attachHandler(function(evt) {
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.Device.orientation.attachHandler(function(evt) {
    if (evt.getParameters().landscape) {
       // do something...
    }

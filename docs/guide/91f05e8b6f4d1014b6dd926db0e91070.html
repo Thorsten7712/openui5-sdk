@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9120761483085842"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=003491074425942098"/>
 <title>Element Binding</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -36,13 +38,13 @@
 		<samp class="ph codeph">bindElement</samp> method on a
 		control: 
 	 </p>
-<div><pre class="pre codeblock">oControl.bindElement("/company");
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oControl.bindElement("/company");
 oControl.bindProperty("value", "name");</pre></div>
 <p class="p">Element binding is especially interesting for
 		containers or layouts containing many controls that are all visualizing
 		properties of the same model object.
 	 </p>
-<div><pre class="pre codeblock">var oMatrixLayout = new sap.ui.commons.layout.MatrixLayout();
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMatrixLayout = new sap.ui.commons.layout.MatrixLayout();
 oMatrixLayout.bindElement("/company");
 oMatrixLayout.createRow(
 	new sap.ui.commons.Label({text: "Name:"}),
@@ -68,7 +70,7 @@ oMatrixLayout.createRow(
 		<p class="p">Below is a simple example: 
 		</p>
  
-		<div><pre class="pre codeblock">var data = {clients:[{firstName:"Donald", lastName:"Duck"}]};
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var data = {clients:[{firstName:"Donald", lastName:"Duck"}]};
 ...// create and set model here
 var oLabel = new sap.ui.commons.Label("myLabel");
 oLabel.bindProperty("text", "firstName");
@@ -99,7 +101,7 @@ oLabel.bindElement("/clients/0");</pre></div>
 		  conjunction with aggregation binding: 
 		</p>
  
-		<div><pre class="pre codeblock">var data = {clients:[
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var data = {clients:[
                       {firstName:"Donald", lastName:"Duck"},
                          items: [ {name: "iPhone"}, {name:"iPad"} ]
                       }

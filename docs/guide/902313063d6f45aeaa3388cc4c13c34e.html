@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=34977127522657336"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=934745589670251"/>
 <title>Configuration Parameters for Navigation</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -37,7 +39,7 @@
 
 				<p class="p">Example:</p>
 
-				<div><pre class="pre codeblock">"routing" : {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">"routing" : {
             // name used for listening or navigating to this route
             "specificProduct" : {
                 //all the optionalParameters
@@ -152,7 +154,7 @@
 <p class="p">The router configuration supports the same values as the route. If the route does not
 			provide a value, the application uses the router configuration. The following code
 			snippet gives an example:</p>
-<div><pre class="pre codeblock">//provides the default values for all views
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//provides the default values for all views
 var oRouterConfig = {
     viewType : "XML",
     viewPath: "MyApp.view",

@@ -177,7 +177,7 @@ The transition effect which had been used to get to the current page is inverted
 Calling this navigation method triggers first the (cancelable) &quot;navigate&quot; event on the NavContainer, then the  &quot;beforeHide&quot; pseudo event on the source page and &quot;beforeFirstShow&quot; (if applicable) and&quot;beforeShow&quot; on the target page. Later - after the transition has completed - the &quot;afterShow&quot; pseudo event is triggered on the target page and &quot;afterHide&quot; on the page which has been left. The given backData object is available in the &quot;beforeFirstShow&quot;, &quot;beforeShow&quot; and &quot;afterShow&quot; event object as &quot;data&quot; property. The original &quot;data&quot; object from the &quot;to&quot; navigation is also available in these event objects.</documentation>
 			<parameters>
 				<parameter name="pageId" type="sap.ui.core/string">
-					<documentation>The ID of the screen to which back navigation should happen. The nearest page with this ID among the previous pages in the history stack will be used.</documentation>
+					<documentation>The ID of the screen to which back navigation should happen. The ID or the control itself can be given. The nearest such page among the previous pages in the history stack will be used. </documentation>
 				</parameter>
 				<parameter name="backData" type="sap.ui.core/object">
 					<documentation>This optional object can carry any payload data which should be made available to the target page of the &quot;backToPage&quot; navigation. The event on the target page will contain this data object as &quot;backData&quot; property.

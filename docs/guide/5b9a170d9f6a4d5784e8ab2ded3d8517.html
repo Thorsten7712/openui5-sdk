@@ -12,9 +12,11 @@
 <meta name="abstract" content="You can include a bootstrap to the SAPUI5 JavaScript libraries to use SAPUI5 in an HTML page without having set up the SAPUI5 application development tools in Eclipse."/>
 <meta name="description" content="You can include a bootstrap to the SAPUI5 JavaScript libraries to use SAPUI5 in an HTML page without having set up the SAPUI5 application development tools in Eclipse."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5773732890073041"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5819191301871454"/>
 <title>Create Your First SAPUI5 Application</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -43,7 +45,7 @@
 				use . In your scenario you need to make sure the URL points to a
 				SAPUI5 installation.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!text/html</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!text/html</samp>
 &lt;script id="sap-ui-bootstrap"
   src="resources/sap-ui-core.js"
   data-sap-ui-theme="sap_bluecrystal"
@@ -52,7 +54,7 @@
 
 			<p class="p">SAPUI5 UI elements are created and modified programmatically:</p>
 
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 <samp class="ph codeph">#!js</samp>
 // create the button instance
 var myButton = new sap.ui.commons.Button("btn");
@@ -66,27 +68,27 @@ myButton.attachPress(function(){$("#btn").fadeOut()});</pre></div>
 			<p class="p">There is also a shorthand notation based on  JSON for setting multiple properties;
 				you could also write:</p>
 
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 <samp class="ph codeph">#!js</samp>
 var myButton = new sap.ui.commons.Button({text:"Hello World!",tooltip:"Hello Tooltip!"});</pre></div>
 
 			<p class="p">Finally you need to tell SAPUI5 where the UI control should be placed. You can just give the
 				ID of an element in the page to do so: </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 // place the button into the HTML element defined below
 myButton.placeAt("uiArea");</pre></div>
 
 			<p class="p">This element must exist somewhere in the HTML page, so you need to put the following code to
 				the desired place within the <samp class="ph codeph">&lt;body&gt;</samp>: </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!text/html</samp> 
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!text/html</samp> 
 &lt;div id="uiArea"&lt;/div&gt;</pre></div>
 
 			<p class="p">An alternative way to create and initialize the control in a more jQuery-style manner
 				is also available:</p>
 
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 <samp class="ph codeph">#!js</samp>
 $(function(){
   $("#uiArea").sapui("Button", "btn", {
@@ -98,7 +100,7 @@ $(function(){
 			<p class="p">As a minor detail, the <samp class="ph codeph">&lt;body&gt;</samp> should have a certain CSS class, so the page
 				background and some other styles are properly set: </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!text/html</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!text/html</samp>
 &lt;body class="sapUiBody"&gt;</pre></div>
 
 			<p class="p">There are two meta tags at the beginning of the <samp class="ph codeph">&lt;head&gt;</samp>: The first meta
@@ -106,7 +108,7 @@ $(function(){
 				rendering mode. The second meta tag is used to let all browsers treat the file as
 				UTF-8 encoded (assuming that you use this encoding when editing/saving the file): </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!text/html</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!text/html</samp>
 &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
 &lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt;</pre></div>
 
@@ -136,7 +138,7 @@ $(function(){
 <li class="li">That was it.</li>
 </ol>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!text/html</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!text/html</samp>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;

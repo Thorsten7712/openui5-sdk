@@ -53,11 +53,12 @@ must be explicitly executed before the class can be used. Example:
 <pre>
   jQuery.sap.require("sap.m.MessageBox");
   sap.m.MessageBox.show(
-      "This message should appear in the message box.",
-      sap.m.MessageBox.Icon.INFORMATION,
-      "My message box title",
-      [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
-      function() { / * do something * / }
+      "This message should appear in the message box.", {
+          icon: sap.m.MessageBox.Icon.INFORMATION,
+          title: "My message box title",
+          actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+          onClose: function(oAction) { / * do something * / }
+      }
 	 );
 </pre></p>
 						
@@ -67,7 +68,7 @@ must be explicitly executed before the class can be used. Example:
 						
 						
 							<br />
-							<i>Since: </i>1.9.2.
+							<i>Since: </i>1.21.2.
 						
 					</div>
 					
@@ -118,17 +119,17 @@ must be explicitly executed before the class can be used. Example:
 							<div class="sectionItems">
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Displays an alert dialog with the given message and an OK button (no icons)."><a href="../symbols/sap.m.MessageBox.html#.alert">sap.m.MessageBox.alert</a></b><span class='signature'>(<span title="(string) Message to be displayed in the alert dialog">sMessage</span>, <span title="(function) callback function to be called when the user closes the dialog">fnCallback</span><i class="help" title="Optional parameter">?</i>, <span title="(string) Title to be displayed in the alert dialog">sTitle</span><i class="help" title="Optional parameter">?</i>, <span title="(string) ID to be used for the alert dialog.">sDialogId</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Displays an alert dialog with the given message and an OK button (no icons)."><a href="../symbols/sap.m.MessageBox.html#.alert">sap.m.MessageBox.alert</a></b><span class='signature'>(<span title="(string) Message to be displayed in the alert dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Displays an alert dialog with the given message and an OK button (no icons).</span>
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Displays a confirmation dialog with the given message, no icon (will be provided later) an OK button, and a Cancel button."><a href="../symbols/sap.m.MessageBox.html#.confirm">sap.m.MessageBox.confirm</a></b><span class='signature'>(<span title="(string) Message to display in the confirmation dialog">sMessage</span>, <span title="(function) Callback to be called when the user closes the dialog">fnCallback</span><i class="help" title="Optional parameter">?</i>, <span title="(string) Title to display in the confirmation dialog">sTitle</span><i class="help" title="Optional parameter">?</i>, <span title="(string) ID to be used for the confirmation dialog.">sDialogId</span><i class="help" title="Optional parameter">?</i>)</span>
-									<span class='description'>Displays a confirmation dialog with the given message, no icon (will be provided later) an OK button, and a Cancel button.</span>
+									<b class="icon" title="Displays a confirmation dialog with the given message, a QUESTION icon, an OK button and a Cancel button."><a href="../symbols/sap.m.MessageBox.html#.confirm">sap.m.MessageBox.confirm</a></b><span class='signature'>(<span title="(string) Message to display in the confirmation dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Displays a confirmation dialog with the given message, a QUESTION icon, an OK button and a Cancel button.</span>
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts."><a href="../symbols/sap.m.MessageBox.html#.show">sap.m.MessageBox.show</a></b><span class='signature'>(<span title="(string) The message to be displayed.">sMessage</span>, <span title="(sap.m.MessageBox.Icon) The icon to be displayed.">oIcon</span><i class="help" title="Optional parameter">?</i>, <span title="(string) The title of the message box.">sTitle</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.m.MessageBox.Action|sap.m.MessageBox.Action[]|string|string[]) Either a single action, or an array of two actions.">vActions</span><i class="help" title="Optional parameter">?</i>, <span title="(function) Function to be called when the user has tapped a button or has closed the message box.">fnCallback</span><i class="help" title="Optional parameter">?</i>, <span title="(string) ID to be used for the dialog.">sDialogId</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts."><a href="../symbols/sap.m.MessageBox.html#.show">sap.m.MessageBox.show</a></b><span class='signature'>(<span title="(string) The message to be displayed.">sMessage</span>, <span title="(object) Optionally other options.">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts.</span>
 								</div>
 							
@@ -162,11 +163,20 @@ must be explicitly executed before the class can be used. Example:
 									<div class='sectionItem classMethod static'>
 										<a name=".alert"> </a>
 										<div class="itemTitle icon">
-											sap.m.MessageBox.alert<span class="signature">(<span title="(string) Message to be displayed in the alert dialog">sMessage</span>, <span title="(function) callback function to be called when the user closes the dialog">fnCallback</span><i class="help" title="Optional parameter">?</i>, <span title="(string) Title to be displayed in the alert dialog">sTitle</span><i class="help" title="Optional parameter">?</i>, <span title="(string) ID to be used for the alert dialog.">sDialogId</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.m.MessageBox.alert<span class="signature">(<span title="(string) Message to be displayed in the alert dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
 											Displays an alert dialog with the given message and an OK button (no icons).
+</p><p>
+<pre>
+sap.m.MessageBox.alert("This message should appear in the alert", {
+    title: "Alert",                        // default
+    onClose: null,                         // default
+    styleClass: ""                         // default
+});
+</pre>
+</p><p>
 If a callback is given, it is called after the alert dialog has been closed
 by the user via the OK button. The callback is called with the following signature:
 </p><p>
@@ -205,10 +215,22 @@ user closed the alert dialog.
 											
 												<tr>
 													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Optionally other options
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnCallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mOptions.onClose</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    callback function to be called when the user closes the dialog
@@ -220,7 +242,7 @@ user closed the alert dialog.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sTitle</b><i class="help" title="Optional parameter">?, Default: 'Alert'</i>
+													  <b>mOptions.title</b><i class="help" title="Optional parameter">?, Default: 'Alert'</i>
 													</td>
 													<td class="methodItemDesc">
 												    Title to be displayed in the alert dialog
@@ -232,10 +254,22 @@ user closed the alert dialog.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sDialogId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mOptions.id</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    ID to be used for the alert dialog. Intended for test scenarios, not recommended for productive apps
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions.styleClass</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Added since version 1.21.2. CSS style class which is added to the alert dialog's root DOM node. The compact design can be activated by setting this to "sapUiSizeCompact"
 													</td>
 												</tr>
 											
@@ -252,13 +286,22 @@ user closed the alert dialog.
 									<div class='sectionItem classMethod static'>
 										<a name=".confirm"> </a>
 										<div class="itemTitle icon">
-											sap.m.MessageBox.confirm<span class="signature">(<span title="(string) Message to display in the confirmation dialog">sMessage</span>, <span title="(function) Callback to be called when the user closes the dialog">fnCallback</span><i class="help" title="Optional parameter">?</i>, <span title="(string) Title to display in the confirmation dialog">sTitle</span><i class="help" title="Optional parameter">?</i>, <span title="(string) ID to be used for the confirmation dialog.">sDialogId</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.m.MessageBox.confirm<span class="signature">(<span title="(string) Message to display in the confirmation dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
-											Displays a confirmation dialog with the given message, no icon (will be provided later)
-an OK button, and a Cancel button. If a callback is given, it is called after the
-alert box has been closed by the user via one of the buttons.
+											Displays a confirmation dialog with the given message, a QUESTION icon, an OK button
+and a Cancel button. If a callback is given, it is called after the confirmation box 
+has been closed by the user via one of the buttons.
+</p><p>
+<pre>
+sap.m.MessageBox.confirm("This message should appear in the confirm", {
+    title: "Confirm",                      // default
+    onClose: null                          // default
+    styleClass: ""                         // default
+});
+</pre>
+</p><p>
 The callback is called with the following signature
 </p><p>
 <pre>
@@ -298,10 +341,22 @@ user closed the confirmation dialog
 											
 												<tr>
 													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Optionally other options
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnCallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mOptions.onClose</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Callback to be called when the user closes the dialog
@@ -313,7 +368,7 @@ user closed the confirmation dialog
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sTitle</b><i class="help" title="Optional parameter">?, Default: 'Confirmation'</i>
+													  <b>mOptions.onClose</b><i class="help" title="Optional parameter">?, Default: 'Confirmation'</i>
 													</td>
 													<td class="methodItemDesc">
 												    Title to display in the confirmation dialog
@@ -325,10 +380,22 @@ user closed the confirmation dialog
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sDialogId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mOptions.id</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    ID to be used for the confirmation dialog. Intended for test scenarios, not recommended for productive apps
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions.styleClass</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Added since version 1.21.2. CSS style class which is added to the confirmation dialog's root DOM node. The compact design can be activated by setting this to "sapUiSizeCompact"
 													</td>
 												</tr>
 											
@@ -345,14 +412,24 @@ user closed the confirmation dialog
 									<div class='sectionItem classMethod static'>
 										<a name=".show"> </a>
 										<div class="itemTitle icon">
-											sap.m.MessageBox.show<span class="signature">(<span title="(string) The message to be displayed.">sMessage</span>, <span title="(sap.m.MessageBox.Icon) The icon to be displayed.">oIcon</span><i class="help" title="Optional parameter">?</i>, <span title="(string) The title of the message box.">sTitle</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.m.MessageBox.Action|sap.m.MessageBox.Action[]|string|string[]) Either a single action, or an array of two actions.">vActions</span><i class="help" title="Optional parameter">?</i>, <span title="(function) Function to be called when the user has tapped a button or has closed the message box.">fnCallback</span><i class="help" title="Optional parameter">?</i>, <span title="(string) ID to be used for the dialog.">sDialogId</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.m.MessageBox.show<span class="signature">(<span title="(string) The message to be displayed.">sMessage</span>, <span title="(object) Optionally other options.">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
 											Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts.
-After the user has tapped a button, the <code>callback</code> function is invoked when given.
+After the user has tapped a button, the <code>onClose</code> function is invoked when given.
 </p><p>
 The only mandatory parameter is <code>sMessage</code>.
+</p><p>
+<pre>
+sap.m.MessageBox.show("This message should appear in the message box", {
+    icon: sap.m.MessageBox.Icon.NONE,      // default
+    title: "",                             // default
+    actions: sap.m.MessageBox.Action.OK    // default
+    onClose: null                          // default
+    styleClass: ""                         // default
+});
+</pre>
 </p><p>
 The created dialog is executed asynchronously. When it has been created and registered for rendering,
 this function returns without waiting for a user reaction.
@@ -391,10 +468,22 @@ a sap.m.MessageBox.Action.Close is returned.
 											
 												<tr>
 													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Optionally other options.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
 													  <span class="light">{<a href="../symbols/sap.m.MessageBox.Icon.html">sap.m.MessageBox.Icon</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oIcon</b><i class="help" title="Optional parameter">?, Default: None</i>
+													  <b>mOptions.icon</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    The icon to be displayed.
@@ -406,7 +495,7 @@ a sap.m.MessageBox.Action.Close is returned.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sTitle</b><i class="help" title="Optional parameter">?, Default: ''</i>
+													  <b>mOptions.title</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    The title of the message box.
@@ -418,12 +507,13 @@ a sap.m.MessageBox.Action.Close is returned.
 													  <span class="light">{<a href="../symbols/sap.m.MessageBox.Action.html">sap.m.MessageBox.Action</a>|<a href="../symbols/sap.m.MessageBox.Action.html">sap.m.MessageBox.Action</a>[]|string|string[]}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>vActions</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mOptions.actions</b><i class="help" title="Optional parameter">?, Default: sap.m.MessageBox.Action.OK</i>
 													</td>
 													<td class="methodItemDesc">
 												    Either a single action, or an array of two actions.
-     If no action(s) are given, the single action MessageBox.Action.OK is taken as a default for the parameter. If more than two actions are given,
-     only the first two actions are taken. Custom action string(s) can be provided, and then the translation of custom action string(s) needs to be done by the application.
+     If no action(s) are given, the single action MessageBox.Action.OK is taken as a default for the parameter. From UI5 version 1.21, more than 2 actions are supported.
+     For the former versions, if more than two actions are given, only the first two actions are taken. Custom action string(s) can be provided, and then the translation
+     of custom action string(s) needs to be done by the application.
 													</td>
 												</tr>
 											
@@ -432,10 +522,10 @@ a sap.m.MessageBox.Action.Close is returned.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnCallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mOptions.onClose</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
-												    Function to be called when the user has tapped a button or has closed the message box.
+												    Function to be called when the user taps a button or closes the message box.
 													</td>
 												</tr>
 											
@@ -444,10 +534,22 @@ a sap.m.MessageBox.Action.Close is returned.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sDialogId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mOptions.id</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    ID to be used for the dialog. Intended for test scenarios, not recommended for productive apps
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions.styleClass</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Added since version 1.21.2. CSS style class which is added to the dialog's root DOM node. The compact design can be activated by setting this to "sapUiSizeCompact"
 													</td>
 												</tr>
 											

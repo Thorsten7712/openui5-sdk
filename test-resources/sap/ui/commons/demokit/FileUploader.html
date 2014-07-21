@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="../../../../../theme/default.css"></link>
 		<script id="sap-ui-bootstrap"
 				src="../../../../../resources/sap-ui-core.js"
-				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-theme="sap_bluecrystal"
 				data-sap-ui-libs="sap.ui.commons,sap.ui.demokit"
 				>
 		</script>
@@ -86,12 +86,18 @@
 		</pre>
 		On the client side you have to respond to this response. In our example a Regular Expression is used to parse the response
 		into the return code and the corresponding message: <code>var m = /^\[(\d\d\d)\]:(.*)$/.exec(sResponse);</code>
-		Then a Success or Error Message Box can be shown accordingly. However this does not work in cross-domain scenarios.
-		</p>
+		Then a Success or Error Message Box can be shown accordingly. However this does not work in cross-domain scenarios.</p>
+
+		<p>In case of scenarios where domain relaxing is used security problems may occur because of the document domain. To avoid
+		this the domain has to be handed over to the FielUploader via an additional parameter which has to be put into the response
+		document as document.domain liek this:
+		<pre>
+			&lt;html&gt;&lt;head&gt;&lt;script&gt;document.domain="domain";&lt;/script&gt;&lt;/head&gt;&lt;body&gt;[200]:Upload successful!&lt;/body&gt;&lt;/html&gt;
+		</pre></p>
 
 		<p>Also shown within this example is the usage of HTML5 extensions of the FileUploader. Be aware that these functionalities
-		are not supported by Internet Explorer and you have to declare this as limitation for your application. You can also see how
-		you can react on failed checks for type and size of the files.</p>
+		are not supported by Internet Explorer 8 and 9 and you have to declare this as limitation for your application. You can also
+		see how you can react on failed checks for type and size of the files.</p>
 		<br><br>
 		<div code-sample="sample2" script="ManuallyTriggeredUploadScript"></div>
 		<script id='ManuallyTriggeredUploadScript'>
@@ -100,52 +106,136 @@
 
 		// create the uploader and disable the automatic upload
 		var oFileUploader2 = new sap.ui.commons.FileUploader({
-		name: "upload2",
-		multiple: true,
-		maximumFileSize: 0.5,
-		mimeType: "image,text",
-		fileType: "jpg,png,txt",
-		uploadOnChange: false,
-		uploadUrl: "../../../../../upload",
-		fileSizeExceed: function (oEvent) {
-			var sName = oEvent.getParameter("fileName");
-			var fSize = oEvent.getParameter("fileSize");
-			var fLimit = oFileUploader2.getMaximumFileSize();
-			sap.ui.commons.MessageBox.show("File: " + sName + " is of size " + fSize + " MB which exceeds the file size limit of " + fLimit + " MB.", "ERROR", "File size exceeded");
-		},
-		typeMissmatch: function (oEvent) {
-			var sName = oEvent.getParameter("fileName");
-			var sType = oEvent.getParameter("fileType");
-			var sMimeType = oFileUploader2.getMimeType();
-			if (!sMimeType) {
-				sMimeType = oFileUploader2.getFileType();
-			}
-			sap.ui.commons.MessageBox.show("File: " + sName + " is of type " + sType + " .Allowed types are: "  + sMimeType + ".", "ERROR", "Wrong File type");
-		},
-		uploadComplete: function (oEvent) {
-			var sResponse = oEvent.getParameter("response");
-			if (sResponse) {
-				var m = /^\[(\d\d\d)\]:(.*)$/.exec(sResponse);
-				if (m[1] == "200") {
-					sap.ui.commons.MessageBox.show("Return Code: " + m[1] + "\n" + m[2], "SUCCESS", "Upload Success");
-				} else {
-					sap.ui.commons.MessageBox.show("Return Code: " + m[1] + "\n" + m[2], "ERROR", "Upload Error");
+			name: "upload2",
+			multiple: true,
+			maximumFileSize: 0.5,
+			mimeType: "image,text",
+			fileType: "jpg,png,txt",
+			uploadOnChange: false,
+			uploadUrl: "../../../../../upload",
+			fileSizeExceed: function (oEvent) {
+				var sName = oEvent.getParameter("fileName");
+				var fSize = oEvent.getParameter("fileSize");
+				var fLimit = oFileUploader2.getMaximumFileSize();
+				sap.ui.commons.MessageBox.show("File: " + sName + " is of size " + fSize + " MB which exceeds the file size limit of " + fLimit + " MB.", "ERROR", "File size exceeded");
+			},
+			typeMissmatch: function (oEvent) {
+				var sName = oEvent.getParameter("fileName");
+				var sType = oEvent.getParameter("fileType");
+				var sMimeType = oFileUploader2.getMimeType();
+				if (!sMimeType) {
+					sMimeType = oFileUploader2.getFileType();
+				}
+				sap.ui.commons.MessageBox.show("File: " + sName + " is of type " + sType + " .Allowed types are: "  + sMimeType + ".", "ERROR", "Wrong File type");
+			},
+			uploadComplete: function (oEvent) {
+				var sResponse = oEvent.getParameter("response");
+				if (sResponse) {
+					var m = /^\[(\d\d\d)\]:(.*)$/.exec(sResponse);
+					if (m[1] == "200") {
+						sap.ui.commons.MessageBox.show("Return Code: " + m[1] + "\n" + m[2], "SUCCESS", "Upload Success");
+					} else {
+						sap.ui.commons.MessageBox.show("Return Code: " + m[1] + "\n" + m[2], "ERROR", "Upload Error");
+					}
 				}
 			}
-		}});
+		});
 		layout.createRow(oFileUploader2);
 
 		// create a second button to trigger the upload
 		var oTriggerButton = new sap.ui.commons.Button({
-		text:'Trigger Upload',
-		press:function() {
-		// call the upload method
-		oFileUploader2.upload();
-	}
-});
-layout.createRow(oTriggerButton);
-layout.placeAt("sample2");
-</script>
+			text:'Trigger Upload',
+			press:function() {
+				// call the upload method
+				oFileUploader2.upload();
+			}
+		});
+		layout.createRow(oTriggerButton);
+		layout.placeAt("sample2");
+		</script>
+
+		<h3>Sending parameters with the FileUploader</h3>
+		<p>
+		The FileUploader provides three possibilities of sending parameters together with the request sent to the server:<br>
+		<ul>
+		<li><code>additionalData</code> property</li>
+		<li><code>parameter</code> aggregation</li>
+		<li><code>headerParameter</code> aggregation (not supported by Internet Explorer 8 and 9)</li>
+		</ul>
+		The <code>additionalData</code> property is additional data which will Data will be transmitted as content value where
+		the name is derived from the name property with suffix -data. The <code>parameter</code> aggregation can be used to
+		transfer name/value pairs within the content. In order to transfer header parameters you have to use the
+		<code>headerParameter</code> aggregation and set the <code>sendXHR</code> property to true.
+		But be aware that setting header parameters and XHR requests are not supported by Internet Explorer 8 and 9 and you
+		have to declare this as limitation for your application. However if the <code>sendXHR</code> property is set and the
+		browser does not support the File API the request will be send as form submit to be backward compatible.</p>
+		<br><br>
+		<div code-sample="sample3" script="ParameterFileUpload"></div>
+		<script id='ParameterFileUpload'>
+		var layout = new sap.ui.commons.layout.MatrixLayout();
+		layout.setLayoutFixed(false);
+
+		// create the uploader and disable the automatic upload
+		var oFileUploader3 = new sap.ui.commons.FileUploader({
+			name: "upload3",
+			multiple: true,
+			maximumFileSize: 0.5,
+			mimeType: "image,text",
+			fileType: "jpg,png,txt",
+			uploadOnChange: false,
+			uploadUrl: "../../../../../upload",
+			sendXHR: true,
+			additionalData: "abc=123&test=456",
+			headerParameters: [
+				new sap.ui.unified.FileUploaderParameter({name: "header1", value: "value1"}),
+				new sap.ui.unified.FileUploaderParameter({name: "header2", value: "value2"}),
+				new sap.ui.unified.FileUploaderParameter({name: "header3", value: "value3"})
+			],
+			parameters: [
+				new sap.ui.unified.FileUploaderParameter({name: "name1", value: "value1"}),
+				new sap.ui.unified.FileUploaderParameter({name: "name2", value: "value2"}),
+				new sap.ui.unified.FileUploaderParameter({name: "name3", value: "value3"})
+			],
+			fileSizeExceed: function (oEvent) {
+				var sName = oEvent.getParameter("fileName");
+				var fSize = oEvent.getParameter("fileSize");
+				var fLimit = oFileUploader3.getMaximumFileSize();
+				sap.ui.commons.MessageBox.show("File: " + sName + " is of size " + fSize + " MB which exceeds the file size limit of " + fLimit + " MB.", "ERROR", "File size exceeded");
+			},
+			typeMissmatch: function (oEvent) {
+				var sName = oEvent.getParameter("fileName");
+				var sType = oEvent.getParameter("fileType");
+				var sMimeType = oFileUploader3.getMimeType();
+				if (!sMimeType) {
+					sMimeType = oFileUploader3.getFileType();
+				}
+				sap.ui.commons.MessageBox.show("File: " + sName + " is of type " + sType + " .Allowed types are: "  + sMimeType + ".", "ERROR", "Wrong File type");
+			},
+			uploadComplete: function (oEvent) {
+				var sResponse = oEvent.getParameter("response");
+				if (sResponse) {
+					var m = /^\[(\d\d\d)\]:(.*)$/.exec(sResponse);
+					if (m[1] == "200") {
+						sap.ui.commons.MessageBox.show("Return Code: " + m[1] + "\n" + m[2], "SUCCESS", "Upload Success");
+					} else {
+						sap.ui.commons.MessageBox.show("Return Code: " + m[1] + "\n" + m[2], "ERROR", "Upload Error");
+					}
+				}
+			}
+		});
+		layout.createRow(oFileUploader3);
+
+		// create a second button to trigger the upload
+		var oTriggerButton = new sap.ui.commons.Button({
+			text:'Trigger Upload',
+			press:function() {
+				// call the upload method
+				oFileUploader3.upload();
+			}
+		});
+		layout.createRow(oTriggerButton);
+		layout.placeAt("sample3");
+		</script>
 
 		<h3>Long File Names</h3>
 		<p>
@@ -155,25 +245,26 @@ layout.placeAt("sample2");
 		The following example also shows some width settings for the FileUploader control.
 		Select a file with a long name and hover over the two FileUploader controls to see the tool tip.</p>
 		<br><br>
-		<div code-sample="sample3" script="SimpleFileUpload3"></div>
-<script id='SimpleFileUpload3'>
-var layout = new sap.ui.commons.layout.MatrixLayout();
-layout.setLayoutFixed(false);
-var oFileUploader3a = new sap.ui.commons.FileUploader({
-	name: "upload3a",
-	uploadOnChange: false,
-	uploadUrl: "upload",
-	width: "500px"});
-layout.createRow(oFileUploader3a);
-var oFileUploader3b = new sap.ui.commons.FileUploader({
-	name: "upload3b",
-	uploadOnChange: false,
-	uploadUrl: "upload",
-	width: "150px"});
-layout.createRow(oFileUploader3b);
-
-layout.placeAt("sample3");
-</script>
+		<div code-sample="sample4" script="SimpleFileUpload4"></div>
+		<script id='SimpleFileUpload4'>
+		var layout = new sap.ui.commons.layout.MatrixLayout();
+		layout.setLayoutFixed(false);
+		var oFileUploader4a = new sap.ui.commons.FileUploader({
+			name: "upload4a",
+			uploadOnChange: false,
+			uploadUrl: "upload",
+			width: "500px"
+		});
+		layout.createRow(oFileUploader4a);
+		var oFileUploader4b = new sap.ui.commons.FileUploader({
+			name: "upload4b",
+			uploadOnChange: false,
+			uploadUrl: "upload",
+			width: "150px"
+		});
+		layout.createRow(oFileUploader4b);
+		layout.placeAt("sample4");
+		</script>
 
 	<p>
 	<h2>API Documentation</h2>

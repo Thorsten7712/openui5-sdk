@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=37402714840622064"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=013295765744642862"/>
 <title>JS Views</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -45,7 +47,7 @@
 			</li>
 </ul>
 <div class="note Example" id="loio91f262ef6f4d1014b6dd926db0e91070__note_N10040_N10013_N10001"><span class="Exampletitle"/>  
-		<div><pre class="pre codeblock">sap.ui.jsview("sap.hcm.Address", {  // this View file is called Address.view.js
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.jsview("sap.hcm.Address", {  // this View file is called Address.view.js
    
    getControllerName: function() {
       return "sap.hcm.Address";     // the Controller lives in Address.controller.js
@@ -69,7 +71,7 @@
 				no issue for declarative view types, but for JSViews the view developer may need to
 				modify the "this" context as follows:</p>
 
-			<div><pre class="pre codeblock">   ...
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">   ...
       oButton.attachPress(jQuery.proxy(oController.handleButtonClicked, oController));
    ...
 </pre></div>
@@ -77,7 +79,7 @@
 			<p class="p">Alternatively, the view developer can give the event handler method in an array where
 				the second element is the "this" object:</p>
 
-			<div><pre class="pre codeblock">   ...
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">   ...
       var oButton = new sap.ui.commons.Button({
          text: "Hello JS View",
          press: [oController.handleButtonClicked, oController]
@@ -93,7 +95,7 @@
 				by using the <samp class="ph codeph">View.createId(...)</samp> method. For the example above, this
 				is done as follows:</p>
 
-			<div><pre class="pre codeblock">var oButton = new sap.ui.commons.Button(this.createId("myButton"), {text:"Hello JS View"});</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oButton = new sap.ui.commons.Button(this.createId("myButton"), {text:"Hello JS View"});</pre></div>
 
 			<p class="p">This is not required for declarative view types as the view parser can manage this
 				automatically, see <a class="xref" href="91f28be26f4d1014b6dd926db0e91070.html">Support for Unique IDs</a>.</p>

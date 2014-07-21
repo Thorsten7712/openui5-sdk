@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2638028017848736"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=29568274805161676"/>
 <title>Events fired on the Pages</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -56,7 +58,7 @@
 <p class="p">You can destroy the hidden page, and the now active page can start its activity.</p>
 <p class="p">You can use the <samp class="ph codeph">addEventDelegate</samp> function to register to these events. This
 			function is available on every control.</p>
-<div><pre class="pre codeblock">page1.addEventDelegate({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">page1.addEventDelegate({
    onBeforeShow: function(evt) {
       // page1 is about to be shown; act accordingly - if required you can read event information from the evt object
    },

@@ -12,13 +12,13 @@
 <script id="sap-ui-bootstrap" type="text/javascript"
 	src="../../../../../resources/sap-ui-core.js"
 	data-sap-ui-theme="sap_bluecrystal" data-sap-ui-noConflict="true"
-	data-sap-ui-libs="sap.ui.commons,sap.ui.ux3,sap.m">
+	data-sap-ui-libs="sap.ui.commons,sap.ui.ux3,sap.m"
+	data-sap-ui-resourceroots='{"sap.ui.testlib":"testdata/uilib/", "example.mvc": "testdata/mvc/"}'>
 	
 </script>
 
 <link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script src="../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 <script src="../../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -34,7 +34,7 @@
 	jQuery.sap.require("sap.ui.core.routing.Router");
 
 	module = original;
-	
+
 	//ie 8 support, since this test uses sap.m controls wich use Array.forEach
 	if (!Array.prototype.forEach) {
 		Array.prototype.forEach = function (fn, scope) {
@@ -476,6 +476,50 @@
 		router.destroy();
 		oShell.destroy();
 	});
+
+	
+	test("Should set a view to the cache", function () {
+		var oShell = new sap.ui.ux3.Shell();
+
+		//Arrange System under Test
+		var router = new sap.ui.core.routing.Router([
+			{
+				targetControl: oShell.getId(),
+				targetAggregation: "content",
+				name : "name",
+				view : "myView",
+				viewType: "XML",
+				pattern : "view1"
+			}
+		]);
+
+
+		var sXmlViewContent = [
+			'<core:View xmlns:core="sap.ui.core" xmlns:test="sap.ui.testlib">',
+			'</core:View>'
+		].join('');
+
+		var oViewOptions = {
+			viewContent: sXmlViewContent,
+			type : "XML"
+		};
+
+		var oView = sap.ui.view(oViewOptions);
+
+		sap.ui.core.routing.HashChanger.getInstance().setHash("view1");
+		oShell.placeAt("qunit-fixture");
+
+		//Act
+		router.setView("myView", oView);
+		router.initialize();
+
+		//Assert
+		strictEqual(oShell.getContent()[0].getId(), oView.getId(), "a created view was placed");
+
+		//Cleanup
+		router.destroy();
+		oShell.destroy();
+	});
 	
 	test("Nested View initialization", function() {
 
@@ -694,7 +738,7 @@
 		router.destroy();
 		oApp.destroy();
 	});
-	
+
 	test("Fixed id", function() {
 
 		var oShell = new sap.ui.ux3.Shell();

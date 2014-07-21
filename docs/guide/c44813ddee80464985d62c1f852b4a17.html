@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4034237532631155"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7097192500982425"/>
 <title>Supportability and Limitations</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 			support case, for example, you can set a breakpoint early in the
 				<samp class="ph codeph">sap-ui-core.js</samp> and then execute the following code in the
 			console:</p>
-<div><pre class="pre codeblock">  
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  
   window["sap-ui-config"] = window["sap-ui-config"] ||{};
   window["sap-ui-config"]["xx-disableCustomizing"] = true;</pre></div>
 <div class="note note"><span class="notetitle">Note</span> For security reasons, it is not possible to use a URL parameter.</div>

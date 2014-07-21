@@ -12,9 +12,11 @@
 <meta name="abstract" content="A list contains list items based on sap.m.ListItemBase."/>
 <meta name="description" content="A list contains list items based on sap.m.ListItemBase."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7079264917784204"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4181501566376735"/>
 <title>Lists</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -94,41 +96,41 @@
 			</div>
 <p class="p">The following table shows the different combinations of list item types and
 				events: </p>
-<table summary="" id="loio1da158152f644ba1ad408a3e982fd3df__simpletable_eq4_hrn_2j" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d101198e149" class="stentry">type</th>
-<th valign="bottom" align="left" id="d101198e151" class="stentry">tap event</th>
-<th valign="bottom" align="left" id="d101198e153" class="stentry">detailTap event</th>
-<th valign="bottom" align="left" id="d101198e155" class="stentry">icon</th>
-<th valign="bottom" align="left" id="d101198e157" class="stentry">active feedback</th>
+<table summary="" id="loio1da158152f644ba1ad408a3e982fd3df__simpletable_eq4_hrn_2j" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d145341e149" class="stentry">type</th>
+<th valign="bottom" align="left" id="d145341e151" class="stentry">tap event</th>
+<th valign="bottom" align="left" id="d145341e153" class="stentry">detailTap event</th>
+<th valign="bottom" align="left" id="d145341e155" class="stentry">icon</th>
+<th valign="bottom" align="left" id="d145341e157" class="stentry">active feedback</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d101198e149" class="stentry"><strong class="ph b">Inactive (default)</strong></td>
-<td valign="top" headers="d101198e151" class="stentry">--</td>
-<td valign="top" headers="d101198e153" class="stentry">--</td>
-<td valign="top" headers="d101198e155" class="stentry">--</td>
-<td valign="top" headers="d101198e157" class="stentry">-- </td>
+<tr class="strow"><td valign="top" headers="d145341e149" class="stentry"><strong class="ph b">Inactive (default)</strong></td>
+<td valign="top" headers="d145341e151" class="stentry">--</td>
+<td valign="top" headers="d145341e153" class="stentry">--</td>
+<td valign="top" headers="d145341e155" class="stentry">--</td>
+<td valign="top" headers="d145341e157" class="stentry">-- </td>
 </tr>
-<tr class="strow"><td valign="top" headers="d101198e149" class="stentry"><strong class="ph b">Active</strong></td>
-<td valign="top" headers="d101198e151" class="stentry">yes</td>
-<td valign="top" headers="d101198e153" class="stentry">--</td>
-<td valign="top" headers="d101198e155" class="stentry">--</td>
-<td valign="top" headers="d101198e157" class="stentry">yes</td>
+<tr class="strow"><td valign="top" headers="d145341e149" class="stentry"><strong class="ph b">Active</strong></td>
+<td valign="top" headers="d145341e151" class="stentry">yes</td>
+<td valign="top" headers="d145341e153" class="stentry">--</td>
+<td valign="top" headers="d145341e155" class="stentry">--</td>
+<td valign="top" headers="d145341e157" class="stentry">yes</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d101198e149" class="stentry"><strong class="ph b">Navigation</strong></td>
-<td valign="top" headers="d101198e151" class="stentry">yes</td>
-<td valign="top" headers="d101198e153" class="stentry">--</td>
-<td valign="top" headers="d101198e155" class="stentry">&gt;</td>
-<td valign="top" headers="d101198e157" class="stentry">yes</td>
+<tr class="strow"><td valign="top" headers="d145341e149" class="stentry"><strong class="ph b">Navigation</strong></td>
+<td valign="top" headers="d145341e151" class="stentry">yes</td>
+<td valign="top" headers="d145341e153" class="stentry">--</td>
+<td valign="top" headers="d145341e155" class="stentry">&gt;</td>
+<td valign="top" headers="d145341e157" class="stentry">yes</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d101198e149" class="stentry"><strong class="ph b">Detail</strong></td>
-<td valign="top" headers="d101198e151" class="stentry">--</td>
-<td valign="top" headers="d101198e153" class="stentry">yes</td>
-<td valign="top" headers="d101198e155" class="stentry">(&gt;)</td>
-<td valign="top" headers="d101198e157" class="stentry">--</td>
+<tr class="strow"><td valign="top" headers="d145341e149" class="stentry"><strong class="ph b">Detail</strong></td>
+<td valign="top" headers="d145341e151" class="stentry">--</td>
+<td valign="top" headers="d145341e153" class="stentry">yes</td>
+<td valign="top" headers="d145341e155" class="stentry">(&gt;)</td>
+<td valign="top" headers="d145341e157" class="stentry">--</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d101198e149" class="stentry"><strong class="ph b">DetailAndActive</strong></td>
-<td valign="top" headers="d101198e151" class="stentry">yes</td>
-<td valign="top" headers="d101198e153" class="stentry">yes</td>
-<td valign="top" headers="d101198e155" class="stentry">(&gt;)</td>
-<td valign="top" headers="d101198e157" class="stentry">yes (only content)</td>
+<tr class="strow"><td valign="top" headers="d145341e149" class="stentry"><strong class="ph b">DetailAndActive</strong></td>
+<td valign="top" headers="d145341e151" class="stentry">yes</td>
+<td valign="top" headers="d145341e153" class="stentry">yes</td>
+<td valign="top" headers="d145341e155" class="stentry">(&gt;)</td>
+<td valign="top" headers="d145341e157" class="stentry">yes (only content)</td>
 </tr>
 </table>
 <div class="sectiondiv"><strong class="ph b">Swipe For Action</strong><p class="p">A user can swipe left on a list item

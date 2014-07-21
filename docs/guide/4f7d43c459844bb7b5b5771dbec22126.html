@@ -12,9 +12,11 @@
 <meta name="abstract" content="An easy way to cover simple CustomListItems is to add an HTML control, in which you can write your HTML either directly, or if you use a model and data binding, you can use a formatter to integrate it between the HTML."/>
 <meta name="description" content="An easy way to cover simple CustomListItems is to add an HTML control, in which you can write your HTML either directly, or if you use a model and data binding, you can use a formatter to integrate it between the HTML."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=02548878368923202"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=12904743157029785"/>
 <title>Creating a Custom List Item</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -35,7 +37,7 @@
 		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p"><span class="ph cmd">Let's assume we have a model with first name, last name, age, and city properties. We
 					create a <samp class="ph codeph">CustomListItem</samp>, add an HTML control to the list item
 					content and than write a formatter as follows: </span> 
-					<div><pre class="pre codeblock">
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 var myCustomListItem = new sap.m.CustomListItem({
   content: new sap.ui.core.HTML({
     content: { parts: [

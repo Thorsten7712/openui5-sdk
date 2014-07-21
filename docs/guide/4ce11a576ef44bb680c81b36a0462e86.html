@@ -12,9 +12,11 @@
 <meta name="abstract" content="Using a JSON model, all data is available on the client. Sorting and filtering are also implemented in JavaScript."/>
 <meta name="description" content="Using a JSON model, all data is available on the client. Sorting and filtering are also implemented in JavaScript."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=17224994454441722"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=35706463767152274"/>
 <title>Sorting and Filtering in JSON Models</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,15 +28,14 @@
 <div class="body taskbody"><p class="shortdesc">Using a JSON model, all data is available on the client. Sorting and filtering are also
 		implemented in JavaScript.</p>
 <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Context</h2></div>
-			<p class="p"> This allows the usage of custom sorting and filtering methods in the JSONModel. To
-				define custom methods, set the <samp class="ph codeph">fnCompare</samp> method on the Sorter
-				object or the <samp class="ph codeph">fnFilter</samp> method on the Filter object after creating
-				it. </p>
+			<p class="p"> This allows the usage of custom sorting and filtering methods in the JSONModel. To define
+				custom methods, set the <samp class="ph codeph">fnCompare</samp> method on the Sorter object or
+				the <samp class="ph codeph">fnTest</samp> method on the filter object after creating it. </p>
 
 		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand"><span class="ph cmd">The <samp class="ph codeph">fnTest</samp> method of the Filter gets the value to test as the only
 					parameter and returns, whether the row with the given value should be filtered
 					or not. </span> 
-					<div><pre class="pre codeblock">var oFilter = new sap.ui.model.Filter("property");
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oFilter = new sap.ui.model.Filter("property");
 oFilter.fnTest = function(value) {
     return (value &gt; 100); 
 };</pre></div>
@@ -43,7 +44,7 @@ oFilter.fnTest = function(value) {
 <li class="li step stepexpand"><span class="ph cmd">The <samp class="ph codeph">fnCompare</samp> method of the Sorter gets the two values to
 					compare as parameters and returns -1, 0 or 1, dependent which of the two values
 					should be ordered before the other: </span> 
-					<div><pre class="pre codeblock">var oSorter = new sap.ui.model.Sorter("property");
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oSorter = new sap.ui.model.Sorter("property");
 oSorter.fnCompare = function(value1, value2) {
     if (value1 &lt; value2) return -1;
     if (value1 == value2) return 0;

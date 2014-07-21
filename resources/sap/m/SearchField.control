@@ -25,7 +25,8 @@
 			<documentation>Text shown when no value available. Default placeholder text is the word &quot;Search&quot; in the current local language (if supported) or in English.</documentation>
 		</property>
 		<property group="Misc" name="showMagnifier" type="sap.ui.core/boolean" defaultValue="true">
-			<documentation>Set to false to hide the magnifier icon. This property is deprecated since version 1.16.</documentation>
+			<documentation>Set to false to hide the magnifier icon.</documentation>
+			<deprecation since="1.16.0">This parameter was introduced for the obsolete sap_mvi theme due to differences in native rendering of the search field on different devices. It is ignored in the sap_bluecrystal theme that has common design for all devices.</deprecation>
 		</property>
 		<property group="Behavior" name="showRefreshButton" type="sap.ui.core/boolean" defaultValue="false"  since="1.16">
 			<documentation>Set to true to display a &quot;refresh&quot; button. By pressing the refresh button, the user can reload the results list without changing the search string. This is a visual clue only: a normal search event is fired when a user presses on a refresh button.
@@ -51,7 +52,7 @@
 			</parameters>
 		</event>
 		<event name="liveChange" since="1.9.1">
-			<documentation>This event is fired when the value of the search field is changed by a user - e.g. at each key press.</documentation>
+			<documentation>This event is fired when the value of the search field is changed by a user - e.g. at each key press. Do not invalidate or re-render a focused search field, especially during the liveChange event.</documentation>
 			<parameters>
 				<parameter name="newValue" type="sap.ui.core/string">
 					<documentation>Current search string.</documentation>

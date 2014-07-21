@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5560488856215414"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=41666496161565025"/>
 <title>Application Cache Buster: Configuration</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">To activate the <strong class="ph b">Application Cache Buster</strong> the configuration
 				<samp class="ph codeph">data-sap-ui-appCacheBuster="./"</samp> must be added to the bootstrap
 			script of the application page: </p>
-<div><pre class="pre codeblock">&lt;script id="sap-ui-bootstrap"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;script id="sap-ui-bootstrap"
   src="resources/sap-ui-cachebuster/sap-ui-core.js"
   data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.ui.table"
   data-sap-ui-theme="sap_bluecrystal"

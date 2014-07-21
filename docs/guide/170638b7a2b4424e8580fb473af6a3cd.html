@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6728544436641022"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6081442643991108"/>
 <title>Step 2: Component</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -38,7 +40,7 @@
 				fully qualified name <samp class="ph codeph">sap.ui.demo.tdg.Component</samp>, and the loading of
 				our custom router module, we start with a definition of the component as an
 					<samp class="ph codeph">sap.ui.core.UIComponent</samp>.</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 jQuery.sap.declare("sap.ui.demo.tdg.Component");
 jQuery.sap.require("sap.ui.demo.tdg.MyRouter");
 
@@ -49,7 +51,7 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.tdg.Component", {
 				configuration, in the form of the metadata. We'll tackle the configuration in three
 				arbitrary sections: general, config and
 					routing.</p>
-<div class="sectiondiv"><span class="ph emphasis emphasis">General</span><div><pre class="pre codeblock">
+<div class="sectiondiv"><span class="ph emphasis emphasis">General</span><div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
  metadata : {
         name : "TDG Demo App",
         version : "1.0",
@@ -82,7 +84,7 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.tdg.Component", {
 						<samp class="ph codeph">rootView</samp> metadata parameter. The component itself will then
 					take care of the
 					instantiation.</p>
-</div><div class="sectiondiv"><span class="ph emphasis emphasis">Config</span><div><pre class="pre codeblock">
+</div><div class="sectiondiv"><span class="ph emphasis emphasis">Config</span><div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 config : {
             resourceBundle : "i18n/messageBundle.properties",
             serviceConfig : {
@@ -97,7 +99,7 @@ config : {
 					internationalization, and the URL of the OData service we'll be using for our
 					main, or "domain"
 					model.</p>
-</div><div class="sectiondiv"><span class="ph emphasis emphasis">Routing</span><div><pre class="pre codeblock">
+</div><div class="sectiondiv"><span class="ph emphasis emphasis">Routing</span><div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
   routing: {
             //...
         }
@@ -111,7 +113,7 @@ config : {
 <div class="section"><div class="section_title">Initialization</div><div type="Initialization"><p class="p">Now that we have the configuration out of the way, it's
 				time to initialize the
 				component.</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
   init : function() {
 
         sap.ui.core.UIComponent.prototype.init.apply(this, arguments);
@@ -181,7 +183,7 @@ config : {
 			<p class="p">We've added <span class="ph filepath">Component.js</span>, so our app folder content looks like
 				this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- Component.js
@@ -193,7 +195,7 @@ tdg/
 
 			<p class="p">This time, we see an error in the console:</p>
 
-			<div><pre class="pre codeblock">Uncaught Error: failed to load 'sap/ui/demo/tdg/Component.js' from ./Component.js: Error:
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">Uncaught Error: failed to load 'sap/ui/demo/tdg/Component.js' from ./Component.js: Error:
         failed to load 'sap/ui/demo/tdg/MyRouter.js' from ./MyRouter.js: 404 - Not Found</pre></div>
 
 			<p dir="ltr" class="p">This is also not unexpected. We've said we need the
@@ -208,7 +210,7 @@ tdg/
 </div>
 <div class="relinfo"><div class="relinfotitle ">Related Information</div>
 <div><a class="link" href="958ead51e2e94ab8bcdc90fb7e9d53d0.html" title="Components are independent and reusable parts used in SAPUI5 applications. An application can use components from different locations from where the application is running. Thus, components can be developed by different development teams and be used in different projects. Components also support the encapsulation of closely related parts of an application into a particular component. This makes the structure of an application and its code easier to understand and to maintain.">SAPUI5 Components</a></div>
-<div><a class="link" href="3d18f20bd2294228acb6910d8e8a5fb5.html">Navigation</a></div>
+<div><a class="link" href="3d18f20bd2294228acb6910d8e8a5fb5.html" title="Navigation in SAPUI5 enables you to pass data from the hash to any view, and to adjust a current hash so that you can use it as a bookmarkable URL. Depending on the hash, you can also generate views automatically.">Navigation</a></div>
 </div>
 </div></div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6142696562933022"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=004455612397722741"/>
 <title>The Root (App-) View</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 			this example shows how view are embedded into others to use MVC as much as possible.</p>
 <p class="p">The concept is simple: One <samp class="ph codeph">sap.m.App</samp> control aggregates two
 				<samp class="ph codeph">sap.m.Pages</samp>. The first page is displayed initially:</p>
-<div><pre class="pre codeblock">mvc:View controllerName="sap.m.mvc.App"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">mvc:View controllerName="sap.m.mvc.App"
     xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
 
     &lt;App id="theApp"&gt;

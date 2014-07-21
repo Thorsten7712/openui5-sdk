@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8676009911220431"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6263117740707984"/>
 <title>Renderer Methods</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -30,7 +32,7 @@
 				<samp class="ph codeph">RenderManager</samp> instance are given to the method. The
 				<samp class="ph codeph">RenderManager</samp> collects and concatenates string fragments and places
 			them in the DOM at the appropriate position.</p>
-<div><pre class="pre codeblock">renderer: function(rm, oControl) {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">renderer: function(rm, oControl) {
    oRenderManager.write("&lt;div&gt;", oControl.getText(), "&lt;/div&gt;");
 }</pre></div>
 <p class="p">All the features and rules for writing controls also apply to the <samp class="ph codeph">renderer</samp>
@@ -44,7 +46,7 @@
 			respective functions.</p>
 <p class="p">If an existing renderer is used without modification, you can use the name of the respective
 			renderer class: </p>
-<div><pre class="pre codeblock">renderer: "sap.ui.commons.ButtonRenderer"</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">renderer: "sap.ui.commons.ButtonRenderer"</pre></div>
 <p class="p">A control renderer can also override or implement methods from the renderer superclass. And it
 			can just separate out helper functions.</p>
 <p class="p">This is also possible in the following example, but in this case the methods need to be packed
@@ -53,7 +55,7 @@
 				<samp class="ph codeph">render</samp> just like in a normal control renderer. The
 				<samp class="ph codeph">this</samp> keyword refers to the control renderer type and is used to
 			access the other methods: </p>
-<div><pre class="pre codeblock">renderer: {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">renderer: {
 
    render: function(rm, oControl) {
 

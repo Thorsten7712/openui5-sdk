@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5760633324939672"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7166273569977581"/>
 <title>Component Metadata</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -119,7 +121,7 @@
 			</li>
 </ul>
 <p class="p">Example for metadata in <samp class="ph codeph">component.js</samp>:</p>
-<div><pre class="pre codeblock">sap.ui.core.Component.extend("some.sample.Component", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.core.Component.extend("some.sample.Component", {
     
    metadata : {
         stereotype : "component", - describes what sap ui5 object it is, for example: element, control, component, in your case it is (what a surprise...) - "component"
@@ -249,7 +251,7 @@
 			</li>
 </ul>
 <p class="p">Example for UI component metadata:</p>
-<div><pre class="pre codeblock">sap.ui.core.UIComponent.extend("some.sample.UIComponent", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.core.UIComponent.extend("some.sample.UIComponent", {
     
     metadata : {
         rootView : null, // the rootView to open (view name as string or view configuration object)
@@ -295,7 +297,7 @@
 				functionality. The following example contains two properties at the end of the
 				metadata section.</p>
 
-			<div><pre class="pre codeblock">sap.ui.core.UIComponent.extend("samples.components.shell.Component", {
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.core.UIComponent.extend("samples.components.shell.Component", {
 	metadata : {
 		"abstract": true,
 		version : "1.0",

@@ -174,6 +174,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Destroys the user in the aggregation named user."><a href="../symbols/sap.ui.unified.Shell.html#destroyUser">destroyUser</a></b><span class='signature'>()</span>
+									<span class='description'>Destroys the user in the aggregation named <code>user</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for aggregation content."><a href="../symbols/sap.ui.unified.Shell.html#getContent">getContent</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for aggregation <code>content</code>.</span>
 								</div>
@@ -226,6 +231,11 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property showPane."><a href="../symbols/sap.ui.unified.Shell.html#getShowPane">getShowPane</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>showPane</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for aggregation user."><a href="../symbols/sap.ui.unified.Shell.html#getUser">getUser</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for aggregation <code>user</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -373,6 +383,11 @@
 									<span class='description'>Setter for property <code>showPane</code>.</span>
 								</div>
 							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for the aggregated user."><a href="../symbols/sap.ui.unified.Shell.html#setUser">setUser</a></b><span class='signature'>(<span title="(sap.ui.unified.ShellHeadUserItem) sap.ui.unified.ShellHeadUserItem">oUser</span>)</span>
+									<span class='description'>Setter for the aggregated <code>user</code>.</span>
+								</div>
+							
 								<div class="sectionItem classMethod deprecated">
 									<b class="icon" title="Getter for property showCurtain."><a href="../symbols/sap.ui.unified.Shell.html#getShowCurtain">getShowCurtain</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>showCurtain</code>.</span>
@@ -403,7 +418,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -477,7 +492,8 @@ The supported settings are:
 <li><a href="#getCurtainPaneContent">curtainPaneContent</a> : sap.ui.core.Control[]</li>
 <li><a href="#getHeadItems">headItems</a> : sap.ui.unified.ShellHeadItem[]</li>
 <li><a href="#getHeadEndItems">headEndItems</a> : sap.ui.unified.ShellHeadItem[]</li>
-<li><a href="#getSearch">search</a> : sap.ui.core.Control</li></ul>
+<li><a href="#getSearch">search</a> : sap.ui.core.Control</li>
+<li><a href="#getUser">user</a> : sap.ui.unified.ShellHeadUserItem</li></ul>
 </li>
 <li>Associations
 <ul></ul>
@@ -587,7 +603,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -599,7 +615,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -1240,6 +1256,50 @@ named <code>search</code>.
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="destroyUser"> </a>
+										<div class="itemTitle icon">
+											destroyUser<span class="signature">()</span>
+											<span class="light" title="returns sap.ui.unified.Shell">: <a href="../symbols/sap.ui.unified.Shell.html">sap.ui.unified.Shell</a></span>
+										</div>
+										<div class="full-description">
+											Destroys the user in the aggregation 
+named <code>user</code>.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.22.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.unified.Shell.html">sap.ui.unified.Shell</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="getContent"> </a>
 										<div class="itemTitle icon">
 											getContent<span class="signature">()</span>
@@ -1366,7 +1426,7 @@ The content to appear in the pane area of the curtain.
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>headEndItems</code>.<br/>
-The buttons shown in the end (right in left-to-right case) of the Shell header. Currently max. 3 buttons are supported.
+The buttons shown in the end (right in left-to-right case) of the Shell header. Currently max. 3 visible buttons are supported (when user is set only 1).
 											
 											
 											
@@ -1446,7 +1506,7 @@ Default value is empty/<code>undefined</code>
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>headItems</code>.<br/>
-The buttons shown in the begin (left in left-to-right case) of the Shell header. Currently max. 3 buttons are supported.
+The buttons shown in the begin (left in left-to-right case) of the Shell header. Currently max. 3 visible buttons are supported.
 											
 											
 											
@@ -1674,6 +1734,50 @@ Default value is empty/<code>undefined</code>
 													</td>
 													<td class="methodItemDesc">
 														the value of property <code>showPane</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getUser"> </a>
+										<div class="itemTitle icon">
+											getUser<span class="signature">()</span>
+											<span class="light" title="returns sap.ui.unified.ShellHeadUserItem">: <a href="../symbols/sap.ui.unified.ShellHeadUserItem.html">sap.ui.unified.ShellHeadUserItem</a></span>
+										</div>
+										<div class="full-description">
+											Getter for aggregation <code>user</code>.<br/>
+The user item which is rendered in the shell header beside the items.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.22.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.unified.ShellHeadUserItem.html">sap.ui.unified.ShellHeadUserItem</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														
 													</td>
 												</tr>
 											
@@ -3270,6 +3374,66 @@ Default value is empty/<code>undefined</code>
 											</tbody></table>
 										
 										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.unified.Shell.html">sap.ui.unified.Shell</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="setUser"> </a>
+										<div class="itemTitle icon">
+											setUser<span class="signature">(<span title="(sap.ui.unified.ShellHeadUserItem) sap.ui.unified.ShellHeadUserItem">oUser</span>)</span>
+											<span class="light" title="returns sap.ui.unified.Shell">: <a href="../symbols/sap.ui.unified.Shell.html">sap.ui.unified.Shell</a></span>
+										</div>
+										<div class="full-description">
+											Setter for the aggregated <code>user</code>.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{<a href="../symbols/sap.ui.unified.ShellHeadUserItem.html">sap.ui.unified.ShellHeadUserItem</a>}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oUser</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.22.0</dd>
+											</dl>
 										
 										
 										

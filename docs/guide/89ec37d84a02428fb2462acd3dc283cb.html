@@ -12,9 +12,11 @@
 <meta name="abstract" content="There are several things you should keep in mind to ensure that an application can actually be themed."/>
 <meta name="description" content="There are several things you should keep in mind to ensure that an application can actually be themed."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=1934061492896032"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3135947484203264"/>
 <title>Creating Themable User Interfaces</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,37 +27,53 @@
 <h1 class="title topictitle1">Creating Themable User Interfaces</h1>
 <div class="body conbody"><p class="shortdesc">There are several things you should keep in mind to ensure that an application can
 		actually be themed.</p>
-<ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_npp_ksy_mn"><li class="li">General aspects:<ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_fyl_5sy_mn"><li class="li">Do not hard-code colors, fonts, etc.<p class="p">For example, if you hard-coded the font color to
-							black, this color cannot be adjusted when you apply a custom theme. This
-							can be problematic if you want to apply a custom theme with a dark
-							background color because the font color cannot be adjusted to a light
-							color. </p>
+<div class="section"><div class="section_title">General aspects</div><div type="General aspects">
+			
+			<ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_fyl_5sy_mn"><li class="li">Do not hard-code colors and fonts.<p class="p">For example, if you hard-coded the font
+						color to black, this color cannot be adjusted when you apply a custom theme.
+						This can be problematic if you want to apply a custom theme with a dark
+						background color because the font color cannot be adjusted to a light color.
+					</p>
 </li>
-<li class="li">To define dimensions, use <span class="ph sap-technical-name sap-technical-name">rem</span> units where
-							appropriate.<p class="p">This aspect mainly concerns SAPUI5 mobile.</p>
+<li class="li">To define dimensions, use <samp class="ph codeph">rem</samp> units where appropriate.</li>
+</ul>
+
+		</div></div>
+<div class="section"><div class="section_title">SAPUI5 application developers writing custom HTML should consider the following:</div><div type="SAPUI5 application developers writing custom HTML should consider the following:">
+			
+			<ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_cqp_ksy_mn"><li class="li"> LESS parameters are not accessible via CSS; only support for standard
+					libraries</li>
+<li class="li"> Read appropriate parameter values via API and set the elements' CSS properties
+					rather than hard-coding colors or borrowing arbitrary style classes from control
+					sets:<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.require("sap.ui.core.theming.Parameters");
+var myColor = sap.ui.core.theming.Parameters.get("sapUiSemanticErrorColor");</pre></div>
 </li>
 </ul>
-</li>
-<li class="li">SAPUI5 control developers should consider the following: <ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_opp_ksy_mn"><li class="li">Use the theme LESS parameters in CSS class definitions and rules. </li>
+
+		</div></div>
+<div class="section"><div class="section_title">SAPUI5 control developers should consider the following:</div><div type="SAPUI5 control developers should consider the following:">
+			
+			<ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_opp_ksy_mn"><li class="li">Use the theme LESS parameters in CSS class definitions and rules. </li>
 <li class="li">Use the appropriate level of parameter for the control; creating new ones as
-						appropriate. For example, do not use color values or quick theming
-						parameters directly in CSS rules. </li>
+					appropriate. For example, do not use color values or quick theming parameters
+					directly in CSS rules. </li>
 <li class="li">Follow the control parameter hierarchy conventions</li>
 </ul>
-</li>
-<li class="li"> SAPUI5 app developers writing custom HTML should consider the following:<ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_cqp_ksy_mn"><li class="li"> LESS parameters not accessible via CSS; only support for standard
-						libraries</li>
-<li class="li"> Read appropriate parameter values via API and set the elements' CSS
-						properties rather than hard-coding colors or borrowing arbitrary style
-						classes from control sets:<div class="p">
-							<div><pre class="pre codeblock">jQuery.sap.require("sap.ui.core.theming.Parameters");
-var myColor = sap.ui.core.theming.Parameters.get("sapUiSemanticErrorColor");</pre></div>
 
-						</div>
-</li>
+		</div></div>
+<div class="section"><div class="section_title">Theming when using sap.m controls</div><div type="Theming when using sap.m controls">
+			
+			<p class="p">CSS is used to provide the visuals of controls, just like for desktop controls.</p>
+
+			<p class="p">The main differences are:</p>
+
+			<ul class="ul" id="loio89ec37d84a02428fb2462acd3dc283cb__ul_hzl_mh1_g4"><li class="li">The browsers supported by the mobile library of UI5 relatively modern browsers.
+					This allows using advanced CSS3 features which are not available in all
+					supported desktop browsers.</li>
+<li class="li"><samp class="ph codeph">em</samp> and <samp class="ph codeph">rem</samp> should be used for dimensions.</li>
 </ul>
-</li>
-</ul>
+
+		</div></div>
 </div>
 <div class="related-links"> 
 

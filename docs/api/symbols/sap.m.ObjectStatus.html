@@ -126,6 +126,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property title."><a href="../symbols/sap.m.ObjectStatus.html#getTitle">getTitle</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>title</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property visible."><a href="../symbols/sap.m.ObjectStatus.html#getVisible">getVisible</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>visible</code>.</span>
 								</div>
@@ -147,7 +152,12 @@
 							
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Setter for property text."><a href="../symbols/sap.m.ObjectStatus.html#setText">setText</a></b><span class='signature'>(<span title="(string) new value for property text">sText</span>)</span>
-									<span class='description'>Setter for property <code>text</code>.</span>
+									<span class='description'>Setter for property text.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property title."><a href="../symbols/sap.m.ObjectStatus.html#setTitle">setTitle</a></b><span class='signature'>(<span title="(string) new value for property title">sTitle</span>)</span>
+									<span class='description'>Setter for property title.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -165,7 +175,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -224,6 +234,7 @@ The supported settings are:
 <ul>
 <li>Properties
 <ul>
+<li><a href="#getTitle">title</a> : string</li>
 <li><a href="#getText">text</a> : string</li>
 <li><a href="#getState">state</a> : sap.ui.core.ValueState (default: sap.ui.core.ValueState.None)</li>
 <li><a href="#getIcon">icon</a> : sap.ui.core.URI</li>
@@ -341,7 +352,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -353,7 +364,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -517,7 +528,7 @@ Default value is <code>None</code>
 										</div>
 										<div class="full-description">
 											Getter for property <code>text</code>.
-Text value.
+The object status text.
 </p><p>
 Default value is empty/<code>undefined</code>
 											
@@ -541,6 +552,47 @@ Default value is empty/<code>undefined</code>
 													</td>
 													<td class="methodItemDesc">
 														the value of property <code>text</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getTitle"> </a>
+										<div class="itemTitle icon">
+											getTitle<span class="signature">()</span>
+											<span class="light" title="returns string">: string</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>title</code>.
+The object status title.
+</p><p>
+Default value is empty/<code>undefined</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{string}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>title</code>
 													</td>
 												</tr>
 											
@@ -769,9 +821,8 @@ Default value is <code>None</code>
 											<span class="light" title="returns sap.m.ObjectStatus">: <a href="../symbols/sap.m.ObjectStatus.html">sap.m.ObjectStatus</a></span>
 										</div>
 										<div class="full-description">
-											Setter for property <code>text</code>.
-</p><p>
-Default value is empty/<code>undefined</code>
+											Setter for property text.
+Default value is empty/undefined
 											
 											
 											
@@ -791,7 +842,7 @@ Default value is empty/<code>undefined</code>
 													  <b>sText</b>
 													</td>
 													<td class="methodItemDesc">
-												    new value for property <code>text</code>
+												    new value for property text
 													</td>
 												</tr>
 											
@@ -809,7 +860,63 @@ Default value is empty/<code>undefined</code>
 														<span class="light">{<a href="../symbols/sap.m.ObjectStatus.html">sap.m.ObjectStatus</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
-														<code>this</code> to allow method chaining
+														this to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="setTitle"> </a>
+										<div class="itemTitle icon">
+											setTitle<span class="signature">(<span title="(string) new value for property title">sTitle</span>)</span>
+											<span class="light" title="returns sap.m.ObjectStatus">: <a href="../symbols/sap.m.ObjectStatus.html">sap.m.ObjectStatus</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property title.
+Default value is empty/undefined
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sTitle</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property title
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.m.ObjectStatus.html">sap.m.ObjectStatus</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														this to allow method chaining
 													</td>
 												</tr>
 											

@@ -33,7 +33,7 @@
 		<property group="Behavior" type="sap.ui.core/boolean" name="iconActive" defaultValue="true">
 			<documentation>If true, icon is an link, which will fire 'iconPress' events. If false, icon is normal image</documentation>
 		</property>
-		<property group="Appearance" name="iconDensityAware" type="sap.ui.core/boolean" defaultValue="true">
+		<property name="iconDensityAware" type="sap.ui.core/boolean" defaultValue="true">
 			<documentation>By default, this is set to true but then one or more requests are sent trying to get the density perfect version of image if this version of image doesn't exist on the server.
 
 If bandwidth is the key for the application, set this value to false.</documentation>

@@ -43,10 +43,10 @@
 			<documentation>The content to appear in the pane area of the curtain.</documentation>
 		</aggregation>
 		<aggregation cardinality="0..n" name="headItems" type="ShellHeadItem">
-			<documentation>The buttons shown in the begin (left in left-to-right case) of the Shell header. Currently max. 3 buttons are supported.</documentation>
+			<documentation>The buttons shown in the begin (left in left-to-right case) of the Shell header. Currently max. 3 visible buttons are supported.</documentation>
 		</aggregation>
 		<aggregation cardinality="0..n" name="headEndItems" type="ShellHeadItem">
-			<documentation>The buttons shown in the end (right in left-to-right case) of the Shell header. Currently max. 3 buttons are supported.</documentation>
+			<documentation>The buttons shown in the end (right in left-to-right case) of the Shell header. Currently max. 3 visible buttons are supported (when user is set only 1).</documentation>
 		</aggregation>
 		<aggregation cardinality="0..1" name="search" type="sap.ui.core/Control">
 			<documentation>Experimental (This aggregation might change in future!): The search control which should be displayed in the shell header.</documentation>
@@ -56,6 +56,9 @@
 		</aggregation>
 		<aggregation cardinality="0..1" name="curtainSplitContainer" type="SplitContainer" visibility="hidden">
 			<documentation>Private storage for the internal split container for the curtain.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="user" type="ShellHeadUserItem" since="1.22.0">
+			<documentation>The user item which is rendered in the shell header beside the items.</documentation>
 		</aggregation>
 	</aggregations>
 </control>

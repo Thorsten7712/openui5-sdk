@@ -59,7 +59,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.10
+ * @version 1.22.4
  *
  * @constructor   
  * @public
@@ -280,7 +280,7 @@ sap.ui.demokit.CodeViewer.M_EVENTS = {'press':'press','save':'save'};
 
 /**
  * Fire event press to attached listeners.
-
+ *
  * @param {Map} [mArguments] the arguments to pass along with the event.
  * @return {sap.ui.demokit.CodeViewer} <code>this</code> to allow method chaining
  * @protected
@@ -338,7 +338,7 @@ sap.ui.demokit.CodeViewer.M_EVENTS = {'press':'press','save':'save'};
 
 /**
  * Fire event save to attached listeners.
-
+ *
  * @param {Map} [mArguments] the arguments to pass along with the event.
  * @return {sap.ui.demokit.CodeViewer} <code>this</code> to allow method chaining
  * @protected

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6038718612650397"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7093073730017887"/>
 <title>Methods Controlling the Initial Instantiation</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -44,7 +46,7 @@
 					that should be displayed. For the latter, you simply need to set this view to
 					the view you whish to use. See the following code snippet for an example:</p>
 
-				<div><pre class="pre codeblock">this.view = sap.ui.view({id:"myView",viewName:"samples.components.products.details.view.Details",type:sap.ui.core.mvc.ViewType.JS});
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">this.view = sap.ui.view({id:"myView",viewName:"samples.components.products.details.view.Details",type:sap.ui.core.mvc.ViewType.JS});
 </pre></div>
 
 			</li>

@@ -6,14 +6,13 @@
 		<script id="sap-ui-bootstrap" 
 			type="text/javascript"
 			src="../../../../../resources/sap-ui-core.js"
-			data-sap-ui-theme="sap_platinum"
+			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-noConflict="true"
 			data-sap-ui-libs="sap.ui.core" >
 		</script>
     
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -87,6 +86,26 @@
 					equal($icon.css("background-color"), $dummy.css("background-color"));
 				});
 			}
+			
+			test("Attach press handler", function(){
+				var fn1 = function(){}, fn2 = function(){};
+				var oIcon = new sap.ui.core.Icon({
+					src: sap.ui.core.IconPool.getIconURI("mananger"),
+					press: fn1
+				});
+
+				oIcon.placeAt("uiAreaA");
+				sap.ui.getCore().applyChanges();
+				ok(oIcon.$().hasClass("sapUiIconPointer"), "Icon which has press event handler should show pointer cursor");
+				oIcon.attachPress(fn2);
+				ok(oIcon.$().hasClass("sapUiIconPointer"), "Icon which has press event handler should show pointer cursor");
+				oIcon.detachPress(fn1);
+				ok(oIcon.$().hasClass("sapUiIconPointer"), "Icon which still has press event handler should show pointer cursor");
+				oIcon.detachPress(fn2);
+				ok(!oIcon.$().hasClass("sapUiIconPointer"), "Icon which has no press event handler should not show pointer cursor");
+
+				oIcon.destroy();
+			});
 		</script>
 	</head>
 	<body>

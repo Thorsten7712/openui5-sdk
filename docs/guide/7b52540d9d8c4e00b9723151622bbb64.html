@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2764946627874545"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2811291803939483"/>
 <title>Defining the Control Metadata</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -60,7 +62,7 @@
 
 				<p class="p">An event is defined by its name only.</p>
 
-				<div><pre class="pre codeblock">events: {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">events: {
    "logout": {}
 }</pre></div>
 
@@ -75,7 +77,7 @@
 						<samp class="ph codeph">true</samp> and checking the return value after firing the
 					event:</p>
 
-				<div><pre class="pre codeblock">events: {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">events: {
    "close": {enablePreventDefault : true}  
 }</pre></div>
 
@@ -114,7 +116,7 @@
 
 				<p class="p">One example: </p>
 
-				<div><pre class="pre codeblock">aggregations: {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">aggregations: {
    "acceptButton" : "sap.ui.commons.Button", // if only type is given, no object is required
    "content" : {singularName: "content"},    // default type is "sap.ui.core.Control", 
                                              // which is appropriate for generic containers
@@ -133,7 +135,7 @@
 						<samp class="ph codeph">defaultAggregation</samp> property to the name of the aggregation
 					as shown in the following code snippet:</p>
 
-				<div><pre class="pre codeblock">aggregations: {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">aggregations: {
    "content": {singularName: "content"} // default type is "sap.ui.core.Control", multiple is "true"
 
 },

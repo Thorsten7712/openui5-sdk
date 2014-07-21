@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.demokit (1.20.10)
+ * Initialization Code and shared classes of library sap.ui.demokit (1.22.4)
  */
 jQuery.sap.declare("sap.ui.demokit.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -49,7 +49,7 @@ sap.ui.getCore().initLibrary({
     "sap.ui.demokit.Tag",
     "sap.ui.demokit.UIAreaSubstitute"
   ],
-  version: "1.20.10"});
+  version: "1.22.4"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
@@ -69,25 +69,25 @@ jQuery.sap.declare("sap.ui.demokit.UI5EntityCueCardStyle");
 /**
  * @class different styles for an entity cue card.
  *
- * @version 1.20.10
+ * @version 1.22.4
  * @static
  * @public
  */
 sap.ui.demokit.UI5EntityCueCardStyle = {
-  
-    /**
-     * default style (no special styling). 
-     * @public
-     */
-    Standard : "Standard",
 
-    /**
-     * Demokit style 
-     * @public
-     */
-    Demokit : "Demokit"
+	/**
+	 * default style (no special styling).
+	 * @public
+	 */
+	Standard : "Standard",
 
-  };
+	/**
+	 * Demokit style
+	 * @public
+	 */
+	Demokit : "Demokit"
+
+};
 
 // -----------------------------------------------------------------------------
 // Begin of Library Initialization coding, copied from shared.js
@@ -181,43 +181,64 @@ sap.ui.getCore().attachInitEvent( function () {
 	
 });
 
-
-sap.ui.demokit._loadAllLibInfo = function(sAppRoot, sInfoType /*"_getDocuIndex", "_getThirdPartyInfo"*/, fnCallback) {
-	jQuery.sap.require("sap.ui.core.util.LibraryInfo");
-	var libInfo = new sap.ui.core.util.LibraryInfo();
-	var sUrl = sAppRoot + "discovery/all_libs";
+sap.ui.demokit._getAppInfo = function(fnCallback) {
+	var sUrl = sap.ui.resource("", "sap-ui-version.json");
 	
 	jQuery.ajax({
-		url : sUrl,
-		dataType : "json",
-		error : function(xhr, status, e) {
+		url: sUrl,
+		dataType: "json",
+		error: function(xhr, status, e) {
 			jQuery.sap.log.error("failed to load library list from '" + sUrl + "': " + status + ", " + e); 
-			fnCallback(null, null);
+			fnCallback(null);
 		},
-		success : function(oData, sStatus, oXHR) { 
-			var libs = oData["all_libs"];
-			if(!libs){
-				jQuery.sap.log.error("failed to load library list from '" + sUrl + "': " + sStatus + ", Data: " + libs);
-				fnCallback(null, null);
+		success : function(oAppInfo, sStatus, oXHR) {
+			if(!oAppInfo){
+				jQuery.sap.log.error("failed to load library list from '" + sUrl + "': " + sStatus + ", Data: " + aLibraries);
+				fnCallback(null);
 				return;
 			}
 			
-			var count = 0,
-				len = libs.length,
-				oLibInfos = {},
-				aLibs = [],
-				libName;
-			for(var i=0; i<len; i++){
-				libName = libs[i].entry.replace(/\//g, ".");
-				aLibs.push(libName);
-				libInfo[sInfoType](libName, function(oExtensionData){
-					oLibInfos[oExtensionData.library] = oExtensionData;
-					count++;
-					if(count == len) {
-						fnCallback(aLibs, oLibInfos);
-					}
-				});
-			}
+			fnCallback(oAppInfo);
+		}
+	});
+};
+
+sap.ui.demokit._loadAllLibInfo = function(sAppRoot, sInfoType /*"_getDocuIndex", "_getThirdPartyInfo", "_getLibraryInfo"*/, fnCallback) {
+	jQuery.sap.require("sap.ui.core.util.LibraryInfo");
+	var libInfo = new sap.ui.core.util.LibraryInfo();
+	
+	sap.ui.demokit._getAppInfo(function(oAppInfo) {
+		if (!(oAppInfo && oAppInfo.libraries)) {
+			fnCallback(null, null);
+		}
+		
+		var count = 0,
+			aLibraries = oAppInfo.libraries,
+			len = aLibraries.length,
+			oLibInfos = {},
+			oLibVersions = {},
+			aLibs = [],
+			libName,
+			libVersion;
+		for(var i=0; i<len; i++){
+			libName = aLibraries[i].name;
+			libVersion = aLibraries[i].version;
+			aLibs.push(libName);
+			oLibVersions[libName] = libVersion;
+			libInfo[sInfoType](libName, function(oExtensionData){
+				oLibInfos[oExtensionData.library] = oExtensionData;
+				// fallback to version coming from version info file
+				// (in case of ABAP we always should refer to the libVersion if available!)
+				//if (!oLibInfos[oExtensionData.library].version) {
+				var sVersion = oLibVersions[oExtensionData.library];
+				if (sVersion) {
+					oLibInfos[oExtensionData.library].version = sVersion;
+				}
+				count++;
+				if(count == len) {
+					fnCallback(aLibs, oLibInfos, oAppInfo);
+				}
+			});
 		}
 	});
 };

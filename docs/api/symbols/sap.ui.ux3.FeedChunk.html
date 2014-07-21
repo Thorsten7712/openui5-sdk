@@ -563,7 +563,7 @@ The whole Feed/Feeder API is still under discussion, significant changes are lik
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -1412,7 +1412,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -1424,7 +1424,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -1595,7 +1595,7 @@ Event is fired when an item from the action menu button was selected.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1619,7 +1619,7 @@ Event is fired when an item from the action menu button was selected.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -1678,7 +1678,7 @@ Event is raised when a comment is added to the entry. This event is not supporte
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1702,7 +1702,7 @@ Event is raised when a comment is added to the entry. This event is not supporte
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -1761,7 +1761,7 @@ Event is fired when the deletion button is pressed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1785,7 +1785,7 @@ Event is fired when the deletion button is pressed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -1844,7 +1844,7 @@ Event is fired when the inspect button was pressed
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1868,7 +1868,7 @@ Event is fired when the inspect button was pressed
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -1927,7 +1927,7 @@ Click on a @-reference
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1951,7 +1951,7 @@ Click on a @-reference
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -2010,7 +2010,7 @@ Event is fired when the thumbnail or the name of the sender is clicked.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2034,7 +2034,7 @@ Event is fired when the thumbnail or the name of the sender is clicked.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -2093,7 +2093,7 @@ Event is raised when the user clicks to set the entry as favorite. This event is
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2117,7 +2117,7 @@ Event is raised when the user clicks to set the entry as favorite. This event is
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -2176,7 +2176,7 @@ Event is raised when the user clicks to flag the entry. This event is not suppor
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2200,7 +2200,7 @@ Event is raised when the user clicks to flag the entry. This event is not suppor
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -2259,7 +2259,7 @@ Event is raised when the user clicks to share the entry. This event is not suppo
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2283,7 +2283,7 @@ Event is raised when the user clicks to share the entry. This event is not suppo
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself.
@@ -3225,7 +3225,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3285,7 +3285,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3340,7 +3340,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3395,7 +3395,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3455,7 +3455,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3510,7 +3510,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3570,7 +3570,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3630,7 +3630,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3690,7 +3690,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.

@@ -11,8 +11,10 @@
 
 <link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
 <style type="text/css">
 .ButtonSpace { 
@@ -45,7 +47,7 @@
 	function tabEventHandler2() {
 		msg = sPressMessage
 	}
-	
+
 	// Default Button
 	var oBtnDefault = new sap.m.Button("b1");
 	oBtnDefault.setText(sText);
@@ -94,7 +96,7 @@
 	oBtnWidth.setWidth(sWidth);		
 	oBtnWidth.attachPress(tabEventHandler2);
 	oBtnWidth.placeAt("contentBtnWidth");
-	
+
 	// Disabled Button
 	var oBtnDisabled = new sap.m.Button("b8");
 	oBtnDisabled.setText("Disabled Button");
@@ -112,7 +114,7 @@
 	oBtnIcon.setIcon(sIcon);
 	oBtnIcon.attachPress(tabEventHandler2);
 	oBtnIcon.placeAt("contentBtnIcon");
-	
+
 	// Up Button
 	var oBtnUp = new sap.m.Button("b10");
 	oBtnUp.setText("Up Button");
@@ -120,7 +122,7 @@
 	oBtnUp.setEnabled(bEnabled);
 	oBtnUp.attachPress(tabEventHandler2);
 	oBtnUp.placeAt("contentBtnUp");
-	
+
 	// Unstyled Button
 	var oBtnUp = new sap.m.Button("b11");
 	oBtnUp.setText("Unstyled Button");
@@ -165,6 +167,7 @@
 			b12 = null;
 		}
 	});
+
 
 	// test property accessor methods 
 	test("TextOk", function() {
@@ -229,6 +232,185 @@
 	test("Visibility", function(){
 		ok(!jQuery.sap.domById("b12"), "Button12 should not be rendered");
 	});
+
+	function hoverableTestCase (oTestDescription) {
+		this.stub(sap.ui.Device, "system", { desktop : oTestDescription.desktop });
+
+		// System under Test
+		var oButton = new sap.m.Button({
+			enabled : oTestDescription.enabled,
+		});
+		oButton.placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		// Act
+		var bHoverable = oButton._isHoverable();
+
+		// Assert
+		strictEqual(bHoverable, oTestDescription.shouldBeHoverable, "The button determined wether is should be hoverable");
+		strictEqual(oButton.$("inner").hasClass("sapMBtnHoverable"), oTestDescription.shouldHaveCssClass, "The button determined wether is should be hoverable");
+	}
+
+	test("Should be hoverable if the button is enabled and in desktop", function() {
+		hoverableTestCase.call(this, {
+			enabled : true,
+			desktop : true,
+			shouldBeHoverable : true,
+			shouldHaveCssClass : true
+		});
+	});
+
+	test("Should not be hoverable if the button is disabled and in desktop", function() {
+		hoverableTestCase.call(this, {
+			enabled : false,
+			desktop : true,
+			shouldBeHoverable : false,
+			shouldHaveCssClass : false
+		});
+	});
+
+	test("Should not be hoverable if the button is enabled and not desktop", function() {
+		hoverableTestCase.call(this, {
+			enabled : true,
+			desktop : false,
+			shouldBeHoverable : false,
+			shouldHaveCssClass : false
+		});
+	});
+
+	test("Should not be hoverable if the button is disabled and not desktop", function() {
+		hoverableTestCase.call(this, {
+			enabled : false,
+			desktop : false,
+			shouldBeHoverable : false,
+			shouldHaveCssClass : false
+		});
+	});
+
+	test("Should not rerender the button if the text is changed", function() {
+		// Arrange
+		var sTextToSet = "<script>alert(\"HAACKED\");<\/script>",
+			oRenderSpy,
+			oResult
+			oConstructor = { text : "No empty text"};
+
+		// System under Test
+		var oButton = new sap.m.Button(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oButton, "invalidate");
+
+		// Act
+		oResult = oButton.setText(sTextToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oResult, oButton, "Should be able to chain");
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+		ok(!/.*<script>.*/.test(oButton.$("content").html()), "Did not contain a unescaped script tag");
+		strictEqual(oButton.getText(), sTextToSet, "Did set the non encoded string as value");
+
+		// Cleanup
+		oButton.destroy();
+	});
+
+
+	test("Should not rerender the button if enabled property is changed", function() {
+		// Arrange
+		var oRenderSpy,
+			oResult
+			oConstructor = { text : "Rerender Check (enabled)", enabled : true};
+
+		// System under Test
+		var oButton = new sap.m.Button(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oButton, "invalidate");
+
+		// Act
+		oResult = oButton.setEnabled(false);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+
+		// Cleanup
+		oButton.destroy();
+	});
+
+
+	test("Check type conversation if text property is changed (non-string value)", function() {
+		// Arrange
+		var oRenderSpy,
+			oResult
+			oConstructor = { text : "Check type conversation (text)", enabled : true};
+
+		// System under Test
+		var oButton = new sap.m.Button(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oButton, "invalidate");
+
+		// Act
+		oResult = oButton.setText(2);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 0, "No conversation error");
+
+		// Cleanup
+		oButton.destroy();
+	});
+
+
+	test("Should not rerender the button if icon property is changed", function() {
+		// Arrange
+		var oRenderSpy,
+			oResult
+			oConstructor = { text : "Rerender Check (icon)", enabled : true, icon : sap.ui.core.IconPool.getIconURI("employee") , iconFirst : true};
+
+		// System under Test
+		var oButton = new sap.m.Button(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oButton, "invalidate");
+
+		// Act
+		oResult = oButton.setIcon(sap.ui.core.IconPool.getIconURI("notes"));
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+
+		// Cleanup
+		oButton.destroy();
+	}); 
+
+
+	test("Should not rerender the button if iconFirst property is changed", function() {
+		// Arrange
+		var oRenderSpy,
+			oResult
+			oConstructor = { text : "Rerender Check (iconFirst)", enabled : true, icon: sap.ui.core.IconPool.getIconURI("employee") , iconFirst : true};
+
+		// System under Test
+		var oButton = new sap.m.Button(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oButton, "invalidate");
+
+		// Act
+		oResult = oButton.setIconFirst(false);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+
+		// Cleanup
+		oButton.destroy();
+	});
+
+
 </script>
 
 </head>

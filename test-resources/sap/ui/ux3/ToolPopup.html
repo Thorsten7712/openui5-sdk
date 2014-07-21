@@ -19,7 +19,8 @@
 			if (t1.isOpen()) {
 				t1.close();
 			} else {
-				t1.open(sap.ui.core.Popup.Dock.BeginBottom, sap.ui.core.Popup.Dock.BeginTop);
+				t1.open(sap.ui.core.Popup.Dock.BeginBottom,
+						sap.ui.core.Popup.Dock.BeginTop);
 			}
 		}
 	}).placeAt("uiArea1");
@@ -49,7 +50,9 @@
 	var b2 = new sap.ui.commons.Button({
 		text : "Open/Close ToolPopup To The Right",
 		press : function() {
-			t2.setPosition(sap.ui.core.Popup.Dock.LeftTop, sap.ui.core.Popup.Dock.RightTop, b2.getDomRef(), "13 -10", "none");
+			t2.setPosition(sap.ui.core.Popup.Dock.LeftTop,
+					sap.ui.core.Popup.Dock.RightTop, b2.getDomRef(), "13 -10",
+					"none");
 			if (t2.isOpen()) {
 				t2.close();
 			} else {
@@ -153,7 +156,8 @@
 		maxHeight : "200px",
 		maxWidth : "300px",
 		title : "ToolPopup with transparent Content",
-		content : [ oTree, oCheck, oLink, oFTV, oParentCheckBox, oRBGroup, oTextField, oComboBox, oDatePicker ],
+		content : [ oTree, oCheck, oLink, oFTV, oParentCheckBox, oRBGroup,
+				oTextField, oComboBox, oDatePicker ],
 		buttons : [ new sap.ui.commons.Button({
 			text : "Close",
 			press : function() {
@@ -169,17 +173,20 @@
 			t3.setInverted(oCheckInvert.getChecked());
 		}
 	}).placeAt("uiArea3");
-	var b3 = new sap.ui.commons.Button({
-		text : "Open/Close ToolPopup To The Right (maxHeight 200px | maxWidth 300px)",
-		press : function() {
-			t3.setPosition(sap.ui.core.Popup.Dock.LeftTop, sap.ui.core.Popup.Dock.RightTop, b3.getDomRef(), "13 -10", "none");
-			if (t3.isOpen()) {
-				t3.close();
-			} else {
-				t3.open();
-			}
-		}
-	}).placeAt("uiArea3");
+	var b3 = new sap.ui.commons.Button(
+			{
+				text : "Open/Close ToolPopup To The Right (maxHeight 200px | maxWidth 300px)",
+				press : function() {
+					t3.setPosition(sap.ui.core.Popup.Dock.LeftTop,
+							sap.ui.core.Popup.Dock.RightTop, b3.getDomRef(),
+							"13 -10", "none");
+					if (t3.isOpen()) {
+						t3.close();
+					} else {
+						t3.open();
+					}
+				}
+			}).placeAt("uiArea3");
 
 	var b4 = new sap.ui.commons.Button({
 		text : "Open high ToolPopup and fill content after open",
@@ -202,7 +209,7 @@
 			this.destroyContent();
 			oLayout = new sap.ui.layout.VerticalLayout();
 
-			for ( var i = 0; i < 1000; i++) {
+			for (var i = 0; i < 1000; i++) {
 				oLayout.addContent(new sap.ui.commons.Button({
 					text : "button" + i
 				}));
@@ -224,7 +231,8 @@
 				t5.close();
 			} else {
 				t5.addFocusableArea(t5_2.getId());
-				t5.open(sap.ui.core.Popup.Dock.BeginBottom, sap.ui.core.Popup.Dock.BeginTop);
+				t5.open(sap.ui.core.Popup.Dock.BeginBottom,
+						sap.ui.core.Popup.Dock.BeginTop);
 			}
 		}
 	}).placeAt("focusableArea");
@@ -251,6 +259,100 @@
 			text : "Lorem ipsum"
 		}) ]
 	});
+
+	// DefaultButton Example 2
+	var oDefButton1 = new sap.ui.commons.Button({
+		text : "Open DefaultButton",
+		press : function() {
+			if (oToolPopupDefBtn.isOpen()) {
+				oToolPopupDefBtn.close();
+			} else {
+				oToolPopupDefBtn.open();
+			}
+		}
+	}).placeAt("sample1");
+
+	var oDefBtn1 = new sap.ui.commons.Button("oDefBtn1", {
+		text: "OK1"
+	});
+	var oDefBtn2 = new sap.ui.commons.Button("oDefBtn2", {
+		text: "OK2"
+	});
+	var oDefBtn3 = new sap.ui.commons.Button("oDefBtn3", {
+		text: "Default"
+	});
+	var oDefBtn4 = new sap.ui.commons.Button("oDefBtn4", {
+		text: "Close",
+		press:function(){
+			oToolPopupDefBtn.close();
+		}
+	});
+	
+	var oToolPopupDefBtn = new sap.ui.ux3.ToolPopup({
+		content : [ new sap.ui.commons.Button({
+				text : "button"
+			}),
+			new sap.ui.commons.FormattedTextView({
+				htmlText : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+			})
+		],
+		opener: oDefButton1,
+		buttons : [ oDefBtn1, oDefBtn2, oDefBtn3, oDefBtn4 ]
+	});
+	oToolPopupDefBtn.setDefaultButton(oDefBtn3);
+
+	// DefaultButton Example 2
+	function openAlert(message){
+		sap.ui.commons.MessageBox.alert("You pressed the " + message + "-Button");
+	}
+	
+	var oDefFocButton1 = new sap.ui.commons.Button({
+		text : "Open DefaultButton and InitialFocus",
+		press : function() {
+			if (oDefFocToolPopup.isOpen()) {
+				oDefFocToolPopup.close();
+			} else {
+				oDefFocToolPopup.open();
+			}
+		}
+	}).placeAt("sample2");
+
+	var oDefFocBtn1 = new sap.ui.commons.Button("oDefFocBtn1", {
+		text: "OK1",
+		press: function(){
+			openAlert("OK1").placeAt("sample1");
+			}
+	});
+	var oDefFocBtn2 = new sap.ui.commons.Button("oDefFocBtn2", {
+		text: "Initial Focus",
+		press: function(){
+			openAlert("Initial Focus").placeAt("sample1");
+		}
+	});
+	var oDefFocBtn3 = new sap.ui.commons.Button("oDefFocBtn3", {
+		text: "Default",
+		press: function(){
+			openAlert("Default").placeAt("sample1");
+		}
+	});
+	var oDefFocBtn4 = new sap.ui.commons.Button("oDefFocBtn4", {
+		text: "Close",
+		press:function(){
+			sap.ui.commons.MessageBox.confirm("Do you want to close the ToolPopup?", function(bResult){if(bResult==true){oDefFocToolPopup.close();}}, "Confirm");
+		}
+	});
+	var oDefFocToolPopup = new sap.ui.ux3.ToolPopup({
+		content : [
+			new sap.ui.commons.FormattedTextView({
+				htmlText : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+			})
+		],
+		opener: oDefFocButton1,
+		buttons : [ oDefFocBtn1, oDefFocBtn2, oDefFocBtn3, oDefFocBtn4 ]
+	});
+	oDefFocToolPopup.setInitialFocus(oDefFocBtn2);
+	oDefFocToolPopup.setDefaultButton(oDefFocBtn3);
+
 </script>
 
 <style>
@@ -270,6 +372,8 @@
 	<div class="uiArea" id="uiArea4"></div>
 
 	<div class="uiArea" id="focusableArea"></div>
+	<div class="uiArea" id="sample1"></div>
+	<div class="uiArea" id="sample2"></div>
 
 </body>
 </html>

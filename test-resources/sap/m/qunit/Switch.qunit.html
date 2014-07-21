@@ -12,7 +12,6 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 
@@ -124,7 +123,7 @@
 			oSwitch6.setEnabled(true);
 			strictEqual(oSwitch6.getEnabled(), true, "Check setEnabled() and getEnabled()");
 			strictEqual(oSwitch6.getName(), "switch-1", "Check setName() and getName()");
-			strictEqual(oSwitch6.getFocusDomRef(), oSwitch6.$().find(".sapMSwtHandle")[0]);
+			strictEqual(oSwitch6.getFocusDomRef(), oSwitch6.$().find(".sapMSwt")[0]);
 
 			strictEqual(sap.ui.getCore().byId("__switch9").getCustomTextOn(), "I", "");
 			strictEqual(sap.ui.getCore().byId("__switch9").getCustomTextOff(), "O", "");
@@ -193,9 +192,9 @@
 			strictEqual($SwtHandle.attr("data-sap-ui-swt"), sap.ui.getCore().getLibraryResourceBundle("sap.m").getText("SWITCH_ON"), 'The switch handler "data-sap-ui-swt" attribute must have the value of "On" on ' + oSwitch);
 
 			if (oSwitch.getEnabled()) {
-				equal($SwtHandle.attr("tabindex"), 0, 'The switch handle "tabindext" attribute must have the value of "0" on ' + oSwitch);
+				equal($Swt.attr("tabindex"), 0, 'The switch handle "tabindext" attribute must have the value of "0" on ' + oSwitch);
 			} else {
-				ok($SwtHandle.attr("tabindex"), 'The "tabindex" attribute of the switch handle is not rendered on ' + oSwitch);
+				ok($Swt.attr("tabindex"), 'The "tabindex" attribute of the switch handle is not rendered on ' + oSwitch);
 			}
 
 			testSwitchEnabled(oSwitch);
@@ -219,7 +218,7 @@
 			strictEqual($SwtHandle.attr("data-sap-ui-swt"), sap.ui.getCore().getLibraryResourceBundle("sap.m").getText("SWITCH_OFF"), 'The switch handler "data-sap-ui-swt" attribute must have the value of "Off" on ' + oSwitch);
 
 			if (oSwitch.getEnabled()) {
-				equal($SwtHandle.attr("tabindex"), 0, 'The switch handle "tabindex" attribute must have the value of "0" on ' + oSwitch);
+				equal($Swt.attr("tabindex"), 0, 'The switch handle "tabindex" attribute must have the value of "0" on ' + oSwitch);
 			}
 		}
 

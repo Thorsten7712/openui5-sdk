@@ -102,6 +102,9 @@ This property only has an effect for the GoldReflection-theme.</documentation>
 			<documentation>This property is relevant for stand-alone-use:
 This association needs to be set if the ToolPopup should not be opened by/with the Shell. This association contains the instance of the control that assigns the ToolPopup's position.</documentation>
 		</association>
+		<association cardinality="0..1" name="defaultButton" since="1.20.1" type="sap.ui.core/Control">
+			<documentation>Defines one of the buttons that have been provided via button aggregation to be the default button. This default button is initially selected, if no control is set via the initialFocus association explicitly. The default button is activated when Enter is pressed in the context of the dialog and when the currently selected element does not handle the Enter event itself.</documentation>
+		</association>
 	</associations>
 	
 	<methods>

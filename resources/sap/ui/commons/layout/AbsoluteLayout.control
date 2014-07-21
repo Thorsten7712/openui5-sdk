@@ -34,10 +34,10 @@
 		<method name="setPositionOfChild" type="sap.ui.core/boolean">
 			<documentation>Allows to set or change the position information of the given child control</documentation>
 			<parameters>
-				<parameter name="oControl" type="sap.ui.core/Control">
+				<parameter name="control" type="sap.ui.core/Control">
 					<documentation>The child control for which to change the position information; if empty or not aggregated, nothing is changed</documentation>
 				</parameter>
-				<parameter name="oPos" type="sap.ui.core/object">
+				<parameter name="pos" type="sap.ui.core/object">
 					<documentation>JSON-like object which defines the position of the child control. The object is expected to have one or more from the attribute set 
 					top, bottom, left, right; each with a value of type sap.ui.core.CSSSize. 
 					If no object is given, the default is used which is left=0px,right=0px.</documentation>
@@ -51,7 +51,7 @@
 			<documentation>Checks for the provided sap.ui.core.Control in the aggregated position containers, and returns the index of the container in the positions aggregation 
 			if found, or '-1' otherwise.</documentation>
 			<parameters>
-				<parameter name="oContent" type="sap.ui.core/Control">
+				<parameter name="content" type="sap.ui.core/Control">
 					<documentation>The content of which the index is looked for</documentation>
 				</parameter>
 			</parameters>
@@ -62,7 +62,7 @@
 		<method name="removeContent" type="sap.ui.core/Control">
 			<documentation>Removes the given control and its corresponding position container from the aggregation named 'positions'.</documentation>
 			<parameters>
-				<parameter name="vContent" type="sap.ui.core/object">
+				<parameter name="content" type="sap.ui.core/object">
 					<documentation>The content control to remove, its ID, or the index of the corresponding position container in the 'positions' aggregation.</documentation>
 				</parameter>
 			</parameters>
@@ -70,14 +70,14 @@
 		<method name="insertContent" type="sap.ui.commons/layout/AbsoluteLayout">
 			<documentation>Inserts the given control and a corresponding position container into the aggregation named 'positions'. Returns 'this' to allow method chaining.</documentation>
 			<parameters>
-				<parameter name="oContent" type="sap.ui.core/Control">
+				<parameter name="content" type="sap.ui.core/Control">
 					<documentation>The content to insert; if empty, nothing is inserted</documentation>
 				</parameter>
-				<parameter name="iIndex" type="sap.ui.core/int">
+				<parameter name="index" type="sap.ui.core/int">
 					<documentation>The '0'-based index where the content shall be inserted at. For a negative value of iIndex, the content is inserted at position '0'; 
 					for a value greater than the current size of the aggregation, the content is inserted at the last position.</documentation>
 				</parameter>
-				<parameter name="oPos" type="sap.ui.core/object">
+				<parameter name="pos" type="sap.ui.core/object">
 					<documentation>JSON-like object which defines the position of the child control within the layout. The object is expected to have one or more 
 					from the attribute set top, bottom, left, right; each with a value of type sap.ui.core.CSSSize. If no object is given, the default is left=0px,right=0px.</documentation>
 				</parameter>
@@ -86,10 +86,10 @@
 		<method name="addContent" type="sap.ui.commons/layout/AbsoluteLayout">
 			<documentation>Adds the given control and a corresponding position container into the aggregation named 'positions'. Returns 'this' to allow method chaining.</documentation>
 			<parameters>
-				<parameter name="oContent" type="sap.ui.core/Control">
+				<parameter name="content" type="sap.ui.core/Control">
 					<documentation>The content to add; if empty, nothing is inserted.</documentation>
 				</parameter>
-				<parameter name="oPos" type="sap.ui.core/object">
+				<parameter name="pos" type="sap.ui.core/object">
 					<documentation>JSON-like object which defines the position of the child control in the layout. The object is expected to have one or more from the attribute set 
 					top, bottom, left, right; each with a value of type sap.ui.core.CSSSize. If no object is given, the default is left=0px,right=0px</documentation>
 				</parameter>

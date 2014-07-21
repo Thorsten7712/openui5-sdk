@@ -10,16 +10,15 @@
 
 		<title>Test Page for SAPUI5 Global functionality (from Global.js)</title>
 		<script id="sap-ui-bootstrap"
-				data-sap-ui-theme="sap_platinum"
+				data-sap-ui-theme="sap_bluecrystal"
 				type="text/javascript"
 				data-sap-ui-noConflict="true"
 				data-sap-ui-libs="sap.ui.core"
 				src="../../../../../resources/sap-ui-core.js">
 		</script>
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
-		<link rel="stylesheet" id="sap-ui-theme-sap.ui.layout" href="../../../../../resources/sap/ui/layout/themes/sap_platinum/library.css" type="text/css" data-marker="42" />
+		<link rel="stylesheet" id="sap-ui-theme-sap.ui.layout" href="../../../../../resources/sap/ui/layout/themes/sap_bluecrystal/library.css" type="text/css" data-marker="42" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript">
 		
@@ -136,7 +135,7 @@
 				var $link = jQuery.sap.byId("sap-ui-theme-sap.ui.layout");
 				equal($link.length, 1, "initially, there should be exactly one matching link)");
 				equal($link.attr("data-marker"), "42", "initially, the link object should be the declarative one");
-				jQuery.sap.includeStyleSheet("../../../../../resources/sap/ui/layout/themes/sap_platinum/library.css", "sap-ui-theme-sap.ui.layout");
+				jQuery.sap.includeStyleSheet("../../../../../resources/sap/ui/layout/themes/sap_bluecrystal/library.css", "sap-ui-theme-sap.ui.layout");
 				var $link = jQuery.sap.byId("sap-ui-theme-sap.ui.layout");
 				equal($link.length, 1, "after includeStylesheet, there still should be exactly one matching link");
 				equal($link.attr("data-marker"), "42", "after includeStylesheet, the link object still should be the old one");

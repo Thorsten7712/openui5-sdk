@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=18208093871560083"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7147410800133335"/>
 <title>Extending TextField Rendering</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -31,7 +33,7 @@
 <p class="p">The control API and the <samp class="ph codeph">render</samp> method can be inherited as is and the
 				<samp class="ph codeph">renderInnerAttributes</samp> method of the
 				<samp class="ph codeph">TextFieldRenderer</samp> is overwritten: </p>
-<div><pre class="pre codeblock">  sap.ui.commons.TextField.extend("HighlightField", { // call the new Control type "HighlightField" 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  sap.ui.commons.TextField.extend("HighlightField", { // call the new Control type "HighlightField" 
                                                       // and let it inherit from sap.ui.commons.TextField
      
 
@@ -47,7 +49,7 @@
   });</pre></div>
 <p class="p">The <samp class="ph codeph">HighlightField</samp> control can be used in an application in the same way as
 				<samp class="ph codeph">TextField</samp>:</p>
-<div><pre class="pre codeblock">var myControl = new HighlightField({value:"Highlighted editing"});
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var myControl = new HighlightField({value:"Highlighted editing"});
 myControl.placeAt("content");</pre></div>
 </div>
 <div class="related-links"> 

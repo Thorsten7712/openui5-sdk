@@ -3,5 +3,5 @@
 
 	<name>ColumnMenu</name>
 	<documentation>The column menu provides all common actions that can be performed on a column.</documentation>
-	<baseType>sap.ui.commons/Menu</baseType>
+	<baseType>sap.ui.unified/Menu</baseType>
 </control>

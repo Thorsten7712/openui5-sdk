@@ -19,25 +19,24 @@
 				press="handleEditOrDoneButtonPress" />
 		</headerContent>
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						id="proceedButton"
-						text="{i18n>CART_PROCEED_BUTTON_TEXT}"
-						tooltip="{i18n>CART_PROCEED_BUTTON_TOOLTIP}"
-						enabled="{cartProducts>/showEditAndProceedButton}"
-						visible="{cfg>/notInDelete}"
-						press="handleProceedButtonPress" />
-					<Button
-						id="doneButton"
-						text="{i18n>CART_DONE_BUTTON_TEXT}"
-						tooltip="{i18n>CART_DONE_BUTTON_TOOLTIP}"
-						icon="sap-icon://accept"
-						enabled="true"
-						visible="{cfg>/inDelete}"
-						press="handleEditOrDoneButtonPress" />
-				</contentRight>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					id="proceedButton"
+					text="{i18n>CART_PROCEED_BUTTON_TEXT}"
+					tooltip="{i18n>CART_PROCEED_BUTTON_TOOLTIP}"
+					enabled="{cartProducts>/showEditAndProceedButton}"
+					visible="{cfg>/notInDelete}"
+					press="handleProceedButtonPress" />
+				<Button
+					id="doneButton"
+					text="{i18n>CART_DONE_BUTTON_TEXT}"
+					tooltip="{i18n>CART_DONE_BUTTON_TOOLTIP}"
+					icon="sap-icon://accept"
+					enabled="true"
+					visible="{cfg>/inDelete}"
+					press="handleEditOrDoneButtonPress" />
+			</Toolbar>
 		</footer>
 		<content>
 			<List

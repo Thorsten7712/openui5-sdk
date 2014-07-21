@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=025685887239954797"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3792985302373578"/>
 <title>Using UI Components in Applications</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -39,7 +41,7 @@
 				<p class="p">Option 1: Create the component first, then add the component to the container, and finally
 					use the <samp class="ph codeph">placeAt</samp> method to place the component on the page:</p>
 
-				<div><pre class="pre codeblock">var oComp = sap.ui.getCore().createComponent({
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oComp = sap.ui.getCore().createComponent({
                  name: "samples.components.shell",
                  id: "Comp1",
                  settings: {appTitle: "Hello World 1"}
@@ -54,7 +56,7 @@
 <li class="li">
 				<p class="p">Option 2: Pass the component to the <samp class="ph codeph">componentContainer</samp> constructor:</p>
 
-				<div><pre class="pre codeblock">var oCompCont2 = new sap.ui.core.ComponentContainer("CompCont2", {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oCompCont2 = new sap.ui.core.ComponentContainer("CompCont2", {
         name: " samples.components.shell",
         settings: {text: "Hello World 2"}
         });

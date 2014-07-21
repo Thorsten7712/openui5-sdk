@@ -67,9 +67,9 @@
 							<div class="sectionItems">
 								<div class="sectionItem classConstructor static">
 									<div class="itemName">
-										<b class="icon" title="Constructor for Filter You can either pass an object with the filter parameters or use the function arguments  Using object: new sap.ui.model.Filter({ sPath: .">new <a href="../symbols/sap.ui.model.Filter.html#constructor">sap.ui.model.Filter</a></b>
+										<b class="icon" title="Constructor for Filter You can either pass an object with the filter parameters or use the function arguments  Using object: new sap.ui.model.Filter({ path: &quot;.">new <a href="../symbols/sap.ui.model.Filter.html#constructor">sap.ui.model.Filter</a></b>
 										<span class='signature'>(<span title="(String) the binding path for this filter">sPath</span>, <span title="(sap.ui.model.FilterOperator) Operator used for the filter">sOperator</span>, <span title="(Object) First value to use for filter">oValue1</span>, <span title="(Object) Second value to use for filter (optional)">oValue2</span><i class="help" title="Optional parameter">?</i>)</span>
-										<span class='description'>Constructor for Filter You can either pass an object with the filter parameters or use the function arguments </p><p> Using object: new sap.ui.model.Filter({ sPath: .</span>
+										<span class='description'>Constructor for Filter You can either pass an object with the filter parameters or use the function arguments </p><p> Using object: new sap.ui.model.Filter({ path: ".</span>
 									</div>
 								</div>
 							</div>
@@ -126,12 +126,16 @@ You can either pass an object with the filter parameters or use the function arg
 </p><p>
 Using object:
 new sap.ui.model.Filter({
-  sPath: ...,
-  sOperator: ...,
-  oValue1: ...,
-  oValue2: ...,
-  aFilters: ...,
-  bAnd: ...
+  path: "...",
+  operator: "...",
+  value1: "...",
+  value2: "..."
+})
+</p><p>
+OR:
+new sap.ui.model.Filter({
+  filters: [...],
+  and: true|false
 })
 </p><p>
 You can only pass sPath, sOperator and their values OR aFilters and bAnd. You will get an error if you define an invalid combination of filters parameters.
@@ -268,7 +272,7 @@ see <a href="../symbols/sap.ui.base.Object.html#.extend">Object.extend</a>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -280,7 +284,7 @@ see <a href="../symbols/sap.ui.base.Object.html#.extend">Object.extend</a>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    alternative constructor for a metadata object

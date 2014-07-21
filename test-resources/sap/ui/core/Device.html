@@ -142,10 +142,13 @@
 			prop(_html, "version", d.browser.version);
 			prop(_html, "mobile", d.browser.mobile);
 			prop(_html, "internet_explorer", !!d.browser.internet_explorer);
+			prop(_html, "msie", !!d.browser.msie);
 			prop(_html, "firefox", !!d.browser.firefox);
 			prop(_html, "chrome", !!d.browser.chrome);
 			prop(_html, "safari", !!d.browser.safari);
 			prop(_html, "android", !!d.browser.android);
+			prop(_html, "webkit", !!d.browser.webkit);
+			prop(_html, "mozilla", !!d.browser.mozilla);
 			_html.push("<hr><h3>sap.ui.Device.support</h3><hr>");
 			prop(_html, "touch", d.support.touch);
 			prop(_html, "matchmedia", d.support.matchmedia);
@@ -153,6 +156,7 @@
 			prop(_html, "orientation", d.support.orientation);
 			prop(_html, "retina", d.support.retina);
 			prop(_html, "websocket", d.support.websocket);
+			prop(_html, "input.placeholder", d.support.input.placeholder);
 			_html.push("<hr><h3>sap.ui.Device.orientation</h3><hr>");
 			prop(_html, "landscape", d.orientation.landscape, null, "landscape");
 			prop(_html, "portrait", d.orientation.portrait, null, "portrait");
@@ -163,6 +167,7 @@
 			prop(_html, "tablet", d.system.tablet);
 			prop(_html, "phone", d.system.phone);
 			prop(_html, "desktop", d.system.desktop);
+			prop(_html, "combi", d.system.combi);
 			return _html.join("");
 		};
 		

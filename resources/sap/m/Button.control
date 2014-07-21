@@ -38,7 +38,8 @@ If only one version of image is provided, set this value to false to avoid the a
 	</properties>
 	<events>
 		<event name="tap">
-			<documentation>Event is fired when the user taps the control. (This event is deprecated, use the press event instead)</documentation>
+			<documentation>Event is fired when the user taps the control.</documentation>
+			<deprecation since="1.20.0">This event is deprecated, use the press event instead.</deprecation>
 		</event>
 		<event name="press">
 			<documentation>Event is fired when the user clicks on the control.</documentation>

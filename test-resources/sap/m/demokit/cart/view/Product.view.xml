@@ -18,15 +18,14 @@
 				press="handleCartButtonPress" />
 		</headerContent>
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						icon="sap-icon://add"
-						text="{i18n>PRODUCT_ADD_BUTTON_TEXT}"
-						tooltip="{i18n>PRODUCT_ADD_BUTTON_TOOLTIP}"
-						press="handleAddButtonPress" />
-				</contentRight>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					icon="sap-icon://add"
+					text="{i18n>PRODUCT_ADD_BUTTON_TEXT}"
+					tooltip="{i18n>PRODUCT_ADD_BUTTON_TOOLTIP}"
+					press="handleAddButtonPress" />
+			</Toolbar>
 		</footer>
 		<content>
 			<ObjectHeader

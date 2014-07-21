@@ -14,15 +14,15 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
-		<script language="javascript">
+		<script>
 		
 			module("rendering");
-			
+			//required if you spy a property on the prototype before using the contructor.
+			jQuery.sap.require("sap.m.Bar");
 
 			function renderingTest (fnAssertions) {
 
@@ -95,7 +95,28 @@
 
 			});
 
-			test("context property", function(){
+			test("Should set the design class to the containers", function() {
+				// Arrange
+				var sBarBaseContext = "sapMIBar-CTX",
+					oLeftButton = new sap.m.Button();
+
+				// System under Test
+				var oBar = new sap.m.Bar().placeAt("qunit-fixture");
+
+				// Act
+				sap.ui.getCore().applyChanges();
+
+				var sExpectedClass = sap.m.BarRenderer.getContext(oBar);
+
+				// Assert
+				ok(oBar.$().hasClass(sExpectedClass), "the left button parent had the class " + sExpectedClass);
+				ok(oBar.$().hasClass(sBarBaseContext), "the left button parent had the class " + sBarBaseContext);
+
+				//Cleanup
+				oBar.destroy();
+			});
+
+			test("tag property", function(){
 
 				renderingTest.call(this, function() {
 
@@ -103,15 +124,12 @@
 					ok(jQuery.sap.byId("myBar1").is("div"), "bar1 should be rendered as div");
 
 					var bar = sap.ui.getCore().byId("myBar");
-					bar._context = 'header';
+					bar.setHTMLTag('header');
 					bar.rerender();
 					ok(jQuery.sap.byId("myBar").is("header"), "bar should be rendered as header");
 
 					var bar1 = sap.ui.getCore().byId("myBar1");
-					bar1._context = 'header';
-					bar1.rerender();
-					ok(jQuery.sap.byId("myBar1").is("header"), "bar1 should be rendered as header");
-					bar1._context = 'footer';
+					bar1.setHTMLTag('footer');
 					bar1.rerender();
 					ok(jQuery.sap.byId("myBar1").is("footer"), "bar1 should be rendered as footer");
 
@@ -156,6 +174,69 @@
 				sut.destroy();
 			});
 
+			var iMargin = 8;
+			var iStartEndPadding = 4;
+
+			jQuery.sap.require("sap.m.Button");
+			test("Should collapse borders of elements with borders in a Bar", function() {
+				// Arrange
+				var oFirstButton = new sap.m.Button("first"),
+					oMiddleButton = new sap.m.Button("middle"),
+					oLastButton = new sap.m.Button("last");
+
+				// System under Test + Act
+				var oBar = new sap.m.Bar({
+					contentLeft : [oFirstButton],
+					contentRight : [
+						oMiddleButton,
+						oLastButton
+					]
+				});
+
+				// Act + assert
+				oBar.placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+
+				// Act + assert
+				oBar.placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+
+				// Assert
+				function assertButton (oButton, oMargins) {
+					if(sap.ui.getCore().getConfiguration().getRTL()) {
+						strictEqual(oButton.$().css("margin-left"), oMargins.right + "px", oButton + " did have the correct right margin");
+						strictEqual(oButton.$().css("margin-right"),  oMargins.left + "px", oButton + " did have the correct left margin");
+					} else {
+						strictEqual(oButton.$().css("margin-left"), oMargins.left + "px", oButton + " did have the correct left margin");
+						strictEqual(oButton.$().css("margin-right"),  oMargins.right + "px", oButton + " did have the correct right margin");
+					}
+				}
+
+				assertButton(oFirstButton, {
+					left: 0,
+					right : 0
+				});
+
+				assertButton(oMiddleButton, {
+					left: 0,
+					right : 0
+				});
+
+				assertButton(oLastButton, {
+					left: iMargin,
+					right : 0
+				});
+
+				if(sap.ui.getCore().getConfiguration().getRTL()) {
+					strictEqual(oBar.$("BarLeft").css("padding-right"), iStartEndPadding + "px", "Left bar does have a padding");
+				} else {
+					strictEqual(oBar.$("BarLeft").css("padding-left"), iStartEndPadding + "px", "Left bar does have a padding");
+				}
+
+				// Cleanup
+				oBar.destroy();
+			});
+
 			module("positioning");
 
 			function getJqueryObjectsForBar (oBar) {
@@ -197,24 +278,24 @@
 				}
 			}
 
-			function createAndPlaceSUT(iLeftBarWidth, iRightBarWidth, iMidBarWidth) {
+			function createAndPlaceSUT(iLeftBarouterWidth, iRightBarouterWidth, iMidBarouterWidth) {
 				var leftButton, rightButton, midButton;
 
-				if(iLeftBarWidth !== undefined) {
+				if(iLeftBarouterWidth !== undefined) {
 					leftButton = new sap.m.Button({
-						width : iLeftBarWidth + "px"
+						width : iLeftBarouterWidth + "px"
 					});
 				}
 
-				if(iRightBarWidth !== undefined) {
+				if(iRightBarouterWidth !== undefined) {
 					rightButton = new sap.m.Button({
-						width : iRightBarWidth + "px"
+						width : iRightBarouterWidth + "px"
 					});
 				}
 
-				if(iMidBarWidth !== undefined) {
+				if(iMidBarouterWidth !== undefined) {
 					midButton = new sap.m.Button({
-						width : iMidBarWidth + "px"
+						width : iMidBarouterWidth + "px"
 					});
 				}
 
@@ -264,15 +345,15 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 100, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 100 + iStartEndPadding, "left outerWidth is correct");
 				elementHasNoWidth(oBarInternals.$left, "left Bar");
 				elementHasNoLeftOrRight(oBarInternals.$left, "left Bar");
 
-				strictEqual(oBarInternals.$mid.width(), 100, "mid width is correct");
+				strictEqual(oBarInternals.$mid.outerWidth(), 100 + iStartEndPadding * 2, "mid outerWidth is correct");
 				elementHasNoWidth(oBarInternals.$mid, "mid Bar");
 				elementHasNoLeftOrRight(oBarInternals.$left, "mid Bar");
 
-				strictEqual(oBarInternals.$right.width(), 100, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 100 + iStartEndPadding, "right outerWidth is correct");
 				elementHasNoWidth(oBarInternals.$right, "right Bar");
 				elementHasNoLeftOrRight(oBarInternals.$right, "right Bar");
 
@@ -289,13 +370,13 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 50, "left width is correct");
+				strictEqual(oBarInternals.$left.width(), 50 - iStartEndPadding, "left width is correct");
 				elementHasNoLeftOrRight(oBarInternals.$left, "left Bar");
 
-				strictEqual(oBarInternals.$mid.width(), 0, "mid width is correct");
+				strictEqual(oBarInternals.$mid.outerWidth(), 0 + iStartEndPadding * 2, "mid outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$mid, "mid Bar");
 
-				strictEqual(oBarInternals.$right.width(), 450, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 450 + iStartEndPadding, "right outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$right, "right Bar");
 
 				//Cleanup
@@ -311,13 +392,13 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 400, "left width is correct");
+				strictEqual(oBarInternals.$left.width(), 400 - iStartEndPadding, "left width is correct");
 				elementHasNoLeftOrRight(oBarInternals.$left, "left Bar");
 
-				strictEqual(oBarInternals.$mid.width(), 0, "mid width is correct");
+				strictEqual(oBarInternals.$mid.outerWidth(), 0 + iStartEndPadding * 2, "mid outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$mid, "mid Bar");
 
-				strictEqual(oBarInternals.$right.width(), 100, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 100 + iStartEndPadding, "right outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$right, "right Bar");
 
 				//Cleanup
@@ -333,11 +414,11 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 225, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 225 + iStartEndPadding, "left outerWidth is correct");
 
-				strictEqual(oBarInternals.$mid.width(), 175, "mid width is correct");
+				strictEqual(oBarInternals.$mid.outerWidth(), 175 -  iStartEndPadding * 2, "mid outerWidth is correct");
 
-				strictEqual(oBarInternals.$right.width(), 100, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 100 + iStartEndPadding, "right outerWidth is correct");
 
 				//Cleanup
 				sut.destroy();
@@ -364,12 +445,12 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 0, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 0 + iStartEndPadding, "left outerWidth is correct");
 
-				strictEqual(oBarInternals.$mid.width(), 500 - 225, "mid width is the remaining space");
-				strictEqual(oBarInternals.$mid.css("left"), "0px", "mid was positioned at the left edge");
+				strictEqual(oBarInternals.$mid.outerWidth(), 500 - 225 -  iStartEndPadding * 2, "mid outerWidth is the remaining space");
+				strictEqual(oBarInternals.$mid.css("left"), 0 +  iStartEndPadding + "px", "mid was positioned at the left edge");
 
-				strictEqual(oBarInternals.$right.width(), 225, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 225 + iStartEndPadding, "right outerWidth is correct");
 
 				//Cleanup
 				sut.destroy();
@@ -396,12 +477,12 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 0, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 0 + iStartEndPadding, "left outerWidth is correct");
 
-				strictEqual(oBarInternals.$mid.width(), 500 - 225, "mid width is the remaining space");
-				strictEqual(oBarInternals.$mid.css("left"), 225 + "px", "mid was positioned at the right edge");
+				strictEqual(oBarInternals.$mid.outerWidth(), 500 - 225 -  iStartEndPadding * 2, "mid outerWidth is the remaining space");
+				strictEqual(oBarInternals.$mid.css("left"), 225 + iStartEndPadding + "px", "mid was positioned at the right edge");
 
-				strictEqual(oBarInternals.$right.width(), 225, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 225 + iStartEndPadding, "right outerWidth is correct");
 
 				//Cleanup
 				sut.destroy();
@@ -416,11 +497,11 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 0, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 0 + iStartEndPadding, "left outerWidth is correct");
 
-				strictEqual(oBarInternals.$mid.width(), 0, "mid width is correct");
+				strictEqual(oBarInternals.$mid.outerWidth(), 0 + iStartEndPadding * 2, "mid outerWidth is correct");
 
-				strictEqual(oBarInternals.$right.width(), 500, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 500, "right outerWidth is correct");
 
 				//Cleanup
 				sut.destroy();
@@ -440,11 +521,11 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 500, "left width is correct");
+				strictEqual(oBarInternals.$left.width(), 500 - iStartEndPadding, "left width is correct");
 
-				strictEqual(oBarInternals.$mid.width(), 0, "mid width is correct");
+				strictEqual(oBarInternals.$mid.outerWidth(), 0 + iStartEndPadding * 2, "mid outerWidth is correct");
 
-				strictEqual(oBarInternals.$right.width(), 0, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 0 + iStartEndPadding, "right outerWidth is correct");
 
 				//Cleanup
 				sut.destroy();
@@ -464,11 +545,11 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 100, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 100 + iStartEndPadding, "left outerWidth is correct");
 
-				strictEqual(oBarInternals.$mid.width(), 300, "mid width is correct");
+				strictEqual(oBarInternals.$mid.outerWidth(), 300 -  iStartEndPadding * 2, "mid outerWidth is correct");
 
-				strictEqual(oBarInternals.$right.width(), 100, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 100 + iStartEndPadding, "right outerWidth is correct");
 
 				//Cleanup
 				sut.destroy();
@@ -488,11 +569,11 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 0, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 0 + iStartEndPadding, "left outerWidth is correct");
 
-				strictEqual(oBarInternals.$mid.width(), 500 - 225, "mid width was taking the remaining space");
+				strictEqual(oBarInternals.$mid.outerWidth(), 500 - 225 - iStartEndPadding * 2, "mid outerWidth was taking the remaining space");
 
-				strictEqual(oBarInternals.$right.width(), 225, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 225 + iStartEndPadding, "right outerWidth is correct");
 
 				//Cleanup
 				sut.destroy();
@@ -512,15 +593,15 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 0, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 0 + iStartEndPadding, "left outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$left, "left Bar");
 
 
-				strictEqual(oBarInternals.$mid.width(), 0, "mid width was taking the remaining space");
+				strictEqual(oBarInternals.$mid.outerWidth(), 0 + iStartEndPadding * 2, "mid outerWidth was taking the remaining space");
 				elementHasNoLeftOrRight(oBarInternals.$mid, "mid Bar");
 
 
-				strictEqual(oBarInternals.$right.width(), 500, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 500, "right outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$right, "right Bar");
 
 
@@ -548,13 +629,13 @@
 				//Assert
 				var oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 225, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 225 + iStartEndPadding, "left outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$left, "left Bar");
 
-				strictEqual(oBarInternals.$mid.width(), 50, "mid width was taking the remaining space");
-				strictEqual(oBarInternals.$mid.css("left"), 225 + "px", "mid was positioned at the left edge");
+				strictEqual(oBarInternals.$mid.outerWidth(), 50 - iStartEndPadding * 2, "mid outerWidth was taking the remaining space");
+				strictEqual(oBarInternals.$mid.css("left"), 225 + iStartEndPadding + "px", "mid was positioned at the left edge");
 
-				strictEqual(oBarInternals.$right.width(), 225, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 225 + iStartEndPadding, "right outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$right, "right Bar");
 
 				jQuery("#qunit-fixture").width("600px");
@@ -563,13 +644,13 @@
 
 				oBarInternals = getJqueryObjectsForBar(sut);
 
-				strictEqual(oBarInternals.$left.width(), 225, "left width is correct");
+				strictEqual(oBarInternals.$left.outerWidth(), 225 + iStartEndPadding, "left outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$left, "left Bar");
 
-				strictEqual(oBarInternals.$mid.width(), 100, "mid width was taking the remaining space");
+				strictEqual(oBarInternals.$mid.outerWidth(), 100 + iStartEndPadding * 2, "mid outerWidth was taking the remaining space");
 				elementHasNoLeftOrRight(oBarInternals.$left, "mid Bar");
 
-				strictEqual(oBarInternals.$right.width(), 225, "right width is correct");
+				strictEqual(oBarInternals.$right.outerWidth(), 225 + iStartEndPadding, "right outerWidth is correct");
 				elementHasNoLeftOrRight(oBarInternals.$right, "right Bar");
 
 				strictEqual(oHandleResizeSpy.callCount, 2, "resize was called twice");

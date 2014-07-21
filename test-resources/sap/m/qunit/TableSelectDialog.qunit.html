@@ -15,7 +15,6 @@
 
 	<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 	<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 	<script>
 
@@ -561,7 +560,54 @@
 // 		start();
 // 		}, 100);
 // 	});
-	
+
+		asyncTest("Check add/remove/toggle/hasStyleClass methods", function () {
+			var oTableSelectDialog = new sap.m.TableSelectDialog("TableSelectDialog"),	
+				sCustomStyleClass = "myStyleClass";
+
+			// add + has
+			oTableSelectDialog.addStyleClass(sCustomStyleClass);
+			oTableSelectDialog.open();
+			ok(oTableSelectDialog._oDialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog now has style class "' + sCustomStyleClass + '"');
+			ok(oTableSelectDialog.hasStyleClass(sCustomStyleClass), 'The TableSelectDialog now has style class "' + sCustomStyleClass + '"');
+
+			// remove
+			oTableSelectDialog.removeStyleClass(sCustomStyleClass);
+			ok(!oTableSelectDialog._oDialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog does not have style class "' + sCustomStyleClass + '" after remove');
+			ok(!oTableSelectDialog.hasStyleClass(sCustomStyleClass), 'The TableSelectDialog does not have style class "' + sCustomStyleClass + '" after remove');
+
+			// toggle
+			oTableSelectDialog.toggleStyleClass(sCustomStyleClass);
+			ok(oTableSelectDialog._oDialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog has style class "' + sCustomStyleClass + '" after toggle');
+			ok(oTableSelectDialog.hasStyleClass(sCustomStyleClass), 'The TableSelectDialog has style class "' + sCustomStyleClass + '" after toggle');
+
+			// cleanup
+			oTableSelectDialog._oDialog.attachAfterClose(function (oEvent) {
+				oTableSelectDialog.destroy();
+				start();
+			});
+			oTableSelectDialog._oDialog.close();
+		});
+
+		asyncTest("Check $ and getDomRef methods", function () {
+			var oTableSelectDialog = new sap.m.TableSelectDialog("TableSelectDialog");
+
+			oTableSelectDialog.open();
+
+			// $ method
+			ok(oTableSelectDialog.$() instanceof jQuery && oTableSelectDialog.$().length === 1, "The inner dialogs jQuery object is returned");
+
+			// getDomRef
+			ok(oTableSelectDialog.getDomRef() instanceof Element && oTableSelectDialog.getDomRef().id === oTableSelectDialog.getId()+"-dialog", "The inner dialogs DOM reference is returned");
+
+			// cleanup
+			oTableSelectDialog._oDialog.attachAfterClose(function (oEvent) {
+				oTableSelectDialog.destroy();
+				start();
+			});
+			oTableSelectDialog._oDialog.close();
+		});
+
 	</script>
 	</head>
 	<body id="body" class="sapUiBody">

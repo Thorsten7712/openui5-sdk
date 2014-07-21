@@ -5,8 +5,8 @@
 	<Page
 		title="Welcome">
 		<footer>
-			<Bar>
-			</Bar>
+			<Toolbar>
+			</Toolbar>
 		</footer>
 		<content>
 			<HBox>

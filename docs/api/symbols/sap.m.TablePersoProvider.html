@@ -106,13 +106,23 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Callback function which can be used to determine the title of a given column within the TablePersoDialog."><a href="../symbols/sap.m.TablePersoProvider.html#getCaption">getCaption</a></b><span class='signature'>(<span title="column control instance whose caption shall be determined">oColumn</span>)</span>
+									<b class="icon" title="Callback function which can be used to determine the title of a given column within the TablePersoDialog."><a href="../symbols/sap.m.TablePersoProvider.html#getCaption">getCaption</a></b><span class='signature'>(<span title="sap.m.Column control instance whose caption shall be determined">oColumn</span>)</span>
 									<span class='description'>Callback function which can be used to determine the title of a given column within the TablePersoDialog.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Callback function which can be used to determine the group of a given column within the TablePersoDialog."><a href="../symbols/sap.m.TablePersoProvider.html#getGroup">getGroup</a></b><span class='signature'>(<span title="sap.m.Column control instance whose group shall be determined">oColumn</span>)</span>
+									<span class='description'>Callback function which can be used to determine the group of a given column within the TablePersoDialog.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Retrieves the personalization bundle."><a href="../symbols/sap.m.TablePersoProvider.html#getPersData">getPersData</a></b><span class='signature'>()</span>
 									<span class='description'>Retrieves the personalization bundle.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Resets user’s personalization for a given table so that ‘getPersData’ will deliver its initial state."><a href="../symbols/sap.m.TablePersoProvider.html#resetPersData">resetPersData</a></b><span class='signature'>()</span>
+									<span class='description'>Resets user’s personalization for a given table so that ‘getPersData’ will deliver its initial state.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -230,7 +240,7 @@ This must return a jQuery promise (see http://api.jquery.com/promise/)
 									<div class='sectionItem classMethod'>
 										<a name="getCaption"> </a>
 										<div class="itemTitle icon">
-											getCaption<span class="signature">(<span title="column control instance whose caption shall be determined">oColumn</span>)</span>
+											getCaption<span class="signature">(<span title="sap.m.Column control instance whose caption shall be determined">oColumn</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -246,7 +256,7 @@ display a modified column name for a certain column, this callback function can 
 If the callback delivers null for a column (which is the default implementation), the default
 texts described above are displayed for that column in the TablePersoDialog. 
 </p><p>
-In case neither the callback delovers null and neither 'text' nor ' title' property are at hand,
+In case neither the callback delivers null and neither 'text' nor ' title' property are at hand,
 the TablePersoDialog will display the column id and a warning message is logged.
 											
 											
@@ -267,7 +277,52 @@ the TablePersoDialog will display the column id and a warning message is logged.
 													  <b>oColumn</b>
 													</td>
 													<td class="methodItemDesc">
-												    column control instance whose caption shall be determined
+												    sap.m.Column control instance whose caption shall be determined
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getGroup"> </a>
+										<div class="itemTitle icon">
+											getGroup<span class="signature">(<span title="sap.m.Column control instance whose group shall be determined">oColumn</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											Callback function which can be used to determine the group of a given column
+within the TablePersoDialog. As a default, the columns are not assigned to a group. 
+</p><p>
+This information is used to group the columns within the TablePersoDialog if the TablePersoController's
+'group' flag is set, otherwise, the groups are ignored.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  
+													</td>
+													<td class="methodItemName">
+													  <b>oColumn</b>
+													</td>
+													<td class="methodItemDesc">
+												    sap.m.Column control instance whose group shall be determined
 													</td>
 												</tr>
 											
@@ -289,6 +344,34 @@ the TablePersoDialog will display the column id and a warning message is logged.
 										</div>
 										<div class="full-description">
 											Retrieves the personalization bundle. 
+This must return a jQuery promise (see http://api.jquery.com/promise/)
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="resetPersData"> </a>
+										<div class="itemTitle icon">
+											resetPersData<span class="signature">()</span>
+											
+										</div>
+										<div class="full-description">
+											Resets user’s personalization for a given table so that ‘getPersData’ will
+deliver its initial state. If no table is specified, all personalizations
+of the currently logged on user are reset.
+</p><p>
 This must return a jQuery promise (see http://api.jquery.com/promise/)
 											
 											

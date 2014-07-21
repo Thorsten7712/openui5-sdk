@@ -6,14 +6,13 @@
 		<script id="sap-ui-bootstrap"
 			type="text/javascript"
 			src="../../../../../resources/sap-ui-core.js"
-			data-sap-ui-theme="sap_goldreflection"
+			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-language="en-US"
 			data-sap-ui-noConflict="true"
 			data-sap-ui-libs="sap.ui.commons" >
 		</script>
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -25,7 +24,6 @@
 				var ctrlId   = "myDatePicker";
 				var inputId  = ctrlId + "-input";
 				var iconId   = ctrlId + "-icon";
-				var pickerId = "ui-datepicker-div";
 				var sChangeValue = "";
 				var sChangeYyyymmdd = "";
 				var bChangeInvalid = true;
@@ -124,43 +122,43 @@
 			// The DatePicker always appear ":visible" - test for class !!!
 			test("TestOpenViaMouseClick", function(){
 				if (!bMobile){
-					ok(jQuery.sap.byId(pickerId).hasClass("sapUi-visibilityHidden"), "Should be hidden before 1st click");
+					ok(!jQuery.sap.byId(ctrlId+"-cal").get(0), "calendar not exists before 1st click");
 					qutils.triggerMouseEvent("myDatePicker-icon", "click");
-					ok(!jQuery.sap.byId(pickerId).hasClass("sapUi-visibilityHidden"), "Should be visible after 1st click");
+					ok(jQuery.sap.byId(ctrlId+"-cal").is(":visible"), "Should be visible after 1st click");
 					qutils.triggerMouseEvent("myDatePicker-icon", "click");
-					ok(jQuery.sap.byId(pickerId).hasClass("sapUi-visibilityHidden"), "Should be hidden after 2nd click");
+					ok(!jQuery.sap.byId(ctrlId+"-cal").is(":visible"), "Should be hidden after 2nd click");
 				}else{
 					// on mobile device no jQuery DatePicker must open
-					ok(!jQuery.sap.byId(pickerId).get(0), "no jQuery-DatePicker rendered on mobile devices");
+					ok(!jQuery.sap.byId(ctrlId+"-cal").get(0), "no jQuery-DatePicker rendered on mobile devices");
 					qutils.triggerMouseEvent("myDatePicker-icon", "click");
-					ok(!jQuery.sap.byId(pickerId).get(0), "still no jQuery-DatePicker rendered on mobile devices after click");
+					ok(!jQuery.sap.byId(ctrlId+"-cal").get(0), "still no jQuery-DatePicker rendered on mobile devices after click");
 				}
 			});
 
 			if (!bMobile){
 				// on mobile devices no keyboard support
 				test("Keyboard navigation on input field", function() {
-					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_UP, false, true, false);
-					equal(jQuery("#myDatePicker2-input").val(), "26.12.2010", "Date increases by 1 day pressing '+'");
-					equal(oPicker2.getValue(), "25.12.2010", "Value not changed by pressing '+'");
+					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_UP, false, false, false);
+					equal(jQuery("#myDatePicker2-input").val(), "26.12.2010", "Date increases by 1 day pressing 'PAGE_UP'");
+					equal(oPicker2.getValue(), "25.12.2010", "Value not changed by pressing 'PAGE_UP'");
 					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_UP, true, false, false);
-					equal(jQuery("#myDatePicker2-input").val(), "26.01.2011", "Date increases by 1 month pressing shift+'+'");
-					equal(oPicker2.getValue(), "25.12.2010", "Value not changed by pressing shift+'+'");
+					equal(jQuery("#myDatePicker2-input").val(), "26.01.2011", "Date increases by 1 month pressing shift+'PAGE_UP'");
+					equal(oPicker2.getValue(), "25.12.2010", "Value not changed by pressing shift+'PAGE_UP'");
 					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_UP, true, false, true);
-					equal(jQuery("#myDatePicker2-input").val(), "26.01.2012", "Date increases by 1 year pressing ctrl+shift+'+'");
-					equal(oPicker2.getValue(), "25.12.2010", "Value not changed by pressing ctrl+shift+'+'");
+					equal(jQuery("#myDatePicker2-input").val(), "26.01.2012", "Date increases by 1 year pressing ctrl+shift+'PAGE_UP'");
+					equal(oPicker2.getValue(), "25.12.2010", "Value not changed by pressing ctrl+shift+'PAGE_UP'");
 					qutils.triggerKeyboardEvent("myDatePicker2-input", jQuery.sap.KeyCodes.ENTER, false, false, false);
 					equal(oPicker2.getValue(), "26.01.2012", "Value changed by pressing ENTER");
 
-					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_DOWN, false, true, false);
-					equal(jQuery("#myDatePicker2-input").val(), "25.01.2012", "Date decreases by 1 day pressing '-'");
-					equal(oPicker2.getValue(), "26.01.2012", "Value not changed by pressing '-'");
+					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_DOWN, false, false, false);
+					equal(jQuery("#myDatePicker2-input").val(), "25.01.2012", "Date decreases by 1 day pressing 'PAGE_DOWN'");
+					equal(oPicker2.getValue(), "26.01.2012", "Value not changed by pressing 'PAGE_DOWN'");
 					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_DOWN, true, false, false);
-					equal(jQuery("#myDatePicker2-input").val(), "25.12.2011", "Date decreases by 1 month pressing shift+'-'");
-					equal(oPicker2.getValue(), "26.01.2012", "Value not changed by pressing shift+'-'");
+					equal(jQuery("#myDatePicker2-input").val(), "25.12.2011", "Date decreases by 1 month pressing shift+'PAGE_DOWN'");
+					equal(oPicker2.getValue(), "26.01.2012", "Value not changed by pressing shift+'PAGE_DOWN'");
 					qutils.triggerKeydown("myDatePicker2-input", jQuery.sap.KeyCodes.PAGE_DOWN, true, false, true);
-					equal(jQuery("#myDatePicker2-input").val(), "25.12.2010", "Date decreases by 1 year pressing ctrl+shift+'-'");
-					equal(oPicker2.getValue(), "26.01.2012", "Value not changed by pressing ctrl+shift+'-'");
+					equal(jQuery("#myDatePicker2-input").val(), "25.12.2010", "Date decreases by 1 year pressing ctrl+shift+'PAGE_DOWN'");
+					equal(oPicker2.getValue(), "26.01.2012", "Value not changed by pressing ctrl+shift+'PAGE_DOWN'");
 					qutils.triggerKeyboardEvent("myDatePicker2-input", jQuery.sap.KeyCodes.ENTER, false, false, false);
 					equal(oPicker2.getValue(), "25.12.2010", "Value changed by pressing ENTER");
 				});
@@ -255,6 +253,7 @@
 					equal( jQuery("#myDatePicker7-input").val(), "Date", "Placeholder set");
 				}
 
+				jQuery("#myDatePicker7-icon").focus();
 				qutils.triggerMouseEvent("myDatePicker7-icon", "click");
 				if (sap.ui.Device.support.input.placeholder) {
 					equal( jQuery("#myDatePicker7-input").attr("placeholder"), "Date", "Placeholder still set after opened");

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9390072897505545"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2553290895782804"/>
 <title>Defining a Formatter</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,7 +31,7 @@
 <ul class="ul" id="loio52a5ed0a1b304f788aa6dde684693d62__ul_l1v_j11_zm"><li class="li">
                 <p class="p">Defining a formatter in <samp class="ph codeph">controller.js</samp>:</p>
 
-                <div><pre class="pre codeblock">myFormatter: function(sName) {
+                <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">myFormatter: function(sName) {
         return sName.toUpperCase();
     },
     
@@ -46,7 +48,7 @@ myGenderFormatter: function(sGender) {
 <li class="li">
                 <p class="p">Defining a global formatter in the SAPUI5 application:</p>
 
-                <div><pre class="pre codeblock">&lt;script type="text/javascript"&gt;
+                <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;script type="text/javascript"&gt;
     // define a global formatter function
     var my = {};
     my.globalFormatter = function(iDay,iMonth,iYear) {

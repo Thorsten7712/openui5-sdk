@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=15975792260870525"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5990455419424056"/>
 <title>Creating a Simple Control</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -24,7 +26,7 @@
 <div class="body"><p class="p">The following code snippet gives an example how to create a simple control with a
                 <span class="keyword cmdname">name</span> property. The control is used to render the text "Hello
             &lt;name&gt;": </p>
-<div><pre class="pre codeblock">sap.ui.core.Control.extend("my.Hello", {      // call the new Control type "my.Hello" 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.core.Control.extend("my.Hello", {      // call the new Control type "my.Hello" 
                                               // and let it inherit from sap.ui.core.Control
     metadata : {                              // the Control API
         properties : {
@@ -41,7 +43,7 @@
 });</pre></div>
 <p class="p">The new control is ready for use now. To instantiate and display the control, use the following
             code:</p>
-<div><pre class="pre codeblock">new my.Hello({name:"UI5"}).placeAt("content");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new my.Hello({name:"UI5"}).placeAt("content");</pre></div>
 </div>
 <div class="related-links"> 
 

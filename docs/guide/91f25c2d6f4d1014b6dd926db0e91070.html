@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4770593965568992"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=03901847635543165"/>
 <title>File Names and Locations (View and Controller)</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -33,10 +35,10 @@
 			a controller, SAPUI5 runtime loads them in relation to the <samp class="ph codeph">resources</samp>
 			folder of the machine where SAPUI5 runtime was loaded. To inform SAPUI5 runtime that
 			your views and controllers are located on your local machine, use the following code: </p>
-<div><pre class="pre codeblock">jQuery.sap.registerModulePath(sModuleNamePrefix, sURL);</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.registerModulePath(sModuleNamePrefix, sURL);</pre></div>
 <p class="p">or 
 	 </p>
-<div><pre class="pre codeblock">sap.ui.localResources(sModuleNamePrefix);</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.localResources(sModuleNamePrefix);</pre></div>
 <p class="p">It is usually sufficient to use 
 		<samp class="ph codeph">sap.ui.localResources</samp>
 		which internally registers 
@@ -51,10 +53,10 @@
 	 </p>
 <p class="p">If your files are located at <samp class="ph codeph">http://&lt;localhost:8080&gt;/&lt;myapp&gt;/</samp>, for
 			example, you can use <samp class="ph codeph">registerModulePath</samp> as follows: </p>
-<div><pre class="pre codeblock">jQuery.sap.registerModulePath("myapp", "http://&lt;localhost:8080&gt;/&lt;myapp&gt;/");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.registerModulePath("myapp", "http://&lt;localhost:8080&gt;/&lt;myapp&gt;/");</pre></div>
 <p class="p">or 
 	 </p>
-<div><pre class="pre codeblock">sap.ui.localResources("myapp");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.localResources("myapp");</pre></div>
 <p class="p">All views and controllers with a name starting with 
 		<samp class="ph codeph">myapp</samp>, for example 
 		<samp class="ph codeph">myapp.MyView</samp>, will then

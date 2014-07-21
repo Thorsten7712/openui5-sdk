@@ -12,9 +12,11 @@
 <meta name="abstract" content="You can use CSS to achieve striping of table rows as you might do in other web-based applications."/>
 <meta name="description" content="You can use CSS to achieve striping of table rows as you might do in other web-based applications."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2925299076660959"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8283622125430926"/>
 <title>Highlighting Rows and Columns</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,7 +31,7 @@
 <p class="p"><img class="image" id="loio7ec7885ce75c4237aadc67d83f64b66e__image_cn3_s12_mn" src="7caa85eebdaa4e20982e2d7649975564.image"/></p>
 <p class="p">You just need to note the id of the <strong class="ph b">sap.m.List</strong> or <strong class="ph b">sap.m.Table</strong> control (in this
 			case it is "salesdata") and then apply some appropriate CSS such as:</p>
-<div><pre class="pre codeblock"> 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> 
 <samp class="ph codeph">#!js</samp>
 #salesarea tbody tr:nth-child(even) {
 	background: rgb(245, 245, 245);
@@ -41,7 +43,7 @@
 			the whole column (header, cells and footer) and can be used like this: Specify a class
 			name for the <strong class="ph b">styleClass</strong> property of your Column, and set the style as you
 			wish:</p>
-<div><pre class="pre codeblock"> 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> 
 <samp class="ph codeph">#!js</samp>
 new sap.m.Column({
     header: new sap.m.Label({ text: "Sales (GBP)" }),

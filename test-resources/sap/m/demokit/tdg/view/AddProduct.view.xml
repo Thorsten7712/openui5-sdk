@@ -75,12 +75,11 @@
 			</l:content>
 		</l:Grid>
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button text="{i18n>addProductButtonSave}" type="Emphasized" press="onSave" />
-					<Button text="{i18n>addProductButtonCancel}" press="onCancel" />
-				</contentRight>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>addProductButtonSave}" type="Emphasized" press="onSave" />
+				<Button text="{i18n>addProductButtonCancel}" press="onCancel" />
+			</Toolbar>
 		</footer>
 	</Page>
 </mvc:View>

@@ -5,7 +5,7 @@
 	<author>SAP AG</author>
 	<documentation>List item should be used for a label and an input field.</documentation>
 
-	<baseType>ListItemBase</baseType>
+	<baseType>sap.m/ListItemBase</baseType>
 	<properties>
 		<property group="Misc" name="label" type="sap.ui.core/string">
 			<documentation>Label of the list item</documentation>

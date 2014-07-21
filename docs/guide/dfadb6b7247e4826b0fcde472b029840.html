@@ -12,9 +12,11 @@
 <meta name="abstract" content="To develop a SplitApp application, use the sap.m.SplitApp control instead of the sap.m.App control.."/>
 <meta name="description" content="To develop a SplitApp application, use the sap.m.SplitApp control instead of the sap.m.App control.."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=468213507491984"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6707659956405828"/>
 <title>The First SplitApp</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -43,13 +45,13 @@
 			<p class="p">To launch it, choose <span class="ph uicontrol">SplitApp</span> from here: <a class="extlink" href="../../demoapps.html">Demo Applications<img src="images/sap_link.png" class="link-sap" alt="Information published on SAP site" title="Information published on SAP site" border="0"/></a>.</p>
 
 		</div>
-<div><pre class="pre codeblock">var oSplitApp = new sap.m.SplitApp("mySplitApp", {});</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oSplitApp = new sap.m.SplitApp("mySplitApp", {});</pre></div>
 <p class="p">You can add pages to the <samp class="ph codeph">SplitApp</samp> control, but you have to decide to which
 			view you want to add them: </p>
-<div><pre class="pre codeblock">oSplitApp.addDetail() or oSplitApp.addMaster();</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oSplitApp.addDetail() or oSplitApp.addMaster();</pre></div>
 <p class="p">Before you can do this, you need some basic pages, two for the Master and two for the Detail
 			view: </p>
-<div><pre class="pre codeblock">var oDetailPage1 = new sap.m.Page("detail1", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oDetailPage1 = new sap.m.Page("detail1", {
    title : "Detail 1",
    content : [ new sap.m.Label({
                    text : "this is Detail 1"
@@ -71,7 +73,7 @@ var oDetailPage2 = new sap.m.Page("detail2", {
 <p class="p">If the user taps on a list item, we navigate to Master view page 2. To do this, call the
 				<samp class="ph codeph">toMaster()</samp> method with the page you want to navigate to. In the
 			example this is <samp class="ph codeph">master2</samp>. </p>
-<div><pre class="pre codeblock">var oMasterPage1 = new sap.m.Page("master1",{
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMasterPage1 = new sap.m.Page("master1",{
    title : "Master",
    content : [ new sap.m.List({
 		        items : [ new sap.m.StandardListItem({
@@ -93,7 +95,7 @@ var oDetailPage2 = new sap.m.Page("detail2", {
 			which detail page to show. Depending on the selected list item, either the
 				<samp class="ph codeph">detail1</samp> page or the <samp class="ph codeph">detail2</samp> page is displayed. The
 			method is called <samp class="ph codeph">toDetail</samp>.</p>
-<div><pre class="pre codeblock">var oMasterPage2 = new sap.m.Page("master2",{
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMasterPage2 = new sap.m.Page("master2",{
    title : "Master2",
    navButtonPress : function() {
 		           oSplitApp.backMaster();
@@ -119,21 +121,21 @@ var oDetailPage2 = new sap.m.Page("detail2", {
 			needs to be added to the pages. Also, the navigation back to the Master view page has to
 			be available from both Detail view pages.</p>
 <p class="p">In the next step, the pages are put into the <samp class="ph codeph">SplitApp</samp> control:</p>
-<div><pre class="pre codeblock">//add the master pages to the splitapp control
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//add the master pages to the splitapp control
 oSplitApp.addMasterPage(oMasterPage1).addMasterPage(oMasterPage2);
 
 //add the detail pages to the splitapp control
 oSplitApp.addDetailPage(oDetailPage1).addDetailPage(oDetailPage2);</pre></div>
 <p class="p">Then set the initial Master view and Detail view page:</p>
-<div><pre class="pre codeblock">oSplitApp.setInitialDetail("detail1");
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oSplitApp.setInitialDetail("detail1");
 oSplitApp.setInitialMaster("master1");</pre></div>
 <p class="p">Define the page transition type you want to use, see <a class="xref" href="a4afb138acf64a61a038aa5b91a4f082.html" title="Mobile apps are often composed of several pages and the user can drill-down to detail pages and go back up again. This is often visualized by horizontal slide animations. SAPUI5 supports this pattern by providing the sap.m.App and sap.m.NavContainer controls, which handle the navigation between the pages.">Handling Navigation and Lifecycle Events</a>. </p>
 <pre class="pre">oSplitApp.setDefaultTransitionNameDetail("fade");</pre>
 <p class="p">Finally, place the <samp class="ph codeph">SplitApp</samp> control in the HTML body tag: </p>
-<div><pre class="pre codeblock">oSplitApp.placeAt("body");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oSplitApp.placeAt("body");</pre></div>
 <p class="p">To test the other two <samp class="ph codeph">SplitApp</samp> modes, use the <samp class="ph codeph">setMode</samp> method
 			to set them: </p>
-<div><pre class="pre codeblock">oSplitApp.setMode("PopoverMode");
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oSplitApp.setMode("PopoverMode");
 //or
 oSplitApp.setMode("StretchCompressMode");
 </pre></div>

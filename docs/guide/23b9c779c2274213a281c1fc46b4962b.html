@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4646966100394522"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6038690207722298"/>
 <title>Fragments with Multiple Root Nodes</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,29 +28,32 @@
 <div class="body conbody"><p class="shortdesc"/>
 <p class="p">XML and JS fragments are not restricted to have exactly one root control containing all other
 			controls as children. </p>
-<div class="p">In JS fragments, the <samp class="ph codeph">createContent()</samp> method can optionally return an
-			array of controls:
-			<div><pre class="pre codeblock">sap.ui.jsfragment( "sap.ui.core.fragmenttest.MultiRootFragment", {
-		
-			createContent: function(oController) {
-				var oLabel  = new sap.m.Label({text:"These controls are within one multi-root Fragment:"});
-        		var oInput  = new sap.m.Input();
-        		var oButton  = new sap.m.Button({text:"Still in the same Fragment"}); 
-			
-				return [ oLabel , oInput , oButton  ];
-			}
-		});</pre></div>
+<div class="p">In JS fragments, the <samp class="ph codeph">createContent()</samp> method can optionally return an array of
+			controls:
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
+sap.ui.jsfragment("sap.ui.core.fragmenttest.MultiRootFragment", {
+
+    createContent: function(oController) {
+        var oLabel = new sap.m.Label({text:"These controls are within one multi-root Fragment:"});
+        var oInput = new sap.m.Input();
+        var oButton = new sap.m.Button({text: "Still in the same Fragment"});
+
+        return [ oLabel, oInput, oButton ];
+    }
+
+});</pre></div>
 </div>
 <p class="p">As XML documents need to have exactly one root node, to achieve XML fragments with
 			multiple root nodes, an additional <samp class="ph codeph">&lt;FragmentDefinition&gt;</samp> tag needs to
 			be added as root element containing the actual root controls. This
 				<samp class="ph codeph">&lt;FragmentDefinition&gt;</samp> tag will not have any representation in
 			HTML at runtime; the children are added directly to wherever this fragment is placed. </p>
-<div><pre class="pre codeblock">&lt;core:FragmentDefinition xmlns= "sap.m" xmlns:core= "sap.ui.core"&gt;
-			&lt;Label text= "These controls are within one multi-root fragment:" /&gt; 
-			&lt;Input /&gt;
-		    &lt;Button text= "Still in the same Fragment" /&gt;
-		&lt;/core:FragmentDefinition&gt;</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
+&lt;core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"&gt;
+    &lt;Label text="These controls are within one multi-root Fragment:" /&gt;
+    &lt;Input /&gt;
+    &lt;Button text="Still in the same Fragment" /&gt;
+&lt;/core:FragmentDefinition&gt;</pre></div>
 <div class="note note"><span class="notetitle">Note</span> For HTML fragments this feature is currently not available. </div>
 </div>
 <div class="related-links"> 

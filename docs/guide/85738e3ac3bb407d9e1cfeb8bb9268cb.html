@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=48288594251041617"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=23811534817586733"/>
 <title>Normal Methods</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -30,7 +32,7 @@
          below. </p>
 <p class="p">The following code snippet is an example for the public method <samp class="ph codeph">divide</samp> that
          calls the private helper method <samp class="ph codeph">_checkForZero</samp> within the control:</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
    divide: function(x, y) {     // a public method of the Control
 
       if (this._checkForZero(y)) {

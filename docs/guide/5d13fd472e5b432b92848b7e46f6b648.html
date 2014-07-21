@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3946273877245132"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=20950977916560853"/>
 <title>The DetailPage View</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -45,7 +47,7 @@
 				The second array entry is the context of this method: When the method is executed,
 				"this" is the controller.</p>
 
-			<div><pre class="pre codeblock">var oPage = new sap.m.Page({
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oPage = new sap.m.Page({
     title:"Details",
     showNavButton:true,
     navButtonText: "Countries",
@@ -70,7 +72,7 @@
 				by the root controller as payload data of the <samp class="ph codeph">to(…)</samp> call, which
 				triggered the detail page navigation.</p>
 
-			<div><pre class="pre codeblock">this.addEventDelegate({
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">this.addEventDelegate({
     onBeforeShow: function(evt) {
         this.setBindingContext(evt.data); // evt.to is actually this View (the navigation target). This should be "this" in the future to be more intuitive...
     }
@@ -84,7 +86,7 @@
 		</div></div>
 <div class="section" id="loio5d13fd472e5b432b92848b7e46f6b648__section_N1008D_N10011_N10001"><div class="section_title">The Entire View Code</div><div type="The Entire View Code">
 			
-			<div><pre class="pre codeblock">sap.ui.jsview("sap.m.mvc.DetailPage", {
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.jsview("sap.m.mvc.DetailPage", {
 
 
     getControllerName: function() {

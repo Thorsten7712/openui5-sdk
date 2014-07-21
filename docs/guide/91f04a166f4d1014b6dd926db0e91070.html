@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3575442867320616"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=401007843450377"/>
 <title>Definining New Subclasses</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -24,9 +26,9 @@
 <div class="body"><p class="p">For the definition of subclasses, the <samp class="ph codeph">extend()</samp> method is available on all
 			controls (and the base classes). To create a new control from scratch, use the following
 			code: </p>
-<div><pre class="pre codeblock">sap.ui.core.Control.extend(...)</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.core.Control.extend(...)</pre></div>
 <p class="p">To create a new control that inherits from <samp class="ph codeph">Button</samp>, use the following code: </p>
-<div><pre class="pre codeblock">sap.ui.commons.Button.extend(...);</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.commons.Button.extend(...);</pre></div>
 <p class="p">The name and the definition of the new control type are the parameters of the function. The
 			definition contains information about the control API: the properties, aggregations, and
 			events as well as the implementation of the control methods. The definition also

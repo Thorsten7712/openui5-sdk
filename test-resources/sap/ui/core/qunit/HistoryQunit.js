@@ -27,10 +27,10 @@
         oHashChanger.setHash("bar");
         
         //Assert
-        strictEqual(sut._aHistory.length, 3, "should have 3 entries in the history");
-        strictEqual(sut._aHistory[0], "", "the first entry is the initial hash");
-        strictEqual(sut._aHistory[1], "foo");
-        strictEqual(sut._aHistory[2], "bar");
+        strictEqual(sut.aHistory.length, 3, "should have 3 entries in the history");
+        strictEqual(sut.aHistory[0], "", "the first entry is the initial hash");
+        strictEqual(sut.aHistory[1], "foo");
+        strictEqual(sut.aHistory[2], "bar");
     });
 
     test("Should not record a hash replace", function() {
@@ -43,12 +43,12 @@
         oHashChanger.replaceHash("bar"); //replace with bar
         
         //Assert
-        strictEqual(sut._aHistory.length, 2, "should have 1 entries in the history");
-        strictEqual(sut._aHistory[0], "", "should have the initial value first");
-        strictEqual(sut._aHistory[1], "bar", "should have the replace value");
+        strictEqual(sut.aHistory.length, 2, "should have 2 entries in the history");
+        strictEqual(sut.aHistory[0], "", "should have the initial value first");
+        strictEqual(sut.aHistory[1], "bar", "should have the replace value");
     });
 
-    test("Should replace an entrie in the history if replace takes place", function() {
+    test("Should replace an entry in the history if replace takes place", function() {
         //System under Test
         var oHashChanger = sap.ui.core.routing.HashChanger.getInstance();
         var sut = new sap.ui.core.routing.History(oHashChanger);
@@ -57,8 +57,8 @@
         oHashChanger.replaceHash("bar"); //replace with bar
         
         //Assert
-        strictEqual(sut._aHistory.length, 1, "should have 1 entries in the history");
-        strictEqual(sut._aHistory[0], "bar", "should have bar as value");
+        strictEqual(sut.aHistory.length, 1, "should have 1 entry in the history");
+        strictEqual(sut.aHistory[0], "bar", "should have bar as value");
     });
 
     test("Should return newPage if a page was added to the history", function() {
@@ -249,7 +249,7 @@
         
         //Assert
         strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Unknown, "should be an unknown navigation");
-        strictEqual(sut._aHistory.length, 1, "history should be cleaned after unknown occured");
+        strictEqual(sut.aHistory.length, 1, "history should be cleaned after unknown occured");
         
         //since the app did not navigate again its still unknown
         sut._hashChange("any");
@@ -260,8 +260,8 @@
         sut._hashChange("thing");
         strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.NewEntry, "should add a newpage again");
 
-        strictEqual(sut._aHistory.length, 2, "should have 1 entries in the history");
-        strictEqual(sut._aHistory[1], "thing");
+        strictEqual(sut.aHistory.length, 2, "should have 2 entries in the history");
+        strictEqual(sut.aHistory[1], "thing");
     });
 
     test("Should clean up the history", function() {
@@ -277,14 +277,14 @@
         oHashChanger.setHash("biz");
 
         //Assert
-        strictEqual(sut._iHistoryPosition, 2, "should be at entry 2 of the history");
-        strictEqual(sut._aHistory.length, 3, "should have 3 entries in the history");
+        strictEqual(sut.iHistoryPosition, 2, "should be at entry 2 of the history");
+        strictEqual(sut.aHistory.length, 3, "should have 3 entries in the history");
 
         hasher.replaceHash(sHashPrefix + "foo");
 
         strictEqual(sut.getDirection(), sap.ui.core.routing.HistoryDirection.Backwards, "should be a forwards navigation");
-        strictEqual(sut._iHistoryPosition, 1, "should be at entry one of the history");
-        strictEqual(sut._aHistory.length, 3, "should have 2 entries in the history");
+        strictEqual(sut.iHistoryPosition, 1, "should be at entry one of the history");
+        strictEqual(sut.aHistory.length, 3, "should have 2 entries in the history");
     });
 
     test("Should get the previous hash if there was no history before", function() {

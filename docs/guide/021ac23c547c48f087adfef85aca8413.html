@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3100360709593162"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=32870923383386885"/>
 <title>Examples for Triggering Telephone, Text and E-Mail Applications</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,7 +27,7 @@
 <h1 class="title topictitle1">Examples for Triggering Telephone, Text and E-Mail Applications</h1>
 <div class="body"><p class="shortdesc"/>
 <p class="p">Sample data used in the examples: </p>
-<div><pre class="pre codeblock">var person = {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var person = {
     name : "John Smith",
     tel : "+49 62227
           747474",
@@ -40,7 +42,7 @@
             
             <p class="p">The following button can be used to place a call. </p>
 
-            <div><pre class="pre codeblock">new sap.m.Button({
+            <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new sap.m.Button({
     text : person.tel,
     icon : "images/action.png", /* Depends where your images are located */
     tap : function() {
@@ -54,7 +56,7 @@
 			<p class="p">The following code snippet gives an example for triggering an e-mail application. You can also
 				set the subject and message of the e-mail application:</p>
 
-			<div><pre class="pre codeblock">new sap.m.Image({
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new sap.m.Image({
     src : "images/website.png", /* Depends where your images are located */
     tap : function() {
         sap.m.URLHelper.triggerEmail(person.website, "Info", "Dear " + person.name + ",");
@@ -67,7 +69,7 @@
             <p class="p"><samp class="ph codeph">DisplayListItem</samp> with active feedback is the most popular use case
                 for the following example.</p>
 
-            <div><pre class="pre codeblock">new sap.m.DisplayListItem({
+            <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new sap.m.DisplayListItem({
     label : "Sms",
     value : "( " + person.sms + " )",
     type : "Active",
@@ -78,7 +80,7 @@
 
             <p class="p">To use any other control inside the list, use <samp class="ph codeph">InputListItem</samp>:</p>
 
-            <div><pre class="pre codeblock">new sap.m.InputListItem({
+            <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new sap.m.InputListItem({
     label : "Website",
     content : new sap.m.Button({
         text : person.website,

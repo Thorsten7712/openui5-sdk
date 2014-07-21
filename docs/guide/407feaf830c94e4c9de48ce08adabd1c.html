@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=16386571477149126"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6251749450320151"/>
 <title>Controller Extension</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -42,7 +44,7 @@
 			works.</p>
 <p class="p">The following code snippet shows the standard controller <samp class="ph codeph">Main.controller.js</samp>
 			that you want to replace:</p>
-<div><pre class="pre codeblock">sap.ui.controller("samples.components.ext.sap.Main", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("samples.components.ext.sap.Main", {
     onInit : function () {
         console.log("samples.components.ext.sap.Main - onInit");
     },
@@ -57,7 +59,7 @@
 });</pre></div>
 <p class="p">You replace the standard controller with the following new controller
 				<samp class="ph codeph">CustomMain.controller.js</samp>:</p>
-<div><pre class="pre codeblock">sap.ui.controller("samples.components.ext.customer.CustomMain", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("samples.components.ext.customer.CustomMain", {
     onInit : function () {
         console.log("samples.components.ext.customer.CustomMain - onInit");
     },
@@ -71,7 +73,7 @@
     }
 });</pre></div>
 <p class="p">Im customizing, you connect the new controller with the standard controller:</p>
-<div><pre class="pre codeblock">customizing: {  
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">customizing: {  
     "sap.ui.controllerExtensions": {
         "samples.components.ext.sap.Main": {
             controllerName: "samples.components.ext.customer.CustomMain"
@@ -81,7 +83,7 @@
 <p class="p">With this customizing, the <samp class="ph codeph">samples.components.ext.customer.CustomMain</samp>
 			controller functions are merged every time the controller is called. The log contains
 			the following messages after initialization:</p>
-<div><pre class="pre codeblock">samples.components.ext.sap.Main - onInit
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">samples.components.ext.sap.Main - onInit
 samples.components.ext.customer.CustomMain - onInit</pre></div>
 <p class="p">The <samp class="ph codeph">doSomething</samp> method of the new controller overwrites the
 				<samp class="ph codeph">doSomething</samp> method of the standard Controller. Thus, if the method

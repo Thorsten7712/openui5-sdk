@@ -11,7 +11,7 @@
 <!-- Initialization -->
 <script id="sap-ui-bootstrap" type="text/javascript"
 	src="../../../../../resources/sap-ui-core.js"
-	data-sap-ui-theme="sap_platinum" data-sap-ui-libs="sap.ui.commons">
+	data-sap-ui-theme="sap_bluecrystal" data-sap-ui-libs="sap.ui.commons">
 	</script>
 
 <link rel="stylesheet"
@@ -19,8 +19,6 @@
 	media="screen" />
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript"
-	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
@@ -43,28 +41,37 @@
 	var timeout = 3000;
 	var sURI = "http://services.odata.org/V3/Northwind/Northwind.svc/";
 	sURI = "../../../../../proxy/http/" + sURI.replace("http://","");
-	
+
 	var oLabel = new sap.ui.commons.Label("myLabel");
 	oLabel.placeAt("target1");
-	
+
 	// create a dummy AMD fdefine to check if shim works for datajs
 	window.define = function() {
 		throw Error("define should not be called");
 	}
 	window.define.amd = { vendor : "SAPUI5 QUnit Test" } ;
-	
+
+	function removeSharedMetadata(sURI){
+		var sServiceURI = sURI.replace(/\/$/, "");
+		if(sap.ui.model.odata.ODataModel.mServiceData && sap.ui.model.odata.ODataModel.mServiceData[sServiceURI]){
+			delete sap.ui.model.odata.ODataModel.mServiceData[sServiceURI].oMetadata;
+		}
+	}
+
 	function initModel(sURI, bJSON){
+		removeSharedMetadata(sURI);
 		var oModel = new sap.ui.model.odata.ODataModel(sURI, bJSON);
 		return oModel;
 	}
-	
+
+
 	var bChanged = false, bDataRequested = false, bDataReceived = false;
-	
+
 	var fnChange = function(oEvent) {
 		bChanged = true;
 		ok(bDataRequested && !bDataReceived,"change fired");
 	};
-	
+
 	var fnDataRequested = function(oEvent) {
 		bDataRequested = true;
 		ok(!bDataReceived && !bChanged,"dataRequested fired");
@@ -74,12 +81,59 @@
 		bDataReceived = true;
 		ok(bChanged && bDataRequested,"dataRecieved fired");
 	};
-	
+
 	test("check datajs AMD shim", function() {
 		ok(typeof define === "function" && define.amd, "precondition: AMD like define exists");
 		jQuery.sap.require("sap.ui.thirdparty.datajs");
 		ok(!!window.datajs, "global datajs object should exist");
 		ok(!!window.OData, "global OData object should exist");
+	});
+
+	asyncTest("test oDataModel - oMetadata shared across models", function(){
+		var that = this;
+		var mOptions = {
+				json : true,
+				loadMetadataAsync: true
+			};
+		var oModel = new sap.ui.model.odata.ODataModel(sURI, mOptions);
+		var oModel2 = {};
+
+		oModel.oMetadata.attachLoaded(function() {
+			jQuery.sap.log.debug("test 1 - metadata loaded is fired on metadata onload of model1");
+		});
+
+		oModel.attachMetadataLoaded(function(){
+			oModel2 = new sap.ui.model.odata.ODataModel(sURI, mOptions);
+
+			var bFiredAtMetadata = false;
+
+			var metadataDfd = jQuery.Deferred();
+
+			oModel2.oMetadata.attachLoaded(function() {
+				jQuery.sap.log.debug("test 2 - metadata loaded is fired on metadata");
+				bFiredAtMetadata = true;
+			});
+			// attach again and wait for the metadataloaded event at the model itself, 
+			//fail if event is fired at the metadata object
+			oModel2.attachMetadataLoaded(function() {
+				jQuery.sap.log.debug("metadata loaded is fired");
+				if (!bFiredAtMetadata) {
+					metadataDfd.resolve();
+				} else {
+					metadataDfd.reject();
+				}
+			});
+			that.clock.tick(1);
+			jQuery.when(metadataDfd).done(function(e){
+					ok(true, 'Metadata loaded fired at model only');
+					start();
+				}).fail(function(e){
+					jQuery.sap.log.debug("metadata promise failed");
+					ok(false, 'Metadata loaded fired at metadata object')
+					clock.restore();
+				});
+		});
+		this.clock.tick(1);
 	});
 
 	asyncTest("test oDataModel _loadData XML",function(){
@@ -88,8 +142,8 @@
 			performTest(oModel);
 		});
 	});
-	
-	asyncTest("test oDataModel _loadData JSON",function(){	
+
+	asyncTest("test oDataModel _loadData JSON",function(){
 		var oModel = initModel(sURI, true);
 		oModel._loadData("Categories", {horst:true}, function(){
 			performTest(oModel);
@@ -536,7 +590,7 @@
 	});
 	
 	asyncTest("metadata get entity type check with context", function(){
-		
+
 		var oModel = initModel(sURI, false, "Categories");
 		var oBinding = oModel.bindList("Products", new sap.ui.model.Context(oModel, "/Categories(7)"));	
 		var handler = function() { // delay the following test
@@ -577,7 +631,7 @@
 		oBinding.getContexts();
 	});
 	
-	test("Custom Header test", function(){		
+	test("Custom Header test", function(){
 		var oModel = initModel(sURI, true);
 		oModel.setHeaders({"myCustomHeader1" : "value1", "myCustomHeader2" : "4.555"});
 		
@@ -597,39 +651,39 @@
 		equal(spy.args[1][0].headers['myCustomHeader1'], "666", "spy check custom header");
 		equal(spy.args[1][0].headers['MyCustomHeader2'], "blubb", "spy check custom header");
 		equal(spy.args[1][0].headers['TesT'], "new Header", "spy check custom header");
-		
+
 		var aHeaders = oModel.getHeaders();
 		equal(aHeaders['myCustomHeader1'], "666", "model check custom header");
 		equal(aHeaders['MyCustomHeader2'], "blubb", "model check custom header");
 		equal(aHeaders['TesT'], "new Header", "model check custom header");
-		
+
 	});
-	
+
 	asyncTest("async metadata request check", function(){
-		
+		removeSharedMetadata(sURI);
 		var oModel = new sap.ui.model.odata.ODataModel(sURI, {
 			json: true, 
 			loadMetadataAsync: true
 		});
-		
+
 		var handler = function() {
 			ok(true, "Metadata callback handler called");
 			oModel.detachMetadataLoaded(handler);
 			ok(oModel.getServiceMetadata(), "get metadata check");
 			start();
-		}		
+		}
 		oModel.attachMetadataLoaded(handler);
 	});
-	
-	
+
+
 	asyncTest("async metadata request check with bindings", function(){
-		
+		removeSharedMetadata(sURI);
 		var oModel = new sap.ui.model.odata.ODataModel(sURI, {
 			json: true, 
 			loadMetadataAsync: true
 		});
-		
-		
+
+
 		var handler = function() { 
 			ok(true, "Metadata callback handler called");
 			oModel.detachMetadataLoaded(handler); // handler is undefined at this point. This always causes the assertion inside to fail. 
@@ -653,19 +707,20 @@
 			oBinding.attachRefresh(handler2);
 		}
 		oModel.attachMetadataLoaded(handler);
-	
+
 	});
-	
+
 	asyncTest("async metadata request check with bindings die zwote", function(){
-		
+
+		removeSharedMetadata(sURI);
 		var oModel = new sap.ui.model.odata.ODataModel(sURI, {
 			json: true, 
 			loadMetadataAsync: true
 		});
-		
+
 		// when metadata loaded a refresh is called which will trigger the data loading
 		// if not yet happened
-		
+
 		var oBinding = oModel.bindList("/Categories");	
 		var handler = function() { // delay the following test
 			ok(oBinding.oEntityType, "entity type binding check");
@@ -677,7 +732,7 @@
 			ok(oPropMeta, "property type check");
 			equal(oPropMeta.name, "CategoryName", "entity type property check");
 			equal(oPropMeta.type, "Edm.String", "entity type property check");
-			
+
 			oBinding.detachChange(handler);
 			start();          // resume normal testing
 		};
@@ -686,13 +741,15 @@
 	});
 	
 	asyncTest("async test createEntity", function(){
-		
+
+		removeSharedMetadata(sURI);
+
 		var oModel = new sap.ui.model.odata.ODataModel(sURI, {
-			json: true, 
+			json: true,
 			loadMetadataAsync: true
 		});
-		
-		var oBinding = oModel.bindList("/Categories");	
+
+		var oBinding = oModel.bindList("/Categories");
 		var handler = function() { // delay the following test
 			var oContext = oModel.createEntry("Categories",{CategoryID:99,CategoryName:"Food",Description:"Food Desc"});
 			ok(oContext, "context check");
@@ -745,7 +802,7 @@
 		}
 		oLabel.getElementBinding().attachDataReceived(handler);
 	});
-	
+
 	asyncTest("Event order: bindElement (setModel after binding)", function(){
 		expect(4);
 		var oModel = initModel(sURI, true, "Categories");
@@ -792,7 +849,7 @@
 		jQuery.sap.require("sap.ui.thirdparty.datajs");
 		// spy on odata request function
 		var spy = this.spy(OData, "request");
-
+		removeSharedMetadata(sURI);
 		var oModel = new sap.ui.model.odata.ODataModel(sURI, { json: true, loadMetadataAsync: true });
 		oModel.attachMetadataLoaded(this, function(oEvent) {
 			ok(false, "Metadata should not be loaded");
@@ -801,7 +858,7 @@
 
 		oModel.destroy();
 		ok(oModel.bDestroyed, "Model should be destroyed");
-		
+
 		equal(spy.callCount, 1, "number of requests");
 		ok(spy.getCall(0).returnValue.bSuppressErrorHandlerCall, "should be true");
 		
@@ -840,8 +897,150 @@
 		oBinding.detachChange(handler1);
 		
 	});
-	
-	
+
+	module("ODataModel.read", {
+		setup: function() {
+			this.oModel = initModel(sURI, true);
+		},
+		teardown: function() {
+			this.oModel.destroy();
+			delete this.oModel;
+		}
+	});
+
+	asyncTest("old syntax", function() {
+		this.oModel.read("/Categories", null, null, true, function(oData, oResponse) {
+			ok(true, "success handler called");
+			equal(oResponse.requestUri, sURI + "Categories", "request uri does not have parameters");
+			start();
+		}, function() {
+			ok(false, "error handler shouldn't be called");
+			start();
+		});
+	});
+
+	asyncTest("old syntax with url parameters (string)", function() {
+		this.oModel.read("/Categories", null, "$skip=0&$top=8", true, function(oData, oResponse) {
+			ok(true, "success handler called");
+			equal(oResponse.requestUri, sURI + "Categories?$skip=0&$top=8", "request uri contains custom parameters");
+			start();
+		}, function() {
+			ok(false, "error handler shouldn't be called");
+			start();
+		});
+	});
+
+	asyncTest("old syntax with url parameters (array)", function() {
+		this.oModel.read("/Categories", null, [ "$skip=0", "$top=8" ], true, function(oData, oResponse) {
+			ok(true, "success handler called");
+			equal(oResponse.requestUri, sURI + "Categories?$skip=0&$top=8", "request uri contains custom parameters");
+			start();
+		}, function() {
+			ok(false, "error handler shouldn't be called");
+			start();
+		});
+	});
+
+	asyncTest("old syntax with url parameters (object)", function() {
+		this.oModel.read("/Categories", null, { "horst": true }, true, function(oData, oResponse) {
+			ok(true, "success handler called");
+			equal(oResponse.requestUri, sURI + "Categories?horst=true", "request uri contains custom parameters");
+			start();
+		}, function() {
+			ok(false, "error handler shouldn't be called");
+			start();
+		});
+	});
+
+	asyncTest("new syntax url parameters (string)", function() {
+		this.oModel.read("/Categories", {
+			urlParameters: "$skip=0&$top=8",
+			success: function(oData, oResponse) {
+				ok(true, "success handler called");
+				equal(oResponse.requestUri, sURI + "Categories?$skip=0&$top=8", "request uri contains custom parameters");
+				start();
+			},
+			error: function() {
+				ok(false, "error handler shouldn't be called");
+				start();
+			}
+		});
+	});
+
+	asyncTest("new syntax url parameters (array)", function() {
+		this.oModel.read("/Categories", {
+			urlParameters: [ "$skip=0", "$top=8" ],
+			success: function(oData, oResponse) {
+				ok(true, "success handler called");
+				equal(oResponse.requestUri, sURI + "Categories?$skip=0&$top=8", "request uri contains custom parameters");
+				start();
+			},
+			error: function() {
+				ok(false, "error handler shouldn't be called");
+				start();
+			}
+		});
+	});
+
+	asyncTest("new syntax url parameters (object)", function() {
+		this.oModel.read("/Categories", {
+			urlParameters: { "horst": true },
+			success: function(oData, oResponse) {
+				ok(true, "success handler called");
+				equal(oResponse.requestUri, sURI + "Categories?horst=true", "request uri contains custom parameters");
+				start();
+			},
+			error: function() {
+				ok(false, "error handler shouldn't be called");
+				start();
+			}
+		});
+	});
+
+	asyncTest("new syntax with sorter and url parameters", function() {
+		var aSorters = [
+			"should be ignored",
+			new sap.ui.model.Sorter("CategoryName", true),
+			{ foo: "bar" },
+			false
+		];
+
+		this.oModel.read("/Categories", {
+			urlParameters: "$skip=0&$top=8",
+			sorters: aSorters,
+			success: function(oData, oResponse) {
+				ok(true, "success handler called");
+				equal(oResponse.requestUri, sURI + "Categories?$skip=0&$top=8&$orderby=CategoryName%20desc", "request uri contains custom parameters and sorter");
+				start();
+			},
+			error: function() {
+				ok(false, "error handler shouldn't be called");
+				start();
+			}
+		});
+	});
+
+	asyncTest("new syntax with filter and url parameters", function() {
+		var aFilters = [
+			new sap.ui.model.Filter("CategoryName", sap.ui.model.FilterOperator.EQ, "Beverages")
+		];
+
+		this.oModel.read("/Categories", {
+			urlParameters: "$skip=0&$top=1",
+			filters: aFilters,
+			success: function(oData, oResponse) {
+				ok(true, "success handler called");
+				equal(oResponse.requestUri, sURI + "Categories?$skip=0&$top=1&$filter=CategoryName%20eq%20%27Beverages%27", "request uri contains custom parameters and filter");
+				start();
+			},
+			error: function() {
+				ok(false, "error handler shouldn't be called");
+				start();
+			}
+		});
+	});
+
+
 	</script>
 
 </head>

@@ -29,6 +29,12 @@
 		<property group="Appearance" name="wrapping" type="sap.ui.core/boolean" defaultValue="false">
 			<documentation>Whether the link text is allowed to wrap when tehre is not sufficient space.</documentation>
 		</property>
+		<property group="Behavior" name="subtle" type="sap.ui.core/boolean" defaultValue="false" since="1.22">
+			<documentation>Subtle link is only to be used to help with visual hierarchy between large data lists of important and less important links. Subtle links should not be used in any other usecase</documentation>
+		</property>
+		<property group="Behavior" name="emphasized" type="sap.ui.core/boolean" defaultValue="false" since="1.22">
+			<documentation>Set this property to true if the link should appear emphasized.</documentation>
+		</property>
 	</properties>
 	<events>
 		<event name="press"  allowPreventDefault="true">

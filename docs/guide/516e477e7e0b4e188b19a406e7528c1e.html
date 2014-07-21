@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=46753411587025273"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9334051921305916"/>
 <title>Methods and Events for Navigation</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">You use the <samp class="ph codeph">navTo(routeName, data)</samp> method to navigate to the given route and
 			to fill the hash with data. Data is also provided to the listener callbacks of
 			controllers that listen to this route. </p>
-<div><pre class="pre codeblock">sap.ui.controller("MyApp.View2", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("MyApp.View2", {
 
   anyEvent: function() {
         sap.ui.core.routing.Router.getRouter("appRouter").navTo("View2",{ from: "View 1"});
@@ -54,7 +56,7 @@
 <li class="li"><samp class="ph codeph">view</samp> - instance of the view</li>
 </ul>
 <p class="p">Example:</p>
-<div><pre class="pre codeblock">sap.ui.controller("MyApp.View1", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("MyApp.View1", {
 
     onInit: function() {
         var oRouter = sap.ui.core.routing.Router.getRouter("appRouter");

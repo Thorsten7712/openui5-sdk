@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6662780009237853"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9544209873944667"/>
 <title>Logging and Tracing</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,11 +31,11 @@
 <p class="p">The following code line issues a log statement with severity level <em class="ph i">error</em>. The
 			browser highlights this statement in red color and displays it like a JavaScript
 			error:</p>
-<div><pre class="pre codeblock">jQuery.sap.log.error("This should never have happened!");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.log.error("This should never have happened!");</pre></div>
 <p class="p">This code line issues a log statement with severity level <em class="ph i">information</em>. The browser
 			does <strong class="ph b">not</strong> display this statement if your log console is set to filter for errors
 			only:</p>
-<div><pre class="pre codeblock">jQuery.sap.log.info("FYI: something has happened");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.log.info("FYI: something has happened");</pre></div>
 <div class="section"><div class="section_title">Locating the Logger Output</div><div type="Locating the Logger Output"><p class="p">The developer tools of Internet
 				Explorer, Chrome, and Safari, as well as Firefoxe's Firebug extension offer a
 				console API that you can use for logging. The log output is additionally directed to

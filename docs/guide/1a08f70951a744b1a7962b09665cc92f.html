@@ -12,9 +12,11 @@
 <meta name="abstract" content="When a model instance is created, the instance has a default binding mode. You can overwrite this default setting."/>
 <meta name="description" content="When a model instance is created, the instance has a default binding mode. You can overwrite this default setting."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=09786959331164002"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=658460699144259"/>
 <title>Setting the Default Binding Mode</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 		overwrite this default setting.</p>
 <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand"><span class="ph cmd">To change the default binding mode directly after model creation, call the
 						<samp class="ph codeph">setDefaultBindingMode</samp> method on the model as follows: </span> 
-					<div><pre class="pre codeblock">var oModel = new sap.ui.model.json.JSONModel();
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.json.JSONModel();
 oModel.setDefaultBindingMode(sap.ui.model.BindingMode.OneWay);</pre></div>
 
 				<div class="itemgroup stepresult">
@@ -37,7 +39,7 @@ oModel.setDefaultBindingMode(sap.ui.model.BindingMode.OneWay);</pre></div>
 				</div></li>
 <li class="li step stepexpand"><span class="ph cmd">You can, however, only set supported binding modes as default binding mode. You
 					can check if a binding mode is supported as follows:</span> 
-					<div><pre class="pre codeblock">var oModel = new sap.ui.model.json.JSONModel();
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.json.JSONModel();
 if (oModel.isBindingModeSupported(sap.ui.model.BindingMode.OneTime)) { // true
     oModel.setDefaultBindingMode(sap.ui.model.BindingMode.OneTime); 
 }</pre></div>

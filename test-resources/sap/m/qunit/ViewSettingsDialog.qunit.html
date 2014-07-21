@@ -14,7 +14,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -801,6 +800,53 @@
 			vsd._switchToPage(3,vsd.getFilterItems()[2]); // value details page
 			strictEqual(vsd._filterDetailList.getMode(), sap.m.ListMode.SingleSelectLeft, "The value detail list is in single select left mode");
 			strictEqual(vsd._filterDetailList.getSelectedItem().data("item"), vsd.getFilterItems()[2].getItems()[2], "The item 'value3' is selected");
+		});
+	
+		asyncTest("Check add/remove/toggle/hasStyleClass methods", function () {
+			var oVSD = new sap.m.ViewSettingsDialog("ViewSettingsDialog"),
+				sCustomStyleClass = "myStyleClass";
+
+			// add + has
+			oVSD.addStyleClass(sCustomStyleClass);
+			oVSD.open();
+			ok(oVSD._dialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog now has style class "' + sCustomStyleClass + '"');
+			ok(oVSD.hasStyleClass(sCustomStyleClass), 'The ViewSettingsDialog now has style class "' + sCustomStyleClass + '"');
+
+			// remove
+			oVSD.removeStyleClass(sCustomStyleClass);
+			ok(!oVSD._dialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog does not have style class "' + sCustomStyleClass + '" after remove');
+			ok(!oVSD.hasStyleClass(sCustomStyleClass), 'The ViewSettingsDialog does not have style class "' + sCustomStyleClass + '" after remove');
+
+			// toggle
+			oVSD.toggleStyleClass(sCustomStyleClass);
+			ok(oVSD._dialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog has style class "' + sCustomStyleClass + '" after toggle');
+			ok(oVSD.hasStyleClass(sCustomStyleClass), 'The ViewSettingsDialog has style class "' + sCustomStyleClass + '" after toggle');
+
+			// cleanup
+			oVSD._dialog.attachAfterClose(function (oEvent) {
+				oVSD.destroy();
+				start();
+			});
+			oVSD._dialog.close();
+		});
+
+		asyncTest("Check $ and getDomRef methods", function () {
+			var oVSD = new sap.m.ViewSettingsDialog("ViewSettingsDialog");
+
+			oVSD.open();
+
+			// $ method
+			ok(oVSD.$() instanceof jQuery && oVSD.$().length === 1, "The inner dialogs jQuery object is returned");
+
+			// getDomRef
+			ok(oVSD.getDomRef() instanceof Element && oVSD.getDomRef().id === oVSD.getId()+"-dialog", "The inner dialogs DOM reference is returned");
+
+			// cleanup
+			oVSD._dialog.attachAfterClose(function (oEvent) {
+				oVSD.destroy();
+				start();
+			});
+			oVSD._dialog.close();
 		});
 		</script>
 	</head>

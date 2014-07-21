@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=19874248467928401"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7794932284828706"/>
 <title>Using Icon Font in SAPUI5</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -46,7 +48,7 @@
 
 					<p class="p">Example for IE versions below IE9:</p>
 
-					<div><pre class="pre codeblock">&lt;style&gt;
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;style&gt;
 font-face {
     font-family: 'SAP-icons'; /*Please replace 'SAP-icons' with your font name which will be used when register in sap.ui.core.IconPool*/
     src: url('_PATH_TO_EOT_FILE_');
@@ -59,7 +61,7 @@ font-face {
 
 					<p class="p">Example for IE versions as of IE9:</p>
 
-					<div><pre class="pre codeblock">&lt;style&gt;
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;style&gt;
 @font-face {
     font-family: 'SAP-icons'; /*Please replace 'SAP-icons' with your font name which will be used when register in sap.ui.core.IconPool*/
     src: url('_PATH_TO_TTF_FILE_') format('truetype');
@@ -115,7 +117,7 @@ font-face {
 					<p class="p">Call <samp class="ph codeph">sap.ui.core.IconPool.getIconURI</samp> with the
 							<samp class="ph codeph">iconName</samp> property:</p>
 
-					<div><pre class="pre codeblock">jQuery.sap.require("sap.ui.core.IconPool");
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.require("sap.ui.core.IconPool");
 var sURI = sap.ui.core.IconPool.getIconURI("accidental-leave");//please change the parameter to the name of your desired icon</pre></div>
 
 				</li>
@@ -123,7 +125,7 @@ var sURI = sap.ui.core.IconPool.getIconURI("accidental-leave");//please change t
 					<p class="p">If you know the collection name and the icon name, write the icon URI
 						directly in the following format:</p>
 
-					<div><pre class="pre codeblock">sap-icon://[collection-name]/[icon-name]</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap-icon://[collection-name]/[icon-name]</pre></div>
 
 					<div class="note note"><span class="notetitle">Note</span> You need the collection name only for custom icons. The URI for predefined
 						icons does <strong class="ph b">not</strong> need the collection name.</div>
@@ -142,7 +144,7 @@ var sURI = sap.ui.core.IconPool.getIconURI("accidental-leave");//please change t
 				instance. The <samp class="ph codeph">sURI</samp> is set for the <samp class="ph codeph">src</samp> property of
 				the instance.</p>
 
-			<div><pre class="pre codeblock">sap.m.Dialog.prototype.setIcon = function(sURI){
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.m.Dialog.prototype.setIcon = function(sURI){
     this.setProperty("icon", sURI, true);
     if(!jQuery.os.ios){
        //icon is only shown in non iOS platform
@@ -172,7 +174,7 @@ var sURI = sap.ui.core.IconPool.getIconURI("accidental-leave");//please change t
 					<samp class="ph codeph">sap.ui.core.IconPool.insertFontFaceStyle</samp> function to insert the
 				built in font face in your CSS. This is shown in the following code snippet:</p>
 
-			<div><pre class="pre codeblock">jQuery.sap.require("sap.ui.core.IconPool");
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.require("sap.ui.core.IconPool");
 sap.ui.core.IconPool.insertFontFaceStyle();</pre></div>
 
 		</div></div>

@@ -1,7 +1,6 @@
 <html>
  <head>
   <title>QUnit TestSuite for sap.ui.unified</title>
-  <script language="javascript" src="/jsunit-testrunner/app/jsUnitCore.js"></script>
  </head>
  <body>
   <script language="javascript">
@@ -13,9 +12,11 @@
   function suite() {
     var suite = new top.jsUnitTestSuite();
     var contextPath = "/" + window.location.pathname.split("/")[1];
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/unified/qunit/Menu.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/unified/qunit/Shell.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/unified/qunit/ShellOverlay.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/unified/qunit/SplitContainer.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/unified/qunit/Calendar.qunit.html");
     //suite.addTestPage(contextPath + "/test-resources/sap/ui/unified/qunit/???.qunit.html");
     return suite;
   }

@@ -12,9 +12,11 @@
 <meta name="abstract" content="With SAPUI5 for Mobile you can easily trigger native mobile phone applications such as e-mail, telephone, and text messages."/>
 <meta name="description" content="With SAPUI5 for Mobile you can easily trigger native mobile phone applications such as e-mail, telephone, and text messages."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=24861152976560796"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=20344892182952257"/>
 <title>Triggering Phone, SMS and E-Mail</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -34,26 +36,26 @@
 <ul class="ul" id="loio4f1c1075d88c41a5904389fa12b28f6b__ul_tym_lcq_xl"><li class="li">
 				<p class="p">Trigger telephone application</p>
 
-				<div><pre class="pre codeblock">sap.m.URLHelper.triggerTel( [Telephone Number] ); //Telephone number is optional</pre></div>
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.m.URLHelper.triggerTel( [Telephone Number] ); //Telephone number is optional</pre></div>
 
 			</li>
 <li class="li">
 				<p class="p">Trigger text messaging application</p>
 
-				<div><pre class="pre codeblock">sap.m.URLHelper.triggerSms( [Telephone Number] ); //Telephone number is optional</pre></div>
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.m.URLHelper.triggerSms( [Telephone Number] ); //Telephone number is optional</pre></div>
 
 			</li>
 <li class="li">
 				<p class="p">Trigger e-mail application</p>
 
-				<div><pre class="pre codeblock">sap.m.URLHelper.triggerEmail( [Destination Email], [Subject], [Default Message Text], [CC], [BCC] ); 
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.m.URLHelper.triggerEmail( [Destination Email], [Subject], [Default Message Text], [CC], [BCC] ); 
 // All parameters are optional</pre></div>
 
 			</li>
 <li class="li">
 				<p class="p">Redirect To custom URL</p>
 
-				<div><pre class="pre codeblock">sap.m.URLHelper.redirect( URL ); 
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.m.URLHelper.redirect( URL ); 
 //URL is required and can be used for custom protocols (e.g http, ftp, ...)</pre></div>
 
 			</li>

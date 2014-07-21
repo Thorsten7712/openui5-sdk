@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=18214124109418894"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4219329846363905"/>
 <title>XML Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,7 +27,7 @@
 <h1 class="title topictitle1">XML Fragments</h1>
 <div class="body conbody"><p class="shortdesc"> </p>
 <div class="p">You can define a simple XML fragment like this:
-			<div><pre class="pre codeblock">&lt;Button xmlns="sap.ui.commons" id="btnInFragment" text="Hello
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;Button xmlns="sap.ui.commons" id="btnInFragment" text="Hello
         World"/&gt;</pre></div>
 </div>
 <p class="p">This simple UI definition can, for instance, be located in a file named
@@ -36,7 +38,7 @@
 			Instead, there is a SAPUI5 control immediately. Apart from this difference, everything
 			else works identically.</p>
 <p class="p">A slightly more complex fragment can be defined like this: </p>
-<div><pre class="pre codeblock">&lt;VBox xmlns="sap.m"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;VBox xmlns="sap.m"&gt;
 		&lt;Label text="My Label inside an XML fragment"/&gt;
 		&lt;Button id="btnInFragment" text="Hello World" press="doSomething"/&gt;
 		&lt;Button text="{/someText}"/&gt;

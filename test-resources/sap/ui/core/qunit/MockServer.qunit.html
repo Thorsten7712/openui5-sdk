@@ -8,14 +8,13 @@
     <script id="sap-ui-bootstrap" 
 			type="text/javascript"
 			src="../../../../../resources/sap-ui-core.js"
-			data-sap-ui-theme="sap_platinum"
+			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-noConflict="true"
 			data-sap-ui-libs="sap.ui.commons" >
 		</script>
     
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -372,7 +371,7 @@
 								"Mock server is not registered anymore");
 					});
 
-			test("Start / Stop / Destroy all", 8, function() {
+ 			test("Start / Stop / Destroy all", 8, function() {
 				var oMockServer1 = new sap.ui.core.util.MockServer({
 					rootUri : "http://localhost/myservice",
 					requests : [{
@@ -422,9 +421,9 @@
 				sap.ui.core.util.MockServer.destroyAll();
 				ok(!oMockServer2.isStarted(), "Mock server 2 is stopped");
 				ok(!oMockServer2.isStarted(), "Mock server 2 is stopped");
-			});
+			}); 
 
-			asyncTest("Test Config: autoRespondAfter & async", 3, function() {
+  			asyncTest("Test Config: autoRespondAfter & async", 3, function() {
 				sap.ui.core.util.MockServer.config({
 					autoRespondAfter : 1000
 				})
@@ -464,7 +463,7 @@
 						})
 					}
 				});
-			});
+			}); 
 
 			asyncTest("Test Config: autoRespond false & async", 2, function() {
 				sap.ui.core.util.MockServer.config({
@@ -614,6 +613,55 @@
 				});
 				ok(oResponse.success, "Mock server responded");
 				equal(oResponse.statusCode, 200, "CSRF token fetched");
+				oMockServer.destroy();
+
+			});
+			
+			test("test undefined key", function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "/myservice/"
+				});
+				var sMetadataUrl = "testdata/metadataRMT.xml"
+				oMockServer.simulate(sMetadataUrl);
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oPostResponse = jQuery.sap
+				.sjax({
+					url : "/myservice/FlightCollection",
+					type : 'POST',
+					data : '{"carrid":"BB","connid":"007"}'
+				});
+		ok(oPostResponse.success, "Mock server responded the POST resquest");
+		equal(oPostResponse.statusCode, 201, "resource successfully created");
+		ok(oPostResponse.data.uri, "resource uri available");
+				
+				oMockServer.destroy();
+
+			});
+			
+			test("test $format", function() {
+				var oMockServer = new sap.ui.core.util.MockServer({
+					rootUri : "/myservice/"
+				});
+				var sMetadataUrl = "testdata/metadataRMT.xml"// url to the service metadata document
+				oMockServer.simulate(sMetadataUrl);
+				oMockServer.start();
+				ok(oMockServer.isStarted(), "Mock server is started");
+
+				var oResponse = jQuery.sap.sjax({
+					url : "/myservice/CarrierCollection('carrid_0')?$format=json",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Supported format value");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/CarrierCollection('carrid_0')?$format=xml",
+					dataType : "json"
+				});
+				ok(!oResponse.success, "Unsupported format value");
+				
+				oMockServer.destroy();
 
 			});
 			
@@ -632,6 +680,15 @@
 				});
 				ok(oResponse.success, "Mock server responded");
 				ok(oResponse.data.d, "single entry no OData system query options");
+				equal(oResponse.data.d.__metadata.uri, "/myservice/CarrierCollection('carrid_0')", "single key");
+				
+				jQuery.sap.sjax({
+					url : "/myservice/CarrierCollection(carrid='carrid_0')",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				ok(oResponse.data.d, "single entry no OData system query options");
+				equal(oResponse.data.d.__metadata.uri, "/myservice/CarrierCollection('carrid_0')", "single key");
 
  				oResponse = jQuery.sap.sjax({
  					url : "/myservice/CarrierCollection('carrid_0')/?$select=carrid",
@@ -653,7 +710,7 @@
 				});
 				equal(oResponse.success, false, "Mock server responded");				
 				equal(oResponse.statusCode, 400, "query option not valid for single entry");
-				
+				oMockServer.destroy();
 			});
 			
 			test("test OData get entity set", function() {
@@ -680,7 +737,7 @@
 				equal(oResponse.data.d.results.length, 100, "entity set no opts.");
 
 				oResponse = jQuery.sap.sjax({
-					url : "/myservice/CarrierCollection?$top=1",
+					url : "/myservice/CarrierCollection?$top=1&format=json",
 					dataType : "json"
 				});
 				ok(oResponse.success, "Mock server responded");
@@ -706,7 +763,7 @@
 				});
 				ok(!oResponse.success, "Mock server responded");
 				equal(oResponse.statusCode, 404, "query option dosn't exist");
-				
+				oMockServer.destroy();
 			});
 
 			test("test OData navigation properties", function() {
@@ -772,7 +829,7 @@
 				equal(oResponse.success, false, "Mock server responded");				
 				equal(oResponse.statusCode, 400, "navigation to singel entry with not valid OData query ");
 				
-				
+				oMockServer.destroy();
 			});
 			
 			test("test OData paging top and skip", function() {
@@ -829,7 +886,7 @@
 				equal(oResponse.success, false, "Mock server responded");				
 				equal(oResponse.statusCode, 400, "skip invalid value [negative]");
 				
-				
+				oMockServer.destroy();
 			});
 			
 			test("test OData orderby", function() {
@@ -872,7 +929,7 @@
 				equal(oResponse.data.d.results[2].type, "Sick Leave", "multiple orderby worked");
 				
 				oResponse = jQuery.sap.sjax({
-					url : "/myservice/LeaveHeaderCollection?$orderby=entitlement desc,pendingitems asc",
+					url : "/myservice/LeaveHeaderCollection?$orderby=entitlement desc, pendingitems asc",
 					dataType : "json"
 				});
 				ok(oResponse.success, "Mock server responded");
@@ -907,19 +964,125 @@
 				});
 				ok(oResponse.success, "Mock server responded");
 				equal(oResponse.data.d.results[0].type, "Sick Leave", "encoded url orderby single property asc");
+				
+				oMockServer.destroy();
 			});
 			
 			test("test OData $filter", function() {
 				var oMockServer = new sap.ui.core.util.MockServer({
 					rootUri : "/myservice/"
 				});
-				var sMetadataUrl = "testdata/DataModel.xml"// url to the service metadata document
-				var sMockdataBaseUrl = "testdata/"// base url which contains the mockdata
+				var sMetadataUrl = "testdata/DataModel.xml"
+				var sMockdataBaseUrl = "testdata/"
 				oMockServer.simulate(sMetadataUrl, sMockdataBaseUrl);
 				oMockServer.start();
 				ok(oMockServer.isStarted(), "Mock server is started");
 
 				var oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' or type eq 'Sick Leave'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 2, "logical OR: A or B");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=(type eq 'Vacation' or type eq 'Sick Leave')",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 2, "logical OR: (A or B)");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=(((type eq 'Vacation' or type eq 'Sick Leave')",
+					dataType : "json"
+				});
+				ok(!oResponse.success, "(((A or B)");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' or type eq 'Sick Leave' or type eq 'Unpaid Leave'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 3, "logical OR: A or B or C");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' or ",
+					dataType : "json"
+				});
+				ok(!oResponse.success, "Mock server responded");
+				equal(oResponse.statusCode, 400, "logical OR malformed: A or ");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' and type eq 'Vacation'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 1, "logical AND: A and B");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' and type eq 'Sick Leave'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 0, "logical AND: A and B");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' and type eq 'Sick Leave' or type eq 'Vacation'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 1, "logical AND + OR: A and B or C"); 
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' or type eq 'Sick Leave' and type eq 'Sick Leave'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 2, "logical OR + AND: A or B and C");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=(type eq 'Vacation')",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 1, "(A)");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=type eq 'Vacation' and (type eq 'Sick Leave' or type eq 'Vacation')",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 1, "A and (B or C)");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=(type eq 'Vacation' and type eq 'Sick Leave') or type eq 'Vacation'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 1, "(A and B) or C");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=(type eq 'Vacation' and type eq 'Sick Leave') and type eq 'Vacation'",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 0, "(A and B) and C");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=(type eq 'Vacation' and type eq 'Sick Leave') or (type eq 'Vacation')",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 1, "(A and B) or (C)");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?$filter=((type eq 'Vacation' and type eq 'Sick Leave') or type eq 'Vacation')",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				equal(oResponse.data.d.results.length, 1, "((A and B) or C)");
+				
+				oResponse = jQuery.sap.sjax({
 					url : "/myservice/LeaveHeaderCollection?$filter=substringof('ac', type)",
 					dataType : "json"
 				});
@@ -931,7 +1094,6 @@
 					dataType : "json"
 				});
 				ok(oResponse.success, "Mock server responded");
-				
 				equal(oResponse.data.d.results[0].type, "Vacation", "filter startswith(type, 'Va')");
 						
 				oResponse = jQuery.sap.sjax({
@@ -960,7 +1122,6 @@
 				
 				equal(oResponse.data.d.results[0].type, "Sick Leave", "filter type ne 'Vacation'");	
 				equal(oResponse.data.d.results.length, 2, "filter type ne 'Vacation'");
-
 				
 				oResponse = jQuery.sap.sjax({
 					url : "/myservice/LeaveItemCollection?$filter=itemid gt 6",
@@ -1021,7 +1182,7 @@
 				
 				equal(oResponse.data.d.results[0].type, "Sick Leave", "type%20ne%20%27Vacation%27");	
 				equal(oResponse.data.d.results.length, 2, "type%20ne%20%27Vacation%27");
-								
+				oMockServer.destroy();				
 			});
 			
 			test("test OData $select", function() {
@@ -1043,12 +1204,20 @@
 				equal(countProperties(oResponse.data.d.results[0]), 2, "select 1 property");
 			
 				oResponse = jQuery.sap.sjax({
-					url : "/myservice/LeaveHeaderCollection?$select=type,availablebalance",
+					url : "/myservice/LeaveHeaderCollection?$select=type, availablebalance",
 					dataType : "json"
 				});
 				ok(oResponse.success, "Mock server responded");
 				
 				equal(countProperties(oResponse.data.d.results[0]), 3, "select 2 properties");
+				
+				oResponse = jQuery.sap.sjax({
+					url : "/myservice/LeaveHeaderCollection?%24select=type%2Cavailablebalance",
+					dataType : "json"
+				});
+				ok(oResponse.success, "Mock server responded");
+				
+				equal(countProperties(oResponse.data.d.results[0]), 3, "select 2 properties encoded");
 						
 				oResponse = jQuery.sap.sjax({
 					url : "/myservice/LeaveHeaderCollection?$select=*",
@@ -1063,7 +1232,8 @@
 				});
 				ok(!oResponse.success, "Mock server responded");
 				equal(oResponse.statusCode, 404, "select parm invalid");
-								
+				
+				oMockServer.destroy();
 			});
 		
 			test("test OData $inlinecount", function() {
@@ -1105,6 +1275,7 @@
 				ok(oResponse.success, "Mock server responded");
 				equal(oResponse.statusCode, 200, "inlinecount parm is missing");
 				
+				oMockServer.destroy();
 			});
 			
 			
@@ -1139,9 +1310,8 @@
 				ok(oResponse.success, "Mock server responded");
 				ok(!oResponse.data.d.results[0].FlightCarrier.CARRNAME, "Expand didn't changed the data");
 
-				
 				oResponse = jQuery.sap.sjax({
-					url : "/myservice/FlightCollection?$top=1&$expand=FlightCarrier,flightbooking",
+					url : "/myservice/FlightCollection?$top=1&$expand=FlightCarrier, flightbooking",
 					dataType : "json"
 
 				});
@@ -1194,6 +1364,7 @@
 				equal(oResponse.success, false, "Mock server responded");
 				equal(oResponse.statusCode, 404, "expand with false navigation property path");
 
+				oMockServer.destroy();
 			});
 
 			test("test Entity keys order", function() {
@@ -1248,7 +1419,7 @@
 				equal(oResponse.success, false, "Mock server responded");
 				equal(oResponse.statusCode, 404, "single key only value");
 
-				//oMockServer.destroy();		
+				oMockServer.destroy();		
 			});
 
 			test("test quoted key values", function() {
@@ -1340,6 +1511,8 @@
 				};
 				oBinding.attachChange(handler);
 				oBinding.getContexts();
+				
+			//	oMockServer.destroy();
 			});
 
 			asyncTest("test oDataModel _loadData JSON", function() {
@@ -1471,6 +1644,7 @@
 				};
 				oBinding.attachChange(handler);
 				oBinding.getContexts();
+				oMockServer.destroy();
 			});
 
 			asyncTest("test mock data generation", 10, function() {
@@ -1507,6 +1681,7 @@
 				};
 				oBinding.attachChange(handler);
 				oBinding.getContexts();
+				oMockServer.destroy();
 			});
 			
 			test(
@@ -2027,6 +2202,7 @@
                 	equal(oError.response.statusCode, 400, "Get in Changeset - Respond 400 - The Data Services Request could not be understood due to malformed syntax");
                 };
                 
+//                oModel.addBatchReadOperations(aBatchReadOperations);       
                 oModel.addBatchChangeOperations(aBatchFirstChangeOperations);
                 
                 oModel.submitBatch(fnSuccess, fnError, false);

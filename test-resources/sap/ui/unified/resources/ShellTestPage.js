@@ -5,6 +5,24 @@ try{
 	throw(e);
 }
 
+try {
+	sap.ui.getCore().loadLibrary("sap.m");
+} catch(e) {
+	alert("This test page requires the library 'sap.m' which is not available.");
+	throw(e);
+}
+
+
+function createTestSearchField(sId, fOnSearch){
+	var oSF =  new sap.m.SearchField(sId, {
+		search: fOnSearch || function(){},
+		width: "100%"
+	});
+	oSF.addStyleClass("sapUiSizeCompact");
+	oSF.addStyleClass("MyTestSearchField");
+	return oSF;
+}
+
 window.sLorem = "Lorem ipsum dolor sit amet, consetetur "+
 "sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et "+
 "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam "+

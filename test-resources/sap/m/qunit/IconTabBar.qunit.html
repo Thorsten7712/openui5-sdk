@@ -14,7 +14,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<script>
@@ -81,7 +80,7 @@
 			ok(jQuery.sap.domById("iconTabSeparator"), "IconTabSeparator should be rendered");
 		});
 
-		test("layout/design", function() {
+		/* test("layout/design", function() {
 			expect(13);
 			ok(jQuery.sap.byId(oIconTabFilter.getId()).hasClass("sapMITBVertical"), "default design should be vertical")
 			ok(!jQuery.sap.byId(oIconTabFilter.getId()).hasClass("sapMITBHorizontal"), "default design should not be horizontal")
@@ -139,7 +138,7 @@
 			oIconTabBar.setSelectedItem(oIconTabFilter); //select event should be fired
 			oIconTabBar.setSelectedItem(oIconTabFilter); //select and expand event should be fired
 			oIconTabBar.setExpanded(true); //expand event should be fired
-		});
+		}); */
 
 		asyncTest("toggle/expand", function() {
 			expect(2);
@@ -195,7 +194,7 @@
 			equal(jQuery.sap.byId(oIconTabBar.getId() + "-content").children()[0].id, "button", "content should be button from the specific content of the tab");
 		});
 
-		// test case for: [openui5] sap.m.IconTabBar doesn't support PreserveContent functionality (#26)
+		/* // test case for: [openui5] sap.m.IconTabBar doesn't support PreserveContent functionality (#26)
 		test("preserve dom", function() {
 			expect(4);
 
@@ -251,7 +250,7 @@
 
 			// cleanup
 			oIconTabBar.destroy();
-		});
+		}); */
 
 		</script>
 

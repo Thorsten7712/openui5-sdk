@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5268612896103131"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3496861756844015"/>
 <title>IDs in Declarative XML or HTML Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,10 +29,11 @@
 <div class="p">When a fragment contains a given control ID and the same fragment is instantiated twice without
 			giving and ID when instantiating the fragment, there will be a duplicate ID error. Given
 			the following XML fragment
-			example:<div><pre class="pre codeblock">&lt;HorizontalLayout xmlns= "sap.ui.commons" &gt;
-			&lt;Button 					text= "Hello World" /&gt;
-			&lt;Button id= "btnInFragment" text= "Hello World" /&gt;
-		&lt;/HorizontalLayout&gt;</pre></div>
+			example:<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
+&lt;HorizontalLayout xmlns="sap.ui.commons"&gt;
+   &lt;Button                    text="Hello World" /&gt;
+   &lt;Button id="btnInFragment" text="Hello World" /&gt;
+&lt;/HorizontalLayout&gt;</pre></div>
 
 		</div>
 <p class="p">The first button will always have a generated ID, as, for instance,
@@ -39,12 +42,12 @@
 <div class="p">The second button will either have the ID <samp class="ph codeph">btnInFragment</samp>, in case the
 			fragment is instantiated without giving an ID. This approach is easy to use, but implies
 			the risk of ID collisions when instantiated multiple times:
-			<div><pre class="pre codeblock">sap.ui.htmlfragment("my.useful.UiPartZ"); // Button ID will not be prefixed</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.htmlfragment("my.useful.UiPartZ"); // Button ID will not be prefixed</pre></div>
 </div>
 <div class="p">The other possible ID of the second button is <samp class="ph codeph">myFragment--btnInFragment</samp>, in
 			case the fragment is instantiated giving the ID <samp class="ph codeph">myFragment</samp>. You should
 			not rely on the exact syntax of this prefixing.
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 sap.ui.htmlfragment("myFragment", "my.useful.UiPartZ"); 
 // Button ID will get prefixed by "myFragment"</pre></div>
 </div>
@@ -53,7 +56,8 @@ sap.ui.htmlfragment("myFragment", "my.useful.UiPartZ");
 
 <div class="familylinks">
 </div>
-</div></div></div>
+</div>
+</div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--
  var page_title="IDs in Declarative XML or HTML Fragments";
 

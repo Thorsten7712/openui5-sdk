@@ -168,7 +168,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -373,7 +373,7 @@ The supported settings are:
 												<td class="methodItemDesc">
 											    The page that shall be displayed next after the page event is fired.
 </p><p>
-The page number is 1-based: the first page has index 1, not 0, to match the number visible in the UI.
+        The page number is 1-based: the first page has index 1, not 0, to match the number visible in the UI.
 												</td>
 											</tr>
 										
@@ -385,9 +385,9 @@ The page number is 1-based: the first page has index 1, not 0, to match the numb
 												  <b>oControlEvent.getParameters.type</b>
 												</td>
 												<td class="methodItemDesc">
-											    Provides the values 'First', 'Last', 'Next', 'Previous', 'Goto'. The event parameter informs the application 
-					how the user navigated to the new page: Whether the 'Next' button was used, or another button, or whether the page was directly 
-					selected
+											    Provides the values 'First', 'Last', 'Next', 'Previous', 'Goto'. The event parameter informs the application
+        how the user navigated to the new page: Whether the 'Next' button was used, or another button, or whether the page was directly
+        selected
 												</td>
 											</tr>
 										
@@ -453,7 +453,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -465,7 +465,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -524,7 +524,7 @@ Event is fired when the user navigates to another page by selecting it directly,
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -548,7 +548,7 @@ Event is fired when the user navigates to another page by selecting it directly,
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.commons.Paginator</code>.<br/> itself.
@@ -683,7 +683,7 @@ The page number is 1-based: the first page has index 1, not 0, to match the numb
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.

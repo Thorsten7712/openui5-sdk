@@ -44,7 +44,112 @@
 <p>
 This page contains the release notes for the patches of the 1.18 release.
 </p>
-<h2 id="Version1.18.9March2014">Version 1.18.9 (March 2014)</h2>
+<h2 id="Version1.18.12April2014">Version 1.18.12 (April 2014)</h2>
+<p>
+A patch for the rel-1.18 code line. It contains the following fixes for the UI5 Core and Controls:
+</p>
+<p>
+<strong>Core</strong><br />
+</p>
+<ul><li>[FEATURE] Icon Font is upgraded to version 2.6 with 5 new icons.
+</li><li>[FIX] JSONTreeBinding: Fix Treebinding considers NULL as node 
+</li></ul><p>
+<strong>Desktop</strong><br />
+</p>
+<ul><li>[FIX] Tree: New aria attributes added in TreeNode
+</li><li>[FIX] Table: Fixed the unexpected identifier errors when resizing 
+</li><li>[FIX] ux3.Shell: Focus Pane when selected for better accessibility 
+</li></ul><p>
+<strong>Mobile</strong><br />
+</p>
+<ul><li>[FIX] Added new type for work day(s)
+</li><li>[FIX] SplitApp: SplitApp demo application showed empty page when run on phone
+</li><li>[FIX] Input change event issue on focus out in Internet Explorer 9 is fixed.
+</li><li>[FIX] Invalid date handling issue of DateTimeInput is fixed.
+</li><li>[FIX] Timesheet: warped weekly view on Blackberry devices
+</li><li>[FIX] sap.m.ActionListItem: Adjusted line-height to prevent letters from being cut-off 
+</li><li>[FIX] sap.m.ActionSheet: ActionSheet isn't positioned right when orientation changes. 
+</li><li>[FIX] sap.m.Carousel: Fixed Right-To-Left swipe issue 
+</li><li>[FIX] sap.m.Carousel: removed mark on touchStart/mouseDown event
+</li><li>[FIX] sap.m.Dialog: names are saved instead of the class definition for the added special CSS class for scrollable content because of lazy loading. 
+</li><li>[FIX] sap.m.IconTabBar: fixed preserveDom issue (openui5 issue <a class="closed ticket" href="http://vesapui5.dhcp.wdf.sap.corp:1080/trac/sapui5/ticket/26" title="task: Generator for artifacts and library support (e.g. assembly of ctrl ... (closed)">#26</a>)
+</li><li>[FIX] sap.m.ObjectHeader, sap.m.ObjectStatus 
+</li><li>[FIX] sap.m.SegmentedButton: setSelectedButton call does not update UI
+</li><li>[FIX] sap.m.Select: options are not shown for footer select when runs on android phone with version less than 4.1 
+</li><li>[FIX] sap.m.SplitContainer: master area closes immediately after open in Internet Explorer 9. 
+</li></ul><h2 id="Version1.18.11March2014">Version 1.18.11 (March 2014)</h2>
+<p>
+A patch for the rel-1.18 code line. It contains the following fixes for the UI5 Core and Controls:
+</p>
+<p>
+<strong>Core</strong><br />
+</p>
+<ul><li>[FIX] CustomCssCheck - fixed customCheck method to test all libs
+</li><li>[FIX] Do not minimize LESS files
+</li><li>[FIX] MockServer: Fix the RegExps and CRUD operations (fixes Github issue <a class="closed ticket" href="http://vesapui5.dhcp.wdf.sap.corp:1080/trac/sapui5/ticket/21" title="task: Refactoring of core base classes: Implementation of a Phoenix core based ... (closed: done)">#21</a>)
+</li><li>[FIX] ODataTreeBinding: Make relative binding work 
+</li><li>[FIX] sap.ui.Device.orientation: wrong orientation calculation on iPhone with version 7.0.x while keyboard is open. 
+</li></ul><p>
+<strong>Desktop</strong><br />
+</p>
+<ul><li>[FIX] RichTooltip: text and value state in the table's cells are empty 
+</li><li>[FIX] Table: Make _updateTableContent work with named models 
+</li><li>[FIX] Table: fixed ItemNavigation with multi labels in col header
+</li><li>[FIX] Toolbar: Check for DomRef
+</li><li>[FIX] UX3/ExactBrowser: attributeSelected-event - correct attribute 
+</li><li>[FIX] commons.Paginator: addStyleClass 
+</li><li>[FIX] commons.TreeNode 
+</li><li>[FIX] TreeTable: removed "!important" indentation of tree nodes 
+</li></ul><p>
+<strong>Mobile</strong><br />
+</p>
+<ul><li>[FIX] sap.m.Carousel: Focus painting and event handling issues fixed - painting focus on desktop did not work after mouse activation - swipe event was propagated even if not necessary 
+</li><li>[FIX] sap.m.FacetFilter: Redesign 
+</li><li>[FIX] sap.m.IconTabBar/IconTabBarFilter: fix for tooltip 
+</li><li>[FIX] sap.m.IconTabBar: fix for focus outline 
+</li><li>[FIX] sap.m.IconTabBar: switch tab if selectedTab is set to visible(false) and content is visible (fixes Github issue <a class="closed ticket" href="http://vesapui5.dhcp.wdf.sap.corp:1080/trac/sapui5/ticket/20" title="task: Base version of resource handling: resource resolution (closed: done)">#20</a>)
+</li><li>[FIX] sap.m.Input - Corrected misspelled call to destroy suggestion popup 
+</li><li>[FIX] sap.m.SplitContainer/SplitApp: recreate showMasterButton when it's destroyed during page navigation. 
+</li><li>[Fix] sap.m.RadioButton - focus handling 
+</li><li>[Fix] sap.m.RadioButton/CheckBox - disabled shows no hover anymore
+</li></ul><h2 id="Version1.18.10March2014">Version 1.18.10 (March 2014)</h2>
+<p>
+A patch for the rel-1.18 code line. It contains the following fixes for the UI5 Core and Controls:
+</p>
+<p>
+<strong>Core</strong><br />
+</p>
+<ul><li>[FIX] ODataModel: Don't override existing data with <span class="underline">deferred 
+</li><li>[FIX] ODataModel: Remove delete correct cache value with parameters 
+</li><li>[FIX] RichTextEditor: Multiple fixes for RTE inside Popup 
+</li></ul><p>
+<strong>Desktop</strong><br />
+</span></p>
+<ul><li>[FIX] InPlaceEdit make content to default aggregation 
+</li><li>[FIX] ListBox show ellipsis if text too long 
+</li><li>[FIX] Popup: Closing when opener is removed 
+</li><li>[FIX] Popup: Document Collision Parameters 
+</li><li>[FIX] SearchField - not focusable on iOs 
+</li><li>[FIX] Table: Make tabbable work in popup 
+</li><li>[FIX] ToolPopup: Documentation
+</li><li>[FIX] Tree: Correct theme path for Icons 
+</li><li>[FIX] commons.Panel: scrollLeft in RTL mode
+</li><li>[FIX] ToolPopup: Arrow for IE8 
+</li><li>[FIX] ToolPopup: Fixed Padding Bottom in BlueCrystal
+</li></ul><p>
+<strong>Mobile</strong><br />
+</p>
+<ul><li>[FIX] sap.m.ActionSelect: remove buttons from the ActionSelect content popup
+</li><li>[FIX] BusyDialog: fixes qunit test
+</li><li>[FIX] sap.m.IconTabBar: removeItem - allow ID param and fix return value (fixes Github issue <a class="ext-link" href="https://github.com/SAP/openui5/issues/12"><span class="icon"> </span>#12</a>)
+</li><li>[FIX] modal Popup prevent HTML page from scrolling 
+</li><li>[FIX] sap.m.SegmentedButton: control pushes the dialog to the maximum size when runs in IE. 
+</li><li>[FIX] sap.m.NavContainer: Hiding XMLViews on route-event 
+</li></ul><p>
+<strong>Charts</strong><br />
+</p>
+<ul><li>[FIX] JS error on hovering over datapoints when there is measure with no value assigned
+</li></ul><h2 id="Version1.18.9March2014">Version 1.18.9 (March 2014)</h2>
 <p>
 A patch for the rel-1.18 code line. It contains the following fixes for the UI5 Core and Controls:
 </p>

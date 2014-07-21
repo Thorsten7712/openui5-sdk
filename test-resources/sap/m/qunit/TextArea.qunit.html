@@ -17,7 +17,6 @@
 <script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 <script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 <script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
-<script src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 
 <script>
 (function ($, core, undefined) {
@@ -92,8 +91,9 @@
 			applySetters = function(setters) {
 				Object.getOwnPropertyNames(setters).forEach(function(key) {
 					sut["set" + $.sap.charToUpperCase(key)](setters[key]);
+					core.applyChanges();
 				});
-				core.applyChanges();
+				
 				ok(true, "Setters called corretly");
 			},
 			sut = new sap.m.TextArea(config);
@@ -113,7 +113,7 @@
 	});
 
 	test("Should Have/Fire LiveChange Event", function() {
-		expect(3);
+		expect(2);
 		var val = "test",
 			maxlen = 1,
 			sut = new sap.m.TextArea(),
@@ -130,11 +130,6 @@
 
 		// should have input event
 		var $textarea = $("textarea");
-		if (jQuery.sap.Version(jQuery.fn.jquery).compareTo("1.8") < 0) {
-			ok($textarea.data("events").input, "Textarea has input event");
-		} else {
-			ok($textarea._sapTest_dataEvents().input, "Textarea has input event");
-		}
 
 		// trigger input event manually
 		$textarea.val(val);
@@ -154,17 +149,20 @@
 		this.stub(sap.ui.Device.support, "touch", true);
 
 		// generate events
-		var tsPageY = 100,
-			tmPageY = 200,
-			sut = new sap.m.TextArea(),
+		var longText = new Array(1000).join("text "),
+			sut = new sap.m.TextArea({
+				value : longText
+			}),
 			tsEvent = $.Event("touchstart", {
 				touches : [{
-					pageY : tsPageY
+					pageX: 0,
+					pageY : 0
 				}]
 			}),
 			tmEvent = $.Event("touchmove", {
 				touches : [{
-					pageY : tmPageY
+					pageX : 0,
+					pageY : 0
 				}]
 			});
 
@@ -177,30 +175,30 @@
 		core.applyChanges();
 		var $textarea = $("textarea");
 
-		// create iScroll sap.m.getIScroll has to return this
-		$.sap.require("sap.ui.thirdparty.iscroll");
-		var iScroll = new window.iScroll(sut.getDomRef());
-		this.mock(sap.m).expects("getIScroll").withArgs(sut).once().returns(iScroll);
-
-		// chechk start pos on touchstart and if iScroll found correctly
+		// check touchstart 
 		sut._onTouchStart(tsEvent);
-		strictEqual(sut._startY, tsPageY, "StartY value after ontouchstart is correct");
-		strictEqual(sut._oIScroll, iScroll, "iScroll assigned correctly on touchstart");
-
-		// check start position is updated after touch move
+		ok(tsEvent.isMarked("swipestartHandled"), "Touch start event is marked for swipe handling in case of scrolling");
+		
+		// scroll down in text area
+		$textarea[0].scrollTop = 1;
+		
+		// vertical scrolling : move finger up (scroll down) 
+		tmEvent.touches[0].pageY -= 1;
 		sut._onTouchMove(tmEvent);
-		strictEqual(sut._startY, tmPageY, "StartY value after ontouchmove is  correct");
-
-		// in iOS6 to check focusin/out method if enables/disables transform
-		if (sap.ui.Device.os.ios && sap.ui.Device.os.version < 7) {
-			sut.onfocusin();
-			core.applyChanges();
-			strictEqual(sut._oIScroll.options.useTransform, false, "Transform Disabled");
-
-			sut.onfocusout();
-			core.applyChanges();
-			strictEqual(sut._oIScroll.options.useTransform, true, "Transform Enabled");
-		}
+		ok(tmEvent.isMarked(), "Touch move event is marked for vertical scrolling");
+		
+		// scroll to inital position
+		$textarea[0].scrollTop = 0;
+		
+		// horizontal scrolling : move finger left (scroll right)
+		tmEvent = $.Event("touchmove", {
+			touches : [{
+				pageX : -1,
+				pageY : 0
+			}]
+		});
+		sut._onTouchMove(tmEvent);
+		ok(tmEvent.isMarked(), "Touch move event is marked for horizontal scrolling");
 
 		//Cleanup
 		sut.destroy();
@@ -237,7 +235,7 @@
 
 	test("Should not have Touch events for default behaviour", function() {
 		// turn on touch support during this test
-		this.stub($.support, "touch", true);
+		this.stub(sap.ui.Device.support, "touch", true);
 		var sut = new sap.m.TextArea();
 		this.stub(sap.m.TextArea.prototype, "_behaviour", {});
 
@@ -246,11 +244,9 @@
 
 		var $textarea = $("textarea");
 		if (jQuery.sap.Version(jQuery.fn.jquery).compareTo("1.8") < 0) {
-			strictEqual($textarea.data("events").touchstart, undefined, "Textarea has no touchstart event as expected");
-			strictEqual($textarea.data("events").touchmove, undefined, "Textarea has no touchmove event as expected");
+			strictEqual($textarea.data("events"), undefined, "Textarea does not bind dom events");
 		} else {
-			strictEqual($textarea._sapTest_dataEvents().touchstart, undefined, "Textarea has no touchstart event as expected");
-			strictEqual($textarea._sapTest_dataEvents().touchmove, undefined, "Textarea has no touchmove event as expected");
+			strictEqual($textarea._sapTest_dataEvents(), undefined, "Textarea does not bind dom events");
 		}
 
 		//Cleanup
@@ -259,7 +255,7 @@
 
 	test("Should not have touch events in Desktop Mode", function() {
 		// turn off touch support during this test
-		this.stub($.support, "touch", false);
+		this.stub(sap.ui.Device.support, "touch", false);
 
 		var sut = new sap.m.TextArea();
 		sut.placeAt("qunit-fixture");
@@ -269,15 +265,56 @@
 
 		// desktop mode: browser should handle scroll no event required
 		if (jQuery.sap.Version(jQuery.fn.jquery).compareTo("1.8") < 0) {
-			strictEqual($textarea.data("events").touchstart, undefined, "Textarea has no touchstart event as expected");
-			strictEqual($textarea.data("events").touchmove, undefined, "Textarea has no touchmove event as expected");
+			strictEqual($textarea.data("events"), undefined, "Textarea does not bind dom events");
 		} else {
-			strictEqual($textarea._sapTest_dataEvents().touchstart, undefined, "Textarea has no touchstart event as expected");
-			strictEqual($textarea._sapTest_dataEvents().touchmove, undefined, "Textarea has no touchmove event as expected");
+			strictEqual($textarea._sapTest_dataEvents(), undefined, "Textarea does not bind dom events");
 		}
 
 		//Cleanup
 		sut.destroy();
+	});
+	
+	
+	test("change event should be fired when last known and dom value are not same", function() {
+		// system under test
+		var sInitValue = "Test";
+		var oTA = new sap.m.TextArea({
+			text : sInitValue
+		});
+
+		// arrange
+		oTA.placeAt("content");
+		sap.ui.getCore().applyChanges();
+		var oTADomRef = oTA.getFocusDomRef();
+		var fnFireChangeSpy = this.spy(oTA, "fireChange");
+
+		// act
+		oTADomRef.focus();
+		sap.ui.test.qunit.triggerKeydown(oTADomRef, "ENTER");
+		
+		// assertion
+		strictEqual(fnFireChangeSpy.callCount, 0, "Change event is not fired because initial value and dom value are same.");
+		
+		// change dom and cursor pos
+		sap.ui.test.qunit.triggerCharacterInput(oTADomRef, "a");
+		
+		// act
+		sap.ui.test.qunit.triggerKeydown(oTADomRef, "ENTER");
+		
+		// assertion
+		strictEqual(fnFireChangeSpy.callCount, 0, "Change event is not fired because enter is not a valid event to fire change event for textarea") 
+	
+		// reset spy
+		fnFireChangeSpy.reset();
+		
+		// retest after change event is fired
+		oTADomRef.blur();
+		
+		// assertion
+		strictEqual(fnFireChangeSpy.callCount, 1, "Change event is fired  because last known value and dom value are different");
+		
+		// cleanup
+		oTA.destroy();
 	});
 
 })(jQuery, sap.ui.getCore());

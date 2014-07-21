@@ -6,8 +6,6 @@
 /*                                                                            */
 /* :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-:lang(ja) {font-style: normal !important; }
-:lang(ko) {font-weight: normal !important; font-style: normal !important; }
 :lang(zh) {font-weight: normal !important; font-style: normal !important; }
 
 /*****************************************************************/
@@ -90,7 +88,7 @@ body
 
 body:lang(ar) {font-family: "Traditional Arabic", Arial Unicode MS, sans-serif;}
 body:lang(ja) {font-family: MS PGothic, Arial Unicode MS, sans-serif;}
-body:lang(ko) {font-family: Gulim, Arial Unicode MS, sans-serif;}
+body:lang(ko) {font-family: Malgun Gothic, Arial Unicode MS, sans-serif;}
 body:lang(zh) {font-family: HYZhongDengXianJ, SimHei, BentonSans Book, Arial Unicode MS, sans-serif;}
 
 body.sap_bluecrystal {

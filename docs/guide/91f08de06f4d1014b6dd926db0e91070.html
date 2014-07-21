@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5561017532800694"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=22843087729586864"/>
 <title>Configuration of the SAPUI5 Runtime</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -86,27 +88,27 @@
 						<samp class="ph codeph">string</samp>, the format of the allowed values has to be defined
 						as follows: </p>
 
-					<table summary="" id="loio91f08de06f4d1014b6dd926db0e91070__simpletable_zrf_ttl_wk" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d444084e107" class="stentry">Type</th>
-<th valign="bottom" align="left" id="d444084e109" class="stentry">Notation/Values</th>
+					<table summary="" id="loio91f08de06f4d1014b6dd926db0e91070__simpletable_zrf_ttl_wk" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d707054e107" class="stentry">Type</th>
+<th valign="bottom" align="left" id="d707054e109" class="stentry">Notation/Values</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d444084e107" class="stentry"><samp class="ph codeph">string</samp></td>
-<td valign="top" headers="d444084e109" class="stentry">Just a string, but escaped according to the HTML
+<tr class="strow"><td valign="top" headers="d707054e107" class="stentry"><samp class="ph codeph">string</samp></td>
+<td valign="top" headers="d707054e109" class="stentry">Just a string, but escaped according to the HTML
 								conventions</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d444084e107" class="stentry"><samp class="ph codeph">boolean</samp></td>
-<td valign="top" headers="d444084e109" class="stentry">'true' and 'x' are both accepted as true values
+<tr class="strow"><td valign="top" headers="d707054e107" class="stentry"><samp class="ph codeph">boolean</samp></td>
+<td valign="top" headers="d707054e109" class="stentry">'true' and 'x' are both accepted as true values
 								(case-insensitive), all others are false. We recommend to use
 								'false' for false values</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d444084e107" class="stentry"><samp class="ph codeph">int</samp></td>
-<td valign="top" headers="d444084e109" class="stentry">Any integer value</td>
+<tr class="strow"><td valign="top" headers="d707054e107" class="stentry"><samp class="ph codeph">int</samp></td>
+<td valign="top" headers="d707054e109" class="stentry">Any integer value</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d444084e107" class="stentry">string array</td>
-<td valign="top" headers="d444084e109" class="stentry">Comma separated list of values; comma is not supported in the
+<tr class="strow"><td valign="top" headers="d707054e107" class="stentry">string array</td>
+<td valign="top" headers="d707054e109" class="stentry">Comma separated list of values; comma is not supported in the
 								values (no escaping)</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d444084e107" class="stentry">map from string to string</td>
-<td valign="top" headers="d444084e109" class="stentry">JavaScript object literal (preferably JSON syntax)</td>
+<tr class="strow"><td valign="top" headers="d707054e107" class="stentry">map from string to string</td>
+<td valign="top" headers="d707054e109" class="stentry">JavaScript object literal (preferably JSON syntax)</td>
 </tr>
 </table>
 
@@ -126,7 +128,7 @@
 				used if the value contains specific HTML characters (&lt;, &gt;, &amp;) or the quote
 				character that is used to enclose the attribute value.</div>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 	&lt;script id="sap-ui-bootstrap" 
 		type="text/javascript"
 		src="resources/sap-ui-core.js"
@@ -169,7 +171,7 @@
 
 			<p class="p">The following code snippet shows an example for an inline script tag:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 	&lt;script type="text/javascript"&gt;
 		window["sap-ui-config"] = {
 			theme : "sap_platinum",

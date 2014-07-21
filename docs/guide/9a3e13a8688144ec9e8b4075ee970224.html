@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9624884803945201"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=524848917705691"/>
 <title>Step 12: NotFound View</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -30,7 +32,7 @@
 			need to create this view so that the Router can load it, add it to the SplitApp, and
 			navigate to it. </p>
 <p class="p">This is the content of <span class="ph filepath">NotFound.view.xml</span> in the view subfolder:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;mvc:View
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"&gt;
@@ -63,7 +65,7 @@
 			a CSS class defined so we can use some custom CSS to move the text in the Label's text
 			property down a little bit. </p>
 <p class="p">Here's the custom CSS, which is stored in style.css in the css subfolder:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!css</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!css</samp>
 .spacerTop {
 	margin-top: 2rem;
 }
@@ -72,7 +74,7 @@
 			
 			<p class="p">Finally, this is our complete app folder:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- css/

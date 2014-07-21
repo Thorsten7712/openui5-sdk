@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5115436151959639"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8678764060874"/>
 <title>Implementing Focus Handling</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -92,7 +94,7 @@
 				its root node. In this case, simply override the <samp class="ph codeph">getFocusDomRef()</samp>
 				method:</p>
  
-		<div><pre class="pre codeblock">sap.ui.commons.&lt;SampleControl&gt;.getFocusDomRef = function() {
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.commons.&lt;SampleControl&gt;.getFocusDomRef = function() {
    return this.getDomRef().firstChild.nextSibling;
 }</pre></div>
  
@@ -102,7 +104,7 @@
 		  <samp class="ph codeph">applyFocusInfo</samp>. 
 		</p>
  
-		<div><pre class="pre codeblock">sap.ui.commons.&lt;SampleControl&gt;.getFocusInfo = function() {
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.commons.&lt;SampleControl&gt;.getFocusInfo = function() {
    return {id:this.getId(),idx:this.&lt;myFocusElementIndex&gt;};
 }
 

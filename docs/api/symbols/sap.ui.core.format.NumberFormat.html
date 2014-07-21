@@ -54,11 +54,13 @@ Supported format options:
 <li>maxIntegerDigits: maximum number of non-fraction digits</li>
 <li>minFractionDigits: minimal number of fraction digits</li>
 <li>maxFractionDigits: maximum number of fraction digits</li>
+<li>pattern: CLDR number pattern</li>
 <li>groupingEnabled: enable grouping (show the grouping separators</li>
 <li>groupingSeparator: the used grouping separator</li>
 <li>decimalSeparator: the used decimal separator</li>
 <li>plusSign: the used plus symbol</li>
 <li>minusSign: the used minus symbol</li>
+<li>showMeasure: Show the measure according to the format in the formatted string</li>
 </ul>
 For format options which are not specified default values according to the type and locale settings are used.</p>
 						
@@ -114,12 +116,12 @@ For format options which are not specified default values according to the type 
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Get an integer instance of the NumberFormat, which can be used for formatting."><a href="../symbols/sap.ui.core.format.NumberFormat.html#.getIntegerInstance">sap.ui.core.format.NumberFormat.getIntegerInstance</a></b><span class='signature'>(<span title="(object) Object which defines the format options">oFormatOptions</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Locale) Locale to get the formatter for">oLocale</span><i class="help" title="Optional parameter">?</i>)</span>
-									<span class='description'>Get an integer instance of the NumberFormat, which can be used for formatting.</span>
+									<b class="icon" title="Get an currency instance of the NumberFormat, which can be used for formatting."><a href="../symbols/sap.ui.core.format.NumberFormat.html#.getIntegerInstance">sap.ui.core.format.NumberFormat.getIntegerInstance</a></b><span class='signature'>(<span title="(object) Object which defines the format options">oFormatOptions</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Locale) Locale to get the formatter for">oLocale</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Get an currency instance of the NumberFormat, which can be used for formatting.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Format a number according to the given format options."><a href="../symbols/sap.ui.core.format.NumberFormat.html#format">format</a></b><span class='signature'>(<span title="(number) the number to format">oValue</span>)</span>
+									<b class="icon" title="Format a number according to the given format options."><a href="../symbols/sap.ui.core.format.NumberFormat.html#format">format</a></b><span class='signature'>(<span title="(number) the number to format">oValue</span>, <span title="(string) a measure which has an impact on the formatting">sMeasure</span>)</span>
 									<span class='description'>Format a number according to the given format options.</span>
 								</div>
 							
@@ -212,7 +214,7 @@ If no locale is given, the currently configured
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oFormatOptions</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oFormatOptions</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Object which defines the format options
@@ -224,7 +226,7 @@ If no locale is given, the currently configured
 													  <span class="light">{<a href="../symbols/sap.ui.core.Locale.html">sap.ui.core.Locale</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oLocale</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oLocale</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Locale to get the formatter for
@@ -262,7 +264,7 @@ If no locale is given, the currently configured
 											<span class="light" title="returns sap.ui.core.format.NumberFormat">: <a href="../symbols/sap.ui.core.format.NumberFormat.html">sap.ui.core.format.NumberFormat</a></span>
 										</div>
 										<div class="full-description">
-											Get an integer instance of the NumberFormat, which can be used for formatting.
+											Get an currency instance of the NumberFormat, which can be used for formatting.
 </p><p>
 If no locale is given, the currently configured 
 <a href="../symbols/sap.ui.core.Configuration.FormatSettings.html#getFormatLocale">formatLocale</a> will be used.
@@ -282,7 +284,7 @@ If no locale is given, the currently configured
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oFormatOptions</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oFormatOptions</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Object which defines the format options
@@ -294,7 +296,7 @@ If no locale is given, the currently configured
 													  <span class="light">{<a href="../symbols/sap.ui.core.Locale.html">sap.ui.core.Locale</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oLocale</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oLocale</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Locale to get the formatter for
@@ -328,7 +330,7 @@ If no locale is given, the currently configured
 									<div class='sectionItem classMethod'>
 										<a name="format"> </a>
 										<div class="itemTitle icon">
-											format<span class="signature">(<span title="(number) the number to format">oValue</span>)</span>
+											format<span class="signature">(<span title="(number) the number to format">oValue</span>, <span title="(string) a measure which has an impact on the formatting">sMeasure</span>)</span>
 											<span class="light" title="returns string">: string</span>
 										</div>
 										<div class="full-description">
@@ -353,6 +355,18 @@ If no locale is given, the currently configured
 													</td>
 													<td class="methodItemDesc">
 												    the number to format
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sMeasure</b>
+													</td>
+													<td class="methodItemDesc">
+												    a measure which has an impact on the formatting
 													</td>
 												</tr>
 											

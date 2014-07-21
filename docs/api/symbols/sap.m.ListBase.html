@@ -124,13 +124,13 @@ Note: The ListBase including all contained items is completely re-rendered when 
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="This event is called after binding and DOM is updated."><a href="../symbols/sap.m.ListBase.html#event:updateFinished">updateFinished</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
-									<span class='description'>This event is called after binding and DOM is updated.</span>
+									<b class="icon" title="This event is called after items binding and afterwards related DOM is updated."><a href="../symbols/sap.m.ListBase.html#event:updateFinished">updateFinished</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+									<span class='description'>This event is called after items binding and afterwards related DOM is updated.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="This event is called before binding is updated."><a href="../symbols/sap.m.ListBase.html#event:updateStarted">updateStarted</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
-									<span class='description'>This event is called before binding is updated.</span>
+									<b class="icon" title="This event is called before items binding is updated."><a href="../symbols/sap.m.ListBase.html#event:updateStarted">updateStarted</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+									<span class='description'>This event is called before items binding is updated.</span>
 								</div>
 							
 								<div class="sectionItem classMethod deprecated">
@@ -456,7 +456,7 @@ Note: The ListBase including all contained items is completely re-rendered when 
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Removes visible selections of the current selection mode."><a href="../symbols/sap.m.ListBase.html#removeSelections">removeSelections</a></b><span class='signature'>(<span title="(boolean) boolean">bAll</span>)</span>
+									<b class="icon" title="Removes visible selections of the current selection mode."><a href="../symbols/sap.m.ListBase.html#removeSelections">removeSelections</a></b><span class='signature'>(<span title="(boolean) Since version 1.16.3.">bAll</span>)</span>
 									<span class='description'>Removes visible selections of the current selection mode.</span>
 								</div>
 							
@@ -660,7 +660,7 @@ Note: The ListBase including all contained items is completely re-rendered when 
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -957,7 +957,7 @@ NOTE: This event is fired for all kind of list items unless the item's type is "
 												</td>
 												<td class="methodItemDesc">
 											    The list item which fired the pressed event.
-NOTE: This event is fired also for "GroupHeaderListItem" which does not have binding context.
+        NOTE: This event is fired also for "GroupHeaderListItem" which does not have binding context.
 												</td>
 											</tr>
 										
@@ -1196,7 +1196,7 @@ NOTE: This event is fired also for "GroupHeaderListItem" which does not have bin
 										
 									</div>
 									<div class="full-description">
-										This event is called after binding and DOM is updated.
+										This event is called after items binding and afterwards related DOM is updated.
 										
 										
 										
@@ -1299,7 +1299,8 @@ NOTE: This event is fired also for "GroupHeaderListItem" which does not have bin
 										
 									</div>
 									<div class="full-description">
-										This event is called before binding is updated.
+										This event is called before items binding is updated.
+Note: Event handler should not invalidate the control.
 										
 										
 										
@@ -1727,7 +1728,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -1739,7 +1740,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -1854,7 +1855,7 @@ Event is fired when delete icon is pressed by user.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1878,7 +1879,7 @@ Event is fired when delete icon is pressed by user.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -1938,7 +1939,7 @@ NOTE: This event is fired for all kind of list items unless the item's type is "
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1962,7 +1963,7 @@ NOTE: This event is fired for all kind of list items unless the item's type is "
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -2026,7 +2027,7 @@ Event is fired when selection is changed via user interaction inside the control
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2050,7 +2051,7 @@ Event is fired when selection is changed via user interaction inside the control
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -2114,7 +2115,7 @@ This event is fired when a user swipes to bring in a control and before swipeCon
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2138,7 +2139,7 @@ This event is fired when a user swipes to bring in a control and before swipeCon
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -2180,7 +2181,7 @@ This event is fired when a user swipes to bring in a control and before swipeCon
 When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
 otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
 </p><p>
-This event is called after binding and DOM is updated.
+This event is called after items binding and afterwards related DOM is updated.
 											
 											
 											
@@ -2197,7 +2198,7 @@ This event is called after binding and DOM is updated.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2221,7 +2222,7 @@ This event is called after binding and DOM is updated.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -2268,7 +2269,8 @@ This event is called after binding and DOM is updated.
 When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
 otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
 </p><p>
-This event is called before binding is updated.
+This event is called before items binding is updated.
+Note: Event handler should not invalidate the control.
 											
 											
 											
@@ -2285,7 +2287,7 @@ This event is called before binding is updated.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2309,7 +2311,7 @@ This event is called before binding is updated.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -3065,7 +3067,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3128,7 +3130,7 @@ NOTE: This event is fired also for "GroupHeaderListItem" which does not have bin
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3195,7 +3197,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3241,7 +3243,7 @@ Expects following event parameters:
 											Fire event swipe to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'listItem' of type <code>sap.m.ListItemBase</code> The listitem which fired the swipe.</li>
@@ -3264,7 +3266,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3326,7 +3328,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3393,7 +3395,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3696,8 +3698,8 @@ Default value is <code>20</code>
 										</div>
 										<div class="full-description">
 											Getter for property <code>growingTriggerText</code>.
-This text is displayed on the trigger button which is responsible to load new page at the end of the list. The default is a translated text ("Load More Data") coming from the message bundle.
-This property can be used only if "growing" property is set "true" and scrollToLoad property is set "false".
+This text is displayed on the trigger button which is responsible to load new page at the end of the list. The default is a translated text ("More") coming from the message bundle.
+This property can be used only if "growing" property is set "true"
 </p><p>
 Default value is empty/<code>undefined</code>
 											
@@ -4216,7 +4218,7 @@ Note: This method returns an empty array if no databinding is used.
 													</td>
 													<td class="methodItemDesc">
 												    Set true to include even invisible selected items(e.g. the selections from the previous filters).
-Note: In single selection modes, only the last selected item's binding context is returned in array.
+        Note: In single selection modes, only the last selected item's binding context is returned in array.
 													</td>
 												</tr>
 											
@@ -4816,7 +4818,7 @@ Additionally unregisters them from the hosting UIArea.
 									<div class='sectionItem classMethod'>
 										<a name="removeSelections"> </a>
 										<div class="itemTitle icon">
-											removeSelections<span class="signature">(<span title="(boolean) boolean">bAll</span>)</span>
+											removeSelections<span class="signature">(<span title="(boolean) Since version 1.16.3.">bAll</span>)</span>
 											<span class="light" title="returns sap.m.ListBase">: <a href="../symbols/sap.m.ListBase.html">sap.m.ListBase</a></span>
 										</div>
 										<div class="full-description">
@@ -4840,18 +4842,13 @@ Additionally unregisters them from the hosting UIArea.
 													  <b>bAll</b>
 													</td>
 													<td class="methodItemDesc">
-												    
+												    Since version 1.16.3. This control keeps old selections after filter or sorting. Set this parameter "true" to remove all selections.
 													</td>
 												</tr>
 											
 											</tbody></table>
 										
 										
-										
-											<dl class="detailList since">
-												<dt class="heading since">Since:</dt>
-												<dd>1.16.3 *         This control keeps old selections after filter or sorting. Set this parameter "true" to remove all selections.</dd>
-											</dl>
 										
 										
 										
@@ -6390,7 +6387,7 @@ This event is called when "growing" feature is enabled and after new page loaded
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -6414,7 +6411,7 @@ This event is called when "growing" feature is enabled and after new page loaded
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -6486,7 +6483,7 @@ This event is called when "growing" feature is enabled and before new page loade
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -6510,7 +6507,7 @@ This event is called when "growing" feature is enabled and before new page loade
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -6582,7 +6579,7 @@ Event is fired when selection is changed by user interaction. In "multi-selectio
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -6606,7 +6603,7 @@ Event is fired when selection is changed by user interaction. In "multi-selectio
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.ListBase</code>.<br/> itself.
@@ -6916,7 +6913,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -6990,7 +6987,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -7063,7 +7060,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.

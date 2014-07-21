@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7268570661109266"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=11890497116129084"/>
 <title>The Root (App-) Controller</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -43,7 +45,7 @@
 <p class="p">The back navigation is handled similarily, but is more simple, as no data needs to be passed.
 			The app control keeps track of the page stack and  automatically navigates back to the
 				<samp class="ph codeph">homePageView</samp>, using an inverse animation.</p>
-<div><pre class="pre codeblock">sap.ui.controller("sap.m.mvc.App", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.m.mvc.App", {
 
     onInit : function() {
         

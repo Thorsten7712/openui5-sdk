@@ -56,22 +56,22 @@ The Page only allows vertical scrolling because horizontal scrolling is discoura
 		<aggregation cardinality="0..n" name="content" type="sap.ui.core/Control">
 			<documentation>The content of this page</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" name="customHeader" type="sap.m/Bar">
+		<aggregation cardinality="0..1" name="customHeader" type="sap.m/IBar">
 			<documentation>The (optional) custom header of this page. 
 Use this aggregation only when a custom header is constructed where the default header consisting of title text + nav button is not sufficient.
 If this aggregation is set, the simple properties &quot;title&quot;, &quot;showNavButton&quot;, &quot;NavButtonText&quot; and  &quot;icon&quot; are not used.</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" type="sap.m/Bar" name="footer">
+		<aggregation cardinality="0..1" type="sap.m/IBar" name="footer">
 			<documentation>The (optional) footer of this page. It is always located at the bottom of the page</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" type="sap.m/Bar" name="subHeader">
+		<aggregation cardinality="0..1" type="sap.m/IBar" name="subHeader">
 			<documentation>a subHeader will be rendered directly under the header</documentation>
 		</aggregation>
 		<aggregation cardinality="0..n" name="headerContent" type="sap.ui.core/Control">
 			<documentation>Controls to be added to the right side of the page header. Usually an application would use Button controls and limit the number to one when the application needs to run on smartphones. There is no automatic overflow handling when the space is insufficient. 
 When a customHeader is used, this aggregation will be ignored.</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" name="_internalHeader" type="sap.m/Bar" visibility="hidden">
+		<aggregation cardinality="0..1" name="_internalHeader" type="sap.m/IBar" visibility="hidden">
 			<documentation>A header bar which is managed internally by the Page control</documentation>
 		</aggregation>
 	</aggregations>

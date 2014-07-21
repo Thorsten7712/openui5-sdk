@@ -11,69 +11,75 @@
 		showNavButton="{device>/isPhone}"
 		navButtonPress="handleNavBack" >
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						text="{i18n>approveButtonText}"
-						type="Accept"
-						enabled="{cfg>/actionsEnabled}"
-						press="handleApprove" />
-					<Button
-						text="{i18n>rejectButtonText}"
-						type="Reject"
-						enabled="{cfg>/actionsEnabled}"
-						press="handleReject" />
-					<Button
-						icon="sap-icon://forward"
-						enabled="{cfg>/actionsEnabled}"
-						press="handleForward" />
-				</contentRight>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>approveButtonText}"
+					type="Accept"
+					enabled="{cfg>/actionsEnabled}"
+					press="handleApprove" />
+				<Button
+					text="{i18n>rejectButtonText}"
+					type="Reject"
+					enabled="{cfg>/actionsEnabled}"
+					press="handleReject" />
+				<Button
+					icon="sap-icon://forward"
+					enabled="{cfg>/actionsEnabled}"
+					press="handleForward" />
+			</Toolbar>
 		</footer>
 		<content>
 			<ObjectHeader
 				title="{ID}"
 				number="{Amount}"
+				responsive="true"
+				backgroundDesign="Translucent"
 				numberUnit="{CurrencyCode}" >
 				<attributes>
 					<ObjectAttribute
+						title="{i18n>detailCreatedAt}"
 						text="{
 							path:'CreatedAt',
 							formatter:'sap.ui.demo.poa.util.formatter.Date'
 						}" />
 					<ObjectAttribute
+						title="{i18n>detailCreatedByName}"
 						text="{CreatedByName}" />
 				</attributes>
 				<firstStatus>
 					<ObjectStatus
+						title="{i18n>detailStatus}"
 						text="{OrderingStatusDesc}"
 						state="{
 							path:'OrderingStatusDesc',
 							formatter:'sap.ui.demo.poa.util.formatter.StatusState'
 						}" />
 				</firstStatus>
+				<headerContainer>
+					<IconTabBar
+						expanded="{device>/isNoPhone}"
+						select="handleTabSelect" >
+						<items>
+							<IconTabFilter
+								key="Info"
+								text="{i18n>detailTabInfo}">
+								<mvc:XMLView viewName="sap.ui.demo.poa.view.DetailInfo"></mvc:XMLView>
+							</IconTabFilter>
+							<IconTabFilter
+								key="Notes"
+								text="{i18n>detailTabNotes}">
+								<!-- content is lazy loaded -->
+							</IconTabFilter>
+							<IconTabFilter
+								key="Attachments"
+								text="{i18n>detailTabAttachments}">
+								<!-- content is lazy loaded -->
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</headerContainer>
 			</ObjectHeader>
-			<IconTabBar
-				expanded="{device>/isNoPhone}"
-				select="handleTabSelect" >
-				<items>
-					<IconTabFilter
-						key="Info"
-						icon="sap-icon://hint">
-						<mvc:XMLView viewName="sap.ui.demo.poa.view.DetailInfo"></mvc:XMLView>
-					</IconTabFilter>
-					<IconTabFilter
-						key="Notes"
-						icon="sap-icon://notes">
-						<!-- content is lazy loaded -->
-					</IconTabFilter>
-					<IconTabFilter
-						key="Attachments"
-						icon="sap-icon://attachment">
-						<!-- content is lazy loaded -->
-					</IconTabFilter>
-				</items>
-			</IconTabBar>
 			<Table
 				id="lineItemList"
 				items="{path:'PurchaseOrder_Items'}" >

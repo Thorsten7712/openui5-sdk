@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=09501644215773009"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4570191035529705"/>
 <title>Programmatically Instantiating JS Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 			<p class="p">To give an example of a programmatic instantiation of a JS fragment, you first have to define
 				one. The following code presents an example definition:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 sap.ui.jsfragment ( "my.useful.UiPartX",{ 
 	createContent: function (oController ) {
         var oButton  = new sap.ui.commons.Button({ 
@@ -41,7 +43,7 @@ sap.ui.jsfragment ( "my.useful.UiPartX",{
 
 			<p class="p"> This fragment can be instantiated from a controller as follows:</p>
 
-			<div><pre class="pre codeblock">var myButton = sap.ui.jsfragment("my.useful.UiPartX",this); // assuming "this" is the controller</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var myButton = sap.ui.jsfragment("my.useful.UiPartX",this); // assuming "this" is the controller</pre></div>
 
 			<p class="p">This button can now be used as if it had been created in a standard way. Note how a controller
 				instance is passed as second parameter. This is required because that particular
@@ -53,12 +55,12 @@ sap.ui.jsfragment ( "my.useful.UiPartX",{
 				optionally, see <a class="xref" href="5da591c5a5a54740948acfe56b22fbc3.html" title="You can use a unique ID for a fragment that will be used as prefix for all controls in a fragment instance.">Unique
 					IDs</a>:</p>
 
-			<div><pre class="pre codeblock">var myButton = sap.ui.jsfragment("someId", "my.useful.UiPartX", this); // assuming "this" is the Controller</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var myButton = sap.ui.jsfragment("someId", "my.useful.UiPartX", this); // assuming "this" is the Controller</pre></div>
 
 			<p class="p">Within a JS view's <span class="keyword apiname">createContent()</span> method the fragment content
 				could be included like this: </p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 ... 
 	createContent: function (oController ) {
 		var hLayout = new sap.ui.commons.layout HorizontalLayout (); 

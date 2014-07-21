@@ -3,9 +3,10 @@
  * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  * 
- *//* Global CSS for 'base' theme */
+ */@import "../../../../../../Base/baseLib/baseTheme/base.less";
+@import "../../../../../../Base/baseLib/sap_goldreflection/base.less";
+/* Global CSS for 'base' theme */
 
-@import "../../../../../../Base/baseLib/baseTheme/base.less";
 
 
 // Semantic Theming Mapping
@@ -276,7 +277,6 @@
 @sapUiShadow: 5px 5px 10px fade(@sapUiShadowTint,50%);
 /* Global CSS for 'sap_goldreflection' theme */
 
-@import "../../../../../../Base/baseLib/sap_goldreflection/base.less";
 
 
 // Semantic Theming Mapping
@@ -375,6 +375,8 @@
 @sapUiBlue: #007CC0;
 @sapUiRed: #E52929;
 @sapUiYellow: #F0AB00;
+
+@sapUiCritical: #d14900; //rgb(209, 73, 0)
 
 
 // Base Colors
@@ -478,6 +480,8 @@
 @sapUiNegativeText: darken(@sapUiRed, 8%);   // #cc1919
 
 @sapUiPositiveText: darken(@sapUiGreen, 3.5%);   // #007833
+
+@sapUiCriticalText: @sapUiCritical; // #d14900
 
 // Grayscale Borders
 @sapUiWhiteBorder: lighten(@sapUiBaseBorder, 100%);	// #ffffff
@@ -676,6 +680,10 @@ html[data-sap-ui-browser^="ie"] .sapDkShell .sapUiUx3ShellCanvas {
 	overflow: hidden;
 }
 
+.sapDkShell.sapUiUx3Shell .sapUiUx3ShellWorksetBar {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+
 .sapDkShell .sapUiUx3NavBarToplevel {
 	width: 85%;
 }
@@ -777,11 +785,11 @@ html[data-sap-ui-browser^="ie"] .sapDkShell .sapUiUx3ShellContent {
 	-moz-box-sizing: border-box;
 	
 	background-color: #ffffff !important;
-	background-image: url(images/bg_white_transparent.png), linear-gradient(to bottom,  rgba(255,255,255,0.3) 0%,rgba(0,124,192,0.2) 100%) !important;
-	background-image: url(images/bg_white_transparent.png), -webkit-linear-gradient(top,  rgba(255,255,255,0.3) 0%,rgba(0,124,192,0.2) 100%) !important;
-	background-image: url(images/bg_white_transparent.png), -ms-linear-gradient(top,  rgba(255,255,255,0.3) 0%,rgba(0,124,192,0.2) 100%) !important;
+	background-image: linear-gradient(to bottom, #E0F2F4 0px, #DCECF0 50%, #DDE4EC 100%) !important;
+	background-image: -webkit-linear-gradient(to bottom, #E0F2F4 0px, #DCECF0 50%, #DDE4EC 100%) !important;
+	background-image: -ms-linear-gradient(to bottom, #E0F2F4 0px, #DCECF0 50%, #DDE4EC 100%) !important;
 	background-attachment: fixed !important;
-	background-repeat: repeat, no-repeat !important;
+	background-repeat: no-repeat !important;
 }
 
 .sapUiDemokitTitle {
@@ -966,7 +974,7 @@ A.sapUiDemokitSrcLink {
 	background-image: url(images/hexagon-red.gif)
 }
 .sapUiHexBtnBlue {
-	background-image: url(images/hexagon-blue.gif)
+	background-image: url(images/hexagon_blue_small.png)
 }
 .sapUiHexBtnBlue.sapUiHexBtnActive:hover {
 	background-image: url(images/hexagon-yellow.gif)
@@ -975,19 +983,19 @@ A.sapUiDemokitSrcLink {
 	background-image: url(images/hexagon-yellow.gif)
 }
 .sapUiHexBtnYellow.sapUiHexBtnActive:hover {
-	background-image: url(images/hexagon-blue.gif);
+	background-image: url(images/hexagon_blue_small.png);
 }
 .sapUiHexBtnPink {
 	background-image: url(images/hexagon-pink.gif)
 }
 .sapUiHexBtnPink.sapUiHexBtnActive:hover {
-	background-image: url(images/hexagon-blue.gif)
+	background-image: url(images/hexagon_blue_small.png)
 }
 .sapUiHexBtnGray {
-	background-image: url(images/hexagon-gray.gif)
+	background-image: url(images/hexagon_grey_small.png)
 }
 .sapUiHexBtnGray.sapUiHexBtnActive:hover {
-	background-image: url(images/hexagon-blue.gif)
+	background-image: url(images/hexagon_blue_small.png)
 }
 
 

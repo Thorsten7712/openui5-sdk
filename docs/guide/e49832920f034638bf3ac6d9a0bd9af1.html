@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=24999180298593526"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7992563102587249"/>
 <title>Events</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -37,7 +39,7 @@
             item. If a list item, for example, has not yet been approved, the <em class="ph i">Approve</em> button
             is shown. After approval or if it is already approved, the <em class="ph i">Disapprove</em> button is
             shown. See the following example: </p>
-<div><pre class="pre codeblock">var list1 = new sap.m.List({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var list1 = new sap.m.List({
     swipeContent : new sap.m.Button({
         text : "Approve",
         type : "Accept",
@@ -68,7 +70,7 @@
             If you also want to disable swipe events for your custom use case, you can call the
                 <samp class="ph codeph">preventDefault</samp> method of the event object. This is shown in the
             following example: </p>
-<div><pre class="pre codeblock">new sap.m.List({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new sap.m.List({
     swipe : function(e) {
          // get which control inside the list item fired swipe event
          var oSrcControl = e.getParameter("srcControl");

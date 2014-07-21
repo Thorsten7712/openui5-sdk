@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3345833929216414"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4941340042011836"/>
 <title>Aggregation Binding</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -38,7 +40,7 @@
 		<samp class="ph codeph">settings</samp> object, this
 		looks as follows: 
 	 </p>
-<div><pre class="pre codeblock">var oItemTemplate = new sap.ui.core.ListItem({text:"{name}"});
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oItemTemplate = new sap.ui.core.ListItem({text:"{name}"});
 var oComboBox = new sap.ui.commons.ComboBox({
     items: {
 		path: "/company/contacts", 
@@ -47,14 +49,14 @@ var oComboBox = new sap.ui.commons.ComboBox({
 });</pre></div>
 <p class="p">You can also define the aggregation binding by using the <samp class="ph codeph">bindAggregation</samp> method
 			of a control: </p>
-<div><pre class="pre codeblock">oComboBox.bindAggregation("items", "/company/contacts", new sap.ui.core.ListItem({text:"{name}"}));</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oComboBox.bindAggregation("items", "/company/contacts", new sap.ui.core.ListItem({text:"{name}"}));</pre></div>
 <p class="p">Some controls have a typed binding method for
 		aggregations that are likely to be bound by the application: 
 	 </p>
-<div><pre class="pre codeblock">oComboBox.bindItems("/company/contacts", oItemTemplate);</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oComboBox.bindItems("/company/contacts", oItemTemplate);</pre></div>
 <p class="p">To remove an aggregation binding, you can use the <samp class="ph codeph">unbindAggregation</samp> method. The
 			aggregation binding is then removed automatically whenever a control is destroyed.</p>
-<div><pre class="pre codeblock">oComboBox.unbindAggregation("items");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oComboBox.unbindAggregation("items");</pre></div>
 <p class="p">For more information, see the API Reference. </p>
 <div class="section" id="loio91f057786f4d1014b6dd926db0e91070__section_13735464F2644F1997A8760907538B50"><div class="section_title">Using Template Controls</div><div type="Using Template Controls"> 
 		 
@@ -65,7 +67,7 @@ var oComboBox = new sap.ui.commons.ComboBox({
 		  template is created and added to the bound aggregation.
 		</p>
  
-		<div><pre class="pre codeblock">var oMatrixLayout = new sap.ui.commons.layout.MatrixLayout();
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMatrixLayout = new sap.ui.commons.layout.MatrixLayout();
 
 var oRowTemplate = new sap.ui.commons.layout.MatrixLayoutRow({
 	cells: [
@@ -97,7 +99,7 @@ oMatrixLayout.bindAggregation("rows", "/company/contacts", oRowTemplate);	</pre>
 		  <samp class="ph codeph">sap.ui.core.Element</samp>. 
 		</p>
  
-		<div><pre class="pre codeblock">oContainer.bindAggregation("content", "/company/properties", function(sId, oContext) {
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oContainer.bindAggregation("content", "/company/properties", function(sId, oContext) {
 	var value = oContext.getProperty("value");
 	switch(typeof value) {
 		case "string":
@@ -134,7 +136,7 @@ oMatrixLayout.bindAggregation("rows", "/company/contacts", oRowTemplate);	</pre>
 			 <p class="p">Define a sorter and/or filters: 
 			 </p>
  
-			 <div><pre class="pre codeblock">var oSorter = new sap.ui.model.Sorter("name", true); // sort descending
+			 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oSorter = new sap.ui.model.Sorter("name", true); // sort descending
 var oFilter1 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.StartsWith, "M");
 var oFilter2 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains, "Paz");
 var oFilter3 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.BT, "A","G"); // name between A and G</pre></div>
@@ -145,7 +147,7 @@ var oFilter3 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.BT, "
 				aggregation binding: 
 			 </p>
  
-			 <div><pre class="pre codeblock">var oComboBox = new sap.ui.commons.ComboBox({
+			 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oComboBox = new sap.ui.commons.ComboBox({
     items: {path:"/company/contacts", template:oItemTemplate, sorter:oSorter, filters:[oFilter1,oFilter2,oFilter3]}
 });</pre></div>
  
@@ -165,7 +167,7 @@ var oFilter3 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.BT, "
 			<p class="p">To sort/filter data manually after the aggregation binding is complete you can do so
 				by getting the corresponding binding and calling the sort/filter function: </p>
 
-			<div><pre class="pre codeblock">var oSorter = new sap.ui.model.Sorter("name", true); // sort descending
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oSorter = new sap.ui.model.Sorter("name", true); // sort descending
 var oFilter1 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.StartsWith, "M");
 var oFilter2 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains, "Paz");
 var oFilter3 = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.BT, "A","G"); // name between A and G

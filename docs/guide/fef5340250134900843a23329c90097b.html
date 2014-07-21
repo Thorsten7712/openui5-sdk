@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6165199795126547"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=42404004065409484"/>
 <title>Application Cache Buster: Index File</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 			timestamp for each file. Thus, the application provides the index file
 				<samp class="ph codeph">sap-ui-cachebuster-info.json</samp>. This file in JSON format includes all
 			files that should use this mechanism. The index file looks as follows: </p>
-<div><pre class="pre codeblock">{
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{
   "mvc/MyMVC.view.js": "20120907134005",
   "mvc/MyMVC.controller.js": "20120907134005",
   "mvc/MyMVC.view2.js": "20120906113301",

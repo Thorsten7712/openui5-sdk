@@ -29,7 +29,7 @@
 		</event>
 	</events>
 	<aggregations default="menu">
-		<aggregation cardinality="0..1" name="menu" type="Menu">
+		<aggregation cardinality="0..1" name="menu" type="sap.ui.unified/Menu">
 			<documentation>Menu that shall be opened when the button is clicked</documentation>
 		</aggregation>
 	</aggregations>

@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9672227137456394"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=12295228357345289"/>
 <title>Standard Variant for Bootstrapping</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 			self-contained, meaning that it already contains jQuery as well as some jQuery plugins.
 			An applications only specifies the <samp class="ph codeph">sap-ui-core.js</samp> file on its page and
 			SAPUI5 runtime does the rest automatically.</p>
-<div><pre class="pre codeblock">    &lt;script 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">    &lt;script 
             id="sap-ui-bootstrap"            
             src="resources/sap-ui-core.js" 
             data-sap-ui-libs="sap.ui.commons"

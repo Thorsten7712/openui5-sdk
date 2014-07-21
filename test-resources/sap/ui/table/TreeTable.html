@@ -130,7 +130,7 @@
 			new sap.ui.table.Column({label: "Name", template: "name", filterProperty: "name"}),
 			new sap.ui.table.Column({label: "Description", template: "description"})
 		],
-		selectionMode: sap.ui.table.SelectionMode.Single,
+		selectionMode: sap.ui.table.SelectionMode.MultiToggle,
 		enableColumnReordering: true,
 		expandFirstLevel: true
 	});
@@ -155,7 +155,7 @@
 
 </head>
 
-<body class="sapUiBody" role="application">
+<body class="sapUiBody sapUiSizeCompact" role="application">
 <h1>Test Page for <code>sap.ui.table.TreeTable</code></h1>
 <p>
 <div id="content"></div>

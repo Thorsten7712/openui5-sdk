@@ -16,10 +16,8 @@
 		var oShell = new sap.ui.unified.Shell({
 			icon: sLogo,
 			headerHiding: true,
-			search: new SearchFieldPlaceHolder("sf", {
-				search: function(oEvent){
+			search: createTestSearchField("sf", function(oEvent){
 					oOverlay.open();
-				}
 			}),
 			content: [new sap.ui.commons.TextView({text: window.sLorem})],
 			headItems: [new sap.ui.unified.ShellHeadItem({
@@ -48,7 +46,7 @@
 		sizeChanged(sap.ui.Device.media.getCurrentRange(sap.ui.Device.media.RANGESETS.SAP_STANDARD));
 		
 		var oOverlay = new sap.ui.unified.ShellOverlay({
-			search: new SearchFieldPlaceHolder(),
+			search: createTestSearchField("sf2"),
 			content: [new sap.ui.commons.TextView({text: window.sLorem})],
 			closed: function(){
 				jQuery.sap.log.warning("ShellOverlay was closed - some cleanup can be done ...");

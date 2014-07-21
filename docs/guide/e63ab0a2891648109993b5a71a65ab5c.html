@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5854932882916223"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=02074422778954943"/>
 <title>The HomePage Controller</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">The HomePage controller handles the tap on a list item by publishing the event to the
                 <samp class="ph codeph">nav</samp> channel and hands over the relevant view
                 (<samp class="ph codeph">DetailPage</samp>) and the context of the tapped list item.</p>
-<div><pre class="pre codeblock">sap.ui.controller("sap.m.mvc.HomePage", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.m.mvc.HomePage", {
 
     listItemTriggered: function(evt) {
         // Option 1: using custom data attached to the ListItem

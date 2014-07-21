@@ -12,9 +12,11 @@
 <meta name="abstract" content="To bind texts of a control in JSON views to a language-dependent resource bundle, define the resource bundle by a name (resourceBundleName property) or a URL (resourceBundleUrl property) and assign an alias (resourceBundleAlias property) for the bundle in the view definition."/>
 <meta name="description" content="To bind texts of a control in JSON views to a language-dependent resource bundle, define the resource bundle by a name (resourceBundleName property) or a URL (resourceBundleUrl property) and assign an alias (resourceBundleAlias property) for the bundle in the view definition."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6468242225781218"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7228654599010084"/>
 <title>Binding Texts to a Resource Bundle</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -38,7 +40,7 @@
 		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step"><span class="ph cmd">Deifne the following resource bundle content: <samp class="ph codeph">MY_TEXT=Hello
 						World</samp></span></li>
 <li class="li step"><span class="ph cmd">To bind this resource bundle contetn, insert the following code depending on the view type: </span><ul class="ul choices" id="loio7341396326c34631813c805d44058b05__choices_o5x_zn5_sk"><li class="li choice">For a JSON view, insert the following code:
-						<div><pre class="pre codeblock">{	"Type": "sap.ui.core.JSONView",
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{	"Type": "sap.ui.core.JSONView",
 	 "controllerName":"my.own.views.test",
  	"resourceBundleName":"myBundle",
  	"resourceBundleAlias":"i18n",
@@ -55,7 +57,7 @@
 }</pre></div>
 </li>
 <li class="li choice">For a XML view, insert the following code:
-						<div><pre class="pre codeblock">&lt;core:View resourceBundleName="myBundle"
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;core:View resourceBundleName="myBundle"
            resourceBundleAlias="i18n" 
            controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
            xmlns:html="http://www.w3.org/1999/xhtml"&gt;

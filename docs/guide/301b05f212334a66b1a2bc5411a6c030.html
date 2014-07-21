@@ -12,9 +12,11 @@
 <meta name="abstract" content="Describes how to create a component for SAPUI5 from scratch"/>
 <meta name="description" content="Describes how to create a component for SAPUI5 from scratch"/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6327084547630069"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8775843213473773"/>
 <title>Creating a New SAPUI5 Component</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -40,7 +42,7 @@
                             extend the <samp class="ph codeph">UIComponent</samp> base class and pass the name of
                             the component as well as the package path to it.</p>
 
-						<div><pre class="pre codeblock">// define a new (simple) UIComponent
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// define a new (simple) UIComponent
 jQuery.sap.require("sap.ui.core.UIComponent");
 jQuery.sap.require("sap.ui.commons.Button");
 jQuery.sap.declare("samples.components.button.Component");
@@ -75,7 +77,7 @@ samples.components.button.Component.prototype.setText = function(sText) {
 <li class="li choice">
 						<p class="p"><samp class="ph codeph">Component.json</samp></p>
 
-						<div><pre class="pre codeblock">{
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{
     "name": "samples.components.button",
     "version": "0.1.0",
     "description": "Sample button components",
@@ -94,7 +96,7 @@ samples.components.button.Component.prototype.setText = function(sText) {
 					<p class="p">The component is now ready to be used in an application. The following code snippet gives an
                         example of the use of the component in two instances:</p>
 
-					<div><pre class="pre codeblock">// Create a component
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// Create a component
        var oComp1 = sap.ui.getCore().createComponent({
         name: "samples.components.button",
         id: "Comp1", 

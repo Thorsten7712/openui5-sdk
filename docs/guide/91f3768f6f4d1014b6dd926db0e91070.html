@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7434442856533627"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=030209194719748256"/>
 <title>URL White List Filtering</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -66,7 +68,7 @@
  
 		<p class="p">Here is an example how valid URLs can be added to the whitelist: </p>
  
-		<div><pre class="pre codeblock">
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 
 // jQuery.sap.addUrlWhitelist(/* protocol */ undefined, /* host */ undefined, /* port */ undefined, /* path */ undefined);
 
@@ -86,7 +88,7 @@ jQuery.sap.addUrlWhitelist(undefined, "sap.de", "1080");</pre></div>
  
 		<p class="p">Here is an example how a given URL is validated against the before maintained whitelist: </p>
  
-		<div><pre class="pre codeblock">
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 
 jQuery.sap.validateUrl("http://www.sap.com"); // =&gt; true
 

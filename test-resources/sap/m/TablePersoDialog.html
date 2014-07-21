@@ -13,16 +13,16 @@
 		</script>
 		
 		<script type="text/javascript">
-		
+		jQuery.sap.require("sap.m.TablePersoController");
 		jQuery.sap.require("sap.m.TablePersoDialog");
 
 		var oData = {
 			items: [
-				{ name: "Michelle", color: "orange", number: 3.14 },
-				{ name: "Joseph", color: "blue", number: 1.618 },
-				{ name: "David", color: "green", number: 0 },
+				{ name: "Michelle", color: "orange", number: 3.14, tools: 2.0, support: 'prime', events: 'None', city: 'Walldorf', country: 'Germany', phone: '03525-2323-2352352' },
+				{ name: "Joseph", color: "blue", number: 1.618, tools: 2.0, support: 'prime', events: 'None', city: 'Walldorf', country: 'Germany', phone: '03525-2323-2352352'  },
+				{ name: "David", color: "green", number: 0.12, tools: 2.0, support: 'normal', events: 'None', city: 'Walldorf', country: 'Germany', phone: '03525-2323-2352352'  },
 			],
-			cols: ["Name", "Color", "Number"]
+			cols: ["Name", "Color", "Number", "Tools", "Support", "Events", "City", "Country", "Phone"]
 		};
 
 		//make sure table id suffix is set (this is necessary for personalization)
@@ -31,14 +31,17 @@
 				content: [
 					new sap.m.Label({text: "Info"}),
 					new sap.m.ToolbarSpacer({}),
+					/* new sap.m.Button("idPersonalizationResetButton", {
+						icon: "sap-icon://refresh"
+					}), */
 					new sap.m.Button("idPersonalizationButton", {
-						icon: "sap-icon://person-placeholder"
+						icon: "sap-icon://action-settings"
 					})
 				]
 			}),
 			columns: oData.cols.map(function (colname) {
 				//make sure column id suffix is set
-				return new sap.m.Column(colname, { header: new sap.m.Label({ text: colname })})
+				return new sap.m.Column(colname, { header: new sap.m.Label({ text: colname }), visible: colname != "Color"})
 			})
 		});
 
@@ -64,7 +67,41 @@
 				oDeferred.resolve();
 				return oDeferred.promise();
 			},
-			
+
+			resetPersData : function () {
+				var oDeferred = new jQuery.Deferred();
+
+				var oInitialData = {
+		            _persoSchemaVersion: "1.0",
+		            aColumns : [
+		                        {
+		                                id: "empty_component-testTable-Name",
+		                                order: 2,
+		                                text: "Name",
+		                                visible: true
+		                        },
+		                        {
+		                                id: "empty_component-testTable-Number",
+		                                order: 1,
+		                                text: "Number",
+		                                visible: true
+		                        },
+		                        {
+		                                id: "empty_component-testTable-Color",
+		                                order: 0,
+		                                text: "Color",
+		                                visible: true
+		                        }
+		                        ]
+		        };
+
+				this._oBundle = oInitialData;
+
+//				this._oBundle = null;
+				oDeferred.resolve();
+				return oDeferred.promise();
+			},
+
 			getCaption : function(oColumn) {
 				if(oColumn.getHeader() && oColumn.getHeader().getText) {
 					if( oColumn.getHeader().getText() == "Color") {
@@ -72,55 +109,41 @@
 					}
 				}
 				return null;
+			},
+			
+			getGroup : function(oColumn) {
+				if(oColumn.getHeader() && oColumn.getHeader().getText) {
+					if( oColumn.getHeader().getText() == "Color") {
+						return "Primary Group";
+					}
+				}
+				return "Secondary Group";
 			}
 		};
 
-		jQuery.sap.require("sap.m.TablePersoController");
+//		jQuery.sap.require("sap.m.TablePersoController");
 
 		var oTPC = new sap.m.TablePersoController({
 			table: oTable,
-			persoService: oPersoService
+			persoService: oPersoService,
+			hasGrouping: false
 		});
 		oTPC.activate();
-
 
 		sap.ui.getCore().byId("idPersonalizationButton").attachPress(function() {
 			oTPC.openDialog();
 		});
-		
-		var oHBox = new sap.m.HBox({
-			items: [
-				new sap.m.RadioButton("idWidthNormal", {
-					groupName: "contentWidth",
-					text: "Normal",
-					selected: true,
-					select: function(oEvent) {
-						if (oEvent.getParameter("selected")) {
-							oTablePersoDialog.setContentWidth("");
-						}
-					}
-				}),
-				new sap.m.RadioButton("idWidthWide", {
-					groupName: "contentWidth",
-					text: "Wide",
-					select: function(oEvent) {
-						if (oEvent.getParameter("selected")) {
-							oTablePersoDialog.setContentWidth("700px");
-						}
-					}
-				}),
-			]
-		});
 
-		var app = new sap.m.App("myApp", {initialPage:"page"}),
-		 	page = new sap.m.Page("page", 
-				{title: "TablePersoDialog Testpage",
-				content: [oHBox, oTable]}
-			);
-		
-		app.addPage(page);
-		app.placeAt("body");
-		
+			var app = new sap.m.App("myApp", {
+					initialPage : "page"
+				}), 
+				page = new sap.m.Page("page", {
+					title : "TablePersoDialog Testpage",
+					content : [oTable]
+				});
+
+			app.addPage(page);
+			app.placeAt("body");
 		</script>
 		
 	</head>

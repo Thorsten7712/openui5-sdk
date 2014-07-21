@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8214177305757816"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9572076221936595"/>
 <title>Custom Formatter Functions</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 				Binding</a>) do <strong class="ph b">not</strong> contain a formatter function. In this case, all values
 			of the various parts are joined together as a string with a space seperator. To specify
 			your own formatter, proceed as shown in the following example:</p>
-<div><pre class="pre codeblock">oTxt.bindValue({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTxt.bindValue({
                 parts: [
                     {path: "/firstName", type: new sap.ui.model.type.String()},
                     {path: "/lastName", type: new sap.ui.model.type.String()},
@@ -53,7 +55,7 @@
 				values. These values are also stored in the model. In this case, the types of the
 				parts are ignored: </p>
 
-			<div><pre class="pre codeblock">oTxt.bindValue({
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTxt.bindValue({
         parts: [
             {path: "/firstName", type: new sap.ui.model.type.String()},
             {path: "/lastName", type: new sap.ui.model.type.String()},

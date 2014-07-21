@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=24046968090416476"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6632841901835568"/>
 <title>sap.ui.model.type.DateTime</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -42,7 +44,7 @@
 		GMT/UTC. 
 	 </div>
 <div class="p">Examples how a <samp class="ph codeph">DateTime</samp> type can be initialized:
-			<div><pre class="pre codeblock">// The source value is given as Javascript Date object. The used output pattern depends on the locale settings (default).
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// The source value is given as Javascript Date object. The used output pattern depends on the locale settings (default).
 var oType = new sap.ui.model.type.DateTime();
 // The source value is given as Javascript Date object. The used output pattern is "yyyy/MM/dd HH:mm:ss": e.g. 2011/04/11 09:11:27
 oType = new sap.ui.model.type.DateTime({pattern: "yyyy/MM/dd HH:mm:ss"}); 

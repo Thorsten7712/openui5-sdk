@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=36355084463089027"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=21865180728463518"/>
 <title>Programmatic Access to RTL</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">Some controls need to provide specific coding for RTL mode, for example, because they position
 			or animate elements programmatically, and not via CSS. You can read the SAPUI5 RTL
 			configuration by calling:</p>
-<div><pre class="pre codeblock">var bRtl = sap.ui.getCore().getConfiguration().getRTL();</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var bRtl = sap.ui.getCore().getConfiguration().getRTL();</pre></div>
 </div>
 <div class="related-links"> 
 

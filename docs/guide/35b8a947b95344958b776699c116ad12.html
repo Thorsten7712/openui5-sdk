@@ -12,9 +12,11 @@
 <meta name="abstract" content="Both sap.m.List and sap.m.Table offer the same events, inheriting them from sap.m.ListBase"/>
 <meta name="description" content="Both sap.m.List and sap.m.Table offer the same events, inheriting them from sap.m.ListBase"/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=45661402287139197"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=012405582913654234"/>
 <title>List and Table Events</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -36,7 +38,7 @@
 <p class="p"><img class="image" id="loio35b8a947b95344958b776699c116ad12__image_xcm_xrd_mn" src="4be41d1360d447bd961612a06c4e0987.image"/></p>
 <p class="p">The table is constructed in the normal way, with a toggle button to cycle through the
 			different modes (<strong class="ph b">SingleSelect</strong>, <strong class="ph b">MultiSelect</strong>, <strong class="ph b">Delete</strong>, and so on).</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 <samp class="ph codeph">#!js</samp>
      headerToolbar: new sap.m.Toolbar({ content: [
             new sap.m.Text({text: "Sales By Area"}),
@@ -59,7 +61,7 @@
 <p class="p">After binding the JSON model to the table's items aggregation, we also set a control as
 			the <strong class="ph b">SwipeContent</strong> aggregation, and set the swipe direction to be from right to
 			left:</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 <samp class="ph codeph">#!js</samp>
   oTable.setSwipeContent(new sap.m.Button("idSwipeButton", {
         text: "Press me for action",
@@ -73,7 +75,7 @@
 <p class="p">The <strong class="ph b">SwipeContent</strong> is a control that appears on the right hand side of a list item
 			when a swipe gesture is made on the item.</p>
 <p class="p">We then set up some logging for the different events that will be triggered:</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 <samp class="ph codeph">#!js</samp>
 function logItemInfo(sAction, oEvent) {
         var sId = oEvent.getParameter('listItem').getId();

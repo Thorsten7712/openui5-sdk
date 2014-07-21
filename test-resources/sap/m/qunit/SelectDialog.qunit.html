@@ -14,7 +14,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script>
@@ -300,7 +299,7 @@
 			oSelectDialog.open();
 		});
 
-		test("Remember Selections false mode", function () {
+		asyncTest("Remember Selections false mode", function () {
 			var oSelectDialog = new sap.m.SelectDialog("selectDialog", {
 				multiSelect: true,
 				rememberSelections: false,
@@ -333,10 +332,14 @@
 			strictEqual(oSelectDialog._oList.getSelectedItems().length, 0, '0 items are selected after opening the dialog the third time');
 
 			// cleanup
-			oSelectDialog.destroy();
+			oSelectDialog._oDialog.attachAfterClose(function (oEvent) {
+				oSelectDialog.destroy();
+				start();
+			});
+			oSelectDialog._oDialog.close();
 		});
 
-		test("Remember Selections true mode", function () {
+		asyncTest("Remember Selections true mode", function () {
 			var oSelectDialog = new sap.m.SelectDialog("selectDialog", {
 				multiSelect: true,
 				rememberSelections: true,
@@ -367,7 +370,11 @@
 			strictEqual(oSelectDialog._oList.getSelectedItems().length, 4, '4 items are selected after opening the dialog the third time');
 
 			// cleanup
-			oSelectDialog.destroy();
+			oSelectDialog._oDialog.attachAfterClose(function (oEvent) {
+				oSelectDialog.destroy();
+				start();
+			});
+			oSelectDialog._oDialog.close();
 		});
 
 		/********************************************************************************/
@@ -600,6 +607,54 @@
 			});
 			oSelectDialog.open();
 		});
+
+		asyncTest("Check add/remove/toggle/hasStyleClass methods", function () {
+			var oSelectDialog = new sap.m.SelectDialog("selectDialog"),	
+				sCustomStyleClass = "myStyleClass";
+
+			// add + has
+			oSelectDialog.addStyleClass(sCustomStyleClass);
+			oSelectDialog.open();
+			ok(oSelectDialog._oDialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog now has style class "' + sCustomStyleClass + '"');
+			ok(oSelectDialog.hasStyleClass(sCustomStyleClass), 'The SelectDialog now has style class "' + sCustomStyleClass + '"');
+
+			// remove
+			oSelectDialog.removeStyleClass(sCustomStyleClass);
+			ok(!oSelectDialog._oDialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog does not have style class "' + sCustomStyleClass + '" after remove');
+			ok(!oSelectDialog.hasStyleClass(sCustomStyleClass), 'The SelectDialog does not have style class "' + sCustomStyleClass + '" after remove');
+
+			// toggle
+			oSelectDialog.toggleStyleClass(sCustomStyleClass);
+			ok(oSelectDialog._oDialog.hasStyleClass(sCustomStyleClass), 'The internal Dialog has style class "' + sCustomStyleClass + '" after toggle');
+			ok(oSelectDialog.hasStyleClass(sCustomStyleClass), 'The SelectDialog has style class "' + sCustomStyleClass + '" after toggle');
+
+			// cleanup
+			oSelectDialog._oDialog.attachAfterClose(function (oEvent) {
+				oSelectDialog.destroy();
+				start();
+			});
+			oSelectDialog._oDialog.close();
+		});
+
+		asyncTest("Check $ and getDomRef methods", function () {
+			var oSelectDialog = new sap.m.SelectDialog("selectDialog");
+
+			oSelectDialog.open();
+
+			// $ method
+			ok(oSelectDialog.$() instanceof jQuery && oSelectDialog.$().length === 1, "The inner dialogs jQuery object is returned");
+
+			// getDomRef
+			ok(oSelectDialog.getDomRef() instanceof Element && oSelectDialog.getDomRef().id === oSelectDialog.getId()+"-dialog", "The inner dialogs DOM reference is returned");
+
+			// cleanup
+			oSelectDialog._oDialog.attachAfterClose(function (oEvent) {
+				oSelectDialog.destroy();
+				start();
+			});
+			oSelectDialog._oDialog.close();
+		});
+
 		</script>
 	</head>
 	<body id="body" class="sapUiBody">

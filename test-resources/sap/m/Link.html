@@ -17,16 +17,52 @@
 			
 			var page1 = new sap.m.Page("page1", {
 				title:"Page 1",
-				content : [ new sap.m.Link({
+				content : [ 
+					new sap.m.Link({
 						text : "To Page 2",
 						press : function() {
 							app.to("page2");
 						}
 					}),
+					
 					new sap.m.Link({
 						text : "Disabled Link",
 						enabled : false
-					}) 
+					}),
+					
+					new sap.m.Link({
+						text : "Subtle Link",
+						subtle : true,
+						press : function() {
+							app.to("page2");
+						}
+					}),
+					
+					new sap.m.Link({
+						text : "Emphasized Link",
+						emphasized : true,
+						press : function() {
+							app.to("page2");
+						}
+					}),
+					
+					new sap.m.Link({
+						text : "Disabled & Subtle Link",
+						subtle : true,
+						enabled : false,
+						press : function() {
+							app.to("page2");
+						}
+					}),
+					
+					new sap.m.Link({
+						text : "Disabled & Emphasized Link",
+						emphasized : true,
+						enabled : false,
+						press : function() {
+							app.to("page2");
+						}
+					})
 				]
 				
 			});

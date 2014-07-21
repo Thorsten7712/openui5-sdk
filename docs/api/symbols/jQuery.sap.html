@@ -132,6 +132,11 @@
 									<span class='description'>List of DOM events that a UIArea automatically takes care of.</span>
 								</div>
 							
+								<div class="sectionItem classProperty static">
+									<b class="icon" title="Search ancestors of the given source DOM element for the specified CSS class name."><a href="../symbols/jQuery.sap.html#.syncStyleClass">jQuery.sap.syncStyleClass</a></b>
+									<span class='description'>Search ancestors of the given source DOM element for the specified CSS class name.</span>
+								</div>
+							
 							</div>
 						</div>
 						
@@ -158,7 +163,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Declares a module as existing."><a href="../symbols/jQuery.sap.html#.declare">jQuery.sap.declare</a></b><span class='signature'>(<span title="(string || object) name of the module to be declared or in case of an object {modName: &quot;.">sModuleName</span>, <span title="(boolean) whether to create the parent namespace">bCreateNamespace</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Declares a module as existing."><a href="../symbols/jQuery.sap.html#.declare">jQuery.sap.declare</a></b><span class='signature'>(<span title="(string | object) name of the module to be declared or in case of an object {modName: &quot;.">sModuleName</span>, <span title="(boolean) whether to create the parent namespace">bCreateNamespace</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Declares a module as existing.</span>
 								</div>
 							
@@ -223,7 +228,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Ensures that the given module is loaded and executed before execution of the current script continues."><a href="../symbols/jQuery.sap.html#.require">jQuery.sap.require</a></b><span class='signature'>(<span title="(string... || object) one or more names of modules to be loaded or in case of an object {modName: &quot;.">sModuleName</span>, <span>fnCallback</span>)</span>
+									<b class="icon" title="Ensures that the given module is loaded and executed before execution of the current script continues."><a href="../symbols/jQuery.sap.html#.require">jQuery.sap.require</a></b><span class='signature'>(<span title="(string... | object) one or more names of modules to be loaded or in case of an object {modName: &quot;.">sModuleName</span>, <span>fnCallback</span>)</span>
 									<span class='description'>Ensures that the given module is loaded and executed before execution of the current script continues.</span>
 								</div>
 							
@@ -325,6 +330,11 @@
 								<div class="sectionItem classMethod static">
 									<b class="icon" title="Encode the string for inclusion into an URL parameter"><a href="../symbols/jQuery.sap.html#.encodeURL">jQuery.sap.encodeURL</a></b><span class='signature'>(<span title="(string) The string to be escaped">sString</span>)</span>
 									<span class='description'>Encode the string for inclusion into an URL parameter</span>
+								</div>
+							
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Encode a map of parameters into a combined URL parameter string"><a href="../symbols/jQuery.sap.html#.encodeURLParameters">jQuery.sap.encodeURLParameters</a></b><span class='signature'>(<span title="(object) The map of parameters to encode">mParams</span>)</span>
+									<span class='description'>Encode a map of parameters into a combined URL parameter string</span>
 								</div>
 							
 								<div class="sectionItem classMethod static">
@@ -549,6 +559,33 @@ for any of these events that it wants to be notified about.
 										
 									</div>
 								
+									<div class='sectionItem classProperty static'>
+										<a name=".syncStyleClass"> </a>
+										<div class="itemTitle signature icon">
+											jQuery.sap.<b>syncStyleClass</b>
+											<span class="light">: <a href="../symbols/jQuery.html">jQuery</a>|Element</span>
+										</div>
+										<div class="full-description">
+											Search ancestors of the given source DOM element for the specified CSS class name.
+If the class name is found, set it to the root DOM element of the target control.
+If the class name is not found, it is also removed from the target DOM element.
+											
+												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;jquery.sap.dom.js&gt;.</span></p>
+											
+											
+										</div>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading">Since:</dt>
+												<dd>1.22</dd>
+											</dl>
+										
+										
+										
+									</div>
+								
 							</div>
 						</div>
 					
@@ -625,7 +662,7 @@ for any of these events that it wants to be notified about.
 									<div class='sectionItem classMethod static'>
 										<a name=".declare"> </a>
 										<div class="itemTitle icon">
-											jQuery.sap.declare<span class="signature">(<span title="(string || object) name of the module to be declared or in case of an object {modName: &quot;.">sModuleName</span>, <span title="(boolean) whether to create the parent namespace">bCreateNamespace</span><i class="help" title="Optional parameter">?</i>)</span>
+											jQuery.sap.declare<span class="signature">(<span title="(string | object) name of the module to be declared or in case of an object {modName: &quot;.">sModuleName</span>, <span title="(boolean) whether to create the parent namespace">bCreateNamespace</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -648,7 +685,7 @@ If such an object creation is not desired, <code>bCreateNamespace</code> must be
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string||object}</span> 
+													  <span class="light">{string|object}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sModuleName</b>
@@ -1062,7 +1099,7 @@ specified <code>sUrl</code> and optional <code>sId</code>.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id that should be used for the script include tag
@@ -1074,7 +1111,7 @@ specified <code>sUrl</code> and optional <code>sId</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnLoadCallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnLoadCallback</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    callback function to get notified once the script has been loaded
@@ -1086,7 +1123,7 @@ specified <code>sUrl</code> and optional <code>sId</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnErrorCallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnErrorCallback</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    callback function to get notified once the script loading failed (not supported by IE8)
@@ -1141,7 +1178,7 @@ replaced.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    id that should be used for the script include tag
@@ -1153,7 +1190,7 @@ replaced.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnLoadCallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnLoadCallback</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    callback function to get notified once the link has been loaded
@@ -1165,7 +1202,7 @@ replaced.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnErrorCallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnErrorCallback</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    callback function to get notified once the link loading failed
@@ -1456,7 +1493,7 @@ any search.
 									<div class='sectionItem classMethod static'>
 										<a name=".require"> </a>
 										<div class="itemTitle icon">
-											jQuery.sap.require<span class="signature">(<span title="(string... || object) one or more names of modules to be loaded or in case of an object {modName: &quot;.">sModuleName</span>, <span>fnCallback</span>)</span>
+											jQuery.sap.require<span class="signature">(<span title="(string... | object) one or more names of modules to be loaded or in case of an object {modName: &quot;.">sModuleName</span>, <span>fnCallback</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -1480,7 +1517,7 @@ Already loaded modules will be skipped.
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string...||object}</span> 
+													  <span class="light">{string...|object}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sModuleName</b>
@@ -1724,7 +1761,7 @@ This implements the algorithm described in "A Technique for Isolating Difference
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnCompare</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnCompare</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Function to compare list entries
@@ -2324,7 +2361,7 @@ method also does not do so.
 													  <span class="light">{array}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>aParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>aParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Method parameters
@@ -2765,6 +2802,63 @@ This method does no scrolling on its own, it only calculates the value to set (s
 									</div>
 								
 									<div class='sectionItem classMethod static'>
+										<a name=".encodeURLParameters"> </a>
+										<div class="itemTitle icon">
+											jQuery.sap.encodeURLParameters<span class="signature">(<span title="(object) The map of parameters to encode">mParams</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											Encode a map of parameters into a combined URL parameter string
+											
+												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;jquery.sap.encoder.js&gt;.</span></p>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mParams</b>
+													</td>
+													<td class="methodItemDesc">
+												    The map of parameters to encode
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														
+													</td>
+													<td class="methodItemDesc">
+														The URL encoded parameters
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static'>
 										<a name=".encodeXML"> </a>
 										<div class="itemTitle icon">
 											jQuery.sap.encodeXML<span class="signature">(<span title="(string) The string to be escaped">sString</span>)</span>
@@ -3047,7 +3141,7 @@ Note: function does not work with comparing XML objects
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>contains</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>contains</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Whether all existing properties in a are equal as in b
@@ -3538,7 +3632,7 @@ It can have the following properties:
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>options</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>options</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    configures what exactly should be done
@@ -3610,7 +3704,7 @@ It can have the following properties:
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>options.rootId</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>options.rootId</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the ID of the root element that should be made fullscreen; only used when hideBrowser is set. If not set, the body is used
@@ -3725,7 +3819,7 @@ It can have the following properties:
 													  <span class="light">{array}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>aParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>aParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Method parameters
@@ -4090,7 +4184,7 @@ The loaded property list does not contain any comments.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParams</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParams</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Parameters used to initialize the property list
@@ -4102,7 +4196,7 @@ The loaded property list does not contain any comments.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParams.url</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParams.url</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    The URL to the .properties file which should be loaded.
@@ -4114,7 +4208,7 @@ The loaded property list does not contain any comments.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParams.headers</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParams.headers</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A map of additional header key/value pairs to send along with the request (see headers option of jQuery.ajax).
@@ -4215,7 +4309,7 @@ using the given URL and locale to determine what to load.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParams</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParams</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Parameters used to initialize the resource bundle
@@ -4760,7 +4854,7 @@ The default session storage can be easily accessed with methods <a href="../symb
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sIdPrefix</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sIdPrefix</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Prefix used for the Ids. If not set a default prefix is used.
@@ -4941,7 +5035,7 @@ Note that providing "undefined" or "null" as a fallback is different from omitti
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fallback</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if set, only data is returned (and this fallback instead in case of errors); if unset, a result structure is returned
@@ -5033,7 +5127,7 @@ They then receive the same complex result object as for the sjax() call.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fallback</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fallback</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if set, only data is returned (and this fallback instead in case of errors); if unset, a result structure is returned

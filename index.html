@@ -26,8 +26,17 @@
 			
 			sap.ui.getCore().attachInit(function() {
 
-				//Init the UI
-				oDemokit = new sap.ui.demokit.DemokitApp("UI development toolkit for HTML5 - Demo Kit", "OpenUI5 Runtime " + sap.ui.version, ["sap_bluecrystal", "sap_goldreflection", "sap_hcb"]);
+				// determine the version to display
+				var sVersion;
+				try {
+					var oVersionInfo = sap.ui.getVersionInfo();
+					sVersion = oVersionInfo.version || sap.ui.version;
+				} catch (ex) {
+					sVersion = sap.ui.version;
+				}
+
+				// init the UI
+				oDemokit = new sap.ui.demokit.DemokitApp("UI development toolkit for HTML5 - Demo Kit", sVersion, ["sap_bluecrystal", "sap_goldreflection", "sap_hcb"]);
 				oDemokit.createUI(isDynamicInstallation(), oDemokit.getInitialPage("content/Overview.html"));
 				oDemokit.placeAt('ctrRoot');
 
@@ -103,6 +112,17 @@
 						themable: true,
 						transformer : transformer 
 					});
+					
+					oDemokit.addIndex("explored", {
+						caption : "Explored",
+						newWindow : true,
+						index : {
+							ref: "explored.html",
+							links : [
+								{text: "Explored", ref: "explored.html"}
+							]
+						}
+					});
 	
 				}());
 
@@ -152,6 +172,16 @@
 						ref: "demoapps.html",
 						links : [
 							{text: "Demo Apps", ref: "demoapps.html"}
+						]
+					}
+				});
+
+				oDemokit.addIndex("versioninfo", {
+					caption : "Version Info",
+					index : {
+						ref: "versioninfo.html",
+						links : [
+							{text: "Version Info", ref:"versioninfo.html"}
 						]
 					}
 				});

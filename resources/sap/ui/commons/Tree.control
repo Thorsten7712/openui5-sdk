@@ -27,6 +27,9 @@
 		<property group="Misc" name="minWidth" type="sap.ui.core/CSSSize">
 			<documentation>Minimal width for the Tree. Can be useful when, for example, the width is specified in percentage, to avoid the tree to become too narrow when container is resize</documentation>
 		</property>
+		<property group="Behavior" type="TreeSelectionMode" name="selectionMode" defaultValue="Single">
+			<documentation>Selection mode of the Tree.</documentation>
+		</property>
 	</properties>
 	<events>
 		<event name="select" allowPreventDefault="true">
@@ -37,6 +40,17 @@
 				</parameter>
 				<parameter name="nodeContext" type="sap.ui.core/object">
 					<documentation>The binding context of the selected node.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="selectionChange">
+			<documentation>fired when the selection of the tree has been changed</documentation>
+			<parameters>
+				<parameter name="nodes" type="sap.ui.commons/TreeNode[]">
+					<documentation>The nodes which has been selected.</documentation>
+				</parameter>
+				<parameter name="nodeContexts" type="sap.ui.core/object[]">
+					<documentation>The binding context of the selected nodes.</documentation>
 				</parameter>
 			</parameters>
 		</event>

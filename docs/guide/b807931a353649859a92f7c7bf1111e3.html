@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=01528418660273545"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=07097595059560713"/>
 <title>Inline Definition and Instantiation of Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -36,26 +38,28 @@
 			following code examples: </p>
 <div class="section"><div class="section_title">Example of an Inline XML Fragment</div><div type="Example of an Inline XML Fragment">
 			
-			<div><pre class="pre codeblock">// define the XML fragment as a string (or load it from anywhere)
-        var myXml  = '&lt;Panel xmlns = "sap.ui.commons" text = "Hello World" &gt;&lt;Button text = "Hello World" &gt;&lt;/Button &gt;&lt;/Panel&gt;'; 
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
+// define the XML fragment as a string (or load it from anywhere)
+var myXml = '&lt;Panel xmlns="sap.ui.commons" text="Hello World"&gt;&lt;Button text="Hello World"&gt;&lt;/Button&gt;&lt;/Panel&gt;';
 
-		// use this XML string as "fragmentContent"
-        var oFragment  = sap.ui.xmlfragment ({fragmentContent:myXml}); // oFragment is now the panel control  
+// use this XML string as "fragmentContent"
+var oFragment = sap.ui.xmlfragment({fragmentContent:myXml}); // oFragment is now the Panel Control
 
-		// put the fragment content into the document 
-		oFragment.placeAt('content');</pre></div>
+// put the Fragment content into the document
+oFragment.placeAt('content');</pre></div>
 
 		</div></div>
 <div class="section"><div class="section_title">Example of an Inline HTML Fragment</div><div type="Example of an Inline HTML Fragment">
 			
-			<div><pre class="pre codeblock">// define the HTML fragment as a string (or load it from anywhere)
-        var myHtml  = ' &lt;div data-sap-ui-type = "sap.m.Button" data-text = "Hello World" &gt;&lt;/div &gt;'; 
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!text/html</samp>
+// define the HTML fragment as a string (or load it from anywhere)
+var myHtml = '&lt;div data-sap-ui-type="sap.m.Button" data-text="Hello World"&gt;&lt;/div&gt;';
 
-		// use this HTML string as "fragmentContent"
-        var oFragment  = sap.ui.htmlfragment({fragmentContent:myHtml}); // oFragment is now the button control  
+// use this HTML string as "fragmentContent"
+var oFragment = sap.ui.htmlfragment({fragmentContent:myHtml}); // oFragment is now the Button Control
 
-		// put the fragment content into the document 
-		oFragment.placeAt('content');</pre></div>
+// put the Fragment content into the document
+oFragment.placeAt('content');</pre></div>
 
 		</div></div>
 </div>

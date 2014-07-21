@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6779196222585859"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5646237427359971"/>
 <title>Writing a Control Renderer</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -45,7 +47,7 @@
 				during the execution of the <samp class="ph codeph">render()</samp> method:<ul class="ul" id="loio91f393916f4d1014b6dd926db0e91070__ul_tbr_3rf_bn"><li class="li">
 						<p class="p">Accessing properties:</p>
 
-						<div><pre class="pre codeblock">// var oValue = oControl.get&lt;Property&gt;();
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// var oValue = oControl.get&lt;Property&gt;();
 // for example for the 'text'-property
 var oValue = oControl.getText();</pre></div>
 
@@ -53,7 +55,7 @@ var oValue = oControl.getText();</pre></div>
 <li class="li">
 						<p class="p">Accessing 1..1 aggregations</p>
 
-						<div><pre class="pre codeblock">// var oAggregation = oControl.get&lt;Aggregation&gt;();
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// var oAggregation = oControl.get&lt;Aggregation&gt;();
 // for example for content-aggregation
 var oAggregation = oControl.getContent();</pre></div>
 
@@ -61,7 +63,7 @@ var oAggregation = oControl.getContent();</pre></div>
 <li class="li">
 						<p class="p">Accessing 1..n aggregrations:</p>
 
-						<div><pre class="pre codeblock">// var aAggregations = oControl.get&lt;Aggregation&gt;s();
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// var aAggregations = oControl.get&lt;Aggregation&gt;s();
 // for example for rows-aggregation
 var aAggregations = oControl.getRows();</pre></div>
 
@@ -69,7 +71,7 @@ var aAggregations = oControl.getRows();</pre></div>
 <li class="li">
 						<p class="p">Accessing associations:</p>
 
-						<div><pre class="pre codeblock">// var sAssociatedControlId = oControl.get&lt;Association&gt;();
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// var sAssociatedControlId = oControl.get&lt;Association&gt;();
 // for example labelFor-association
 var sAssociatedControlId = oControl.getLabelFor();</pre></div>
 
@@ -86,21 +88,21 @@ var sAssociatedControlId = oControl.getLabelFor();</pre></div>
 					<samp class="ph codeph">RenderManager</samp> also provides the following helper functions for
 				rendering:</p>
  
-	<table summary="" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d657085e111" class="stentry">Method</th>
-<th valign="bottom" align="left" id="d657085e113" class="stentry">Description</th>
+	<table summary="" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d940223e111" class="stentry">Method</th>
+<th valign="bottom" align="left" id="d940223e113" class="stentry">Description</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d657085e111" class="stentry"><samp class="ph codeph">write()</samp></td>
-<td valign="top" headers="d657085e113" class="stentry">Writes
+<tr class="strow"><td valign="top" headers="d940223e111" class="stentry"><samp class="ph codeph">write()</samp></td>
+<td valign="top" headers="d940223e113" class="stentry">Writes
 		string information to the HTML</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d657085e111" class="stentry"><samp class="ph codeph">writeControlData()</samp> 
+<tr class="strow"><td valign="top" headers="d940223e111" class="stentry"><samp class="ph codeph">writeControlData()</samp> 
 		</td>
-<td valign="top" headers="d657085e113" class="stentry">Writes the ID and the recognition data of the
+<td valign="top" headers="d940223e113" class="stentry">Writes the ID and the recognition data of the
 			control to the HTML</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d657085e111" class="stentry"><samp class="ph codeph">renderControl()</samp> 
+<tr class="strow"><td valign="top" headers="d940223e111" class="stentry"><samp class="ph codeph">renderControl()</samp> 
 			</td>
-<td valign="top" headers="d657085e113" class="stentry">Converts the specified control into HTML representation and adds it to the HTML; used for
+<td valign="top" headers="d940223e113" class="stentry">Converts the specified control into HTML representation and adds it to the HTML; used for
 				rendering child controls</td>
 </tr>
 </table>
@@ -118,7 +120,7 @@ var sAssociatedControlId = oControl.getLabelFor();</pre></div>
  
 	<p class="p">The following code snippet shows how you implement a simple renderer:</p>
  
-	<div><pre class="pre codeblock">/**
+	<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">/**
  * This module provides the renderer for the MyControl control
  */
 

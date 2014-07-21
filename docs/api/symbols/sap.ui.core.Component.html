@@ -52,11 +52,12 @@
 						<p>Base Class for Component.</p>
 						
 						
-							<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Since 1.9.2. The Component concept is still under construction, so some implementation details can be changed in future.</span></p> 
 						
 						
 						
 						
+							<br />
+							<i>Since: </i>1.9.2.
 						
 					</div>
 					
@@ -104,9 +105,9 @@
 							<div class="sectionTitle">Method Summary</div>
 							<div class="sectionItems">
 							
-								<div class="sectionItem classMethod static protected">
-									<b class="icon protected" title="Returns the ID of the owner component in which the given ManagedObject has been created."><a href="../symbols/sap.ui.core.Component.html#.getOwnerIdFor">sap.ui.core.Component.getOwnerIdFor</a></b><span class='signature'>(<span title="(sap.ui.core.ManagedObject) the ManagedObject to return the owner component ID for">oObject</span>)</span>
-									<span class='description'>Returns the ID of the owner component in which the given ManagedObject has been created.</span>
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Returns the ID of the owner UI Component in which the given Component or View has been created using  UIComponent.prototype.createContent(); "><a href="../symbols/sap.ui.core.Component.html#.getOwnerIdFor">sap.ui.core.Component.getOwnerIdFor</a></b><span class='signature'>(<span title="(sap.ui.core.Component|sap.ui.core.mvc.View) Object to retrieve the owner for">oObject</span>)</span>
+									<span class='description'>Returns the ID of the owner UI Component in which the given Component or View has been created using <pre> UIComponent.prototype.createContent(); </pre></span>
 								</div>
 							
 								<div class="sectionItem classMethod protected">
@@ -265,18 +266,18 @@ for a general description of this argument.
 							</div>
 							<div class="sectionItems">
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static'>
 										<a name=".getOwnerIdFor"> </a>
-										<div class="itemTitle icon protected">
-											sap.ui.core.Component.getOwnerIdFor<span class="signature">(<span title="(sap.ui.core.ManagedObject) the ManagedObject to return the owner component ID for">oObject</span>)</span>
+										<div class="itemTitle icon">
+											sap.ui.core.Component.getOwnerIdFor<span class="signature">(<span title="(sap.ui.core.Component|sap.ui.core.mvc.View) Object to retrieve the owner for">oObject</span>)</span>
 											<span class="light" title="returns string">: string</span>
 										</div>
 										<div class="full-description">
-											Returns the ID of the owner component in which the given ManagedObject has been
-created.
+											Returns the ID of the owner UI Component in which the given Component or View has been created using 
+<pre>
+  UIComponent.prototype.createContent();
+</pre>
 											
-											
-												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Since 1.15.1. The location of this function might change.</span></p> 
 											
 											
 										
@@ -289,19 +290,24 @@ created.
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{sap.ui.core.ManagedObject}</span> 
+													  <span class="light">{<a href="../symbols/sap.ui.core.Component.html">sap.ui.core.Component</a>|<a href="../symbols/sap.ui.core.mvc.View.html">sap.ui.core.mvc.View</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oObject</b>
 													</td>
 													<td class="methodItemDesc">
-												    the ManagedObject to return the owner component ID for
+												    Object to retrieve the owner for
 													</td>
 												</tr>
 											
 											</tbody></table>
 										
 										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.15.1</dd>
+											</dl>
 										
 										
 										

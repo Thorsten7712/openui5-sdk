@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="../../../../../theme/default.css"></link>
 		<script id="sap-ui-bootstrap"
 				src="../../../../../resources/sap-ui-core.js"
-				data-sap-ui-theme="sap_goldreflection"
+				data-sap-ui-theme="sap_bluecrystal"
 				data-sap-ui-libs="sap.ui.commons,sap.ui.demokit"
 				>
 		</script>
@@ -83,14 +83,14 @@ sap.ui.getCore().attachValidationSuccess(
 		<h2>Introduction</h2>
 
 		<p>
-		The DataPicker control provides an input field with an assigned calendar which is opened on user action.
+		The DatePicker control provides an input field with an assigned calendar which is opened on user action.
 		When the user makes an entry and clicks on the enter key, the calendar shows the corresponding date. When the user makes no entry and triggers the calendar display,
-		the actual date is displayed. 
-		Generally, the user enters a date in the format <b>DD/MM/YYYY</b> (and clicks F4 or the Calendar icon next).
+		the actual date is displayed.
+		Generally, the user enters a date in the format defined by the locale or by binding the <code>value</code> property to a date type (and press F4 or click the Calendar icon next).
 		Alternatively, entering the date in the YYYYMMDD machine format is possible (with enter key afterwards).
 
 		<br><br>
-		The DatePicker control inherits from the TextField control (<code>enabled</code>, <code>required</code>, <code>change</code>).
+		The DatePicker control inherits properties from the TextField control (e.g. <code>enabled</code>, <code>required</code>, <code>change</code>).
 		</p>
 
 		<p>Following a summary of the control behavior:
@@ -99,7 +99,7 @@ sap.ui.getCore().attachValidationSuccess(
 			<li>The Enter key, the Esc key, and a calendar-button-click closes the control (or clicking anywhere outside the control).</li>
 			<li>For switching between the different components of the calendar popup, use the Tab keys.</li>
 			<li>For moving the cursor within a component of the calendar popup, use the arrow keys.</li>
-			<li>The date selection is done using the Enter key, or on mouse-click.</li>
+			<li>The date selection is done using the Enter key, Space key or on mouse-click.</li>
 		</ul>
 		<p>
 
@@ -112,9 +112,9 @@ sap.ui.getCore().attachValidationSuccess(
 		this locale. If no <code>locale</code> is set, the date is displayed in the output format of the system locale SAPUI5
 		uses.
 		<br>
-		If the date should be displayed in an other output format this can be done using data binding. If the <code>value</code>
-		of the <code>DatePicker</code> is bound with type <code>sap.ui.model.type.Date</code> the date will be displayed in the <code>pattern</code>
-		or <code>style</code> of this <code>date</code> type.
+		But if the <code>value</code> property is bound to a model using a <code>sap.ui.model.type.Date</code> type, the <code>locale</code> property is ignored.
+		In this case the locale and the pattern defined in the data binding is used. In this case the output pattern can defined using the <code>pattern</code>
+		or <code>style</code> of this <code>date</code> type while binding.
 		</p>
 
 		<p>

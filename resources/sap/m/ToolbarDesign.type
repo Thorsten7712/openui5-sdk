@@ -3,7 +3,7 @@
 	<name>ToolbarDesign</name>
 	<author></author>
 	<since>1.16.8</since>
-	<documentation>Types of the Toolbar Design</documentation>
+	<documentation>Types of the Toolbar Design.</documentation>
 	<baseType>sap.ui.core/string</baseType>
 	<enumeration>
 		<value name="Auto">
@@ -14,6 +14,9 @@
 		</value>
 		<value name="Info">
 			<documentation>The toolbar appears smaller than the regular size to show information(e.g: text, icon).</documentation>
+		</value>
+		<value name="Solid" since="1.22">
+			<documentation>The toolbar has a solid background. Its content will be rendered in a standard way.</documentation>
 		</value>
 	</enumeration>
 </simple-type>

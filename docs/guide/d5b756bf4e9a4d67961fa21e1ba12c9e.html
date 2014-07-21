@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5373564735181275"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9396982395235446"/>
 <title>Extending Buttons with Additional Events</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">To create a <samp class="ph codeph">HoverButton</samp> control, that is, a button that fires a
                 <samp class="ph codeph">hover</samp> event when the mouse enters its area, use the following
             code:</p>
-<div><pre class="pre codeblock">  sap.ui.commons.Button.extend("HoverButton", { // call the new Control type "HoverButton" 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  sap.ui.commons.Button.extend("HoverButton", { // call the new Control type "HoverButton" 
                                                 // and let it inherit from sap.ui.commons.Button
       metadata: {
           events: {
@@ -47,7 +49,7 @@
 <p class="p">The <samp class="ph codeph">HoverButton</samp> control is used in the application in the same way as a
             regular button. The following code snippet shows how to attach a handler to the
                 <samp class="ph codeph">hover</samp> event:</p>
-<div><pre class="pre codeblock">  var myControl = new HoverButton("myBtn", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  var myControl = new HoverButton("myBtn", {
       text: "Hover Me",
       hover: function(evt) {
           alert("Button " + evt.getSource().getId() + " was hovered.");

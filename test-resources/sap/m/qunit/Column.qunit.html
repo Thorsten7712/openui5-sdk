@@ -13,7 +13,6 @@
 <!-- QUnit libraries -->
 
 <script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <script type="text/javascript">
@@ -340,18 +339,19 @@
 			//Assert
 			strictEqual(sut, column, "Resize was called on the parent");
 			start();
-		}
+		};
 
-		sap.ui.base.EventProvider.prototype.attachEvent.call(sut,
-				"media",
-				undefined,
-				function(args){
-					//Assert
-					strictEqual(args.sId, "media", "the event type is media");
-					strictEqual(sut, this, "the control who fires is column");
-					start();
-				}, sut)
-
+		sap.ui.base.EventProvider.prototype.attachEvent.call(
+			sut,
+			"media",
+			undefined,
+			function(args) {
+				//Assert
+				strictEqual(args.sId, "media", "the event type is media");
+				strictEqual(sut, this, "the control who fires is column");
+			}, 
+			sut
+		);
 
 		//Act
 		sut.setMinScreenWidth("tablet");

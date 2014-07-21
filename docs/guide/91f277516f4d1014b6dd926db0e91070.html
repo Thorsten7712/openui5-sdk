@@ -12,9 +12,11 @@
 <meta name="abstract" content="You use the factory method sap.ui.view to instantiate views."/>
 <meta name="description" content="You use the factory method sap.ui.view to instantiate views."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6876955190825473"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7051059210077196"/>
 <title>Instantiating Views</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -45,7 +47,7 @@
 							of the view and the controller</span></li>
 </ol>
  
-					<div><pre class="pre codeblock">...
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">...
    var myController = sap.ui.controller("my.own.controller");
    var myView = sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,
                               viewName: "my.own.view",

@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5637244966052406"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=929168931927718"/>
 <title>Defining Controls</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,13 +27,13 @@
 		define controls in your HTML document as HTML tags with the following data
 		attribute:
 	 </p>
-<div><pre class="pre codeblock">data-sap-ui-type="sap.ui.commons.Button"</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">data-sap-ui-type="sap.ui.commons.Button"</pre></div>
 <p class="p">This data attribute defines the SAPUI5 control that
 		should be rendered in the HTML tag by using the HTML tag as its UI area.
 		Rendering a button in the body of an HTML document without setting any
 		property, association, event, or aggregation looks as follows: 
 	 </p>
-<div><pre class="pre codeblock">&lt;body&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;body&gt;
   &lt;div data-sap-ui-type="sap.ui.commons.Button"&gt;&lt;/div&gt;
 &lt;/body&gt;</pre></div>
 <div class="note note" id="loio91f1539c6f4d1014b6dd926db0e91070__note_N10023_N10013_N10001"><span class="notetitle">Note</span> Make sure that you close the tags properly.

@@ -88,7 +88,8 @@
 								<span class="icon"><a href="symbols/sap.ui.base.ManagedObject.html">sap.ui.base.ManagedObject</a></span>
 								
 									<span class="experimental">
-										Since 1.11.2. support for the optional parameter oScope is still experimental
+										Since 1.11.2. ManagedObject as such is public and usable. Only the support for the optional parameter 
+oScope in the constructor is still experimental and might change in future versions. Applications should not rely on it.
 									</span>
 								
 							</div>
@@ -97,9 +98,8 @@
 								<span class="icon"><a href="symbols/sap.ui.base.ManagedObject.html#applySettings">sap.ui.base.ManagedObject#applySettings</a></span>
 								
 									<span class="experimental">
-										Since 1.11.2. support for complex string binding syntax as well as the 
-				scope object for resolving string based type and formatter references 
-				in bindings is still experimental
+										Since 1.11.2 support for the scope object for resolving string based type 
+and formatter references in bindings is still experimental
 									</span>
 								
 							</div>
@@ -122,33 +122,6 @@ A second aspect that might change is the visual behavior of the content: during 
 phase it 'looks' enabled but in fact it is already disabled. This avoids unnecessary redraws 
 for content that becomes hidden soon. Should this show to be confusing for end users, it might 
 be changed.
-									</span>
-								
-							</div>
-						
-							<div class="sectionItem itemName">
-								<span class="icon"><a href="symbols/undefined.html#.load">sap.ui.component.load</a></span>
-								
-									<span class="experimental">
-										since 1.16.3
-									</span>
-								
-							</div>
-						
-							<div class="sectionItem itemName">
-								<span class="icon"><a href="symbols/sap.ui.core.Component.html">sap.ui.core.Component</a></span>
-								
-									<span class="experimental">
-										Since 1.9.2. The Component concept is still under construction, so some implementation details can be changed in future.
-									</span>
-								
-							</div>
-						
-							<div class="sectionItem itemName">
-								<span class="icon"><a href="symbols/sap.ui.core.Component.html#.getOwnerIdFor">sap.ui.core.Component.getOwnerIdFor</a></span>
-								
-									<span class="experimental">
-										Since 1.15.1. The location of this function might change.
 									</span>
 								
 							</div>
@@ -295,46 +268,10 @@ The templating might be changed in future versions.
 							</div>
 						
 							<div class="sectionItem itemName">
-								<span class="icon"><a href="symbols/sap.ui.core.UIComponent.html">sap.ui.core.UIComponent</a></span>
-								
-									<span class="experimental">
-										Since 1.9.2. The Component concept is still under construction, so some implementation details can be changed in future.
-									</span>
-								
-							</div>
-						
-							<div class="sectionItem itemName">
-								<span class="icon"><a href="symbols/sap.ui.core.UIComponent.html#getAutoPrefixId">sap.ui.core.UIComponent#getAutoPrefixId</a></span>
-								
-									<span class="experimental">
-										Since 1.15.1. This feature might be changed in future.
-									</span>
-								
-							</div>
-						
-							<div class="sectionItem itemName">
 								<span class="icon"><a href="symbols/undefined.html#getRootView">sap.ui.core.UIComponentMetadata#getRootView</a></span>
 								
 									<span class="experimental">
 										Since 1.15.1. Implementation might change.
-									</span>
-								
-							</div>
-						
-							<div class="sectionItem itemName">
-								<span class="icon"><a href="symbols/sap.ui.core.util.MockServer.html">sap.ui.core.util.MockServer</a></span>
-								
-									<span class="experimental">
-										Since 1.15.1. The mock server is still under construction, so some implementation details can be changed in future.
-									</span>
-								
-							</div>
-						
-							<div class="sectionItem itemName">
-								<span class="icon"><a href="symbols/sap.ui.core.util.MockServer.html#simulate">sap.ui.core.util.MockServer#simulate</a></span>
-								
-									<span class="experimental">
-										functionality might be enhanced in future
 									</span>
 								
 							</div>
@@ -403,10 +340,75 @@ The templating might be changed in future versions.
 							</div>
 						
 							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.layout.Splitter.html">sap.ui.layout.Splitter</a></span>
+								
+									<span class="experimental">
+										Since version 1.22.0. 
+API is not yet finished and might change completely
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.layout.SplitterLayoutData.html">sap.ui.layout.SplitterLayoutData</a></span>
+								
+									<span class="experimental">
+										Since version 1.22.0. 
+API is not yet finished and might change completely
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.model.analytics.AnalyticalBinding.html">sap.ui.model.analytics.AnalyticalBinding</a></span>
+								
+									<span class="experimental">
+										This module is only for experimental use!
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.model.analytics.html#.ODataModelAdapter">sap.ui.model.analytics.ODataModelAdapter</a></span>
+								
+									<span class="experimental">
+										This module is only for experimental use!
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.model.analytics.html#.TreeBindingAdapter">sap.ui.model.analytics.TreeBindingAdapter</a></span>
+								
+									<span class="experimental">
+										This module is only for experimental use!
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
 								<span class="icon"><a href="symbols/sap.ui.model.odata.ODataAnnotations.html">sap.ui.model.odata.ODataAnnotations</a></span>
 								
 									<span class="experimental">
 										This feature has not been tested due to the lack of OData testing infrastructure. The API is NOT stable yet. Use at your own risk.
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.model.odata.ODataModel.html#attachAnnotationsLoaded">sap.ui.model.odata.ODataModel#attachAnnotationsLoaded</a></span>
+								
+									<span class="experimental">
+										The API is NOT stable yet. Use at your own risk.
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.model.odata.ODataModel.html#detachAnnotationsLoaded">sap.ui.model.odata.ODataModel#detachAnnotationsLoaded</a></span>
+								
+									<span class="experimental">
+										The API is NOT stable yet. Use at your own risk.
 									</span>
 								
 							</div>
@@ -436,6 +438,65 @@ The API may change. User with care.
 									<span class="experimental">
 										Since version 1.2. 
 The API may change. User with care.
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.table.AnalyticalColumn.html">sap.ui.table.AnalyticalColumn</a></span>
+								
+									<span class="experimental">
+										Since version 1.21. 
+The AnalyticalColumn will be productized soon. Some attributes will be added to Column.
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.table.AnalyticalColumnMenu.html">sap.ui.table.AnalyticalColumnMenu</a></span>
+								
+									<span class="experimental">
+										Since version 1.21. 
+The AnalyticalColumnMenu will be productized soon.
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.table.AnalyticalTable.html">sap.ui.table.AnalyticalTable</a></span>
+								
+									<span class="experimental">
+										Since version 1.21. 
+The AnalyticalTable will be productized soon.
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.table.Table.html#autoResizeColumn">sap.ui.table.Table#autoResizeColumn</a></span>
+								
+									<span class="experimental">
+										Experimental! Presently implemented to only work with pure text-based controls, 
+the sap.ui.commons.Checkbox and sap.m.Image as well as sap.ui.commons.Image.
+It will also work for most simple input fields (TextField, CheckBox, but not ComboBox)
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.table.Table.html#exportData">sap.ui.table.Table#exportData</a></span>
+								
+									<span class="experimental">
+										Experimental because the property for the column/cell definitions (sortProperty) could change in future.
+									</span>
+								
+							</div>
+						
+							<div class="sectionItem itemName">
+								<span class="icon"><a href="symbols/sap.ui.table.TablePersoController.html#openDialog">sap.ui.table.TablePersoController#openDialog</a></span>
+								
+									<span class="experimental">
+										since 1.21.2 - API might change / feature requires the sap.m library!
 									</span>
 								
 							</div>

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=25351253799400597"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=24849782913900198"/>
 <title>Running SAPUI5 Mobile Apps in Hybrid Web Containers</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -72,6 +74,10 @@
 			</li>
 <li class="li">
 				<p class="p"><samp class="ph codeph">sap.ui.layout</samp></p>
+
+			</li>
+<li class="li">
+				<p class="p"><samp class="ph codeph">sap.ui.unified</samp></p>
 
 			</li>
 <li class="li">
@@ -195,7 +201,7 @@
 
 			<p class="p">Example:</p>
 
-			<div><pre class="pre codeblock">&lt;script&gt;
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;script&gt;
 &lt;!-- put the following code in the beginning of the application code --&gt;
 function appReady(){
     sap.ui.getCore().setModel(new sap.ui.model.odata.ODataModel(&lt;ODATA_URL&gt;, false));

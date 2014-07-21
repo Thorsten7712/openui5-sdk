@@ -30,9 +30,6 @@
 		<event name="opened" since="1.11.0">
 			<documentation>Is fired when the Callout has been opened</documentation>
 		</event>
-		<event name="closed" since="1.11.0">
-			<documentation>Is fired when the Callout has been closed</documentation>
-		</event>
 	</events>
 	<methods>
 		<method name="adjustPosition" type="sap.ui.core/void">

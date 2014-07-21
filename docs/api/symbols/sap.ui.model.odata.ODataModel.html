@@ -47,7 +47,8 @@
 			
 
 					<div class="full-description">
-						<p>Model implementation for oData format</p>
+						<p>Model implementation for oData format
+Binding to V4 metadata annotations is experimental!</p>
 						
 						
 						
@@ -127,6 +128,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Attach event-handler fnFunction to the 'annotationsLoaded' event of this sap.ui.model.odata.ODataModel."><a href="../symbols/sap.ui.model.odata.ODataModel.html#attachAnnotationsLoaded">attachAnnotationsLoaded</a></b><span class='signature'>(<span title="(object) The object, that should be passed along with the event-object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which to call the given function.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Attach event-handler <code>fnFunction</code> to the 'annotationsLoaded' event of this <code>sap.ui.model.odata.ODataModel</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Attach event-handler fnFunction to the 'metadataFailed' event of this sap.ui.model.odata.ODataModel."><a href="../symbols/sap.ui.model.odata.ODataModel.html#attachMetadataFailed">attachMetadataFailed</a></b><span class='signature'>(<span title="(object) The object, that should be passed along with the event-object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which to call the given function.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Attach event-handler <code>fnFunction</code> to the 'metadataFailed' event of this <code>sap.ui.model.odata.ODataModel</code>.</span>
 								</div>
@@ -172,6 +178,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Detach event-handler fnFunction from the 'annotationsLoaded' event of this sap.ui.model.odata.ODataModel."><a href="../symbols/sap.ui.model.odata.ODataModel.html#detachAnnotationsLoaded">detachAnnotationsLoaded</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which the given function had to be called.">oListener</span>)</span>
+									<span class='description'>Detach event-handler <code>fnFunction</code> from the 'annotationsLoaded' event of this <code>sap.ui.model.odata.ODataModel</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Detach event-handler fnFunction from the 'metadataFailed' event of this sap.ui.model.odata.ODataModel."><a href="../symbols/sap.ui.model.odata.ODataModel.html#detachMetadataFailed">detachMetadataFailed</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which the given function had to be called.">oListener</span>)</span>
 									<span class='description'>Detach event-handler <code>fnFunction</code> from the 'metadataFailed' event of this <code>sap.ui.model.odata.ODataModel</code>.</span>
 								</div>
@@ -179,6 +190,16 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Detach event-handler fnFunction from the 'metadataLoaded' event of this sap.ui.model.odata.ODataModel."><a href="../symbols/sap.ui.model.odata.ODataModel.html#detachMetadataLoaded">detachMetadataLoaded</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which the given function had to be called.">oListener</span>)</span>
 									<span class='description'>Detach event-handler <code>fnFunction</code> from the 'metadataLoaded' event of this <code>sap.ui.model.odata.ODataModel</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod protected">
+									<b class="icon protected" title="Fire event annotationsFailed to attached listeners."><a href="../symbols/sap.ui.model.odata.ODataModel.html#fireAnnotationsFailed">fireAnnotationsFailed</a></b><span class='signature'>(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Fire event annotationsFailed to attached listeners.</span>
+								</div>
+							
+								<div class="sectionItem classMethod protected">
+									<b class="icon protected" title="Fire event annotationsLoaded to attached listeners."><a href="../symbols/sap.ui.model.odata.ODataModel.html#fireAnnotationsLoaded">fireAnnotationsLoaded</a></b><span class='signature'>(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Fire event annotationsLoaded to attached listeners.</span>
 								</div>
 							
 								<div class="sectionItem classMethod protected">
@@ -227,7 +248,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Refresh the model."><a href="../symbols/sap.ui.model.odata.ODataModel.html#refresh">refresh</a></b><span class='signature'>(<span title="(boolean) Update controls even if data has not been changed">bForceUpdate</span>, <span title="(object) object">mChangedEntities</span>, <span title="(string) string">sEntityType</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Refresh the model."><a href="../symbols/sap.ui.model.odata.ODataModel.html#refresh">refresh</a></b><span class='signature'>(<span title="(boolean) Update controlsODataModelanged">bForceUpdate</span>, <span title="(object) object">mChangedEntities</span>, <span title="(string) string">sEntityType</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Refresh the model.</span>
 								</div>
 							
@@ -554,7 +575,7 @@ see <a href="../symbols/sap.ui.base.Object.html#.extend">Object.extend</a>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -566,7 +587,7 @@ see <a href="../symbols/sap.ui.base.Object.html#.extend">Object.extend</a>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    alternative constructor for a metadata object
@@ -683,14 +704,16 @@ If an illegal batch operation is added to the batch nothing will be performed an
 									</div>
 								
 									<div class='sectionItem classMethod'>
-										<a name="attachMetadataFailed"> </a>
+										<a name="attachAnnotationsLoaded"> </a>
 										<div class="itemTitle icon">
-											attachMetadataFailed<span class="signature">(<span title="(object) The object, that should be passed along with the event-object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which to call the given function.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+											attachAnnotationsLoaded<span class="signature">(<span title="(object) The object, that should be passed along with the event-object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which to call the given function.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns sap.ui.model.odata.ODataModel">: <a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a></span>
 										</div>
 										<div class="full-description">
-											Attach event-handler <code>fnFunction</code> to the 'metadataFailed' event of this <code>sap.ui.model.odata.ODataModel</code>.
+											Attach event-handler <code>fnFunction</code> to the 'annotationsLoaded' event of this <code>sap.ui.model.odata.ODataModel</code>.
 											
+											
+												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">The API is NOT stable yet. Use at your own risk.</span></p> 
 											
 											
 										
@@ -706,7 +729,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    The object, that should be passed along with the event-object when firing the event.
@@ -731,7 +754,87 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Object on which to call the given function. If empty, the global context (window) is used.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="attachMetadataFailed"> </a>
+										<div class="itemTitle icon">
+											attachMetadataFailed<span class="signature">(<span title="(object) The object, that should be passed along with the event-object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which to call the given function.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.model.odata.ODataModel">: <a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a></span>
+										</div>
+										<div class="full-description">
+											Attach event-handler <code>fnFunction</code> to the 'metadataFailed' event of this <code>sap.ui.model.odata.ODataModel</code>.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    The object, that should be passed along with the event-object when firing the event.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs. This function will be called on the
+           oListener-instance (if present) or in a 'static way'.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Object on which to call the given function. If empty, the global context (window) is used.
@@ -786,7 +889,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    The object, that should be passed along with the event-object when firing the event.
@@ -811,7 +914,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Object on which to call the given function. If empty, the global context (window) is used.
@@ -879,7 +982,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Optional parameter map containing any of the following properties:
@@ -891,7 +994,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.method</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.method</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A string containing the type of method to call this function with
@@ -903,7 +1006,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A map containing the parameters that will be passed as query strings
@@ -915,7 +1018,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.context</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.context</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    If specified the sPath has to be relative to the path given with the context.
@@ -927,7 +1030,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.success</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.success</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has been successfully retrieved.
@@ -940,7 +1043,7 @@ If an illegal batch operation is added to the batch nothing will be performed an
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.error</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.error</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request failed.
@@ -1063,7 +1166,7 @@ and may not work.
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Optional parameter map containing any of the following properties:
@@ -1075,7 +1178,7 @@ and may not work.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.context</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.context</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    If specified the sPath has to be relative to the path given with the context.
@@ -1087,7 +1190,7 @@ and may not work.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.success</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.success</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has
@@ -1101,7 +1204,7 @@ and may not work.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.error</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.error</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request failed.
@@ -1129,7 +1232,7 @@ and may not work.
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A map containing the parameters that will be passed as query strings
@@ -1209,7 +1312,7 @@ and may not work.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    optional data payload which should be created, updated, deleted in a change batch operation.
@@ -1221,7 +1324,7 @@ and may not work.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    optional parameter for additional information introduced in SAPUI5 1.9.1,
@@ -1233,7 +1336,7 @@ and may not work.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oParameters.sETag</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oParameters.sETag</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    an ETag which can be used for concurrency control. If it is specified,
@@ -1415,6 +1518,75 @@ Please note that deep creates (including data defined by navigationproperties) a
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="detachAnnotationsLoaded"> </a>
+										<div class="itemTitle icon">
+											detachAnnotationsLoaded<span class="signature">(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which the given function had to be called.">oListener</span>)</span>
+											<span class="light" title="returns sap.ui.model.odata.ODataModel">: <a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a></span>
+										</div>
+										<div class="full-description">
+											Detach event-handler <code>fnFunction</code> from the 'annotationsLoaded' event of this <code>sap.ui.model.odata.ODataModel</code>.
+											
+											
+												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">The API is NOT stable yet. Use at your own risk.</span></p> 
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b>
+													</td>
+													<td class="methodItemDesc">
+												    Object on which the given function had to be called.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="detachMetadataFailed"> </a>
 										<div class="itemTitle icon">
 											detachMetadataFailed<span class="signature">(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Object on which the given function had to be called.">oListener</span>)</span>
@@ -1553,6 +1725,176 @@ The passed function and listener object must match the ones previously used for 
 									</div>
 								
 									<div class='sectionItem classMethod protected protected'>
+										<a name="fireAnnotationsFailed"> </a>
+										<div class="itemTitle icon protected">
+											fireAnnotationsFailed<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.model.odata.ODataModel">: <a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a></span>
+										</div>
+										<div class="full-description">
+											Fire event annotationsFailed to attached listeners.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    the arguments to pass along with the event.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments.message</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    A text that describes the failure.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments.statusCode</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    HTTP status code returned by the request (if available)
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments.statusText</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    The status as a text, details not specified, intended only for diagnosis output
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments.responseText</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Response that has been received for the request ,as a text string
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected protected'>
+										<a name="fireAnnotationsLoaded"> </a>
+										<div class="itemTitle icon protected">
+											fireAnnotationsLoaded<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.model.odata.ODataModel">: <a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a></span>
+										</div>
+										<div class="full-description">
+											Fire event annotationsLoaded to attached listeners.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    the arguments to pass along with the event.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{<a href="../symbols/sap.ui.model.odata.ODataAnnotations.html">sap.ui.model.odata.ODataAnnotations</a>}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments.annotations</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    the annotations object.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected protected'>
 										<a name="fireMetadataFailed"> </a>
 										<div class="itemTitle icon protected">
 											fireMetadataFailed<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1576,7 +1918,7 @@ The passed function and listener object must match the ones previously used for 
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -1588,7 +1930,7 @@ The passed function and listener object must match the ones previously used for 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments.message</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments.message</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A text that describes the failure.
@@ -1600,7 +1942,7 @@ The passed function and listener object must match the ones previously used for 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments.statusCode</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments.statusCode</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    HTTP status code returned by the request (if available)
@@ -1612,7 +1954,7 @@ The passed function and listener object must match the ones previously used for 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments.statusText</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments.statusText</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    The status as a text, details not specified, intended only for diagnosis output
@@ -1624,7 +1966,7 @@ The passed function and listener object must match the ones previously used for 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments.responseText</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments.responseText</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Response that has been received for the request ,as a text string
@@ -1679,7 +2021,7 @@ The passed function and listener object must match the ones previously used for 
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -1688,49 +2030,13 @@ The passed function and listener object must match the ones previously used for 
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string}</span> 
+													  <span class="light">{<a href="../symbols/sap.ui.model.odata.ODataMetadata.html">sap.ui.model.odata.ODataMetadata</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments.message</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments.metadata</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
-												    A text that describes the failure.
-													</td>
-												</tr>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{string}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>mArguments.statusCode</b><i class="help" title="Optional parameter">?, Default: </i>
-													</td>
-													<td class="methodItemDesc">
-												    HTTP status code returned by the request (if available)
-													</td>
-												</tr>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{string}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>mArguments.statusText</b><i class="help" title="Optional parameter">?, Default: </i>
-													</td>
-													<td class="methodItemDesc">
-												    The status as a text, details not specified, intended only for diagnosis output
-													</td>
-												</tr>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{string}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>mArguments.responseText</b><i class="help" title="Optional parameter">?, Default: </i>
-													</td>
-													<td class="methodItemDesc">
-												    Response that has been received for the request ,as a text string
+												    the metadata object.
 													</td>
 												</tr>
 											
@@ -1875,7 +2181,7 @@ The passed function and listener object must match the ones previously used for 
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oContext</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oContext</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the context if available to access the property value
@@ -2081,7 +2387,7 @@ The data will not be stored in the model. The requested data is returned with th
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Optional parameter map containing any of the following properties:
@@ -2093,7 +2399,7 @@ The data will not be stored in the model. The requested data is returned with th
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.context</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.context</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    If specified the sPath has to be is relative to the path 
@@ -2106,7 +2412,7 @@ The data will not be stored in the model. The requested data is returned with th
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A map containing the parameters that will be passed as query strings
@@ -2127,10 +2433,34 @@ The data will not be stored in the model. The requested data is returned with th
 											
 												<tr>
 													<td class="methodItemType">
+													  <span class="light">{array}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mParameter.filters</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    an array of sap.ui.model.Filter to be included in the request URL
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{array}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mParameter.sorters</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    an array of sap.ui.model.Sorter to be included in the request URL
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.success</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.success</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has
@@ -2144,7 +2474,7 @@ The data will not be stored in the model. The requested data is returned with th
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.error</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.error</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request 
@@ -2180,7 +2510,7 @@ additional error information.
 									<div class='sectionItem classMethod'>
 										<a name="refresh"> </a>
 										<div class="itemTitle icon">
-											refresh<span class="signature">(<span title="(boolean) Update controls even if data has not been changed">bForceUpdate</span>, <span title="(object) object">mChangedEntities</span>, <span title="(string) string">sEntityType</span><i class="help" title="Optional parameter">?</i>)</span>
+											refresh<span class="signature">(<span title="(boolean) Update controlsODataModelanged">bForceUpdate</span>, <span title="(object) object">mChangedEntities</span>, <span title="(string) string">sEntityType</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -2205,7 +2535,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <b>bForceUpdate</b>
 													</td>
 													<td class="methodItemDesc">
-												    Update controls even if data has not been changed
+												    Update controlsODataModelanged
 													</td>
 												</tr>
 											
@@ -2226,7 +2556,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sEntityType</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sEntityType</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    
@@ -2267,7 +2597,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnSuccess</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnSuccess</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has
@@ -2280,7 +2610,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnError</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnError</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request failed. The handler can have the parameter: oError which contains
@@ -2361,7 +2691,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Optional, can contain the following attributes: oContext, fnSuccess, fnError, sETag:
@@ -2373,7 +2703,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.context</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.context</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    If specified the sPath has to be relative to the path given with the context.
@@ -2385,7 +2715,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.success</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.success</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has been successfully retrieved.
@@ -2398,7 +2728,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.error</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.error</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request failed.
@@ -2411,7 +2741,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.eTag</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.eTag</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    If specified, the If-Match-Header will be set to this Etag.
@@ -2423,7 +2753,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.payload</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.payload</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if specified, this optional variable can be used to pass a payload into the delete function,
@@ -2451,7 +2781,7 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A map containing the parameters that will be passed as query strings
@@ -2507,7 +2837,7 @@ Resets the collected changes by the setProperty method and reloads the data from
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnSuccess</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnSuccess</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has
@@ -2521,7 +2851,7 @@ Resets the collected changes by the setProperty method and reloads the data from
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnError</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnError</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request failed
@@ -2874,7 +3204,7 @@ Note: No data will be stored in the model.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnSuccess</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnSuccess</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the batch request has
@@ -2890,7 +3220,7 @@ Note: No data will be stored in the model.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnError</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnError</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the batch request failed. The handler can have the parameter: oError which contains
@@ -2903,7 +3233,7 @@ additional error information.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bAsync</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bAsync</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    true for asynchronous request. Default is true.
@@ -2960,7 +3290,7 @@ Changes to this entries should be done on the entry itself. So no deep updates a
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnSuccess</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnSuccess</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has
@@ -2974,7 +3304,7 @@ Changes to this entries should be done on the entry itself. So no deep updates a
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>fnError</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>fnError</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request failed. The handler can have the parameter: oError which contains
@@ -2987,7 +3317,7 @@ additional error information
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    optional parameter for additional information introduced in SAPUI5 1.9.1
@@ -2999,7 +3329,7 @@ additional error information
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oParameters.sETag</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oParameters.sETag</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    an ETag which can be used for concurrency control. If it is specified, it will be used in an If-Match-Header in the request to the server for this entry.
@@ -3081,7 +3411,7 @@ and may not work. These should be done seperate on the entry directly.
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Optional, can contain the following attributes:
@@ -3093,7 +3423,7 @@ and may not work. These should be done seperate on the entry directly.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.context</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.context</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    If specified the sPath has to be is relative to the path given with the context.
@@ -3105,7 +3435,7 @@ and may not work. These should be done seperate on the entry directly.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.success</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.success</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the data has been successfully updated.
@@ -3117,7 +3447,7 @@ and may not work. These should be done seperate on the entry directly.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.error</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.error</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a callback function which is called when the request failed.
@@ -3142,7 +3472,7 @@ and may not work. These should be done seperate on the entry directly.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.eTag</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.eTag</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    If specified, the If-Match-Header will be set to this Etag.
@@ -3169,7 +3499,7 @@ and may not work. These should be done seperate on the entry directly.
 													  <span class="light">{map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters.urlParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    A map containing the parameters that will be passed as query strings
@@ -3325,7 +3655,7 @@ and may not work. These should be done seperate on the entry directly.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oContext</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oContext</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the optional context which is used with the sPath to retrieve the requested data.

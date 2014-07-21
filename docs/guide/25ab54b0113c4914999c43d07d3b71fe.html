@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=354429385723661"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=23336245801608302"/>
 <title>Using Extended Syntax in XML and HTML Views</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,7 +27,7 @@
 <h1 class="title topictitle1">Using Extended Syntax in XML and HTML Views</h1>
 <div class="body"><p class="shortdesc"/>
 <p class="p">In XML views, you use extended syntax for calculated fields as follows:</p>
-<div><pre class="pre codeblock">&lt;mvc:View controllerName="testdata.complexsyntax" xmlns:core="sap.ui.core"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;mvc:View controllerName="testdata.complexsyntax" xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc" xmlns="sap.ui.commons" xmlns:table="sap.ui.table"
     xmlns:html="http://www.w3.org/1999/xhtml"&gt;
     &lt;html:h2&gt;
@@ -53,7 +55,7 @@
 &lt;/mvc:View&gt;
 </pre></div>
 <p class="p">In HTML views, you use extended syntax for calculated fields as follows:</p>
-<div><pre class="pre codeblock">&lt;template data-controller-name="testdata.complexsyntax"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;template data-controller-name="testdata.complexsyntax"&gt;
     &lt;div&gt;
         &lt;h2&gt;&lt;div data-sap-ui-type="sap.ui.core.HTML" id="MyHTMLControl" data-content="&lt;div&gt;Hello Mr. {/singleEntry/firstName}, {/singleEntry/lastName}&lt;/div&gt;"&gt;&lt;/div&gt;&lt;/h2&gt;
         &lt;div data-sap-ui-type="sap.ui.table.Table" id="MyTable" data-rows="{/table}"&gt;
@@ -78,7 +80,7 @@
 </pre></div>
 <p class="p">Example of the JSView. It is not declarative view, but you may use the same syntax as in
 			XML- and HTMLView, just do not forget to pass a controller instance as a parameter</p>
-<div><pre class="pre codeblock">sap.ui.jsview("testdata.complexsyntax", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.jsview("testdata.complexsyntax", {
     
     getControllerName: function() {
         return "testdata.complexsyntax";

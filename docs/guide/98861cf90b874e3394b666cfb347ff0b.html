@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=06249938333729044"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=878101029696047"/>
 <title>View Replacement</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,15 +30,15 @@
 			standard view with a customized view. The following code snippet gives an example for a
 			view replacement.</p>
 <p class="p">The following view is delivered in the standard application:</p>
-<div><pre class="pre codeblock">&lt;mvc:View xmlns="sap.ui.commons" xmlns:mvc="sap.ui.core.mvc"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;mvc:View xmlns="sap.ui.commons" xmlns:mvc="sap.ui.core.mvc"&gt;
     &lt;TextView text="SAP View 'Sub1' - this one should have been replaced by the customer View"&gt;&lt;/TextView&gt;  
 &lt;/mvc:View&gt;</pre></div>
 <p class="p">You want to replace this standard view with the following customized view:</p>
-<div><pre class="pre codeblock">&lt;mvc:View xmlns="sap.ui.commons" xmlns:mvc="sap.ui.core.mvc"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;mvc:View xmlns="sap.ui.commons" xmlns:mvc="sap.ui.core.mvc"&gt;
     &lt;TextView text="Custom View 'Sub1' - this one replaces the original SAP View 'Sub1'"&gt;&lt;/TextView&gt;    
 &lt;/mvc:View&gt;</pre></div>
 <p class="p">You connect the two views in customizing:</p>
-<div><pre class="pre codeblock">customizing: {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">customizing: {
     .....some more content
     "sap.ui.viewReplacements": {
         "samples.components.ext.sap.Sub1": {

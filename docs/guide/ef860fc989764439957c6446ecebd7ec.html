@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4604684166626355"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7112946733545956"/>
 <title>Facet Filter Selection</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -35,7 +37,7 @@
 				and JSON.parse to unmarshall. After unmarshalling, you can use
 					<samp class="ph codeph">setSelectedKeys</samp> to apply the selections to the list. The
 				following figure and code snippet give an example.</p>
-<img class="image" id="loioef860fc989764439957c6446ecebd7ec__image_awj_1nj_qn" src="ce923dff09294b65b51609d2ec1f1718.image"/><div><pre class="pre codeblock">var oDataModel = new sap.ui.model.odata.ODataModel(
+<img class="image" id="loioef860fc989764439957c6446ecebd7ec__image_awj_1nj_qn" src="ce923dff09294b65b51609d2ec1f1718.image"/><div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oDataModel = new sap.ui.model.odata.ODataModel(
     "/uilib-sample/proxy/http/services.odata.org/V3/Northwind/Northwind.svc", true);
 
 // create the FacetFilterList and bind the filter items

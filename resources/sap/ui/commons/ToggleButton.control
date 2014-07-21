@@ -8,7 +8,7 @@
 	<baseType>sap.ui.commons/Button</baseType>
 	<properties>
 		<property group="Data" name="pressed" type="sap.ui.core/boolean" defaultValue="false">
-			<documentation>true when button is pressed down. </documentation>
+			<documentation>The property is “true” when the control is toggled. The default state of this property is &quot;false&quot;.</documentation>
 		</property>
 	</properties>
 </control>

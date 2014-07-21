@@ -57,3 +57,7 @@
 .CurtainContent.CurtainContentHeaderHidden > div {
 	top: 0;
 }
+
+.MyTestSearchField.sapMSF.sapUiSizeCompact {
+	height: auto;
+}

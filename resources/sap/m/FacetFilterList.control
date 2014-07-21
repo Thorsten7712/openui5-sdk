@@ -25,6 +25,12 @@
 		<property group="Identification" name="key" type="sap.ui.core/string">
 			<documentation>Unique identifier for this filter list.</documentation>
 		</property>
+		<property group="Misc" name="showRemoveFacetIcon" type="sap.ui.core/boolean" defaultValue="true" since="1.20.4">
+			<documentation>Specifies whether remove icon for facet is visible or hidden.</documentation>
+		</property>
+		<property group="Misc" name="retainListSequence" type="sap.ui.core/boolean" defaultValue="false" since="1.22.1"> 
+			<documentation>Property to retain the list sequence if it is inactive and  made active again .</documentation>
+		</property>
 	</properties>
 	<events>
 		<event name="listOpen">

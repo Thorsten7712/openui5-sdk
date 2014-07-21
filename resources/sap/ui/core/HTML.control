@@ -3,7 +3,7 @@
 
   <name>HTML</name>
 
-  <author>Frank Weigel</author>
+  <author>SAP AG</author>
   <documentation>Embeds standard HTML in a SAPUI5 control tree.
   
   Security Hint: By default, the HTML content (property 'content') is not sanitized and therefore open to XSS attacks. Applications that want to show user defined input in an HTML control, should either sanitize the content on their own or activate automatic sanitizing through the 'sanitizeContent' property.

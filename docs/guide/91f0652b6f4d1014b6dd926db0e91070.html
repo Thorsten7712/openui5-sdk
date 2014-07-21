@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=007292466111574192"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4810674593616261"/>
 <title>Property Binding</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -34,7 +36,7 @@
 		brackets as a string literal in the 
 		<samp class="ph codeph">settings</samp> object:
 	 </p>
-<div><pre class="pre codeblock">var oTextField = new sap.ui.commons.TextField({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oTextField = new sap.ui.commons.TextField({
     value: "{/company/name}"
 });</pre></div>
 <p class="p">Alternatively, you can use an extended syntax for
@@ -45,7 +47,7 @@
 		literal. This must contain a path property containing the binding path and can
 		contain additional properties: 
 	 </p>
-<div><pre class="pre codeblock">var oTextField = new sap.ui.commons.TextField({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oTextField = new sap.ui.commons.TextField({
     value: {
 		path: "/company/name", 
 		mode: sap.ui.model.BindingMode.OneWay
@@ -55,22 +57,22 @@
 		the binding at a later time, using the 
 		<samp class="ph codeph">bindProperty</samp> method: 
 	 </p>
-<div><pre class="pre codeblock">oTextField.bindProperty("value", "/company/name");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTextField.bindProperty("value", "/company/name");</pre></div>
 <p class="p">This option also allows the use of the same
 		object-literal as in the constructor to define the binding 
 	 </p>
-<div><pre class="pre codeblock">oTextField.bindProperty("value", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTextField.bindProperty("value", {
 	path: "value",
 	type: new sap.ui.model.type.Integer()
 });</pre></div>
 <p class="p">Some controls offer convenience methods for the main properties of a control that are most likely
 			to be bound by an application. </p>
-<div><pre class="pre codeblock">oTextField.bindValue("/company/name");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTextField.bindValue("/company/name");</pre></div>
 <p class="p">To remove a property binding, you can use the 
 		<samp class="ph codeph">unbindProperty</samp> method.
 		The property binding is removed automatically whenever a control is destroyed.
 	 </p>
-<div><pre class="pre codeblock">oTextField.unbindProperty("value");</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTextField.unbindProperty("value");</pre></div>
 <p class="p">For a complete list of supported parameters, see the API Reference. </p>
 <div class="section" id="loio91f0652b6f4d1014b6dd926db0e91070__section_N10078_N10013_N10001"><div class="section_title">Formatting Property Values</div><div type="Formatting Property Values">
 			
@@ -147,7 +149,7 @@ oControl = new sap.ui.commons.TextField({
 				minimum or maximum value, and throws a <samp class="ph codeph">ValidateException</samp> in case
 				constraints are violated. </p>
 
-			<div><pre class="pre codeblock">sap.ui.model.SimpleType.extend("sap.test.PLZ", {
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.model.SimpleType.extend("sap.test.PLZ", {
     formatValue: function(oValue) {
         return oValue;
     },
@@ -173,7 +175,7 @@ oControl = new sap.ui.commons.TextField({
 				which is then used exclusively for this specific binding. Of course, a binding can
 				only have a supported binding mode of the model. </p>
 
-			<div><pre class="pre codeblock">var oModel = new sap.ui.model.json.JSONModel();
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.json.JSONModel();
 // default binding mode is Two Way
 oModel.setData(myData);
 sap.ui.getCore().setModel(oModel);

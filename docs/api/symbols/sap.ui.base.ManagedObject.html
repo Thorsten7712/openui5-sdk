@@ -41,7 +41,7 @@
 					
 					
 					
-						<div class="classRelation subclasses"><span class="caption">known direct subclasses: </span><a title="sap.ui.core.Component" href="../symbols/sap.ui.core.Component.html">Component</a>, <a title="sap.ui.core.Element" href="../symbols/sap.ui.core.Element.html">Element</a>, <a title="sap.ui.core.Fragment" href="../symbols/sap.ui.core.Fragment.html">Fragment</a>, <a title="sap.ui.core.tmpl.HandlebarsTemplate" href="../symbols/sap.ui.core.tmpl.HandlebarsTemplate.html">HandlebarsTemplate</a>, <a title="sap.ui.app.MockServer" href="../symbols/sap.ui.app.MockServer.html">MockServer</a>, <a title="sap.ui.core.util.MockServer" href="../symbols/sap.ui.core.util.MockServer.html">MockServer</a>, <a title="sap.m.TablePersoController" href="../symbols/sap.m.TablePersoController.html">TablePersoController</a>, <a title="sap.m.TablePersoDialog" href="../symbols/sap.m.TablePersoDialog.html">TablePersoDialog</a>, <a title="sap.m.TablePersoProvider" href="../symbols/sap.m.TablePersoProvider.html">TablePersoProvider</a>, <a title="sap.ui.core.tmpl.Template" href="../symbols/sap.ui.core.tmpl.Template.html">Template</a></div>
+						<div class="classRelation subclasses"><span class="caption">known direct subclasses: </span><a title="sap.ui.core.Component" href="../symbols/sap.ui.core.Component.html">Component</a>, <a title="sap.ui.core.Element" href="../symbols/sap.ui.core.Element.html">Element</a>, <a title="sap.ui.core.util.ExportColumn" href="../symbols/sap.ui.core.util.ExportColumn.html">ExportColumn</a>, <a title="sap.ui.core.util.ExportRow" href="../symbols/sap.ui.core.util.ExportRow.html">ExportRow</a>, <a title="sap.ui.core.util.ExportType" href="../symbols/sap.ui.core.util.ExportType.html">ExportType</a>, <a title="sap.ui.core.Fragment" href="../symbols/sap.ui.core.Fragment.html">Fragment</a>, <a title="sap.ui.core.tmpl.HandlebarsTemplate" href="../symbols/sap.ui.core.tmpl.HandlebarsTemplate.html">HandlebarsTemplate</a>, <a title="sap.ui.app.MockServer" href="../symbols/sap.ui.app.MockServer.html">MockServer</a>, <a title="sap.ui.core.util.MockServer" href="../symbols/sap.ui.core.util.MockServer.html">MockServer</a>, <a title="sap.m.TablePersoController" href="../symbols/sap.m.TablePersoController.html">TablePersoController</a>, <a title="sap.ui.table.TablePersoController" href="../symbols/sap.ui.table.TablePersoController.html">TablePersoController</a>, <a title="sap.m.TablePersoDialog" href="../symbols/sap.m.TablePersoDialog.html">TablePersoDialog</a>, <a title="sap.m.TablePersoProvider" href="../symbols/sap.m.TablePersoProvider.html">TablePersoProvider</a>, <a title="sap.ui.core.tmpl.Template" href="../symbols/sap.ui.core.tmpl.Template.html">Template</a></div>
 					
 					
 					<hr/>
@@ -52,7 +52,8 @@
 						<p>Base Class for managed objects.</p>
 						
 						
-							<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Since 1.11.2. support for the optional parameter oScope is still experimental</span></p> 
+							<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Since 1.11.2. ManagedObject as such is public and usable. Only the support for the optional parameter 
+oScope in the constructor is still experimental and might change in future versions. Applications should not rely on it.</span></p> 
 						
 						
 						
@@ -596,7 +597,7 @@ by a type information in the oKeyInfo object
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject as well as the added child are not marked as changed
@@ -675,7 +676,7 @@ by a type information in the oKeyInfo object
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this managed object as well as the newly associated object are not marked as changed
@@ -726,9 +727,8 @@ documentation in <a href="../symbols/sap.ui.base.ManagedObject.html">sap.ui.base
 of the constructor of the concrete managed object class.
 											
 											
-												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Since 1.11.2. support for complex string binding syntax as well as the 
-				scope object for resolving string based type and formatter references 
-				in bindings is still experimental</span></p> 
+												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Since 1.11.2 support for the scope object for resolving string based type 
+and formatter references in bindings is still experimental</span></p> 
 											
 											
 										
@@ -756,7 +756,7 @@ of the constructor of the concrete managed object class.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oScope</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oScope</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Scope object to resolve types and formatters
@@ -901,7 +901,7 @@ bindable="bindable" to get typed bind<i>Something</i> methods for those aggregat
 													  <span class="light">{<a href="../symbols/sap.ui.model.Sorter.html">sap.ui.model.Sorter</a>|<a href="../symbols/sap.ui.model.Sorter.html">sap.ui.model.Sorter</a>[]}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.sorter</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.sorter</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the initial sort order (optional)
@@ -913,7 +913,7 @@ bindable="bindable" to get typed bind<i>Something</i> methods for those aggregat
 													  <span class="light">{<a href="../symbols/sap.ui.model.Filter.html">sap.ui.model.Filter</a>[]}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.filters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.filters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the predefined filters for this aggregation (optional)
@@ -925,7 +925,7 @@ bindable="bindable" to get typed bind<i>Something</i> methods for those aggregat
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.parameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.parameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a map of parameters which is passed to the binding
@@ -937,7 +937,7 @@ bindable="bindable" to get typed bind<i>Something</i> methods for those aggregat
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.groupHeaderFactory</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.groupHeaderFactory</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a factory function to generate custom group visualization (optional)
@@ -1007,7 +1007,7 @@ If a relative binding path is used, this will be applied whenever the parent con
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mParameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mParameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    map of additional parameters for this binding
@@ -1103,7 +1103,7 @@ bindable="bindable" to get typed bind methods for a property.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.model</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.model</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the model identifier
@@ -1115,7 +1115,7 @@ bindable="bindable" to get typed bind methods for a property.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.formatter</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.formatter</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the formatter function
@@ -1127,7 +1127,7 @@ bindable="bindable" to get typed bind methods for a property.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.useRawValues</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.useRawValues</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    determines if the parameters in the formatter functions should be passed as raw values or not. In this case
@@ -1141,7 +1141,7 @@ bindable="bindable" to get typed bind methods for a property.
 													  <span class="light">{<a href="../symbols/sap.ui.model.Type.html">sap.ui.model.Type</a>|string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.type</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.type</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the sap.ui.model.Type object or class name
@@ -1153,7 +1153,7 @@ bindable="bindable" to get typed bind methods for a property.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.formatOptions</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.formatOptions</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the format options to be used
@@ -1165,7 +1165,7 @@ bindable="bindable" to get typed bind methods for a property.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.constraints</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.constraints</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the constraints for this value
@@ -1189,7 +1189,7 @@ bindable="bindable" to get typed bind methods for a property.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oBindingInfo.parameters</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oBindingInfo.parameters</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a map of parameters which is passed to the binding
@@ -1286,7 +1286,7 @@ an indicator for the root object). Specifying it will break the implementation o
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sIdSuffix</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sIdSuffix</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a suffix to be appended to the cloned object id
@@ -1298,7 +1298,7 @@ an indicator for the root object). Specifying it will break the implementation o
 													  <span class="light">{string[]}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>aLocalIds</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>aLocalIds</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    an array of local IDs within the cloned hierarchy (internally used)
@@ -1310,7 +1310,7 @@ an indicator for the root object). Specifying it will break the implementation o
 													  <span class="light">{Object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oOptions</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oOptions</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    configuration object
@@ -1369,7 +1369,7 @@ Applications should call this method if they don't need the object any longer.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject is not marked as changed
@@ -1423,7 +1423,7 @@ aggregation.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject is not marked as changed
@@ -1734,7 +1734,7 @@ Note: A ManagedObject inherits binding contexts from the Core only when it is a 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sName</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the name of the model or <code>undefined</code>
@@ -1985,7 +1985,7 @@ the empty string <code>""</code> or the string literals <code>"null"</code> or <
 													  <span class="light">{string|undefined}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sName</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    name of the model to be retrieved
@@ -2394,7 +2394,7 @@ position <code>iIndex</code>.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject as well as the added child are not marked as changed
@@ -2649,7 +2649,7 @@ invalidate, changes to child-<code>Elements</code> will also result in rerenderi
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject is not marked as changed
@@ -2717,7 +2717,7 @@ Additionally unregisters them from the hosting UIArea.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject is not marked as changed
@@ -2784,7 +2784,7 @@ Additionally unregisters them from the hosting UIArea.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject is not marked as changed
@@ -2864,7 +2864,7 @@ Additionally unregisters them from the hosting UIArea.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, the managed object is not marked as changed
@@ -2943,7 +2943,7 @@ Additionally unregisters them from the hosting UIArea.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, this ManagedObject is not marked as changed
@@ -3022,7 +3022,7 @@ Additionally unregisters them from the hosting UIArea.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, the managed objects invalidate method is not called
@@ -3094,7 +3094,7 @@ Note: A ManagedObject inherits binding contexts from the Core only when it is a 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sName</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the name of the model to set the context for or <code>undefined</code>
@@ -3183,7 +3183,7 @@ Note: A ManagedObject inherits models from the Core only when it is a descendant
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sName</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the name of the model or <code>undefined</code>
@@ -3264,7 +3264,7 @@ current value, nothing happens.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bSuppressInvalidate</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    if true, the managed is not marked as changed
@@ -3428,7 +3428,7 @@ relative to the parent context again.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sModelName</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sModelName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    name of the model to remove the context for.
@@ -3790,7 +3790,7 @@ relative to the parent context again.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sModelName</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sModelName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    name of the model to remove the context for.

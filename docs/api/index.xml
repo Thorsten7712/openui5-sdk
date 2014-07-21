@@ -371,6 +371,15 @@
 </namespace>
 			
 				<namespace>
+  <type>namespace</type>
+  <alias>sap.m.BarDesign</alias>
+  <description>sap.m.BarDesign</description>
+  <name>BarDesign</name>
+  <ref>symbols/sap.m.BarDesign.html</ref>
+  
+</namespace>
+			
+				<namespace>
   <type>class</type>
   <alias>sap.m.BusyDialog</alias>
   <description>sap.m.BusyDialog</description>
@@ -444,6 +453,24 @@
 			
 				<namespace>
   <type>class</type>
+  <alias>sap.m.ComboBox</alias>
+  <description>sap.m.ComboBox</description>
+  <name>ComboBox</name>
+  <ref>symbols/sap.m.ComboBox.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.ComboBoxBase</alias>
+  <description>sap.m.ComboBoxBase</description>
+  <name>ComboBoxBase</name>
+  <ref>symbols/sap.m.ComboBoxBase.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
   <alias>sap.m.CustomListItem</alias>
   <description>sap.m.CustomListItem</description>
   <name>CustomListItem</name>
@@ -457,6 +484,24 @@
   <description>sap.m.CustomTile</description>
   <name>CustomTile</name>
   <ref>symbols/sap.m.CustomTile.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.DatePicker</alias>
+  <description>sap.m.DatePicker</description>
+  <name>DatePicker</name>
+  <ref>symbols/sap.m.DatePicker.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.DateRangeSelection</alias>
+  <description>sap.m.DateRangeSelection</description>
+  <name>DateRangeSelection</name>
+  <ref>symbols/sap.m.DateRangeSelection.html</ref>
   
 </namespace>
 			
@@ -538,6 +583,15 @@
   <description>sap.m.FacetFilterType</description>
   <name>FacetFilterType</name>
   <ref>symbols/sap.m.FacetFilterType.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.FeedInput</alias>
+  <description>sap.m.FeedInput</description>
+  <name>FeedInput</name>
+  <ref>symbols/sap.m.FeedInput.html</ref>
   
 </namespace>
 			
@@ -660,6 +714,33 @@
 			
 				<namespace>
   <type>interface</type>
+  <alias>sap.m.IBar</alias>
+  <description>sap.m.IBar</description>
+  <name>IBar</name>
+  <ref>symbols/sap.m.IBar.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.m.IBarHTMLTag</alias>
+  <description>sap.m.IBarHTMLTag</description>
+  <name>IBarHTMLTag</name>
+  <ref>symbols/sap.m.IBarHTMLTag.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.IBarInPageEnabler</alias>
+  <description>sap.m.IBarInPageEnabler</description>
+  <name>IBarInPageEnabler</name>
+  <ref>symbols/sap.m.IBarInPageEnabler.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>interface</type>
   <alias>sap.m.IconTab</alias>
   <description>sap.m.IconTab</description>
   <name>IconTab</name>
@@ -691,6 +772,15 @@
   <description>sap.m.IconTabFilterDesign</description>
   <name>IconTabFilterDesign</name>
   <ref>symbols/sap.m.IconTabFilterDesign.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.IconTabHeader</alias>
+  <description>sap.m.IconTabHeader</description>
+  <name>IconTabHeader</name>
+  <ref>symbols/sap.m.IconTabHeader.html</ref>
   
 </namespace>
 			
@@ -901,6 +991,24 @@
 			
 				<namespace>
   <type>class</type>
+  <alias>sap.m.MultiComboBox</alias>
+  <description>sap.m.MultiComboBox</description>
+  <name>MultiComboBox</name>
+  <ref>symbols/sap.m.MultiComboBox.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.MultiInput</alias>
+  <description>sap.m.MultiInput</description>
+  <name>MultiInput</name>
+  <ref>symbols/sap.m.MultiInput.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
   <alias>sap.m.NavContainer</alias>
   <description>sap.m.NavContainer</description>
   <name>NavContainer</name>
@@ -932,6 +1040,15 @@
   <description>sap.m.ObjectHeader</description>
   <name>ObjectHeader</name>
   <ref>symbols/sap.m.ObjectHeader.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>interface</type>
+  <alias>sap.m.ObjectHeaderContainer</alias>
+  <description>sap.m.ObjectHeaderContainer</description>
+  <name>ObjectHeaderContainer</name>
+  <ref>symbols/sap.m.ObjectHeaderContainer.html</ref>
   
 </namespace>
 			
@@ -1250,15 +1367,6 @@
 			
 				<namespace>
   <type>namespace</type>
-  <alias>sap.m.Support</alias>
-  <description>sap.m.Support</description>
-  <name>Support</name>
-  <ref>symbols/sap.m.Support.html</ref>
-  
-</namespace>
-			
-				<namespace>
-  <type>namespace</type>
   <alias>sap.m.SwipeDirection</alias>
   <description>sap.m.SwipeDirection</description>
   <name>SwipeDirection</name>
@@ -1362,6 +1470,33 @@
   <description>sap.m.TileContainer</description>
   <name>TileContainer</name>
   <ref>symbols/sap.m.TileContainer.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.ToggleButton</alias>
+  <description>sap.m.ToggleButton</description>
+  <name>ToggleButton</name>
+  <ref>symbols/sap.m.ToggleButton.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.Token</alias>
+  <description>sap.m.Token</description>
+  <name>Token</name>
+  <ref>symbols/sap.m.Token.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.m.Tokenizer</alias>
+  <description>sap.m.Tokenizer</description>
+  <name>Tokenizer</name>
+  <ref>symbols/sap.m.Tokenizer.html</ref>
   
 </namespace>
 			
@@ -2335,15 +2470,6 @@
 </namespace>
 			
 				<namespace>
-  <type>namespace</type>
-  <alias>sap.ui.commons.Orientation</alias>
-  <description>sap.ui.commons.Orientation</description>
-  <name>Orientation</name>
-  <ref>symbols/sap.ui.commons.Orientation.html</ref>
-  
-</namespace>
-			
-				<namespace>
   <type>class</type>
   <alias>sap.ui.commons.Paginator</alias>
   <description>sap.ui.commons.Paginator</description>
@@ -2713,6 +2839,15 @@
 </namespace>
 			
 				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.commons.TreeSelectionMode</alias>
+  <description>sap.ui.commons.TreeSelectionMode</description>
+  <name>TreeSelectionMode</name>
+  <ref>symbols/sap.ui.commons.TreeSelectionMode.html</ref>
+  
+</namespace>
+			
+				<namespace>
   <type>class</type>
   <alias>sap.ui.commons.TriStateCheckBox</alias>
   <description>sap.ui.commons.TriStateCheckBox</description>
@@ -3072,6 +3207,15 @@
 </namespace>
 			
 				<namespace>
+  <type>class</type>
+  <alias>sap.ui.core.History</alias>
+  <description>sap.ui.core.History</description>
+  <name>History</name>
+  <ref>symbols/sap.ui.core.History.html</ref>
+  
+</namespace>
+			
+				<namespace>
   <type>namespace</type>
   <alias>sap.ui.core.HorizontalAlign</alias>
   <description>sap.ui.core.HorizontalAlign</description>
@@ -3318,6 +3462,15 @@
   <description>sap.ui.core.OpenState</description>
   <name>OpenState</name>
   <ref>symbols/sap.ui.core.OpenState.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.core.Orientation</alias>
+  <description>sap.ui.core.Orientation</description>
+  <name>Orientation</name>
+  <ref>symbols/sap.ui.core.Orientation.html</ref>
   
 </namespace>
 			
@@ -3685,6 +3838,15 @@
 </namespace>
 			
 				<namespace>
+  <type>interface</type>
+  <alias>sap.ui.core.Toolbar</alias>
+  <description>sap.ui.core.Toolbar</description>
+  <name>Toolbar</name>
+  <ref>symbols/sap.ui.core.Toolbar.html</ref>
+  
+</namespace>
+			
+				<namespace>
   <type>class</type>
   <alias>sap.ui.core.TooltipBase</alias>
   <description>sap.ui.core.TooltipBase</description>
@@ -3721,6 +3883,69 @@
 		
 		
 		<children>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.core.util.Export</alias>
+  <description>sap.ui.core.util.Export</description>
+  <name>Export</name>
+  <ref>symbols/sap.ui.core.util.Export.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.core.util.ExportCell</alias>
+  <description>sap.ui.core.util.ExportCell</description>
+  <name>ExportCell</name>
+  <ref>symbols/sap.ui.core.util.ExportCell.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.core.util.ExportColumn</alias>
+  <description>sap.ui.core.util.ExportColumn</description>
+  <name>ExportColumn</name>
+  <ref>symbols/sap.ui.core.util.ExportColumn.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.core.util.ExportRow</alias>
+  <description>sap.ui.core.util.ExportRow</description>
+  <name>ExportRow</name>
+  <ref>symbols/sap.ui.core.util.ExportRow.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.core.util.ExportType</alias>
+  <description>sap.ui.core.util.ExportType</description>
+  <name>ExportType</name>
+  <ref>symbols/sap.ui.core.util.ExportType.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.core.util.ExportTypeCSV</alias>
+  <description>sap.ui.core.util.ExportTypeCSV</description>
+  <name>ExportTypeCSV</name>
+  <ref>symbols/sap.ui.core.util.ExportTypeCSV.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.core.util.File</alias>
+  <description>sap.ui.core.util.File</description>
+  <name>File</name>
+  <ref>symbols/sap.ui.core.util.File.html</ref>
+  
+</namespace>
 			
 				<namespace>
   <type>class</type>
@@ -4283,6 +4508,24 @@
 			
 				<namespace>
   <type>class</type>
+  <alias>sap.ui.layout.Splitter</alias>
+  <description>sap.ui.layout.Splitter</description>
+  <name>Splitter</name>
+  <ref>symbols/sap.ui.layout.Splitter.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.layout.SplitterLayoutData</alias>
+  <description>sap.ui.layout.SplitterLayoutData</description>
+  <name>SplitterLayoutData</name>
+  <ref>symbols/sap.ui.layout.SplitterLayoutData.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
   <alias>sap.ui.layout.VerticalLayout</alias>
   <description>sap.ui.layout.VerticalLayout</description>
   <name>VerticalLayout</name>
@@ -4305,6 +4548,31 @@
 		
 		
 		<children>
+			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.model.analytics</alias>
+  <description>sap.ui.model.analytics</description>
+  <name>analytics</name>
+  <ref>symbols/sap.ui.model.analytics.html</ref>
+  
+		
+		
+		<children>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.AnalyticalBinding</alias>
+  <description>sap.ui.model.analytics.AnalyticalBinding</description>
+  <name>AnalyticalBinding</name>
+  <ref>symbols/sap.ui.model.analytics.AnalyticalBinding.html</ref>
+  
+</namespace>
+			
+		</children>
+		
+  
+</namespace>
 			
 				<namespace>
   <type>class</type>
@@ -4774,6 +5042,33 @@
 			
 				<namespace>
   <type>class</type>
+  <alias>sap.ui.table.AnalyticalColumn</alias>
+  <description>sap.ui.table.AnalyticalColumn</description>
+  <name>AnalyticalColumn</name>
+  <ref>symbols/sap.ui.table.AnalyticalColumn.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.table.AnalyticalColumnMenu</alias>
+  <description>sap.ui.table.AnalyticalColumnMenu</description>
+  <name>AnalyticalColumnMenu</name>
+  <ref>symbols/sap.ui.table.AnalyticalColumnMenu.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.table.AnalyticalTable</alias>
+  <description>sap.ui.table.AnalyticalTable</description>
+  <name>AnalyticalTable</name>
+  <ref>symbols/sap.ui.table.AnalyticalTable.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
   <alias>sap.ui.table.Column</alias>
   <description>sap.ui.table.Column</description>
   <name>Column</name>
@@ -4855,6 +5150,15 @@
 			
 				<namespace>
   <type>class</type>
+  <alias>sap.ui.table.TablePersoController</alias>
+  <description>sap.ui.table.TablePersoController</description>
+  <name>TablePersoController</name>
+  <ref>symbols/sap.ui.table.TablePersoController.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
   <alias>sap.ui.table.TreeTable</alias>
   <description>sap.ui.table.TreeTable</description>
   <name>TreeTable</name>
@@ -4889,6 +5193,15 @@
 			
 				<namespace>
   <type>class</type>
+  <alias>sap.ui.unified.Calendar</alias>
+  <description>sap.ui.unified.Calendar</description>
+  <name>Calendar</name>
+  <ref>symbols/sap.ui.unified.Calendar.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
   <alias>sap.ui.unified.ContentSwitcher</alias>
   <description>sap.ui.unified.ContentSwitcher</description>
   <name>ContentSwitcher</name>
@@ -4907,6 +5220,78 @@
 			
 				<namespace>
   <type>class</type>
+  <alias>sap.ui.unified.Currency</alias>
+  <description>sap.ui.unified.Currency</description>
+  <name>Currency</name>
+  <ref>symbols/sap.ui.unified.Currency.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.DateRange</alias>
+  <description>sap.ui.unified.DateRange</description>
+  <name>DateRange</name>
+  <ref>symbols/sap.ui.unified.DateRange.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.FileUploader</alias>
+  <description>sap.ui.unified.FileUploader</description>
+  <name>FileUploader</name>
+  <ref>symbols/sap.ui.unified.FileUploader.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.FileUploaderParameter</alias>
+  <description>sap.ui.unified.FileUploaderParameter</description>
+  <name>FileUploaderParameter</name>
+  <ref>symbols/sap.ui.unified.FileUploaderParameter.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.Menu</alias>
+  <description>sap.ui.unified.Menu</description>
+  <name>Menu</name>
+  <ref>symbols/sap.ui.unified.Menu.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.MenuItem</alias>
+  <description>sap.ui.unified.MenuItem</description>
+  <name>MenuItem</name>
+  <ref>symbols/sap.ui.unified.MenuItem.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.MenuItemBase</alias>
+  <description>sap.ui.unified.MenuItemBase</description>
+  <name>MenuItemBase</name>
+  <ref>symbols/sap.ui.unified.MenuItemBase.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.MenuTextFieldItem</alias>
+  <description>sap.ui.unified.MenuTextFieldItem</description>
+  <name>MenuTextFieldItem</name>
+  <ref>symbols/sap.ui.unified.MenuTextFieldItem.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
   <alias>sap.ui.unified.Shell</alias>
   <description>sap.ui.unified.Shell</description>
   <name>Shell</name>
@@ -4920,6 +5305,15 @@
   <description>sap.ui.unified.ShellHeadItem</description>
   <name>ShellHeadItem</name>
   <ref>symbols/sap.ui.unified.ShellHeadItem.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.ShellHeadUserItem</alias>
+  <description>sap.ui.unified.ShellHeadUserItem</description>
+  <name>ShellHeadUserItem</name>
+  <ref>symbols/sap.ui.unified.ShellHeadUserItem.html</ref>
   
 </namespace>
 			

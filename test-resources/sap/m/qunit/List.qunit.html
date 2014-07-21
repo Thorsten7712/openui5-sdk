@@ -10,11 +10,16 @@
 </script>
 
 <link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
-<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
-<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
+<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <script>
+
+	// sinon timers cause issues with page transitions 
+	sinon.config.useFakeTimers = false;
+
 	var app = new sap.m.App("myApp");
 	//alert((app.isLandscape() ? "Landscape" : "Portrait"));
 
@@ -1479,6 +1484,61 @@
 		switchModeDelete();
 		equals(oListSelection.getMode(), sap.m.ListMode.Delete, "Switch to Delete: Ok");
 	});
+	
+	
+	module("Properties", {
+		setup: function() {
+			sinon.config.useFakeTimers = true;
+		},
+		teardown: function() {
+			sinon.config.useFakeTimers = false;
+		}
+	});
+	
+
+	test("StandardListItem activeIcon", function() {
+		
+		var sIcon = "sap-icon://up";
+		var sActiveIcon = "sap-icon://down";
+		var oStdLI = new sap.m.StandardListItem({
+			title : "Title",
+			icon : sIcon,
+			activeIcon: sActiveIcon,
+			type : sap.m.ListType.Active
+		});
+		
+		var oList = new sap.m.List({
+			items : [oStdLI]
+		});
+		
+		oList.placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+		var oIcon = oStdLI.$().find(".sapUiIcon").control(0);
+		
+		sap.ui.test.qunit.triggerTouchEvent("touchstart", oStdLI.getDomRef(), {
+			srcControl : oStdLI,
+			targetTouches : [{
+				clientX: 0,
+				clientY: 0
+			}]
+		});
+		
+		strictEqual(oIcon.getSrc(), sIcon, "Icon has correct path before active handling.");
+		
+		// wait active feedback
+		this.clock.tick(100);
+		
+		strictEqual(oIcon.getSrc(), sActiveIcon, "Active icon has correct path during active handling");
+		sap.ui.test.qunit.triggerTouchEvent("touchend", oStdLI.getDomRef(), {
+			srcControl : oStdLI,
+			targetTouches : [{
+				clientX: 0,
+				clientY: 0
+			}]
+		});
+		
+		strictEqual(oIcon.getSrc(), sActiveIcon, "Active icon is changed with the previous state after active handling");
+	});
 
 </script>
 
@@ -1500,5 +1560,6 @@
 	<h2 id="qunit-userAgent"></h2>
 	<ol id="qunit-tests"></ol>
 	<div id="content"></div>
+	<div id="qunit-fixture"></div>
 </body>
 </html>

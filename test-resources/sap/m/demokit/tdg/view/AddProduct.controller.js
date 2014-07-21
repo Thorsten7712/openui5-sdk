@@ -113,7 +113,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.AddProduct", {
 	},
 
 	onDialogClose : function(oEvent) {
-		oEvent.getSource().getParent().close();
+		this.oAlertDialog.close();
 	}
 
 });

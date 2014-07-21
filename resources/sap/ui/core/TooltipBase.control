@@ -35,4 +35,9 @@ Example: &quot;10 3&quot;.</documentation>
 			<documentation>Closing delay of the tooltip in milliseconds</documentation>
 		</property>
 	</properties>
+	<events>
+		<event name="closed" since="1.11.0">
+			<documentation>This event is fired when the Tooltip has been closed</documentation>
+		</event>
+	</events>
 </control>

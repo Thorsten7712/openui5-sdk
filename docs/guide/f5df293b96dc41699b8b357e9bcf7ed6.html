@@ -12,9 +12,11 @@
 <meta name="abstract" content="The following guidelines for message handling are recommended."/>
 <meta name="description" content="The following guidelines for message handling are recommended."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8117528196410364"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9004941967788069"/>
 <title>Message Handling</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -52,7 +54,21 @@
 <li class="li">If you want full control of the content you can also use
 						<samp class="ph codeph">sap.m.Dialog</samp> control and set the type to
 						<samp class="ph codeph">sap.m.DialogType.Message</samp>. </li>
+<li class="li">As <samp class="ph codeph">MessageBox</samp> is a static class, a
+						<samp class="ph codeph">jQuery.sap.require("sap.m.MessageBox");</samp> statement must be
+					explicitly executed before the class can be used.</li>
 </ul>
+
+			<p class="p">Example:</p>
+
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.require("sap.m.MessageBox");
+sap.m.MessageBox.show(
+    "Data not loaded", 
+    sap.m.MessageBox.Icon.ERROR,
+    "Operation failed",
+    [sap.m.MessageBox.Action.RETRY, sap.m.MessageBox.Action.IGNORE]
+);
+</pre></div>
 
 			<p class="p">Message Toast:</p>
 
@@ -60,9 +76,11 @@
 					taps somewhere else. It does not block the user. </li>
 <li class="li">Use this pattern if the message is less important and the user should not be
 					blocked in his work. </li>
-<li class="li">You can open a message toast easily with <samp class="ph codeph">sap.m.MessageToast</samp>.
-				</li>
+<li class="li">You can open a message toast easily with the <samp class="ph codeph">sap.m.MessageToast</samp> API. </li>
 </ul>
+
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.m.MessageToast.show("Item deleted");
+</pre></div>
 
 		</div></div>
 <div class="section" id="loiof5df293b96dc41699b8b357e9bcf7ed6__section_N1008E_N10011_N10001"><div class="section_title">Messages Related to Elements of a Page</div><div type="Messages Related to Elements of a Page">

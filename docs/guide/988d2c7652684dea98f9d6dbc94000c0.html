@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=669533728277969"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7523899342913059"/>
 <title>Getting Started With FlexBox</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,11 +30,11 @@
 			of controls to it, either by using the <samp class="ph codeph">addItem</samp> method (see option 1),
 			or the <samp class="ph codeph">items</samp> aggregration of a configuration object (see option 2).</p>
 <p class="p">Option 1</p>
-<div><pre class="pre codeblock">var oMyFlexbox = new sap.m.FlexBox();
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMyFlexbox = new sap.m.FlexBox();
 oMyFlexbox.addItem( new sap.m.Button({text: "Button 1"}) );
 oMyFlexbox.addItem( new sap.m.Button({text: "Button 2"}) ); </pre></div>
 <p class="p">Option 2 </p>
-<div><pre class="pre codeblock">var oMyFlexbox = new sap.m.FlexBox({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMyFlexbox = new sap.m.FlexBox({
   items: [
     new sap.m.Button({text: "Button 1"}),
     new sap.m.Button({text: "Button 2"})
@@ -47,7 +49,7 @@ oMyFlexbox.addItem( new sap.m.Button({text: "Button 2"}) ); </pre></div>
 				aggregation. The layout direction, for example is set in the
 					<samp class="ph codeph">FlexBox</samp> as follows:
 				</p>
-<div><pre class="pre codeblock">var oMyFlexbox = new sap.m.FlexBox({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMyFlexbox = new sap.m.FlexBox({
   items: [
     new sap.m.Button({text: "Button 1"}),
     new sap.m.Button({text: "Button 2"})
@@ -57,7 +59,7 @@ oMyFlexbox.addItem( new sap.m.Button({text: "Button 2"}) ); </pre></div>
 <img class="image" id="loio988d2c7652684dea98f9d6dbc94000c0__image_iyh_jzj_hj" src="d37cdf08a6e84172b6499f05512b54ba.image" alt="SAPUI5 Mobile FlexBox Buttons Vertical" title="SAPUI5 Mobile FlexBox Buttons Vertical"/><p class="p">The order is
 				attached to the button inside a <samp class="ph codeph">FlexItemData</samp> object as follows:
 				</p>
-<div><pre class="pre codeblock">var oMyFlexbox = new sap.m.FlexBox({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oMyFlexbox = new sap.m.FlexBox({
   items: [
     new sap.m.Button({
       text: "Button 1",
@@ -82,7 +84,7 @@ oMyFlexbox.addItem( new sap.m.Button({text: "Button 2"}) ); </pre></div>
 					<em class="ph i">flex container</em> while its child elements are <em class="ph i">flex items</em>. The HTML
 				structure resulting from all of the examples above looks as follows:
 					</p>
-<div><pre class="pre codeblock">&lt;div class="sapMFlexBox"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;div class="sapMFlexBox"&gt;
 
        &lt;div class="sapMFlexItem"&gt;
 

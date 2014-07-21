@@ -64,8 +64,8 @@
 										<span class="icon"><a href="symbols/sap.ui.commons.TextField.html#setValue">sap.ui.commons.TextField#setValue</a></span>
 										
 											<span class="security">
-												The 'value' property of the TextField control and its subclasses represents unfiltered user input. 
-		Applications must ensure that the data is either validated / cleansed or that it is not used in a context which is sensible to XSS attacks. 
+												The 'value' property of the TextField control and its subclasses represents unfiltered user input.
+Applications must ensure that the data is either validated / cleansed or that it is not used in a context which is sensible to XSS attacks. 
 											</span>
 										
 									</div>
@@ -322,9 +322,9 @@
 										<span class="icon"><a href="symbols/sap.ui.core.HTML.html#setContent">sap.ui.core.HTML#setContent</a></span>
 										
 											<span class="security">
-												The content of the 'content' property is rendered 1:1 to allow the full flexibility of HTML in UI5 applications. 
-		Applications therefore must ensure, that they don't set malicious content (e.g. derived from user input). UI5 does not provide an HTML validation function. 
-		jQuery.sap.encodeHTML will encode any HTML relevant character, but this is in nearly all cases not what applications want here. 
+												The content of the 'content' property is rendered 1:1 to allow the full flexibility of HTML in UI5 applications.
+Applications therefore must ensure, that they don't set malicious content (e.g. derived from user input). UI5 does not provide an HTML validation function.
+jQuery.sap.encodeHTML will encode any HTML relevant character, but this is in nearly all cases not what applications want here. 
 											</span>
 										
 									</div>
@@ -491,6 +491,15 @@
 										
 											<span class="security">
 												validates the given string for a URL context 
+											</span>
+										
+									</div>
+								
+									<div class="sectionItem itemName">
+										<span class="icon"><a href="symbols/jQuery.sap.html#.encodeURLParameters">jQuery.sap.encodeURLParameters</a></span>
+										
+											<span class="security">
+												validates the given string for a CSS context 
 											</span>
 										
 									</div>

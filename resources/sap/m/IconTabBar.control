@@ -6,6 +6,9 @@
 	<documentation>A tab bar with large icons</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>
+	<interfaces>
+		<interface>ObjectHeaderContainer</interface>
+	</interfaces>
 	<properties>
 		<property group="Misc" name="showSelection" type="boolean" defaultValue="true">
 			<documentation>Defines whether the current selection should be visualized</documentation>
@@ -27,6 +30,9 @@ If duplicate keys exists the first item matching the key is used.</documentation
 		<property group="Behavior" name="visible" type="sap.ui.core/boolean" defaultValue="true" since="1.15.0">
 			<documentation>Invisible controls are not rendered</documentation>
 		</property>
+		<property group="Appearance" name="upperCase" type="sap.ui.core/boolean" defaultValue="false" since="1.22">
+			<documentation>Determines whether the text of the icon tab filter (not the count) is uppercased.</documentation>
+		</property>
 	</properties>
 	<aggregations>
 		<aggregation cardinality="0..n" name="items" type="sap.m/IconTab">
@@ -35,6 +41,9 @@ If duplicate keys exists the first item matching the key is used.</documentation
 		<aggregation cardinality="0..n" name="content" type="sap.ui.core/Control">
 			<documentation>The contents displayed below the IconTabBar.
 			If there are multiple contents, they are rendered after each other. The developer has to manage to display the right one or use the content aggregation inside the IconTabFilter (which will be displayed instead if it is set).</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_header" type="sap.m/IconTabHeader" visibility="hidden">
+			<documentation>An internal aggregation for managing the icon tab elements.</documentation>
 		</aggregation>
 	</aggregations>
 	<events>

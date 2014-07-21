@@ -18,8 +18,8 @@
 			</Button>
 		</headerContent>
 		<footer>
-			<Bar>
-			</Bar>
+			<Toolbar>
+			</Toolbar>
 		</footer>
 		<content>
 			<List

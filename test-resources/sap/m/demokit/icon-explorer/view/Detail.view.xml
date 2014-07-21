@@ -24,36 +24,34 @@
 			</Button>
 		</headerContent>
 		<subHeader>
-			<Bar>
-				<contentMiddle>
-					<Button icon="sap-icon://{/name}">
-					</Button>
-					<Button icon="sap-icon://{/name}">
-					</Button>
-					<Button icon="sap-icon://{/name}">
-					</Button>
-					<Button icon="sap-icon://{/name}">
-					</Button>
-				</contentMiddle>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://{/name}">
+				</Button>
+				<Button icon="sap-icon://{/name}">
+				</Button>
+				<Button icon="sap-icon://{/name}">
+				</Button>
+				<Button icon="sap-icon://{/name}">
+				</Button>
+				<ToolbarSpacer/>
+			</Toolbar>
 		</subHeader>
 		<footer>
-			<Bar>
-				<contentMiddle>
-					<Button icon="sap-icon://{/name}" visible="{/isNoPhone}">
-					</Button>
-					<Button icon="sap-icon://{/name}">
-					</Button>
-					<Button icon="sap-icon://{/name}">
-					</Button>
-					<Button icon="sap-icon://{/name}" visible="{/isNoPhone}">
-					</Button>
-				</contentMiddle>
-				<contentRight>
-					<Label text="id: {/id}">
-					</Label>
-				</contentRight>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://{/name}" visible="{/isNoPhone}">
+				</Button>
+				<Button icon="sap-icon://{/name}">
+				</Button>
+				<Button icon="sap-icon://{/name}">
+				</Button>
+				<Button icon="sap-icon://{/name}" visible="{/isNoPhone}">
+				</Button>
+				<ToolbarSpacer/>
+				<Label text="id: {/id}">
+				</Label>
+			</Toolbar>
 		</footer>
 		<content>
 			<HBox>

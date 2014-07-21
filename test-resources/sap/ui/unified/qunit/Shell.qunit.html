@@ -18,7 +18,6 @@
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<!-- Control initialization -->
@@ -39,7 +38,8 @@
 		curtainPaneContent: [new my.Test("_curt_pane_ctnt")],
 		headItems: [new sap.ui.unified.ShellHeadItem("_itm")],
 		headEndItems: [new sap.ui.unified.ShellHeadItem("_end_itm")],
-		search: new my.Test("search")
+		search: new my.Test("search"),
+		user: new sap.ui.unified.ShellHeadUserItem("_useritm", {username: "name", image: "sap-icon://person-placeholder"})
 	});
 	oShell.placeAt("uiArea1");
 	
@@ -48,7 +48,8 @@
 		showPane: true,
 		showCurtain: true,
 		showCurtainPane: true,
-		headerHiding: true
+		headerHiding: true,
+		searchVisible: false
 	});
 	
 	
@@ -105,6 +106,7 @@
 			equal(oShell.getShowCurtain(), false, "Default 'showCurtain'");
 			equal(oShell.getShowCurtainPane(), false, "Default 'showCurtainPane'");
 			equal(oShell.getHeaderHiding(), false, "Default 'headerHiding'");
+			equal(oShell.getSearchVisible(), true, "Default 'searchVisible'");
 		});
 	
 		test("Properties - Custom Values", function() {
@@ -113,6 +115,7 @@
 			equal(oShell2.getShowCurtain(), true, "Custom 'showCurtain'");
 			equal(oShell2.getShowCurtainPane(), true, "Custom 'showCurtainPane'");
 			equal(oShell2.getHeaderHiding(), true, "Custom 'headerHiding'");
+			equal(oShell2.getSearchVisible(), false, "Custom 'searchVisible'");
 		});
 		
 		test("Aggregation 'content'", function() {
@@ -147,6 +150,14 @@
 			ok(!oShell2.getSearch(), "No search control again");
 		});
 		
+		test("Aggregation 'user'", function() {
+			ok(!oShell2.getUser(), "Initially no user button");
+			oShell2.setUser(new sap.ui.unified.ShellHeadUserItem());
+			ok(!!oShell2.getUser(), "User button available after set");
+			oShell2.setUser(null);
+			ok(!oShell2.getUser(), "No user button again");
+		});
+		
 		
 		module("Rendering");
 		
@@ -154,6 +165,7 @@
 			ok(jQuery.sap.containsOrEquals(jQuery.sap.domById("shell-hdr-center"), jQuery.sap.domById("search")), "Search rendered correctly");
 			ok(jQuery.sap.containsOrEquals(jQuery.sap.domById("shell-hdr-begin"), jQuery.sap.domById("_itm")), "Header Items rendered correctly");
 			ok(jQuery.sap.containsOrEquals(jQuery.sap.domById("shell-hdr-end"), jQuery.sap.domById("_end_itm")), "Header End Items rendered correctly");
+			ok(jQuery.sap.containsOrEquals(jQuery.sap.domById("shell-hdr-end"), jQuery.sap.domById("_useritm")), "User button rendered correctly");
 			ok(jQuery.sap.containsOrEquals(jQuery.sap.domById("shell-curt-container-canvas"), jQuery.sap.domById("_curt_ctnt")), "Curtain Content rendered correctly");
 			ok(jQuery.sap.containsOrEquals(jQuery.sap.domById("shell-curt-container-pane"), jQuery.sap.domById("_curt_pane_ctnt")), "Curtain Pane rendered correctly");
 			ok(jQuery.sap.containsOrEquals(jQuery.sap.domById("shell-container-canvas"), jQuery.sap.domById("_ctnt")), "Content rendered correctly");
@@ -224,6 +236,24 @@
 				ok(!checkVisibility(), "Curtain hidden again");
 				start();
 			}, 600);
+		});
+		
+		test("Item press", function() {
+			var aItems = ["_itm", "_end_itm", "_useritm"];
+			
+			var bEventFired = false;
+			function onPress(){
+				bEventFired = true;
+			}
+			
+			for(var i=0; i<aItems.length; i++){
+				var oItem = sap.ui.getCore().byId(aItems[i]);
+				oItem.attachPress(onPress);
+				bEventFired = false;
+				sap.ui.test.qunit.triggerEvent("click", aItems[i]);
+				ok(bEventFired, "Press event fired when Item '"+aItems[i]+"' is pressed.")
+				oItem.detachPress(onPress);
+			}
 		});
 		
 	</script>

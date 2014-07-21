@@ -14,7 +14,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 
@@ -170,6 +169,22 @@
 			
 			//clean up
 			sut.destroy();
+		});
+		
+		test("Fixed Layout", function() {
+			var sut = createSUT('FixedLayoutTestTable');
+			sut.placeAt("qunit-fixture");
+			sap.ui.getCore().applyChanges();
+			
+			// check initial rendering
+			strictEqual(sut.$().find("table").css("table-layout"), "fixed", "Table has fixed layout after initial rendering");
+			
+			sut.setFixedLayout(false);
+			sap.ui.getCore().applyChanges();
+			strictEqual(sut.$().find("table").css("table-layout"), "auto", "Table has correct layout after disabling fix layout.");
+			
+			//clean up
+			sut.destroy()
 		});	
 		
 		module("Modes");

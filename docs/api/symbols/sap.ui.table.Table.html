@@ -41,7 +41,7 @@
 					
 					
 					
-						<div class="classRelation subclasses"><span class="caption">known direct subclasses: </span><a title="sap.ui.table.TreeTable" href="../symbols/sap.ui.table.TreeTable.html">TreeTable</a></div>
+						<div class="classRelation subclasses"><span class="caption">known direct subclasses: </span><a title="sap.ui.table.AnalyticalTable" href="../symbols/sap.ui.table.AnalyticalTable.html">AnalyticalTable</a>, <a title="sap.ui.table.TreeTable" href="../symbols/sap.ui.table.TreeTable.html">TreeTable</a></div>
 					
 					
 					<hr/>
@@ -97,6 +97,21 @@
 						<div class="summary section" cellspacing="0" summary="A summary of the events documented in the class sap.ui.table.Table.">
 							<div class="sectionTitle">Event Summary</div>
 							<div class="sectionItems">
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="fired when the user clicks a cell of the table (experimental!)."><a href="../symbols/sap.ui.table.Table.html#event:cellClick">cellClick</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+									<span class='description'>fired when the user clicks a cell of the table (experimental!).</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="fired when the user clicks a cell of the table (experimental!)."><a href="../symbols/sap.ui.table.Table.html#event:cellContextmenu">cellContextmenu</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+									<span class='description'>fired when the user clicks a cell of the table (experimental!).</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="fired when a column of the table should be freezed"><a href="../symbols/sap.ui.table.Table.html#event:columnFreeze">columnFreeze</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+									<span class='description'>fired when a column of the table should be freezed</span>
+								</div>
 							
 								<div class="sectionItem classMethod">
 									<b class="icon" title="fired when a table column is moved."><a href="../symbols/sap.ui.table.Table.html#event:columnMove">columnMove</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
@@ -181,6 +196,21 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Attach event handler fnFunction to the 'cellClick' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#attachCellClick">attachCellClick</a></b><span class='signature'>(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Attach event handler <code>fnFunction</code> to the 'cellClick' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Attach event handler fnFunction to the 'cellContextmenu' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#attachCellContextmenu">attachCellContextmenu</a></b><span class='signature'>(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Attach event handler <code>fnFunction</code> to the 'cellContextmenu' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Attach event handler fnFunction to the 'columnFreeze' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#attachColumnFreeze">attachColumnFreeze</a></b><span class='signature'>(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Attach event handler <code>fnFunction</code> to the 'columnFreeze' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Attach event handler fnFunction to the 'columnMove' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#attachColumnMove">attachColumnMove</a></b><span class='signature'>(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Attach event handler <code>fnFunction</code> to the 'columnMove' event of this <code>sap.ui.table.Table</code>.</span>
 								</div>
@@ -218,6 +248,11 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Attach event handler fnFunction to the 'sort' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#attachSort">attachSort</a></b><span class='signature'>(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Attach event handler <code>fnFunction</code> to the 'sort' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="triggers automatic resizing of a column to the widest content."><a href="../symbols/sap.ui.table.Table.html#autoResizeColumn">autoResizeColumn</a></b><span class='signature'>(<span title="(int) column id">iColId</span>)</span>
+									<span class='description'>triggers automatic resizing of a column to the widest content.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -271,6 +306,21 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Detach event handler fnFunction from the 'cellClick' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#detachCellClick">detachCellClick</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+									<span class='description'>Detach event handler <code>fnFunction</code> from the 'cellClick' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Detach event handler fnFunction from the 'cellContextmenu' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#detachCellContextmenu">detachCellContextmenu</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+									<span class='description'>Detach event handler <code>fnFunction</code> from the 'cellContextmenu' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Detach event handler fnFunction from the 'columnFreeze' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#detachColumnFreeze">detachColumnFreeze</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+									<span class='description'>Detach event handler <code>fnFunction</code> from the 'columnFreeze' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Detach event handler fnFunction from the 'columnMove' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#detachColumnMove">detachColumnMove</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
 									<span class='description'>Detach event handler <code>fnFunction</code> from the 'columnMove' event of this <code>sap.ui.table.Table</code>.</span>
 								</div>
@@ -311,8 +361,28 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Creates a new sap.ui.core.util.Export object and fills row/column information from the table if not provided."><a href="../symbols/sap.ui.table.Table.html#exportData">exportData</a></b><span class='signature'>(<span title="(object) settings for the new Export, see sap.ui.core.util.Export constructor">mSettings</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Creates a new <a href="../symbols/sap.ui.core.util.Export.html">sap.ui.core.util.Export</a> object and fills row/column information from the table if not provided.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="filter the given column by the given value"><a href="../symbols/sap.ui.table.Table.html#filter">filter</a></b><span class='signature'>(<span title="(sap.ui.table.Column) column to be filtered">oColumn</span>, <span title="(string) filter value as string (will be converted)">sValue</span>)</span>
 									<span class='description'>filter the given column by the given value</span>
+								</div>
+							
+								<div class="sectionItem classMethod protected">
+									<b class="icon protected" title="Fire event cellClick to attached listeners."><a href="../symbols/sap.ui.table.Table.html#fireCellClick">fireCellClick</a></b><span class='signature'>(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Fire event cellClick to attached listeners.</span>
+								</div>
+							
+								<div class="sectionItem classMethod protected">
+									<b class="icon protected" title="Fire event cellContextmenu to attached listeners."><a href="../symbols/sap.ui.table.Table.html#fireCellContextmenu">fireCellContextmenu</a></b><span class='signature'>(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Fire event cellContextmenu to attached listeners.</span>
+								</div>
+							
+								<div class="sectionItem classMethod protected">
+									<b class="icon protected" title="Fire event columnFreeze to attached listeners."><a href="../symbols/sap.ui.table.Table.html#fireColumnFreeze">fireColumnFreeze</a></b><span class='signature'>(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Fire event columnFreeze to attached listeners.</span>
 								</div>
 							
 								<div class="sectionItem classMethod protected">
@@ -378,6 +448,16 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property editable."><a href="../symbols/sap.ui.table.Table.html#getEditable">getEditable</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>editable</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property enableCellFilter."><a href="../symbols/sap.ui.table.Table.html#getEnableCellFilter">getEnableCellFilter</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>enableCellFilter</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property enableColumnFreeze."><a href="../symbols/sap.ui.table.Table.html#getEnableColumnFreeze">getEnableColumnFreeze</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>enableColumnFreeze</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -478,6 +558,11 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property showNoData."><a href="../symbols/sap.ui.table.Table.html#getShowNoData">getShowNoData</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>showNoData</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property showOverlay."><a href="../symbols/sap.ui.table.Table.html#getShowOverlay">getShowOverlay</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>showOverlay</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -606,6 +691,16 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property enableCellFilter."><a href="../symbols/sap.ui.table.Table.html#setEnableCellFilter">setEnableCellFilter</a></b><span class='signature'>(<span title="(boolean) new value for property enableCellFilter">bEnableCellFilter</span>)</span>
+									<span class='description'>Setter for property <code>enableCellFilter</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property enableColumnFreeze."><a href="../symbols/sap.ui.table.Table.html#setEnableColumnFreeze">setEnableColumnFreeze</a></b><span class='signature'>(<span title="(boolean) new value for property enableColumnFreeze">bEnableColumnFreeze</span>)</span>
+									<span class='description'>Setter for property <code>enableColumnFreeze</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Setter for property enableColumnReordering."><a href="../symbols/sap.ui.table.Table.html#setEnableColumnReordering">setEnableColumnReordering</a></b><span class='signature'>(<span title="(boolean) new value for property enableColumnReordering">bEnableColumnReordering</span>)</span>
 									<span class='description'>Setter for property <code>enableColumnReordering</code>.</span>
 								</div>
@@ -656,7 +751,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Setter for the aggregated noData."><a href="../symbols/sap.ui.table.Table.html#setNoData">setNoData</a></b><span class='signature'>(<span title="(sap.ui.core.Control) sap.ui.core.Control">oNoData</span>)</span>
+									<b class="icon" title="Setter for the aggregated noData."><a href="../symbols/sap.ui.table.Table.html#setNoData">setNoData</a></b><span class='signature'>(<span title="(sap.ui.core.Control|string) sap.ui.core.Control|string">oNoData</span>)</span>
 									<span class='description'>Setter for the aggregated <code>noData</code>.</span>
 								</div>
 							
@@ -696,6 +791,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property showOverlay."><a href="../symbols/sap.ui.table.Table.html#setShowOverlay">setShowOverlay</a></b><span class='signature'>(<span title="(boolean) new value for property showOverlay">bShowOverlay</span>)</span>
+									<span class='description'>Setter for property <code>showOverlay</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Setter for property threshold."><a href="../symbols/sap.ui.table.Table.html#setThreshold">setThreshold</a></b><span class='signature'>(<span title="(int) new value for property threshold">iThreshold</span>)</span>
 									<span class='description'>Setter for property <code>threshold</code>.</span>
 								</div>
@@ -706,7 +806,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Setter for the aggregated toolbar."><a href="../symbols/sap.ui.table.Table.html#setToolbar">setToolbar</a></b><span class='signature'>(<span title="(sap.ui.commons.Toolbar) sap.ui.commons.Toolbar">oToolbar</span>)</span>
+									<b class="icon" title="Setter for the aggregated toolbar."><a href="../symbols/sap.ui.table.Table.html#setToolbar">setToolbar</a></b><span class='signature'>(<span title="(sap.ui.core.Toolbar) sap.ui.core.Toolbar">oToolbar</span>)</span>
 									<span class='description'>Setter for the aggregated <code>toolbar</code>.</span>
 								</div>
 							
@@ -751,8 +851,18 @@
 								</div>
 							
 								<div class="sectionItem classMethod deprecated">
+									<b class="icon" title="Getter for property noDataText."><a href="../symbols/sap.ui.table.Table.html#getNoDataText">getNoDataText</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>noDataText</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod deprecated">
 									<b class="icon" title="Setter for property allowColumnReordering."><a href="../symbols/sap.ui.table.Table.html#setAllowColumnReordering">setAllowColumnReordering</a></b><span class='signature'>(<span title="(boolean) new value for property allowColumnReordering">bAllowColumnReordering</span>)</span>
 									<span class='description'>Setter for property <code>allowColumnReordering</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod deprecated">
+									<b class="icon" title="Setter for property noDataText."><a href="../symbols/sap.ui.table.Table.html#setNoDataText">setNoDataText</a></b><span class='signature'>(<span title="(string) new value for property noDataText">sNoDataText</span>)</span>
+									<span class='description'>Setter for property <code>noDataText</code>.</span>
 								</div>
 							
 							</div>
@@ -765,7 +875,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -846,17 +956,21 @@ The supported settings are:
 <li><a href="#getFixedColumnCount">fixedColumnCount</a> : int (default: 0)</li>
 <li><a href="#getFixedRowCount">fixedRowCount</a> : int (default: 0)</li>
 <li><a href="#getMinAutoRowCount">minAutoRowCount</a> : int (default: 5)</li>
-<li><a href="#getFixedBottomRowCount">fixedBottomRowCount</a> : int (default: 0)</li></ul>
+<li><a href="#getFixedBottomRowCount">fixedBottomRowCount</a> : int (default: 0)</li>
+<li><a href="#getEnableColumnFreeze">enableColumnFreeze</a> : boolean (default: false)</li>
+<li><a href="#getEnableCellFilter">enableCellFilter</a> : boolean (default: false)</li>
+<li><a href="#getNoDataText">noDataText</a> : string</li>
+<li><a href="#getShowOverlay">showOverlay</a> : boolean (default: false)</li></ul>
 </li>
 <li>Aggregations
 <ul>
 <li><a href="#getTitle">title</a> : sap.ui.core.Control|string</li>
 <li><a href="#getFooter">footer</a> : sap.ui.core.Control|string</li>
-<li><a href="#getToolbar">toolbar</a> : sap.ui.commons.Toolbar</li>
+<li><a href="#getToolbar">toolbar</a> : sap.ui.core.Toolbar</li>
 <li><a href="#getExtension">extension</a> : sap.ui.core.Control[]</li>
 <li><a href="#getColumns">columns</a> <strong>(default aggregation)</strong> : sap.ui.table.Column[]</li>
 <li><a href="#getRows">rows</a> : sap.ui.table.Row[]</li>
-<li><a href="#getNoData">noData</a> : sap.ui.core.Control</li></ul>
+<li><a href="#getNoData">noData</a> : sap.ui.core.Control|string</li></ul>
 </li>
 <li>Associations
 <ul>
@@ -871,7 +985,10 @@ The supported settings are:
 <li><a href="../symbols/sap.ui.table.Table.html#event:sort">sort</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
 <li><a href="../symbols/sap.ui.table.Table.html#event:filter">filter</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
 <li><a href="../symbols/sap.ui.table.Table.html#event:group">group</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
-<li><a href="../symbols/sap.ui.table.Table.html#event:columnVisibility">columnVisibility</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+<li><a href="../symbols/sap.ui.table.Table.html#event:columnVisibility">columnVisibility</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+<li><a href="../symbols/sap.ui.table.Table.html#event:cellClick">cellClick</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+<li><a href="../symbols/sap.ui.table.Table.html#event:cellContextmenu">cellContextmenu</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+<li><a href="../symbols/sap.ui.table.Table.html#event:columnFreeze">columnFreeze</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
 </li>
 </ul>
 										</div>
@@ -931,6 +1048,291 @@ The supported settings are:
 								Event Detail
 							</div>
 							<div class="sectionItems">
+								
+									<div class='sectionItem classProperty'>
+									<a name="event:cellClick"> </a>
+									<div class="itemTitle icon">
+										cellClick<span class="signature">(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+										
+									</div>
+									<div class="full-description">
+										fired when the user clicks a cell of the table (experimental!).
+										
+										
+										
+									</div>
+									
+										<div class="heading">Parameters:</div>
+										<table class="methodItem"><tbody>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.Event.html">sap.ui.base.Event</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getSource</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{object}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters.cellControl</b>
+												</td>
+												<td class="methodItemDesc">
+											    The control of the cell.
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{int}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters.rowIndex</b>
+												</td>
+												<td class="methodItemDesc">
+											    Row index of the selected cell.
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{int}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters.columnIndex</b>
+												</td>
+												<td class="methodItemDesc">
+											    Column index of the selected cell.
+												</td>
+											</tr>
+										
+										</tbody></table>
+									
+									
+									
+										<dl class="detailList since">
+											<dt class="heading since">Since:</dt>
+											<dd>1.21.0</dd>
+										</dl>
+									
+									
+									
+									
+									
+									</div>
+								
+									<div class='sectionItem classProperty'>
+									<a name="event:cellContextmenu"> </a>
+									<div class="itemTitle icon">
+										cellContextmenu<span class="signature">(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+										
+									</div>
+									<div class="full-description">
+										fired when the user clicks a cell of the table (experimental!).
+										
+										
+										
+									</div>
+									
+										<div class="heading">Parameters:</div>
+										<table class="methodItem"><tbody>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.Event.html">sap.ui.base.Event</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getSource</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{object}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters.cellControl</b>
+												</td>
+												<td class="methodItemDesc">
+											    The control of the cell.
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{int}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters.rowIndex</b>
+												</td>
+												<td class="methodItemDesc">
+											    Row index of the selected cell.
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{int}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters.columnIndex</b>
+												</td>
+												<td class="methodItemDesc">
+											    Column index of the selected cell.
+												</td>
+											</tr>
+										
+										</tbody></table>
+									
+									
+									
+										<dl class="detailList since">
+											<dt class="heading since">Since:</dt>
+											<dd>1.21.0</dd>
+										</dl>
+									
+									
+									
+									
+									
+									</div>
+								
+									<div class='sectionItem classProperty'>
+									<a name="event:columnFreeze"> </a>
+									<div class="itemTitle icon">
+										columnFreeze<span class="signature">(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+										
+									</div>
+									<div class="full-description">
+										fired when a column of the table should be freezed
+										
+										
+										
+									</div>
+									
+										<div class="heading">Parameters:</div>
+										<table class="methodItem"><tbody>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.Event.html">sap.ui.base.Event</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getSource</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{object}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.table.Column.html">sap.ui.table.Column</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters.column</b>
+												</td>
+												<td class="methodItemDesc">
+											    reference to the column to freeze
+												</td>
+											</tr>
+										
+										</tbody></table>
+									
+									
+									
+										<dl class="detailList since">
+											<dt class="heading since">Since:</dt>
+											<dd>1.21.0</dd>
+										</dl>
+									
+									
+									
+									
+									
+									</div>
 								
 									<div class='sectionItem classProperty'>
 									<a name="event:columnMove"> </a>
@@ -1672,7 +2074,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -1684,7 +2086,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -1937,6 +2339,270 @@ to the aggregation named <code>rows</code>.
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="attachCellClick"> </a>
+										<div class="itemTitle icon">
+											attachCellClick<span class="signature">(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Attach event handler <code>fnFunction</code> to the 'cellClick' event of this <code>sap.ui.table.Table</code>.<br/>.
+When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
+</p><p>
+fired when the user clicks a cell of the table (experimental!).
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="attachCellContextmenu"> </a>
+										<div class="itemTitle icon">
+											attachCellContextmenu<span class="signature">(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Attach event handler <code>fnFunction</code> to the 'cellContextmenu' event of this <code>sap.ui.table.Table</code>.<br/>.
+When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
+</p><p>
+fired when the user clicks a cell of the table (experimental!).
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="attachColumnFreeze"> </a>
+										<div class="itemTitle icon">
+											attachColumnFreeze<span class="signature">(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Attach event handler <code>fnFunction</code> to the 'columnFreeze' event of this <code>sap.ui.table.Table</code>.<br/>.
+When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
+</p><p>
+fired when a column of the table should be freezed
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="attachColumnMove"> </a>
 										<div class="itemTitle icon">
 											attachColumnMove<span class="signature">(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1964,7 +2630,7 @@ fired when a table column is moved.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1988,7 +2654,7 @@ fired when a table column is moved.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2047,7 +2713,7 @@ fired when a table column is resized.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2071,7 +2737,7 @@ fired when a table column is resized.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2130,7 +2796,7 @@ fired when a column of the table has been selected
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2154,7 +2820,7 @@ fired when a column of the table has been selected
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2213,7 +2879,7 @@ fired when the visibility of a table column is changed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2237,7 +2903,7 @@ fired when the visibility of a table column is changed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2296,7 +2962,7 @@ fired when the table is filtered.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2320,7 +2986,7 @@ fired when the table is filtered.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2379,7 +3045,7 @@ fired when the table is grouped (experimental!).
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2403,7 +3069,7 @@ fired when the table is grouped (experimental!).
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2462,7 +3128,7 @@ fired when the row selection of the table has been changed (the event parameters
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2486,7 +3152,7 @@ fired when the row selection of the table has been changed (the event parameters
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2545,7 +3211,7 @@ fired when the table is sorted.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2569,7 +3235,7 @@ fired when the table is sorted.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
@@ -2595,6 +3261,51 @@ fired when the table is sorted.
 												</tr>
 											
 											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="autoResizeColumn"> </a>
+										<div class="itemTitle icon">
+											autoResizeColumn<span class="signature">(<span title="(int) column id">iColId</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											triggers automatic resizing of a column to the widest content.(experimental!)
+											
+											
+												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Experimental! Presently implemented to only work with pure text-based controls, 
+the sap.ui.commons.Checkbox and sap.m.Image as well as sap.ui.commons.Image.
+It will also work for most simple input fields (TextField, CheckBox, but not ComboBox)</span></p> 
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iColId</b>
+													</td>
+													<td class="methodItemDesc">
+												    column id
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
 										
 										
 										
@@ -3058,6 +3769,228 @@ named <code>toolbar</code>.
 										
 										
 										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="detachCellClick"> </a>
+										<div class="itemTitle icon">
+											detachCellClick<span class="signature">(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Detach event handler <code>fnFunction</code> from the 'cellClick' event of this <code>sap.ui.table.Table</code>.<br/>
+</p><p>
+The passed function and listener object must match the ones used for event registration.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b>
+													</td>
+													<td class="methodItemDesc">
+												    Context object on which the given function had to be called.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="detachCellContextmenu"> </a>
+										<div class="itemTitle icon">
+											detachCellContextmenu<span class="signature">(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Detach event handler <code>fnFunction</code> from the 'cellContextmenu' event of this <code>sap.ui.table.Table</code>.<br/>
+</p><p>
+The passed function and listener object must match the ones used for event registration.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b>
+													</td>
+													<td class="methodItemDesc">
+												    Context object on which the given function had to be called.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="detachColumnFreeze"> </a>
+										<div class="itemTitle icon">
+											detachColumnFreeze<span class="signature">(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Detach event handler <code>fnFunction</code> from the 'columnFreeze' event of this <code>sap.ui.table.Table</code>.<br/>
+</p><p>
+The passed function and listener object must match the ones used for event registration.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b>
+													</td>
+													<td class="methodItemDesc">
+												    Context object on which the given function had to be called.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
 										
 										
 										
@@ -3632,6 +4565,63 @@ The passed function and listener object must match the ones used for event regis
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="exportData"> </a>
+										<div class="itemTitle icon">
+											exportData<span class="signature">(<span title="(object) settings for the new Export, see sap.ui.core.util.Export constructor">mSettings</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns jQuery.Promise">: jQuery.Promise</span>
+										</div>
+										<div class="full-description">
+											Creates a new <a href="../symbols/sap.ui.core.util.Export.html">sap.ui.core.util.Export</a> object and fills row/column information from the table if not provided. For the cell content, the column's "sortProperty" will be used (experimental!)
+											
+											
+												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Experimental because the property for the column/cell definitions (sortProperty) could change in future.</span></p> 
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mSettings</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    settings for the new Export, see <a href="../symbols/sap.ui.core.util.Export.html">sap.ui.core.util.Export</a> <code>constructor</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{jQuery.Promise}</span> 
+													</td>
+													<td class="methodItemDesc">
+														Promise object
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="filter"> </a>
 										<div class="itemTitle icon">
 											filter<span class="signature">(<span title="(sap.ui.table.Column) column to be filtered">oColumn</span>, <span title="(string) filter value as string (will be converted)">sValue</span>)</span>
@@ -3685,6 +4675,211 @@ The passed function and listener object must match the ones used for event regis
 									</div>
 								
 									<div class='sectionItem classMethod protected protected'>
+										<a name="fireCellClick"> </a>
+										<div class="itemTitle icon protected">
+											fireCellClick<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Fire event cellClick to attached listeners.
+</p><p>
+Listeners may prevent the default action of this event using the preventDefault-method on the event object.
+</p><p>
+Expects following event parameters:
+<ul>
+<li>'cellControl' of type <code>sap.ui.core.Control</code> The control of the cell.</li>
+<li>'rowIndex' of type <code>int</code> Row index of the selected cell.</li>
+<li>'columnIndex' of type <code>int</code> Column index of the selected cell.</li>
+</ul>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{Map}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    the arguments to pass along with the event.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														whether to prevent the default action
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected protected'>
+										<a name="fireCellContextmenu"> </a>
+										<div class="itemTitle icon protected">
+											fireCellContextmenu<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Fire event cellContextmenu to attached listeners.
+</p><p>
+Listeners may prevent the default action of this event using the preventDefault-method on the event object.
+</p><p>
+Expects following event parameters:
+<ul>
+<li>'cellControl' of type <code>sap.ui.core.Control</code> The control of the cell.</li>
+<li>'rowIndex' of type <code>int</code> Row index of the selected cell.</li>
+<li>'columnIndex' of type <code>int</code> Column index of the selected cell.</li>
+</ul>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{Map}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    the arguments to pass along with the event.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														whether to prevent the default action
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected protected'>
+										<a name="fireColumnFreeze"> </a>
+										<div class="itemTitle icon protected">
+											fireColumnFreeze<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Fire event columnFreeze to attached listeners.
+</p><p>
+Listeners may prevent the default action of this event using the preventDefault-method on the event object.
+</p><p>
+Expects following event parameters:
+<ul>
+<li>'column' of type <code>sap.ui.table.Column</code> reference to the column to freeze</li>
+</ul>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{Map}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    the arguments to pass along with the event.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														whether to prevent the default action
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected protected'>
 										<a name="fireColumnMove"> </a>
 										<div class="itemTitle icon protected">
 											fireColumnMove<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -3694,7 +4889,7 @@ The passed function and listener object must match the ones used for event regis
 											Fire event columnMove to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'column' of type <code>sap.ui.table.Column</code> moved column.</li>
@@ -3716,7 +4911,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3757,7 +4952,7 @@ Expects following event parameters:
 											Fire event columnResize to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'column' of type <code>sap.ui.table.Column</code> resized column.</li>
@@ -3779,7 +4974,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3820,7 +5015,7 @@ Expects following event parameters:
 											Fire event columnSelect to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'column' of type <code>sap.ui.table.Column</code> reference to the selected column</li>
@@ -3841,7 +5036,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3882,7 +5077,7 @@ Expects following event parameters:
 											Fire event columnVisibility to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'column' of type <code>sap.ui.table.Column</code> affected column.</li>
@@ -3904,7 +5099,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3945,7 +5140,7 @@ Expects following event parameters:
 											Fire event filter to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'column' of type <code>sap.ui.table.Column</code> filtered column.</li>
@@ -3967,7 +5162,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -4008,7 +5203,7 @@ Expects following event parameters:
 											Fire event group to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'column' of type <code>sap.ui.table.Column</code> grouped column.</li>
@@ -4029,7 +5224,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -4091,7 +5286,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -4132,7 +5327,7 @@ Expects following event parameters:
 											Fire event sort to attached listeners.
 </p><p>
 Listeners may prevent the default action of this event using the preventDefault-method on the event object.
-* 
+</p><p>
 Expects following event parameters:
 <ul>
 <li>'column' of type <code>sap.ui.table.Column</code> sorted column.</li>
@@ -4155,7 +5350,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -4382,6 +5577,98 @@ Default value is <code>true</code>
 													</td>
 													<td class="methodItemDesc">
 														the value of property <code>editable</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getEnableCellFilter"> </a>
+										<div class="itemTitle icon">
+											getEnableCellFilter<span class="signature">()</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>enableCellFilter</code>.
+Flag whether to enable or disable the context menu on cells to trigger a filtering with the cell value.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>enableCellFilter</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getEnableColumnFreeze"> </a>
+										<div class="itemTitle icon">
+											getEnableColumnFreeze<span class="signature">()</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>enableColumnFreeze</code>.
+Flag whether to show or hide the column menu item to freeze or unfreeze a column.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>enableColumnFreeze</code>
 													</td>
 												</tr>
 											
@@ -4766,8 +6053,7 @@ Control or text of footer section of the Table (if not set it will be hidden)
 										</div>
 										<div class="full-description">
 											Getter for property <code>minAutoRowCount</code>.
-This property is used to set the minimum count of visible rows when the property visibleRowCountMode is set to Auto.
-For any other visibleRowCountMode, it is ignored.
+This property is used to set the minimum count of visible rows when the property visibleRowCountMode is set to Auto. For any other visibleRowCountMode, it is ignored.
 </p><p>
 Default value is <code>5</code>
 											
@@ -4808,7 +6094,7 @@ Default value is <code>5</code>
 										</div>
 										<div class="full-description">
 											Getter for property <code>navigationMode</code>.
-Flag whether to use the scroll mode or paging mode.
+Flag whether to use the scroll mode or paging mode. If the Paginator mode is used it will require the sap.ui.commons library!
 </p><p>
 Default value is <code>Scrollbar</code>
 											
@@ -4845,11 +6131,11 @@ Default value is <code>Scrollbar</code>
 										<a name="getNoData"> </a>
 										<div class="itemTitle icon">
 											getNoData<span class="signature">()</span>
-											<span class="light" title="returns sap.ui.core.Control">: <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></span>
+											<span class="light" title="returns sap.ui.core.Control|string">: <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>|string</span>
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>noData</code>.<br/>
-This control is shown, in case there is no data available to be displayed in the Table.
+The value for the noData aggregation can be either a string value or a control instance. The control is shown, in case there is no data for the Table available. In case of a string value this will simply replace the no data text.
 											
 											
 											
@@ -4867,7 +6153,7 @@ This control is shown, in case there is no data available to be displayed in the
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
+														<span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>|string}</span> 
 													</td>
 													<td class="methodItemDesc">
 														
@@ -5190,6 +6476,52 @@ Default value is <code>true</code>
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="getShowOverlay"> </a>
+										<div class="itemTitle icon">
+											getShowOverlay<span class="signature">()</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>showOverlay</code>.
+Setting this property to true will show an overlay on top of the Table content and users cannot click anymore on the Table content.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.2</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>showOverlay</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="getThreshold"> </a>
 										<div class="itemTitle icon">
 											getThreshold<span class="signature">()</span>
@@ -5273,7 +6605,7 @@ Control or text of title section of the Table (if not set it will be hidden)
 										<a name="getToolbar"> </a>
 										<div class="itemTitle icon">
 											getToolbar<span class="signature">()</span>
-											<span class="light" title="returns sap.ui.commons.Toolbar">: <a href="../symbols/sap.ui.commons.Toolbar.html">sap.ui.commons.Toolbar</a></span>
+											<span class="light" title="returns sap.ui.core.Toolbar">: <a href="../symbols/sap.ui.core.Toolbar.html">sap.ui.core.Toolbar</a></span>
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>toolbar</code>.<br/>
@@ -5295,7 +6627,7 @@ Toolbar of the Table (if not set it will be hidden)
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.ui.commons.Toolbar.html">sap.ui.commons.Toolbar</a>}</span> 
+														<span class="light">{<a href="../symbols/sap.ui.core.Toolbar.html">sap.ui.core.Toolbar</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
 														
@@ -6427,6 +7759,130 @@ Default value is <code>true</code>
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="setEnableCellFilter"> </a>
+										<div class="itemTitle icon">
+											setEnableCellFilter<span class="signature">(<span title="(boolean) new value for property enableCellFilter">bEnableCellFilter</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>enableCellFilter</code>.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bEnableCellFilter</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>enableCellFilter</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="setEnableColumnFreeze"> </a>
+										<div class="itemTitle icon">
+											setEnableColumnFreeze<span class="signature">(<span title="(boolean) new value for property enableColumnFreeze">bEnableColumnFreeze</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>enableColumnFreeze</code>.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bEnableColumnFreeze</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>enableColumnFreeze</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="setEnableColumnReordering"> </a>
 										<div class="itemTitle icon">
 											setEnableColumnReordering<span class="signature">(<span title="(boolean) new value for property enableColumnReordering">bEnableColumnReordering</span>)</span>
@@ -7001,7 +8457,7 @@ Default value is <code>Scrollbar</code>
 									<div class='sectionItem classMethod'>
 										<a name="setNoData"> </a>
 										<div class="itemTitle icon">
-											setNoData<span class="signature">(<span title="(sap.ui.core.Control) sap.ui.core.Control">oNoData</span>)</span>
+											setNoData<span class="signature">(<span title="(sap.ui.core.Control|string) sap.ui.core.Control|string">oNoData</span>)</span>
 											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
 										</div>
 										<div class="full-description">
@@ -7019,7 +8475,7 @@ Default value is <code>Scrollbar</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
+													  <span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>|string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oNoData</b>
@@ -7449,6 +8905,68 @@ Default value is <code>true</code>
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="setShowOverlay"> </a>
+										<div class="itemTitle icon">
+											setShowOverlay<span class="signature">(<span title="(boolean) new value for property showOverlay">bShowOverlay</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>showOverlay</code>.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bShowOverlay</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>showOverlay</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.2</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="setThreshold"> </a>
 										<div class="itemTitle icon">
 											setThreshold<span class="signature">(<span title="(int) new value for property threshold">iThreshold</span>)</span>
@@ -7563,7 +9081,7 @@ Default value is <code>100</code>
 									<div class='sectionItem classMethod'>
 										<a name="setToolbar"> </a>
 										<div class="itemTitle icon">
-											setToolbar<span class="signature">(<span title="(sap.ui.commons.Toolbar) sap.ui.commons.Toolbar">oToolbar</span>)</span>
+											setToolbar<span class="signature">(<span title="(sap.ui.core.Toolbar) sap.ui.core.Toolbar">oToolbar</span>)</span>
 											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
 										</div>
 										<div class="full-description">
@@ -7581,7 +9099,7 @@ Default value is <code>100</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.ui.commons.Toolbar.html">sap.ui.commons.Toolbar</a>}</span> 
+													  <span class="light">{<a href="../symbols/sap.ui.core.Toolbar.html">sap.ui.core.Toolbar</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oToolbar</b>
@@ -8027,6 +9545,60 @@ Use the property enableColumnReordering instead.
 									</div>
 								
 									<div class='sectionItem classMethod deprecated'>
+										<a name="getNoDataText"> </a>
+										<div class="itemTitle icon">
+											getNoDataText<span class="signature">()</span>
+											<span class="light" title="returns string">: string</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>noDataText</code>.
+This text is shown, in case there is no data available to be displayed in the Table and no custom noData control is set.
+</p><p>
+Default value is empty/<code>undefined</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+											<dl class="detailList deprecation">
+												<dt class="heading">Deprecated:</dt>
+												<dt>
+													Since version 1.22.1. 
+The aggregation noData also supports string values now. Use noData instead.
+												</dt>
+											</dl>
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{string}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>noDataText</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod deprecated'>
 										<a name="setAllowColumnReordering"> </a>
 										<div class="itemTitle icon">
 											setAllowColumnReordering<span class="signature">(<span title="(boolean) new value for property allowColumnReordering">bAllowColumnReordering</span>)</span>
@@ -8070,6 +9642,76 @@ Use the property enableColumnReordering instead.
 												</dt>
 											</dl>
 										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod deprecated'>
+										<a name="setNoDataText"> </a>
+										<div class="itemTitle icon">
+											setNoDataText<span class="signature">(<span title="(string) new value for property noDataText">sNoDataText</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>noDataText</code>.
+</p><p>
+Default value is empty/<code>undefined</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sNoDataText</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>noDataText</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+											<dl class="detailList deprecation">
+												<dt class="heading">Deprecated:</dt>
+												<dt>
+													Since version 1.22.1. 
+The aggregation noData also supports string values now. Use noData instead.
+												</dt>
+											</dl>
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.21.0</dd>
+											</dl>
 										
 										
 										

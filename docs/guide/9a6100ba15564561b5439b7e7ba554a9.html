@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8887591471821948"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=012860425348658167"/>
 <title>Creating a Simple Square Control</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 <div class="body"><p class="shortdesc"/>
 <p class="p">The following code snippet shows how to create a Square control that is rendered as a red
             square with text inside that pops up an alert when clicked:</p>
-<div><pre class="pre codeblock">  sap.ui.core.Control.extend("Square", { // call the new Control type "Square" and let it inherit
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  sap.ui.core.Control.extend("Square", { // call the new Control type "Square" and let it inherit
                                          // from sap.ui.core.Control
 
       // the Control API:
@@ -73,7 +75,7 @@
             easily modified by the application.</p>
 <p class="p">To add a grey background, a red border and some alignment information, use the following
             code:</p>
-<div><pre class="pre codeblock">&lt;style&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;style&gt;
     .mySquare {                  /* style the CSS class that has been written by the renderer method */
         display: inline-block;   /* enable squares to appear next to each other within one line */
         border: 1px solid red;   /* add some border, so the square can actually be seen */
@@ -85,7 +87,7 @@
     }
 &lt;/style&gt;</pre></div>
 <p class="p">This custom control can now be used like any SAPUI5 control: </p>
-<div><pre class="pre codeblock">var myControl = new my.Square({text:"Hello", size: "100px"});
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var myControl = new my.Square({text:"Hello", size: "100px"});
 myControl.placeAt("content");</pre></div>
 </div>
 <div class="related-links"> 

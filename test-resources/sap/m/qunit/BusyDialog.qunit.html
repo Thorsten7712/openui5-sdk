@@ -13,10 +13,13 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-ie.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 		
 		<script>
+		sinon.config.useFakeTimers = false;
 		QUnit.config.autostart = false;
 		jQuery(document).ready(function() {
 			QUnit.start();
@@ -59,9 +62,40 @@
 			equal(jQuery.sap.byId("busyDialog1").css("display"), "block", "Busy dialog opened");
 			equal(jQuery("#busyDialog1").children('header').length, 1, "busyDialog1 is rendered after it's opened.");
 			equal(jQuery("#busyDialog1").children('label').length, 1, "busyDialog1 is rendered after it's opened.");
-			equal(jQuery("#busyDialog1").children('footer').children().length, 1, "button is rendered.");
+			equal(jQuery("#busyDialog1").children('footer').children().length, 2, "toolbar is rendered.");
+			equal(jQuery("#busyDialog1").children('footer').children()[0].id, "busyDialog1-toolbarspacer", "spacer is rendered.");
+			equal(jQuery("#busyDialog1").children('footer').children()[1].id, "busyDialog1busyCancelBtn", "cancel button is rendered.");
 			equal(jQuery("#busyDialog1").children('footer').text(), "Abort", "button text should be'Abort'.");
 		});
+		
+		test("Open with Title, Text and Button - Phone", function(){
+			var oSystem = {
+				desktop: false,
+				phone: true,
+				tablet: false
+			};
+
+			this.stub(sap.ui.Device, "system", oSystem);
+			this.stub(jQuery.device, "is", oSystem);
+
+			var busyDialog5 = (busyDialog5) ? busyDialog5 : new sap.m.BusyDialog('busyDialog5',{
+				title: 'Busy Dialog',
+				text:'loading for phone test...', 
+				showCancelButton: true,
+				cancelButtonText: 'Cancel'
+			});
+			
+			busyDialog5.open();
+			var $busyDialog5 = jQuery.sap.byId("busyDialog5");
+			ok(jQuery.sap.domById("busyDialog5"), "busyDialog5 is rendered after it's opened.");
+			equal(jQuery.sap.byId("busyDialog5").css("display"), "block", "Busy dialog opened");
+			equal(jQuery("#busyDialog5").children('header').length, 1, "busyDialog5 is rendered after it's opened.");
+			equal(jQuery("#busyDialog5").children('label').length, 1, "busyDialog5 is rendered after it's opened.");
+			equal(jQuery("#busyDialog5").children('footer').children().length, 1, "toolbar is rendered.");
+			equal(jQuery("#busyDialog5").children('footer').children()[0].id, "busyDialog5busyCancelBtn", "cancel button is rendered.");
+			equal(jQuery("#busyDialog5").children('footer').text(), "Cancel", "button text should Cancel'.");
+			busyDialog5.close();
+			});
 		
 		asyncTest("Close", function(){
 			setTimeout(function() {

@@ -9,12 +9,12 @@
                 {"text":"Run Your First Mobile App", "ref":"docs/guide/4d6701b4e4864f4299acd91d22f626ef.html", "key":"4d6701b4e4864f4299acd91d22f626ef"}
             ]}, 
             {"text":"Browser and Platform Matrixes", "ref":"docs/guide/74b59efa0eef48988d3b716bd0ecc933.html", "alias":"docs/guide/BrowserSupport.html", "key":"74b59efa0eef48988d3b716bd0ecc933", "links":[
-                {"text":"sap.ui.core, sap.ui.layout", "ref":"docs/guide/1a06ab4e73f041f5a00b0d55c03677dc.html", "key":"1a06ab4e73f041f5a00b0d55c03677dc"}, 
+                {"text":"sap.ui.core, sap.ui.layout, sap.ui.unified", "ref":"docs/guide/1a06ab4e73f041f5a00b0d55c03677dc.html", "key":"1a06ab4e73f041f5a00b0d55c03677dc"}, 
                 {"text":"sap.ui.commons, sap.ui.ux3, sap.ui.table", "ref":"docs/guide/91f072cf6f4d1014b6dd926db0e91070.html", "key":"91f072cf6f4d1014b6dd926db0e91070"}, 
                 {"text":"sap.m", "ref":"docs/guide/91f079dc6f4d1014b6dd926db0e91070.html", "key":"91f079dc6f4d1014b6dd926db0e91070", "links":[
                     {"text":"Device Specific Policies", "ref":"docs/guide/13bd97d591d64dce84af5225039dacf8.html", "key":"13bd97d591d64dce84af5225039dacf8"}
                 ]}, 
-                {"text":"sap.ui.vbm", "ref":"docs/guide/87da317311ca47c1b72a897f5a93dba8.html", "key":"87da317311ca47c1b72a897f5a93dba8"}
+                {"text":"sap.suite.ui.commons", "ref":"docs/guide/e20a29f6b8aa4b2393102132563d49c0.html", "key":"e20a29f6b8aa4b2393102132563d49c0"}
             ]}
         ]}, 
         {"text":"Concepts", "ref":"docs/guide/ec699e0817fb46a0817b0fa276a249f8.html", "key":"ec699e0817fb46a0817b0fa276a249f8", "links":[
@@ -137,7 +137,9 @@
                     {"text":"Using Extended Syntax to Add Filters and Sorters", "ref":"docs/guide/099f0a2851ad4118af36345f7dd13ea8.html", "key":"099f0a2851ad4118af36345f7dd13ea8"}, 
                     {"text":"Using Extended Syntax in XML and HTML Views", "ref":"docs/guide/25ab54b0113c4914999c43d07d3b71fe.html", "key":"25ab54b0113c4914999c43d07d3b71fe"}
                 ]}
-            ]}
+            ]}, 
+            {"text":"Using Data Binding for Data Export", "ref":"docs/guide/f1ee7a8b2102415bb0d34268046cd3ea.html", "key":"f1ee7a8b2102415bb0d34268046cd3ea"}, 
+            {"text":"Property Metadata Binding", "ref":"docs/guide/f5aa4bb75c20445194494b264d3b3cd2.html", "key":"f5aa4bb75c20445194494b264d3b3cd2"}
         ]}, 
         {"text":"Building the UI", "ref":"docs/guide/61688cb11e8845e3b913b1657e5f61c9.html", "key":"61688cb11e8845e3b913b1657e5f61c9", "links":[
             {"text":"Instantiating Views", "ref":"docs/guide/91f277516f4d1014b6dd926db0e91070.html", "key":"91f277516f4d1014b6dd926db0e91070"}, 
@@ -170,9 +172,8 @@
                     {"text":"Example: JS Fragments Used in XML Views", "ref":"docs/guide/faaff35246414793b061f0244fb67338.html", "key":"faaff35246414793b061f0244fb67338"}
                 ]}, 
                 {"text":"Dialogs and other Popups as Fragments", "ref":"docs/guide/448c6418153149a79c8ff4370808f9c1.html", "key":"448c6418153149a79c8ff4370808f9c1", "links":[
-                    {"text":"Defining Dialogs as Fragments", "ref":"docs/guide/04575456e15e426d81054805990c7a53.html", "key":"04575456e15e426d81054805990c7a53", "links":[
-                        {"text":"Using Dialogs Defined as Fragments", "ref":"docs/guide/aeb86c181b9742a2bf88049abf9ccb95.html", "key":"aeb86c181b9742a2bf88049abf9ccb95"}
-                    ]}
+                    {"text":"Defining Dialogs as Fragments", "ref":"docs/guide/04575456e15e426d81054805990c7a53.html", "key":"04575456e15e426d81054805990c7a53"}, 
+                    {"text":"Using Dialogs Defined as Fragments", "ref":"docs/guide/aeb86c181b9742a2bf88049abf9ccb95.html", "key":"aeb86c181b9742a2bf88049abf9ccb95"}
                 ]}, 
                 {"text":"Fragments with Multiple Root Nodes", "ref":"docs/guide/23b9c779c2274213a281c1fc46b4962b.html", "key":"23b9c779c2274213a281c1fc46b4962b"}
             ]}, 
@@ -190,7 +191,8 @@
             {"text":"Working with Controls in SAPUI5", "ref":"docs/guide/91f0a22d6f4d1014b6dd926db0e91070.html", "key":"91f0a22d6f4d1014b6dd926db0e91070", "links":[
                 {"text":"Developing UI5 Controls in JavaScript", "ref":"docs/guide/91f1703b6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/OnTheFlyControlExample.html,docs/guide/OnTheFlyControlDefinition.html", "key":"91f1703b6f4d1014b6dd926db0e91070", "links":[
                     {"text":"Defining the Control Metadata", "ref":"docs/guide/7b52540d9d8c4e00b9723151622bbb64.html", "key":"7b52540d9d8c4e00b9723151622bbb64", "links":[
-                        {"text":"Object Metadata and Implementation", "ref":"docs/guide/91f29fea6f4d1014b6dd926db0e91070.html", "key":"91f29fea6f4d1014b6dd926db0e91070"}
+                        {"text":"Object Metadata and Implementation", "ref":"docs/guide/91f29fea6f4d1014b6dd926db0e91070.html", "key":"91f29fea6f4d1014b6dd926db0e91070"}, 
+                        {"text":"UI Control Constructors", "ref":"docs/guide/91f09b3b6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/JSONConstructor.html", "key":"91f09b3b6f4d1014b6dd926db0e91070"}
                     ]}, 
                     {"text":"Adding Method Implementations", "ref":"docs/guide/91f0a8dc6f4d1014b6dd926db0e91070.html", "key":"91f0a8dc6f4d1014b6dd926db0e91070", "links":[
                         {"text":"Normal Methods", "ref":"docs/guide/85738e3ac3bb407d9e1cfeb8bb9268cb.html", "key":"85738e3ac3bb407d9e1cfeb8bb9268cb"}, 
@@ -199,6 +201,9 @@
                         {"text":"Renderer Methods", "ref":"docs/guide/c9ab34570cc14ea5ab72a6d1a4a03e3f.html", "key":"c9ab34570cc14ea5ab72a6d1a4a03e3f"}
                     ]}, 
                     {"text":"Defining Control Properties", "ref":"docs/guide/ac56d92162ed47ff858fdf1ce26c18c4.html", "key":"ac56d92162ed47ff858fdf1ce26c18c4"}, 
+                    {"text":"Custom Data - Attaching Data Objects to Controls", "ref":"docs/guide/91f0c3ee6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/CustomData.html", "key":"91f0c3ee6f4d1014b6dd926db0e91070", "links":[
+                        {"text":"Writing Data to the HTML DOM as DATA-* Attribute", "ref":"docs/guide/1ef9fefa2a574735957dcf52502ab8d0.html", "key":"1ef9fefa2a574735957dcf52502ab8d0"}
+                    ]}, 
                     {"text":"Examples for Creating and Extending Controls", "ref":"docs/guide/91f184586f4d1014b6dd926db0e91070.html", "key":"91f184586f4d1014b6dd926db0e91070", "links":[
                         {"text":"Creating a Simple Control", "ref":"docs/guide/91f02ece6f4d1014b6dd926db0e91070.html", "key":"91f02ece6f4d1014b6dd926db0e91070"}, 
                         {"text":"Creating a Simple Square Control", "ref":"docs/guide/9a6100ba15564561b5439b7e7ba554a9.html", "key":"9a6100ba15564561b5439b7e7ba554a9"}, 
@@ -227,13 +232,35 @@
                     {"text":"List of Supported CSS Classes", "ref":"docs/guide/91a4946b0dcf4356aaaedc4e502864f4.html", "key":"91a4946b0dcf4356aaaedc4e502864f4"}
                 ]}
             ]}, 
+            {"text":"Declarative Support", "ref":"docs/guide/91f130196f4d1014b6dd926db0e91070.html", "alias":"docs/guide/DeclarativeSupport.html", "key":"91f130196f4d1014b6dd926db0e91070", "links":[
+                {"text":"Enabling Declarative Support", "ref":"docs/guide/91f17d636f4d1014b6dd926db0e91070.html", "key":"91f17d636f4d1014b6dd926db0e91070"}, 
+                {"text":"Defining Controls", "ref":"docs/guide/91f1539c6f4d1014b6dd926db0e91070.html", "key":"91f1539c6f4d1014b6dd926db0e91070"}, 
+                {"text":"Declarative Support: Properties", "ref":"docs/guide/91f161996f4d1014b6dd926db0e91070.html", "key":"91f161996f4d1014b6dd926db0e91070"}, 
+                {"text":"Declarative Support: Associations", "ref":"docs/guide/91f13d9a6f4d1014b6dd926db0e91070.html", "key":"91f13d9a6f4d1014b6dd926db0e91070"}, 
+                {"text":"Declarative Support: Events", "ref":"docs/guide/91f15ad16f4d1014b6dd926db0e91070.html", "key":"91f15ad16f4d1014b6dd926db0e91070"}, 
+                {"text":"Declarative Support: Aggregations", "ref":"docs/guide/91f136c76f4d1014b6dd926db0e91070.html", "key":"91f136c76f4d1014b6dd926db0e91070"}, 
+                {"text":"Declarative Support: Data Binding", "ref":"docs/guide/020990b1210e47c89a58a4f4e790c476.html", "key":"020990b1210e47c89a58a4f4e790c476"}, 
+                {"text":"Compiling Declarative HTML", "ref":"docs/guide/91f1454b6f4d1014b6dd926db0e91070.html", "key":"91f1454b6f4d1014b6dd926db0e91070"}
+            ]}, 
             {"text":"Theming", "ref":"docs/guide/497c27a8ee26426faacd2b8a1751794a.html", "key":"497c27a8ee26426faacd2b8a1751794a", "links":[
+                {"text":"Setting Themes", "ref":"docs/guide/e9fc648661d84ed89360bbec3ae02611.html", "key":"e9fc648661d84ed89360bbec3ae02611"}, 
+                {"text":"Loading External Custom Themes", "ref":"docs/guide/5a2df7b50f714d8bb5e9b519a88aa1d6.html", "key":"5a2df7b50f714d8bb5e9b519a88aa1d6"}, 
+                {"text":"Enhanced Theming Concepts", "ref":"docs/guide/45df6dff504647c686ab9ba72af827f6.html", "key":"45df6dff504647c686ab9ba72af827f6"}, 
+                {"text":"Theming FAQ", "ref":"docs/guide/d0db4d538edb43bca893acd4d6814a40.html", "key":"d0db4d538edb43bca893acd4d6814a40"}, 
                 {"text":"Creating Themable User Interfaces", "ref":"docs/guide/89ec37d84a02428fb2462acd3dc283cb.html", "key":"89ec37d84a02428fb2462acd3dc283cb"}
             ]}
         ]}, 
         {"text":"Structuring SAPUI5 Applications", "ref":"docs/guide/cf525ba0004f4af78f417827e607a9bc.html", "key":"cf525ba0004f4af78f417827e607a9bc", "links":[
             {"text":"Modularization and Resource Handling", "ref":"docs/guide/91f2412f6f4d1014b6dd926db0e91070.html", "key":"91f2412f6f4d1014b6dd926db0e91070", "links":[
-                {"text":"Modularization and Dependency Management", "ref":"docs/guide/91f23a736f4d1014b6dd926db0e91070.html", "alias":"docs/guide/ModularizationConcept.html", "key":"91f23a736f4d1014b6dd926db0e91070"}, 
+                {"text":"Modularization and Dependency Management", "ref":"docs/guide/91f23a736f4d1014b6dd926db0e91070.html", "alias":"docs/guide/ModularizationConcept.html", "key":"91f23a736f4d1014b6dd926db0e91070", "links":[
+                    {"text":"Loading a Module", "ref":"docs/guide/d12024e38385472a89c1ad204e1edb48.html", "key":"d12024e38385472a89c1ad204e1edb48"}, 
+                    {"text":"Multiple Module Locations", "ref":"docs/guide/1dfab2e19fc0479d9dfcefc28d3642f1.html", "key":"1dfab2e19fc0479d9dfcefc28d3642f1"}, 
+                    {"text":"Dependency Resolution Tools", "ref":"docs/guide/874cee3a452f41a79b2e22ae018dcb30.html", "key":"874cee3a452f41a79b2e22ae018dcb30"}, 
+                    {"text":"Avoiding Duplicates", "ref":"docs/guide/47e5d26dfca54ce8a4de5882bfd40b18.html", "key":"47e5d26dfca54ce8a4de5882bfd40b18"}, 
+                    {"text":"Why not Simply Concatenating Modules?", "ref":"docs/guide/42d08ce3bda347bc99cd50e85b196805.html", "key":"42d08ce3bda347bc99cd50e85b196805"}, 
+                    {"text":"Loading jQuery.sap.require", "ref":"docs/guide/ae8682948f064305be5801c5aff86b44.html", "key":"ae8682948f064305be5801c5aff86b44"}, 
+                    {"text":"Cyclic Dependencies", "ref":"docs/guide/00737d6c1b864dc3ab72ef56611491c4.html", "key":"00737d6c1b864dc3ab72ef56611491c4"}
+                ]}, 
                 {"text":"Resource Handling", "ref":"docs/guide/91f2b4d66f4d1014b6dd926db0e91070.html", "alias":"docs/guide/ResourceHandling.html", "key":"91f2b4d66f4d1014b6dd926db0e91070", "links":[
                     {"text":"SAPUI5 Library Location Used for Testing", "ref":"docs/guide/61ee9ed2369f4764a6d713abcf73afc1.html", "key":"61ee9ed2369f4764a6d713abcf73afc1"}
                 ]}, 
@@ -295,7 +322,8 @@
                     {"text":"Important FlexBox Layout Concepts", "ref":"docs/guide/0ec1d91487aa43058914ba80ccefbc9b.html", "key":"0ec1d91487aa43058914ba80ccefbc9b"}
                 ]}, 
                 {"text":"Checking the Operating System your Application is Running on", "ref":"docs/guide/d1b26a248c0a47f6a96849236250dc90.html", "alias":"docs/guide/PlatformAttribute.html", "key":"d1b26a248c0a47f6a96849236250dc90"}, 
-                {"text":"Options for Further Adaptation", "ref":"docs/guide/04eb5203d1c649b796fab12a09e600ef.html", "key":"04eb5203d1c649b796fab12a09e600ef"}
+                {"text":"Options for Further Adaptation", "ref":"docs/guide/04eb5203d1c649b796fab12a09e600ef.html", "key":"04eb5203d1c649b796fab12a09e600ef"}, 
+                {"text":"Compact Mode for sap.m.controls in Blue Crystal", "ref":"docs/guide/13e6f3bfc54c4bd7952403e20ff447e7.html", "key":"13e6f3bfc54c4bd7952403e20ff447e7"}
             ]}, 
             {"text":"Working with Lists and Tables", "ref":"docs/guide/295e44b2d0144318bcb7bdd56bfa5189.html", "key":"295e44b2d0144318bcb7bdd56bfa5189", "links":[
                 {"text":"Lists", "ref":"docs/guide/1da158152f644ba1ad408a3e982fd3df.html", "alias":"docs/guide/List.html", "key":"1da158152f644ba1ad408a3e982fd3df", "links":[
@@ -346,23 +374,6 @@
                 ]}
             ]}, 
             {"text":"Performance Behavior", "ref":"docs/guide/f6a1a0ad49ca4d9facac222c4d372726.html", "key":"f6a1a0ad49ca4d9facac222c4d372726"}
-        ]}, 
-        {"text":"Programming and API", "ref":"docs/guide/543f55cc62784007beaffae32a077298.html", "key":"543f55cc62784007beaffae32a077298", "links":[
-            {"text":"UI Control Constructors", "ref":"docs/guide/91f09b3b6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/JSONConstructor.html", "key":"91f09b3b6f4d1014b6dd926db0e91070"}, 
-            {"text":"UI Control API: Event Handling", "ref":"docs/guide/91f094876f4d1014b6dd926db0e91070.html", "alias":"docs/guide/ControlEventing.html", "key":"91f094876f4d1014b6dd926db0e91070"}, 
-            {"text":"Custom Data - Attaching Data Objects to Controls", "ref":"docs/guide/91f0c3ee6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/CustomData.html", "key":"91f0c3ee6f4d1014b6dd926db0e91070", "links":[
-                {"text":"Writing Data to the HTML DOM as DATA-* Attribute", "ref":"docs/guide/1ef9fefa2a574735957dcf52502ab8d0.html", "key":"1ef9fefa2a574735957dcf52502ab8d0"}
-            ]}, 
-            {"text":"Declarative Support", "ref":"docs/guide/91f130196f4d1014b6dd926db0e91070.html", "alias":"docs/guide/DeclarativeSupport.html", "key":"91f130196f4d1014b6dd926db0e91070", "links":[
-                {"text":"Enabling Declarative Support", "ref":"docs/guide/91f17d636f4d1014b6dd926db0e91070.html", "key":"91f17d636f4d1014b6dd926db0e91070"}, 
-                {"text":"Defining Controls", "ref":"docs/guide/91f1539c6f4d1014b6dd926db0e91070.html", "key":"91f1539c6f4d1014b6dd926db0e91070"}, 
-                {"text":"Declarative Support: Properties", "ref":"docs/guide/91f161996f4d1014b6dd926db0e91070.html", "key":"91f161996f4d1014b6dd926db0e91070"}, 
-                {"text":"Declarative Support: Associations", "ref":"docs/guide/91f13d9a6f4d1014b6dd926db0e91070.html", "key":"91f13d9a6f4d1014b6dd926db0e91070"}, 
-                {"text":"Declarative Support: Events", "ref":"docs/guide/91f15ad16f4d1014b6dd926db0e91070.html", "key":"91f15ad16f4d1014b6dd926db0e91070"}, 
-                {"text":"Declarative Support: Aggregations", "ref":"docs/guide/91f136c76f4d1014b6dd926db0e91070.html", "key":"91f136c76f4d1014b6dd926db0e91070"}, 
-                {"text":"Declarative Support: Data Binding", "ref":"docs/guide/020990b1210e47c89a58a4f4e790c476.html", "key":"020990b1210e47c89a58a4f4e790c476"}, 
-                {"text":"Compiling Declarative HTML", "ref":"docs/guide/91f1454b6f4d1014b6dd926db0e91070.html", "key":"91f1454b6f4d1014b6dd926db0e91070"}
-            ]}
         ]}, 
         {"text":"References", "ref":"docs/guide/7cf1fedbccc54b91b835a1b1beea1207.html", "key":"7cf1fedbccc54b91b835a1b1beea1207", "links":[
             {"text":"Security Information for SAPUI5", "ref":"docs/guide/91f3d8706f4d1014b6dd926db0e91070.html", "alias":"docs/guide/SecurityGuide.html", "key":"91f3d8706f4d1014b6dd926db0e91070", "links":[

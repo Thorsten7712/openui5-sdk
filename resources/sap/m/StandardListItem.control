@@ -6,7 +6,7 @@
 
 	<documentation>The StandardListItem is a list item providing image, titel and description.</documentation>
 
-	<baseType>ListItemBase</baseType>
+	<baseType>sap.m/ListItemBase</baseType>
 	<properties>
 		<property group="Misc" name="title" type="sap.ui.core/string">
 			<documentation>List item text</documentation>

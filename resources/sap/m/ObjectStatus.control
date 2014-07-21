@@ -6,8 +6,11 @@
 
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>
+		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>The object status title.</documentation>
+		</property>
 		<property group="Misc" name="text" type="sap.ui.core/string">
-			<documentation>Text value.</documentation>
+			<documentation>The object status text.</documentation>
 		</property>
 		<property group="Misc" name="state" type="sap.ui.core/ValueState" defaultValue="None">
 			<documentation>Text value state.</documentation>

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9459734482790721"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=1551443328826415"/>
 <title>Step 3: Navigation and Routing</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -67,13 +69,13 @@
 						<samp class="ph codeph">sap.ui.demo.tdg.MyRouter</samp> so in our component we make sure
 					the module is loaded and
 				available:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>jQuery.sap.require("sap.ui.demo.tdg.MyRouter");
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>jQuery.sap.require("sap.ui.demo.tdg.MyRouter");
 </pre></div>
 </div><div class="sectiondiv"><span class="ph emphasis emphasis">Routing Configuration</span><p dir="ltr" class="p">In our component's metadata, we
 					define the routing configuration. This configuration is used for initializing
 					the
 					router.</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 		routing : {
 			config : {
 				routerClass : sap.ui.demo.tdg.MyRouter,
@@ -154,7 +156,7 @@
 </div><div class="sectiondiv"><span class="ph emphasis emphasis">Router Initialization</span><p dir="ltr" class="p">The router is initialized by the
 					component in the init
 					function:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 init : function() {
     ...
     this.getRouter().initialize();
@@ -173,7 +175,7 @@ init : function() {
 					application's root folder.</p>
 <p class="p">This is what MyRouter.js
 				contains:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 jQuery.sap.require("sap.m.routing.RouteMatchedHandler");
 jQuery.sap.require("sap.ui.core.routing.Router");
 jQuery.sap.declare("sap.ui.demo.tdg.MyRouter");
@@ -253,7 +255,7 @@ sap.ui.core.routing.Router.extend("sap.ui.demo.tdg.MyRouter", {
 				eventbus. Getting the eventbus and the router is needed in most of the controllers.
 				So adding a custom controller for reuse purposes makes sense. Here is how it looks
 				like:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 jQuery.sap.declare("sap.ui.demo.tdg.util.Controller");
 
 sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.util.Controller", {
@@ -274,7 +276,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.util.Controller", {
 					Match in Master</span><p class="p">Attaching to events of the router should normally
 					be set up in the controller's initialization event
 					<samp class="ph codeph">onInit</samp>.</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 onInit: function() {
     //on phones, we will not have to select anything in the list so we don't need to attach to events
 		
@@ -321,7 +323,7 @@ onRouteMatched : function(oEvent) {
 					controller</span><p class="p">Similar to the routing use in the Master controller, we
 					also want to react in the
 					Detail:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	onInit : function() {
 		this.oInitialLoadFinishedDeferred = jQuery.Deferred();
 
@@ -416,7 +418,7 @@ onRouteMatched : function(oEvent) {
 			
 			<p class="p">We've added <span class="ph filepath">MyRouter.js</span>, so our app folder content looks like this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- Component.js
@@ -430,7 +432,7 @@ tdg/
 
 			<p class="p">This time, however, we see a slightly different error in the console:</p>
 
-			<div><pre class="pre codeblock">Uncaught Error: resource sap/ui/demo/tdg/view/App.view.xml could not be loaded from
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">Uncaught Error: resource sap/ui/demo/tdg/view/App.view.xml could not be loaded from
         ./view/App.view.xml. Check for 'file not found' or parse errors.</pre></div>
 
 			<p class="p">Of course, we've specified that the <dfn class="term">rootView</dfn> for this component should be
@@ -451,7 +453,7 @@ tdg/
 <div class="familylinks">
 </div>
 <div class="relinfo"><div class="relinfotitle ">Related Information</div>
-<div><a class="link" href="3d18f20bd2294228acb6910d8e8a5fb5.html">Navigation</a></div>
+<div><a class="link" href="3d18f20bd2294228acb6910d8e8a5fb5.html" title="Navigation in SAPUI5 enables you to pass data from the hash to any view, and to adjust a current hash so that you can use it as a bookmarkable URL. Depending on the hash, you can also generate views automatically.">Navigation</a></div>
 </div>
 </div></div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

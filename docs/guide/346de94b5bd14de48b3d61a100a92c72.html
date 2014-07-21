@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7419708302958192"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3759740688792962"/>
 <title>Binding Path Syntax for OData Models</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,14 +30,14 @@
 			following samples of bindings within the ODataModel are taken from the well-known
 			Northwind demo service. </p>
 <p class="p">Absolute binding paths: </p>
-<div><pre class="pre codeblock">/Customers
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">/Customers
 /Customers('ALFKI')/Orders</pre></div>
 <p class="p">Relative binding paths within a Customer context: </p>
-<div><pre class="pre codeblock">CompanyName
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">CompanyName
 Address
 Orders</pre></div>
 <p class="p">Relative binding paths within an aggregation binding of "/Customer('ALFKI')/Orders: </p>
-<div><pre class="pre codeblock">OrderID
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">OrderID
 ShipName
 ShipAdress
 Employee/LastName

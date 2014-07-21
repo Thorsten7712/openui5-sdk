@@ -12,9 +12,11 @@
 <meta name="abstract" content="SAPUI5 event delegation automatically handles both mouse and touch events simultanuously. If you are using jQuery or native browser API (domElement.addEventListener) to handle events, you have to adapt your coding to support both."/>
 <meta name="description" content="SAPUI5 event delegation automatically handles both mouse and touch events simultanuously. If you are using jQuery or native browser API (domElement.addEventListener) to handle events, you have to adapt your coding to support both."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=787639098552575"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7954704080938487"/>
 <title>Adapting Event Handling to Support Windows 8 Devices</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -45,7 +47,7 @@
 			<p class="p"> In most of the cases, the event handler was bound by checking if touch is supported,
 				like the code below:</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 jQuery(document).on(sap.ui.Device.support.touch ? "touchmove" : "mousemove", function(oEvent) {
     ......
 });</pre></div>
@@ -54,7 +56,7 @@ jQuery(document).on(sap.ui.Device.support.touch ? "touchmove" : "mousemove", fun
 					follows.</span><ul class="ul choices" id="loiob54d7d73eff245d3ab91b96e21177ebf__choices_hq4_j4c_4n"><li class="li choice">
 						<p class="p">When using jQuery: </p>
 
-						<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 jQuery(document).on("touchmove mousemove", function(oEvent) {
     if (oEvent.isMarked("delayedMouseEvent")) {
 
@@ -68,7 +70,7 @@ jQuery(document).on("touchmove mousemove", function(oEvent) {
 <li class="li choice">
 						<p class="p">When using native browser event listeners:</p>
 
-						<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 var fnHandler = function (oEvent ) { if (oEvent . _sapui_delayedMouseEvent ) { // Suppress the emulated mouse event from touch interface
  return ; } ...... };
 
@@ -98,7 +100,7 @@ document . addEventListener ( "mousemove" , fnHandler );</pre></div>
 
 			<p class="p"><span class="ph emphasis emphasis">Before the adaptation, code was:</span></p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 sap.m.RatingIndicator.prototype.ontouchstart = function(oEvent) {
     if (this.getEnabled()) {
         ......
@@ -145,7 +147,7 @@ sap.m.RatingIndicator.prototype._ontouchend = function(oEvent) {
 
 			<p class="p"><span class="ph emphasis emphasis">After the code adaptation:</span></p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 sap.m.RatingIndicator.prototype.ontouchstart = function(oEvent) {
     if (this.getEnabled()) {
         ......

@@ -12,9 +12,11 @@
 <meta name="abstract" content="Understanding aspects of an enterprise scale application."/>
 <meta name="description" content="Understanding aspects of an enterprise scale application."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8104289221672087"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3305891280063381"/>
 <title>Preparing</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -181,17 +183,14 @@
 					condition logic is allowed. In effect, the condition logic ("is this device
 					touch-capable?") is being done once, up
 					front.</p>
-</div><div class="sectiondiv"><span class="ph emphasis emphasis">Accessible</span><p class="p">Accessibility
-					is an important factor in app design. UI5 apps are no exception. There are a few
-					aspects that one should consider when developing a UI5 app. The first is
-					keyboard support; that is built in with the sap.m controls, so if you make use
-					of the sap.m controls you are getting keyboard handling support for free. There
-					is also the visual aspect; a High Contrast Black (HCB) theme will be available
-					soon, to be used in place of more traditional UI5 themes such as Blue
-					Crystal.</p>
-<p class="p">Finally, you need to remember that if you decide to use native
-					HTML to enhance certain parts of your app, you must take care that these parts
-					also exhibit keyboard and visual support for
+</div><div class="sectiondiv"><span class="ph emphasis emphasis">Accessible</span><p class="p">Accessibility is an important factor in app design.
+					UI5 apps are no exception. There are a few aspects that one should consider when
+					developing a UI5 app. The first is keyboard support; that is built in with the
+					sap.m controls, so if you make use of the sap.m controls you are getting
+					keyboard handling support for free.</p>
+<p class="p">Finally, you need to remember that if
+					you decide to use native HTML to enhance certain parts of your app, you must
+					take care that these parts also exhibit keyboard and visual support for
 					accessibility.</p>
 </div><div class="sectiondiv"><span class="ph emphasis emphasis">Translateable</span><p class="p">Some
 					apps are built with a specific, geographically restricted audience in mind. In

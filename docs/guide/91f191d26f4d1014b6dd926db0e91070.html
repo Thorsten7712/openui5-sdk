@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9400646484804746"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5488398219576373"/>
 <title>Experimental Two-Way Binding</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -55,14 +57,14 @@
 <p class="p">To enable the two-way binding for the OData model the
 		default binding mode has to be changed as follows: 
 	 </p>
-<div><pre class="pre codeblock">oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);</pre></div>
 <p class="p">After the binding is done, the application should
 		attach to the 
 		<samp class="ph codeph">rejectChange</samp> event to
 		handle the user modifications to different entries accordingly and, for
 		example, allow or reject user input for a specific entry. 
 	 </p>
-<div><pre class="pre codeblock">oModel.attachRejectChange(this,function(oEvent){
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oModel.attachRejectChange(this,function(oEvent){
  	alert("You are already editing another Entry! Please submit or reject your pending changes!");
 });</pre></div>
 <p class="p">The application can use the 
@@ -72,7 +74,7 @@
 <p class="p">The application can then decide (or let the user
 		decide) when to submit or reject the changes: 
 	 </p>
-<div><pre class="pre codeblock">var oUpdateBtn = new sap.ui.commons.Button({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oUpdateBtn = new sap.ui.commons.Button({
  		text : "Update",
  		style : sap.ui.commons.ButtonStyle.Emph,
  		press : function(){

@@ -14,7 +14,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+	
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -187,8 +187,8 @@
 				equal(oResponsivePopover._oControl.getHorizontalScrolling(), horScroll, "HorizontalScrolling should be passed to inner popover");
 				equal(oResponsivePopover._oControl.getVerticalScrolling(), verScroll, "VerticalScrolling should be passed to inner popover");
 				equal(oResponsivePopover._oControl.getInitialFocus(), oList.getId(), "InitialFocus should be passed to the inner popover");
-				strictEqual(oResponsivePopover._oControl.getFooter().getContentMiddle()[0], oBeginButton, "BeginButton should be passed to inner popover");
-				strictEqual(oResponsivePopover._oControl.getFooter().getContentMiddle()[1], oEndButton, "EndButton should be passed to inner popover");
+				strictEqual(oResponsivePopover._oControl.getFooter().getContent()[1], oBeginButton, "BeginButton should be passed to inner popover");
+				strictEqual(oResponsivePopover._oControl.getFooter().getContent()[2], oEndButton, "EndButton should be passed to inner popover");
 
 				oResponsivePopover.destroy();
 			});

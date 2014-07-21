@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7929684267886505"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=22532353410939965"/>
 <title>Expressions and Helpers for HTML Templating</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -33,7 +35,7 @@
 					created. The following example shows how you can use plain handlebars
 					expressions and helpers.</p>
 
-				<div><pre class="pre codeblock">&lt;h3&gt;{{title}}&lt;/h3&gt;
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;h3&gt;{{title}}&lt;/h3&gt;
 &lt;ul&gt;
 {{#each persons}}
     &lt;li&gt;{{firstName}} {{lastName}}&lt;/li&gt;
@@ -88,7 +90,7 @@
 						<p class="p">Example for use with editable DOM elements for two-way binding (binding
 							the value of an input field against a model property): </p>
 
-						<div><pre class="pre codeblock">{{element tag="input" value="{/title}"}}
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{{element tag="input" value="{/title}"}}
 {{element tag="textarea" text="{/title}"}}</pre></div>
 
 						<p class="p">DOM elements have the advantage that you can update them individually
@@ -114,7 +116,7 @@
 						<p class="p">You can use the <samp class="ph codeph">each</samp> helper together with SAPUI5 data
 							binding by specifiying the path attribute:</p>
 
-						<div><pre class="pre codeblock">{{#each path="/persons"}}
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{{#each path="/persons"}}
   {{element text="firstName"}}
 {{/each}}
 </pre></div>

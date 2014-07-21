@@ -42,9 +42,6 @@
             { "text":"TabStrip", "ref":"test-resources/sap/ui/commons/demokit/TabStrip.html", "controls":"sap.ui.commons.TabStrip,sap.ui.commons.Tab"},
             { "text":"VerticalLayout", "ref":"test-resources/sap/ui/layout/demokit/VerticalLayout.html", "controls":"sap.ui.layout.VerticalLayout"}
           ]},
-        { "text":"Mobile", "links":[
-            { "text":"index", "ref":"test-resources/sap/m/demokit/explored/index.html", "ico": false}
-          ]},
         { "text":"Others", "links":[
             { "text":"Callout", "ref":"test-resources/sap/ui/commons/demokit/Callout.html", "controls":"sap.ui.commons.Callout"},
             { "text":"LocalBusyIndicator", "ref":"test-resources/sap/ui/core/demokit/LocalBusyIndicator.html"},

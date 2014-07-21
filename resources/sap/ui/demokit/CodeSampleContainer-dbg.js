@@ -61,7 +61,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  *
  * @author  
- * @version 1.20.10
+ * @version 1.22.4
  *
  * @constructor   
  * @public
@@ -243,7 +243,7 @@ sap.ui.demokit.CodeSampleContainer.M_EVENTS = {'apply':'apply'};
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
 
- * @param {string} oControlEvent.getParameters.code 
+ * @param {string} oControlEvent.getParameters.code
  * @public
  */
  

@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9478337839658318"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4752136027681385"/>
 <title>Support for Unique IDs</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -38,21 +40,21 @@
 			directly. You do not have to handle all the prefix stuff on your own.  The
 			following view defines a button with the static ID <samp class="ph codeph">abutton</samp>
 				(<samp class="ph codeph">ButtonView</samp>): </p>
-<div><pre class="pre codeblock">&lt;core:View viewName="sap.hcm.ButtonView" controllerName="sap.hcm.myController" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;core:View viewName="sap.hcm.ButtonView" controllerName="sap.hcm.myController" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
            xmlns:html="http://www.w3.org/1999/xhtml"&gt;
       &lt;Button id="aButton" text="Click me"/&gt;
 &lt;core:View&gt;</pre></div>
 <p class="p">The following view defines a view embedding the same
 		view several times (<samp class="ph codeph">ContainerView</samp>): 
 	 </p>
-<div><pre class="pre codeblock">&lt;core:View viewName="sap.hcm.ContainerView" controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;core:View viewName="sap.hcm.ContainerView" controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
            xmlns:html="http://www.w3.org/1999/xhtml"&gt;
       &lt;core:View id="ButtonView1" viewName="sap.hcm.ButtonView"/&gt;
       &lt;core:View id="ButtonView2" viewName="sap.hcm.ButtonView"/&gt;
 &lt;core:View&gt;</pre></div>
 <p class="p">The view is created as follows: 
 	 </p>
-<div><pre class="pre codeblock">...
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">...
    var oView = sap.ui.view({type:sap.ui.core.mvc.ViewType.XML, id:"myContainerView",viewName:"sap.hcm.ContainerView"});
 ...</pre></div>
 <p class="p">The container view has the following IDs: 
@@ -69,7 +71,7 @@
 <p class="p">To get one of the child views, use the following
 		code: 
 	 </p>
-<div><pre class="pre codeblock">...
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">...
    var oButtonView1 = oView.byId("ButtonView1");
 ...</pre></div>
 <p class="p">The button view has the following IDs: 
@@ -82,7 +84,7 @@
 	 </p>
 <p class="p">To get the button control, use the following code: 
 	 </p>
-<div><pre class="pre codeblock">...
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">...
    var oButtonView1 = oView.byId("ButtonView1");
    oButtonView1.byId("aButton");
 ...</pre></div>

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7832396785516478"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5201791578912321"/>
 <title>Creating a Simple Container Control</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 <div class="body"><p class="shortdesc"/>
 <p class="p">For a container control with arbitrary child controls that are rendered in a row and a colored
             box around each child, use the following code</p>
-<div><pre class="pre codeblock">  sap.ui.core.Control.extend("ColorBoxContainer", { // call the new Control type "Square" 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  sap.ui.core.Control.extend("ColorBoxContainer", { // call the new Control type "Square" 
                                                     // and let it inherit from sap.ui.core.Control
 
       // the Control API:
@@ -71,7 +73,7 @@
   });</pre></div>
 <p class="p">As the control itself has no appearance, no additional CSS required.</p>
 <p class="p">You can use this container control like any SAPUI5 container:</p>
-<div><pre class="pre codeblock">  var btn = new sap.ui.commons.Button({text:'Hello World'});
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  var btn = new sap.ui.commons.Button({text:'Hello World'});
   var tf = new sap.ui.commons.TextField({value:'edit text here'});
 
   var container = new ColorBoxContainer({

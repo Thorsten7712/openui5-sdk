@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=610595202745314"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5459983941071108"/>
 <title>Important FlexBox Layout Concepts</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -66,9 +68,9 @@
 <li class="li">By reversing the main axis with <em class="ph i">direction = ColumnReverse</em> the layout
 					starts from the bottom. In this case, <em class="ph i">justifyContent = End</em> refers to the
 					top of the FlexBox.</li>
-<li class="li"><em class="ph i">justifyContent</em> has the additional value <em class="ph i">SpaceBetween?</em>. This
-					setting places the first and the last item at the extremes of the main axis. Any
-					other items will be distributed evenly between these two.</li>
+<li class="li"><em class="ph i">justifyContent</em> has the additional value <em class="ph i">SpaceBetween</em>. This setting places the
+					first and the last item at the extremes of the main axis. Any other items will
+					be distributed evenly between these two.</li>
 </ul>
 
 			<p class="p">For <em class="ph i">alignItems</em> two additional values exist: <em class="ph i">Baseline</em> and

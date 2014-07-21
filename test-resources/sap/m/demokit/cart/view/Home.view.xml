@@ -16,22 +16,20 @@
 			</Button>
 		</headerContent>
 		<subHeader>
-			<Bar id="searchBar">
-				<contentMiddle>
-					<SearchField
-						id="searchField"
-						showRefreshButton="{device>/isNoTouch}"
-						placeholder="{i18n>HOME_SEARCH_PLACEHOLDER}"
-						search="handleSearch"
-						tooltip="{i18n>HOME_SEARCH_TOOLTIP}"
-						width="100%">
-					</SearchField>
-				</contentMiddle>
-			</Bar>
+			<Toolbar id="searchBar">
+				<SearchField
+					id="searchField"
+					showRefreshButton="{device>/isNoTouch}"
+					placeholder="{i18n>HOME_SEARCH_PLACEHOLDER}"
+					search="handleSearch"
+					tooltip="{i18n>HOME_SEARCH_TOOLTIP}"
+					width="100%">
+				</SearchField>
+			</Toolbar>
 		</subHeader>
 		<footer>
-			<Bar>
-			</Bar>
+			<Toolbar>
+			</Toolbar>
 		</footer>
 		<content>
 			<PullToRefresh

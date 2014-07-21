@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=04924279283025945"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=0261762361747514"/>
 <title>JSON Views</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,7 +31,7 @@
 				<samp class="ph codeph">sap.hcm.Address</samp>. The application uses this view name for displaying
 			an instance of this view. </p>
 <p class="p">The file looks as follows: </p>
-<div><pre class="pre codeblock">{ 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{ 
    "Type":"sap.ui.core.mvc.JSONView",
    "controllerName":"sap.hcm.Address",
    "content": [{
@@ -66,11 +68,11 @@
 
 			<p class="p">Resource bundle content:</p>
 
-			<div><pre class="pre codeblock">MY_TEXT=Hello World</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">MY_TEXT=Hello World</pre></div>
 
 			<p class="p">Example:</p>
 
-			<div><pre class="pre codeblock">{   "Type": "sap.ui.core.JSONView",
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">{   "Type": "sap.ui.core.JSONView",
     "controllerName":"my.own.views.test",
     "resourceBundleName":"myBundle",
     "resourceBundleAlias":"i18n",

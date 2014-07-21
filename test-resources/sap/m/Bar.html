@@ -10,6 +10,11 @@
 			data-sap-ui-libs="sap.m"
 			data-sap-ui-theme="sap_bluecrystal">
 		</script>
+		<style>
+			.pageInPage {
+				height : 300px;
+			}
+		</style>
 		<script type="text/javascript">
 			jQuery.sap.initMobile();
 			
@@ -70,9 +75,8 @@
 			page.addContent(Bar5);
 			
 			var Bar6 = new sap.m.Bar({ 
-				enableFlexBox: true,
 				contentLeft: [new sap.m.Button({icon: "images/favorite_grey_24.png"})],	
-				contentMiddle: [new sap.m.SearchField("SFB1", {placeholder: "search for...", layoutData: new sap.m.FlexItemData({growFactor: 1})})],
+				contentMiddle: [new sap.m.SearchField("SFB1", {placeholder: "search for..."})],
 				contentRight: [new sap.m.Button({icon: "images/favorite_grey_24.png"})]
 			});
 			page.addContent(Bar6);
@@ -80,45 +84,35 @@
 			var button1 = new sap.m.Button('button1', {
 				type: sap.m.ButtonType.Default,
 				text: "Label",
-				width: "100%",
-				enabled: true,
-				layoutData: new sap.m.FlexItemData({growFactor: 1})
+				enabled: true
 			});
 			var button2 = new sap.m.Button('button2', {
 				type: sap.m.ButtonType.Default,
 				text: "Label",
-				width: "100%",
-				enabled: true,
-				layoutData: new sap.m.FlexItemData({growFactor: 1})
+				enabled: true
 			});
 			var button3 = new sap.m.Button('button3', {
 				type: sap.m.ButtonType.Default,
 				text: "Label",
-				width: "100%",
-				enabled: true,
-				layoutData: new sap.m.FlexItemData({growFactor: 1})
+				enabled: true
 			});
 			var button4 = new sap.m.Button('button4', {
 				type: sap.m.ButtonType.Default,
 				text: "Label",
-				width: "100%",
 				enabled: true,
 			});
 			var button5 = new sap.m.Button('button5', {
 				type: sap.m.ButtonType.Default,
 				text: "Label",
-				width: "100%",
 				enabled: true,
 			});
 			var button6 = new sap.m.Button('button6', {
 				type: sap.m.ButtonType.Default,
 				text: "Label",
-				width: "100%",
 				enabled: true,
 			});
 			
 			var Bar7 = new sap.m.Bar({ 
-				enableFlexBox: true,
 				contentLeft: [new sap.m.Button({icon: "images/favorite_grey_24.png"})],	
 				contentMiddle: [button1, button2],
 				contentRight: [new sap.m.Button({icon: "images/favorite_grey_24.png"})]
@@ -128,13 +122,10 @@
 			Bar7.addContentMiddle(button3);
 
 			var Bar8 = new sap.m.Bar({ 
-				enableFlexBox: true,
 				contentLeft: [new sap.m.Button({icon: "images/favorite_grey_24.png"})],	
 				contentMiddle: [new sap.m.SegmentedButton('SegmentedBar', {
 									buttons: [button4, button5, button6], 
-									selectedButton: button5,
-									visible: true, 
-									layoutData: new sap.m.FlexItemData({growFactor: 1})
+									selectedButton: button5
 								})],
 				contentRight: [new sap.m.Button({icon: "images/favorite_grey_24.png"})]
 			});
@@ -191,12 +182,98 @@
 			});
 			page.addContent(Bar15);
 
+			function getTestContent () {
+				return [
+					new sap.m.SearchField({placeholder: "search...", width: "100px"}),
+					new sap.m.Button({ text : "Border" }),
+					new sap.m.Select({ items : [
+						new sap.ui.core.Item({
+							key: "0",
+							text: "item 0",
+						}),new sap.ui.core.Item({
+							key: "0",
+							text: "loooooooooooooong item",
+						})]}),
+					new sap.m.Button({ text : "Test" }),
+					new sap.m.SearchField({placeholder: "search...", width : "200px"}),
+					new sap.m.Button({
+						icon: "sap-icon://drop-down-list"
+					}),
+					new sap.m.Select({ 
+						type: sap.m.SelectType.IconOnly,
+						icon: sap.ui.core.IconPool.getIconURI("filter"),
+						autoAdjustWidth: true,
+						items : [
+								new sap.ui.core.Item({
+									key: "0",
+									text: "item 0",
+								}),new sap.ui.core.Item({
+									key: "0",
+									text: "loooooooooooooong item",
+						})]}),
+					new sap.m.Button({
+						icon: "sap-icon://person-placeholder"
+					})
+				];
+			}
+
+			var Bar16 = new sap.m.Bar({
+				design : sap.m.BarDesign.Header,
+				contentLeft: getTestContent(),
+				contentRight : new sap.m.Label({text : "some Text"})
+			});
+			page.addContent(Bar16);
+
+			var Bar17 = new sap.m.Bar({
+				design : sap.m.BarDesign.Footer,
+				contentLeft: getTestContent()
+			});
+			page.addContent(Bar17);
+
+			var Bar18 = new sap.m.Bar({
+				design : sap.m.BarDesign.SubHeader,
+				contentLeft: getTestContent()
+			});
+			page.addContent(Bar18);
+
+			var Bar19 = new sap.m.Bar({
+				design : sap.m.BarDesign.SubHeader,
+				contentMiddle:[
+								new sap.m.Button({
+									text : "Test for a regression in IE9 and FF",
+									width : "50%",
+								}),
+								new sap.m.Button({
+									text: "this button got hidden when it overflows due to the margins",
+									width : "50%"
+								})
+							]
+			});
+			page.addContent(Bar19);
+
+			var pageInPage = new sap.m.Page({
+				customHeader : new sap.m.Bar({ 
+					design : "SubHeader", 
+					contentMiddle : [new sap.m.Label({ text : "Page in page: This is a Header with SubHeader design"})]
+				}),
+				subHeader : new sap.m.Bar({ 
+					design : "Footer", 
+					contentMiddle : [new sap.m.Label({ text : "This is a SubHeader with footer design"})]
+				}),
+				footer : new sap.m.Bar({ 
+					design : "Header", 
+					contentMiddle : [new sap.m.Label({ text : "This is a footer with header design"})]
+				})
+			}).addStyleClass("pageInPage");
+			
+			page.addContent(pageInPage);
+
 			var footer = new sap.m.Bar({ 
-				contentLeft: [],	
+				contentLeft: [new sap.m.SearchField({placeholder: "search..."})],	
 				contentMiddle: [new sap.m.Button({icon: "images/feed@2x.png"}),
 								new sap.m.Button({icon: "images/favorite@2x.png"}),
 								new sap.m.Button({icon: "images/flag@2x.png"})],
-				contentRight: []
+				contentRight: [new sap.m.Label({ text : "footie"})]
 			});
 
 			page.setFooter(footer);

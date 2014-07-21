@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7670658374449979"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=48311762470219344"/>
 <title>Implementing a Responsive Table</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -113,7 +115,7 @@
 				(cell) content, can be displayed in an "Inline" or in a "Block" display style. The
 				difference can be seen in the following
 				example.</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>  var oTable = new sap.m.Table({
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>  var oTable = new sap.m.Table({
         inset: true,
         headerText: "Order Items",
         mode: sap.m.ListMode.SingleSelect,

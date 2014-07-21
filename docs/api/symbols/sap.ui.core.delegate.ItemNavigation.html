@@ -121,8 +121,8 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Sets whether the items are displayed in columns"><a href="../symbols/sap.ui.core.delegate.ItemNavigation.html#setColumns">setColumns</a></b><span class='signature'>(<span title="(int) count of columns for the table mode or cycling mode">iColumns</span>)</span>
-									<span class='description'>Sets whether the items are displayed in columns</span>
+									<b class="icon" title="Sets behaviour of HOME and END if columns are used"><a href="../symbols/sap.ui.core.delegate.ItemNavigation.html#setColumns">setColumns</a></b><span class='signature'>(<span title="(boolean) HOME -> got to first item in row; END -> go to last item in row">bStayInRow</span>, <span title="(boolean) HOME/END with CTRL -> go to first/last item of all">bCtrlEnabled</span>)</span>
+									<span class='description'>Sets behaviour of HOME and END if columns are used</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -449,11 +449,11 @@ These modifiers will not be handled by ItemNavigation
 									<div class='sectionItem classMethod'>
 										<a name="setColumns"> </a>
 										<div class="itemTitle icon">
-											setColumns<span class="signature">(<span title="(int) count of columns for the table mode or cycling mode">iColumns</span>)</span>
+											setColumns<span class="signature">(<span title="(boolean) HOME -> got to first item in row; END -> go to last item in row">bStayInRow</span>, <span title="(boolean) HOME/END with CTRL -> go to first/last item of all">bCtrlEnabled</span>)</span>
 											<span class="light" title="returns sap.ui.core.delegate.ItemNavigation">: <a href="../symbols/sap.ui.core.delegate.ItemNavigation.html">sap.ui.core.delegate.ItemNavigation</a></span>
 										</div>
 										<div class="full-description">
-											Sets whether the items are displayed in columns
+											Sets behaviour of HOME and END if columns are used
 											
 											
 											
@@ -467,13 +467,25 @@ These modifiers will not be handled by ItemNavigation
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{int}</span> 
+													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>iColumns</b>
+													  <b>bStayInRow</b>
 													</td>
 													<td class="methodItemDesc">
-												    count of columns for the table mode or cycling mode
+												    HOME -> got to first item in row; END -> go to last item in row
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bCtrlEnabled</b>
+													</td>
+													<td class="methodItemDesc">
+												    HOME/END with CTRL -> go to first/last item of all
 													</td>
 												</tr>
 											
@@ -846,7 +858,7 @@ the items (navigation in a grid).
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bTableList</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>bTableList</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    this sets a different behaviour for table mode.

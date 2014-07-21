@@ -18,7 +18,6 @@
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<!-- Control initialization -->
@@ -41,7 +40,7 @@
 	oSC.placeAt("uiArea1");
 	var oSC2 = new sap.ui.unified.SplitContainer("sc2", {
 		showSecondaryContent: true,
-		secondaryContentWidth: "200px"
+		secondaryContentSize: "200px"
 	});
 	
 	function testMultiAggregation(sName, oCtrl){
@@ -93,12 +92,12 @@
 	
 		test("Properties - Default Values", function() {
 			equal(oSC.getShowSecondaryContent(), false, "Default 'showSecondaryContent'");
-			equal(oSC.getSecondaryContentWidth(), "250px", "Default 'secondaryContentWidth'");
+			equal(oSC.getSecondaryContentSize(), "250px", "Default 'secondaryContentWidth'");
 		});
 	
 		test("Properties - Custom Values", function() {
 			equal(oSC2.getShowSecondaryContent(), true, "Custom 'showSecondaryContent'");
-			equal(oSC2.getSecondaryContentWidth(), "200px", "Custom 'secondaryContentWidth'");
+			equal(oSC2.getSecondaryContentSize(), "200px", "Custom 'secondaryContentWidth'");
 		});
 		
 		test("Aggregation 'content'", function() {
@@ -118,7 +117,7 @@
 		});
 		
 		asyncTest("Secondary Content Width", function() {
-			oSC.setSecondaryContentWidth("200px");
+			oSC.setSecondaryContentSize("200px");
 			setTimeout(function(){
 				equal(jQuery.sap.byId("sc-pane").outerWidth(), 200, "Secondary Content Width after change");
 				start();

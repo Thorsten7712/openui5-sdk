@@ -24,7 +24,7 @@
 					testresults.bSapUiCoreExists = window.sap && sap.ui && typeof sap.ui.getCore === "function";
 					if ( testresults.bSapUiCoreExists ) {
 						testresults.bApplyThemeExists = typeof sap.ui.getCore().applyTheme === "function";
-						testresults.bThemeBeforeAsExpected = sap.ui.getCore().getConfiguration().getTheme() === "sap_platinum";
+						testresults.bThemeBeforeAsExpected = sap.ui.getCore().getConfiguration().getTheme() === "sap_bluecrystal";
 						testresults.$LinksBefore = jQuery('head > link[id^="sap-ui-theme-"]');
 						try {
 							sap.ui.getCore().applyTheme("sap_goldreflection");
@@ -40,14 +40,13 @@
 			};
 		</script>
 		<script id="sap-ui-bootstrap"
-				data-sap-ui-theme="sap_platinum"
+				data-sap-ui-theme="sap_bluecrystal"
 				data-sap-ui-noConflict="true"
 				data-sap-ui-libs="sap.ui.core"
 				src="../../../../../../resources/sap-ui-core.js">
 		</script>
 		<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript">
 

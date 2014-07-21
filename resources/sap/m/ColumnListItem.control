@@ -6,7 +6,7 @@
 	<documentation>ColumnListItem can be used to create columns for Table control.
 Note: This control should not be used without Column definition in parent control.</documentation>
 	<since>1.12</since>
-	<baseType>ListItemBase</baseType>
+	<baseType>sap.m/ListItemBase</baseType>
 	<properties>
 		<property group="Appearance" name="vAlign" type="sap.ui.core/VerticalAlign" defaultValue="Inherit" since="1.20">
 			<documentation>Sets the vertical alignment of the all cells in a table row(including selection and navigation). Possible values are &quot;Inherit&quot;, &quot;Top&quot;, &quot;Middle&quot;, &quot;Bottom&quot;

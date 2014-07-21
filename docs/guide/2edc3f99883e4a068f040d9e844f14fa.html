@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=26045287991759203"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=858944724383233"/>
 <title>I18n Resource Text Customization</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">You can enhance the <samp class="ph codeph">sap.ui.model.resource.ResourceModel</samp> with customized
 			resource bundles. For this, the <samp class="ph codeph">ResourceBundle</samp> provides the possibility
 			to enhance it with other bundles:</p>
-<div><pre class="pre codeblock">var oModel = new sap.ui.model.resource.ResourceModel({bundleUrl:"./testdata/messages.properties"});
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.resource.ResourceModel({bundleUrl:"./testdata/messages.properties"});
 oModel.enhance({bundleUrl:"./testdata/messages_custom.properties"});</pre></div>
 <p class="p">An enhanced <samp class="ph codeph">ResourceModel</samp> tries to resolve the i18n texts from the customized
 			bundle first. If a text does not exist there, it tries to look up the i18n text in the

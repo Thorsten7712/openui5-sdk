@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4497861070756718"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4678187375956081"/>
 <title>Namespaces in XML Views</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -33,7 +35,7 @@
 <div class="note note" id="loio2421a2c9fa574b2e937461b5313671f0__note_N10020_N10011_N10001"><span class="notetitle">Note</span>  If controls are located in a subpackage of a control
 			library, for example <samp class="ph codeph">sap.ui.commons.layout.MatrixLayout</samp>, they must have
 			their own XML namespace:
-			<div><pre class="pre codeblock">&lt;core:View controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.commons.layout"&gt;
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;core:View controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.commons.layout"&gt;
    &lt;layout:MatrixLayout&gt;
       ...</pre></div>
 

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5693393986599175"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9631095182933842"/>
 <title>Extended Syntax for Calculated Fields</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -35,7 +37,7 @@
 		</div>
 <p class="p">To use the feature in your SAPUI5 application, set the configuration flag
 				<samp class="ph codeph">xx-bindingSyntax</samp> in the bootstrap as follows:</p>
-<div><pre class="pre codeblock">&lt;script id="sap-ui-bootstrap"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;script id="sap-ui-bootstrap"
       ...
         data-sap-ui-xx-bindingSyntax="complex"&gt;
     &lt;/script&gt;</pre></div>
@@ -43,7 +45,7 @@
 <ul class="ul" id="loio0c803921b1bf4b3a97a038fbd51ef542__ul_drs_fst_ym"><li class="li">
 				<p class="p">You can mix text with calculated fields as follows:</p>
 
-				<div><pre class="pre codeblock">&lt;Label text="Hello Mr. {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;Label text="Hello Mr. {
                          path:'/singleEntry/firstName', 
                          formatter: '.myFormatter'
                         }, 
@@ -63,7 +65,7 @@
 					is located in the controller. In the following example, the existing type or
 					formatter function in the controller is used:</p>
 
-				<div><pre class="pre codeblock">&lt;TextField value="{
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;TextField value="{
                    path:'gender', 
                    formatter:'.myGenderFormatter'
                   } 
@@ -75,7 +77,7 @@
 <li class="li">
 				<p class="p">If you have a global formatter function, use the following syntax:</p>
 
-				<div><pre class="pre codeblock">&lt;TextField value="{
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;TextField value="{
               parts: [
                       {path:'birthday/day'},
                       {path:'birthday/month'},
@@ -89,7 +91,7 @@
 				<p class="p">For a global type that is created with the specified format options, see the following
 					example:</p>
 
-				<div><pre class="pre codeblock">&lt;Label text="A type test: {
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;Label text="A type test: {
                            path:'/singleEntry/amount', 
                            type:'sap.ui.model.type.Float', 
                            formatOptions: { minFractionDigits: 1}

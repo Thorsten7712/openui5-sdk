@@ -165,7 +165,7 @@ The convention for renderers belonging to some controls is the following:
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Write the given texts to the buffer"><a href="../symbols/sap.ui.core.RenderManager.html#write">write</a></b><span class='signature'>(<span title="(string|number ...) (can be a number too)">sText</span>)</span>
+									<b class="icon" title="Write the given texts to the buffer"><a href="../symbols/sap.ui.core.RenderManager.html#write">write</a></b><span class='signature'>(<span title="(...string|number) (can be a number too)">sText</span>)</span>
 									<span class='description'>Write the given texts to the buffer</span>
 								</div>
 							
@@ -955,7 +955,7 @@ If the given control is undefined or null, then nothing is rendered.
 									<div class='sectionItem classMethod'>
 										<a name="write"> </a>
 										<div class="itemTitle icon">
-											write<span class="signature">(<span title="(string|number ...) (can be a number too)">sText</span>)</span>
+											write<span class="signature">(<span title="(...string|number) (can be a number too)">sText</span>)</span>
 											<span class="light" title="returns sap.ui.core.RenderManager">: <a href="../symbols/sap.ui.core.RenderManager.html">sap.ui.core.RenderManager</a></span>
 										</div>
 										<div class="full-description">
@@ -973,7 +973,7 @@ If the given control is undefined or null, then nothing is rendered.
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string|number ...}</span> 
+													  <span class="light">{...string|number}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sText</b>
@@ -1065,7 +1065,7 @@ is the auto-generated part based on the association <code>ariaDescribedBy</code>
 													  <span class="light">{<a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oElement</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oElement</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the element whose accessibility state should be rendered
@@ -1077,7 +1077,7 @@ is the auto-generated part based on the association <code>ariaDescribedBy</code>
 													  <span class="light">{Object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mProps</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mProps</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a map of properties that should be added additionally or changed.
@@ -1271,7 +1271,7 @@ classes are added instead. If oElement === false, no custom style classes are ad
 													  <span class="light">{<a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a>|boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oElement</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oElement</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    an Element from which to add custom style classes (instead of adding from the control itself)

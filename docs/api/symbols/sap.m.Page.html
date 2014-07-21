@@ -284,7 +284,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Setter for the aggregated customHeader."><a href="../symbols/sap.m.Page.html#setCustomHeader">setCustomHeader</a></b><span class='signature'>(<span title="(sap.m.Bar) sap.m.Bar">oCustomHeader</span>)</span>
+									<b class="icon" title="Setter for the aggregated customHeader."><a href="../symbols/sap.m.Page.html#setCustomHeader">setCustomHeader</a></b><span class='signature'>(<span title="(sap.m.IBar) sap.m.IBar">oCustomHeader</span>)</span>
 									<span class='description'>Setter for the aggregated <code>customHeader</code>.</span>
 								</div>
 							
@@ -294,7 +294,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Setter for the aggregated footer."><a href="../symbols/sap.m.Page.html#setFooter">setFooter</a></b><span class='signature'>(<span title="(sap.m.Bar) sap.m.Bar">oFooter</span>)</span>
+									<b class="icon" title="Setter for the aggregated footer."><a href="../symbols/sap.m.Page.html#setFooter">setFooter</a></b><span class='signature'>(<span title="(sap.m.IBar) sap.m.IBar">oFooter</span>)</span>
 									<span class='description'>Setter for the aggregated <code>footer</code>.</span>
 								</div>
 							
@@ -314,7 +314,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Setter for the aggregated subHeader."><a href="../symbols/sap.m.Page.html#setSubHeader">setSubHeader</a></b><span class='signature'>(<span title="(sap.m.Bar) sap.m.Bar">oSubHeader</span>)</span>
+									<b class="icon" title="Setter for the aggregated subHeader."><a href="../symbols/sap.m.Page.html#setSubHeader">setSubHeader</a></b><span class='signature'>(<span title="(sap.m.IBar) sap.m.IBar">oSubHeader</span>)</span>
 									<span class='description'>Setter for the aggregated <code>subHeader</code>.</span>
 								</div>
 							
@@ -378,7 +378,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -450,9 +450,9 @@ The supported settings are:
 <li>Aggregations
 <ul>
 <li><a href="#getContent">content</a> <strong>(default aggregation)</strong> : sap.ui.core.Control[]</li>
-<li><a href="#getCustomHeader">customHeader</a> : sap.m.Bar</li>
-<li><a href="#getFooter">footer</a> : sap.m.Bar</li>
-<li><a href="#getSubHeader">subHeader</a> : sap.m.Bar</li>
+<li><a href="#getCustomHeader">customHeader</a> : sap.m.IBar</li>
+<li><a href="#getFooter">footer</a> : sap.m.IBar</li>
+<li><a href="#getSubHeader">subHeader</a> : sap.m.IBar</li>
 <li><a href="#getHeaderContent">headerContent</a> : sap.ui.core.Control[]</li></ul>
 </li>
 <li>Associations
@@ -711,7 +711,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -723,7 +723,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -894,7 +894,7 @@ this event is fired when Nav Button is pressed
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -918,7 +918,7 @@ this event is fired when Nav Button is pressed
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.Page</code>.<br/> itself.
@@ -1247,7 +1247,7 @@ The passed function and listener object must match the ones used for event regis
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -1369,7 +1369,7 @@ The content of this page
 										<a name="getCustomHeader"> </a>
 										<div class="itemTitle icon">
 											getCustomHeader<span class="signature">()</span>
-											<span class="light" title="returns sap.m.Bar">: <a href="../symbols/sap.m.Bar.html">sap.m.Bar</a></span>
+											<span class="light" title="returns sap.m.IBar">: <a href="../symbols/sap.m.IBar.html">sap.m.IBar</a></span>
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>customHeader</code>.<br/>
@@ -1393,7 +1393,7 @@ If this aggregation is set, the simple properties "title", "showNavButton", "Nav
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.m.Bar.html">sap.m.Bar</a>}</span> 
+														<span class="light">{<a href="../symbols/sap.m.IBar.html">sap.m.IBar</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
 														
@@ -1455,7 +1455,7 @@ Default value is <code>true</code>
 										<a name="getFooter"> </a>
 										<div class="itemTitle icon">
 											getFooter<span class="signature">()</span>
-											<span class="light" title="returns sap.m.Bar">: <a href="../symbols/sap.m.Bar.html">sap.m.Bar</a></span>
+											<span class="light" title="returns sap.m.IBar">: <a href="../symbols/sap.m.IBar.html">sap.m.IBar</a></span>
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>footer</code>.<br/>
@@ -1477,7 +1477,7 @@ The (optional) footer of this page. It is always located at the bottom of the pa
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.m.Bar.html">sap.m.Bar</a>}</span> 
+														<span class="light">{<a href="../symbols/sap.m.IBar.html">sap.m.IBar</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
 														
@@ -1663,7 +1663,7 @@ Default value is <code>false</code>
 										<a name="getSubHeader"> </a>
 										<div class="itemTitle icon">
 											getSubHeader<span class="signature">()</span>
-											<span class="light" title="returns sap.m.Bar">: <a href="../symbols/sap.m.Bar.html">sap.m.Bar</a></span>
+											<span class="light" title="returns sap.m.IBar">: <a href="../symbols/sap.m.IBar.html">sap.m.IBar</a></span>
 										</div>
 										<div class="full-description">
 											Getter for aggregation <code>subHeader</code>.<br/>
@@ -1685,7 +1685,7 @@ a subHeader will be rendered directly under the header
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.m.Bar.html">sap.m.Bar</a>}</span> 
+														<span class="light">{<a href="../symbols/sap.m.IBar.html">sap.m.IBar</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
 														
@@ -2292,7 +2292,7 @@ Default value is <code>Standard</code>
 									<div class='sectionItem classMethod'>
 										<a name="setCustomHeader"> </a>
 										<div class="itemTitle icon">
-											setCustomHeader<span class="signature">(<span title="(sap.m.Bar) sap.m.Bar">oCustomHeader</span>)</span>
+											setCustomHeader<span class="signature">(<span title="(sap.m.IBar) sap.m.IBar">oCustomHeader</span>)</span>
 											<span class="light" title="returns sap.m.Page">: <a href="../symbols/sap.m.Page.html">sap.m.Page</a></span>
 										</div>
 										<div class="full-description">
@@ -2310,7 +2310,7 @@ Default value is <code>Standard</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.m.Bar.html">sap.m.Bar</a>}</span> 
+													  <span class="light">{<a href="../symbols/sap.m.IBar.html">sap.m.IBar</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oCustomHeader</b>
@@ -2404,7 +2404,7 @@ Default value is <code>true</code>
 									<div class='sectionItem classMethod'>
 										<a name="setFooter"> </a>
 										<div class="itemTitle icon">
-											setFooter<span class="signature">(<span title="(sap.m.Bar) sap.m.Bar">oFooter</span>)</span>
+											setFooter<span class="signature">(<span title="(sap.m.IBar) sap.m.IBar">oFooter</span>)</span>
 											<span class="light" title="returns sap.m.Page">: <a href="../symbols/sap.m.Page.html">sap.m.Page</a></span>
 										</div>
 										<div class="full-description">
@@ -2422,7 +2422,7 @@ Default value is <code>true</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.m.Bar.html">sap.m.Bar</a>}</span> 
+													  <span class="light">{<a href="../symbols/sap.m.IBar.html">sap.m.IBar</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oFooter</b>
@@ -2635,7 +2635,7 @@ Default value is <code>false</code>
 									<div class='sectionItem classMethod'>
 										<a name="setSubHeader"> </a>
 										<div class="itemTitle icon">
-											setSubHeader<span class="signature">(<span title="(sap.m.Bar) sap.m.Bar">oSubHeader</span>)</span>
+											setSubHeader<span class="signature">(<span title="(sap.m.IBar) sap.m.IBar">oSubHeader</span>)</span>
 											<span class="light" title="returns sap.m.Page">: <a href="../symbols/sap.m.Page.html">sap.m.Page</a></span>
 										</div>
 										<div class="full-description">
@@ -2653,7 +2653,7 @@ Default value is <code>false</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.m.Bar.html">sap.m.Bar</a>}</span> 
+													  <span class="light">{<a href="../symbols/sap.m.IBar.html">sap.m.IBar</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oSubHeader</b>
@@ -2772,7 +2772,7 @@ this event is fired when Nav Button is tapped
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2796,7 +2796,7 @@ this event is fired when Nav Button is tapped
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.Page</code>.<br/> itself.
@@ -2936,7 +2936,7 @@ the navButtonPress event is replacing this event
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.

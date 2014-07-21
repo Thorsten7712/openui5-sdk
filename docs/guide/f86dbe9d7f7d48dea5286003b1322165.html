@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7045133598303513"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4592860324351985"/>
 <title>Using Images in Mobile Applications</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -68,7 +70,7 @@
 			<p class="p">Assume the following controls are displayed on a device with high-density screen
 					(<samp class="ph codeph">window.devicePixelRatio</samp> is 2): </p>
 
-			<div><pre class="pre codeblock">new sap.m.Image({ 
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new sap.m.Image({ 
 	    densityAware: false, // tell the image control that there are no different optimized image variants
 	    src : "first.png"   // therefore Image control will directly load first.png 
 })
@@ -92,7 +94,7 @@ new sap.m.Image({
 			<p class="p">Density related images are loaded if you provide an image name with density awareness in
 				following format is provided:</p>
 
-			<div><pre class="pre codeblock">[imageName]@[densityValue].[extension]</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">[imageName]@[densityValue].[extension]</pre></div>
 
 			<p class="p">Currently, we support the densities 1.5 and 2. The follwing example shows a set of images with
 				different densities: </p>

@@ -18,12 +18,14 @@
 			<documentation>This is the text displayed in the cancelButton. Default value is &quot;Cancel&quot;, and it's translated according to the current locale setting. This property will be ignored when running either in iPad or showCancelButton is set to false.</documentation>
 		</property>
 		<property group="Appearance" name="title" type="sap.ui.core/string">
-			<documentation>Title will be show in the header area in iPhone and every Android devices. This property will be ignored in iPad.</documentation>
+			<documentation>Title will be shown in the header area in iPhone and every Android
+devices. This property will be ignored in tablets and desktop browser.</documentation>
 		</property>
 	</properties>
 	<events>
 		<event name="cancelButtonTap">
-			<documentation>This event is fired when the cancelButton is tapped. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by tapping outside. (This event is deprecated, use the press event instead)</documentation>
+			<documentation>This event is fired when the cancelButton is tapped. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by tapping outside.</documentation>
+			<deprecation since="1.20.0">This event is deprecated, use the cancelButtonPress event instead.</deprecation>
 		</event>
 		<event name="beforeOpen">
 			<documentation>This event will be fired before the ActionSheet is opened.</documentation>

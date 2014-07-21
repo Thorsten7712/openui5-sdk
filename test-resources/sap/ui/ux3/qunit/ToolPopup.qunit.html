@@ -6,7 +6,7 @@
 
 <script id="sap-ui-bootstrap" type="text/javascript"
 	src="../../../../../resources/sap-ui-core.js"
-	data-sap-ui-theme="sap_goldreflection" data-sap-ui-noConflict="true"
+	data-sap-ui-theme="sap_bluecrystal" data-sap-ui-noConflict="true"
 	data-sap-ui-libs="sap.ui.ux3">
 	
 </script>
@@ -16,8 +16,6 @@
 	type="text/css" media="screen" />
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript"
-	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
@@ -512,13 +510,17 @@
 	module("Focus handling", {
 		setup : function() {
 			oTPFocus = new sap.ui.ux3.ToolPopup("focusPopup", {
-				content : [ new sap.ui.commons.Button("focusBtn1", {
+				content : [ new sap.ui.commons.FormattedTextView("FormattedTextView1",{
+					htmlText : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+				}), new sap.ui.commons.Button("focusBtn1", {
 					text : "focus_button1"
 				}), new sap.ui.commons.Button("focusBtn2", {
 					text : "focus_button2"
+				}), new sap.ui.commons.Button("defaultBtn1", {
+					text : "default_button1"
 				}), new sap.ui.commons.Button("focusBtn3", {
 					text : "focus_button3"
-				}) ],
+				})],
 				opener : oBtn1,
 				openDuration : 0
 			});
@@ -543,6 +545,46 @@
 			ok(bTest, "First button was focused per default")
 		};
 
+		oTPFocus.attachOpened(fnOpened);
+		oBtn1.press();
+		sap.ui.getCore().applyChanges();
+	});
+	asyncTest("default button is focused by default", function() {
+		expect(1);
+		
+		oTPFocus.setDefaultButton("defaultBtn1");
+		
+		var fnOpened = function() {
+			oTPFocus.detachOpened(fnOpened);
+
+			start();
+
+			bTest = document.activeElement.id === "defaultBtn1";
+			ok(bTest, "Default button was focused by default");
+		};
+		oTPFocus.attachOpened(fnOpened);
+		oBtn1.press();
+		sap.ui.getCore().applyChanges();
+	});
+	asyncTest("default button is focused by pressEnter", function() {
+		expect(1);
+		
+		oTPFocus.setInitialFocus("focusBtn2");
+		oTPFocus.setDefaultButton("defaultBtn1");
+		
+		var fnOpened = function() {
+			oTPFocus.detachOpened(fnOpened);
+
+			var sKeyEnter = jQuery.sap.KeyCodes.ENTER;
+			var oDomRef = sap.ui.getCore().byId("FormattedTextView1").getDomRef();
+			sap.ui.test.qunit.triggerKeydown(oDomRef, sKeyEnter);
+			
+			start();
+
+			bTest = document.activeElement.id === "defaultBtn1";
+			ok(bTest, "Default button was focused by pressEnter");
+		};
+		
 		oTPFocus.attachOpened(fnOpened);
 		oBtn1.press();
 		sap.ui.getCore().applyChanges();
@@ -687,7 +729,9 @@
 		oTPFocus.setAutoClose(true);
 		// add Textfield (that is rendered outside of the ToolPopup) as focusable area
 		oTPFocus.addFocusableArea(oTF.getId());
-		var bCloseOnMyCommand = false;
+
+		// if IE8 init it with true else with false
+		var bCloseOnMyCommand = !!bIE8;
 
 		oBtn1.press = function() {
 			oTPFocus.open(sap.ui.core.Popup.Dock.BeginBottom, sap.ui.core.Popup.Dock.BeginTop);
@@ -725,8 +769,9 @@
 			start();
 			oTF.destroy();
 
-			ok(bCloseOnMyCommand, "ToolPopup was closed when focusing Textfield")
+			ok(bCloseOnMyCommand, "ToolPopup was closed when focusing Textfield");
 		};
+
 		oTPFocus.attachOpened(fnOpened);
 		oTPFocus.attachClosed(fnClosed);
 

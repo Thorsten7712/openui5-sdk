@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=43654809945010387"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=19849015550424498"/>
 <title>Step 8: Master View</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -31,7 +33,7 @@
 			
 			<p class="p">Let's examine the view definition bit by bit.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;mvc:View
 	controllerName="sap.ui.demo.tdg.view.Master"
 	displayBlock="true"
@@ -46,7 +48,7 @@
 				library). The <samp class="ph codeph">displayBlock="true"</samp> declaration is to prevent
 				scrollbars appearing.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 	&lt;Page
 		id="page"
 		title="{i18n&gt;masterTitle}"&gt;
@@ -79,7 +81,7 @@
 				detail in the Device Model section. We'll examine the handler for the Search Field
 				shortly, when we look at the Master controller.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;content&gt;
 			&lt;List
 				id="list"
@@ -137,7 +139,7 @@
 				with a 'path' key pointing to the model property, and a 'formatter' key pointing to
 				the formatter function.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 	&lt;footer&gt;
 			&lt;Bar&gt;
 				&lt;contentRight&gt;
@@ -163,14 +165,14 @@
 			<p class="p">Now we've got the view declaration done, we need to look at the related controller
 				view/Master.controller.js. </p>
 
-			<div><pre class="pre codeblock">jQuery.sap.require("sap.ui.demo.tdg.util.Formatter");</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.require("sap.ui.demo.tdg.util.Formatter");</pre></div>
 
 			<p class="p">In order to be able to reference and use the currencyValue formatter function (in our
 					<span class="ph filepath">util/Formatter.js</span>) for each Product's price property, we
 				need to declare a requirement for the module. We do it at the top of the view's
 				controller file.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Master", {
 
 	onInit : function() {
@@ -187,7 +189,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Master", {
 				Deferred object to resolved in a handler that we attach to the "updateFinished"
 				event which signals that the binding has been updated. </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 		sap.ui.core.UIComponent.getRouterFor(this).attachRouteMatched(this.onRouteMatched, this);
 	
 
@@ -195,7 +197,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Master", {
 
 			<p class="p">We then set a handler to handle the routing event.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	onRouteMatched : function(oEvent) {
 
 		var oList = this.getView().byId("list");
@@ -207,7 +209,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Master", {
 				the name of the route (the "name" parameter) and the arguments from the placeholders
 				(in the "arguments") parameter. </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 		// Wait for the list to be loaded once
 		jQuery.when(this.oUpdateFinishedDeferred).then(jQuery.proxy(function() {
 			var aItems;
@@ -242,7 +244,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Master", {
 				Otherwise we try to find the selected product in the list and set that to be visibly
 				selected. </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	selectDetail : function() {
 		if (!sap.ui.Device.system.phone) {
 			var oList = this.getView().byId("list");
@@ -260,7 +262,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Master", {
 				sure that the item's details are shown in the Detail view, via the
 					<samp class="ph codeph">showDetail</samp> function. </p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	onSearch : function() {
 		// add filter for search
 		var filters = [];
@@ -284,7 +286,7 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.Master", {
 				Here's an example of what that request might look like, with a search term of
 				"Lemon":</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 GET
 http://&lt;host&gt;:&lt;port&gt;/uilib-sample/proxy/http/services.odata.org/V2/(S(sapuidemotdg))/OData/OData.svc/Products?$skip=0&amp;$top=1&amp;$filter=substringof(%27Lemon%27,Name)</pre></div>
 
@@ -292,7 +294,7 @@ http://&lt;host&gt;:&lt;port&gt;/uilib-sample/proxy/http/services.odata.org/V2/(
 				containing "Lemon" in the name was determined as being 1, according to an also
 				automatic request for a count:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 GET 
 http://&lt;host&gt;:&lt;port&gt;/uilib-sample/proxy/http/services.odata.org/V2/(S(sapuidemotdg))/OData/OData.svc/Products?$count?$filter=substringof(%27Lemon%27,Name)
 </pre></div>
@@ -301,7 +303,7 @@ http://&lt;host&gt;:&lt;port&gt;/uilib-sample/proxy/http/services.odata.org/V2/(
 				supporting the OData <samp class="ph codeph">$count</samp> by default. You can turn this off with
 					<samp class="ph codeph">sap.ui.model.odata.ODataModel.setCountSupported</samp> function.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	onSelect : function(oEvent) {
 		// Get the list item, either from the listItem parameter or from the event's
 		// source itself (will depend on the device-dependent mode).
@@ -321,7 +323,7 @@ http://&lt;host&gt;:&lt;port&gt;/uilib-sample/proxy/http/services.odata.org/V2/(
 				to the specific entity in the Products entityset. In both cases we pass this object
 				to the <samp class="ph codeph">showDetail</samp> function.</p>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 showDetail : function(oItem) {
 		// If we're on a phone, include nav in history; if not, don't.
 		var bReplace = jQuery.device.is.phone ? false : true;
@@ -348,7 +350,7 @@ showDetail : function(oItem) {
 					view's <samp class="ph codeph">IconTabBar</samp> is pre-selected</li>
 </ul>
 
-			<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 	onAddProduct : function() {
 		sap.ui.core.UIComponent.getRouterFor(this).myNavToWithoutHash({
 			currentView : this.getView(),
@@ -378,7 +380,7 @@ showDetail : function(oItem) {
 			
 			<p class="p">Now our app folder content now looks like this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- i18n/

@@ -63,8 +63,9 @@ sap.ui.jsview("view.inbox.Home", {
 		
 		if(!sap.ui.Device.system.phone){
 			//Footer is added to show the switch between SplitApp modes.
-			oPage.setFooter(new sap.m.Bar({
-				contentMiddle: [
+			oPage.setFooter(new sap.m.Toolbar({
+				content: [
+					new sap.m.ToolbarSpacer(),
 					new sap.m.Select({
 						items: [new sap.ui.core.Item({
 							key: "showhide",
@@ -83,6 +84,7 @@ sap.ui.jsview("view.inbox.Home", {
 							oController.onSelectChange(oControlEvent);
 						}
 					}),
+					new sap.m.ToolbarSpacer()
 				]
 			}));
 		}

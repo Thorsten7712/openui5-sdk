@@ -12,9 +12,11 @@
 <meta name="abstract" content="The XML model allows to bind controls to XML data. It is a client-side model intended for small datasets, which are completely available on the client. The XML model does not contain mechanims for server-based paging or loading of deltas. It supports two-way binding."/>
 <meta name="description" content="The XML model allows to bind controls to XML data. It is a client-side model intended for small datasets, which are completely available on the client. The XML model does not contain mechanims for server-based paging or loading of deltas. It supports two-way binding."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9691899875073574"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7926319345933661"/>
 <title>Implementing an XML Model</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,25 +30,25 @@
 		contain mechanims for server-based paging or loading of deltas. It supports two-way
 		binding.</p>
 <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps" id="loio91f129526f4d1014b6dd926db0e91070__steps_g1t_pst_5k"><li class="li step stepexpand"><span class="ph cmd">To instantiate the model: </span> 
-					<div><pre class="pre codeblock">var oModel = new sap.ui.model.xml.XMLModel();</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.xml.XMLModel();</pre></div>
 
 				</li>
 <li class="li step stepexpand"><span class="ph cmd">The XML model also has a <samp class="ph codeph">setData</samp> method. As XML documents
 					cannot be embedded inline in JavaScript, the XMLModel uses an XML document
 					reference as a parameter. </span> 
-					<div><pre class="pre codeblock">oModel.setData(oXMLDocument);</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oModel.setData(oXMLDocument);</pre></div>
 
 				</li>
 <li class="li step stepexpand"><span class="ph cmd">To create inline XML data or to get XML data as a string, the XML model
 					provides a <samp class="ph codeph">setXML</samp> method. This method takes XML in text format
 					and uses the browser's XML parser to create a document. </span> 
-					<div><pre class="pre codeblock">oModel.setXML("&lt;?xml version=\"1.0\"?&gt;&lt;some&gt;&lt;xml&gt;data&lt;/xml&gt;&lt;/some&gt;");</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oModel.setXML("&lt;?xml version=\"1.0\"?&gt;&lt;some&gt;&lt;xml&gt;data&lt;/xml&gt;&lt;/some&gt;");</pre></div>
 
 				</li>
 <li class="li step stepexpand"><span class="ph cmd">Usually, you load your data from the server using an HTTP-based service, so the
 						<samp class="ph codeph">loadData</samp> method provides an easy way to load XML data from
 					the given URL: </span> 
-					<div><pre class="pre codeblock">oModel.loadData("data.xml");</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oModel.loadData("data.xml");</pre></div>
 
 				</li>
 </ol>

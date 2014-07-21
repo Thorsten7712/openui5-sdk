@@ -12,9 +12,11 @@
 <meta name="abstract" content="The use of native HTML depends on the XHTML feature set."/>
 <meta name="description" content="The use of native HTML depends on the XHTML feature set."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5571321244777191"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=848211435724325"/>
 <title>Using Native HTML in XML Views</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -58,7 +60,7 @@
 				is, however, less convenient. </div>
 
 		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p"><span class="ph cmd">To mix SAPUI5 controls with native XHTML, you only need the XHTML namespace to use (X)HTML: </span> 
-					<div><pre class="pre codeblock">&lt;core:View controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;core:View controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
            xmlns:html="http://www.w3.org/1999/xhtml"&gt;
    &lt;Panel&gt;
       &lt;Button text="Press Me. I am a SAPUI5 Button"/&gt;

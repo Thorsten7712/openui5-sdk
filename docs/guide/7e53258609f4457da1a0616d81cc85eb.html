@@ -12,9 +12,11 @@
 <meta name="abstract" content="When using an XML model, all data is available on the client. Sorting and filtering are implemented in JavaScript."/>
 <meta name="description" content="When using an XML model, all data is available on the client. Sorting and filtering are implemented in JavaScript."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7401364348872101"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=19984954619515594"/>
 <title>Sorting and Filtering in a XML Model</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -31,7 +33,7 @@
 						the only parameter and returns, whether the row with the given value should
 						be filtered or not. </p>
 
-					<div><pre class="pre codeblock">var oFilter = new sap.ui.model.Filter("property");
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oFilter = new sap.ui.model.Filter("property");
 oFilter.fnFilter = function(value) {
     return (value &gt; 100);
 };</pre></div>
@@ -42,7 +44,7 @@ oFilter.fnFilter = function(value) {
 						compare as parameters and returns -1, 0 or 1, dependent which of the two
 						values should be ordered before the other. </p>
 
-					<div><pre class="pre codeblock">var oSorter = new sap.ui.model.Sorter("property");
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oSorter = new sap.ui.model.Sorter("property");
 oSorter.fnCompare = function(value1, value2) {
     if (value1 &lt; value2) return -1;
     if (value1 == value2) return 0;

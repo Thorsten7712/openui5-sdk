@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5092899721296119"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=26079852857512187"/>
 <title>Building a Catchall Route</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 			catchall route, make sure that you define it as the last route, because the first route
 			that gets hit is informed. All routes after this route are ignored.</p>
 <p class="p">Example:</p>
-<div><pre class="pre codeblock">routes : [
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">routes : [
 // a lot of other routes before this one
 {
     pattern : ":all*:", //catchall 

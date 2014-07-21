@@ -73,17 +73,20 @@ Dialog detects if there's sap.m.NavContainer, sap.m.Page, or sap.m.ScrollContain
 		<aggregation cardinality="0..n" name="content" type="sap.ui.core/Control">
 			<documentation>The content inside the dialog.</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" type="sap.m/Bar" name="subHeader" since="1.12.2">
+		<aggregation cardinality="0..1" type="sap.m/IBar" name="subHeader" since="1.12.2">
 			<documentation>When subHeader is assigned to Dialog, it's rendered directly after the main header in Dialog. SubHeader is out of the content area and won't be scrolled when content's size is bigger than the content area's size.</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" type="sap.m/Bar" name="customHeader" since="1.15.1">
+		<aggregation cardinality="0..1" type="sap.m/IBar" name="customHeader" since="1.15.1">
 			<documentation>CustomHeader is only supported in theme sap_bluecrystal. When it's set, the icon, title and showHeader are properties ignored. Only the customHeader is shown as the header of the dialog.</documentation>
 		</aggregation>
 		<aggregation cardinality="0..1" name="beginButton" type="sap.m/Button" since="1.15.1">
-			<documentation>The button which is rendered on the left side (right side in RTL mode) inside the dialog.</documentation>
+			<documentation>The button which is rendered to the left side (right side in RTL mode) of the endButton in the footer area inside the dialog. From UI5 version 1.21.1, there's a new aggregation "buttons" created with which more than 2 buttons can be added to the footer area of dialog. If the new "buttons" aggregation is set, any change made to this aggregation has no effect anymore. When runs on the phone, this button (and the endButton together when set) is (are) rendered at the center of the footer area. When runs on the other platforms, this button (and the endButton together when set) is (are) rendered at the right side (left side in RTL mode) of the footer area.</documentation>
 		</aggregation>
 		<aggregation cardinality="0..1" name="endButton" type="sap.m/Button" since="1.15.1">
-			<documentation>The button which is rendered on the right side (left side in RTL mode) inside the dialog.</documentation>
+			<documentation>The button which is rendered to the right side (left side in RTL mode) of the beginButton in the footer area inside the dialog. From UI5 version 1.21.1, there's a new aggregation "buttons" created with which more than 2 buttons can be added to the footer area of dialog. If the new "buttons" aggregation is set, any change made to this aggregation has no effect anymore. When runs on the phone, this button (and the beginButton together when set) is (are) rendered at the center of the footer area. When runs on the other platforms, this button (and the beginButton together when set) is (are) rendered at the right side (left side in RTL mode) of the footer area.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..n" name="buttons" type="sap.m/Button" since="1.21.1">
+			<documentation>Buttons can be added to the footer area of dialog through this aggregation. When this aggregation is set, any change to beginButton and endButton has no effect anymore. Buttons which are inside this aggregation are aligned at the right side (left side in RTL mode) of the footer instead of in the middle of the footer.</documentation>
 		</aggregation>
 		<aggregation cardinality="0..1" name="_header" type="sap.ui.core/Control" visibility="hidden">
 			<documentation>The hidden aggregation for internal maintained header.</documentation>
@@ -93,6 +96,9 @@ Dialog detects if there's sap.m.NavContainer, sap.m.Page, or sap.m.ScrollContain
 		</aggregation>
 		<aggregation cardinality="0..1" name="_icon" type="sap.ui.core/Control" visibility="hidden">
 			<documentation>The hidden aggregation for internal maintained icon control.</documentation>
+		</aggregation>
+		<aggregation cardinality="0..1" name="_toolbar" type="sap.m/Toolbar" visibility="hidden">
+			<documentation>The hidden aggregation for internal maintained toolbar instance</documentation>
 		</aggregation>
 	</aggregations>
 	<associations>

@@ -11,13 +11,12 @@
 
 <link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <script type="text/javascript">
 
 	var sf1, sf2, sf3,
-		sf1btn, sf3btn,
 		sPlaceholder = "search for..",
 		sValue = "value",
 		sQuery = "",
@@ -34,8 +33,8 @@
 		aEvents.push({event: oEvent, query: sLive});
 	};
 
-	function doTouchStart(sTarget, oParams){
-		var sEventName = "touchstart";
+	function doTouchEnd(sTarget, oParams){
+		var sEventName = "touchend";
 		var oTarget = jQuery.sap.domById(sTarget);
 		var $Target = jQuery(oTarget);
 		var oEvent = jQuery.Event(sEventName);
@@ -52,6 +51,10 @@
 		if(oElement && oElement["on"+sEventName]){
 			oElement["on"+sEventName].apply(oElement, [oEvent]);
 		}
+	}
+
+	function getIconId(oSF, sButton){
+		return window.getComputedStyle(oSF.getDomRef(sButton), ":after").getPropertyValue("content");
 	}
 
 	new sap.m.SearchField("sf1", {
@@ -86,18 +89,14 @@
 			sf1 = sap.ui.getCore().getControl("sf1");
 			sf2 = sap.ui.getCore().getControl("sf2");
 			sf3 = sap.ui.getCore().getControl("sf3");
-			sf1btn = sap.ui.getCore().getControl("sf1-btn");
-			sf3btn = sap.ui.getCore().getControl("sf3-btn");
-			sf1Dom = jQuery.sap.domById("sf1-I");
-			sf2Dom = jQuery.sap.domById("sf2-I");
-			sf3Dom = jQuery.sap.domById("sf3-I");
+			sf1Dom = sf1.getFocusDomRef();
+			sf2Dom = sf2.getFocusDomRef();
+			sf3Dom = sf3.getFocusDomRef();
 		},
 		teardown : function() {
 			sf1 = null;
 			sf2 = null;
 			sf3 = null;
-			sf1btn = null;
-			sf3btn = null;
 			sf1Dom = null;
 			sf2Dom = null;
 			sf3Dom = null;
@@ -118,10 +117,10 @@
 		}
 		equal(sf2.getEnabled(), false, "Enabled property, UI5");
 		equal(sf2Dom.disabled, true, "Disabled property, DOM");
-		ok(jQuery(sf2Dom).hasClass("sapMSFIDisabled"),"CSS class name for \"disabled\" is set");
+		ok(sf2.$().hasClass("sapMSFDisabled"),"CSS class name for \"disabled\" is set");
 		// Button icons
-		equal(sf1btn.getIcon(), "sap-icon://search", "First button icon is magnifier");
-		equal(sf3btn.getIcon(), "sap-icon://synchronize", "Third button icon is synchronize");
+		ok(/\uE00D/.test(getIconId(sf1, "search")), "First button icon is magnifier");
+		ok(/\uE00A/.test(getIconId(sf3, "search")), "Third button icon is synchronize");
 	});
 
 	
@@ -131,8 +130,8 @@
 		sQuery = "test";
 		aEvents = [];
 		// touch the reset button
-		doTouchStart("sf1-reset");
-		doTouchStart("sf2-reset");
+		doTouchEnd("sf1-reset");
+		doTouchEnd("sf2-reset");
 
 		setTimeout(function(){
 			ok(sf1.getValue() == "", "Value property should be empty after reset, UI5");
@@ -150,16 +149,16 @@
 	asyncTest("Focused SearchField", function() {
 		ok(true, "Test for focused search field started");
 		// touch the search field
-		doTouchStart("sf3-reset");
+		doTouchEnd("sf3-reset");
 		
 		setTimeout(function(){
 			ok(sf3.$().hasClass("sapMFocus"), "Third search field is focused after reset button press");
-			equal(sf3btn.getIcon(), "sap-icon://search", "Focused search field icon is magnifier");
+			ok(/\uE00D/.test(getIconId(sf3, "search")), "Focused search field icon is magnifier");
 
 			document.activeElement.blur();
 			setTimeout( function(){
-				equal(sf3btn.getIcon(), "sap-icon://synchronize", "Defocused search field icon is synchronize");
-				start(); 
+				ok(/\uE00A/.test(getIconId(sf3, "search")), "Defocused search field icon is synchronize");
+				start();
 				}, 350)
 			}, 200);
 		

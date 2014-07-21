@@ -14,7 +14,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-ie.js"></script>
@@ -227,7 +226,7 @@
 				var fnBeforeOpen = this.spy(),
 					fnAfterOpen = this.spy(),
 					fnSetArrowPosition = this.spy(oPopover, "_fnSetArrowPosition"),
-					$Button = jQuery(oButton.getFocusDomRef());
+					$Button = jQuery(oButton.getDomRef("inner"));
 				
 				oPopover.attachBeforeOpen(fnBeforeOpen);
 				oPopover.attachAfterOpen(fnAfterOpen);
@@ -319,7 +318,7 @@
 				ok(oPopover.isOpen(), "Popover is already open");
 				this.clock.tick(500);
 				var $popover = jQuery.sap.byId("popover"),
-					$Button = jQuery(oButton.getFocusDomRef());
+					$Button = jQuery(oButton.getDomRef("inner"));
 				ok(jQuery.sap.domById("popover"), "Popover is rendered after it's opened.");
 				ok($popover.closest("#sap-ui-static")[0], "Popover should be rendered inside the static uiArea.");
 				if(jQuery(window).height() > 150){
@@ -463,10 +462,10 @@
 			test("Add left button", function(){
 				oPopover.setBeginButton(oBeginButton);
 				sap.ui.getCore().applyChanges();
-				var oBeginButtonDom = jQuery.sap.domById("beginButton");
-				ok(oBeginButtonDom, "BeginButton should be rendered");
+				var oBeginButtonFocusDom = oBeginButton.getFocusDomRef();
+				ok(oBeginButtonFocusDom, "BeginButton should be rendered");
 				if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
-					equal(oBeginButtonDom, document.activeElement, "beginButton should have the focus");
+					equal(oBeginButtonFocusDom, document.activeElement, "beginButton should have the focus");
 				}
 				if(sap.ui.Device.os.ios || sap.m.Popover._bOneDesign){
 					ok(oBeginButton.$().closest("#" + oPopover.getId() + "-intHeader-BarLeft")[0], "Left button is set in the left side of the bar in iOS");
@@ -488,8 +487,9 @@
 			test("Remove beginButton", function(){
 				oPopover.setBeginButton(null);
 				sap.ui.getCore().applyChanges();
+				var oEndButtonFocusDom = oEndButton.getFocusDomRef();
 				if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
-					equal(jQuery.sap.domById("endButton"), document.activeElement, "EndButton should have the focus");
+					equal(oEndButtonFocusDom, document.activeElement, "EndButton should have the focus");
 				}
 				if(sap.ui.Device.os.ios){
 					ok(!jQuery("#" + oPopover.getId() + "-intHeader-BarLeft").children("#beginButton")[0], "BeginButton is removed from the bar");
@@ -597,8 +597,13 @@
 					placement: sap.m.PlacementType.Top
 				});
 
+				var oButton = new sap.m.Button(),
+					oButton2 = new sap.m.Button();
 				oButton.$().removeClass("positioned positioned1 positioned2");
 				oButton.$().addClass("positioned3");
+				oButton.placeAt("content");
+				oButton2.placeAt("content");
+				sap.ui.getCore().applyChanges();
 
 				oPopover.openBy(oButton);
 				ok(oPopover.isOpen(), "Popover should be opened");
@@ -611,6 +616,8 @@
 				this.clock.tick(500);
 				ok(!oPopover.isOpen(), "Popover should be closed by autoclose");
 				oPopover.destroy();
+				oButton.destroy();
+				oButton2.destroy();
 			});
 
 			test("Restore scroll position after content resize", function(){
@@ -661,10 +668,13 @@
 
 				this.stub(sap.ui.Device, "system", oSystem);
 
-
 				this.stub(sap.ui.core.Popup.prototype, "restoreFocus", true);
 
-				oButton.$().focus();
+				var oButton = new sap.m.Button();
+				oButton.placeAt("content");
+				sap.ui.getCore().applyChanges();
+				oButton.focus();
+
 				var oPopover = new sap.m.Popover({
 					contentWidth: "300px",
 					contentHeight: "300px",
@@ -683,7 +693,7 @@
 				sap.ui.test.qunit.triggerKeydown(oPopover.getDomRef(), jQuery.sap.KeyCodes.ESCAPE);
 				this.clock.tick(500);
 				ok(!oPopover.isOpen(), "Popover should be closed by ESCAPE key");
-				equal(document.activeElement, oButton.getDomRef(), "Focus should be set back to the button");
+				equal(document.activeElement, oButton.getFocusDomRef(), "Focus should be set back to the button");
 
 				oPopover.openBy(oButton);
 				this.clock.tick(500);
@@ -691,9 +701,10 @@
 				sap.ui.test.qunit.triggerKeydown(oPopover.getDomRef(), jQuery.sap.KeyCodes.F4, false, true);
 				this.clock.tick(500);
 				ok(!oPopover.isOpen(), "Popover should be closed by Alt+F4 key");
-				equal(document.activeElement, oButton.getDomRef(), "Focus should be set back to the button");
+				equal(document.activeElement, oButton.getFocusDomRef(), "Focus should be set back to the button");
 
 				oPopover.destroy();
+				oButton.destroy();
 			});
 
 			test("content resize handler for placement: auto after orientation change", function(){
@@ -743,7 +754,7 @@
 				ok(oPopover.isOpen(), "Popover is opened");
 
 				// change the position of button, popover should be closed
-				oButton.$().css("bottom", parseInt(oButton.$().css("bottom"), 10) + 10);
+				oButton.$().css("bottom", parseInt(oButton.$().css("bottom"), 10) + 33);
 				this.clock.tick(600);
 
 				ok(!oPopover.isOpen(), "Popover is closed because open by control is moved");
@@ -756,12 +767,167 @@
 				oPopover.setFollowOf(false);
 
 				// change the position of button, popover should not be closed this time
-				oButton.$().css("bottom", parseInt(oButton.$().css("bottom"), 10) - 10);
+				oButton.$().css("bottom", parseInt(oButton.$().css("bottom"), 10) - 33);
 
 				this.clock.tick(300);
 				ok(oPopover.isOpen(), "Popover is still open");
 
 				oPopover.destroy();
+			});
+
+			test("Content scrolling is disabled when NavContainer is set as single content in Popover", function() {
+				var oPopover = new sap.m.Popover({
+					content: new sap.m.NavContainer({
+						pages: new sap.m.Page()
+					})
+				});
+
+				oPopover.openBy(oButton);
+				ok(!oPopover.getScrollDelegate(), "Scrolling is disabled by default when there's NavContainer as single content in Popover");
+
+				oPopover.destroy();
+			});
+
+			test("Enable content scrolling even with NavContainer as content in Popover", function() {
+				var oPopover = new sap.m.Popover({
+					content: new sap.m.NavContainer({
+						pages: new sap.m.Page()
+					}),
+					verticalScrolling: true
+				});
+
+				oPopover.openBy(oButton);
+				ok(oPopover.getScrollDelegate(), "Scrolling is enabled when vertical scrolling is manually set to true");
+				oPopover.destroy();
+
+				oPopover = new sap.m.Popover({
+					content: new sap.m.NavContainer({
+						pages: new sap.m.Page()
+					}),
+					horizontalScrolling: true
+				});
+
+				oPopover.openBy(oButton);
+				ok(oPopover.getScrollDelegate(), "Scrolling is enabled when vertical scrolling is manually set to true");
+				oPopover.destroy();
+			});
+			
+			test("Popover should keep open when openBy control rerenders", function(){
+				var oButton = new sap.m.Button({
+					text: "abced"
+				});
+				
+				page.addContent(oButton);
+				sap.ui.getCore().applyChanges();
+				
+				var oPopover = new sap.m.Popover({
+					contentWidth: "400px",
+					contentHeight: "400px"
+				});
+
+				oPopover.openBy(oButton);
+				this.clock.tick(500);
+				ok(oPopover.isOpen(), "Popover should be opened now");
+
+				oButton.invalidate();
+				this.clock.tick(300);
+				ok(oPopover.isOpen(), "Popover should keep the open state");
+				oPopover.destroy();
+				oButton.destroy();
+			});
+
+			test("Popover follow of with tolerance", function() {
+				var oSystem = {
+						desktop: true,
+						phone: false,
+						tablet: false
+					};
+
+				this.stub(sap.ui.Device, "system", oSystem);
+
+				var oButton = new sap.m.Button({
+					text: "Follow Me"
+				});
+
+				page.addContent(oButton);
+				sap.ui.getCore().applyChanges();
+
+				oButton.$().css({
+					position: "absolute",
+					top: 0,
+					left: 0
+				});
+
+				var oPopover = new sap.m.Popover({
+					contentWidth: "400px",
+					contentHeight: "400px"
+				});
+
+				oPopover.openBy(oButton);
+				this.clock.tick(500);
+				ok(oPopover.isOpen(), "Popover should be opened now");
+
+				oButton.$().css({
+					top: "31px"
+				});
+				this.clock.tick(500);
+				ok(oPopover.isOpen(), "Popover should keep the open state");
+
+				oButton.$().css({
+					top: "64px"
+				});
+				this.clock.tick(500);
+				ok(!oPopover.isOpen(), "Popover should be closed");
+				this.clock.tick(500);
+
+				// Turn off followOf, Popover should also be closed when openBy control isn't in viewport anymore
+				oPopover.setFollowOf(false);
+				oPopover.openBy(oButton);
+				this.clock.tick(500);
+				ok(oPopover.isOpen(), "Popover should be opened again");
+
+				oButton.$().css({
+					top: "-200px"
+				});
+				oPopover._fnOrientationChange();
+				this.clock.tick(500);
+				ok(!oPopover.isOpen(), "Popover should be closed");
+
+				oPopover.destroy();
+				oButton.destroy();
+			});
+
+			test("Button in SegmentedButton opens Popover", function() {
+				var oPopover = new sap.m.Popover({
+					contentWidth: "200px",
+					contentHeight: "300px"
+				});
+
+				var oButton = new sap.m.Button({
+					text: "Open Popover",
+					press: function() {
+						oPopover.openBy(this);
+					}
+				});
+
+				var oSegBtn = new sap.m.SegmentedButton({
+					buttons: [
+						new sap.m.Button({
+							text: "Button1"
+						}),
+						oButton
+					]
+				});
+
+				oSegBtn.placeAt("content");
+				sap.ui.getCore().applyChanges();
+
+				oButton.firePress();
+				this.clock.tick(500);
+				ok(oPopover.isOpen(), "Popover should be opened");
+
+				oPopover.destroy();
+				oSegBtn.destroy();
 			});
 		</script>
 	</head>

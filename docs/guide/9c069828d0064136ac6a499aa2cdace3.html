@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6178860591058778"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=533721621873477"/>
 <title>JS Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,7 +27,7 @@
 <h1 class="title topictitle1">JS Fragments</h1>
 <div class="body conbody"><p class="shortdesc"/>
 <p class="p">You can define a simple JS fragment named <span class="keyword apiname">my.useful.UiPartX</span> like this:</p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 sap.ui.jsfragment("my.useful.UiPartX", { 
 	createContent: function(oController ) {
 		var oButton = new sap.ui.commons.Button({ 

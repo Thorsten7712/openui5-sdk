@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=11337483213471033"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3850263364784354"/>
 <title>Identifying the Language Code / Locale</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -52,38 +54,38 @@
 						<samp class="ph codeph">sap-language</samp>, SAPUI5 assumes that it is a SAP proprietary
 					language code and converts it to a BCP-47 language tag as follows:</p>
 
-				<table summary="" id="loio91f21f176f4d1014b6dd926db0e91070__simpletable_q3y_h5b_jm" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d529967e61" class="stentry" width="33.333333333333336%">SAP Language Code</th>
-<th valign="bottom" align="left" id="d529967e63" class="stentry" width="33.333333333333336%">BCP47 Language Tag</th>
-<th valign="bottom" align="left" id="d529967e65" class="stentry" width="33.333333333333336%">Description</th>
+				<table summary="" id="loio91f21f176f4d1014b6dd926db0e91070__simpletable_q3y_h5b_jm" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d803897e61" class="stentry" width="33.333333333333336%">SAP Language Code</th>
+<th valign="bottom" align="left" id="d803897e63" class="stentry" width="33.333333333333336%">BCP47 Language Tag</th>
+<th valign="bottom" align="left" id="d803897e65" class="stentry" width="33.333333333333336%">Description</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d529967e61" class="stentry"><samp class="ph codeph">ZH</samp></td>
-<td valign="top" headers="d529967e63" class="stentry"><samp class="ph codeph">zh-Hans</samp></td>
-<td valign="top" headers="d529967e65" class="stentry"><samp class="ph codeph">ZH</samp> is the SAP language code for Simplified
+<tr class="strow"><td valign="top" headers="d803897e61" class="stentry"><samp class="ph codeph">ZH</samp></td>
+<td valign="top" headers="d803897e63" class="stentry"><samp class="ph codeph">zh-Hans</samp></td>
+<td valign="top" headers="d803897e65" class="stentry"><samp class="ph codeph">ZH</samp> is the SAP language code for Simplified
 							Chinese. The most generic representation in BCP47 is
 								<samp class="ph codeph">zh-Hans</samp>. <samp class="ph codeph">zh-CN</samp> (Chinese, China) is
 							another representation, but SAPUI5 decided to use
 								<samp class="ph codeph">zh-Hans</samp>.</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d529967e61" class="stentry"><samp class="ph codeph">ZF</samp></td>
-<td valign="top" headers="d529967e63" class="stentry"><samp class="ph codeph">zh-Hant</samp></td>
-<td valign="top" headers="d529967e65" class="stentry"><samp class="ph codeph">ZF</samp> is the SAP language code for Simplified
+<tr class="strow"><td valign="top" headers="d803897e61" class="stentry"><samp class="ph codeph">ZF</samp></td>
+<td valign="top" headers="d803897e63" class="stentry"><samp class="ph codeph">zh-Hant</samp></td>
+<td valign="top" headers="d803897e65" class="stentry"><samp class="ph codeph">ZF</samp> is the SAP language code for Simplified
 							Chinese. The most generic representation in BCP47 is
 								<samp class="ph codeph">zh-Hant</samp>. <samp class="ph codeph">zh-TW</samp> (Chinese, Taiwan)
 							is another representation, but SAPUI5 decided to use
 								<samp class="ph codeph">zh-Hant</samp>.</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d529967e61" class="stentry"><samp class="ph codeph">1Q</samp></td>
-<td valign="top" headers="d529967e63" class="stentry"><samp class="ph codeph">en-US-x-saptrc</samp></td>
-<td valign="top" headers="d529967e65" class="stentry"><samp class="ph codeph">1Q</samp> is a technical SAP language code used in
+<tr class="strow"><td valign="top" headers="d803897e61" class="stentry"><samp class="ph codeph">1Q</samp></td>
+<td valign="top" headers="d803897e63" class="stentry"><samp class="ph codeph">en-US-x-saptrc</samp></td>
+<td valign="top" headers="d803897e65" class="stentry"><samp class="ph codeph">1Q</samp> is a technical SAP language code used in
 							support scenarios, for example for translation issues. When you select
 							this language code, the technical keys are display instead of the actual
 							data. As no ISO639 code for this exists, the information has been added
 							as a BCP47 private extension to the <samp class="ph codeph">en-US</samp> language tag:
 							"trc" stands for "trace" or "traceability".</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d529967e61" class="stentry"><samp class="ph codeph">2Q</samp></td>
-<td valign="top" headers="d529967e63" class="stentry"><samp class="ph codeph">en-US-x-sappsd</samp></td>
-<td valign="top" headers="d529967e65" class="stentry"><samp class="ph codeph">2Q</samp> is also used as a technical SAP language code
+<tr class="strow"><td valign="top" headers="d803897e61" class="stentry"><samp class="ph codeph">2Q</samp></td>
+<td valign="top" headers="d803897e63" class="stentry"><samp class="ph codeph">en-US-x-sappsd</samp></td>
+<td valign="top" headers="d803897e65" class="stentry"><samp class="ph codeph">2Q</samp> is also used as a technical SAP language code
 							in support scenarios and displays a pseudo translation ("psd" in the
 							private extensions name).</td>
 </tr>
@@ -114,7 +116,7 @@
 		  resulting current language as follows: 
 		</p>
  
-		<div><pre class="pre codeblock">var sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();</pre></div>
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();</pre></div>
  
 		<div class="note note" id="loio91f21f176f4d1014b6dd926db0e91070__note_N10086_N10034_N10013_N10001"><span class="notetitle">Note</span> The syntax of the returned value depends on
 		  the syntax used for configuration. If the information source is one of the

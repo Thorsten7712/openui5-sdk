@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3223974490104359"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=03959876201288681"/>
 <title>Data Binding: Getting Started</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -61,7 +63,7 @@
 <li class="li">Create the data that you want to bind to a control property. As we are using the
 					JSON model, you need to provide this data in JSON format.</li>
 <li class="li">Place the code into your sample page:
-					<div><pre class="pre codeblock">// JSON sample data
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// JSON sample data
 var data = {
     firstName: "John",
     lastName: "Doe",
@@ -81,7 +83,7 @@ var data = {
 				to attach the model to a specific control by calling
 					<samp class="ph codeph">oElement.setModel(oModel)</samp>. </p>
  
-		<div><pre class="pre codeblock">// create JSON model instance
+		<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// create JSON model instance
 var oModel = new sap.ui.model.json.JSONModel();
 // set the data for the model
 oModel.setData(data);
@@ -97,7 +99,7 @@ sap.ui.getCore().setModel(oModel);</pre></div>
 				control constructor by using {} braces and specifying the path to the property in
 				the model. You do this for both controls.
 				</p>
-<div><pre class="pre codeblock">// create your controls        
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// create your controls        
 var oTextView = new sap.ui.commons.TextView("textView", {
     // bind text property of textview to firstName property in the model
     text: "{/firstName}",
@@ -113,7 +115,7 @@ var oTxt = new sap.ui.commons.TextField("txtField", {
 				the previously created <samp class="ph codeph">TextField</samp> by using an alternative binding
 				notation:
 				</p>
-<div><pre class="pre codeblock">// create your controls
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// create your controls
 var oChkBx = new sap.ui.commons.CheckBox("box", {
     // bind checked property against enabled property in the model
     checked: "{/enabled}", 
@@ -135,7 +137,7 @@ function handleCheckBoxChange(oEvent){
 				the update method for updating the firstName value in the model with the value of
 				the <samp class="ph codeph">TextField</samp> when the button is clicked.
 				</p>
-<div><pre class="pre codeblock">// create your controls
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// create your controls
 var oBtn = new sap.ui.commons.Button({
     id: "btn", 
     text: "Trigger Change",
@@ -176,7 +178,7 @@ function update(){
 				collection of data. Again, you start with the definition of data and set it to the
 				model and the model to the core.
 				</p>
-<div><pre class="pre codeblock">//create test data
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//create test data
 var dataObject = { data : [{index:0, level: "Warning", description: "HAL: I'm sorry, Dave. I'm afraid I can't do that."},
         {index:1, level: "Warning", description: "Windows Boot Manager has encountered a problem."},
         {index:2, level: "Error", description: "Failwhale: Twitter is over capacity"},
@@ -199,7 +201,7 @@ sap.ui.getCore().setModel(oModel);</pre></div>
 				the corresponding level and description values from the model so that these
 				properties are bound to the model:
 				</p>
-<div><pre class="pre codeblock">//create the template control that will be repeated and will display the data
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//create the template control that will be repeated and will display the data
 var oRowTemplate = new sap.ui.commons.Message("rowTemplate", {
     text : "{description}",
     type : "{level}"
@@ -212,7 +214,7 @@ var oRowTemplate = new sap.ui.commons.Message("rowTemplate", {
 				specify the name of the array in the JSON model that contains the actual data (path)
 				and also specify the <samp class="ph codeph">Message</samp> row template:
 				</p>
-<div><pre class="pre codeblock">//create the RowRepeater control
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//create the RowRepeater control
 var oRowRepeater = new sap.ui.commons.RowRepeater("rowRepeater", {
     design : "Standard",
     numberOfRows : 5,

@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5266715180256846"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=10194679551270835"/>
 <title>Route Matching</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">For route matching, the order of route definition is important: Only the first matching route
 			will be matched. Therefore, define specific routes first as shown in the following code
 			snippet:</p>
-<div><pre class="pre codeblock">//this is '''correct'''
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//this is '''correct'''
 {
     "firstRoute" : {
         "pattern" : "foo/bar"
@@ -41,7 +43,7 @@
 <p class="p">If you do it the other way round as shown in the following example, the
 				<samp class="ph codeph">secondRoute</samp> is hit passing <samp class="ph codeph">bar</samp> as ID whereas the
 			first route will never be hit:</p>
-<div><pre class="pre codeblock">//this is '''correct'''
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//this is '''correct'''
 {
     "firstRoute" : {
         "pattern" : "foo/bar"

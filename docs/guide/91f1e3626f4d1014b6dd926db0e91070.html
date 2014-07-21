@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3519927080210209"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=23290380434912272"/>
 <title>Preload Variant for Bootstrapping</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -70,7 +72,7 @@
 <p class="p">You can easily check the preload variant with an existing application by specifying the
 				<samp class="ph codeph">sap-ui-preload=/mode/</samp> parameter in the start URL by adding the
 				<samp class="ph codeph">data-sap-ui-preload</samp> attribute to the bootstrap tag:</p>
-<div><pre class="pre codeblock">    &lt;script 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">    &lt;script 
             id="sap-ui-bootstrap"            
             src="resources/sap-ui-core.js" 
             data-sap-ui-libs="sap.ui.commons"

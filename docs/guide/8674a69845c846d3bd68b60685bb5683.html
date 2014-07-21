@@ -12,9 +12,11 @@
 <meta name="abstract" content="The XML model supports documents using XML namespaces."/>
 <meta name="description" content="The XML model supports documents using XML namespaces."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2293532748657111"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=47233509841811505"/>
 <title>XML Namespace Support</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,13 +31,13 @@
 			document, they only used in the binding paths which are used to address nodes in the
 			document.</p>
 <p class="p">Assumed this sample XML document:</p>
-<div><pre class="pre codeblock">&lt;data xmlns="http://tempuri.org/base" xmlns:ext="http://tempuri.org/ext"&gt;
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;data xmlns="http://tempuri.org/base" xmlns:ext="http://tempuri.org/ext"&gt;
      &lt;ext:entry id="1" value="foo" /&gt;
      &lt;ext:entry id="1" value="foo" /&gt;
 &lt;/data&gt;</pre></div>
 <p class="p">The namespaces must be declared in the JavaScript like this, to be able to bind to
 			them:</p>
-<div><pre class="pre codeblock">var oModel = new sap.ui.model.xml.XMLModel(oXMLDoc);
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.xml.XMLModel(oXMLDoc);
 oModel.setNameSpace("http://tempuri.org/base");
 oModel.setNameSpace("http://tempuri.org/ext", "e"); [...]
 oTable.bindRows("/e:entry");</pre></div>

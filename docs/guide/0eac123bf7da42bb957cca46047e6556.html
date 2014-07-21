@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8654665039653253"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7163859327109224"/>
 <title>Example: Using Data Types</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -31,7 +33,7 @@
 				options minimum/maximum fraction digits equals 2 and a maximum value constraint of
 				10: </p>
 
-			<div><pre class="pre codeblock">// creating of a float type with 2 format options and one constraint
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// creating of a float type with 2 format options and one constraint
 var oFloat = new sap.ui.model.type.Float(
   {
      minFractionDigits: 2,
@@ -44,7 +46,7 @@ var oFloat = new sap.ui.model.type.Float(
 
 			<p class="p">To use the defined data type for the binding, proceed as follows: </p>
 
-			<div><pre class="pre codeblock">// specify the binding and the type directly in the control constructor
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// specify the binding and the type directly in the control constructor
 var oText = new sap.ui.commons.TextField({value: {path: "/sliderValue", type: oFloat}});
 // or alternatively do it afterwards
 oText.bindValue("/sliderValue", oFloat);</pre></div>

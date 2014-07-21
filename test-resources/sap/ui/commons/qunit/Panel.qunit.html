@@ -7,14 +7,13 @@
     <script id="sap-ui-bootstrap" 
 			type="text/javascript"
 			src="../../../../../resources/sap-ui-core.js"
-			data-sap-ui-theme="sap_platinum"
+			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-noConflict="true"
 			data-sap-ui-libs="sap.ui.commons" >
 		</script>
     
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -269,7 +268,7 @@
 			if (sap.ui.Device.browser.internet_explorer && (!document.documentMode || document.documentMode < 9)) {
 				ok(sColor === "white" || sColor === "#ffffff", "Panel must by default be filled with a white color (Actual: "+sColor+")");
 			} else {
-				equal(sColor, "rgb(255, 255, 255)",	"Panel must by default be filled with a white color");
+				equal(sColor, "rgba(255, 255, 255, 0.8)",	"Panel must by default be filled with a white color");
 			} 
 
 			// now switch to "Plain" and do the same tests			
@@ -312,14 +311,14 @@
 			equal(oRootDomRef.className.indexOf("sapUiPanelBorderDesignNone"), -1, "Panel must by default not have BorderDesign.None");
 
 			// make sure it is actually boxed
-			equal(jQuery(oRootDomRef).css("borderLeftWidth"), "1px", "Panel content must have a border");
-			equal(jQuery(oRootDomRef).css("borderRightWidth"), "1px", "Panel content must have a border");
-			equal(jQuery(oRootDomRef).css("borderTopWidth"), "1px", "Panel content must have a border");
-			equal(jQuery(oRootDomRef).css("borderBottomWidth"), "1px", "Panel content must have a border");
-			equal(jQuery(oRootDomRef).css("borderLeftStyle"), "solid", "Panel content must have a border");
-			equal(jQuery(oRootDomRef).css("borderRightStyle"), "solid", "Panel content must have a border");
-			equal(jQuery(oRootDomRef).css("borderTopStyle"), "solid", "Panel content must have a border");
-			equal(jQuery(oRootDomRef).css("borderBottomStyle"), "solid", "Panel content must have a border");
+			equal(jQuery(oRootDomRef).css("borderLeftWidth"), "0px", "Panel content must not have a border");
+			equal(jQuery(oRootDomRef).css("borderRightWidth"), "0px", "Panel content must not have a border");
+			equal(jQuery(oRootDomRef).css("borderTopWidth"), "0px", "Panel content must not have a border");
+			equal(jQuery(oRootDomRef).css("borderBottomWidth"), "0px", "Panel content must not have a border");
+			equal(jQuery(oRootDomRef).css("borderLeftStyle"), "none", "Panel content must not have a border");
+			equal(jQuery(oRootDomRef).css("borderRightStyle"), "none", "Panel content must not have a border");
+			equal(jQuery(oRootDomRef).css("borderTopStyle"), "none", "Panel content must not have a border");
+			equal(jQuery(oRootDomRef).css("borderBottomStyle"), "none", "Panel content must not have a border");
 
 			// now switch to "Plain" and do the same tests			
 			oCtrl.setBorderDesign(sap.ui.commons.enums.BorderDesign.None);

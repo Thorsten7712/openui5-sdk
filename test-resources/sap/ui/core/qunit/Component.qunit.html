@@ -10,7 +10,7 @@
 	<script id="sap-ui-bootstrap" 
 		type="text/javascript"
 		src="../../../../../resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_goldreflection"
+		data-sap-ui-theme="sap_bluecrystal"
 		data-sap-ui-noConflict="true">
 	</script>
 <link rel="stylesheet"
@@ -18,8 +18,6 @@
 	media="screen" />
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript"
-	src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
@@ -54,6 +52,29 @@
 		component : oComp
 	});
 	oCompCont.placeAt("comparea2");
+	
+	//******************************************************
+	//Test preparation for custom component configuration
+	jQuery.sap.require("sap.ui.core.Component");
+	sap.ui.core.Component.extend("test.comp1.Component", {
+		metadata: {
+			"properties" : {
+				"test" : "string"
+			},
+			"my.custom.config" : {
+				"property1" : "value1",
+				"property2" : "value2"
+			}
+		}
+	});
+	test.comp1.Component.extend("test.comp2.Component", {
+		metadata: {
+			"my.custom.config" : {
+				"property1" : "value3"
+			}
+		}
+	});
+	//******************************************************
 
 	
  	module("Basic Components");
@@ -83,6 +104,26 @@
 		notEqual(oComp.getMetadata().getDependencies(), null, "Dependencies retrieved");
 		deepEqual(oComp.getMetadata().getComponents(), components, "Child components retrieved");
 		equal(oComp.getMetadata().getUI5Version(), "1.13.0", "UI5 Version retrieved");
+	});
+	
+	test("Components Metadata - Custom Configuration Entry", function(){
+		var oSuccessMerged = test.comp2.Component.getMetadata().getCustomEntry("my.custom.config", true);
+		var oSuccessUnMerged = test.comp2.Component.getMetadata().getCustomEntry("my.custom.config", false);
+		var oFail = test.comp2.Component.getMetadata().getCustomEntry("properties");
+		
+		ok(!oFail, "Standard metadata can not be accessed.");
+		equal(oSuccessMerged.property1, "value3", "Property 1 merged and overridden.");
+		equal(oSuccessMerged.property2, "value2", "Property 2 merged and but not overridden.");
+		equal(oSuccessUnMerged.property1, "value3", "Property 1 not merged.");
+		ok(!oSuccessUnMerged.property2, "Property 2 not merged (does not exist).");
+	});
+	
+	test("Components Metadata - Load from file", function(){
+		jQuery.sap.require("samples.components.loadfromfile.Component");
+		var oMetadata = samples.components.loadfromfile.Component.getMetadata();
+		
+		deepEqual(oMetadata.getIncludes(), ["css/includeme.css", "js/includeme.js"], "Includes are available.");
+		ok(oMetadata.hasProperty("prop1"), "Property 'prop1' available.");
 	});
 	
 	test("Components Includes", function(){

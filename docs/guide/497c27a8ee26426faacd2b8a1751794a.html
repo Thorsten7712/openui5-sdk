@@ -9,12 +9,14 @@
 
 
 
-<meta name="abstract" content="To theme your application you can choose between different options."/>
-<meta name="description" content="To theme your application you can choose between different options."/>
+<meta name="abstract" content="SAPUI5 is an HTML UI library, therefore styling is done using Cascading StyleSheets (CSS). This allows creating an impressive visual experience using a widely known standard technology which is well-accepted on the market."/>
+<meta name="description" content="SAPUI5 is an HTML UI library, therefore styling is done using Cascading StyleSheets (CSS). This allows creating an impressive visual experience using a widely known standard technology which is well-accepted on the market."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9937099303687287"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=05168560996205007"/>
 <title>Theming</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -23,39 +25,72 @@
 <body class="sap_bluecrystal" id="loio497c27a8ee26426faacd2b8a1751794a">
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">Theming</h1>
-<div class="body conbody"><p class="shortdesc">To theme your application you can choose between different options.</p>
-<ul class="ul" id="loio497c27a8ee26426faacd2b8a1751794a__ol_lg1_zmt_mn"><li class="li">You adapt an existing theme by using the UI theme designer, which basically modifies the
-				color scheme, but in a very easy, non-technical manner with instant live preview.
-				Adaptation parameters are limited, but the UI theme designer also allows adding
-				custom CSS, which gives the freedom to adapt basically everything.</li>
-<li class="li">You adapt an existing theme by adding CSS on application level. This is the easiest
-				option and still sufficient for many use-cases. One can technically adapt and change
-				everything.</li>
-<li class="li">Create a new theme from scratch, writing every piece of CSS which will be loaded
-				later. The only requirement is to have <span class="ph filepath">library.css</span> files within
-				a certain folder structure (which also defines the theme name).</li>
+<div class="body conbody"><p class="shortdesc">SAPUI5 is an HTML UI library, therefore styling is done using Cascading StyleSheets
+		(CSS). This allows creating an impressive visual experience using a widely known standard
+		technology which is well-accepted on the market.</p>
+<p class="p"> SAPUI5 supports to create and use different visual designs - called <dfn class="term">themes</dfn> - that
+			can be used alternatively and switched on the fly, thus allowing for the same
+			application to have a very different look, depending on the user's design preference, or
+			on accessibility requirements. Existing themes can serve as a base for new themes and in
+			case of new design trends, it is possible to create a matching theme for all existing
+			applications without modifying the applications. The abstraction level is that high that
+			the theme handling is decoupled from application development and done on a separate
+			layer. The SAPUI5 library takes care of loading the required CSS files and offers ways
+			of switching themes.</p>
+<p class="p">On top of pure CSS, SAPUI5 offers a variety of optional features that add value regarding
+			modularization, modification, compatibility and performance:</p>
+<ul class="ul" id="loio497c27a8ee26426faacd2b8a1751794a__ul_plw_g2t_d4"><li class="li">CSS variables, mix-ins, color calculations and other functions, provided by the Open Source
+				library <span class="ph pname">LESS</span>.</li>
+<li class="li">In particular the CSS variables are used for centrally defined and centrally
+				modifiable colors</li>
+<li class="li">Compilation of one CSS file per control library out of modular per-control CSS
+				files</li>
+<li class="li">Optimization/compression of CSS size</li>
+<li class="li">Clean browser switch and mobile platform detection available (inside CSS code)</li>
+<li class="li">Base theme (as base for an always required style to reduce the amount of CSS
+				required for specific themes)</li>
+<li class="li">Generic Right-to-Left support</li>
 </ul>
-<p class="p">All options except the first result in a new standalone theme which needs to be deployed
-			and referenced by its name in the application and which could be used by any
-			application. In the second option, the adaptation is rather done on top of an existing
-			theme and only available within the specific application.</p>
-<p class="p">In all options the CSS developer could choose to limit the styling effort to those
-			controls which are actually used in the application (which of course limits the re-use
-			value of the theme in other applications).</p>
-<div class="section"><div class="section_title">When can I use UI Theme Designer and when do I have to do some separate steps?</div><div type="When can I use UI Theme Designer and when do I have to do some separate steps?">
+<p class="p">To ensure these functions, SAPUI5 uses the following components: </p>
+<ul class="ul" id="loio497c27a8ee26426faacd2b8a1751794a__ul_pwp_fnt_f4"><li class="li">A CSS generator with several functions: LESS processing (CSS variables substitution
+				etc.), merge of CSS files created for different themes and controls for optimal
+				runtime consumption, as well as compression or right-to-left substitution if
+				required.</li>
+<li class="li">The SAPUI5 runtime takes care of loading the appropriate CSS file for the control
+				libraries used in the application page by adding <samp class="ph codeph">&lt;style&gt;</samp> tags
+				to the document head. There is also an API available for switching themes which
+				replaces the CSS URLs and therefore does not modify the application state.</li>
+</ul>
+<div class="section"><div class="section_title">Options to theme your SAPUI5 application</div><div type="Options to theme your SAPUI5 application">
 			
-			<div class="p">There is not one single way to create a new theme, but there are several options.
-				Which one to choose depends on several factors:<ul class="ul" id="loio497c27a8ee26426faacd2b8a1751794a__ul_cdq_jwp_qn"><li class="li">How different is the desired design from an existing theme?</li>
-<li class="li">Should the theme be used across several applications or just in one?</li>
-<li class="li">Are sufficient CSS skills available?</li>
-<li class="li">How structured and clean should the result be?</li>
-</ul>
-</div>
+			<p class="p">To theme your application you can choose between different options:</p>
 
-			<p class="p">Depending on the answers it may be that one should not even create a new theme but
-				just adapt an existing one.</p>
+			<ul class="ul" id="loio497c27a8ee26426faacd2b8a1751794a__ol_lg1_zmt_mn"><li class="li">You adapt an existing theme by using the <span class="ph pname">UI theme designer</span>, which
+					basically modifies the color scheme, but in a very easy, non-technical manner
+					with instant live preview. Adaptation parameters are limited, but the UI theme
+					designer also allows adding custom CSS, which gives the freedom to adapt
+					basically everything.</li>
+<li class="li">Create a new theme from scratch, writing every piece of CSS which will be loaded
+					later. The only requirement is to have <span class="ph filepath">library.css</span> files
+					within a certain folder structure (which also defines the theme name).</li>
+<li class="li">You adapt an existing theme by adding CSS on application level. This is the
+					easiest option and still sufficient for many use-cases. One can technically
+					adapt and change everything. The adaptation is rather done on top of an existing
+					theme and only available within the specific application.</li>
+</ul>
+
+			<p class="p">All options except the last one result in a new standalone theme which needs to be
+				deployed and referenced by its name in the application and which could be used by
+				any application.</p>
+
+			<p class="p">In all options the CSS developer could choose to limit the styling effort to those
+				controls which are actually used in the application (which of course limits the
+				re-use value of the theme in other applications).</p>
 
 		</div></div>
+<div class="section"><div class="section_title"/>
+			<p class="p"/>
+</div>
 <div class="section"><div class="section_title">What to consider when developing custom HTML or your own controls?</div><div type="What to consider when developing custom HTML or your own controls?">
 			
 			<ul class="ul" id="loio497c27a8ee26426faacd2b8a1751794a__ul_u2z_wzw_qn"><li class="li">
@@ -74,7 +109,7 @@
 		</div></div>
 <div class="section"><div class="section_title">More Information</div><div type="More Information">
 			
-			<p class="p">The UI Theme Designer is delivered on SAP HANA Cloud Platform.</p>
+			<p class="p">The UI theme designer is delivered on SAP HANA Cloud Platform.</p>
 
 			<p class="p">For more information, see: <a class="xref" href="https://help.hana.ondemand.com/theme_designer/frameset.htm">UI Theme Designer</a></p>
 
@@ -85,6 +120,7 @@
 <div class="familylinks">
 </div>
 <div class="relinfo"><div class="relinfotitle ">Related Information</div>
+<div><a class="link" href="https://help.hana.ondemand.com/theme_designer/frameset.htm?91ebfe2a14204244bd052a03018d6781.html">Basics of Theming</a></div>
 <div><a class="link" href="cb65d9e75bef4f239c26a9f9c294f5a1.html">SAPUI5 Theming Concept: Right-to-left Support</a></div>
 </div>
 </div></div></div>

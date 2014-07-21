@@ -4,11 +4,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <!-- Initialization -->
 <script id="sap-ui-bootstrap" type="text/javascript" src="../../../../../resources/sap-ui-core.js" 
-	data-sap-ui-theme="sap_platinum" data-sap-ui-libs="sap.ui.commons"></script>
+	data-sap-ui-theme="sap_bluecrystal" data-sap-ui-libs="sap.ui.commons"></script>
 
 <link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 <!--[if IE]>
@@ -333,6 +332,142 @@
 			start(); // resume normal testing
 		}
 		oList.getBinding("items").attachChange(handler);
+	});
+
+	
+	asyncTest("ListBinding filter (sap.ui.model.odata.Filter.convert)", function(){		
+		var handler = function(oEvent){
+			// contexts should be now loaded
+			var aFilteredContexts = oEvent.oSource.getContexts();
+			equal(aFilteredContexts.length, 1, "EQ filtered content length");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[0]), "Beverages", "EQ filtered content");
+
+			oBinding.detachChange(handler);
+			// NE, contains
+			oFilter = new sap.ui.model.odata.Filter("CategoryName", [{
+				operator: sap.ui.model.FilterOperator.EQ, 
+				value1: "Condiments"
+			}, {
+				operator: sap.ui.model.FilterOperator.Contains, 
+				value1: "ons"
+			}], false);
+			oBinding.filter(oFilter.convert());
+			oBinding.attachChange(handler1);
+			oBinding.getContexts();
+		};
+		var handler1 = function(oEvent){
+			// contexts should be now loaded
+			var aFilteredContexts = oEvent.oSource.getContexts();
+			equal(aFilteredContexts.length, 2, "NE, contains, filtered content length");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[0]), "Condiments", "EQ, Contains, filtered content");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[1]), "Confections", "EQ, Contains, filtered content");
+
+			oBinding.detachChange(handler1);
+			// between
+			oFilter = new sap.ui.model.odata.Filter("CategoryName", [{
+				operator: sap.ui.model.FilterOperator.BT, 
+				value1: "Beverages", 
+				value2: "D"
+			}]);
+			oBinding.filter(oFilter.convert());
+			oBinding.attachChange(handler2);
+			oBinding.getContexts();
+		};
+		var handler2 = function(oEvent){
+			// contexts should be now loaded
+			var aFilteredContexts = oEvent.oSource.getContexts();
+			equal(aFilteredContexts.length, 3, "between filtered content length");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[0]), "Beverages", "between filtered content");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[1]), "Condiments", "between filtered content");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[2]), "Confections", "between filtered content");
+
+			oBinding.detachChange(handler2);
+			// startsWith, endsWith
+			oFilter = new sap.ui.model.odata.Filter("CategoryName", [{operator: sap.ui.model.FilterOperator.StartsWith, value1: "C"}]);
+			oFilter2 = new sap.ui.model.odata.Filter("Description", [{operator: sap.ui.model.FilterOperator.EndsWith, value1: "ngs"}]);
+			oBinding.filter([oFilter.convert(), oFilter2.convert()]);
+			oBinding.attachChange(handler3);
+			oBinding.getContexts();
+		};
+		var handler3 = function(oEvent){
+			// contexts should be now loaded
+			var aFilteredContexts = oEvent.oSource.getContexts();
+			equal(aFilteredContexts.length, 1, "startsWith, endsWith filtered content length");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[0]), "Condiments", "startsWith, endsWith filtered content");
+
+			oBinding.detachChange(handler3);
+			oFilter = new sap.ui.model.odata.Filter("CategoryName", [{
+				operator:sap.ui.model.FilterOperator.LE, 
+				value1: "Z"
+			}, {
+				operator:sap.ui.model.FilterOperator.GE, 
+				value1: "A"
+			}, {
+				operator:sap.ui.model.FilterOperator.NE, 
+				value1: "Beverages"
+			}]);
+			oBinding.filter(oFilter.convert());
+			oBinding.attachChange(handler4);
+			oBinding.getContexts();
+		};
+		var handler4 = function(oEvent){
+			// contexts should be now loaded
+			var aFilteredContexts = oEvent.oSource.getContexts();
+			equal(aFilteredContexts.length, 7, "sap.ui.model.odata.Filter, ANDed");
+			ok(oModel.getProperty("CategoryName",aFilteredContexts[0]) != "Beverages" && oModel.getProperty("CategoryName",aFilteredContexts[0]) == "Condiments", "sap.ui.model.odata.Filter, ANDed");
+
+			oBinding.detachChange(handler4);
+			oFilter = new sap.ui.model.odata.Filter("CategoryName", [{
+				operator:sap.ui.model.FilterOperator.EQ, 
+				value1: "Condiments"
+			}, {
+				operator:sap.ui.model.FilterOperator.EQ, 
+				value1: "Beverages"
+			}], false);
+			oBinding.filter(oFilter.convert());
+			oBinding.attachChange(handler5);
+			oBinding.getContexts();
+		};
+		var handler5 = function(oEvent){
+			// contexts should be now loaded
+			var aFilteredContexts = oEvent.oSource.getContexts();
+			equal(aFilteredContexts.length, 2, "sap.ui.model.odata.Filter, ORed");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[0]), "Beverages", "sap.ui.model.odata.Filter, ORed");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[1]), "Condiments", "sap.ui.model.odata.Filter, ORed");
+
+			oBinding.detachChange(handler5);
+			oFilter = new sap.ui.model.odata.Filter("CategoryName", [{
+				operator:sap.ui.model.FilterOperator.EQ, value1: "Condiments"
+			}, {
+				operator:sap.ui.model.FilterOperator.EQ, value1: "Beverages"
+			}], false);
+			oFilter2 = new sap.ui.model.odata.Filter("Description", [{
+				operator: sap.ui.model.FilterOperator.EndsWith, 
+				value1: "ings"
+			}]);
+			oBinding.filter([oFilter.convert(), oFilter2.convert()]);
+			oBinding.attachChange(handler6);
+			oBinding.getContexts();
+		};
+		var handler6 = function(oEvent){
+			// contexts should be now loaded
+			var aFilteredContexts = oEvent.oSource.getContexts();
+			equal(aFilteredContexts.length, 1, "sap.ui.model.odata.Filter + normal Filter");
+			equal(oModel.getProperty("CategoryName",aFilteredContexts[0]), "Condiments", "sap.ui.model.odata.Filter + normal Filter");
+
+			oBinding.detachChange(handler6);
+			start(); 
+		};
+		var oModel = initModel(sURI, false, "Categories");
+		var oBinding = oModel.bindList("/Categories");
+		//check EQ
+		var oFilter = new sap.ui.model.odata.Filter("CategoryName", [{
+			operator: sap.ui.model.FilterOperator.EQ, 
+			value1: "Beverages"
+		}]);
+		oBinding.attachChange(handler);
+		oBinding.filter(oFilter.convert());
+		oBinding.getContexts();
 	});
 	</script>
 

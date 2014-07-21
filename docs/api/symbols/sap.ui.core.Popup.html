@@ -171,6 +171,11 @@ be able to focus the Popups of the TinyMCE if the RichTextEditor runs within a P
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="When the Popup is being destroyed all corresponding references should be deleted as well to prevent any memory leeks."><a href="../symbols/sap.ui.core.Popup.html#exit">exit</a></b><span class='signature'>()</span>
+									<span class='description'>When the Popup is being destroyed all corresponding references should be deleted as well to prevent any memory leeks.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Determines whether the pop-up should auto closes or not."><a href="../symbols/sap.ui.core.Popup.html#getAutoClose">getAutoClose</a></b><span class='signature'>()</span>
 									<span class='description'>Determines whether the pop-up should auto closes or not.</span>
 								</div>
@@ -261,7 +266,7 @@ be able to focus the Popups of the TinyMCE if the RichTextEditor runs within a P
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Sets the position of the Popup (if you refer to a Control as anchor then do not use the DOMRef of the control which might change after re-renderings)."><a href="../symbols/sap.ui.core.Popup.html#setPosition">setPosition</a></b><span class='signature'>(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | object {left: {sap.ui.core.CSSSize}|top: {sap.ui.core.CSSSize}}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Control | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Sets the position of the Popup (if you refer to a Control as anchor then do not use the DOMRef of the control which might change after re-renderings)."><a href="../symbols/sap.ui.core.Popup.html#setPosition">setPosition</a></b><span class='signature'>(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | {left: sap.ui.core.CSSSize|top: sap.ui.core.CSSSize}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Control | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Sets the position of the Popup (if you refer to a Control as anchor then do not use the DOMRef of the control which might change after re-renderings).</span>
 								</div>
 							
@@ -419,7 +424,7 @@ Event is fired when the popup has completely closed (after any animation).
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object on which to call the given function.
@@ -489,7 +494,7 @@ Event is fired when the popup has completely opened (after any animation).
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object on which to call the given function.
@@ -549,7 +554,7 @@ may lead to inconsistent behavior and is thus not recommended and may even be re
 													  <span class="light">{int}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>iDuration</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>iDuration</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    animation duration in milliseconds; default is the jQuery preset "fast".  For iDuration == 0 the closing happens synchronously without animation.
@@ -720,6 +725,31 @@ Does not destroy the hosted content.
 												</tr>
 											
 											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="exit"> </a>
+										<div class="itemTitle icon">
+											exit<span class="signature">()</span>
+											
+										</div>
+										<div class="full-description">
+											When the Popup is being destroyed all corresponding references should be 
+deleted as well to prevent any memory leeks.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
 										
 										
 										
@@ -1106,7 +1136,7 @@ If the Popup's OpenState is different from "CLOSED" (i.e. if the Popup is alread
 													  <span class="light">{int}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>iDuration</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>iDuration</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    animation duration in milliseconds; default is the jQuery preset "fast". For iDuration == 0 the opening happens synchronously without animation.
@@ -1636,7 +1666,7 @@ Setting this while the popup is open will change "block layer" immediately.
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sModalCSSClass</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sModalCSSClass</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a CSS class (or space-separated list of classes) that should be added to the block layer
@@ -1670,7 +1700,7 @@ Setting this while the popup is open will change "block layer" immediately.
 									<div class='sectionItem classMethod'>
 										<a name="setPosition"> </a>
 										<div class="itemTitle icon">
-											setPosition<span class="signature">(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | object {left: {sap.ui.core.CSSSize}|top: {sap.ui.core.CSSSize}}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Control | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
+											setPosition<span class="signature">(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | {left: sap.ui.core.CSSSize|top: sap.ui.core.CSSSize}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Control | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns sap.ui.core.Popup">: <a href="../symbols/sap.ui.core.Popup.html">sap.ui.core.Popup</a></span>
 										</div>
 										<div class="full-description">
@@ -1702,7 +1732,7 @@ Optional parameters can only be omitted when all subsequent parameters are omitt
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.ui.core.Popup.Dock.html">sap.ui.core.Popup.Dock</a>|object {left: {sap.ui.core.CSSSize}|top: {sap.ui.core.CSSSize}}}</span> 
+													  <span class="light">{<a href="../symbols/sap.ui.core.Popup.Dock.html">sap.ui.core.Popup.Dock</a>|{left: sap.ui.core.CSSSize|top: sap.ui.core.CSSSize}}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>at</b>
@@ -1741,7 +1771,7 @@ Optional parameters can only be omitted when all subsequent parameters are omitt
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>collision</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>collision</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    defines how the position of an element should be adjusted in case it overflows the window in some direction. The valid values that refer to jQuery-UI's position parameters are "flip", "fit" and "none".

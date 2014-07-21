@@ -17,21 +17,21 @@
 			</Button>
 		</headerContent>
 		<subHeader>
-			<Bar>
-				<contentMiddle>
-					<SearchField
-						id="search"
-						placeholder="Search ..."
-						liveChange="search"
-						tooltip="Search for Icons"
-						width="100%">
-					</SearchField>
-				</contentMiddle>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<SearchField
+					id="search"
+					placeholder="Search ..."
+					liveChange="search"
+					tooltip="Search for Icons"
+					width="100%">
+				</SearchField>
+				<ToolbarSpacer/>
+			</Toolbar>
 		</subHeader>
 		<footer>
-			<Bar>
-			</Bar>
+			<Toolbar>
+			</Toolbar>
 		</footer>
 		<content>
 			<!-- This list shows the search results -->

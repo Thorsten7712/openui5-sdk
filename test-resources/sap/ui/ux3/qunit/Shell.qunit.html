@@ -13,14 +13,13 @@
 		<script id="sap-ui-bootstrap" 
 			type="text/javascript"
 			src="../../../../../resources/sap-ui-core.js"
-			data-sap-ui-theme="sap_goldreflection"
+			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-noConflict="true"
 			data-sap-ui-libs="sap.ui.ux3,sap.ui.commons">
 		</script>
     
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<style>
@@ -35,7 +34,7 @@
 			z-index: -9;
 		}
 		
-		#myShell.CustomPadding .sapUiUx3ShellCanvas{
+		#myShell.CustomPadding .sapUiUx3ShellCanvas .sapUiUx3ShellContent {
 			padding-left: 10px;
 			padding-right: 10px;
 			padding-top: 10px;
@@ -117,10 +116,14 @@
     	
     	test("Content Padding / Full Height", function() {
     		oShell.destroy();
-    		oShell = new sap.ui.ux3.Shell("myShell", {
-			});
+    		oShell = new sap.ui.ux3.Shell("myShell");
     		oShell.placeAt("uiArea1");
     		sap.ui.getCore().applyChanges();
+    		
+    		if(jQuery("html").attr("data-sap-ui-browser") == "ie8"){
+    			ok(true, "Checks skipped for IE8");
+    			return; //Skip check for IE8
+    		}
     		
     		function checkSettings(){
     			var oSettings = oShell._settings;
@@ -128,7 +131,7 @@
     				oShell.addStyleClass(oSettings.customClass);
     			}
     			oShell.setFullHeightContent(oSettings.fullHeightContent);
-    			oShell.setApplyContentPadding(!!oSettings.contentPadding);
+    			oShell.setApplyContentPadding(oSettings.enablePadding);
     			
     			var $canvas = jQuery.sap.byId("myShell-canvas");
     			var $content = jQuery.sap.byId("myShell-content");
@@ -143,26 +146,31 @@
     			
     			var iTop = oSettings.contentPadding ? oSettings.contentPadding.top : 0;
     			var iBottom = oSettings.contentPadding ? oSettings.contentPadding.bottom : 0;
-    			var iLeft = oSettings.contentPadding ? oSettings.contentPadding.left : 0;
-    			var iRight = oSettings.contentPadding ? oSettings.contentPadding.right : 0;
+    			var iLeft = oSettings.contentPadding ? oSettings.contentPadding.left : (oSettings.enablePadding ? 20 : 0);
+    			var iRight = oSettings.contentPadding ? oSettings.contentPadding.right : (oSettings.enablePadding ? 20 : 0);
+    			var pad;
     			
-    			equal($canvas.outerHeight()-$content.height(), iTop + iBottom,
-    					"Padding Top/Bottom of Canvas when fullHeight=="+oShell.getFullHeightContent()+", padding-top=="+iTop+", padding-bottom=="+iBottom);
+    			if(oShell.getFullHeightContent()){
+    				pad = $canvas.outerHeight()-$content.height();
+    			}else{
+    				pad = $content.outerHeight();
+    			}
+    					
+ 				equal(pad, iTop + iBottom,
+ 	    				"Padding Top/Bottom of Canvas when padding enabled=="+oShell.getApplyContentPadding()+", fullHeight=="+oShell.getFullHeightContent()+", padding-top=="+iTop+", padding-bottom=="+iBottom);	
     			
-    			var pad = jQuery("html").attr("data-sap-ui-browser") == "ie8" && !oShell.getFullHeightContent() ?
-    					$canvas.outerWidth()-$canvas.width() : $canvas.outerWidth()-$content.width();
-    			
+    			pad = $canvas.outerWidth()-$content.width();
     			equal(pad, iLeft + iRight,
-    					"Padding Left/Right of Canvas when fullHeight=="+oShell.getFullHeightContent()+", padding-left=="+iLeft+", padding-right=="+iRight);
+    					"Padding Left/Right of Canvas when padding enabled=="+oShell.getApplyContentPadding()+", fullHeight=="+oShell.getFullHeightContent()+", padding-left=="+iLeft+", padding-right=="+iRight);
     		
     			if(oSettings.customClass){
     				oShell.removeStyleClass(oSettings.customClass);
     			}
     		}
     		
-    		var oSetting0 = {fullHeightContent: false, contentPadding: {top: 24, left: 32, right: 32, bottom: 2}}; //Default
-    		var oSetting1 = {fullHeightContent: false, contentPadding: {top: 10, left: 10, right: 10, bottom: 10}, customClass: "CustomPadding"};
-    		var oSetting2 = {fullHeightContent: false, contentPadding: null};
+    		var oSetting0 = {fullHeightContent: false, enablePadding: true}; //Default
+    		var oSetting1 = {fullHeightContent: false, enablePadding: false}; //No default padding
+    		var oSetting2 = {fullHeightContent: false, contentPadding: {top: 10, left: 10, right: 10, bottom: 10}, customClass: "CustomPadding"}; //Custom padding
     		
     		oShell._settings = oSetting0;
     		checkSettings();

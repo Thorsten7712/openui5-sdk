@@ -175,6 +175,9 @@ checking width and height of registered DOM elements and controls and firing eve
 										<div class="full-description">
 											Registers the given handler for resize events on the given
 DOM reference or Control.
+In case the core is not initialized yet, the timer cannot be registered and this method
+will return null. Please use sap.ui.getCore().attachInit() with a callback as parameter 
+that calls ResizeHandler.register().
 											
 											
 											

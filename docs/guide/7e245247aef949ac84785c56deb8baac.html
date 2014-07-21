@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=812303984478047"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9504540010818986"/>
 <title>Integrating the ItemNavigation in your Control</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 <div class="body"><p class="shortdesc"/>
 <p class="p">Apply the delegate in the <samp class="ph codeph">onAfterRendering</samp> hook of your control
 			once:</p>
-<div><pre class="pre codeblock">sap.ui.commons.ListBox.prototype.onAfterRendering = function () {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.commons.ListBox.prototype.onAfterRendering = function () {
         //Collect the dom references of the items
         var oFocusRef = this.getDomRef(),
                  aRows = oFocusRef.getElementsByTagName("TR"),
@@ -58,7 +60,7 @@
        this.oItemNavigation.setPageSize(this.getVisibleItems()); };</pre></div>
 <p class="p">After the control is destroyed, ensure that the delegate is correctly removed. Otherwise,
 			memory will leak because DOM nodes are still referenced by the delegate.</p>
-<div><pre class="pre codeblock">sap.ui.commons.ListBox.prototype.destroy = function() {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.commons.ListBox.prototype.destroy = function() {
                    if (this.oItemNavigation) {
                             this.removeDelegate(this.oItemNavigation);
                             this.oItemNavigation.destroy();

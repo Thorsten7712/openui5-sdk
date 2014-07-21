@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5327958662901943"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8882776677013908"/>
 <title>Handling Events in Controls</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -53,7 +55,7 @@
 		On the other hand side, it requires some coding to do the binding an unbinding of the
 		event handler and registering many event handlers can affect the performance.</p>
 <p class="p">Example for explicit registration of browser events:</p>
-<div><pre class="pre codeblock"> MyControl.prototype.onAfterRendering = function() {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> MyControl.prototype.onAfterRendering = function() {
 
         this.$().bind("click", jQuery.proxy(this.handleClick, this));  // could also be:  jQuery.sap.byId(this.getId).bind("click", jQuery.proxy(this.handleClick, this));
      }
@@ -83,7 +85,7 @@
 		deregistrations that are executes on every rerendering action. On the other hand side,
 		this option is only available for specific events.</p>
 <p class="p"> Example for registering the event handler directly:</p>
-<div><pre class="pre codeblock">MyControl.prototype.onclick = function(oEvent) {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">MyControl.prototype.onclick = function(oEvent) {
    // do something...
 }</pre></div>
 <p class="p">For a list of supported browser events that can be handled by just implementing an

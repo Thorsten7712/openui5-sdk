@@ -140,6 +140,11 @@
 									<span class='description'>Creates a new subclass of class sap.m.Popover with name <code>sClassName</code> and enriches it with the information contained in <code>oClassInfo</code>.</span>
 								</div>
 							
+								<div class="sectionItem classMethod protected">
+									<b class="icon protected" title="If customHeader is set, this will return the customHeaer."><a href="../symbols/sap.m.Popover.html#_getAnyHeader">_getAnyHeader</a></b><span class='signature'>()</span>
+									<span class='description'>If customHeader is set, this will return the customHeaer.</span>
+								</div>
+							
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Adds some content oContent to the aggregation named content."><a href="../symbols/sap.m.Popover.html#addContent">addContent</a></b><span class='signature'>(<span title="(sap.ui.core.Control) the content to add; if empty, nothing is inserted">oContent</span>)</span>
 									<span class='description'>Adds some content <code>oContent</code> to the aggregation named <code>content</code>.</span>
@@ -386,8 +391,8 @@
 								</div>
 							
 								<div class="sectionItem classMethod protected">
-									<b class="icon protected" title="The followOf feature from Popup which closes the popover in desktop browser when the position or the size of open by control changes may leads to unwanted close."><a href="../symbols/sap.m.Popover.html#setFollowOf">setFollowOf</a></b><span class='signature'>(<span title="(boolean) enables the followOf feature when set to true and disable the followOf when set to false">bValue</span>)</span>
-									<span class='description'>The followOf feature from Popup which closes the popover in desktop browser when the position or the size of open by control changes may leads to unwanted close.</span>
+									<b class="icon protected" title="The followOf feature closes the Popover when the change of the open by control's position is no less than 32 pixels when runs on desktop browsers."><a href="../symbols/sap.m.Popover.html#setFollowOf">setFollowOf</a></b><span class='signature'>(<span title="(boolean) enables the followOf feature when set to true and disable the followOf when set to false">bValue</span>)</span>
+									<span class='description'>The followOf feature closes the Popover when the change of the open by control's position is no less than 32 pixels when runs on desktop browsers.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -485,7 +490,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
+									<a href="../symbols/sap.ui.core.Control.html#addStyleClass">addStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#allowTextSelection">allowTextSelection</a>, <a href="../symbols/sap.ui.core.Control.html#attachBrowserEvent">attachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#clone">clone</a>, <a href="../symbols/sap.ui.core.Control.html#detachBrowserEvent">detachBrowserEvent</a>, <a href="../symbols/sap.ui.core.Control.html#getBusy">getBusy</a>, <a href="../symbols/sap.ui.core.Control.html#getBusyIndicatorDelay">getBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#getIdForLabel">getIdForLabel</a>, <a href="../symbols/sap.ui.core.Control.html#getRenderer">getRenderer</a>, <a href="../symbols/sap.ui.core.Control.html#hasStyleClass">hasStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#invalidate">invalidate</a>, <a href="../symbols/sap.ui.core.Control.html#isBusy">isBusy</a>, <a href="../symbols/sap.ui.core.Control.html#onAfterRendering">onAfterRendering</a>, <a href="../symbols/sap.ui.core.Control.html#onBeforeRendering">onBeforeRendering</a>, <a href="../symbols/sap.ui.core.Control.html#placeAt">placeAt</a>, <a href="../symbols/sap.ui.core.Control.html#removeStyleClass">removeStyleClass</a>, <a href="../symbols/sap.ui.core.Control.html#rerender">rerender</a>, <a href="../symbols/sap.ui.core.Control.html#setBusy">setBusy</a>, <a href="../symbols/sap.ui.core.Control.html#setBusyIndicatorDelay">setBusyIndicatorDelay</a>, <a href="../symbols/sap.ui.core.Control.html#toggleStyleClass">toggleStyleClass</a>
 									</div>
 								</div>
 							
@@ -986,7 +991,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -998,7 +1003,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -1024,6 +1029,31 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 												</tr>
 											
 											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected protected'>
+										<a name="_getAnyHeader"> </a>
+										<div class="itemTitle icon protected">
+											_getAnyHeader<span class="signature">()</span>
+											
+										</div>
+										<div class="full-description">
+											If customHeader is set, this will return the customHeaer. Otherwise it creates a header and put the
+title and buttons if needed inside, and finally return this newly create header.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
 										
 										
 										
@@ -1113,7 +1143,7 @@ This event will be fired after the popover is closed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1137,7 +1167,7 @@ This event will be fired after the popover is closed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.Popover</code>.<br/> itself.
@@ -1196,7 +1226,7 @@ This event will be fired after the popover is opened.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1220,7 +1250,7 @@ This event will be fired after the popover is opened.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.Popover</code>.<br/> itself.
@@ -1279,7 +1309,7 @@ This event will be fired before the popover is closed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1303,7 +1333,7 @@ This event will be fired before the popover is closed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.Popover</code>.<br/> itself.
@@ -1362,7 +1392,7 @@ This event will be fired before the popover is opened.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1386,7 +1416,7 @@ This event will be fired before the popover is opened.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.m.Popover</code>.<br/> itself.
@@ -1995,7 +2025,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -2055,7 +2085,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -2115,7 +2145,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -2175,7 +2205,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -3598,10 +3628,9 @@ Default value is empty/<code>undefined</code>
 											<span class="light" title="returns sap.m.Popover">: <a href="../symbols/sap.m.Popover.html">sap.m.Popover</a></span>
 										</div>
 										<div class="full-description">
-											The followOf feature from Popup which closes the popover in desktop browser when
-the position or the size of open by control changes may leads to unwanted close.
+											The followOf feature closes the Popover when the change of the open by control's position is no less than 32 pixels when runs on desktop browsers. This may leads to unwanted close.
 </p><p>
-This function is for enabling/disabling the followOf feature which has effect only in desktop browsers.
+This function is for enabling/disabling the followOf feature.
 											
 											
 											
@@ -3871,7 +3900,7 @@ Default value is <code>false</code>
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sModalCSSClass</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>sModalCSSClass</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    a CSS class (or space-separated list of classes) that should be added to the block layer.

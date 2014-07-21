@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9820184242165596"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=17465815026552223"/>
 <title>IDs in JS Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 			the IDs of controls created in the <samp class="ph codeph">createContent()</samp> method. This
 			behavior is similar to JS view's behaviour regarding IDs. When a static ID is given
 			within a JS fragment, the <samp class="ph codeph">this.createId()</samp> method should be used: </p>
-<div><pre class="pre codeblock">
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 createContent: function(oController ) {
 	var oButton  = new sap.ui.commons.Button(this.createId("btnInJsFragment"), { 
 	// use createId() to let the fragment influence the ID

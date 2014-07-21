@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=05802531076090456"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=39160162602113646"/>
 <title>The HomePage View</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -31,7 +33,7 @@
 <p class="p">When you tap a list item, the attribute <samp class="ph codeph">tap="listItemTriggered"</samp> calls
 			the <samp class="ph codeph">listItemTriggered</samp> method of the <samp class="ph codeph">HomePage</samp>
 			controller.</p>
-<div><pre class="pre codeblock">&lt;core:View controllerName="sap.m.mvc.HomePage"
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;core:View controllerName="sap.m.mvc.HomePage"
     xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
 
     &lt;Page id="homePage" title="Countries"&gt;

@@ -12,9 +12,11 @@
 <meta name="abstract" content="When you use the to(…) and back(…) methods of the NavContainer to trigger navigation, you can also give an optional payload data object."/>
 <meta name="description" content="When you use the to(…) and back(…) methods of the NavContainer to trigger navigation, you can also give an optional payload data object."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7492165613603142"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=00658895145698668"/>
 <title>Passing Data when Navigating</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -30,7 +32,7 @@
 			and <samp class="ph codeph">afterShow</samp>. You can also use this mechanism to decouple page
 			implementations.</p>
 <p class="p">Example:</p>
-<div><pre class="pre codeblock">app.to("detailPage", {id:"42"}); // trigger navigation and hand over a data object
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">app.to("detailPage", {id:"42"}); // trigger navigation and hand over a data object
                                  // this data object could also be a binding context when dealing with data binding
 ...
 

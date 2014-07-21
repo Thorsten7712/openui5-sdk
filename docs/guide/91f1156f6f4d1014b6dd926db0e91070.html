@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8434125789954771"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=16607690496609706"/>
 <title>Multimodel Support</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -24,7 +26,7 @@
 <div class="body"><p class="p">You can set an additional model for an element or for
 		the core by specifying a name for the model to identify it: 
 	 </p>
-<div><pre class="pre codeblock">var oModel = new sap.ui.model.json.JSONModel();
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.json.JSONModel();
 // define data for that model
 oModel.setData({
     		test: "Test", 
@@ -35,9 +37,9 @@ oModel.setData({
 sap.ui.getCore().setModel(oModel, "myModel");</pre></div>
 <p class="p">To create property bindings for this model call 
 	 </p>
-<div><pre class="pre codeblock">oText.bindValue("myModel&gt;/test").</pre></div>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oText.bindValue("myModel&gt;/test").</pre></div>
 <p class="p">You can also create aggregation bindings for this model by calling:</p>
-<div><pre class="pre codeblock">oListItem.bindProperty("text", "myModel&gt;text");
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oListItem.bindProperty("text", "myModel&gt;text");
 oComboBox.bindItems("myModel&gt;/items", oListItem);</pre></div>
 <p class="p">You specify the model name and following the <samp class="ph codeph">&gt;</samp> sign you specify the binding path
 			to the values in the model that is to be bound. </p>

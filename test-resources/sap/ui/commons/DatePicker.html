@@ -10,7 +10,7 @@
 				data-sap-ui-theme="sap_goldreflection"
 				data-sap-ui-trace="false"
 				type="text/javascript"
-				data-sap-ui-libs="sap.ui.commons"
+				data-sap-ui-libs="sap.ui.commons, sap.ui.unified"
 				src="../../../../resources/sap-ui-core.js"
 		>
 		</script>
@@ -260,6 +260,7 @@
 		<br>Otherwise the navigator one will be used if configured and supported.
 		<br>A locale is supported if translations exist for its "language+COUNTRY" or its "language-only".
 		<br>Otherwise the default SAP "en" texts are used.
+		<br>Setting a locale do not work if the <code>value</code> property of the DatePicker is bound to a model. In this case the locale is ignored.
 		<br>
 		<br><span id="sandbox"></span>
 		<span id="reportButton"></span><span id="reportMsg" style="color:blue;"></span>
@@ -306,8 +307,8 @@
 		<div id="placeholder"></div>
 		<br>
 		<div id="popup"></div>
-		<br> There is a bug in jQueryDatePicker if the DatePicker is somewhere in a <code>fixed</code> area 
-		and the screen is scrolled. To test the workaround just make the browser window small and scroll to the bottom.
+		<br> Test if the DatePicker is somewhere in a <code>fixed</code> area 
+		and the screen is scrolled. To test it just make the browser window small and scroll to the bottom.
 		Then open the DatePicker in the blue box. It should open above.
 		<!-- fixed DIV near bottom to check if datepicker opens inside the screen -->
 		<div style="position: fixed; left: 500px; bottom: 25px; border: 3px solid blue; padding: 5px; z-index: 1; background-color: lightBlue;">

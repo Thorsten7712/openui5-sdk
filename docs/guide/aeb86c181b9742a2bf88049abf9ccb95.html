@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=12264056336994855"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=058897959219155305"/>
 <title>Using Dialogs Defined as Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,7 +31,7 @@
 				of the fragment, which is a dialog control that can be used like any dialog, e.g. it
 				can be immediately opened: </p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 var oDialogFragment = sap.ui.jsfragment("testdata.fragments.JSFragmentDialog");
 oDialogFragment.open();</pre></div>
 
@@ -40,7 +42,7 @@ oDialogFragment.open();</pre></div>
 				above code for opening the fragment dialog is part of a controller, it could set the
 				view's model on the dialog: </p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 var oDialogFragment = sap.ui.jsfragment("testdata.fragments.JSFragmentDialog");
 oDialogFragment.setModel(this.getView().getModel());
 oDialogFragment.open();</pre></div>
@@ -48,7 +50,7 @@ oDialogFragment.open();</pre></div>
 			<div class="p">Alternatively, the special aggregation <samp class="ph codeph">dependents</samp> of
 					<samp class="ph codeph">sap.ui.core.Element</samp> can be used to connect the dialog to the
 				lifecycle management and databinding of the view:
-				<div><pre class="pre codeblock">
+				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 var oDialogFragment = sap.ui.jsfragment("testdata.fragments.JSFragmentDialog"); 
 this.getView().addDependent(oDialogFragment);
 oDialogFragment.open();</pre></div>

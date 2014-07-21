@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7624023144966507"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2664034988358027"/>
 <title>Step 5: Device Model</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 <p class="p">Before we get to the App view, there are a couple of other areas to cover. The first is the
 			Device Model that we saw briefly in the Component section.</p>
 <p class="p">As a reminder, this is what it looks like:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
        // set device model
         var deviceModel = new sap.ui.model.json.JSONModel({
             isTouch : sap.ui.Device.support.touch,

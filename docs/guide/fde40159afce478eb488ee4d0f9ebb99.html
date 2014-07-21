@@ -12,9 +12,11 @@
 <meta name="abstract" content="The SAPUI5 mobile library supports the pull down to refresh functionality that allows users to refresh lists or page content with fresh data from server."/>
 <meta name="description" content="The SAPUI5 mobile library supports the pull down to refresh functionality that allows users to refresh lists or page content with fresh data from server."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7956345872520321"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=33795041650242874"/>
 <title>Scrolling: Pull to Refresh</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,7 +31,7 @@
 			control into a page or a scroll container that contains the list that needs to be
 			refreshed. </p>
 <p class="p">Example: </p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 var pullToRefresh = new sap.m.PullToRefresh({ description: getLastUpdatedTime(), refresh: function(){
     pullToRefresh.setDescription("loading from server..."); 
   //request new data from server     

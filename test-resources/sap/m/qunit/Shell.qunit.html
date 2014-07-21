@@ -14,7 +14,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 
@@ -78,13 +77,21 @@
 		
 		if (window.getComputedStyle) { // this excludes IE8 - which is intended!
 			
+			jQuery.sap.require("sap.ui.core.theming.Parameters");
+			var sBgVariant = sap.ui.core.theming.Parameters.get("sapUiGlobalBackgroundVariant");
+			
 			// bg image std
 			test("Shell background standard (tests the sap.m.BackgroundHelper as well)", function() {
 				var bgDiv = byIdSuffix("-BG"),
 					style = window.getComputedStyle(bgDiv[0]);
 				
 				equal(bgDiv.length, 1, "Background image div should be rendered");
-				ok(style.backgroundImage.indexOf("img/bg_white_transparent.png") > -1, "Background image from theme should be applied");
+				if(sBgVariant == "Variant1"){
+					ok(style.backgroundImage.indexOf("img/bg_white_transparent.png") > -1, "Background image from theme should be applied");
+				}else{
+					ok(style.backgroundImage.indexOf("img/bg_white_transparent.png") < 0, "No Background image from theme should be applied");
+				}
+				
 				equal(style.backgroundRepeat, "repeat", "Background should be repeated");
 			});
 			
@@ -120,7 +127,11 @@
 					style = window.getComputedStyle(bgDiv[0]);
 				
 				equal(bgDiv.length, 1, "Background image div should be rendered");
-				ok(style.backgroundImage.indexOf("img/bg_white_transparent.png") > -1, "Background image from theme should be applied");
+				if(sBgVariant == "Variant1"){
+					ok(style.backgroundImage.indexOf("img/bg_white_transparent.png") > -1, "Background image from theme should be applied");
+				}else{
+					ok(style.backgroundImage.indexOf("img/bg_white_transparent.png") < 0, "No Background image from theme should be applied");
+				}
 				equal(style.backgroundRepeat, "repeat", "Background should be repeated");
 				equal(style.opacity, "1", "Background opacity should be set");
 			});

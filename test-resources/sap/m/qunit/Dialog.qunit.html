@@ -15,7 +15,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -110,13 +109,14 @@
 					oSubHeaderDom = $dialog.children(".sapMDialogSubHeader")[0],
 					oIconDom = jQuery.sap.domById(oDialog.getId() + "-icon"),
 					oLeftButtonDom = jQuery.sap.domById("leftButton"),
-					oRightButtonDom = jQuery.sap.domById("rightButton");
+					oRightButtonDom = jQuery.sap.domById("rightButton"),
+					oLeftButtonFocusDom = sap.ui.getCore().byId("leftButton").getFocusDomRef();
 				ok(jQuery.sap.domById("dialog"), "dialog is rendered after it's opened.");
 				ok($dialog.closest("#sap-ui-static")[0], "dialog should be rendered inside the static uiArea.");
 				ok(oSubHeaderDom, "Sub header should be rendered inside the dialog");
 
 				if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
-					equal(oLeftButtonDom, document.activeElement, "left button should have the focus");
+					equal(oLeftButtonFocusDom, document.activeElement, "left button should have the focus");
 				}
 
 				if(sap.ui.Device.os.ios && !sap.m.Dialog._bOneDesign){
@@ -133,15 +133,12 @@
 					ok(jQuery.contains(oBarDom, oRightButtonDom), "RightButton should be rendered inside the Bar control");
 				}else{
 					if(jQuery.support.touch || jQuery.sap.simulateMobileOnDesktop){
-						expect(10);
+						expect(8);
 					}else{
-						expect(11);
+						expect(9);
 					}
-					var oDialogActionsDom = jQuery(".sapMDialogActions")[0];
 					ok(oIconDom, "Icon should be rendered.");
 					ok(oTitleDom, "Title should be rendered");
-					ok(jQuery.contains(oDialogActionsDom, oLeftButtonDom), "LeftButton should be rendered");
-					ok(jQuery.contains(oDialogActionsDom, oRightButtonDom), "RightButton should be rendered");
 				}
 			});
 			
@@ -349,7 +346,6 @@
 
 				this.stub(sap.ui.Device, "system", oSystem);
 
-
 				var oDialog = new sap.m.Dialog({
 					contentWidth: "50%",
 					contentHeight: "50%"
@@ -360,7 +356,139 @@
 				ok(oDialog._$content.height() <= jQuery(window).height() * 0.5, "Dialog content height " + oDialog._$content.height() + " is equal or less than part of window height " + jQuery(window).height() * 0.5);
 
 				oDialog.destroy();
-			})
+			});
+
+			test("beginButton, endButton, buttons on desktop or tablet", function() {
+				var oSystem = {
+					desktop: true,
+					phone: false,
+					tablet: false
+				};
+
+				this.stub(sap.ui.Device, "system", oSystem);
+
+				var oBBtn = new sap.m.Button("beginButton"),
+					oEBtn = new sap.m.Button("endButton"),
+					aButtons = [
+						new sap.m.Button("buttons1"),
+						new sap.m.Button("buttons2"),
+						new sap.m.Button("buttons3")
+					];
+
+				// instanciate dialog with begin and endButton
+				var oDialog = new sap.m.Dialog("testDialog", {
+					beginButton: oBBtn,
+					endButton: oEBtn
+				});
+
+				oDialog.open();
+				ok(oDialog._oToolbar, "Toolbar instance is created");
+				ok(oDialog._oToolbar.getDomRef(), "Toolbar is rendered");
+				equal(oDialog._oToolbar.getContent().length, 3, "Toolbar contains 2 buttons");
+				notEqual(oDialog._oToolbar.indexOfContent(oBBtn), -1, "Toolbar contains beginButton");
+				notEqual(oDialog._oToolbar.indexOfContent(oEBtn), -1, "Toolbar contains endButton");
+				equal(oDialog.getBeginButton(), oBBtn, "Getter of beginButton should return the button itself");
+				equal(oDialog.getEndButton(), oEBtn, "Getter of endButton should return the button itself");
+
+				// add button into "buttons" aggregation while begin/endButton are set
+				aButtons.forEach(function(oButton){
+					oDialog.addButton(oButton);
+				});
+				sap.ui.getCore().applyChanges();
+				equal(oDialog._oToolbar.getContent().length, 4, "Toolbar contains 3 new buttons");
+				equal(oDialog._oToolbar.indexOfContent(oBBtn), -1, "Toolbar doesn't contain beginButton");
+				equal(oDialog._oToolbar.indexOfContent(oEBtn), -1, "Toolbar doesn't contain endButton");
+
+				// remove begin/endButton
+				oDialog.setBeginButton(null);
+				oDialog.setEndButton(null);
+				equal(oDialog._oToolbar.getContent().length, 4, "Toolbar still contains 3 buttons");
+				equal(oDialog.getBeginButton(), null, "Getter of beginButton should return null");
+				equal(oDialog.getEndButton(), null, "Getter of endButton should return null");
+
+				// set begin/endButton back and remove "buttons" aggregation
+				oDialog.setBeginButton(oBBtn);
+				oDialog.setEndButton(oEBtn);
+				oDialog.removeAllButtons();
+				sap.ui.getCore().applyChanges();
+				equal(oDialog._oToolbar.getContent().length, 3, "Toolbar contains 2 buttons");
+				equal(oDialog._oToolbar.indexOfContent(oBBtn), 1, "Toolbar contains beginButton");
+				equal(oDialog._oToolbar.indexOfContent(oEBtn), 2, "Toolbar contains endButton");
+
+				// destroy
+				oDialog.destroy();
+				oBBtn.destroy();
+				oEBtn.destroy();
+				aButtons.forEach(function(oButton){
+					oButton.destroy();
+				});
+			});
+
+			test("beginButton, endButton, buttons on phone", function() {
+				var oSystem = {
+					desktop: false,
+					phone: true,
+					tablet: false
+				};
+
+				this.stub(sap.ui.Device, "system", oSystem);
+
+				var oBBtn = new sap.m.Button("beginButton"),
+					oEBtn = new sap.m.Button("endButton"),
+					aButtons = [
+						new sap.m.Button("buttons1"),
+						new sap.m.Button("buttons2"),
+						new sap.m.Button("buttons3")
+					];
+
+				// instantiate dialog with begin/endButton
+				var oDialog = new sap.m.Dialog("testDialog", {
+					beginButton: oBBtn,
+					endButton: oEBtn
+				});
+
+				oDialog.open();
+				this.clock.tick(400);
+				ok(!oDialog._oToolbar, "Toolbar instance is not created");
+				ok(oDialog.getDomRef(), "Dialog is rendered");
+				ok(oDialog.$().find(".sapMDialogActions").length, "Begin/End buttons are rendered in equal width container");
+				ok(oBBtn.$().closest(".sapMDialogActions").length, "BeginButton should be rendered");
+				ok(oEBtn.$().closest(".sapMDialogActions").length, "EndButton should be rendered");
+				equal(oDialog.getBeginButton(), oBBtn, "Getter of beginButton should return the button itself");
+				equal(oDialog.getEndButton(), oEBtn, "Getter of endButton should return the button itself");
+
+				// add button to "buttons" aggregation while begin/endButton are set
+				aButtons.forEach(function(oButton){
+					oDialog.addButton(oButton);
+				});
+				sap.ui.getCore().applyChanges();
+				ok(oDialog._oToolbar, "Toolbar instance is created");
+				equal(oDialog._oToolbar.getContent().length, 4, "Toolbar contains 3 new buttons");
+
+				// remove begin/endButton
+				oDialog.setBeginButton(null);
+				oDialog.setEndButton(null);
+				equal(oDialog._oToolbar.getContent().length, 4, "Toolbar still contains 3 new buttons");
+				equal(oDialog.getBeginButton(), null, "Getter of beginButton should return null");
+				equal(oDialog.getEndButton(), null, "Getter of endButton should return null");
+
+				// set begin/endButton back and remove "buttons" aggregation
+				oDialog.setBeginButton(oBBtn);
+				oDialog.setEndButton(oEBtn);
+				oDialog.removeAllButtons();
+				sap.ui.getCore().applyChanges();
+				ok(oDialog.$().find(".sapMDialogActions").length, "Begin/End buttons are rendered in equal width container");
+				ok(oBBtn.$().closest(".sapMDialogActions").length, "BeginButton should be rendered");
+				ok(oEBtn.$().closest(".sapMDialogActions").length, "EndButton should be rendered");
+
+				//destroy
+				oDialog.destroy();
+				oBBtn.destroy();
+				oEBtn.destroy();
+				aButtons.forEach(function(oButton){
+					oButton.destroy();
+				});
+			});
 		</script>
 	</head>
 	<body id="body" class="sapUiBody">

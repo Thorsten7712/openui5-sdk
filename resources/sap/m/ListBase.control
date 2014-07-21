@@ -66,8 +66,8 @@ Note: This feature only works with item binding and should not be used with two 
 			<documentation>Number of items requested from the server. To activate this you should set &quot;growing&quot; property to &quot;true&quot;.</documentation>
 		</property>
 		<property group="Appearance" name="growingTriggerText" type="sap.ui.core/string" since="1.16">
-			<documentation>This text is displayed on the trigger button which is responsible to load new page at the end of the list. The default is a translated text (&quot;Load More Data&quot;) coming from the message bundle.
-This property can be used only if &quot;growing&quot; property is set &quot;true&quot; and scrollToLoad property is set &quot;false&quot;.</documentation>
+			<documentation>This text is displayed on the trigger button which is responsible to load new page at the end of the list. The default is a translated text (&quot;More&quot;) coming from the message bundle.
+This property can be used only if &quot;growing&quot; property is set &quot;true&quot;</documentation>
 		</property>
 		<property group="Behavior" name="growingScrollToLoad" type="sap.ui.core/boolean" defaultValue="false" since="1.16">
 			<documentation>If true, user can scroll end to trigger a new page request. Otherwise a trigger button is displayed at the bottom of the list.
@@ -148,7 +148,8 @@ This property can be used only if &quot;growing&quot; property is set &quot;true
 			</parameters>
 		</event>
 		<event name="updateStarted" since="1.16.3">
-			<documentation>This event is called before binding is updated.</documentation>
+			<documentation>This event is called before items binding is updated. 
+Note: Event handler should not invalidate the control.</documentation>
 			<parameters>
 				<parameter name="reason" type="sap.ui.core/string">
 					<documentation>The reason of update. Possible values are &quot;Binding&quot;, &quot;Filter&quot;, &quot;Sort&quot;, &quot;Growing&quot;, &quot;Change&quot;, &quot;Refresh&quot;, &quot;Context&quot;</documentation>
@@ -162,7 +163,7 @@ This property can be used only if &quot;growing&quot; property is set &quot;true
 			</parameters>
 		</event>
 		<event name="updateFinished" since="1.16.3">
-			<documentation>This event is called after binding and DOM is updated.</documentation>
+			<documentation>This event is called after items binding and afterwards related DOM is updated.</documentation>
 			<parameters>
 				<parameter name="reason" type="sap.ui.core/string">
 					<documentation>The reason of update. Possible values are &quot;Binding&quot;, &quot;Filter&quot;, &quot;Sort&quot;, &quot;Growing&quot;, &quot;Change&quot;, &quot;Refresh&quot;, &quot;Context&quot;</documentation>

@@ -11,21 +11,20 @@
 	<!-- Initialization -->
 	<script language="javascript">
 		window["sap-ui-config"] = {
-			theme : "sap_platinum"
+			theme : "sap_bluecrystal"
 		}
 	</script>
 	
 	<script id="sap-ui-bootstrap" 
 		type="text/javascript"
 		src="../../../../../../resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_ux"
+		data-sap-ui-theme="sap_bluecrystal"
 		data-sap-ui-noConflict="true"
 		data-sap-ui-libs="sap.ui.core">
 	</script>
 	
 	<link rel="stylesheet" href="../../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 	<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<!-- Test functions -->
@@ -35,7 +34,7 @@
 
 		test("Settings", function() {
 			var oCfg = new sap.ui.core.Configuration();
-			equal(oCfg.theme, "sap_ux", "tag config should override global config");
+			equal(oCfg.theme, "sap_bluecrystal", "tag config should override global config");
 			deepEqual(oCfg.modules, ["sap.ui.core.library"], "Module List in configuration matches configured modules/libraries");
 		});
 

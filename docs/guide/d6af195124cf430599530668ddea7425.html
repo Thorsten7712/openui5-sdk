@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7125445814217962"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7380263644064222"/>
 <title>Programmatically Instantiating XML Fragments</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,11 +30,11 @@
 			<p class="p">To give an example of a programmatic instantiation of a XML fragment, you first have
 				to define one. The following code presents an example definition:</p>
 
-			<div><pre class="pre codeblock">&lt;Button xmlns= "sap.ui.commons" id= "btnInFragment" text= "Hello World" /&gt;</pre></div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;Button xmlns= "sap.ui.commons" id= "btnInFragment" text= "Hello World" /&gt;</pre></div>
 
 			<p class="p"> This fragment can be instantiated from a controller as follows:</p>
 
-			<div><pre class="pre codeblock">var myButton = sap.ui.xmlfragment( "my.useful.VerySimpleUiPart" ); 
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var myButton = sap.ui.xmlfragment( "my.useful.VerySimpleUiPart" ); 
 		// this specific fragment does not need a controller
     </pre></div>
 

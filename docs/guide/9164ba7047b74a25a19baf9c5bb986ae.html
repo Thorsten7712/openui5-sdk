@@ -12,9 +12,11 @@
 <meta name="abstract" content="sap.m.ListBase provides growing-related properties, which can be used for tables and lists."/>
 <meta name="description" content="sap.m.ListBase provides growing-related properties, which can be used for tables and lists."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5091037707832122"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5555133896701899"/>
 <title>Growing</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -43,7 +45,7 @@
 <p class="p">To enable data for a table to be fetched on demand like this, you just need to set the
 			values for these properties appropriately on your table control. For example, adding the
 			highlighted lines as shown:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 var oTable = new sap.m.Table("salesarea", {
     inset: false,
     growing: true,              // set growing mode on

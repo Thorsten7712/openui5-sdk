@@ -11,13 +11,12 @@
 	<script id="sap-ui-bootstrap" 
 		type="text/javascript"
 		src="../../../../../resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_platinum"
+		data-sap-ui-theme="sap_bluecrystal"
 		data-sap-ui-noConflict="true"
 	    data-sap-ui-libs="sap.ui.core,sap.ui.commons,sap.ui.table" >
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<script  language="javascript">
@@ -59,32 +58,33 @@
 		aData[i].lastName += " - " + i;
 	}
 
-	function createTable(oConfig, fnCreateColumns) {
-		var oControl;
+	function createTable(oConfig, fnCreateColumns, sModelName) {
+		var oControl,
+			sBindingPrefix = (sModelName ? sModelName + ">" : "");
 
 		oTable = new sap.ui.table.Table("table", oConfig);
 
 		if (!fnCreateColumns) {
 			fnCreateColumns = function(oTable) {
-				var oControl = new sap.ui.commons.TextView().bindProperty("text", "lastName");
+				var oControl = new sap.ui.commons.TextView().bindProperty("text", sBindingPrefix + "lastName");
 				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Last Name"}), template: oControl, sortProperty: "lastName", filterProperty: "lastName", width: "200px", minWidth: 100, maxWidth: 300}));
-				oControl = new sap.ui.commons.TextField().bindProperty("value", "name");
-				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "First Name"}), template: oControl, sortProperty: "name", filterProperty: "name", width: "100px"}));
-				oControl = new sap.ui.commons.CheckBox().bindProperty("checked", "checked");
+				oControl = new sap.ui.commons.TextField().bindProperty("value", sBindingPrefix + "name");
+				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "First Name"}), template: oControl, sortProperty: "name", filterProperty: "name", width: "100px", autoResizable: true}));
+				oControl = new sap.ui.commons.CheckBox().bindProperty("checked", sBindingPrefix + "checked");
 				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Checked"}), template: oControl, sortProperty: "checked", filterProperty: "checked", width: "75px", hAlign: "Center"}));
-				oControl = new sap.ui.commons.Link().bindProperty("text", "linkText").bindProperty("href", "href");
+				oControl = new sap.ui.commons.Link().bindProperty("text", sBindingPrefix + "linkText").bindProperty("href", "href");
 				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Web Site"}), template: oControl, sortProperty: "linkText", filterProperty: "linkText", minWidth: 50, maxWidth: 100}));
-				oControl = new sap.ui.commons.Image().bindProperty("src", "src").setAlt("Test123").setTooltip("Hello World");
+				oControl = new sap.ui.commons.Image().bindProperty("src", sBindingPrefix + "src").setAlt("Test123").setTooltip("Hello World");
 				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Image"}), template: oControl, width: "75px", hAlign: "Center"}));
-				oControl = new sap.ui.commons.ComboBox().bindProperty("value","gender");
+				oControl = new sap.ui.commons.ComboBox().bindProperty("value", sBindingPrefix + "gender");
 				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Gender"}), template: oControl, sortProperty: "gender", filterProperty: "gender", showSortMenuEntry: false}));
-				oControl = new sap.ui.commons.RatingIndicator().bindProperty("value", "rating");
+				oControl = new sap.ui.commons.RatingIndicator().bindProperty("value", sBindingPrefix + "rating");
 				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Rating"}), template: oControl, sortProperty: "rating", filterProperty: "rating", showFilterMenuEntry: false}));
 				var floatType = new sap.ui.model.type.Float({
 					decimalSeparator: ",",
 					groupingSeparator: "."
 				});
-				oControl = new sap.ui.commons.TextField().bindProperty("value", "money", floatType);
+				oControl = new sap.ui.commons.TextField().bindProperty("value", sBindingPrefix + "money", floatType);
 				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Money"}), template: oControl, sortProperty: "money", filterProperty: "money", filterType: floatType, width: "100px"}));
 			}
 		}
@@ -92,8 +92,8 @@
 
 		var oModel = new sap.ui.model.json.JSONModel();
 		oModel.setData({modelData: aData});
-		oTable.setModel(oModel);
-		oTable.bindRows("/modelData");
+		oTable.setModel(oModel, sModelName);
+		oTable.bindRows(sBindingPrefix + "/modelData");
 
 		oTable.placeAt("qunit-fixture");
 		sap.ui.getCore().applyChanges();
@@ -235,19 +235,6 @@
 		teardown: destroyTable
 	});
 
-	test("HideColumn", 1, function() {
-		var oColumn = oTable.getColumns()[1];
-		var eventFired = 0;
-		var handler = function(oEvent) {
-			eventFired++;
-		};
-		oTable.attachColumnVisibility(handler);
-		oColumn.setVisible(false);
-		oColumn.setVisible(true);
-		oTable.detachColumnVisibility(handler);
-		ok(eventFired === 2, "Column visibility event was fired twice");
-	});
-
 	test("ColumnMenu", 5, function() {
 		var oColumn = oTable.getColumns()[1];
 		var oMenu = oColumn.getMenu();
@@ -272,6 +259,42 @@
 		oMenu.close();
 	});
 
+	test("ColumnVisibilityEvent", 4, function() {
+		oTable.setShowColumnVisibilityMenu(true);
+
+		oTable.attachColumnVisibility(function(oEvent) {
+			var oEventColumn = oEvent.getParameter("column");
+
+			if (oEventColumn === oColumn0) {
+				ok(true, "ColumnVisibility event fired for lastName column.");
+				oEvent.preventDefault();
+			} else if (oEventColumn === oColumn1) {
+				ok(true, "ColumnVisibility event fired for firstName column.");
+			} else {
+				ok(false, "ColumnVisibility event fired for wrong column (" + oEventColumn.getId() + ").");
+			}
+
+		});
+
+		var oColumn1 = oTable.getColumns()[1];
+		var oColumn0 = oTable.getColumns()[0];
+		var oMenu = oColumn1.getMenu();
+		var sVisibilityMenuItemId = oColumn1.getMenu().getId() + "-column-visibilty";
+
+		oMenu.open();
+		qutils.triggerMouseEvent(sVisibilityMenuItemId, "mouseover");
+		qutils.triggerMouseEvent(sVisibilityMenuItemId + "-menu-item-0", "click");
+
+		equal(oColumn0.getVisible(), true, "lastName column should be still visible (preventDefault)");
+
+		oMenu.open();
+		qutils.triggerMouseEvent(sVisibilityMenuItemId, "mouseover");
+		qutils.triggerMouseEvent(sVisibilityMenuItemId + "-menu-item-1", "click");
+
+		equal(oColumn1.getVisible(), false, "firstName column should be invisible (no preventDefault)");
+
+	});
+
 	test("CustomColumnMenu", 1, function() {
 		var oCustomMenu = new sap.ui.commons.Menu("custom-menu");
 		var oColumn = oTable.getColumns()[1];
@@ -288,11 +311,23 @@
 		equals(oColumn.getWidth(), "100px", "Check column width before resize");
 
 		qutils.triggerMouseEvent(sResizeHandlerId, "mousedown", 1, 1, -9850, -9500, 0 );
-		qutils.triggerMouseEvent(sResizeHandlerId, "mousemove", 1, 1, -9578, -9500, 0 );
-		qutils.triggerMouseEvent(sResizeHandlerId, "mouseup", 1, 1, -9578, -9500, 0 );
+		qutils.triggerMouseEvent(sResizeHandlerId, "mousemove", 1, 1, -9577, -9500, 0 );
+		qutils.triggerMouseEvent(sResizeHandlerId, "mouseup", 1, 1, -9577, -9500, 0 );
 		sap.ui.getCore().applyChanges();
 
-		equals(oColumn.getWidth(), "200px", "Check column width after resize");
+		equals(oColumn.getWidth(), "197px", "Check column width after resize");
+	});
+
+	test("AutomaticColumnResize", function(){
+		expect(3);
+		var oColumn = oTable.getColumns()[1];
+		var resizer = oColumn.getId() + '-rsz';
+		equals(oColumn.getWidth(), "100px", "check column width before resize");
+		equals(oColumn.getAutoResizable(), true, "check if column is indeed autoresizable at all");
+		qutils.triggerMouseEvent(resizer, "click");
+		qutils.triggerMouseEvent(resizer, "click");
+		var newSize = oTable._calculateAutomaticColumnWidth(1);
+		equals(oColumn.getWidth(), newSize + "px", "check column width after resize");
 	});
 
 	module("Multi selection", {
@@ -343,7 +378,7 @@
 		qutils.triggerMouseEvent(barId, "mouseup", 1, 1, -9950, -9500, 0 );
 		sap.ui.getCore().applyChanges();
 
-		equals(oTable.getVisibleRowCount(), 20, "Row count of 20");
+		equals(oTable.getVisibleRowCount(), 16, "Row count of 20");
 	});
 
 	module("Keyboard navigation", {
@@ -485,7 +520,7 @@
 		equals(oTable.getFixedColumnCount(), 2, "Fixed column count correct");
 		equals($table.find('.sapUiTableCtrlFixed .sapUiTableCtrlCol th').length, 3, "Fixed tabled has 3 Columns");
 		equals($table.find('.sapUiTableCtrlScroll .sapUiTableCtrlCol th').length, 7, "Scroll tabled has 7 Columns");
-		equals($table.find('.sapUiTableHSb').css('padding-left'), "322px", "Horizontal scrollbar has correct left padding");
+		equals($table.find('.sapUiTableHSb').css('padding-left'), "325px", "Horizontal scrollbar has correct left padding");
 	});
 
 	test("Hide one column in fixed area", function() {
@@ -496,7 +531,7 @@
 		equals(oTable.getFixedColumnCount(), 2, "Fixed column count correct");
 		equals($table.find('.sapUiTableCtrlFixed .sapUiTableCtrlCol th').length, 2, "Fixed tabled has 2 Columns");
 		equals($table.find('.sapUiTableCtrlScroll .sapUiTableCtrlCol th').length, 7, "Scroll tabled has 7 Columns");
-		equals($table.find('.sapUiTableHSb').css('padding-left'), "222px", "Horizontal scrollbar has correct left padding");
+		equals($table.find('.sapUiTableHSb').css('padding-left'), "225px", "Horizontal scrollbar has correct left padding");
 	});
 
 	test("Hide one column in scroll area", function() {
@@ -507,7 +542,7 @@
 		equals(oTable.getFixedColumnCount(), 2, "Fixed column count correct");
 		equals($table.find('.sapUiTableCtrlFixed .sapUiTableCtrlCol th').length, 3, "Fixed tabled has 6 Columns");
 		equals($table.find('.sapUiTableCtrlScroll .sapUiTableCtrlCol th').length, 6, "Scroll tabled has 3 Columns");
-		equals($table.find('.sapUiTableHSb').css('padding-left'), "322px", "Horizontal scrollbar has correct left padding");
+		equals($table.find('.sapUiTableHSb').css('padding-left'), "325px", "Horizontal scrollbar has correct left padding");
 	});
 
 	module("Fixed rows and columns", {
@@ -701,6 +736,51 @@
 	test("After initialization", function(){
 		var $table = oTable.$();
 		equal($table.children().length, 0, 'No table content is rendered');
+	});
+
+	var oExport = null;
+
+	module("Data export", {
+		setup: function() {
+			createTable({}, null, "myModel");
+			oTable.filter(oTable.getColumns()[1], "Al");
+
+			jQuery.sap.require("sap.ui.core.util.ExportTypeCSV");
+			oExport = oTable.exportData({
+				exportType: new sap.ui.core.util.ExportTypeCSV()
+			});
+		},
+		teardown: function() {
+			oExport.destroy();
+			oExport = null;
+			destroyTable();
+		}
+	});
+
+	asyncTest("Export filtered table with named model", function() {
+		oExport
+		.generate()
+		.done(function(sContent) {
+			var sExpected =
+			"Last Name,First Name,Checked,Web Site,Gender,Rating,Money\r\n" +
+			"Dente - 0,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 20,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 40,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 60,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 80,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 100,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 120,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 140,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 160,Al,true,www.sap.com,male,4,3.45\r\n" +
+			"Dente - 180,Al,true,www.sap.com,male,4,3.45";
+			equal(sContent, sExpected, "Generated file content should be correct.");
+		})
+		.fail(function() {
+			ok(false, 'Generate should not fail.');
+		})
+		.always(function() {
+			start();
+		});
 	});
 
 	</script>

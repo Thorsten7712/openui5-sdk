@@ -43,14 +43,13 @@
 			</List>
 		</content>
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						icon="sap-icon://add"
-						tooltip="{i18n>masterFooterAddButtonTooltip}"
-						press="onAddProduct" />
-				</contentRight>
-			</Bar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					icon="sap-icon://add"
+					tooltip="{i18n>masterFooterAddButtonTooltip}"
+					press="onAddProduct" />
+			</Toolbar>
 		</footer>
 	</Page>
 </mvc:View>

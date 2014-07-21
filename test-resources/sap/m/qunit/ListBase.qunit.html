@@ -12,7 +12,6 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -74,7 +73,41 @@
 						Title : "Title10",
 						Description: "Description10"
 					} ]
-				};
+			},
+			data4 = {
+					items : [ {
+						Title : "Table",
+						Description: "This is a table"
+					}, {
+						Title : "Window",
+						Description: "This is a window"
+					}, {
+						Title : "Room",
+						Description: "This is a room"
+					}, {
+						Title : "Lamp",
+						Description: "This is a lamp"
+					}, {
+						Title : "Attic",
+						Description: "This is an attic"
+					}, {
+						Title : "House",
+						Description: "This is a house"
+					}, {
+						Title : "Ceiling",
+						Description: "This is a ceiling"
+					}, {
+						Title : "Wall",
+						Description: "This is a wall"
+					}, {
+						Title : "Door",
+						Description: "This is a door"
+					}, {
+						Title : "Flower",
+						Description: "This is a flower"
+					} ]
+			};
+
 
 		// create a static list item
 		function createListItem() {
@@ -106,7 +139,135 @@
 		var createListWithBinding = function () {
 			
 		};
+		
+		function testRemeberSelections(oList, oRenderSpy) {
+			var oSelectionItem,
+			bIncludeItemInSelection,
+			oSorterAsc = new sap.ui.model.Sorter("Title", false, function(oContext){
+				return oContext.getProperty("Title").charAt(0); // sort ascending by first letter of title
+			}),
+			oSorterDesc = new sap.ui.model.Sorter("Title", true, function(oContext){
+				return oContext.getProperty("Title").charAt(0); // sort descending by first letter of title
+			}),
+			vSelectionMode,
+			vSelectedItemsNumber;
 
+			bindListData(oList, data3, "/items", createTemplateListItem());
+
+			// add item to page & render
+			oPage.addContent(oList);
+			sap.ui.getCore().applyChanges();
+		
+			vSelectionMode = oList.getMode();
+			// call method & do tests
+			if (vSelectionMode == "SingleSelect") {
+				oList.getItems()[0].setSelected(true);
+				vSelectedItemsNumber = 1;
+			}
+			else if (vSelectionMode == "MultiSelect") {
+				oList.getItems()[0].setSelected(true);
+				oList.getItems()[1].setSelected(true);
+				oList.getItems()[5].setSelected(true);
+				vSelectedItemsNumber = 3;
+			}
+		
+			oList.setRememberSelections(true);
+			strictEqual(oList.getRememberSelections(), true, 'The property "rememberSelections" is "true" on ' + oList);
+
+			// TODO: decide if check on internal variables is needed (Cahit)
+			strictEqual(oList._aSelectedPaths.length, vSelectedItemsNumber, 'The internal "_aSelectedPaths" array has length of ' + vSelectedItemsNumber + ' on ' + oList);
+			strictEqual(oList.getSelectedItems().length, vSelectedItemsNumber, 'The selection contains ' + vSelectedItemsNumber + ' item ' + oList);
+		
+			// filter 2 items ("Title1" and "Title10")
+			oList.getBinding("items").filter([new sap.ui.model.Filter("Title", sap.ui.model.FilterOperator.Contains , "Title1")]);
+			strictEqual(oList.getSelectedItems().length, 1, 'The selection contains 1 item ' + oList);
+
+			// reset filter
+			oList.getBinding("items").filter([]);
+			strictEqual(oList.getSelectedItems().length, vSelectedItemsNumber, 'The selection contains ' + vSelectedItemsNumber + 'item ' + oList);
+		
+			oList.setRememberSelections(false);
+			strictEqual(oList.getRememberSelections(), false, 'The property "rememberSelections" is "false" on ' + oList);
+
+			// TODO: decide if check on internal variables is needed (Cahit)
+			strictEqual(oList._aSelectedPaths.length, 0, 'The internal "_aSelectedPaths" array is empty on ' + oList);
+
+			// filter 2 items ("Title1" and "Title10")
+			oList.getBinding("items").filter([new sap.ui.model.Filter("Title", sap.ui.model.FilterOperator.Contains , "Title1")]);
+			strictEqual(oList.getSelectedItems().length, 0, 'The selection contains no items ' + oList);
+
+			// reset filter
+			oList.getBinding("items").filter([]);
+			strictEqual(oList.getSelectedItems().length, 0, 'The selection contains no items ' + oList);
+
+			// standard setter tests
+			strictEqual(oList.setRememberSelections(), oList, 'Method returns this pointer on ' + oList);
+			strictEqual(oRenderSpy.callCount, 1, "The list should not be rerendered in this method");
+		
+			oList.setGrowing(true);
+			strictEqual(oList.getGrowing(), true, 'The property "growing" is "true" on ' + oList);
+			
+			oList.setRememberSelections(true);
+			
+			bindListData(oList, data4, "/items", createTemplateListItem());
+			// remember the selected items in oListSelected
+			if (vSelectionMode == "SingleSelect") {
+				oList.getItems()[5].setSelected(true);
+				oListSelected = oList.getItems()[5].getTitle();
+			}
+			else if (vSelectionMode == "MultiSelect") {
+				oList.getItems()[0].setSelected(true);
+				oList.getItems()[1].setSelected(true);
+				oList.getItems()[5].setSelected(true);
+				oListSelected = [];
+				oListSelected[0] = oList.getItems()[0].getTitle();
+				oListSelected[1] = oList.getItems()[1].getTitle();
+				oListSelected[2] = oList.getItems()[5].getTitle();
+				oListSelected.sort();
+			}
+	
+			strictEqual(oList._aSelectedPaths.length, vSelectedItemsNumber, 'The internal "_aSelectedPaths" array has length of' +vSelectedItemsNumber +' on ' + oList);
+			strictEqual(oList.getSelectedItems().length, vSelectedItemsNumber, 'The selection contains ' +vSelectedItemsNumber+ ' items ' + oList);
+		
+			oList.setGrowing(false);
+			strictEqual(oList.getGrowing(), false, 'The property "growing" is "false" on ' + oList);
+		
+			// sort ascending
+			oList.getBinding("items").sort([new sap.ui.model.Sorter("Title", false, oSorterAsc) ] );
+		
+			if (vSelectionMode == "SingleSelect") {
+				oListSelectedAfterSorting = oList.getSelectedItems()[0].getTitle();
+				strictEqual(oListSelected, oListSelectedAfterSorting, "the same item should be selected after sorting" );
+			}
+			else if (vSelectionMode == "MultiSelect") {
+				oListSelectedAfterSorting = [];
+				oListSelectedAfterSorting[0] = oList.getSelectedItems()[0].getTitle();
+				oListSelectedAfterSorting[1] = oList.getSelectedItems()[1].getTitle();
+				oListSelectedAfterSorting[2] = oList.getSelectedItems()[2].getTitle();
+				oListSelectedAfterSorting.sort();
+				strictEqual(oListSelected.toString(), oListSelectedAfterSorting.toString(), "the same items should be selected after sorting" );
+			}
+		
+			strictEqual(oList._aSelectedPaths.length, vSelectedItemsNumber, 'The internal "_aSelectedPaths" array has length of' + vSelectedItemsNumber +' on ' + oList);
+			strictEqual(oList.getSelectedItems().length, vSelectedItemsNumber, 'The selection contains' + vSelectedItemsNumber + 'items ' + oList);
+		
+			oList.setRememberSelections(false);
+			strictEqual(oList._aSelectedPaths.length, 0, 'The internal "_aSelectedPaths" array is empty on ' + oList);
+		
+			// sort descending
+			oList.getBinding("items").sort([new sap.ui.model.Sorter("Title", true, oSorterDesc) ] );	
+			strictEqual(oList._aSelectedPaths.length, 0, 'The internal "_aSelectedPaths" array has length of 0 on ' + oList);
+			strictEqual(oList.getSelectedItems().length, 0, 'The selection contains no items ' + oList);
+		
+			//rebinding
+			bindListData(oList, data4, "/items", createTemplateListItem());
+			strictEqual(oList.getSelectedItems().length, 0, 'The selection contains no items ' + oList);
+		
+			// cleanup
+			oPage.removeAllContent();
+			oList.destroy();
+		};
+		
 		// app
 		var oRB = sap.ui.getCore().getLibraryResourceBundle("sap.m"),
 			oApp = new sap.m.App("myApp", { initialPage: "myFirstPage" }),
@@ -821,7 +982,9 @@
 			oList.destroy();
 		});
 
-		test("setRememberSelections", function() {
+		
+		
+		test("setRememberSelectionsForMultiSelect", function() {
 			var oListItemTemplate = createListItem().setSelected(true),
 				oList = new sap.m.List({
 					includeItemInSelection: false,
@@ -830,58 +993,27 @@
 						oListItemTemplate
 					]
 				}),
-				oRenderSpy = this.spy(oList.getRenderer(), "render"),
-				oSelectionItem,
-				bIncludeItemInSelection;
-
-			bindListData(oList, data3, "/items", createTemplateListItem());
-
-			// add item to page & render
-			oPage.addContent(oList);
-			sap.ui.getCore().applyChanges();
-
-			// call method & do tests
-			oList.getItems()[0].setSelected(true);
-			oList.getItems()[1].setSelected(true);
-			oList.getItems()[5].setSelected(true);
-			oList.setRememberSelections(true);
-			strictEqual(oList.getRememberSelections(), true, 'The property "rememberSelections" is "true" on ' + oList);
-
-			// TODO: decide if check on internal variables is needed (Cahit)
-			strictEqual(oList._aSelectedPaths.length, 3, 'The internal "_aSelectedPaths" array has length of 3 on ' + oList);
-			strictEqual(oList.getSelectedItems().length, 3, 'The selection contains 3 items ' + oList);
-
-			// filter 2 items ("Title1" and "Title10")
-			oList.getBinding("items").filter([new sap.ui.model.Filter("Title", sap.ui.model.FilterOperator.Contains , "Title1")]);
-			strictEqual(oList.getSelectedItems().length, 1, 'The selection contains 1 item ' + oList);
-
-			// reset filter
-			oList.getBinding("items").filter([]);
-			strictEqual(oList.getSelectedItems().length, 3, 'The selection contains 3 items ' + oList);
+				oRenderSpy = this.spy(oList.getRenderer(), "render");
 			
-			oList.setRememberSelections(false);
-			strictEqual(oList.getRememberSelections(), false, 'The property "rememberSelections" is "false" on ' + oList);
-
-			// TODO: decide if check on internal variables is needed (Cahit)
-			strictEqual(oList._aSelectedPaths.length, 0, 'The internal "_aSelectedPaths" array is empty on ' + oList);
-
-			// filter 2 items ("Title1" and "Title10")
-			oList.getBinding("items").filter([new sap.ui.model.Filter("Title", sap.ui.model.FilterOperator.Contains , "Title1")]);
-			strictEqual(oList.getSelectedItems().length, 0, 'The selection contains no items ' + oList);
-
-			// reset filter
-			oList.getBinding("items").filter([]);
-			strictEqual(oList.getSelectedItems().length, 0, 'The selection contains no items ' + oList);
-
-			// standard setter tests
-			strictEqual(oList.setRememberSelections(), oList, 'Method returns this pointer on ' + oList);
-			strictEqual(oRenderSpy.callCount, 1, "The list should not be rerendered in this method");
-
-			// cleanup
-			oPage.removeAllContent();
-			oList.destroy();
+			testRemeberSelections(oList, oRenderSpy);
 		});
 
+		test("setRememberSelectionsForSingleSelect", function() {
+			var oListItemTemplate = createListItem().setSelected(true),
+				oList = new sap.m.List({
+					includeItemInSelection: false,
+					mode: sap.m.ListMode.SingleSelect,
+					items: [
+						oListItemTemplate
+					]
+				}),
+				oRenderSpy = this.spy(oList.getRenderer(), "render");
+			
+			testRemeberSelections(oList, oRenderSpy);
+				
+		});
+
+		
 		/* getter */
 
 		test("getId", function() {

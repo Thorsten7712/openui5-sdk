@@ -8,7 +8,7 @@
 
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>
-		<property group="Misc" name="type" type="ListType" defaultValue="Inactive">
+		<property group="Misc" name="type" type="sap.m/ListType" defaultValue="Inactive">
 			<documentation>Type of the list item, defines the behaviour</documentation>
 		</property>
 		<property group="Appearance" name="visible" type="sap.ui.core/boolean" defaultValue="true">
@@ -29,10 +29,12 @@ Note: Binding the &quot;selected&quot; property in single selection mode, may ca
 	</properties>
 	<events>
 		<event name="tap">
-			<documentation>tap event (This event is deprecated, use the press event instead)</documentation>
+			<documentation>tap event</documentation>
+			<deprecation since="1.20.0">This event is deprecated, use the press event instead.</deprecation>
 		</event>
 		<event name="detailTap">
-			<documentation>detail tap event  (This event is deprecated, use the detailPress event instead)</documentation>
+			<documentation>detail tap event</documentation>
+			<deprecation since="7.20.0">This event is deprecated, use the detailPress event instead.</deprecation>
 		</event>
 		<event name="press">
 			<documentation>Event is fired when the user clicks on the control.</documentation>

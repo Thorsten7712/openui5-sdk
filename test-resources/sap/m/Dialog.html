@@ -28,14 +28,11 @@
 			data-sap-ui-compatVersion="1.16">
 		</script>
 		<script type="text/javascript">
-		
-// 			jQuery.sap.require("sap.ui.core.IconPool");
-		
+
 			var app = new sap.m.App("myApp", {initialPage:"page1"});
-			
+
 			var sDateFormat = sap.m.getLocaleData().getDatePattern("medium");
 
-			// Create dialogs
 			var oDialog1 = new sap.m.Dialog("dialog1", {
 				title: "World Domination",
 				icon: "sap-icon://employee",
@@ -43,25 +40,23 @@
 				content: [
 					new sap.ui.core.HTML({content:"<p id='p1' style='margin:0;padding: 16px;'>Do you want to start a new world domination campaign?</p>"}),
 				],
-				beginButton:
+				buttons:[
 					new sap.m.Button({
 						text: "Accept",
-// 						type: sap.m.ButtonType.Accept,
 						press : function() {
 							oDialog1.close();
 						}
 					}),
-				endButton:
 					new sap.m.Button({
 						text: "Reject",
-// 						type: sap.m.ButtonType.Reject,
 						icon: "sap-icon://employee",
 						press : function() {
 							oDialog1.close();
 						}
 					})
+				]
 			});
-			
+
 			var oCustomHeader = new sap.m.Bar("customHeader", { 
 				contentLeft: [new sap.ui.core.Icon('myAppIcon', {src: "manager"}),
 				              new sap.m.Label("IconHeader", {text: "Icon Header"})],	

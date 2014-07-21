@@ -274,7 +274,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Select the node, and if any, deselects the previously selected node"><a href="../symbols/sap.ui.commons.TreeNode.html#select">select</a></b><span class='signature'>(<span>bSuppressEvent</span>)</span>
+									<b class="icon" title="Select the node, and if any, deselects the previously selected node"><a href="../symbols/sap.ui.commons.TreeNode.html#select">select</a></b><span class='signature'>(<span>bSuppressEvent</span>, <span>bDeselectOtherNodes</span>)</span>
 									<span class='description'>Select the node, and if any, deselects the previously selected node</span>
 								</div>
 							
@@ -642,7 +642,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oClassInfo</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oClassInfo</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    object literal with informations about the class
@@ -654,7 +654,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													  <span class="light">{function}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>FNMetaImpl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    constructor function for the metadata object. If not given, it defaults to sap.ui.core.ElementMetadata.
@@ -881,7 +881,7 @@ Node is selected
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -905,7 +905,7 @@ Node is selected
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.commons.TreeNode</code>.<br/> itself.
@@ -964,7 +964,7 @@ Node state has changed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oData</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -988,7 +988,7 @@ Node state has changed.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oListener</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Context object to call the event handler with. Defaults to this <code>sap.ui.commons.TreeNode</code>.<br/> itself.
@@ -1302,7 +1302,7 @@ The passed function and listener object must match the ones used for event regis
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -1362,7 +1362,7 @@ Expects following event parameters:
 													  <span class="light">{Map}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mArguments</b><i class="help" title="Optional parameter">?, Default: </i>
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the arguments to pass along with the event.
@@ -2166,7 +2166,7 @@ Additionally unregisters them from the hosting UIArea.
 									<div class='sectionItem classMethod'>
 										<a name="select"> </a>
 										<div class="itemTitle icon">
-											select<span class="signature">(<span>bSuppressEvent</span>)</span>
+											select<span class="signature">(<span>bSuppressEvent</span>, <span>bDeselectOtherNodes</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -2188,6 +2188,18 @@ Additionally unregisters them from the hosting UIArea.
 													</td>
 													<td class="methodItemName">
 													  <b>bSuppressEvent</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  
+													</td>
+													<td class="methodItemName">
+													  <b>bDeselectOtherNodes</b>
 													</td>
 													<td class="methodItemDesc">
 												    

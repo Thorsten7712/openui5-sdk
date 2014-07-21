@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=12492550606984876"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=19823130140802747"/>
 <title>Using Other Objects Instead of Controllers</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -37,7 +39,7 @@
 			<p class="p">The following example of an HTML fragment can be used in an environment where no MVC is
 				used.</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 var oDummyController = { 
 	doSomething: function() { 
 		// do whatever should happen when the button in the fragment is pushed...

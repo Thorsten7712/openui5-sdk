@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=06438656501275042"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=07260027811295888"/>
 <title>UI Control Constructors</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -40,11 +42,11 @@
 </ol>
 <p class="p">The following code snippet shows an example of a constructor that is called to create a
 			new text field "Hello World" with the specified tooltip and width:</p>
-<div><pre class="pre codeblock">var oTextField = new sap.ui.commons.TextField("testTextField",
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oTextField = new sap.ui.commons.TextField("testTextField",
      {value : "Hello SAPUI5", tooltip: "This is an example tooltip", width: "100px"});</pre></div>
 <p class="p">The above example is an abbreviated version of the following code snippet with a detailed
 			list of statements, which is alternatively supported:</p>
-<div><pre class="pre codeblock">    var oTextField = new sap.ui.commons.TextField("testTextField"); 
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">    var oTextField = new sap.ui.commons.TextField("testTextField"); 
     oTextField.setValue("Hello SAPUI5");
     oTextField.setTooltip("This is an example
           tooltip");

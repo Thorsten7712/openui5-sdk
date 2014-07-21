@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>qUnit Page for sap.m.TablePersoDialog</title>
+		<title>qUnit Page for sap.m.TablePersoController</title>
 
 		<script id="sap-ui-bootstrap" 
 			type="text/javascript"
@@ -15,7 +15,6 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script>
@@ -41,7 +40,8 @@
 					{ name: "David"},
 				],
 				cols: ["Name"]
-			};		
+			};	
+	
 		
 		var oTable = new sap.m.Table("idRandomDataTable", {
 			headerToolbar: new sap.m.Toolbar({
@@ -111,6 +111,15 @@
 					}
 				}
 				return null;
+			},
+			
+			getGroup : function(oColumn) {
+				if(oColumn.getHeader() && oColumn.getHeader().getText) {
+					if( oColumn.getHeader().getText() == "Color") {
+						return "Primary Group";
+					}
+				}
+				return "Secondary Group";
 			}
 				
 		};
@@ -137,12 +146,14 @@
 
 		var oTPC = new sap.m.TablePersoController({
 			table: oTable,
-			persoService: oPersoService
+			persoService: oPersoService,
+			hasGrouping: false
 		}).activate();
 
 		var oTPC1 = new sap.m.TablePersoController({
 			table: oTable1,
-			persoService: oPersoService1
+			persoService: oPersoService1,
+			hasGrouping: false
 		}).activate();		
 		
 		
@@ -184,16 +195,31 @@
 		});
 
 
-		module("Open");
+		module("Open, 'Reset All'-, 'Select All' Visibility");
 
 		test("Open Dialog", function() {
+			oTPC.setShowResetAll(false);
+			oTPC.setShowSelectAll(false);
+			//oTPC.setHasGrouping(true);
 			oTPC.openDialog();
 			ok(sap.ui.getCore().byId("__dialog1"), "Columns dialog exists after open() called");
 			ok(jQuery.sap.domById("__dialog1-title"), "Columns dialog has a title rendered");
 			var oRb = sap.ui.getCore().getLibraryResourceBundle("sap.m");
 			strictEqual(sap.ui.getCore().byId("__dialog1").getTitle(), oRb.getText("PERSODIALOG_COLUMNS_TITLE"), "Columns dialog title is 'Columns'");
+			//Check if Reset ALL Button is invisible
+			ok(jQuery('#'+oTPC.getAggregation("_tablePersoDialog")._oDialog.getId() + '-header-BarRight').children().length == 0, 'Reset All button should be hidden');
+			//Check if Select All is invisible
+			ok(!jQuery('.sapMPersoDialogLIHeader').is(':visible'), 'Select All Header should be hidden');
+			
+			oTPC.setShowResetAll(true);
+			oTPC.setShowSelectAll(true);
+			sap.ui.getCore().applyChanges();
+			//Check if Reset ALL Button is visible
+			ok(oTPC.getAggregation("_tablePersoDialog")._oDialog.getContent()[0].getContent()[1].$().length > 0, 'Reset All should be shown');
+			//Check if Select All is vsible
+			ok(jQuery('.sapMPersoDialogLIHeader').is(':visible'), 'Select All Header should be shown');
 		});
-
+		
 
 		module("Personalizations");
 
@@ -216,76 +242,45 @@
 		});
 
 		test("En/-disable Arrow Buttons", function() {
-			var oDataList = oTablePersoDialog._oDialog.getContent()[0];
+			var oDataList = oTablePersoDialog._oDialog.getContent()[1].getContent()[0];
 			var oButtonUp = sap.ui.getCore().byId("__button0");
 			var oButtonDown = sap.ui.getCore().byId("__button1");
 			var length = oDataList.getItems().length;
 			
 //			nothing is selected => both buttons have to be disabled!
-			ok(oButtonUp.$().hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Up is disabled => OK!");
-			ok(oButtonDown.$().hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Down is disabled => OK!");
+			ok(oButtonUp.$("inner").hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Up is disabled => OK!");
+			ok(oButtonDown.$("inner").hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Down is disabled => OK!");
 			
 			if (length > 0) {
 				oDataList.setSelectedItem(oDataList.getItems()[0], true, true);	
 				sap.ui.getCore().applyChanges();
-				ok(oButtonUp.$().hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Up is disabled => OK!");
-				ok(!oButtonDown.$().hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Down is enabled => OK!");
+				ok(oButtonUp.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Up is disabled => OK!");
+				ok(!oButtonDown.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Down is enabled => OK!");
 	
 				oDataList.setSelectedItem(oDataList.getItems()[length - 1], true, true);			
 				sap.ui.getCore().applyChanges();
-				ok(oButtonDown.$().hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Down is disabled => OK!");
-				ok(!oButtonUp.$().hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Up is enabled => OK!");	
+				ok(oButtonDown.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Down is disabled => OK!");
+				ok(!oButtonUp.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Up is enabled => OK!");	
 			};
 			
 			oTablePersoDialog1 = oTPC1.getTablePersoDialog();			
 			oTPC1.openDialog();			
 
-			var oDataList1 = oTablePersoDialog1._oDialog.getContent()[0];
-			var oButtonUp1 = sap.ui.getCore().byId("__button5");
-			var oButtonDown1 = sap.ui.getCore().byId("__button6");
+			var oDataList1 = oTablePersoDialog1._oDialog.getContent()[0].getContent()[0];
+			var oButtonUp1 = oTablePersoDialog1._oDialog.getSubHeader().getContent()[0];
+			var oButtonDown1 = oTablePersoDialog1._oDialog.getSubHeader().getContent()[1];
 //			only one item in list is available(selected) => both buttons have to be disabled!
 			if (oDataList1.getItems().length == 1) {
 				oDataList1.setSelectedItem(oDataList1.getItems()[0], true, true);	
 				sap.ui.getCore().applyChanges();			
-				ok(oButtonUp1.$().hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Up is disabled => OK!");
-				ok(oButtonDown1.$().hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Down is disabled => OK!");							
+				ok(oButtonUp1.$("inner").hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Up is disabled => OK!");
+				ok(oButtonDown1.$("inner").hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Down is disabled => OK!");							
 			};
 			var oButtonCancel1 = sap.ui.getCore().byId(oTablePersoDialog1._oDialog.getRightButton());
 			oButtonCancel1.firePress();
 		});
 
-		test("After Personalization but Cancel pressed", function() {
-			// Set the 1st column to invisible and switch the last two around
-			var oButtonUp = sap.ui.getCore().byId("__button0");
-			var oButtonDown = sap.ui.getCore().byId("__button1");
-			var oButtonReset = sap.ui.getCore().byId("__button2");
-			var oButtonOk = sap.ui.getCore().byId("__button3");
-			var oButtonCancel = sap.ui.getCore().byId("__button4");
-
-			// 1st column invisible
-			sap.ui.getCore().byId("__switch0-__list0-0").setState(false);
-
-			// Switch last two around
-			sap.ui.getCore().byId("__item2-__list0-1").setSelected(true);
-			oButtonDown.firePress();
-			sap.ui.getCore().applyChanges();
-
-			// Press Cancel
-			oButtonCancel.firePress();
-			sap.ui.getCore().applyChanges();
-
-			var oPersData = oTablePersoDialog.retrievePersonalizations();
-
-			strictEqual(oPersData.aColumns[0].order, 0, "Column 0 order is correct");
-			strictEqual(oPersData.aColumns[1].order, 1, "Column 1 order is correct");
-			strictEqual(oPersData.aColumns[2].order, 2, "Column 2 order is correct");
-			strictEqual(oPersData.aColumns[0].text, "Name", "Column 0 text is correct");
-			strictEqual(oPersData.aColumns[1].text, "Modified Color", "Column 1 text is correct");
-			strictEqual(oPersData.aColumns[2].text, "Number", "Column 2 text is correct");
-			strictEqual(oPersData.aColumns[0].visible, true, "column 0 visibility is correct");
-			strictEqual(oPersData.aColumns[1].visible, true, "Column 1 visibility is correct");
-			strictEqual(oPersData.aColumns[2].visible, true, "Column 2 visibility is correct");
-		});
+		
 
 		test("After Personalization but OK pressed", function() {
 			// Re open dialog
@@ -299,7 +294,7 @@
 			var oButtonCancel = sap.ui.getCore().byId("__button4");
 
 			// 1st column invisible
-			sap.ui.getCore().byId("__switch0-__list0-0").setState(false);
+			sap.ui.getCore().byId("__box0-__list0-0").setSelected(false);
 
 			// Switch last two around
 			sap.ui.getCore().byId("__item2-__list0-1").setSelected(true);
@@ -316,31 +311,58 @@
 			strictEqual(oPersData.aColumns[1].text, "Number", "Column 1 (Color) order is now 2");
 			strictEqual(oPersData.aColumns[2].text, "Modified Color", "Column 2 (Number) is now 1");
 		});
-
-
-		module("Dialog Size");
-
-		test("ContentWidth - default", function() {
-			var oTablePersoDialog = new sap.m.TablePersoDialog({
-				persoDialogFor: oTable
+		
+		module("More than 100 columns");
+		test("Table has more than 100 columns", function(){
+			//Arrange
+			var oData2 = {
+				cols: function(){
+					var cols = [];
+					for ( var i = 0; i < 110; i++) {
+						cols.push("Cols" + i);
+					}
+					return cols;
+				}()
+			};
+			var oTable2 = new sap.m.Table("idRandomDataTable2", {
+				headerToolbar: new sap.m.Toolbar({
+					content: [
+						new sap.m.Label({text: "Random Data"}),
+						new sap.m.ToolbarSpacer({}),
+						new sap.m.Button("idPersonalizationButton2", {
+							icon: "sap-icon://person-placeholder"
+						})
+					]
+				}),
+				columns: oData2.cols.map(function (colname) {
+					return new sap.m.Column( "column1" + colname, { header: new sap.m.Label({ text: colname })})
+				})
 			});
-			oTablePersoDialog.open();
-			strictEqual(oTablePersoDialog._oDialog.getContentWidth(), "", "Inner dialog has normal (i.e. empty) contentWidth value");
-			var oButtonCancel = sap.ui.getCore().byId(oTablePersoDialog._oDialog.getRightButton());
-			oButtonCancel.firePress();
+			
+			oTable2.setModel(new sap.ui.model.json.JSONModel(oData2), "dataModel2");	
+			
+			var oTPC2 = new sap.m.TablePersoController({
+				table: oTable2,
+				persoService: oPersoService,
+				hasGrouping: false
+			}).activate();
+			
+			//Act
+			page.addContent(oTable2);
+			sap.ui.getCore().applyChanges();
+			oTPC2.openDialog();
+			sap.ui.getCore().applyChanges();
+			
+			//Assert
+			var oTablePersoDialog2 = oTPC2.getTablePersoDialog();
+			strictEqual(oTablePersoDialog2._oList.getItems().length == 110, true, "TablePersoDialog displays 110 rows");
+			
+			//Clean up
+			oTPC2.destroy();
 		});
-
-		test("ContentWidth - 600px", function() {
-			var oTablePersoDialog = new sap.m.TablePersoDialog({
-				persoDialogFor: oTable,
-				contentWidth: "600px"
-			});
-			oTablePersoDialog.open();
-			strictEqual(oTablePersoDialog._oDialog.getContentWidth(), "600px", "Inner dialog has 600px contentWidth value");
-			var oButtonCancel = sap.ui.getCore().byId(oTablePersoDialog._oDialog.getRightButton());
-			oButtonCancel.firePress();
-		});
-
+		
+		
+		
 
 		module("Close");
 
@@ -349,7 +371,7 @@
 				persoDialogFor: oTable
 			});
 			oTablePersoDialog.destroy();
-			strictEqual(oTablePersoDialog._columnItemTemplate, null, "ListItem template is destroyed");
+			strictEqual(oTablePersoDialog._oColumnItemTemplate, null, "ListItem template is destroyed");
 			strictEqual(oTablePersoDialog._oDialog, null, "Dialog is destroyed");
 			strictEqual(oTablePersoDialog._oRb, null, "Resource bundle is nulled");
 			strictEqual(oTablePersoDialog._oP13nModel, null, "Model bundle is nulled");

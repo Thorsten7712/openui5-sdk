@@ -285,7 +285,9 @@
 				{ "name" : "slim-arrow-up" },
 				{ "name" : "forward" },
 				{ "name" : "expand-group" },
-				{ "name" : "collapse-group" }
+				{ "name" : "collapse-group" },
+				{ "name" : "sort-descending" },
+				{ "name" : "sort-ascending" }
 			]
 		},
 		
@@ -361,7 +363,9 @@
 				{ "name" : "sys-minus" },
 				{ "name" : "dropdown" },
 				{ "name" : "expand-group" },
-				{ "name" : "collapse-group" }
+				{ "name" : "collapse-group" },
+				{ "name" : "sort-descending" },
+				{ "name" : "sort-ascending" }
 			]
 		},
 		

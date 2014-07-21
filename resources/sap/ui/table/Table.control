@@ -47,7 +47,7 @@
 			<documentation>Invisible controls are not rendered.</documentation>
 		</property>
 		<property group="Behavior" name="navigationMode" type="sap.ui.table/NavigationMode" defaultValue="Scrollbar">
-			<documentation>Flag whether to use the scroll mode or paging mode.</documentation>
+			<documentation>Flag whether to use the scroll mode or paging mode. If the Paginator mode is used it will require the sap.ui.commons library!</documentation>
 		</property>
 		<property group="Appearance" name="threshold" type="sap.ui.core/int" defaultValue="100">
 			<documentation>Threshold to fetch the next chunk of data. The minimal threshold can be the visible row count of the Table. If the value is 0 then the thresholding is disabled.</documentation>
@@ -74,11 +74,23 @@
 			<documentation>Number of rows that are fix on the top. When you use a vertical scroll bar, only the rows which are not fixed, will scroll.</documentation>
 		</property>
 		<property group="Appearance" name="minAutoRowCount" type="sap.ui.core/int" defaultValue="5">
-			<documentation>This property is used to set the minimum count of visible rows when the property visibleRowCountMode is set to Auto.
-For any other visibleRowCountMode, it is ignored.</documentation>
+			<documentation>This property is used to set the minimum count of visible rows when the property visibleRowCountMode is set to Auto. For any other visibleRowCountMode, it is ignored.</documentation>
 		</property>
 		<property group="Appearance" name="fixedBottomRowCount" type="sap.ui.core/int" defaultValue="0" since="1.18.7">
 			<documentation>Number of rows that are fix on the bottom. When you use a vertical scroll bar, only the rows which are not fixed, will scroll. (experimental!)</documentation>
+		</property>
+		<property group="Behavior" name="enableColumnFreeze" type="sap.ui.core/boolean" defaultValue="false" since="1.21.0">
+			<documentation>Flag whether to show or hide the column menu item to freeze or unfreeze a column.</documentation>
+		</property>
+		<property group="Behavior" name="enableCellFilter" type="sap.ui.core/boolean" defaultValue="false" since="1.21.0">
+			<documentation>Flag whether to enable or disable the context menu on cells to trigger a filtering with the cell value.</documentation>
+		</property>
+		<property group="Appearance" name="noDataText" type="sap.ui.core/string" since="1.21.0">
+			<documentation>This text is shown, in case there is no data available to be displayed in the Table and no custom noData control is set.</documentation>
+			<deprecation since="1.22.1">The aggregation noData also supports string values now. Use noData instead.</deprecation>
+		</property>
+		<property group="Appearance" name="showOverlay" type="sap.ui.core/boolean" defaultValue="false" since="1.21.2">
+			<documentation>Setting this property to true will show an overlay on top of the Table content and users cannot click anymore on the Table content.</documentation>
 		</property>
 	</properties>
 	<events>
@@ -170,6 +182,42 @@ For any other visibleRowCountMode, it is ignored.</documentation>
 				</parameter>
 			</parameters>
 		</event>
+		<event name="cellClick" allowPreventDefault="true" since="1.21.0">
+			<documentation>fired when the user clicks a cell of the table (experimental!).</documentation>
+			<parameters>
+				<parameter name="cellControl" type="sap.ui.core/Control">
+					<documentation>The control of the cell.</documentation>
+				</parameter>
+				<parameter name="rowIndex" type="sap.ui.core/int">
+					<documentation>Row index of the selected cell.</documentation>
+				</parameter>
+				<parameter name="columnIndex" type="sap.ui.core/int">
+					<documentation>Column index of the selected cell.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="cellContextmenu" allowPreventDefault="true" since="1.21.0">
+			<documentation>fired when the user clicks a cell of the table (experimental!).</documentation>
+			<parameters>
+				<parameter name="cellControl" type="sap.ui.core/Control">
+					<documentation>The control of the cell.</documentation>
+				</parameter>
+				<parameter name="rowIndex" type="sap.ui.core/int">
+					<documentation>Row index of the selected cell.</documentation>
+				</parameter>
+				<parameter name="columnIndex" type="sap.ui.core/int">
+					<documentation>Column index of the selected cell.</documentation>
+				</parameter>
+			</parameters>
+		</event>
+		<event name="columnFreeze" allowPreventDefault="true" since="1.21.0">
+			<documentation>fired when a column of the table should be freezed</documentation>
+			<parameters>
+				<parameter name="column" type="sap.ui.table/Column">
+					<documentation>reference to the column to freeze</documentation>
+				</parameter>
+			</parameters>
+		</event>
 	</events>
 	<aggregations default="columns">
 		<aggregation cardinality="0..1" name="title" type="sap.ui.core/Control">
@@ -180,7 +228,7 @@ For any other visibleRowCountMode, it is ignored.</documentation>
 			<documentation>Control or text of footer section of the Table (if not set it will be hidden)</documentation>
 			<altType type="sap.ui.core/string" />
 		</aggregation>
-		<aggregation cardinality="0..1" name="toolbar" type="sap.ui.commons/Toolbar">
+		<aggregation cardinality="0..1" name="toolbar" type="sap.ui.core/Toolbar">
 			<documentation>Toolbar of the Table (if not set it will be hidden)</documentation>
 		</aggregation>
 		<aggregation cardinality="0..n" name="extension" type="sap.ui.core/Control">
@@ -193,7 +241,8 @@ For any other visibleRowCountMode, it is ignored.</documentation>
 			<documentation>Rows of the Table</documentation>
 		</aggregation>
 		<aggregation cardinality="0..1" name="noData" type="sap.ui.core/Control">
-			<documentation>This control is shown, in case there is no data available to be displayed in the Table.</documentation>
+			<documentation>The value for the noData aggregation can be either a string value or a control instance. The control is shown, in case there is no data for the Table available. In case of a string value this will simply replace the no data text.</documentation>
+			<altType type="sap.ui.core/string" />
 		</aggregation>
 	</aggregations>
 	<associations>

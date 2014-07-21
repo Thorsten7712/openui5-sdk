@@ -12,9 +12,11 @@
 <meta name="abstract" content="Typical mobile applications are often composed of a number of pages/views/screens between which the user can navigate. You now add two of them to your app."/>
 <meta name="description" content="Typical mobile applications are often composed of a number of pages/views/screens between which the user can navigate. You now add two of them to your app."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8985299579679811"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=351516490933522"/>
 <title>Add Content Pages</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -27,7 +29,7 @@
 		between which the user can navigate. You now add two of them to your app. </p>
 <div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand" id="loio43d4c8b86c8c42f3a825f2e0c3acbc6c__step_N10018_N10015_N10012_N10001"><span class="ph cmd">One <samp class="ph codeph">sap.m.Page</samp> control is created, its title is set and the content is
 					just one button:</span> 
-					<div><pre class="pre codeblock"> // create the first page of your application
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> // create the first page of your application
 var page1 = new sap.m.Page("page1", {
   title: "Initial Page",
   content : new sap.m.Button({ 
@@ -51,7 +53,7 @@ var page1 = new sap.m.Page("page1", {
 					could be used as well.</li>
 <li class="li step stepexpand" id="loio43d4c8b86c8c42f3a825f2e0c3acbc6c__step_N1004B_N10015_N10012_N10001"><span class="ph cmd">Add the following to the <samp class="ph codeph">&lt;script&gt;</samp> section of the HTML page below the
 					part, where you've initialized the app:</span> 
-					<div><pre class="pre codeblock"> // create the second page of your application
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> // create the second page of your application
 var page2 = new sap.m.Page("page2", {
   title: "Page 2",
   showNavButton: true, 
@@ -69,13 +71,13 @@ var page2 = new sap.m.Page("page2", {
 						<samp class="ph codeph">app.back()</samp>. This causes an inverse animation, which leads
 					back to the main page.</div></li>
 <li class="li step stepexpand" id="loio43d4c8b86c8c42f3a825f2e0c3acbc6c__step_N10073_N10015_N10012_N10001"><span class="ph cmd">Add the two pages to the App: </span> 
-					<div><pre class="pre codeblock">// add both pages to the App
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// add both pages to the App
 app.addPage(page1).addPage(page2); 
 </pre></div>
 
 				</li>
 <li class="li step stepexpand"><span class="ph cmd">Finally place the app into the content area you've defined earlier.</span> 
-					<div><pre class="pre codeblock">
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
   app.placeAt("content"); // place the App into the HTML document</pre></div>
 
 				<div class="itemgroup stepresult">The app is placed into the HTML like a SAPUI5 desktop control. The App

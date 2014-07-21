@@ -12,12 +12,15 @@
 			data-sap-ui-noConflict="true"
 			data-sap-ui-libs="sap.m">
 		</script>
+		<script>
+			//Mock server requires sionon. it needs to be done before sinon-qunit.
+			//If you don't do this before and require sinon separately, this will overwrite the global sinon object and therefore deleting the sanbox config
+			jQuery.sap.require("sap.ui.app.MockServer");
+		</script>
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
-		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
 		<script>
@@ -77,27 +80,27 @@
 				//Arrange
 				var data = { items: [ {},{}] };
 			
-				var model = new sap.ui.model.json.JSONModel();
-				model.setData(data);
+				var oModel = new sap.ui.model.json.JSONModel();
+				oModel.setData(data);
 
-				var list = new sap.m.List({
+				var oList = new sap.m.List({
 					growing : true,
 					growingScrollToLoad : true,
 					items : {
 					path : "/items", 
 					template : new sap.m.CustomListItem({
 							content : new sap.ui.core.HTML({content:'<div style="height: 1000px"></div>'}),
-						}) 
+						})
 					}
-				}).setModel(model);
+				}).setModel(oModel);
 
 				var page = new sap.m.Page({
 					title: "List Page",
-					content : list
+					content : oList
 				});
 
 				//System under Test
-				var sut = new sap.m.GrowingEnablement(list);
+				var sut = new sap.m.GrowingEnablement(oList);
 
 				page.placeAt("qunit-fixture");
 				sap.ui.getCore().applyChanges();
@@ -108,20 +111,170 @@
 
 			test("Should determine if the list is not scrollable", function() {
 				//Arrange
-				var list = new sap.m.List({
+				var oList = new sap.m.List({
 						growing : true,
 						growingScrollToLoad : true
 					});
 
 				//System under Test
-				var sut = new sap.m.GrowingEnablement(list);
+				var sut = new sap.m.GrowingEnablement(oList);
 
-				list.placeAt("qunit-fixture");
+				oList.placeAt("qunit-fixture");
 				sap.ui.getCore().applyChanges();
 
 				//Act + Assert
 				ok(!sut._getHasScrollbars(), "The list has no scrollbars");
 			});
+
+			module("Odata");
+			sinon.config.useFakeTimers = false;
+
+			function startMockServer() {
+
+				sap.ui.app.MockServer.config({ autoRespond : true });
+
+				var oMockServer = new sap.ui.app.MockServer({
+					rootUri: "http://sap.com/model/"
+				});
+
+				oMockServer.simulate("data/metadata.xml", "data");
+				oMockServer.start();
+				return oMockServer;
+			}
+
+			jQuery.sap.require("sap.ui.model.odata.ODataModel");
+			function setODataModelAndBindItems (oList) {
+				//true is use JSON
+				oModel = new sap.ui.model.odata.ODataModel("http://sap.com/model", true);
+
+				oList.setModel(oModel);
+
+				var oItemTemplate = new sap.m.StandardListItem({
+					title : "{Name}",
+					description : "{Category}"
+				});
+
+				oList.bindItems({
+					path : "/Products",
+					template : oItemTemplate
+				});
+			}
+
+			function groupList (oList) {
+				var oBinding = oList.getBinding("items");
+				oBinding.sort([
+					new sap.ui.model.Sorter("Category", false, function(oContext) {
+						var sCategory = oContext.getProperty("Category");
+						return {
+							key : sCategory,
+							text : sCategory
+						}
+					})
+				]);
+			}
+
+			asyncTest("Should group and ungroup a List", function () {
+				//Arrange
+				var iInitialItemCount,
+					oMockServer = startMockServer(),
+					oInitialLoadDeferred = jQuery.Deferred(),
+					oAfterGroupingDeferred = jQuery.Deferred(),
+					oAfterUnGroupingDeferred = jQuery.Deferred(),
+					oInitialLoadDeferred = jQuery.Deferred(),
+					oList = new sap.m.List({
+						growing : true
+					});
+
+				oList.placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+
+				oList.attachEventOnce("updateFinished", oInitialLoadDeferred.resolve);
+
+				//Act part 2 - group the list
+				jQuery.when(oInitialLoadDeferred).then(function () {
+					iInitialItemCount = oList.getItems().length;
+					groupList(oList);
+
+					oList.attachEventOnce("updateFinished", oAfterGroupingDeferred.resolve);
+				});
+
+				//Act part 3 - ungroup the list
+				jQuery.when(oAfterGroupingDeferred).then(function () {
+					//ungroup
+					oList.getBinding("items").sort([]);
+
+					oList.attachEventOnce("updateFinished", oAfterUnGroupingDeferred.resolve);
+				});
+
+				//Assert + Cleanup
+				jQuery.when(oAfterUnGroupingDeferred).then(function () {
+					strictEqual(iInitialItemCount, oList.getItems().length, "The list did contain the same number of items");
+					start();
+
+					oList.destroy();
+					oMockServer.stop();
+				});
+
+				//Act
+				setODataModelAndBindItems(oList);
+			});
+
+			asyncTest("Should grow by the treshold", function () {
+				//Arrange
+				var oMockServer = startMockServer(),
+					iInitialThreshold = 2,
+					oList = new sap.m.List({
+						growing : true,
+						//small number that not all data gets loaded
+						growingThreshold : iInitialThreshold
+					}),
+					iTotalNumberOfItems,
+					oInitialLoadDeferred = jQuery.Deferred(),
+					oSecondPageDeferred = jQuery.Deferred(),
+					oAllPagesDeferred = jQuery.Deferred();
+
+				//System under test
+				oList.placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+
+				oList.attachEventOnce("updateFinished", oInitialLoadDeferred.resolve);
+
+				//Act part 2 - set growing treshold to half of the total items and load a second page
+				jQuery.when(oInitialLoadDeferred).then(function () {
+					strictEqual(iInitialThreshold, oList.getItems().length, "The list did contain the same number of items as the initial treshold");
+					iTotalNumberOfItems = oList.getBinding("items").getLength();
+
+					oList.setGrowingThreshold(Math.floor(iTotalNumberOfItems / 2));
+					oList._oGrowingDelegate.requestNewPage();
+
+					oList.attachEventOnce("updateFinished", oSecondPageDeferred.resolve);
+				});
+
+				//Act part 3 - load another page - now we should have all items
+				jQuery.when(oSecondPageDeferred).then(function () {
+					//Assert
+					strictEqual(oList.getGrowingThreshold() + iInitialThreshold, oList.getItems().length, "The list did contain the same number of items as twice the treshold");
+
+					oList._oGrowingDelegate.requestNewPage();
+
+					oList.attachEventOnce("updateFinished", oAllPagesDeferred.resolve);
+				});
+
+				//Assert - check if all items where loaded
+				jQuery.when(oAllPagesDeferred).then(function () {
+					strictEqual(iTotalNumberOfItems, oList.getItems().length, "The list did contain the max number of items");
+
+					//Cleanup
+					oList.destroy();
+					oMockServer.stop();
+					start();
+				});
+
+				//Act
+				//Loads the data
+				setODataModelAndBindItems(oList);
+			});
+
 		</script>
 
 	</head>

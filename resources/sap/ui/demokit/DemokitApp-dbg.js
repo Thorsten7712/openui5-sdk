@@ -101,6 +101,7 @@ sap.ui.demokit.DemokitApp.prototype.addIndex = function(sId, oSettings) {
 	var oTLNItem = {
 		id : "mi-" + sId,
 		text : oSettings.caption || sId,
+		newWindow : oSettings.newWindow,
 		visible : (typeof oSettings.visible === "boolean") ? oSettings.visible : true,
 		themable : oSettings.themable || false 
 	};
@@ -370,6 +371,14 @@ sap.ui.demokit.DemokitApp.prototype.createUI = function(bSearchSupported, sIniti
 	// TODO oSidePanelLayout.addContent(oDemokit._aTopLevelNavItems[0]._oTree, {top:"0", bottom:"0", left:"0", right:"0"});
 	sap.ui.Device.os.name == sap.ui.Device.os.OS.IOS ? bShowScrollBars = true : bShowScrollBars = false;
 
+	var oVersionInfo = new sap.ui.commons.Link({
+		text: this._sVersionStr,
+		tooltip: "Open Version Info",
+		press: function() {
+			that.navigateTo("versioninfo.html");
+		}
+	});
+	
 	var oShell = this._oShell = new sap.ui.ux3.Shell({
 		appTitle: this._sTitleStr,
 		showLogoutButton: false,
@@ -383,10 +392,15 @@ sap.ui.demokit.DemokitApp.prototype.createUI = function(bSearchSupported, sIniti
 			that._oShell._getSearchTool().close();
 		},
 		worksetItemSelected: function(oEvent){
-			var oNavItem = oEvent.getParameter("item");  
+			var oNavItem = oEvent.getParameter("item");
 			if ( oNavItem.getEnabled() ) {
+				var oItem = oNavItem._itemData_;
+				// skip update of shell for new windows
+				if (oItem.newWindow) {
+					oEvent.preventDefault();
+				}
 				// navigate to the default reference
-				that.navigateTo(oNavItem._itemData_.ref);
+				that.navigateTo(oItem.ref, null, null, oItem.newWindow);
 			} else {
 				oEvent.preventDefault();
 			}
@@ -402,7 +416,7 @@ sap.ui.demokit.DemokitApp.prototype.createUI = function(bSearchSupported, sIniti
 				showScrollBars:bShowScrollBars
 			})
 		],
-		headerItems:[new sap.ui.commons.Label("version", {text: this._sVersionStr})]
+		headerItems:[oVersionInfo]
 	});	
 
 	this._oShell.addStyleClass("sapDkShell");
@@ -493,7 +507,7 @@ sap.ui.demokit.DemokitApp.prototype.onContentLoaded = function (e) {
 };
 
 
-sap.ui.demokit.DemokitApp.prototype.navigateTo = function(sName, bSkipSetHash, bSkipSwitchLocation) {
+sap.ui.demokit.DemokitApp.prototype.navigateTo = function(sName, bSkipSetHash, bSkipSwitchLocation, bNewWindow) {
 	
 	var that = this;
 	
@@ -513,7 +527,13 @@ sap.ui.demokit.DemokitApp.prototype.navigateTo = function(sName, bSkipSetHash, b
 	var oContent = jQuery("#content")[0];
 	var oContentWindow = oContent && oContent.contentWindow;
 	var topNavIdx = this.findIndexForPage(sPageName);
-	
+
+	// open in new window and do nothing else
+	if (bNewWindow) {
+		window.open(sPageName, "_blank");
+		return;
+	}
+
 	// postpone navigation if either rendering did not happen yet or indexes are not yet loaded 
 	if ( !oContentWindow || topNavIdx === sap.ui.demokit.DemokitApp.RETRY_LATER ) {
 		setTimeout(function() {

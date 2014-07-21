@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=1433139218280881"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2845123110091027"/>
 <title>Component Configuration</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -30,7 +32,7 @@
             JSON.</p>
 <p class="p">The configuration is defined in the metadata. The following code snippet shows how you define
             the configuration for components.</p>
-<div><pre class="pre codeblock">sap.ui.core.UIComponent.extend("sap.samples.Component", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.core.UIComponent.extend("sap.samples.Component", {
 
     metadata : {
         version : "1.0",
@@ -55,12 +57,12 @@
 });</pre></div>
 <p class="p">To access the configuration without creating an instance of the component, simply require
 			the component as follows:</p>
-<div><pre class="pre codeblock">jQuery.sap.require("sap.samples.Component");
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">jQuery.sap.require("sap.samples.Component");
 var oConfig = sap.samples.Component.getMetadata().getConfig();
 </pre></div>
 <p class="p">A component instance can access its configuration as shown in the following code
 			snippet:</p>
-<div><pre class="pre codeblock">  [...]
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  [...]
 
   init: function() {
     var oConfig = this.getMetadata().getConfig();
@@ -70,7 +72,7 @@ var oConfig = sap.samples.Component.getMetadata().getConfig();
 </pre></div>
 <p class="p">When you extend a component and add additional configuration, the configuration is merged
 			with the original component:</p>
-<div><pre class="pre codeblock">sap.samples.Component.extend("customer.Component", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.samples.Component.extend("customer.Component", {
 
     metadata : {
         version : "1.0",
@@ -92,7 +94,7 @@ var oConfig = sap.samples.Component.getMetadata().getConfig();
     }
 });</pre></div>
 <p class="p">The merged configuration then looks as follows:</p>
-<div><pre class="pre codeblock">var oConfig = {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oConfig = {
     "sap.samples.config1": {
         "Key1-1": "Value1-1",
         "Key1-2": "value1-2",

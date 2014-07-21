@@ -10,9 +10,11 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=06556347712657562"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=45847939493366785"/>
 <title>Implementing an OData Model</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -31,7 +33,7 @@
 				which prevents access to backends on different domains or sites.</div>
 
 		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps" id="loio91f11c116f4d1014b6dd926db0e91070__steps_ejn_4zs_5k"><li class="li step stepexpand"><span class="ph cmd">To create an OData model instance: </span> 
-					<div><pre class="pre codeblock">var oModel = new sap.ui.model.odata.ODataModel("http://services.odata.org/Northwind/Northwind.svc/");</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.odata.ODataModel("http://services.odata.org/Northwind/Northwind.svc/");</pre></div>
 
 					<p class="p">Requests to the service to fetch data are made automatically according to the
 						data bindings defined in the controls. </p>
@@ -53,7 +55,7 @@
 						in every request sent to the OData server. This is useful for authentication
 						tokens or general configuration options. </p>
 
-					<div><pre class="pre codeblock">var oModel = new sap.ui.model.odata.ODataModel("http://myserver/MyService.svc/?custom1=value1&amp;custom2=value2");</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.odata.ODataModel("http://myserver/MyService.svc/?custom1=value1&amp;custom2=value2");</pre></div>
 
 				</li>
 <li class="li step stepexpand"><span class="ph cmd">For other parameters it makes no sense to include them in every request. These
@@ -65,7 +67,7 @@
 						<p class="p">To use the <samp class="ph codeph">$expand</samp> parameter see the following snippet
 							below: </p>
 
-						<div><pre class="pre codeblock">oControl.bindElement("/Category(1)", {expand: "Products"}); 
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oControl.bindElement("/Category(1)", {expand: "Products"}); 
 
 oTable.bindRows({
     path: "/Products",
@@ -82,7 +84,7 @@ oTable.bindRows({
 						<p class="p">The <samp class="ph codeph">$select</samp> parameter returns only the specified
 							properties of requested entries. </p>
 
-						<div><pre class="pre codeblock">oControl.bindElement("/Category(1)", {expand: "Products", select: "Name,ID,Products"}); 
+						<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oControl.bindElement("/Category(1)", {expand: "Products", select: "Name,ID,Products"}); 
 
 oTable.bindRows({
     path: "/Products",
@@ -109,12 +111,12 @@ oTable.bindRows({
 						operations. You can specify the custom parameters during aggregation binding
 						as follows:</p>
 
-					<div><pre class="pre codeblock">oTable.bindRows({path: "/Products", parameters: { custom: { param1: "value1", param2: "value2" } }, template: rowTemplate });</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTable.bindRows({path: "/Products", parameters: { custom: { param1: "value1", param2: "value2" } }, template: rowTemplate });</pre></div>
 
 					<p class="p">For <samp class="ph codeph">bindElement</samp>, you can specify custom parameters as
 						follows:</p>
 
-					<div><pre class="pre codeblock">oTextField.bindElement("/GetProducts", { custom: { "price" : "500" } });</pre></div>
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTextField.bindElement("/GetProducts", { custom: { "price" : "500" } });</pre></div>
 
 				</li>
 <li class="li step stepexpand"><span class="ph cmd">To create virtual entries:</span> 
@@ -131,7 +133,7 @@ oTable.bindRows({
 					<p class="p">Make sure that the collection and properties exist on the OData service and
 						are defined in the metadata document as well. Here is an example:</p>
 
-					<div><pre class="pre codeblock"> // create an entry of the Products collection with the specified properties and values
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> // create an entry of the Products collection with the specified properties and values
  var oContext = oModel.createEntry("Products",{ID:99,Name:"Product",Description:"new Product",ReleaseDate:new Date(),Price:"10.1",Rating:1});
  // use the returned context for binding against this entry
  oLayout.setBindingContext(oContext);
@@ -143,7 +145,7 @@ oTable.bindRows({
 						be used to bind against the newly created entry. See the following example
 						for how to write the entries in the request queue to the backend:</p>
 
-					<div><pre class="pre codeblock"> // provide optional success and error functions which are called for each request in the queue
+					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> // provide optional success and error functions which are called for each request in the queue
  oModel.submitChanges(fnSuccess, fnError); </pre></div>
 
 				</li>

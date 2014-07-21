@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3326608066094634"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=1732356501014387"/>
 <title>Step 6: Custom Utilities</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -32,7 +34,7 @@
 			application, we have properties in data bindings that need to be formatted. The code is
 			defined in a <span class="ph filepath">Formatter.js</span> file in the util folder.</p>
 <p class="p">Here's the content of the file:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!js</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!js</samp>
 jQuery.sap.declare("sap.ui.demo.tdg.util.Formatter");
 
 sap.ui.demo.tdg.util.Formatter = {
@@ -57,7 +59,7 @@ sap.ui.demo.tdg.util.Formatter = {
 </pre></div>
 <p class="p">Here are a couple of examples of where these formatting functions are used - one from the
 			Master view:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;ObjectStatus
     text="{
         path: 'Rating',
@@ -69,7 +71,7 @@ sap.ui.demo.tdg.util.Formatter = {
     }" /&gt;
 </pre></div>
 <p class="p">and one from the Detail view:</p>
-<div><pre class="pre codeblock"><samp class="ph codeph">#!xml</samp>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"><samp class="ph codeph">#!xml</samp>
 &lt;ObjectHeader
     title="{Name}"
     icon="sap-icon://database"
@@ -89,7 +91,7 @@ sap.ui.demo.tdg.util.Formatter = {
 			<p class="p">After adding the<span class="ph filepath"> Formatter.js</span> file in the new util subfolder,
 				our app folder content looks like this:</p>
 
-			<div><pre class="pre codeblock">
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 tdg/
   |
   +-- i18n/

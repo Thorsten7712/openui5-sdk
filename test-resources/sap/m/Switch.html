@@ -15,49 +15,54 @@
 				data-sap-ui-theme="sap_bluecrystal">
 		</script>
 		<script>
-			var oApp = new sap.m.App("myApp", {initialPage:"page1"}),
+			var oApp = new sap.m.App("myApp", {
+				initialPage: "page1"
+			});
 
-				oSwitch0 = new sap.m.Switch({	// switch On
-					name: "switch-1",
-					state: true,
-					change : function(oControlEvent) {
-						jQuery.sap.log.info("Event fired: 'change' state property to " + oControlEvent.getParameter("state") + " on " + this);
-					}
-				}),
+			var oSwitch0 = new sap.m.Switch({
+				state: true,
+				change: function(oControlEvent) {
+					jQuery.sap.log.info("Event fired: 'change' state property to " + oControlEvent.getParameter("state") + " on " + this);
+				}
+			});
 
-				oSwitch1 = new sap.m.Switch({	// switch On
-					change : function(oControlEvent) {
-						jQuery.sap.log.info("Event fired: 'change' state property to " + oControlEvent.getParameter("state") + " on " + this);
-					}
-				}),
+			var oSwitch1 = new sap.m.Switch({
+				change: function(oControlEvent) {
+					jQuery.sap.log.info("Event fired: 'change' state property to " + oControlEvent.getParameter("state") + " on " + this);
+				}
+			});
 
-				oSwitch2 = new sap.m.Switch({	// switch Disabled
-					enabled: false
-				}),
+			var oSwitch2 = new sap.m.Switch({
+				enabled: false
+			});
 
-				oSwitch3 = new sap.m.Switch({	// switch custom text
-					customTextOn: "I",
-					customTextOff: "O"
-				}),
+			var oSwitch3 = new sap.m.Switch({
+				customTextOn: "I",
+				customTextOff: "O"
+			});
 
-				oSwitch4 = new sap.m.Switch({	// switch custom text
-					customTextOn: "I",
-					customTextOff: "O",
-					state: true
-				}),
+			var oSwitch4 = new sap.m.Switch({
+				customTextOn: "I",
+				customTextOff: "O",
+				state: true
+			});
 
-				oSwitch5 = new sap.m.Switch({	// switch type "AcceptReject"
-					state: true,
-					type: sap.m.SwitchType.AcceptReject	// enum
-				}),
+			var oSwitch5 = new sap.m.Switch({
+				state: true,
+				type: sap.m.SwitchType.AcceptReject
+			});
 
-				oPage1 = new sap.m.Page("page1", {
-					title:"Mobile Switch Control",
-					content : [oSwitch0, oSwitch1, oSwitch2, oSwitch3, oSwitch4, oSwitch5]
-				});
+			var oSwitch6 = new sap.m.Switch({
+				customTextOn: " ",
+				customTextOff: " ",
+			});
+
+			var oPage1 = new sap.m.Page("page1", {
+				title: "Mobile Switch Control",
+				content : [oSwitch0, oSwitch1, oSwitch2, oSwitch3, oSwitch4, oSwitch5, oSwitch6]
+			});
 
 			oApp.addPage(oPage1);
-
 			oApp.placeAt("body");
 		</script>
 	</head>

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>layout/MatrixLayout</name>
-	<author>d029921</author>
+	<author>SAP AG</author>
 	<!-- docs copied from WD; TODO adapt! -->
 	<documentation>
 		&lt;p&gt;

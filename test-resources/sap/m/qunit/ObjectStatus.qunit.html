@@ -13,8 +13,9 @@
 <!-- QUnit libraries -->
 
 <script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
 <script type="text/javascript">
 
@@ -81,12 +82,353 @@
 		ok(os6._isEmpty(), "Object Status #6 is empty");
 		ok(os7.$().length == 0, "Object Status #7 is not rendered");
 	});
+
+	module("Supressed invalidation");
+
+	test("Should not rerender the ObjectStatus if the text is changed", function() {
+		// Arrange
+		var sTextToSet = "<script>alert(\"HAACKED\");<\/script>",
+			oRenderSpy,
+			oResult,
+			oConstructor = { text : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setText(sTextToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oResult, oObjectStatus, "Should be able to chain");
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+		ok(!/.*<script>.*/.test(oObjectStatus.$().children(".sapMObjStatusText").html()), "Did not contain a unescaped script tag");
+		strictEqual(oObjectStatus.getText(), sTextToSet, "Did set the non encoded string as value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
 	
+	test("Should not rerender the ObjectStatus if the text is a number", function() {
+		// Arrange
+		var iNumberToSet = 5,
+			sTextToExpect = "5",
+			oRenderSpy,
+			oResult,
+			oConstructor = { text : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setText(iNumberToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oResult, oObjectStatus, "Should be able to chain");
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+		strictEqual(oObjectStatus.getText(), sTextToExpect, "Did set the number as a string as a value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+
+	test("Should not rerender the ObjectStatus if the title is changed", function() {
+		// Arrange
+		var sTextToSet = "<script>alert(\"HAACKED\");<\/script>",
+			oRenderSpy,
+			oResult,
+			oConstructor = { title : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setTitle(sTextToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oResult, oObjectStatus, "Should be able to chain");
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+		
+		ok(!/.*<script>.*/.test(oObjectStatus.$().children(".sapMObjStatusTitle").html()), "Did not contain a unescaped script tag");
+		
+		var sDisplayedTitle = oObjectStatus.$().children(".sapMObjStatusTitle").text(); 
+		ok(sDisplayedTitle.indexOf(":", sDisplayedTitle.length - 1) , "Did contain a :");
+		strictEqual(oObjectStatus.getTitle(), sTextToSet, "Did set the non encoded string as value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+	
+	test("Should not rerender the ObjectStatus if the title is a number", function() {
+		// Arrange
+		var iNumberToSet = 5,
+			sTitleToExpect = "5",
+			oRenderSpy,
+			oResult,
+			oConstructor = { title : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setTitle(iNumberToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oResult, oObjectStatus, "Should be able to chain");
+		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
+		ok(!/.*<script>.*/.test(oObjectStatus.$().children(".sapMObjStatusTitle").html()), "Did not contain a unescaped script tag");
+		strictEqual(oObjectStatus.$().children(".sapMObjStatusTitle").text(), oObjectStatus.getTitle() + ":", "Did contain a :");
+		strictEqual(oObjectStatus.getTitle(), sTitleToExpect, "Did set the number as a string as a value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+
+	test("Should rerender if the new text is empty", function() {
+		// Arrange
+		var sTextToSet = "  ",
+			oRenderSpy,
+			oResult,
+			oConstructor = { text : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setText(sTextToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 1, "Did rerender");
+		ok(!oObjectStatus.$().children(".sapMObjStatusText").length, "Did not render the text span");
+		strictEqual(oObjectStatus.getText(), sTextToSet, "Did set the value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+
+	test("Should rerender if the new title is empty", function() {
+		// Arrange
+		var sTitleToSet = "  ",
+			oRenderSpy,
+			oResult,
+			oConstructor = { title : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setTitle(sTitleToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 1, "Did rerender");
+		ok(!oObjectStatus.$().children(".sapMObjStatusTitle").length, "Did not render the title span");
+		strictEqual(oObjectStatus.getTitle(), sTitleToSet, "Did set the value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+	
+	test("Should rerender if the new text is undefined", function() {
+		// Arrange
+		var sTextToSet = undefined,
+			oRenderSpy,
+			oResult,
+			oConstructor = { text : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setText(sTextToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 1, "Did rerender");
+		ok(!oObjectStatus.$().children(".sapMObjStatusText").length, "Did not render the text span");
+		strictEqual(oObjectStatus.getText(), "", "Did set the default value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+
+	test("Should rerender if the new title is undefined", function() {
+		// Arrange
+		var sTitleToSet = undefined,
+			oRenderSpy,
+			oResult,
+			oConstructor = { title : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setTitle(sTitleToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 1, "Did rerender");
+		ok(!oObjectStatus.$().children(".sapMObjStatusTitle").length, "Did not render the title span");
+		strictEqual(oObjectStatus.getTitle(), "", "Did set the default value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+
+	test("Should rerender if the text was empty before", function() {
+		// Arrange
+		var sTextToSet = "not empty text",
+			oRenderSpy,
+			oResult,
+			oConstructor = { text : ""};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setText(sTextToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 1, "Did rerender");
+		ok(oObjectStatus.$().children(".sapMObjStatusText").length, "Did render the text span");
+		strictEqual(oObjectStatus.getText(), sTextToSet, "Did set the value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+
+	test("Should rerender if the title was empty before", function() {
+		// Arrange
+		var sTitleToSet = "not empty text",
+			oRenderSpy,
+			oResult,
+			oConstructor = { title : ""};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		oRenderSpy = this.spy(oObjectStatus, "invalidate");
+
+		// Act
+		oResult = oObjectStatus.setTitle(sTitleToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oRenderSpy.callCount, 1, "Did rerender");
+		ok(oObjectStatus.$().children(".sapMObjStatusTitle").length, "Did render the title span");
+		strictEqual(oObjectStatus.getTitle(), sTitleToSet, "Did set the value");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+	
+	test("Should display titles with special characters correctly", function() {
+		// Arrange
+		var sTitleToSet = "Account blocked - Blocked for payment",
+			oRenderSpy,
+			oResult,
+			oConstructor = { title : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		// Act
+		oResult = oObjectStatus.setTitle(sTitleToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oObjectStatus.getTitle(), sTitleToSet, "Did set the value");
+		ok(/.*Account blocked - Blocked for payment:.*/.test(oObjectStatus.$().children(".sapMObjStatusTitle").html()), "Did display dashed string correctly");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+	
+	test("Should display texts with special characters correctly", function() {
+		// Arrange
+		var sTextToSet = "Account blocked - Blocked for payment",
+			oRenderSpy,
+			oResult,
+			oConstructor = { text : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		// Act
+		oResult = oObjectStatus.setText(sTextToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oObjectStatus.getText(), sTextToSet, "Did set the value");
+		ok(/.*Account blocked - Blocked for payment.*/.test(oObjectStatus.$().children(".sapMObjStatusText").html()), "Did display dashed string correctly");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
+	
+	test("Should display titles with special characters correctly", function() {
+		// Arrange
+		var sTitleToSet = "Account blocked - Blocked for payment",
+			oRenderSpy,
+			oResult,
+			oConstructor = { title : "not empty text"};
+
+		// System under Test
+		var oObjectStatus = new sap.m.ObjectStatus(oConstructor).placeAt("qunit-fixture");
+		sap.ui.getCore().applyChanges();
+
+		// Act
+		oResult = oObjectStatus.setTitle(sTitleToSet);
+		sap.ui.getCore().applyChanges();
+
+		// Assert
+		strictEqual(oObjectStatus.getTitle(), sTitleToSet, "Did set the value");
+		ok(/.*Account blocked - Blocked for payment:.*/.test(oObjectStatus.$().children(".sapMObjStatusTitle").html()), "Did display dashed string correctly");
+
+		//Cleanup
+		oObjectStatus.destroy();
+	});
 </script>
 </head>
 
 <body class="sapUiBody">
 	<div id="qunit"></div>
 	<div id="objectStatuses"></div>
+	<div id="qunit-fixture"></div>
 </body>
 </html>

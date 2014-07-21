@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=10893469503769027"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9767501966677578"/>
 <title>HTML Templating in SAPUI5</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -46,7 +48,7 @@
 
 			<p class="p">Example:</p>
 
-			<div><pre class="pre codeblock">    &lt;div id="myControlTemplate" data-type="text/x-handlebars-template"&gt;
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">    &lt;div id="myControlTemplate" data-type="text/x-handlebars-template"&gt;
     
         &lt;h3&gt;Control Template (using "control" expression)&lt;/h3&gt;
         {{control sap-ui-type="sap.ui.commons.Label" design="Bold" text="{/title}"}}
@@ -58,7 +60,7 @@
     
     &lt;/div&gt;</pre></div>
 
-			<div><pre class="pre codeblock">// register all available templates in the document
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">// register all available templates in the document
 sap.ui.template();</pre></div>
 
 			<p class="p">SAPUI5 looks up all DOM elements with a <samp class="ph codeph">data-type</samp> attribute and

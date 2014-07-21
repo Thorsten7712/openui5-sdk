@@ -12,12 +12,12 @@
 	<script id="sap-ui-bootstrap"
 		type="text/javascript"
 		src="../../../../../resources/sap-ui-core.js"
-		data-sap-ui-theme="sap_platinum"
+		data-sap-ui-theme="sap_bluecrystal"
 		data-sap-ui-noConflict="true"> 
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script type="text/javascript" src="/jsunit-testrunner/qunit/qunit-jsunit.js"></script>
+
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 	<style type="text/css">
 		#uiArea {
@@ -107,8 +107,8 @@
 	var bRtl = sap.ui.getCore().getConfiguration().getRTL();
 	
 	//see jQuery.sap.ControlEvents
-	var aBasicBrowserEvents = ["click", "dblclick", "focusin", "focusout", "keydown", "keypress", "keyup", "mousedown", "mouseout", "mouseover",
-								"mouseup", "select", "selectstart", "dragstart", "dragenter", "dragover", "dragleave", "dragend", "drop", "paste", "cut",
+	var aBasicBrowserEvents = ["click", "dblclick", "contextmenu", "focusin", "focusout", "keydown", "keypress", "keyup", "mousedown", "mouseout", "mouseover",
+								"mouseup", "select", "selectstart", "dragstart", "dragenter", "dragover", "dragleave", "dragend", "drop", "paste", "cut", "input",
 								"saptouchstart", "saptouchmove", "saptouchend"];
 	
 	var aMobileBrowserEvents = ["touchstart", "touchend", "touchmove", "touchcancel", "swipe", "tap", "swipeleft", "swiperight", "scrollstart", "scrollstop"];

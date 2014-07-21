@@ -26,7 +26,7 @@
 	<events>
 	</events>
 	<aggregations default="items">
-		<aggregation cardinality="0..n" name="items" type="MenuItem">
+		<aggregation cardinality="0..n" name="items" type="sap.ui.unified/MenuItem">
 			<documentation>Aggregation of menu items.</documentation>
 		</aggregation>
 	</aggregations>

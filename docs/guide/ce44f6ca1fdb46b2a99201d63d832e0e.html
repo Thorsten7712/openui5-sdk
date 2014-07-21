@@ -12,9 +12,11 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=33098098662112574"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=266709580336706"/>
 <title>The DetailPage Controller</title>
-
+<!--[if lte IE 7]><style>
+ .codeblock{overflow:visible;}
+ </style><![endif]-->
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 				<samp class="ph codeph">back</samp> event to the <samp class="ph codeph">nav</samp> channel of the
 				<samp class="ph codeph">EventBus</samp>. The root controller listens to this event and triggers
 			back navigation. </p>
-<div><pre class="pre codeblock">sap.ui.controller("sap.m.mvc.DetailPage", {
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.m.mvc.DetailPage", {
 
    backTriggered: function() {
        var bus = sap.ui.getCore().getEventBus();
