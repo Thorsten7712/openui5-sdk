@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -17,11 +17,8 @@ jQuery.sap.declare("sap.m.Support");
  * 	* All loaded module names
  *
  * In order to show the device information, the user must follow the following gestures.
- * 	1 - Hold the device in "landscape" mode
- * 	2 - Tap on any element (possibly element which does not have touch event e.g text or header (because of the stopPropagation))
- * 	3 - Hold finger minimum 2 seconds, up to 5 seconds
- * 	4 - Change device rotation to "portrait" mode
- * 	5 - Release finger
+ * 	1 - Hold two finger for 3 seconds minimum.
+ * 	2 - Tab with a third finger while holding the first two fingers.
  *
  * NOTE: This class is internal and all its functions must not be used by an application
  *
@@ -42,7 +39,7 @@ jQuery.sap.declare("sap.m.Support");
  * sap.m.Support.off();
  * </pre>
  *
- * @author SAP AG
+ * @author SAP SE
  * @since 1.11.0
  *
  * @static
@@ -51,19 +48,30 @@ jQuery.sap.declare("sap.m.Support");
  */
 sap.m.Support = (function($, document) {
 
-	var dialog,
-		startTime,
-		isEventRegistered,
-		timeMinLimit = 2000,
-		timeMaxLimit = 5000,
-		orientations = {
-		    start : "landscape",
-		    end : "portrait"
-		};
+	var dialog, startTime, isEventRegistered, lastTouchUID;
+	var timeDiff = 0;
+	var minHoldTime = 3000; // 3s(3000ms) two-finger hold time
+	var holdFingersNumber = 2; // two-fingers hold
+	var maxFingersAllowed = 3; // two-fingers hold + 1-finger tab
+	var releasedFingersNumber = 1,
+		oData = {},
+		e2eTraceConst = {
+			btnStart : "startE2ETrace",
+			selLevel : "logLevelE2ETrace",
+			taContent : "outputE2ETrace",
+			infoText : "Ent-to-End trace is running in the background." + 
+						" Navigate to the URL that you would like to trace." + 
+						" The result of the trace will be shown in dialog after the trace is terminated.",
+			infoDuration : 5000 // 5 sec.			
+		},
+		controlIDs = {
+			dvLoadedLibs 	: "LoadedLibs",
+			dvLoadedModules : "LoadedModules"
+	};
 
 	// copied from core
 	function line(buffer, right, border, label, content) {
-		buffer.push("<tr><td class='sapUiSupportTechInfoBorder'><label class='sapUiSupportLabel'>", jQuery.sap.escapeHTML(label), "</label><br>");
+		buffer.push("<tr class='sapUiSelectable'><td class='sapUiSupportTechInfoBorder sapUiSelectable'><label class='sapUiSupportLabel sapUiSelectable'>", jQuery.sap.escapeHTML(label), "</label><br>");
 		var ctnt = content;
 		if ($.isFunction(content)) {
 			ctnt = content(buffer) || "";
@@ -75,7 +83,7 @@ sap.m.Support = (function($, document) {
 	// copied from core
 	function multiline(buffer, right, border, label, content) {
 		line(buffer, right, border, label, function(buffer) {
-			buffer.push("<table border='0' cellspacing='5' cellpadding='5' width='100%'>");
+			buffer.push("<table class='sapMSupportTable' border='0' cellspacing='5' cellpadding='5' width='100%'><tbody>");
 			$.each(content, function(i, v) {
 				var val = "";
 				if (v) {
@@ -87,15 +95,19 @@ sap.m.Support = (function($, document) {
 				}
 				line(buffer, false, false, i, "" + val);
 			});
-			buffer.push("</table>");
+			buffer.push("</tbody></table>");
 		});
 	}
 
 	// copied from core
 	function getTechnicalContent() {
 		var html,
-			oConfig = sap.ui.getCore().getConfiguration(),
-			oData = {
+			oConfig = sap.ui.getCore().getConfiguration();
+		var oLoadedLibs = {};
+		jQuery.each(sap.ui.getCore().getLoadedLibraries(), function(sName, oLibInfo) {
+			oLoadedLibs[sName] = oLibInfo.version;
+		});
+		oData = {
 				version: sap.ui.version,
 				build: sap.ui.buildinfo.buildtime,
 				change: sap.ui.buildinfo.lastchange,
@@ -104,6 +116,7 @@ sap.m.Support = (function($, document) {
 				debug: $.sap.debug(),
 				bootconfig: window["sap-ui-config"] || {},
 				modules: $.sap.getAllDeclaredModules(),
+				loadedlibs: oLoadedLibs,
 				uriparams: $.sap.getUriParameters().mParams,
 				appurl: window.location.href,
 				config: {
@@ -118,9 +131,9 @@ sap.m.Support = (function($, document) {
 					originInfo: "" + oConfig.getOriginInfo(),
 					noDuplicateIds: "" + oConfig.getNoDuplicateIds()
 				}
-			};
+		};
 
-		html = ["<table border='0' cellspacing='5' cellpadding='5' width='100%'>"];
+		html = ["<table class='sapUiSelectable' border='0' cellspacing='5' cellpadding='5' width='100%'><tbody class='sapUiSelectable'>"];
 		line(html, true, true, "SAPUI5 Version", function(buffer) {
 			buffer.push(oData.version, " (built at ", oData.build, ", last change ", oData.change, ")");
 		});
@@ -134,19 +147,114 @@ sap.m.Support = (function($, document) {
 		multiline(html, true, true, "Configuration (bootstrap)", oData.bootconfig);
 		multiline(html, true, true, "Configuration (computed)", oData.config);
 		multiline(html, true, true, "URI Parameters", oData.uriparams);
-		line(html, true, true, "Loaded Modules (" + oData.modules.length + ")", function(buffer) {
-			buffer.push("<ul>");
-			$.each(oData.modules.sort(), function(i, v) {
-				if (v.indexOf("sap.ui.core.support") < 0) {
-					buffer.push("<li>", v, "</li>");
-				}
+		// e2e trace section
+		line(html, true, true, "End-to-End Trace", function(buffer) {
+			buffer.push("<label class='sapUiSupportLabel'>Trace Level:</label>",
+				"<select id='" + buildControlId(e2eTraceConst.selLevel) + "' class='sapUiSupportTxtFld' >",
+					"<option value='low'>LOW</option>",
+					"<option value='medium' selected>MEDIUM</option>",
+					"<option value='high'>HIGH</option>",
+				"</select>"
+			);
+			buffer.push("<button id='" + buildControlId(e2eTraceConst.btnStart) + "' class='sapUiSupportBtn'>Start</button>");
+			buffer.push("<div class='sapUiSupportDiv'>");
+			buffer.push("<label class='sapUiSupportLabel'>XML Output:</label>");
+			buffer.push("<textarea id='" + buildControlId(e2eTraceConst.taContent) +  "' class='sapUiSupportTxtArea sapUiSelectable' readonly ></textarea>");
+			buffer.push("</div>");
+		});
+
+		line(html, true, true, "Loaded Libraries", function(buffer) {
+			buffer.push("<ul class='sapUiSelectable'>");
+			$.each(oData.loadedlibs, function(i, v) {	          
+	            if(v && (typeof(v) === "string" || typeof(v) === "boolean")) {
+                     buffer.push("<li class='sapUiSelectable'>", i + " " + v, "</li>");
+	            }					
 			});
 			buffer.push("</ul>");
 		});
-		html.push("</table>");
+		
+		line(html, true, true, "Loaded Modules", function(buffer) {
+			buffer.push("<div class='sapUiSupportDiv sapUiSelectable' id='" + buildControlId(controlIDs.dvLoadedModules) + "' />");
+		});
+	
+		html.push("</tbody></table>");
 
 		return new sap.ui.core.HTML({
 			content : html.join("").replace(/\{/g, "&#123;").replace(/\}/g, "&#125;")
+		});
+	}
+	
+	function buildControlId(controlId) {
+		return dialog.getId() + "-" + controlId;
+	}
+	
+	function fillPanelContent(panelId, arContent) {
+		
+		var panelHeader = "Modules";
+		var libsCount = 0, arDivContent = [];
+		
+		libsCount = arContent.length;
+		$.each(arContent.sort(), function(i, module) {
+			arDivContent.push(new sap.m.Label({ text : " - " + module }).addStyleClass("sapUiSupportPnlLbl"));
+		});
+		
+		// insert content into div placeholders
+		var objPanel = new sap.m.Panel({
+			expandable : true,
+			expanded : false,
+			headerToolbar : new sap.m.Toolbar({
+				design : sap.m.ToolbarDesign.Transparent,
+				content : [new sap.m.Label({
+					text : panelHeader + " (" + libsCount + ")",
+					design : sap.m.LabelDesign.Bold
+				})]
+			}),
+			content : arDivContent
+		});
+
+		objPanel.placeAt( buildControlId(panelId), "only");
+	}
+	
+	// setup dialog elements and bind some events
+	function setupDialog() {
+		// setup e2e values as log level and content
+		if (dialog.traceXml) {
+			dialog.$(e2eTraceConst.taContent).text(dialog.traceXml);
+		}
+		if (dialog.e2eLogLevel) {
+			dialog.$(e2eTraceConst.selLevel).val(dialog.e2eLogLevel);
+		}
+		
+		fillPanelContent(controlIDs.dvLoadedModules, oData.modules);
+		
+		
+		// bind button Start event
+		dialog.$(e2eTraceConst.btnStart).bind("tap", function() {
+			dialog.e2eLogLevel = dialog.$(e2eTraceConst.selLevel).val();
+			dialog.$(e2eTraceConst.btnStart).addClass("active").text("Running...");
+			dialog.traceXml = "";
+			dialog.$(e2eTraceConst.taContent).text("");
+			
+			if (!jQuery.sap.isDeclared("sap.ui.core.support.trace.E2eTraceLib")) {
+				jQuery.sap.require("sap.ui.core.support.trace.E2eTraceLib");
+			}
+
+			sap.ui.core.support.trace.E2eTraceLib.start(dialog.e2eLogLevel, function(traceXml) {								
+				dialog.traceXml = traceXml;
+			});
+			
+			// show info message about the E2E trace activation
+			if (!jQuery.sap.isDeclared("sap.m.MessageToast")) {
+				jQuery.sap.require("sap.m.MessageToast");
+			}
+			sap.m.MessageToast.show(e2eTraceConst.infoText, {duration: e2eTraceConst.infoDuration});
+			
+			//close the dialog, but keep it for later use
+			dialog.close();
+			
+			
+
+			
 		});
 	}
 
@@ -182,22 +290,47 @@ sap.m.Support = (function($, document) {
 
 		return dialog;
 	}
-
-	function onTouchStart() {
-		var orientation = $.event.special.orientationchange.orientation();
-		if (orientation == orientations.start) {
-			startTime = Date.now();
-			document.addEventListener('touchend', onTouchEnd);
+	
+	//function is triggered when a touch is detected
+	function onTouchStart(oEvent) {
+		if(oEvent.touches){
+			var currentTouches = oEvent.touches.length;
+			
+			if(currentTouches > maxFingersAllowed){
+				document.removeEventListener('touchend', onTouchEnd);
+				return;
+			}
+			
+			switch(currentTouches) {
+				
+				case holdFingersNumber:
+					startTime = Date.now();
+					document.addEventListener('touchend', onTouchEnd);
+					break;
+					
+				case maxFingersAllowed:
+					if(startTime){
+						timeDiff = Date.now() - startTime;
+						lastTouchUID = oEvent.touches[currentTouches-1].identifier;
+					}
+					break;
+			}
 		}
 	}
 
-	function onTouchEnd() {
-		var timeDiff = Date.now() - startTime,
-			orientation = $.event.special.orientationchange.orientation();
-
+	//function is triggered when a touch is removed e.g. the user’s finger is removed from the touchscreen.
+	function onTouchEnd(oEvent) {
 		document.removeEventListener('touchend', onTouchEnd);
-		if (orientation == orientations.end && timeDiff > timeMinLimit && timeDiff < timeMaxLimit) {
-			show();
+		
+		// Check if two fingers are holded for 3 seconds or more and after that it`s tapped with a third finger
+		if(timeDiff > minHoldTime 
+				&& oEvent.touches.length === holdFingersNumber
+				&& oEvent.changedTouches.length === releasedFingersNumber
+				&& oEvent.changedTouches[0].identifier === lastTouchUID) {
+			
+					timeDiff = 0; 
+					startTime = 0; 
+					show();
 		}
 	}
 
@@ -206,6 +339,7 @@ sap.m.Support = (function($, document) {
 		container.removeAllAggregation("content");
 		container.addAggregation("content", getTechnicalContent());
 		dialog.open();
+		setupDialog();
 	}
 
 	return ({

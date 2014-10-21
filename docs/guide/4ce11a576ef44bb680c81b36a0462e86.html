@@ -12,11 +12,13 @@
 <meta name="abstract" content="Using a JSON model, all data is available on the client. Sorting and filtering are also implemented in JavaScript."/>
 <meta name="description" content="Using a JSON model, all data is available on the client. Sorting and filtering are also implemented in JavaScript."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=35706463767152274"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=18886853837924678"/>
 <title>Sorting and Filtering in JSON Models</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -34,16 +36,16 @@
 
 		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand"><span class="ph cmd">The <samp class="ph codeph">fnTest</samp> method of the Filter gets the value to test as the only
 					parameter and returns, whether the row with the given value should be filtered
-					or not. </span> 
+					or not. </span><div class="itemgroup info">
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oFilter = new sap.ui.model.Filter("property");
 oFilter.fnTest = function(value) {
     return (value &gt; 100); 
 };</pre></div>
 
-				</li>
+				</div></li>
 <li class="li step stepexpand"><span class="ph cmd">The <samp class="ph codeph">fnCompare</samp> method of the Sorter gets the two values to
 					compare as parameters and returns -1, 0 or 1, dependent which of the two values
-					should be ordered before the other: </span> 
+					should be ordered before the other: </span><div class="itemgroup info">
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oSorter = new sap.ui.model.Sorter("property");
 oSorter.fnCompare = function(value1, value2) {
     if (value1 &lt; value2) return -1;
@@ -51,13 +53,8 @@ oSorter.fnCompare = function(value1, value2) {
     if (value1 &gt; value2) return 1;
 };</pre></div>
 
-				</li>
+				</div></li>
 </ol>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

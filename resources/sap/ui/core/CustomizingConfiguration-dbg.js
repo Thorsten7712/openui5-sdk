@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -44,8 +44,8 @@ sap.ui.define(['jquery.sap.global', './Core'],
 		 * By deactivating the component the customizing configuration of the component
 		 * gets removed again.
 		 *
-		 * @author SAP AG
-		 * @version 1.22.4
+		 * @author SAP SE
+		 * @version 1.24.2
 		 * @constructor
 		 * @private
 		 * @since 1.15.1
@@ -75,6 +75,8 @@ sap.ui.define(['jquery.sap.global', './Core'],
 				jQuery.sap.require(sFullComponentName);
 				var oCustomizingConfig = jQuery.sap.getObject(sFullComponentName).getMetadata().getCustomizing();
 				mComponentConfigs[sComponentName] = oCustomizingConfig;
+				
+				jQuery.sap.log.debug("CustomizingConfiguration: customizing configuration for component '" + sComponentName + "' loaded: " + JSON.stringify(oCustomizingConfig));
 			},
 			
 			/**
@@ -132,25 +134,30 @@ sap.ui.define(['jquery.sap.global', './Core'],
 			
 			/**
 			 * currently returns an object (or undefined) because we assume there is 
-			 * only one property modified and only once, but this
+			 * only one property modified and only once
 			 * @private
 			 */
 			getCustomProperties: function(sViewName, sControlId) { // TODO: Fragments and Views are mixed here
-				var mSettings = {};
+				var mSettings = undefined;
 				// TODO: checking order of components?
 				findConfig(CONFIG_VIEW_MODIFICATIONS, function(oConfig) {
 					var oSettings = oConfig[sViewName] && oConfig[sViewName][sControlId];
 					var oUsedSettings = {};
+					var bValidConfigFound = false;
 					if (oSettings) {
 						jQuery.each(oSettings, function(sName, vValue) {
 							if (sName === "visible") {
+								bValidConfigFound = true;
 								oUsedSettings[sName] = vValue;
 								jQuery.sap.log.info("Customizing: custom value for property '" + sName + "' of control '" + sControlId + "' in View '" + sViewName + "' applied: " + vValue);
 							} else {
 								jQuery.sap.log.warning("Customizing: custom value for property '" + sName + "' of control '" + sControlId + "' in View '" + sViewName + "' ignored: only the 'visible' property can be customized.");
 							}
 						});
-						jQuery.extend(mSettings, oUsedSettings); // FIXME: this currently overrides customizations from different components in random order
+						if (bValidConfigFound) { // initialize only when there is actually something to add
+							mSettings = mSettings || {}; // merge with any previous calls to findConfig in case of multiple definition sections
+							jQuery.extend(mSettings, oUsedSettings); // FIXME: this currently overrides customizations from different components in random order
+						}
 					}
 				});
 				return mSettings;

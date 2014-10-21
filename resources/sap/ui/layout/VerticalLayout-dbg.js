@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52,22 +52,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * In this layout the elemnts are orderd one below the other
+ * In this layout the elements are ordered one below the other
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.VerticalLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.layout.VerticalLayout", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -76,7 +74,7 @@ sap.ui.core.Control.extend("sap.ui.layout.VerticalLayout", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -101,7 +99,6 @@ sap.ui.core.Control.extend("sap.ui.layout.VerticalLayout", { metadata : {
 /**
  * Getter for property <code>width</code>.
  * CSS width of the vertical layout.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -128,7 +125,6 @@ sap.ui.core.Control.extend("sap.ui.layout.VerticalLayout", { metadata : {
  * Getter for property <code>enabled</code>.
  * 
  * If not enabled all controls inside are not enabled automatically.
- * 
  *
  * Default value is <code>true</code>
  *

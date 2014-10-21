@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -86,23 +86,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * Note: The ListBase including all contained items is completely re-rendered when the data of a bound model is changed. Due to the limited hardware resources of mobile devices this can lead to longer delays for lists with many items. As such the usage of a list is not recommended for these use cases.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.ListBase
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ListBase", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getSelectedItem", "setSelectedItem", "getSelectedItems", "setSelectedItemById", "removeSelections", "selectAll", "getSwipedItem", "swipeOut", "getGrowingInfo", "getSelectedContexts"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"inset" : {type : "boolean", group : "Appearance", defaultValue : false},
@@ -128,10 +126,10 @@ sap.ui.core.Control.extend("sap.m.ListBase", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.m.ListItemBase", multiple : true, singularName : "item", bindable : "bindable"}, 
-    	"swipeContent" : {type : "sap.ui.core.Control", multiple : false}, 
-    	"headerToolbar" : {type : "sap.m.Toolbar", multiple : false}, 
-    	"infoToolbar" : {type : "sap.m.Toolbar", multiple : false}
+		"items" : {type : "sap.m.ListItemBase", multiple : true, singularName : "item", bindable : "bindable"}, 
+		"swipeContent" : {type : "sap.ui.core.Control", multiple : false}, 
+		"headerToolbar" : {type : "sap.m.Toolbar", multiple : false}, 
+		"infoToolbar" : {type : "sap.m.Toolbar", multiple : false}
 	},
 	events : {
 		"select" : {deprecated: true}, 
@@ -897,7 +895,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 
 /**
- * Event is fired when selection is changed by user interaction. In "multi-selection" mode, this event is also fired on "deselect" 
+ * Event is fired when selection is changed by user interaction. In "multi-selection" mode, this event is also fired on "deselect"
  *
  * @name sap.m.ListBase#select
  * @event
@@ -906,7 +904,6 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.ListItemBase} oControlEvent.getParameters.listItem The list item which fired the select.
  * @public
  */
@@ -916,7 +913,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
- * Event is fired when selection is changed by user interaction. In "multi-selection" mode, this event is also fired on "deselect" 
+ * Event is fired when selection is changed by user interaction. In "multi-selection" mode, this event is also fired on "deselect"
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -969,7 +966,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 
 /**
- * Event is fired when selection is changed via user interaction inside the control. 
+ * Event is fired when selection is changed via user interaction inside the control.
  *
  * @name sap.m.ListBase#selectionChange
  * @event
@@ -977,7 +974,6 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.ListItemBase} oControlEvent.getParameters.listItem The list item whose selection has changed. In "multi-selection" mode, only the up-most selected item is returned. This parameter can be used for single-selection modes.
  * @param {sap.m.ListItemBase[]} oControlEvent.getParameters.listItems This parameter is filled with array of list items whose selection has changed. This parameter can be used for multi-selection mode.
  * @param {boolean} oControlEvent.getParameters.selected This flag indicates whether the "listItem" parameter is selected or not.
@@ -989,7 +985,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
- * Event is fired when selection is changed via user interaction inside the control. 
+ * Event is fired when selection is changed via user interaction inside the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1041,14 +1037,13 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 
 /**
- * Event is fired when delete icon is pressed by user. 
+ * Event is fired when delete icon is pressed by user.
  *
  * @name sap.m.ListBase#delete
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.ListItemBase} oControlEvent.getParameters.listItem The list item which fired the delete.
  * @public
  */
@@ -1058,7 +1053,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
- * Event is fired when delete icon is pressed by user. 
+ * Event is fired when delete icon is pressed by user.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1105,14 +1100,13 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 
 /**
- * This event is fired when a user swipes to bring in a control and before swipeContent is shown on the right hand side of list item. So, you can easily change swipeContent according to swiped list item. Call the preventDefault method of the event object to disable swipe. 
+ * This event is fired when a user swipes to bring in a control and before swipeContent is shown on the right hand side of list item. So, you can easily change swipeContent according to swiped list item. Call the preventDefault method of the event object to disable swipe.
  *
  * @name sap.m.ListBase#swipe
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.ListItemBase} oControlEvent.getParameters.listItem The listitem which fired the swipe.
  * @param {sap.ui.core.Control} oControlEvent.getParameters.swipeContent Given swipeContent control to show on the right hand side of a list item.
  * @param {sap.ui.core.Control} oControlEvent.getParameters.srcControl Holds which control caused the swipe event in within the Item.
@@ -1124,7 +1118,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
- * This event is fired when a user swipes to bring in a control and before swipeContent is shown on the right hand side of list item. So, you can easily change swipeContent according to swiped list item. Call the preventDefault method of the event object to disable swipe. 
+ * This event is fired when a user swipes to bring in a control and before swipeContent is shown on the right hand side of list item. So, you can easily change swipeContent according to swiped list item. Call the preventDefault method of the event object to disable swipe.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1175,7 +1169,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 
 /**
- * This event is called when "growing" feature is enabled and before new page loaded. 
+ * This event is called when "growing" feature is enabled and before new page loaded.
  *
  * @name sap.m.ListBase#growingStarted
  * @event
@@ -1185,7 +1179,6 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.actual Actual number of items.
  * @param {int} oControlEvent.getParameters.total Total number of items.
  * @public
@@ -1196,7 +1189,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
- * This event is called when "growing" feature is enabled and before new page loaded. 
+ * This event is called when "growing" feature is enabled and before new page loaded.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1253,7 +1246,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 
 /**
- * This event is called when "growing" feature is enabled and after new page loaded and DOM updated. 
+ * This event is called when "growing" feature is enabled and after new page loaded and DOM updated.
  *
  * @name sap.m.ListBase#growingFinished
  * @event
@@ -1263,7 +1256,6 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.actual Actual number of items.
  * @param {int} oControlEvent.getParameters.total Total number of items.
  * @public
@@ -1274,7 +1266,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
- * This event is called when "growing" feature is enabled and after new page loaded and DOM updated. 
+ * This event is called when "growing" feature is enabled and after new page loaded and DOM updated.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1332,7 +1324,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 /**
  * This event is called before items binding is updated.
- * Note: Event handler should not invalidate the control. 
+ * Note: Event handler should not invalidate the control.
  *
  * @name sap.m.ListBase#updateStarted
  * @event
@@ -1340,7 +1332,6 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.reason The reason of update. Possible values are "Binding", "Filter", "Sort", "Growing", "Change", "Refresh", "Context"
  * @param {int} oControlEvent.getParameters.actual Actual number of items.
  * @param {int} oControlEvent.getParameters.total The total count of bound items. This parameter can be used if "growing" feature is enabled.
@@ -1353,7 +1344,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
  * This event is called before items binding is updated.
- * Note: Event handler should not invalidate the control. 
+ * Note: Event handler should not invalidate the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1405,7 +1396,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 
 /**
- * This event is called after items binding and afterwards related DOM is updated. 
+ * This event is called after items binding and afterwards related DOM is updated.
  *
  * @name sap.m.ListBase#updateFinished
  * @event
@@ -1413,7 +1404,6 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.reason The reason of update. Possible values are "Binding", "Filter", "Sort", "Growing", "Change", "Refresh", "Context"
  * @param {int} oControlEvent.getParameters.actual Actual number of items.
  * @param {int} oControlEvent.getParameters.total The total count of bound items. This parameter can be used if "growing" feature is enabled.
@@ -1425,7 +1415,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
- * This event is called after items binding and afterwards related DOM is updated. 
+ * This event is called after items binding and afterwards related DOM is updated.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1478,7 +1468,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
 
 /**
  * This event is called when an item is pressed regardless of the selection mode.
- * NOTE: This event is fired for all kind of list items unless the item's type is "Inactive". 
+ * NOTE: This event is fired for all kind of list items unless the item's type is "Inactive".
  *
  * @name sap.m.ListBase#itemPress
  * @event
@@ -1486,10 +1476,8 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.ListItemBase} oControlEvent.getParameters.listItem The list item which fired the pressed event.
  *         NOTE: This event is fired also for "GroupHeaderListItem" which does not have binding context.
- * 
  * @param {sap.ui.core.Control} oControlEvent.getParameters.srcControl The control which caused the press event within the container.
  * @public
  */
@@ -1500,7 +1488,7 @@ sap.m.ListBase.M_EVENTS = {'select':'select','selectionChange':'selectionChange'
  * otherwise to this <code>sap.m.ListBase</code>.<br/> itself. 
  *  
  * This event is called when an item is pressed regardless of the selection mode.
- * NOTE: This event is fired for all kind of list items unless the item's type is "Inactive". 
+ * NOTE: This event is fired for all kind of list items unless the item's type is "Inactive".
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1555,93 +1543,88 @@ NOTE: This event is fired also for "GroupHeaderListItem" which does not have bin
 /**
  * Returns selected list item. When no item is selected, "null" is returned. When "multi-selection" is enabled and multiple items are selected, only the up-most selected item is returned.
  *
- * @name sap.m.ListBase.prototype.getSelectedItem
+ * @name sap.m.ListBase#getSelectedItem
  * @function
-
  * @type sap.m.ListItemBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Selects or deselects the given list item.
  *
- * @name sap.m.ListBase.prototype.setSelectedItem
+ * @name sap.m.ListBase#setSelectedItem
  * @function
- * @param {sap.m.ListItemBase} 
- *         oListItem
+ * @param {sap.m.ListItemBase} oListItem
  *         The list item whose selection to be changed. This parameter is mandatory.
- * @param {boolean} 
- *         bSelect
+ * @param {boolean} bSelect
  *         Sets selected status of the list item. Default value is true.
-
  * @type sap.m.ListBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns an array containing the selected list items. If no items are selected, an empty array is returned.
  *
- * @name sap.m.ListBase.prototype.getSelectedItems
+ * @name sap.m.ListBase#getSelectedItems
  * @function
-
  * @type sap.m.ListItemBase[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets a list item to be selected by id. In single mode the method removes the previous selection.
  *
- * @name sap.m.ListBase.prototype.setSelectedItemById
+ * @name sap.m.ListBase#setSelectedItemById
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The id of the list item whose selection to be changed.
- * @param {boolean} 
- *         bSelect
+ * @param {boolean} bSelect
  *         Sets selected status of the list item. Default value is true.
-
  * @type sap.m.ListBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes visible selections of the current selection mode.
  *
- * @name sap.m.ListBase.prototype.removeSelections
+ * @name sap.m.ListBase#removeSelections
  * @function
- * @param {boolean} 
- *         bAll
+ * @param {boolean} bAll
  *         Since version 1.16.3. This control keeps old selections after filter or sorting. Set this parameter "true" to remove all selections.
-
  * @type sap.m.ListBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Select all items in "MultiSelection" mode.
  *
- * @name sap.m.ListBase.prototype.selectAll
+ * @name sap.m.ListBase#selectAll
  * @function
-
  * @type sap.m.ListBase
  * @public
  * @since 1.16
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns swiped list item. When no item is swiped, "null" is returned.
  *
- * @name sap.m.ListBase.prototype.getSwipedItem
+ * @name sap.m.ListBase#getSwipedItem
  * @function
-
  * @type sap.m.ListItemBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1649,14 +1632,13 @@ NOTE: This event is fired also for "GroupHeaderListItem" which does not have bin
  * After swipeContent is shown, user can interact with this control(e.g Tap). After interaction is done, you can/should use this method to hide swipeContent from screen.
  * Note: If users try to tap inside of the list but outside of the swipeContent then control hides automatically.
  *
- * @name sap.m.ListBase.prototype.swipeOut
+ * @name sap.m.ListBase#swipeOut
  * @function
- * @param {any} 
- *         oCallback
+ * @param {any} oCallback
  *         This callback function is called with two parameters(swipedListItem and swipedContent) after swipe-out animation is finished.
-
  * @type sap.m.ListBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1664,12 +1646,12 @@ NOTE: This event is fired also for "GroupHeaderListItem" which does not have bin
  * Returns growing information as object with "actual" and "total" keys.
  * Note: This function returns "null" if "growing" feature is disabled.
  *
- * @name sap.m.ListBase.prototype.getGrowingInfo
+ * @name sap.m.ListBase#getGrowingInfo
  * @function
-
  * @type object
  * @public
  * @since 1.16
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1677,16 +1659,15 @@ NOTE: This event is fired also for "GroupHeaderListItem" which does not have bin
  * Returns the binding contexts of the selected items.
  * Note: This method returns an empty array if no databinding is used.
  *
- * @name sap.m.ListBase.prototype.getSelectedContexts
+ * @name sap.m.ListBase#getSelectedContexts
  * @function
- * @param {boolean} 
- *         bAll
+ * @param {boolean} bAll
  *         Set true to include even invisible selected items(e.g. the selections from the previous filters).
  *         Note: In single selection modes, only the last selected item's binding context is returned in array.
-
  * @type object[]
  * @public
  * @since 1.18.6
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -2213,7 +2194,7 @@ sap.m.ListBase.prototype._showBusyIndicator = function() {
 sap.m.ListBase.prototype._hideBusyIndicator = function() {
 	if (this._bBusy) {
 		// revert busy state
-		this.setBusy(false);
+		this.setBusy(false, "listUl");
 
 		// revert no data texts when necessary
 		jQuery.sap.clearDelayedCall(this._sBusyTimer);
@@ -2585,7 +2566,9 @@ sap.m.ListBase.prototype.addItemGroup = function(oGroup, oHeader, bSuppressInval
 		title: oGroup.text || oGroup.key
 	});
 
+	oHeader.data("GroupKey", oGroup.key);
 	this.addAggregation("items", oHeader, bSuppressInvalidate);
+
 	return oHeader;
 };
 
@@ -2599,6 +2582,11 @@ sap.m.ListBase.prototype.removeGroupHeaders = function(bSuppressInvalidate) {
 
 /* Keyboard Handling */
 sap.m.ListBase.prototype._startItemNavigation = function() {
+	// no item navigation for old android that breaks focus handling
+	if (sap.ui.Device.os.android && sap.ui.Device.os.version < 4.1) {
+		return;
+	}
+
 	if (!this.getItems().length) {
 		this._destroyItemNavigation();
 		return;
@@ -2635,6 +2623,7 @@ sap.m.ListBase.prototype._startItemNavigation = function() {
 /**
  * Returns ItemNavigation for controls uses List
  * @since 1.16.5
+ * @returns {sap.ui.core.delegate.ItemNavigation|undefined}
  * @protected
  */
 sap.m.ListBase.prototype.getItemNavigation = function() {

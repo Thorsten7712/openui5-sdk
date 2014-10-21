@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64,23 +64,19 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * Tree node element
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TreeNode
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.TreeNode", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"select", "expand", "collapse"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Misc", defaultValue : null},
@@ -92,7 +88,7 @@ sap.ui.core.Element.extend("sap.ui.commons.TreeNode", { metadata : {
 	},
 	defaultAggregation : "nodes",
 	aggregations : {
-    	"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node"}
+		"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node"}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -227,7 +223,6 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 /**
  * Getter for property <code>isSelected</code>.
  * Node is selected
- * 
  *
  * Default value is <code>false</code>
  *
@@ -432,14 +427,13 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 
 	
 /**
- * Node state has changed. 
+ * Node state has changed.
  *
  * @name sap.ui.commons.TreeNode#toggleOpenState
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.opened Node has been opened if true
  * @public
  */
@@ -449,7 +443,7 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TreeNode</code>.<br/> itself. 
  *  
- * Node state has changed. 
+ * Node state has changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -496,14 +490,13 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 
 
 /**
- * Node is selected 
+ * Node is selected
  *
  * @name sap.ui.commons.TreeNode#selected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -512,7 +505,7 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TreeNode</code>.<br/> itself. 
  *  
- * Node is selected 
+ * Node is selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -556,33 +549,33 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 /**
  * Select the node, and if any, deselects the previously selected node
  *
- * @name sap.ui.commons.TreeNode.prototype.select
+ * @name sap.ui.commons.TreeNode#select
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Expands the node
  *
- * @name sap.ui.commons.TreeNode.prototype.expand
+ * @name sap.ui.commons.TreeNode#expand
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Collapses the node
  *
- * @name sap.ui.commons.TreeNode.prototype.collapse
+ * @name sap.ui.commons.TreeNode#collapse
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -596,7 +589,9 @@ sap.ui.core.CustomStyleClassSupport.apply(sap.ui.commons.TreeNode.prototype);
 //* PUBLIC METHODS
 //***********************************************************************************
 
-/**Expands the node
+/**
+ * Expands the node
+ * @param {boolean} bExpandChildren
  * @public
  */
 
@@ -629,9 +624,9 @@ sap.ui.commons.TreeNode.prototype.expand = function(bExpandChildren){
 
 };
 
-
-
-/**Collapses the node
+/**
+ * Collapses the node
+ * @param {boolean} bCollapseChildren
  * @public
  */
 sap.ui.commons.TreeNode.prototype.collapse = function(bCollapseChildren){
@@ -665,68 +660,55 @@ sap.ui.commons.TreeNode.prototype.collapse = function(bCollapseChildren){
 
 };
 
-/**Select the node, and if any, deselects the previously selected node
+/**
+ * Select the node, and if any, deselects the previously selected node
+ * @param {boolean} bSuppressEvent
+ * @param {boolean} bDeselectOtherNodes
  * @public
  */
-sap.ui.commons.TreeNode.prototype.select = function(bSuppressEvent, bDeselectOtherNodes) {
-	var oTree = this.getTree(),
-		$Tree;
+sap.ui.commons.TreeNode.prototype.select = function(bSuppressEvent) {
+	var oTree = this.getTree();
 
-	this.setProperty("isSelected", true, true);
-
-	// If not connected to a tree or not rendered yet, return here
-	if (!oTree || !this.getDomRef()) {
-		return;
-	}
-
-	$Tree = oTree.$();
-
-	//Remove selection elsewhere
-	var oDomSelectedNode = $Tree.find(".sapUiTreeNodeSelected");
+	// If connected to a tree call setSelection, otherwise call _select directly
+	if (oTree) {
+		oTree.setSelection(this, bSuppressEvent);
+	} else {
+		this._select()
+	};
 	
-//STS
-	if (bDeselectOtherNodes) {
-		oDomSelectedNode.removeClass("sapUiTreeNodeSelected").removeAttr("aria-selected");
-	} 
-//STS
-
-	$Tree.find(".sapUiTreeNodeSelectedParent").removeClass("sapUiTreeNodeSelectedParent");
-
-	if(oDomSelectedNode.length){
-		//Any Selection found
-		var oSelectedNode = sap.ui.getCore().getControl(oDomSelectedNode[0].id);
-		oSelectedNode.setProperty("isSelected", false, true); //Suppress Re-rendering
-	}
-
-	//Set selection on clicked node
-	this.$().closest(".sapUiTreeNode").addClass("sapUiTreeNodeSelected").attr("aria-selected", "true");
-
-	if (!bSuppressEvent) {
-		this.fireSelected();
-	}
-
-	this.scrollIntoView();
-
 };
 
 //***********************************************************************************
 //* SELECTION PRIVATE METHODS
 //***********************************************************************************
 
+/**Select the node
+ * @private
+ */
+sap.ui.commons.TreeNode.prototype._select = function(bSuppressEvent) {
+	this.setProperty("isSelected", true, true);
+
+	if (!bSuppressEvent) {
+		this.fireSelected();
+	}
+
+	// If node is already rendered, then update the DOM and scroll into view
+	if (this.getDomRef()) {
+		this.$().closest(".sapUiTreeNode").addClass("sapUiTreeNodeSelected").attr("aria-selected", "true");
+		this.scrollIntoView();
+	}
+};
+
 /**Deselect the node
  * @private
  */
-sap.ui.commons.TreeNode.prototype.deselect = function(bSuppressEvent) {
-	var oTree = this.getTree();
-
+sap.ui.commons.TreeNode.prototype._deselect = function(bSuppressEvent) {
 	this.setProperty("isSelected", false, true);
 
-	// If not connected to a tree or not rendered yet, return here
-	if (!oTree || !this.getDomRef()) {
-		return;
+	// If node is already rendered, then update the DOM
+	if (this.getDomRef()) {
+		this.$().removeClass("sapUiTreeNodeSelected").removeAttr("aria-selected");
 	}
-
-	this.$().removeClass("sapUiTreeNodeSelected").removeAttr("aria-selected");
 };
 
 /**Returns true if the node has a selected child node, which is not visible
@@ -754,18 +736,22 @@ sap.ui.commons.TreeNode.prototype.hasSelectedHiddenChild = function(){
  * @public
  */
 sap.ui.commons.TreeNode.prototype.setIsSelected = function(bIsSelected) {
-
-	if(!this.getSelectable()){
+	var oTree = this.getTree();
+	
+	if (!this.getSelectable()) {
 		//Node is not selectable.
 		return this;
 	}
 
-	if (bIsSelected) {
-		this.select(true);
+	if (bIsSelected == this.getProperty("isSelected")) {
+		return this;
 	}
-	else {
-		this.deselect();
-	}
+	
+	if (oTree) {
+		oTree._setNodeSelection(this, bIsSelected, true);
+	} else {
+		this.setProperty("isSelected", bIsSelected, true);
+	}	
 	return this;
 };
 
@@ -829,7 +815,7 @@ sap.ui.commons.TreeNode.prototype.onclick = function(oEvent){
 				sSelectionType = sap.ui.commons.Tree.SelectionType.Toggle;
 			}
 		}
-		oTree.setSelection(this, sSelectionType);
+		oTree.setSelection(this, false, sSelectionType);
 
 		//Set focus
 		oDomClicked = jQuery(oDomClicked).closest(".sapUiTreeNode")[0];
@@ -937,8 +923,6 @@ sap.ui.commons.TreeNode.prototype.blur = function () {
 	}
 };
 
-
-
 //***********************************************************************************
 //* HELPER METHODS
 //***********************************************************************************
@@ -1019,15 +1003,31 @@ sap.ui.commons.TreeNode.prototype.scrollIntoView = function() {
 		iOffsetTop = $Node[0].offsetTop,
 		iScrollTop = $TreeCont.scrollTop(),
 		iHeight = $TreeCont.height(),
-		iNewScrollTop;
+		iNewScrollTop,
+		iOffsetLeft = $Node[0].offsetLeft,
+		iScrollLeft = $TreeCont.scrollLeft(),
+		iWidth = $TreeCont.width(),
+		iNewScrollLeft;
 
-	if (iOffsetTop > iScrollTop + iHeight) {
-		iNewScrollTop = iOffsetTop - Math.floor(iHeight * 0.8);
-		$TreeCont.animate({scrollTop:iNewScrollTop});
+	if (iOffsetTop > iScrollTop + iHeight || iOffsetTop < iScrollTop) {
+		iNewScrollTop = iOffsetTop - Math.floor(iHeight * 0.5);
+		iNewScrollTop = Math.max(iNewScrollTop, 0);
 	}
-	else if (iOffsetTop < iScrollTop) {
-		iNewScrollTop = iOffsetTop - Math.floor(iHeight * 0.2);
-		$TreeCont.animate({scrollTop:iNewScrollTop});
+
+	if (iOffsetLeft > iScrollLeft + iWidth || iOffsetLeft < iScrollLeft) {
+		iNewScrollLeft = iOffsetLeft - Math.floor(iWidth * 0.5);
+		iNewScrollLeft = Math.max(iNewScrollLeft, 0);
+	}
+
+	if (iNewScrollTop !== undefined || iNewScrollLeft !== undefined) {
+		var mScrollPos = {};
+		if (iNewScrollTop !== undefined) {
+			mScrollPos.scrollTop = iNewScrollTop;
+		}
+		if (iNewScrollLeft !== undefined) {
+			mScrollPos.scrollLeft = iNewScrollLeft;
+		}
+		$TreeCont.animate(mScrollPos);
 	}
 };
 

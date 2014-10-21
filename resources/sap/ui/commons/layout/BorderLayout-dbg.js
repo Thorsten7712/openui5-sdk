@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,25 +58,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Based upon the border layout as it comes with the Java standard. Using this layout, you are able to divide your available UI space into five areas whose sizes can be defined. These areas are: Top: Header; Bottom: Footer; Begin: Left/right-hand side panel; Center: Content area
  * in the middle; End: Right/left-hand side panel.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.BorderLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.layout.BorderLayout", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createArea", "setAreaData", "addContent", "insertContent", "removeContent", "removeAllContent", "getContent", "indexOfContent", "destroyContent", "getAreaData", "getAreaById", "getArea"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"rtl" : {type : "boolean", group : "Appearance", defaultValue : false, deprecated: true},
@@ -84,11 +81,11 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.BorderLayout", { metadata : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'}
 	},
 	aggregations : {
-    	"top" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"begin" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"center" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"end" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"bottom" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}
+		"top" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"begin" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"center" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"end" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"bottom" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}
 	}
 }});
 
@@ -347,193 +344,171 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.BorderLayout", { metadata : {
 /**
  * Creates the specified area and adds the given controls to it. Returns the created area.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.createArea
+ * @name sap.ui.commons.layout.BorderLayout#createArea
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies which area will be created. If the area is already available, the method call is ignored.
- * @param {sap.ui.core.Control} 
- *         oControls
+ * @param {sap.ui.core.Control} oControls
  *         Any number of controls can be submitted to be added to the newly created area; where each control is submitted as one argument.
-
  * @type sap.ui.commons.layout.BorderLayoutArea
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the properties of the specified area with the given values
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.setAreaData
+ * @name sap.ui.commons.layout.BorderLayout#setAreaData
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose properties will be set
- * @param {object} 
- *         oData
+ * @param {object} oData
  *         JSON-like object that contains the values to be set
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds controls to the specified area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.addContent
+ * @name sap.ui.commons.layout.BorderLayout#addContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area where controls will be added
- * @param {sap.ui.core.Control} 
- *         oControls
+ * @param {sap.ui.core.Control} oControls
  *         N controls can be submitted to be added. Each control is submitted as one argument.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Inserts controls to an area at a given index.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.insertContent
+ * @name sap.ui.commons.layout.BorderLayout#insertContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area where the controls shall be inserted.
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Specifies the index where the controls shall be added. For a negative value of iIndex, the content is inserted at
  *         position '0'; for a value greater than the current size of the aggregation, the content is inserted at the last position.
- * @param {sap.ui.core.Control} 
- *         oControl
+ * @param {sap.ui.core.Control} oControl
  *         N controls can be submitted to be added. Each control is submitted as one argument.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the content with the given index from an area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.removeContent
+ * @name sap.ui.commons.layout.BorderLayout#removeContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content shall be removed
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Specifies the index of the control that shall be removed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes all content from an area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.removeAllContent
+ * @name sap.ui.commons.layout.BorderLayout#removeAllContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content shall be removed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns all controls inside the specified area inside an array
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getContent
+ * @name sap.ui.commons.layout.BorderLayout#getContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content controls shall be returned.
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Determines the index of a given content control
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.indexOfContent
+ * @name sap.ui.commons.layout.BorderLayout#indexOfContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area that will be searched
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         Specifies the control whose index will be searched
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Destroys the content of the specified area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.destroyContent
+ * @name sap.ui.commons.layout.BorderLayout#destroyContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content will be destroyed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns a JSON-like object that contains all property values of the requested area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getAreaData
+ * @name sap.ui.commons.layout.BorderLayout#getAreaData
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose data will be returned
-
  * @type object
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the object of the specified area. If the area does not exist, the area will be created and returned.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getAreaById
+ * @name sap.ui.commons.layout.BorderLayout#getAreaById
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose object will be returned.
-
  * @type sap.ui.commons.layout.BorderLayoutArea
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the area of the given type. If the area does not exist, it will be created when create is set to true.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getArea
+ * @name sap.ui.commons.layout.BorderLayout#getArea
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
- * 
- * @param {boolean} 
- *         bCreate
- * 
-
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
+ * @param {boolean} bCreate
  * @type sap.ui.commons.layout.BorderLayoutAreaTypes
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

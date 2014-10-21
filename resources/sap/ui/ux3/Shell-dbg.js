@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -81,23 +81,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * The Ux3 GoldReflection Shell, which is an application frame with navigation capabilities.
  * It is supposed to be added to a direct child of the BODY tag of a page and there should be no other parts of the page consuming space outside the Shell.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.Shell
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Shell", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setContent", "setPaneContent", "openPersonalizationDialog", "initializePersonalization", "getSearchField", "openPane", "closePane", "isPaneOpen"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"appTitle" : {type : "string", group : "Misc", defaultValue : null},
@@ -119,14 +115,14 @@ sap.ui.core.Control.extend("sap.ui.ux3.Shell", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"worksetItems" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "worksetItem"}, 
-    	"paneBarItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "paneBarItem"}, 
-    	"paneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "paneContent"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"toolPopups" : {type : "sap.ui.ux3.ToolPopup", multiple : true, singularName : "toolPopup"}, 
-    	"headerItems" : {type : "sap.ui.core.Control", multiple : true, singularName : "headerItem"}, 
-    	"notificationBar" : {type : "sap.ui.ux3.NotificationBar", multiple : false}, 
-    	"_paneOverflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
+		"worksetItems" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "worksetItem"}, 
+		"paneBarItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "paneBarItem"}, 
+		"paneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "paneContent"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"toolPopups" : {type : "sap.ui.ux3.ToolPopup", multiple : true, singularName : "toolPopup"}, 
+		"headerItems" : {type : "sap.ui.core.Control", multiple : true, singularName : "headerItem"}, 
+		"notificationBar" : {type : "sap.ui.ux3.NotificationBar", multiple : false}, 
+		"_paneOverflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedWorksetItem" : {type : "sap.ui.ux3.NavigationItem", multiple : false}
@@ -1129,14 +1125,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 	
 /**
- * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected. 
+ * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected.
  *
  * @name sap.ui.ux3.Shell#worksetItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The id of the workset item that has been newly selected by the user. If a top-level item has been clicked which has sub-items, the ID of the currently active sub-item (/leaf) is given.
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The selected NavigationItem
  * @param {string} oControlEvent.getParameters.key The key of the selected NavigationItem (or null if there is no key)
@@ -1148,7 +1143,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected. 
+ * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1199,14 +1194,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements. 
+ * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements.
  *
  * @name sap.ui.ux3.Shell#paneBarItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The ID of the selected PaneBarItem.
  * @param {sap.ui.core.Item} oControlEvent.getParameters.item The selected Item
  * @param {string} oControlEvent.getParameters.key The key of the selected Item (or null if there is no key)
@@ -1218,7 +1212,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements. 
+ * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1267,14 +1261,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired when the user clicks the "Log-off" button 
+ * Fired when the user clicks the "Log-off" button
  *
  * @name sap.ui.ux3.Shell#logout
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -1283,7 +1276,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when the user clicks the "Log-off" button 
+ * Fired when the user clicks the "Log-off" button
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1325,14 +1318,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired when search has been triggered. 
+ * Fired when search has been triggered.
  *
  * @name sap.ui.ux3.Shell#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -1341,7 +1333,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when search has been triggered. 
+ * Fired when search has been triggered.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1383,14 +1375,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.Shell#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -1399,7 +1390,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1441,7 +1432,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before. 
+ * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before.
  *
  * @name sap.ui.ux3.Shell#paneClosed
  * @event
@@ -1449,7 +1440,6 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The id of the PaneBarItem to which the closed pane belonged.
  * @public
  */
@@ -1459,7 +1449,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before. 
+ * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1514,17 +1504,15 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * By default the old content is not destroyed and is returned by this method in an array for further usage. To avoid memory leaks, the old content should be destroyed (if not needed later), by setting the "destroyOldContent" flag or by destroying it manually later on. If "destroyOldContent" is set, an empty array is returned.
  *
- * @name sap.ui.ux3.Shell.prototype.setContent
+ * @name sap.ui.ux3.Shell#setContent
  * @function
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         The new Content. In this method it must be exactly one control (-tree). Use addContent() to add more control (-trees) to the main content area of the Shell.
- * @param {boolean} 
- *         bDestroyOldContent
+ * @param {boolean} bDestroyOldContent
  *         If set, the controls previously contained in the Shell will be destroyed, to avoid memory leaks.
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1533,28 +1521,26 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * By default, the old pane content is not destroyed and is returned by this method in an array for further usage. To avoid memory leaks, the old content should be destroyed (if not needed later), by setting the "destroyOldContent" flag or by destroying it manually later on. If "destroyOldContent" is set, an empty array is returned.
  *
- * @name sap.ui.ux3.Shell.prototype.setPaneContent
+ * @name sap.ui.ux3.Shell#setPaneContent
  * @function
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         The new Pane content. In this method it must be exactly one control (-tree). This could likely be a layout or a specific ux3 Pane control. Use addPaneContent() to add more control (-trees) to the Pane.
- * @param {boolean} 
- *         bDestroyOldContent
+ * @param {boolean} bDestroyOldContent
  *         If set, the controls previously contained in the pane will be destroyed, to avoid memory leaks.
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Experimental method! Do not use!
  *
- * @name sap.ui.ux3.Shell.prototype.openPersonalizationDialog
+ * @name sap.ui.ux3.Shell#openPersonalizationDialog
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1563,25 +1549,24 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * Makes Shell personalization available and injects the given personalization settings. This should be called before the user can do any adaptations per drag&drop or using the personalization dialog. Otherwise it may override the user's new settings.
  *
- * @name sap.ui.ux3.Shell.prototype.initializePersonalization
+ * @name sap.ui.ux3.Shell#initializePersonalization
  * @function
- * @param {object} 
- *         oSettings
+ * @param {object} oSettings
  *         Personalization settings object
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the SearchField control which is used in the Search Tool.
  *
- * @name sap.ui.ux3.Shell.prototype.getSearchField
+ * @name sap.ui.ux3.Shell#getSearchField
  * @function
-
  * @type sap.ui.commons.SearchField
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1593,14 +1578,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * Returns 'this' to allow method chaining.
  *
- * @name sap.ui.ux3.Shell.prototype.openPane
+ * @name sap.ui.ux3.Shell#openPane
  * @function
- * @param {string} 
- *         sPaneBarItemId
+ * @param {string} sPaneBarItemId
  *         The ID of the PaneBarItem which should be marked as selected.
-
  * @type sap.ui.ux3.Shell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1609,22 +1593,22 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * Returns 'this' to allow method chaining.
  *
- * @name sap.ui.ux3.Shell.prototype.closePane
+ * @name sap.ui.ux3.Shell#closePane
  * @function
-
  * @type sap.ui.ux3.Shell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns 'true' if the side Pane is currently open.
  *
- * @name sap.ui.ux3.Shell.prototype.isPaneOpen
+ * @name sap.ui.ux3.Shell#isPaneOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

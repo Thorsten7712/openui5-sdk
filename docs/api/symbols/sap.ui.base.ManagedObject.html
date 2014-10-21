@@ -41,7 +41,7 @@
 					
 					
 					
-						<div class="classRelation subclasses"><span class="caption">known direct subclasses: </span><a title="sap.ui.core.Component" href="../symbols/sap.ui.core.Component.html">Component</a>, <a title="sap.ui.core.Element" href="../symbols/sap.ui.core.Element.html">Element</a>, <a title="sap.ui.core.util.ExportColumn" href="../symbols/sap.ui.core.util.ExportColumn.html">ExportColumn</a>, <a title="sap.ui.core.util.ExportRow" href="../symbols/sap.ui.core.util.ExportRow.html">ExportRow</a>, <a title="sap.ui.core.util.ExportType" href="../symbols/sap.ui.core.util.ExportType.html">ExportType</a>, <a title="sap.ui.core.Fragment" href="../symbols/sap.ui.core.Fragment.html">Fragment</a>, <a title="sap.ui.core.tmpl.HandlebarsTemplate" href="../symbols/sap.ui.core.tmpl.HandlebarsTemplate.html">HandlebarsTemplate</a>, <a title="sap.ui.app.MockServer" href="../symbols/sap.ui.app.MockServer.html">MockServer</a>, <a title="sap.ui.core.util.MockServer" href="../symbols/sap.ui.core.util.MockServer.html">MockServer</a>, <a title="sap.m.TablePersoController" href="../symbols/sap.m.TablePersoController.html">TablePersoController</a>, <a title="sap.ui.table.TablePersoController" href="../symbols/sap.ui.table.TablePersoController.html">TablePersoController</a>, <a title="sap.m.TablePersoDialog" href="../symbols/sap.m.TablePersoDialog.html">TablePersoDialog</a>, <a title="sap.m.TablePersoProvider" href="../symbols/sap.m.TablePersoProvider.html">TablePersoProvider</a>, <a title="sap.ui.core.tmpl.Template" href="../symbols/sap.ui.core.tmpl.Template.html">Template</a></div>
+						<div class="classRelation subclasses"><span class="caption">known direct subclasses: </span><a title="sap.ui.core.Component" href="../symbols/sap.ui.core.Component.html">Component</a>, <a title="sap.ui.core.Element" href="../symbols/sap.ui.core.Element.html">Element</a>, <a title="sap.ui.core.util.ExportColumn" href="../symbols/sap.ui.core.util.ExportColumn.html">ExportColumn</a>, <a title="sap.ui.core.util.ExportRow" href="../symbols/sap.ui.core.util.ExportRow.html">ExportRow</a>, <a title="sap.ui.core.util.ExportType" href="../symbols/sap.ui.core.util.ExportType.html">ExportType</a>, <a title="sap.ui.core.Fragment" href="../symbols/sap.ui.core.Fragment.html">Fragment</a>, <a title="sap.ui.core.tmpl.HandlebarsTemplate" href="../symbols/sap.ui.core.tmpl.HandlebarsTemplate.html">HandlebarsTemplate</a>, <a title="sap.ui.test.matchers.Matcher" href="../symbols/sap.ui.test.matchers.Matcher.html">Matcher</a>, <a title="sap.ui.app.MockServer" href="../symbols/sap.ui.app.MockServer.html">MockServer</a>, <a title="sap.ui.core.util.MockServer" href="../symbols/sap.ui.core.util.MockServer.html">MockServer</a>, <a title="sap.m.TablePersoController" href="../symbols/sap.m.TablePersoController.html">TablePersoController</a>, <a title="sap.ui.table.TablePersoController" href="../symbols/sap.ui.table.TablePersoController.html">TablePersoController</a>, <a title="sap.m.TablePersoDialog" href="../symbols/sap.m.TablePersoDialog.html">TablePersoDialog</a>, <a title="sap.m.TablePersoProvider" href="../symbols/sap.m.TablePersoProvider.html">TablePersoProvider</a>, <a title="sap.ui.core.tmpl.Template" href="../symbols/sap.ui.core.tmpl.Template.html">Template</a></div>
 					
 					
 					<hr/>
@@ -176,7 +176,7 @@ oScope in the constructor is still experimental and might change in future versi
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Get the binding context of this object for the given model name."><a href="../symbols/sap.ui.base.ManagedObject.html#getBindingContext">getBindingContext</a></b><span class='signature'>(<span title="(string) the name of the model or undefined">sName</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Get the binding context of this object for the given model name."><a href="../symbols/sap.ui.base.ManagedObject.html#getBindingContext">getBindingContext</a></b><span class='signature'>(<span title="(string) the name of the model or undefined">sModelName</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Get the binding context of this object for the given model name.</span>
 								</div>
 							
@@ -291,7 +291,7 @@ oScope in the constructor is still experimental and might change in future versi
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Set the binding context for this ManagedObject for the model with the given name."><a href="../symbols/sap.ui.base.ManagedObject.html#setBindingContext">setBindingContext</a></b><span class='signature'>(<span title="(Object) the new binding context for this object">oContext</span>, <span title="(string) the name of the model to set the context for or undefined">sName</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Set the binding context for this ManagedObject for the model with the given name."><a href="../symbols/sap.ui.base.ManagedObject.html#setBindingContext">setBindingContext</a></b><span class='signature'>(<span title="(Object) the new binding context for this object">oContext</span>, <span title="(string) the name of the model to set the context for or undefined">sModelName</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Set the binding context for this ManagedObject for the model with the given name.</span>
 								</div>
 							
@@ -549,7 +549,7 @@ by a type information in the oKeyInfo object
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="addAggregation"> </a>
 										<div class="itemTitle icon protected">
 											addAggregation<span class="signature">(<span title="(string) the string identifying the aggregation that oObject should be added to.">sAggregationName</span>, <span title="(sap.ui.base.ManagedObject) the object to add; if empty, nothing is added">oObject</span>, <span title="(boolean) if true, this ManagedObject as well as the added child are not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -628,7 +628,7 @@ by a type information in the oKeyInfo object
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="addAssociation"> </a>
 										<div class="itemTitle icon protected">
 											addAssociation<span class="signature">(<span title="(string) the string identifying the association the object should be added to.">sAssociationName</span>, <span title="(string | sap.ui.base.ManagedObject) the ID of the managed object to add; if empty, nothing is added; if a sap.ui.base.ManagedObject is given, its ID is added">sId</span>, <span title="(boolean) if true, this managed object as well as the newly associated object are not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -857,6 +857,18 @@ bindable="bindable" to get typed bind<i>Something</i> methods for those aggregat
 													</td>
 													<td class="methodItemDesc">
 												    the template to clone for each item in the aggregation
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oBindingInfo.templateShareable</b><i class="help" title="Optional parameter">?, Default: true</i>
+													</td>
+													<td class="methodItemDesc">
+												    option to enable that the template will be shared which means that it won't be destroyed or cloned automatically
 													</td>
 												</tr>
 											
@@ -1220,7 +1232,7 @@ bindable="bindable" to get typed bind methods for a property.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="clone"> </a>
 										<div class="itemTitle icon protected">
 											clone<span class="signature">(<span title="(string) a suffix to be appended to the cloned object id">sIdSuffix</span><i class="help" title="Optional parameter">?</i>, <span title="(string[]) an array of local IDs within the cloned hierarchy (internally used)">aLocalIds</span><i class="help" title="Optional parameter">?</i>, <span title="(Object) configuration object">oOptions</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1386,7 +1398,7 @@ Applications should call this method if they don't need the object any longer.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="destroyAggregation"> </a>
 										<div class="itemTitle icon protected">
 											destroyAggregation<span class="signature">(<span title="(string) the name of the aggregation">sAggregationName</span>, <span title="(boolean) if true, this ManagedObject is not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1513,7 +1525,7 @@ This can be either done recursive or not.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getAggregation"> </a>
 										<div class="itemTitle icon protected">
 											getAggregation<span class="signature">(<span title="(string) the name of the aggregation">sAggregationName</span>, <span title="(sap.ui.base.ManagedObject | Array) the object that is used in case the current aggregation is empty">oDefaultForCreation</span>)</span>
@@ -1580,7 +1592,7 @@ This can be either done recursive or not.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getAssociation"> </a>
 										<div class="itemTitle icon protected">
 											getAssociation<span class="signature">(<span title="(string) the name of the association">sAssociationName</span>, <span title="(object) the object that is used in case the current aggregation is empty (only null or empty array allowed)">oDefaultForCreation</span>)</span>
@@ -1705,7 +1717,7 @@ This can be either done recursive or not.
 									<div class='sectionItem classMethod'>
 										<a name="getBindingContext"> </a>
 										<div class="itemTitle icon">
-											getBindingContext<span class="signature">(<span title="(string) the name of the model or undefined">sName</span><i class="help" title="Optional parameter">?</i>)</span>
+											getBindingContext<span class="signature">(<span title="(string) the name of the model or undefined">sModelName</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns Object">: Object</span>
 										</div>
 										<div class="full-description">
@@ -1734,7 +1746,7 @@ Note: A ManagedObject inherits binding contexts from the Core only when it is a 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sName</b><i class="help" title="Optional parameter">?</i>
+													  <b>sModelName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the name of the model or <code>undefined</code>
@@ -1765,7 +1777,7 @@ Note: A ManagedObject inherits binding contexts from the Core only when it is a 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getBindingInfo"> </a>
 										<div class="itemTitle icon protected">
 											getBindingInfo<span class="signature">(<span title="(string) the name of the property or aggregation">sName</span>)</span>
@@ -1822,7 +1834,7 @@ sorter, filter etc. for the property or aggregation.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getBindingPath"> </a>
 										<div class="itemTitle icon protected">
 											getBindingPath<span class="signature">(<span title="(string) the name of the property or aggregation">sName</span>)</span>
@@ -1877,7 +1889,7 @@ sorter, filter etc. for the property or aggregation.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getEventingParent"> </a>
 										<div class="itemTitle icon protected">
 											getEventingParent<span class="signature">()</span>
@@ -2164,7 +2176,7 @@ the empty string <code>""</code> or the string literals <code>"null"</code> or <
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getProperty"> </a>
 										<div class="itemTitle icon protected">
 											getProperty<span class="signature">(<span title="(string) the name of the property">sPropertyName</span>)</span>
@@ -2259,7 +2271,7 @@ Note: A ManagedObject inherits models from the Core only when it is a descendant
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="indexOfAggregation"> </a>
 										<div class="itemTitle icon protected">
 											indexOfAggregation<span class="signature">(<span title="(string) the name of the aggregation">sAggregationName</span>, <span title="(sap.ui.base.ManagedObject) the ManagedObject whose index is looked for.">oObject</span>)</span>
@@ -2329,7 +2341,7 @@ otherwise. Returns -2 if the given named aggregation is not a multiple one
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="insertAggregation"> </a>
 										<div class="itemTitle icon protected">
 											insertAggregation<span class="signature">(<span title="(string) the string identifying the aggregation the managed object oObject should be inserted into.">sAggregationName</span>, <span title="(sap.ui.base.ManagedObject) the ManagedObject to add; if empty, nothing is inserted.">oObject</span>, <span title="(int) the 0-based index the managed object should be inserted at; for a negative value iIndex, oObject is inserted at position 0; for a value greater than the current size of the aggregation, oObject is inserted at the last position">iIndex</span>, <span title="(boolean) if true, this ManagedObject as well as the added child are not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2425,7 +2437,7 @@ position <code>iIndex</code>.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="invalidate"> </a>
 										<div class="itemTitle icon protected">
 											invalidate<span class="signature">()</span>
@@ -2505,7 +2517,7 @@ invalidate, changes to child-<code>Elements</code> will also result in rerenderi
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="isInvalidateSuppressed"> </a>
 										<div class="itemTitle icon protected">
 											isInvalidateSuppressed<span class="signature">()</span>
@@ -2543,7 +2555,7 @@ invalidate, changes to child-<code>Elements</code> will also result in rerenderi
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="isTreeBinding"> </a>
 										<div class="itemTitle icon protected">
 											isTreeBinding<span class="signature">(<span title="(string) the aggregation to bind (e.g.">sName</span>)</span>
@@ -2600,7 +2612,7 @@ invalidate, changes to child-<code>Elements</code> will also result in rerenderi
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="removeAggregation"> </a>
 										<div class="itemTitle icon protected">
 											removeAggregation<span class="signature">(<span title="(string) the string identifying the aggregation the ManagedObject should be removed from">sAggregationName</span>, <span title="(int | string | sap.ui.base.ManagedObject) the position or ID of the ManagedObject to remove or the ManagedObject itself; if vObject is invalid, a negative value or a value greater or equal than the current size of the aggregation, nothing is removed">vObject</span>, <span title="(boolean) if true, this ManagedObject is not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2680,7 +2692,7 @@ invalidate, changes to child-<code>Elements</code> will also result in rerenderi
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="removeAllAggregation"> </a>
 										<div class="itemTitle icon protected">
 											removeAllAggregation<span class="signature">(<span title="(string) the name of the aggregation">sAggregationName</span>, <span title="(boolean) if true, this ManagedObject is not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2748,7 +2760,7 @@ Additionally unregisters them from the hosting UIArea.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="removeAllAssociation"> </a>
 										<div class="itemTitle icon protected">
 											removeAllAssociation<span class="signature">(<span title="(string) the name of the association">sAssociationName</span>, <span title="(boolean) if true, this ManagedObject is not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2815,7 +2827,7 @@ Additionally unregisters them from the hosting UIArea.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="removeAssociation"> </a>
 										<div class="itemTitle icon protected">
 											removeAssociation<span class="signature">(<span title="(string) the string identifying the association the ManagedObject should be removed from.">sAssociationName</span>, <span title="(int | string | sap.ui.base.ManagedObject) the position or ID of the ManagedObject to remove or the ManagedObject itself; if vObject is invalid input, a negative value or a value greater or equal than the current size of the association, nothing is removed">vObject</span>, <span title="(boolean) if true, the managed object is not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2895,7 +2907,7 @@ Additionally unregisters them from the hosting UIArea.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="setAggregation"> </a>
 										<div class="itemTitle icon protected">
 											setAggregation<span class="signature">(<span title="(string) name of the aggregation">sAggregationName</span>, <span title="(object) the managed object that is set as an aggregation">oObject</span>, <span title="(boolean) if true, this ManagedObject is not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2974,7 +2986,7 @@ Additionally unregisters them from the hosting UIArea.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="setAssociation"> </a>
 										<div class="itemTitle icon protected">
 											setAssociation<span class="signature">(<span title="(string) name of the association">sAssociationName</span>, <span title="(string | sap.ui.base.ManagedObject) the ID of the managed object that is set as an association, or the managed object itself or null">sId</span>, <span title="(boolean) if true, the managed objects invalidate method is not called">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -3056,7 +3068,7 @@ Additionally unregisters them from the hosting UIArea.
 									<div class='sectionItem classMethod'>
 										<a name="setBindingContext"> </a>
 										<div class="itemTitle icon">
-											setBindingContext<span class="signature">(<span title="(Object) the new binding context for this object">oContext</span>, <span title="(string) the name of the model to set the context for or undefined">sName</span><i class="help" title="Optional parameter">?</i>)</span>
+											setBindingContext<span class="signature">(<span title="(Object) the new binding context for this object">oContext</span>, <span title="(string) the name of the model to set the context for or undefined">sModelName</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns sap.ui.base.ManagedObject">: <a href="../symbols/sap.ui.base.ManagedObject.html">sap.ui.base.ManagedObject</a></span>
 										</div>
 										<div class="full-description">
@@ -3094,7 +3106,7 @@ Note: A ManagedObject inherits binding contexts from the Core only when it is a 
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sName</b><i class="help" title="Optional parameter">?</i>
+													  <b>sModelName</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    the name of the model to set the context for or <code>undefined</code>
@@ -3214,7 +3226,7 @@ Note: A ManagedObject inherits models from the Core only when it is a descendant
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="setProperty"> </a>
 										<div class="itemTitle icon protected">
 											setProperty<span class="signature">(<span title="(string) name of the property to set">sPropertyName</span>, <span title="(any) value to set the property to">oValue</span>, <span title="(boolean) if true, the managed is not marked as changed">bSuppressInvalidate</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -3526,7 +3538,7 @@ relative to the parent context again.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="validateAggregation"> </a>
 										<div class="itemTitle icon protected">
 											validateAggregation<span class="signature">(<span title="(string) the name of the aggregation">sAggregationName</span>, <span title="(sap.ui.base.ManagedObject|any) the aggregated object or a primitive value">oObject</span>, <span title="(boolean) whether the aggregation must have cardinality 0.">bMultiple</span>)</span>
@@ -3619,7 +3631,7 @@ relative to the parent context again.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="validateProperty"> </a>
 										<div class="itemTitle icon protected">
 											validateProperty<span class="signature">(<span title="(string) the name of the property">sPropertyName</span>, <span title="(any) the value">oValue</span>)</span>
@@ -3738,7 +3750,7 @@ relatively to the given path.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since 1.11.1, please use bindElement instead.
 												</dt>
@@ -3801,7 +3813,7 @@ relative to the parent context again.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since 1.11.1, please use unbindElement instead.
 												</dt>

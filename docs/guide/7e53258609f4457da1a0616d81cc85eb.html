@@ -12,11 +12,13 @@
 <meta name="abstract" content="When using an XML model, all data is available on the client. Sorting and filtering are implemented in JavaScript."/>
 <meta name="description" content="When using an XML model, all data is available on the client. Sorting and filtering are implemented in JavaScript."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=19984954619515594"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=19489611669607565"/>
 <title>Sorting and Filtering in a XML Model</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,7 +30,7 @@
 <div class="body taskbody"><p class="shortdesc">When using an XML model, all data is available on the client. Sorting and filtering are
 		implemented in JavaScript.</p>
 <div class="section context"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Context</h2></div>To define custom methods, set the <samp class="ph codeph">fnCompare</samp> method on the Sorter object
-			or the <samp class="ph codeph">fnTest</samp> method on the Filter object after creating it.</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand"><span class="ph cmd">To implement a filter: </span> 
+			or the <samp class="ph codeph">fnTest</samp> method on the Filter object after creating it.</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps"><li class="li step stepexpand"><span class="ph cmd">To implement a filter: </span><div class="itemgroup info">
 					<p class="p">The <samp class="ph codeph">fnTest</samp> method of the Filter gets the value to test as
 						the only parameter and returns, whether the row with the given value should
 						be filtered or not. </p>
@@ -38,8 +40,8 @@ oFilter.fnFilter = function(value) {
     return (value &gt; 100);
 };</pre></div>
 
-				</li>
-<li class="li step stepexpand"><span class="ph cmd">To implement a sorter:</span> 
+				</div></li>
+<li class="li step stepexpand"><span class="ph cmd">To implement a sorter:</span><div class="itemgroup info">
 					<p class="p">The <samp class="ph codeph">fnCompare</samp> method of the Sorter gets the two values to
 						compare as parameters and returns -1, 0 or 1, dependent which of the two
 						values should be ordered before the other. </p>
@@ -51,13 +53,8 @@ oSorter.fnCompare = function(value1, value2) {
     if (value1 &gt; value2) return 1;
 };</pre></div>
 
-				</li>
+				</div></li>
 </ol>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

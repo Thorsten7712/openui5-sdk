@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 
 	<name>Button</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Enables users to trigger actions such as save or print. For the button UI, you can define some text or an icon, or both.
 	</documentation>
 	<baseType>sap.ui.core/Control</baseType>

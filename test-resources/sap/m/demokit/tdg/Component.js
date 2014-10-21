@@ -69,29 +69,21 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.tdg.Component", {
 
 		// always use absolute paths relative to our own component
 		// (relative paths will fail if running in the Fiori Launchpad)
-		var rootPath = jQuery.sap.getModulePath("sap.ui.demo.tdg");
+		var oRootPath = jQuery.sap.getModulePath("sap.ui.demo.tdg");
 
 		// set i18n model
 		var i18nModel = new sap.ui.model.resource.ResourceModel({
-			bundleUrl : [rootPath, mConfig.resourceBundle].join("/")
+			bundleUrl : [oRootPath, mConfig.resourceBundle].join("/")
 		});
 		this.setModel(i18nModel, "i18n");
 
 		var sServiceUrl = mConfig.serviceConfig.serviceUrl;
 
+		//This code is only needed for testing the application when there is no local proxy available, and to have stable test data.
 		var bIsMocked = jQuery.sap.getUriParameters().get("responderOn") === "true";
 		// start the mock server for the domain model
 		if (bIsMocked) {
-			jQuery.sap.require("sap.ui.app.MockServer");
-			var oMockServer = new sap.ui.app.MockServer({
-				rootUri: sServiceUrl
-			});
-			oMockServer.simulate("model/metadata.xml", "model/");
-			oMockServer.start();
-
-			sap.m.MessageToast.show("Running in demo mode with mock data.", {
-				duration: 2000
-			});
+			this._startMockServer(sServiceUrl);
 		}
 
 		// Create and set domain model to the component
@@ -99,7 +91,7 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.tdg.Component", {
 		this.setModel(oModel);
 
 		// set device model
-		var deviceModel = new sap.ui.model.json.JSONModel({
+		var oDeviceModel = new sap.ui.model.json.JSONModel({
 			isTouch : sap.ui.Device.support.touch,
 			isNoTouch : !sap.ui.Device.support.touch,
 			isPhone : sap.ui.Device.system.phone,
@@ -107,12 +99,31 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.tdg.Component", {
 			listMode : sap.ui.Device.system.phone ? "None" : "SingleSelectMaster",
 			listItemType : sap.ui.Device.system.phone ? "Active" : "Inactive"
 		});
-		deviceModel.setDefaultBindingMode("OneWay");
-		this.setModel(deviceModel, "device");
+		oDeviceModel.setDefaultBindingMode("OneWay");
+		this.setModel(oDeviceModel, "device");
 
 		this.getRouter().initialize();
 
-	}
+	},
 
+	_startMockServer : function (sServiceUrl) {
+		jQuery.sap.require("sap.ui.core.util.MockServer");
+		var oMockServer = new sap.ui.core.util.MockServer({
+			rootUri: sServiceUrl
+		});
+
+		var iDelay = +(jQuery.sap.getUriParameters().get("responderDelay") || 0);
+		sap.ui.core.util.MockServer.config({
+			autoRespondAfter : iDelay
+		});
+
+		oMockServer.simulate("model/metadata.xml", "model/");
+		oMockServer.start();
+
+
+		sap.m.MessageToast.show("Running in demo mode with mock data.", {
+			duration: 2000
+		});
+	}
 });
 

@@ -28,6 +28,19 @@
 	
 	</script>
 	
+	<script id="aOtherControl" data-control="a.OtherControl" type="text/x-handlebars-template">
+
+		<span {{controlData}}>
+			<h3>{{property name="lastName"}}, {{property name="firstName"}}</h3>
+			<ul>
+			{{#aggregation name="locations" type="sap.ui.commons.TextView" multiple="true"}}
+				<li>{{control}}</li>
+			{{/aggregation}}
+			</ul>
+		</span>
+	
+	</script>
+	
 	<script>
 	
 		// sample code
@@ -37,6 +50,10 @@
 			var $Script = jQuery.sap.byId("aNewControl");
 			var sTemplate = jQuery.sap.escapeHTML($Script.html());
 			jQuery("<pre>").html(sTemplate).insertAfter(jQuery.sap.byId("content"));
+			
+			var $Script = jQuery.sap.byId("aOtherControl");
+			var sTemplate = jQuery.sap.escapeHTML($Script.html());
+			jQuery("<pre>").html(sTemplate).insertAfter(jQuery.sap.byId("contentOther"));
 			
 			// define the model
 			var oModel = new sap.ui.model.json.JSONModel({
@@ -61,7 +78,7 @@
 			sap.ui.template("aNewControl");
 			
 			// create the new control and place it
-			var oNewControl = new a.NewControl({
+			var oControl = new a.NewControl({
 				lastName: "{lastName}",
 				firstName: "{firstName}",
 				locations: {
@@ -76,10 +93,34 @@
 				design: "Transparent",
 				rows: {
 					path: "/persons",
-					template: oNewControl
+					template: oControl
 				}
 			});
 			oRowRepeater.placeAt("content");
+			
+			// declare the control based on a template
+			sap.ui.template("aOtherControl");
+			
+			// create the new control and place it
+			oControl = new a.OtherControl({
+				lastName: "{lastName}",
+				firstName: "{firstName}",
+				locations: {
+					path: "locations",
+					template: new sap.ui.commons.TextView({
+						text: "{}"
+					})
+				}
+			});
+
+			oRowRepeater = new sap.ui.commons.RowRepeater({
+				design: "Transparent",
+				rows: {
+					path: "/persons",
+					template: oControl
+				}
+			});
+			oRowRepeater.placeAt("contentOther");
 			
 		});
 	
@@ -93,6 +134,8 @@
 	<h2 style="color: red;">Experimental support for control definition via Template!</h2>
 	
 	<div id="content"></div>
+	
+	<div id="contentOther"></div>
 	
 </body>
 </html>

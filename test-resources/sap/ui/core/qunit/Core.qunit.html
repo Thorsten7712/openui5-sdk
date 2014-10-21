@@ -32,6 +32,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		
 		<script type="text/javascript">
@@ -124,33 +125,33 @@
 		});
 		
 		test("testSetThemeRoot", function() {
-			sap.ui.getCore().setThemeRoot("my_theme", ["sap.ui.core"], "http://core.sap.corp");
-		    sap.ui.getCore().setThemeRoot("my_theme", "http://custom.sap.corp");
-		    sap.ui.getCore().setThemeRoot("my_theme", ["sap.ui.commons"], "http://commons.sap.corp");
+			sap.ui.getCore().setThemeRoot("my_theme", ["sap.ui.core"], "http://core.something.corp");
+		    sap.ui.getCore().setThemeRoot("my_theme", "http://custom.something.corp");
+		    sap.ui.getCore().setThemeRoot("my_theme", ["sap.ui.commons"], "http://commons.something.corp");
 			
 		    var corePath = oRealCore._getThemePath("sap.ui.core", "my_theme");
 		    var commonsPath = oRealCore._getThemePath("sap.ui.commons", "my_theme");
 			var otherPath = oRealCore._getThemePath("sap.ui.other", "my_theme");
 			
-			equal(corePath, "http://core.sap.corp/sap/ui/core/themes/my_theme/", "path should be as configured");
-			equal(commonsPath, "http://commons.sap.corp/sap/ui/commons/themes/my_theme/", "path should be as configured");
-			equal(otherPath, "http://custom.sap.corp/sap/ui/other/themes/my_theme/", "path should be as configured");
+			equal(corePath, "http://core.something.corp/sap/ui/core/themes/my_theme/", "path should be as configured");
+			equal(commonsPath, "http://commons.something.corp/sap/ui/commons/themes/my_theme/", "path should be as configured");
+			equal(otherPath, "http://custom.something.corp/sap/ui/other/themes/my_theme/", "path should be as configured");
 				
 			corePath = jQuery.sap.getModulePath("sap.ui.core.themes.my_theme", "/");
 			commonsPath = jQuery.sap.getModulePath("sap.ui.commons.themes.my_theme", "/");
 			otherPath = jQuery.sap.getModulePath("sap.ui.other.themes.my_theme", "/");
 
-			equal(corePath, "http://core.sap.corp/sap/ui/core/themes/my_theme/", "path should be as configured");
-			equal(commonsPath, "http://commons.sap.corp/sap/ui/commons/themes/my_theme/", "path should be as configured");
-			equal(otherPath, "http://custom.sap.corp/sap/ui/other/themes/my_theme/", "path should be as configured");
+			equal(corePath, "http://core.something.corp/sap/ui/core/themes/my_theme/", "path should be as configured");
+			equal(commonsPath, "http://commons.something.corp/sap/ui/commons/themes/my_theme/", "path should be as configured");
+			equal(otherPath, "http://custom.something.corp/sap/ui/other/themes/my_theme/", "path should be as configured");
 			
 			corePath = sap.ui.resource("sap.ui.core", "themes/my_theme/img/x.png");
 			commonsPath = sap.ui.resource("sap.ui.commons", "themes/my_theme/img/x.png");
 			otherPath = sap.ui.resource("sap.ui.other", "themes/my_theme/img/x.png");
 			
-			equal(corePath, "http://core.sap.corp/sap/ui/core/themes/my_theme/img/x.png", "path should be as configured");
-			equal(commonsPath, "http://commons.sap.corp/sap/ui/commons/themes/my_theme/img/x.png", "path should be as configured");
-			equal(otherPath, "http://custom.sap.corp/sap/ui/other/themes/my_theme/img/x.png", "path should be as configured");
+			equal(corePath, "http://core.something.corp/sap/ui/core/themes/my_theme/img/x.png", "path should be as configured");
+			equal(commonsPath, "http://commons.something.corp/sap/ui/commons/themes/my_theme/img/x.png", "path should be as configured");
+			equal(otherPath, "http://custom.something.corp/sap/ui/other/themes/my_theme/img/x.png", "path should be as configured");
 		});
 		
 		// now check the location of the preconfigured themes

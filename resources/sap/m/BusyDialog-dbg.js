@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,22 +61,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * Busy Dialog is used to indicate that the system is busy with some task and the user has to wait. During this time the UI is blocked.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.BusyDialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.BusyDialog", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"open", "close"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : null},
@@ -90,10 +88,10 @@ sap.ui.core.Control.extend("sap.m.BusyDialog", { metadata : {
 		"showCancelButton" : {type : "boolean", group : "Appearance", defaultValue : false}
 	},
 	aggregations : {
-    	"_busyLabel" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
-    	"_busyIndicator" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
-    	"_toolbar" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
-    	"_cancelButton" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"_busyLabel" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_busyIndicator" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_toolbar" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_cancelButton" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"close" : {}
@@ -350,14 +348,15 @@ sap.m.BusyDialog.M_EVENTS = {'close':'close'};
 
 
 /**
- * This event will be fired when the busy dialog is closed. 
+ * This event will be fired when the busy dialog is closed.
  *
  * @name sap.m.BusyDialog#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
+ * @param {boolean} oControlEvent.getParameters.cancelPressed this parameter is for an app to differ for a "close" event if it was fired because user pressed cancel button or because the operation was terminated.
+ *         This parameter is set to true if the close event is fired by user interaction.
  * @public
  */
  
@@ -366,7 +365,7 @@ sap.m.BusyDialog.M_EVENTS = {'close':'close'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.BusyDialog</code>.<br/> itself. 
  *  
- * This event will be fired when the busy dialog is closed. 
+ * This event will be fired when the busy dialog is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -398,6 +397,12 @@ sap.m.BusyDialog.M_EVENTS = {'close':'close'};
 
 /**
  * Fire event close to attached listeners.
+ * 
+ * Expects following event parameters:
+ * <ul>
+ * <li>'cancelPressed' of type <code>boolean</code> this parameter is for an app to differ for a "close" event if it was fired because user pressed cancel button or because the operation was terminated.
+This parameter is set to true if the close event is fired by user interaction.</li>
+ * </ul>
  *
  * @param {Map} [mArguments] the arguments to pass along with the event.
  * @return {sap.m.BusyDialog} <code>this</code> to allow method chaining
@@ -410,22 +415,22 @@ sap.m.BusyDialog.M_EVENTS = {'close':'close'};
 /**
  * Open the busy popup.
  *
- * @name sap.m.BusyDialog.prototype.open
+ * @name sap.m.BusyDialog#open
  * @function
-
  * @type sap.m.BusyDialog
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Close the busy popup.
  *
- * @name sap.m.BusyDialog.prototype.close
+ * @name sap.m.BusyDialog#close
  * @function
-
  * @type sap.m.BusyDialog
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -442,14 +447,13 @@ jQuery.sap.require("sap.ui.core.theming.Parameters");
 sap.m.BusyDialog.prototype.init = function(){
 	var that = this;
 	this._$window = jQuery(window);
-	this._isPlatformDependent = sap.ui.core.theming.Parameters.get("sapMPlatformDependent") == "true";
-	
+
 	this._busyIndicator = new sap.m.BusyIndicator(this.getId() + '-busyInd', {}).addStyleClass('sapMBsyInd');
 	this.setAggregation("_busyIndicator", this._busyIndicator, true);
 	
 	this.iOldWinHeight = 0;
 	this._oPopup = new sap.ui.core.Popup();
-	(sap.ui.Device.os.ios && this._isPlatformDependent) ? this._oPopup.setShadow(true): this._oPopup.setShadow(false);
+	this._oPopup.setShadow(false);
 	this._oPopup.setModal(true, 'sapMDialogBLyInit');
 	this._oPopup.setAnimations(this.openAnimation, this.closeAnimation);
 
@@ -464,24 +468,6 @@ sap.m.BusyDialog.prototype.init = function(){
 		sap.ui.core.Popup.prototype._showBlockLayer.call(this);
 		var $BlockRef = jQuery("#sap-ui-blocklayer-popup"), $BlockBarRef;
 		$BlockRef.toggleClass("sapMDialogBLyInit", true);
-		if (!sap.ui.Device.os.ios && this._isPlatformDependent) {
-			$BlockBarRef = jQuery("#sap-ui-blocklayer-popup-bar");
-			$BlockRef.css('top', '48px');
-			if($BlockBarRef.length === 0){
-				var className = "sapUiBLy" + (this._sModalCSSClass ? " " + this._sModalCSSClass : "") + ' sapUiBLyBar';
-				var $BlockBarRef = jQuery("<div id=\"sap-ui-blocklayer-popup-bar\" tabindex=\"0\" class=\"" + className + "\" style=\"display:block; z-index:" +  $BlockRef.css('z-index') +"; visibility:visible\"></div>");
-				//need to add $BlockBarRef before the busydialog dom node, otherwise have problem with popup.js
-				$BlockBarRef.insertBefore(that.$());
-			} else {
-				var $BlockBarRef = jQuery("#sap-ui-blocklayer-popup-bar");
-				$BlockBarRef.css({"z-index" : $BlockRef.css('z-index'),
-								"visibility": "visible",
-								"display" : "block"});
-			}
-		}//Without timeout the animation is not visible from the second time.
-		/*setTimeout(function() {
-			$BlockRef.toggleClass('sapMDialogBLyShown', true);
-		}, 0);*/
 	};
 	this._oPopup._hideBlockLayer = function(){
 		var $BlockRef = jQuery("#sap-ui-blocklayer-popup");
@@ -498,7 +484,7 @@ sap.m.BusyDialog.prototype.init = function(){
 	//keyboard support for desktop environments
 	if(sap.ui.Device.system.desktop) {
 		var fnOnEscape = jQuery.proxy(function(oEvent) {
-				this.close();
+				this.close(true);
 				//event should not trigger any further actions
 				oEvent.stopPropagation();
 		}, this);
@@ -508,17 +494,7 @@ sap.m.BusyDialog.prototype.init = function(){
 };
 
 sap.m.BusyDialog.prototype.openAnimation = function($Ref, iRealDuration, fnOpened) {
-	if(sap.ui.Device.os.ios && this._isPlatformDependent) {
-		$Ref.css('display', 'block');
-		$Ref.bind("webkitAnimationEnd animationend", function(){
-		jQuery(this).unbind("webkitAnimationEnd animationend");
-			fnOpened();
-		});
-		$Ref.css('-webkit-animation-name', 'sapMDialogBounce')
-			.css('animation-name', 'sapMDialogBounce');
-	} else {
-		fnOpened();
-	}
+	fnOpened();
 };
 
 sap.m.BusyDialog.prototype.closeAnimation = function($Ref, iRealDuration, fnClose) {
@@ -583,7 +559,7 @@ sap.m.BusyDialog.prototype._openNowIfPossibleAndRequested = function(){
  * @public
  *
  */
-sap.m.BusyDialog.prototype.close = function(){
+sap.m.BusyDialog.prototype.close = function(bFromCancelButton){
 	this._bOpenRequested = false;
 	var oPopup = this._oPopup;
 
@@ -592,7 +568,9 @@ sap.m.BusyDialog.prototype.close = function(){
 		oPopup.attachClosed(this._handleClosed, this);
 		jQuery.sap.log.debug("sap.m.BusyDialog.close called at " + new Date().getTime());
 		oPopup.close();
-		this.fireClose();
+		this.fireClose({
+			cancelPressed: !!bFromCancelButton
+		});
 	}
 	return this;
 };
@@ -654,19 +632,14 @@ sap.m.BusyDialog.prototype.setCancelButtonText = function(sText){
 
 sap.m.BusyDialog.prototype._createCancelButton = function(){
 	if(!this._oButton) {
-		var sButtonStyle = "";
 		var self = this;
 		var sButtonText = (this.getCancelButtonText()) ? this.getCancelButtonText() : sap.ui.getCore().getLibraryResourceBundle("sap.m").getText("BUSYDIALOG_CANCELBUTTON_TEXT");
-		if(!this._isPlatformDependent) {
-			sButtonStyle = sap.m.ButtonType.Transparent;
-		} else {
-			sButtonStyle = (sap.ui.Device.os.ios) ? sap.m.ButtonType.Unstyled : sap.m.ButtonType.Default;
-		}
+
 		this._oButton = new sap.m.Button(this.getId() + 'busyCancelBtn', {
 				text: sButtonText,
-				type: sButtonStyle,
+				type: sap.m.ButtonType.Transparent,
 				press : function() {
-					self.close();
+					self.close(true);
 				}
 		}).addStyleClass("sapMDialogBtn");
 
@@ -709,8 +682,8 @@ sap.m.BusyDialog.prototype._handleClosed = function(){
 
 sap.m.BusyDialog.prototype._setDimensions = function() {
 	// Derive width and height from viewport
-	var iWindowHeight = (sap.ui.Device.os.ios || !this._isPlatformDependent) ? this._$window.height() : ( this._$window.height() - 50);
-	var $this = this.$();;
+	var iWindowHeight =  this._$window.height();
+	var $this = this.$();
 	//reset
 	$this.css({
 		"left": "0px",
@@ -730,19 +703,14 @@ sap.m.BusyDialog.prototype._setDimensions = function() {
 	if(this.iOldWinHeight == 0) {
 		this._checkSize(iWindowHeight);
 	}
-	this.iOldWinHeight = (sap.ui.Device.os.ios || !this._isPlatformDependent) ? this._$window.height() : (this._$window.height() - 50);
+	this.iOldWinHeight = this._$window.height();
 };
 
 sap.m.BusyDialog.prototype._checkSize = function(iWindowHeight) {
 	if(iWindowHeight < this.$()[0].scrollHeight) {
 		this.$().toggleClass("sapMBsyDSmall", true);
-		if(!sap.ui.Device.os.ios && this._isPlatformDependent) {
-			this.$().css("width", this._$window.width() * 0.7);
-		}
 	} else {
 		this.$().toggleClass("sapMBsyDSmall", false);
-		if(!sap.ui.Device.os.ios && !this._isPlatformDependent) {
-			this.$().css("width", "18.75em");
-		}
+		this.$().css("width", "18.75em");
 	}
 };

@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
@@ -309,30 +310,6 @@
 		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
 		ok(!/.*<script>.*/.test(oButton.$("content").html()), "Did not contain a unescaped script tag");
 		strictEqual(oButton.getText(), sTextToSet, "Did set the non encoded string as value");
-
-		// Cleanup
-		oButton.destroy();
-	});
-
-
-	test("Should not rerender the button if enabled property is changed", function() {
-		// Arrange
-		var oRenderSpy,
-			oResult
-			oConstructor = { text : "Rerender Check (enabled)", enabled : true};
-
-		// System under Test
-		var oButton = new sap.m.Button(oConstructor).placeAt("qunit-fixture");
-		sap.ui.getCore().applyChanges();
-
-		oRenderSpy = this.spy(oButton, "invalidate");
-
-		// Act
-		oResult = oButton.setEnabled(false);
-		sap.ui.getCore().applyChanges();
-
-		// Assert
-		strictEqual(oRenderSpy.callCount, 0, "Did not rerender");
 
 		// Cleanup
 		oButton.destroy();

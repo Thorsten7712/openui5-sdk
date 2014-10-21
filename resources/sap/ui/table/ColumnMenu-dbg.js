@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,19 +53,15 @@ jQuery.sap.require("sap.ui.unified.Menu");
  * @class
  * The column menu provides all common actions that can be performed on a column.
  * @extends sap.ui.unified.Menu
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.table.ColumnMenu
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.Menu.extend("sap.ui.table.ColumnMenu", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.table"
 }});
 
@@ -102,6 +98,9 @@ jQuery.sap.require("sap.ui.unified.MenuItem");
  * @private
  */
 sap.ui.table.ColumnMenu.prototype.init = function() {
+	if(sap.ui.unified.Menu.prototype.init){
+		sap.ui.unified.Menu.prototype.init.apply(this, arguments);
+	}
 	this.addStyleClass("sapUiTableColumnMenu");
 	this.oResBundle = sap.ui.getCore().getLibraryResourceBundle("sap.ui.table");
 	this._bInvalidated = true;
@@ -117,6 +116,9 @@ sap.ui.table.ColumnMenu.prototype.init = function() {
  * @private
  */
 sap.ui.table.ColumnMenu.prototype.exit = function() {
+	if(sap.ui.unified.Menu.prototype.exit){
+		sap.ui.unified.Menu.prototype.exit.apply(this, arguments);
+	}
 	window.clearTimeout(this._iPopupClosedTimeoutId);
 	this._detachEvents();
 	this._oColumn = this._oTable = null;
@@ -136,12 +138,18 @@ sap.ui.table.ColumnMenu.prototype.onThemeChanged = function() {
 
 /**
  * Overwrite of {@link sap.ui.unified.Menu#setParent} method.
- * @see {sap.ui.unified.Menu#setParent}
+ * @see sap.ui.unified.Menu#setParent
  * @private
  */
 sap.ui.table.ColumnMenu.prototype.setParent = function(oParent) {
 	this._detachEvents();
 	this._invalidate();
+	this._updateReferences(oParent);
+	this._attachEvents();
+	return sap.ui.unified.Menu.prototype.setParent.apply(this, arguments);
+};
+
+sap.ui.table.ColumnMenu.prototype._updateReferences = function(oParent) {
 	this._oColumn = oParent;
 	if (oParent) {
 		jQuery.sap.assert(oParent instanceof sap.ui.table.Column, "ColumnMenu.setParent: parent must be a subclass of sap.ui.table.Column");
@@ -151,8 +159,6 @@ sap.ui.table.ColumnMenu.prototype.setParent = function(oParent) {
 			jQuery.sap.assert(this._oTable instanceof sap.ui.table.Table, "ColumnMenu.setParent: parent of parent must be subclass of sap.ui.table.Table");	
 		}
 	}
-	this._attachEvents();
-	return sap.ui.unified.Menu.prototype.setParent.apply(this, arguments);
 };
 
 
@@ -212,7 +218,7 @@ sap.ui.table.ColumnMenu.prototype._attachPopupClosed = function() {
 
 /**
  * Overwrite of {@link sap.ui.unified.Menu#open} method.
- * @see {sap.ui.unified.Menu#open}
+ * @see sap.ui.unified.Menu#open
  * @private
  */
 sap.ui.table.ColumnMenu.prototype.open = function() {
@@ -273,17 +279,38 @@ sap.ui.table.ColumnMenu.prototype._addSortMenuItem = function(bDesc) {
  */
 sap.ui.table.ColumnMenu.prototype._addFilterMenuItem = function() {
 	var oColumn = this._oColumn;
+	var oTable = oColumn.getParent();
+	var bEnableCustomFilter = false;
+
+	if(oTable) {
+		bEnableCustomFilter = oTable.getEnableCustomFilter();
+	}
 
 	if (oColumn.getFilterProperty() && oColumn.getShowFilterMenuEntry()) {
-		this.addItem(this._createMenuTextFieldItem(
-			"filter",
-			"TBL_FILTER",
-			"filter",
-			oColumn.getFilterValue(),
-			function(oEvent) {
-				oColumn.filter(this.getValue());
-			}
-		));
+
+		if(bEnableCustomFilter) {
+			this.addItem(this._createMenuItem(
+				"filter",
+				"TBL_FILTER_ITEM",
+				"filter",
+				function(oEvent) {
+					oTable.fireCustomFilter({
+						column: oColumn
+					});
+				}
+			));
+		}
+		else {
+			this.addItem(this._createMenuTextFieldItem(
+				"filter",
+				"TBL_FILTER",
+				"filter",
+				oColumn.getFilterValue(),
+				function(oEvent) {
+					oColumn.filter(this.getValue());
+				}
+			));
+		}
 	}
 };
 
@@ -337,7 +364,6 @@ sap.ui.table.ColumnMenu.prototype._addFreezeMenuItem = function() {
 						oTable.setFixedColumnCount(iColumnIndex + 1);
 					}
 				}
-				
 			}
 		));
 	}

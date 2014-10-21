@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -37,7 +37,7 @@ sap.ui.define(['jquery.sap.global', './CustomStyleClassSupport', './Element'],
 	 * @extends sap.ui.core.Element
 	 * @abstract
 	 * @author Martin Schaus, Daniel Brinkmann
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @name sap.ui.core.Control
 	 */
 	var Control = Element.extend("sap.ui.core.Control", /* @lends sap.ui.core.Control */ {
@@ -170,6 +170,8 @@ sap.ui.define(['jquery.sap.global', './CustomStyleClassSupport', './Element'],
 	 *
 	 * As <code>sap.ui.core.Element</code> "bubbles up" the invalidate, changes to children
 	 * potentially result in rerendering of the whole sub tree.
+	 *
+	 * @param {object} oOrigin
 	 * @protected
 	 * @name sap.ui.core.Control#invalidate
 	 * @function
@@ -239,7 +241,7 @@ sap.ui.define(['jquery.sap.global', './CustomStyleClassSupport', './Element'],
 	 * </pre>
 	 * in order to prevent text selection.
 	 *
-	 * @param {boolean} whether to allow text selection or not
+	 * @param {boolean} bAllow whether to allow text selection or not
 	 * @return {sap.ui.core.Control} Returns <code>this</code> to allow method chaining
 	 * @public
 	 * @name sap.ui.core.Control#allowTextSelection

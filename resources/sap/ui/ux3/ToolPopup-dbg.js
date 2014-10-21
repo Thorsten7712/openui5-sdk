@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -74,20 +74,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * For this pop up, buttons can be defined with any text; therefore, it has the same purpose and similar look like any common dialog box.
  * A ToolPopup can have any content. Depending on the application type and design, the structure of the texts and input fields can be for
  * example form-like.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.PopupInterface
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ToolPopup
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ToolPopup", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.PopupInterface"
 	],
@@ -95,8 +94,6 @@ sap.ui.core.Control.extend("sap.ui.ux3.ToolPopup", { metadata : {
 		// methods
 		"isOpen", "open", "close", "setPosition", "getEnabled", "addFocusableArea", "removeFocusableArea"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -113,8 +110,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.ToolPopup", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	associations : {
 		"initialFocus" : {type : "sap.ui.core.Control", multiple : false}, 
@@ -681,14 +678,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 	
 /**
- * Event is fired when the pop up opens 
+ * Event is fired when the pop up opens
  *
  * @name sap.ui.ux3.ToolPopup#open
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -697,7 +693,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is fired when the pop up opens 
+ * Event is fired when the pop up opens
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -739,14 +735,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation. 
+ * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation.
  *
  * @name sap.ui.ux3.ToolPopup#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -755,7 +750,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation. 
+ * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -799,14 +794,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * Event is fired whenever the user clicks the Enter or the Return key inside the pop up 
+ * Event is fired whenever the user clicks the Enter or the Return key inside the pop up
  *
  * @name sap.ui.ux3.ToolPopup#enter
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {object} oControlEvent.getParameters.originalEvent The onsapenter event, received by the pop up
  * @param {sap.ui.core.Control} oControlEvent.getParameters.originalSrcControl The control that was focused when the user pressed the Enter key (may be null)
  * @public
@@ -817,7 +811,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is fired whenever the user clicks the Enter or the Return key inside the pop up 
+ * Event is fired whenever the user clicks the Enter or the Return key inside the pop up
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -866,14 +860,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 /**
  * Event is fired when one of the icon properties is modified (Note: The icon is not rendered by the ToolPopup).
- * To be used by other controls which want to update the icon in their UI. 
+ * To be used by other controls which want to update the icon in their UI.
  *
  * @name sap.ui.ux3.ToolPopup#iconChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -883,7 +876,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
  * Event is fired when one of the icon properties is modified (Note: The icon is not rendered by the ToolPopup).
- * To be used by other controls which want to update the icon in their UI. 
+ * To be used by other controls which want to update the icon in their UI.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -925,14 +918,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call. 
+ * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call.
  *
  * @name sap.ui.ux3.ToolPopup#closed
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -941,7 +933,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call. 
+ * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -983,7 +975,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * Event is being fired after the ToolPopup has been opened. 
+ * Event is being fired after the ToolPopup has been opened.
  *
  * @name sap.ui.ux3.ToolPopup#opened
  * @event
@@ -991,7 +983,6 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -1000,7 +991,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is being fired after the ToolPopup has been opened. 
+ * Event is being fired after the ToolPopup has been opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1047,28 +1038,26 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 /**
  * Returns whether the pop up is currently open
  *
- * @name sap.ui.ux3.ToolPopup.prototype.isOpen
+ * @name sap.ui.ux3.ToolPopup#isOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Opens the pop up.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.open
+ * @name sap.ui.ux3.ToolPopup#open
  * @function
- * @param {string} 
- *         sMy
+ * @param {string} sMy
  *         The ToolPopup's content reference position for docking. This value is optional if the position of the ToolPopup is set via 'setPosition'.
- * @param {string} 
- *         sAt
+ * @param {string} sAt
  *         The "of" element's reference point for docking to. This value is optional if the position of the ToolPopup is set via 'setPosition'.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1076,25 +1065,24 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * Closes the pop up. Can be called by the Shell when the pop up's button is clicked again; or by the application
  * when the interaction in the pop up has been completed or canceled.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.close
+ * @name sap.ui.ux3.ToolPopup#close
  * @function
- * @param {boolean} 
- *         bPreventRestoreFocus
+ * @param {boolean} bPreventRestoreFocus
  *         If set, the focus is NOT restored to the element that had the focus before the ToolPopup was opened. This makes sense when the ToolPopup is closed programmatically from a different area of the application (outside the ToolPopup) and the focus should not move aways from that place.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the position of the pop up, the same parameters as for sap.ui.core.Popup can be used.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.setPosition
+ * @name sap.ui.ux3.ToolPopup#setPosition
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1103,42 +1091,40 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * 
  * Applications can't control the enabled state via a property. A ToolPopup is implicitly enabled while it is OPENING or OPEN. Descendant controls that honor the enabled state of their ancestors will appear disabled after the ToolPopup is closed.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.getEnabled
+ * @name sap.ui.ux3.ToolPopup#getEnabled
  * @function
-
  * @type boolean
  * @public
  * @since 1.13.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Add an identified area to the parent Popup as additional focusable area that can be used for an "autoclose" ToolPopup. This added area can be focused and prevent the ToolPopup from closing if the added area is outside of the ToolPopup.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.addFocusableArea
+ * @name sap.ui.ux3.ToolPopup#addFocusableArea
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         ID of a control or DOM-node
-
  * @type void
  * @public
  * @since 1.19.0
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the control's or DOM-node's id from focusable areas.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.removeFocusableArea
+ * @name sap.ui.ux3.ToolPopup#removeFocusableArea
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         ID of a control or DOM-node
-
  * @type void
  * @public
  * @since 1.19.0
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1515,7 +1501,7 @@ sap.ui.ux3.ToolPopup.prototype.open = function(my, at) {
 
 	// the opener is needed for the intelligent arrow positioning
 	fnCheckOpener(this);
-	
+
 	// function(iDuration, my, at, of, offset, collision /*empty to avoid any override*/, followOf /*true*/)
 	this.oPopup.open(this.getOpenDuration(), this._my, this._at, $OpenerRef, this.sOffset, "", true);
 	fnSetArrow(this);
@@ -2056,6 +2042,7 @@ sap.ui.ux3.ToolPopup.prototype.isInverted = function() {
  * This is just a forward to the Popup's function (sap.ui.core.Popup.setAutoCloseAreas)
  * with the same functionality.
  * 
+ * @param {Element[]} aAutoCloseAreas
  * @public
  * @since: 1.19.0
  */

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -279,7 +279,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
 	 * 
 	 * @param {boolean} [bForceUpdate] Update the bound control even if no data has been changed
 	 * @param {object} [mChangedEntities]
-	 * @param {string] [mEntityTypes]
+	 * @param {string} [mEntityTypes]
 	 * 
 	 * @public
 	 * @name sap.ui.model.odata.ODataTreeBinding#refresh
@@ -318,6 +318,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
 	};
 	
 	/**
+	 * @param {sap.ui.model.Filter[]|sap.ui.model.Filter} aFilters
 	 * @see sap.ui.model.TreeBinding.prototype.filter
 	 * @public
 	 * @name sap.ui.model.odata.ODataTreeBinding#filter

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" xmlns:qtp="http://www.sap.com/sap.ui.library.qtp">
 
 	<name>ListBox</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Provides a list of items from which users can choose an item. For the design of the list box, features such as defining the list box height, 
 	fixing the number of visible items, choosing one item to be the item that is marked by default when the list box is shown, or a scroll bar for large list boxes 
 	are available.</documentation>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -62,21 +62,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.m.ObjectHeaderContainer
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.IconTabBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.IconTabBar", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.m.ObjectHeaderContainer"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"showSelection" : {type : "boolean", group : "Misc", defaultValue : true, deprecated: true},
@@ -87,9 +85,9 @@ sap.ui.core.Control.extend("sap.m.IconTabBar", { metadata : {
 		"upperCase" : {type : "boolean", group : "Appearance", defaultValue : false}
 	},
 	aggregations : {
-    	"items" : {type : "sap.m.IconTab", multiple : true, singularName : "item"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"_header" : {type : "sap.m.IconTabHeader", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.m.IconTab", multiple : true, singularName : "item"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"_header" : {type : "sap.m.IconTabHeader", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"select" : {}, 
@@ -176,7 +174,6 @@ sap.m.IconTabBar.M_EVENTS = {'select':'select','expand':'expand'};
 /**
  * Getter for property <code>expanded</code>.
  * Indicates if the actual tab is expanded or not
- * 
  *
  * Default value is <code>true</code>
  *
@@ -449,14 +446,13 @@ sap.m.IconTabBar.M_EVENTS = {'select':'select','expand':'expand'};
 
 
 /**
- * This event will be fired when an item is selected. 
+ * This event will be fired when an item is selected.
  *
  * @name sap.m.IconTabBar#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.IconTabFilter} oControlEvent.getParameters.item The selected item.
  * @param {string} oControlEvent.getParameters.key The key of the selected item.
  * @param {sap.m.IconTabFilter} oControlEvent.getParameters.selectedItem This parameter is deprecated since 1.15.0! Please use parameter "item" instead.
@@ -469,7 +465,7 @@ sap.m.IconTabBar.M_EVENTS = {'select':'select','expand':'expand'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.IconTabBar</code>.<br/> itself. 
  *  
- * This event will be fired when an item is selected. 
+ * This event will be fired when an item is selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -519,7 +515,7 @@ sap.m.IconTabBar.M_EVENTS = {'select':'select','expand':'expand'};
 
 
 /**
- * Indicates that the tab will expand or collapse 
+ * Indicates that the tab will expand or collapse
  *
  * @name sap.m.IconTabBar#expand
  * @event
@@ -527,7 +523,6 @@ sap.m.IconTabBar.M_EVENTS = {'select':'select','expand':'expand'};
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.expand If the tab will expand, this is true.
  * @param {boolean} oControlEvent.getParameters.collapse If the tab will collapse, this is true.
  * @public
@@ -538,7 +533,7 @@ sap.m.IconTabBar.M_EVENTS = {'select':'select','expand':'expand'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.IconTabBar</code>.<br/> itself. 
  *  
- * Indicates that the tab will expand or collapse 
+ * Indicates that the tab will expand or collapse
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -672,12 +667,12 @@ sap.m.IconTabBar.prototype._toggleExpandCollapse = function(bExpanded) {
 					this._rerenderContent(this.getContent());
 				}
 			}
-			$content.slideDown('400', jQuery.proxy(this.onTransitionEnded, this, bExpanded));
+			$content.stop(true, true).slideDown('400', jQuery.proxy(this.onTransitionEnded, this, bExpanded));
 			this.$("containerContent").toggleClass("sapMITBContentClosed", !bExpanded);
 		}
 	} else { // collapsing
 		this.$("contentArrow").hide();
-		$content.slideUp('400', jQuery.proxy(this.onTransitionEnded, this, bExpanded));
+		$content.stop(true, true).slideUp('400', jQuery.proxy(this.onTransitionEnded, this, bExpanded));
 	}
 
 	// update property (if we have a selected item) and fire event

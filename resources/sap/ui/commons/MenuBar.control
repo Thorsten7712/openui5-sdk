@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>MenuBar</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Represents a user interface area which is the entry point for menus with their menu items. MenuBar is useful for applications which shall offer a 
 	set of actions that shall be provided in a structured way. The MenuBar contains the menu titles from where users navigate to the single items. The control supports 
 	for example long menu item texts, automated scrolling for menu items when the browser space is not large enough to display all items, defining images for single 

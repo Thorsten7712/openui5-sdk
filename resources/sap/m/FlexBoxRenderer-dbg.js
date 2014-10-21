@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.require("sap.m.FlexBoxStylingHelper");
@@ -75,8 +75,12 @@ sap.m.FlexBoxRenderer.render = function(oRm, oControl) {
 	oRm.addClass("sapMFlexBox");
 	oRm.addClass(hvClass);
 	oRm.writeClasses();
-	oRm.addStyle("width", oControl.getWidth());
-	oRm.addStyle("height", oControl.getHeight());
+	if(oControl.getWidth()) {
+		oRm.addStyle("width", oControl.getWidth());
+	}
+	if(oControl.getHeight()) {
+		oRm.addStyle("height", oControl.getHeight());
+	}
 	if(!sap.m.FlexBoxRenderer.usePolyfill) {
 		sap.m.FlexBoxStylingHelper.setFlexBoxStyles(oRm, oControl);
 	}

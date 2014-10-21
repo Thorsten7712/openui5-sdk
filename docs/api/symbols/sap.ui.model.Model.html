@@ -37,7 +37,7 @@
 					abstract Class sap.ui.model.Model
 					</h1>
 					
-						<div class="classRelation extends"><span class="caption">extends </span><a title="sap.ui.base.Object" href="../symbols/sap.ui.base.Object.html">Object</a></div>
+						<div class="classRelation extends"><span class="caption">extends </span><a title="sap.ui.base.EventProvider" href="../symbols/sap.ui.base.EventProvider.html">EventProvider</a></div>
 					
 					
 					
@@ -271,12 +271,12 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Enables legacy path syntax handling  This defines, whether relative bindings, which do not have a defined binding context, should be compatible to earlier releases which means they are resolved relative to the root element or handled strict and stay unresolved until a binding context is set"><a href="../symbols/sap.ui.model.Model.html#setLegacySyntax">setLegacySyntax</a></b><span class='signature'>(<span title="(boolean) the path syntax to use">bCompatibleSyntax</span>)</span>
+									<b class="icon" title="Enables legacy path syntax handling  This defines, whether relative bindings, which do not have a defined binding context, should be compatible to earlier releases which means they are resolved relative to the root element or handled strict and stay unresolved until a binding context is set"><a href="../symbols/sap.ui.model.Model.html#setLegacySyntax">setLegacySyntax</a></b><span class='signature'>(<span title="(boolean) the path syntax to use">bLegacySyntax</span>)</span>
 									<span class='description'>Enables legacy path syntax handling </p><p> This defines, whether relative bindings, which do not have a defined binding context, should be compatible to earlier releases which means they are resolved relative to the root element or handled strict and stay unresolved until a binding context is set</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Set the maximum number of entries which are used for for list bindings."><a href="../symbols/sap.ui.model.Model.html#setSizeLimit">setSizeLimit</a></b><span class='signature'>(<span title="(int) size limit">collection</span>)</span>
+									<b class="icon" title="Set the maximum number of entries which are used for for list bindings."><a href="../symbols/sap.ui.model.Model.html#setSizeLimit">setSizeLimit</a></b><span class='signature'>(<span title="(int) collection size limit">iSizeLimit</span>)</span>
 									<span class='description'>Set the maximum number of entries which are used for for list bindings.</span>
 								</div>
 							
@@ -284,6 +284,16 @@
 						</div>
 						
 						
+						
+							
+							
+								<div class="summary section">
+									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a></div>
+									<div class="sectionItems">
+									<a href="../symbols/sap.ui.base.EventProvider.html#attachEvent">attachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#attachEventOnce">attachEventOnce</a>, <a href="../symbols/sap.ui.base.EventProvider.html#detachEvent">detachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#getEventingParent">getEventingParent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#toString">toString</a>
+									</div>
+								</div>
+							
 						
 					
 		
@@ -2067,7 +2077,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireParseError"> </a>
 										<div class="itemTitle icon protected">
 											fireParseError<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2206,7 +2216,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireRequestCompleted"> </a>
 										<div class="itemTitle icon protected">
 											fireRequestCompleted<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2321,7 +2331,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireRequestFailed"> </a>
 										<div class="itemTitle icon protected">
 											fireRequestFailed<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2424,7 +2434,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireRequestSent"> </a>
 										<div class="itemTitle icon protected">
 											fireRequestSent<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2850,7 +2860,7 @@ Otherwise it is not guaranteed that the existing bindings will be updated with t
 									<div class='sectionItem classMethod'>
 										<a name="setLegacySyntax"> </a>
 										<div class="itemTitle icon">
-											setLegacySyntax<span class="signature">(<span title="(boolean) the path syntax to use">bCompatibleSyntax</span>)</span>
+											setLegacySyntax<span class="signature">(<span title="(boolean) the path syntax to use">bLegacySyntax</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -2876,7 +2886,7 @@ stay unresolved until a binding context is set
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bCompatibleSyntax</b>
+													  <b>bLegacySyntax</b>
 													</td>
 													<td class="methodItemDesc">
 												    the path syntax to use
@@ -2896,7 +2906,7 @@ stay unresolved until a binding context is set
 									<div class='sectionItem classMethod'>
 										<a name="setSizeLimit"> </a>
 										<div class="itemTitle icon">
-											setSizeLimit<span class="signature">(<span title="(int) size limit">collection</span>)</span>
+											setSizeLimit<span class="signature">(<span title="(int) collection size limit">iSizeLimit</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -2917,10 +2927,10 @@ stay unresolved until a binding context is set
 													  <span class="light">{int}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>collection</b>
+													  <b>iSizeLimit</b>
 													</td>
 													<td class="methodItemDesc">
-												    size limit
+												    collection size limit
 													</td>
 												</tr>
 											

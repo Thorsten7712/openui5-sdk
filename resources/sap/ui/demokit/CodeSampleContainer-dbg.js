@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,21 +57,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * A container for both the source and the runtime results of a CodeSample. By default, only the runtime results are shown. There are additional controls that allow the user to display the source, modify and run it.
  * 
  * The container provides a sub container that can be used in calls to sap.ui.setRoot() as if it would be a normal UIArea. So the sample code doesn't have to know that it runs in a CodeSample container.
- * 
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.demokit.CodeSampleContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.demokit.CodeSampleContainer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.demokit",
 	properties : {
 		"scriptElementId" : {type : "string", group : "Misc", defaultValue : null},
@@ -81,7 +76,7 @@ sap.ui.core.Control.extend("sap.ui.demokit.CodeSampleContainer", { metadata : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : '90%'}
 	},
 	aggregations : {
-    	"_uiarea" : {type : "sap.ui.demokit.UIAreaSubstitute", multiple : false, visibility : "hidden"}
+		"_uiarea" : {type : "sap.ui.demokit.UIAreaSubstitute", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"apply" : {}
@@ -111,7 +106,6 @@ sap.ui.demokit.CodeSampleContainer.M_EVENTS = {'apply':'apply'};
 /**
  * Getter for property <code>scriptElementId</code>.
  * Id of the script element that contains the initial sample code for this code sample.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -161,7 +155,7 @@ sap.ui.demokit.CodeSampleContainer.M_EVENTS = {'apply':'apply'};
 
 /**
  * Getter for property <code>title</code>.
- * 
+ * A title to be displayed above the code.
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -235,15 +229,14 @@ sap.ui.demokit.CodeSampleContainer.M_EVENTS = {'apply':'apply'};
 
 
 /**
- *  
+ * Fired when the user decides to apply his/her changes to the sample code
  *
  * @name sap.ui.demokit.CodeSampleContainer#apply
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
- * @param {string} oControlEvent.getParameters.code
+ * @param {string} oControlEvent.getParameters.code the current code that will be applied
  * @public
  */
  
@@ -252,7 +245,7 @@ sap.ui.demokit.CodeSampleContainer.M_EVENTS = {'apply':'apply'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.demokit.CodeSampleContainer</code>.<br/> itself. 
  *  
- *  
+ * Fired when the user decides to apply his/her changes to the sample code
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -287,7 +280,7 @@ sap.ui.demokit.CodeSampleContainer.M_EVENTS = {'apply':'apply'};
  * 
  * Expects following event parameters:
  * <ul>
- * <li>'code' of type <code>string</code> </li>
+ * <li>'code' of type <code>string</code> the current code that will be applied</li>
  * </ul>
  *
  * @param {Map} [mArguments] the arguments to pass along with the event.

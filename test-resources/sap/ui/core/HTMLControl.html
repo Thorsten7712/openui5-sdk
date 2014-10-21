@@ -37,7 +37,7 @@
 				function() { 
 					jQuery("#embedded span").click(
 							function(event) {
-								var sColor = event.target && jQuery.curCSS(event.target, "background-color").toLowerCase();
+								var sColor = event.target && jQuery.css(event.target, "background-color").toLowerCase();
 								var bRed = sColor == "#ff0000" || sColor == "rgb(255, 0, 0)";
 								if ( bRed ) {
 									jQuery("<span>red clicked" + new Date() + "</span><br/>").appendTo(jQuery("#log"));

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -49,8 +49,8 @@ sap.ui.define(['jquery.sap.global'],
 	 * when a global erasing of data is required. If only keys with certain prefix
 	 * should be deleted the method {@link #removeAll} should be used.
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @since 0.11.0
 	 * @public
 	 * @name jQuery.sap.storage.Storage
@@ -65,28 +65,59 @@ sap.ui.define(['jquery.sap.global'],
 	 * 
 	 * @private
 	 */
-	var fnStorage = /** @lends jQuery.sap.storage.Storage */ function(pStorage, sStorageKeyPrefix){
-		var sType = "unknown";
-		var sPrefix = sStorageKeyPrefix || sStateStorageKeyPrefix;
+	var fnStorage = function(pStorage, sStorageKeyPrefix){
+		var sType = "unknown",
+			sPrefix = sStorageKeyPrefix || sStateStorageKeyPrefix;
 		sPrefix += "-";
-		var oStorage;
+		var sTestKey = sPrefix+"___sapui5TEST___",
+			bStorageAccessible = true,
+			oStorage;
+		
 
-		if(!oStorage || typeof(pStorage) === "string") {
+		if(!pStorage || typeof(pStorage) === "string") {
 			sType = pStorage || "session";
 			try{
 				oStorage = window[sType + "Storage"];
 			}catch(e){
 				oStorage = null;
 			}
-		} else if(typeof(pStorage) === Object) {
+			try{ // Test for QUOTA_EXCEEDED_ERR (Happens e.g. in mobile Safari when private browsing active)
+				if(oStorage){
+					oStorage.setItem(sTestKey, "1");
+					oStorage.removeItem(sTestKey);
+				}
+			}catch(e){
+				bStorageAccessible = false; //Only for debugging purposes
+				oStorage = null;
+			}
+		} else if(typeof(pStorage) === "object") {
 			sType = pStorage.getType ? pStorage.getType() : "unknown";
 			oStorage = pStorage;
 		}
 		var bStorageAvailable = !!oStorage;
+		
+		
+		/**
+		 * Returns whether the given storage is suppported.
+		 *
+		 * @return {boolean} true if storage is supported, false otherwise (e.g. due to browser security settings)
+		 * @public
+		 * @name jQuery.sap.storage.Storage#isSupported
+		 * @function
+		 */
+		this.isSupported = function(){
+			if(!bStorageAvailable){ //No storage available at all or not accessible
+				return false;
+			}
+			if(typeof(oStorage.isSupported) == "function"){ //Possibility to define for custom storage
+				return oStorage.isSupported();
+			}
+			return true;
+		};
 
 		/**
 		 * Stores the passed state string in the session, under the key
-		 * sStorageKeyPrefix + sId
+		 * sStorageKeyPrefix + sId.
 		 * 
 		 * sStorageKeyPrefix is the id prefix defined for the storage instance (@see jQuery.sap#storage)
 		 *
@@ -94,12 +125,14 @@ sap.ui.define(['jquery.sap.global'],
 		 * @param {string} sStateToStore content to store
 		 * @return {boolean} true if the data were successfully stored, false otherwise
 		 * @public
+		 * @name jQuery.sap.storage.Storage#put
+		 * @function
 		 */
 		this.put = function(sId, sStateToStore) {
 			//precondition: non-empty sId and available storage feature
 			jQuery.sap.assert(typeof sId === "string" && sId, "sId must be a non-empty string");
 			jQuery.sap.assert(typeof sStateToStore === "string" || bSupportJSON, "sStateToStore must be string or JSON must be supported");
-			if (bStorageAvailable && sId) {
+			if (this.isSupported() && sId) {
 				try {
 					oStorage.setItem(sPrefix+sId, bSupportJSON?JSON.stringify(sStateToStore):sStateToStore);
 					return true;
@@ -113,7 +146,7 @@ sap.ui.define(['jquery.sap.global'],
 
 		/**
 		 * Retrieves the state string stored in the session under the key
-		 * sStorageKeyPrefix + sId
+		 * sStorageKeyPrefix + sId.
 		 * 
 		 * sStorageKeyPrefix is the id prefix defined for the storage instance (@see jQuery.sap#storage)
 		 *
@@ -121,11 +154,13 @@ sap.ui.define(['jquery.sap.global'],
 		 * @return {string} the string from the storage, if the retrieval
 		 * was successful, and null otherwise
 		 * @public
+		 * @name jQuery.sap.storage.Storage#get
+		 * @function
 		 */
 		this.get = function(sId) {
 			//precondition: non-empty sId and available storage feature
 			jQuery.sap.assert(typeof sId === "string" && sId, "sId must be a non-empty string");
-			if (bStorageAvailable && sId ) {
+			if (this.isSupported() && sId ) {
 				try {
 					var sItem=oStorage.getItem(sPrefix+sId);
 					return bSupportJSON?JSON.parse(sItem):sItem;
@@ -139,7 +174,7 @@ sap.ui.define(['jquery.sap.global'],
 
 		/**
 		 * Deletes the state string stored in the session under the key
-		 * sStorageKeyPrefix + sId
+		 * sStorageKeyPrefix + sId.s
 		 * 
 		 * sStorageKeyPrefix is the id prefix defined for the storage instance (@see jQuery.sap#storage)
 		 *
@@ -148,11 +183,13 @@ sap.ui.define(['jquery.sap.global'],
 		 * was successful or the data doesn't exist under the specified key,
 		 * and false if the feature is unavailable or a problem occurred
 		 * @public
+		 * @name jQuery.sap.storage.Storage#remove
+		 * @function
 		 */
 		this.remove = function(sId) {
 			//precondition: non-empty sId and available storage feature
 			jQuery.sap.assert(typeof sId === "string" && sId, "sId must be a non-empty string");
-			if (bStorageAvailable && sId) {
+			if (this.isSupported() && sId) {
 				try {
 					oStorage.removeItem(sPrefix+sId);
 					return true;
@@ -176,10 +213,12 @@ sap.ui.define(['jquery.sap.global'],
 		 * and false if the feature is unavailable or a problem occurred
 		 * @since 1.13.0
 		 * @public
+		 * @name jQuery.sap.storage.Storage#removeAll
+		 * @function
 		 */
 		this.removeAll = function(sIdPrefix) {
-			//precondition: available storage feature
-			if (bStorageAvailable && oStorage.length && typeof(oStorage.key) === "function") {
+			//precondition: available storage feature (in case of IE8 typeof native functions returns "object")
+			if (this.isSupported() && oStorage.length && (document.addEventListener ? /function/ : /function|object/).test(typeof (oStorage.key))) {
 				try {
 					var len = oStorage.length;
 					var aKeysToRemove = [];
@@ -217,10 +256,12 @@ sap.ui.define(['jquery.sap.global'],
 		 * was successful or the data to remove doesn't exist,
 		 * and false if the feature is unavailable or a problem occurred
 		 * @public
+		 * @name jQuery.sap.storage.Storage#clear
+		 * @function
 		 */
 		this.clear = function() {
 			//precondition: available storage feature
-			if (bStorageAvailable) {
+			if (this.isSupported()) {
 				try {
 					oStorage.clear();
 					return true;
@@ -236,6 +277,8 @@ sap.ui.define(['jquery.sap.global'],
 		 * Returns the type of the storage.
 		 * @returns {jQuery.sap.storage.Type | string} the type of the storage or "unknown"
 		 * @public
+		 * @name jQuery.sap.storage.Storage#getType
+		 * @function
 		 */
 		this.getType = function(){
 			return sType;
@@ -266,18 +309,19 @@ sap.ui.define(['jquery.sap.global'],
 	 * @param {string} [sIdPrefix] Prefix used for the Ids. If not set a default prefix is used.    
 	 * @returns {jQuery.sap.storage.Storage}
 	 * 
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @since 0.11.0
 	 * @namespace
+	 * @type Function
 	 * @public
 	 * 
-	 * @borrows jQuery.sap.storage.Storage.get as get
-	 * @borrows jQuery.sap.storage.Storage.put as put
-	 * @borrows jQuery.sap.storage.Storage.remove as remove
-	 * @borrows jQuery.sap.storage.Storage.clear as clear
-	 * @borrows jQuery.sap.storage.Storage.getType as getType
-	 * @borrows jQuery.sap.storage.Storage.removeAll as removeAll
-	 * @function
+	 * @borrows jQuery.sap.storage.Storage#get as get
+	 * @borrows jQuery.sap.storage.Storage#put as put
+	 * @borrows jQuery.sap.storage.Storage#remove as remove
+	 * @borrows jQuery.sap.storage.Storage#clear as clear
+	 * @borrows jQuery.sap.storage.Storage#getType as getType
+	 * @borrows jQuery.sap.storage.Storage#removeAll as removeAll
+	 * @borrows jQuery.sap.storage.Storage#isSupported as isSupported
 	 */
 	jQuery.sap.storage = function(oStorage, sIdPrefix){
 		// if nothing or the default was passed in, simply return ourself
@@ -304,7 +348,7 @@ sap.ui.define(['jquery.sap.global'],
 	 * @class
 	 * @static
 	 * @public
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @since 0.11.0
 	 */
 	jQuery.sap.storage.Type = {

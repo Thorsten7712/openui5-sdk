@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>GridData</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
     <since>1.15.0</since>
 	
 	<documentation>Grid layout data</documentation>

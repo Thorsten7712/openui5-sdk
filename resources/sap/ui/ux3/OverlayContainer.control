@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>OverlayContainer</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Is to be embedded into the Overlay control as content container</documentation>
 
 	<baseType>sap.ui.ux3/Overlay</baseType>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>RatingIndicator</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Is used to let the user do some rating on a certain topic. The amount of rating symbols can be specified, as well as the URIs to the 
 	image icons which shall be used as rating symbols. When the user performs a rating, an event is fired.</documentation>
 	

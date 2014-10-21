@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -62,22 +62,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * A slider is a user interface control that enables the user to adjust values in a specified numerical range.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.Slider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Slider", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"stepUp", "stepDown"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Appearance", defaultValue : '100%'},
@@ -349,14 +347,13 @@ sap.m.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 
 /**
- * This event is triggered after the end user finishes interacting, if there is any change. 
+ * This event is triggered after the end user finishes interacting, if there is any change.
  *
  * @name sap.m.Slider#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {float} oControlEvent.getParameters.value The current value of the slider after a change.
  * @public
  */
@@ -366,7 +363,7 @@ sap.m.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Slider</code>.<br/> itself. 
  *  
- * This event is triggered after the end user finishes interacting, if there is any change. 
+ * This event is triggered after the end user finishes interacting, if there is any change.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -413,14 +410,13 @@ sap.m.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 
 /**
- * This event is triggered during the dragging period, each time the slider value changes. 
+ * This event is triggered during the dragging period, each time the slider value changes.
  *
  * @name sap.m.Slider#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {float} oControlEvent.getParameters.value The current value of the slider after a live change.
  * @public
  */
@@ -430,7 +426,7 @@ sap.m.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Slider</code>.<br/> itself. 
  *  
- * This event is triggered during the dragging period, each time the slider value changes. 
+ * This event is triggered during the dragging period, each time the slider value changes.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -481,14 +477,13 @@ sap.m.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * 
  * The default value for the step is 1.
  *
- * @name sap.m.Slider.prototype.stepUp
+ * @name sap.m.Slider#stepUp
  * @function
- * @param {int} 
- *         iIStep
+ * @param {int} iIStep
  *         The number of steps the slider goes up.
-
  * @type sap.m.Slider
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -497,14 +492,13 @@ sap.m.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * 
  * The default value for the step is 1.
  *
- * @name sap.m.Slider.prototype.stepDown
+ * @name sap.m.Slider#stepDown
  * @function
- * @param {int} 
- *         iIStep
+ * @param {int} iIStep
  *         The number of steps the slider goes down.
-
  * @type sap.m.Slider
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -516,12 +510,6 @@ sap.ui.core.EnabledPropagator.apply(sap.m.Slider.prototype, [true]);
 /* =========================================================== */
 /* Private methods and properties                              */
 /* =========================================================== */
-
-/* ----------------------------------------------------------- */
-/* Private properties                                          */
-/* ----------------------------------------------------------- */
-
-sap.m.Slider._bRtl  = sap.ui.getCore().getConfiguration().getRTL();
 
 /* ----------------------------------------------------------- */
 /* Private methods                                             */
@@ -557,7 +545,7 @@ sap.m.Slider.prototype._cacheDomRefs = function() {
  * @private
  * @returns {float} output value
  */
-sap.m.Slider.prototype._convertValueForRtlMode = function(fValue) {
+sap.m.Slider.prototype._convertValueToRtlMode = function(fValue) {
 	return this.getMax() - fValue + this.getMin();
 };
 
@@ -592,32 +580,6 @@ sap.m.Slider.prototype._getPercentOfValue = function(fValue) {
 	var fMin = this.getMin();
 
 	return (((fValue - fMin) / (this.getMax() - fMin)) * 100);
-};
-
-/**
- * Checks whether the given step is of the proper type.
- *
- * @param {int} iStep
- * @private
- * @returns {int}
- */
-sap.m.Slider.prototype._validateStep = function(iStep) {
-	if (typeof iStep === "undefined") {
-		return 1;	// default n = 1
-	}
-
-	if (typeof iStep !== "number") {
-		jQuery.sap.log.warning('Warning: "iStep" needs to be a number', this);
-		return 0;
-	}
-
-	if ((Math.floor(iStep) === iStep) && isFinite(iStep)) {
-		return iStep;
-	}
-
-	jQuery.sap.log.warning('Warning: "iStep" needs to be a finite interger', this);
-
-	return 0;
 };
 
 /**
@@ -668,6 +630,32 @@ sap.m.Slider.prototype._validateProperties = function() {
 	}
 
 	return bError;
+};
+
+/**
+ * Checks whether the given step is of the proper type.
+ *
+ * @param {int} iStep
+ * @private
+ * @returns {int}
+ */
+sap.m.Slider.prototype._validateStep = function(iStep) {
+	if (typeof iStep === "undefined") {
+		return 1;	// default n = 1
+	}
+
+	if (typeof iStep !== "number") {
+		jQuery.sap.log.warning('Warning: "iStep" needs to be a number', this);
+		return 0;
+	}
+
+	if ((Math.floor(iStep) === iStep) && isFinite(iStep)) {
+		return iStep;
+	}
+
+	jQuery.sap.log.warning('Warning: "iStep" needs to be a finite interger', this);
+
+	return 0;
 };
 
 /**
@@ -732,7 +720,7 @@ sap.m.Slider.prototype._setValue = function(fNewValue) {
 		}
 
 		// update the position of the handle
-		this._$Handle[0].style[sap.m.Slider._bRtl ? "right" : "left"] = sPerVal;
+		this._$Handle[0].style[sap.ui.getCore().getConfiguration().getRTL() ? "right" : "left"] = sPerVal;
 
 		// update the handle tooltip
 		this._$Handle[0].title = fNewValue;
@@ -842,7 +830,6 @@ sap.m.Slider.prototype.onBeforeRendering = function() {
 	// flags
 	this._bProgress = this.getProgress();
 	this._bInputRendered = !!this.getName();
-	this._bDisabled = !this.getEnabled();
 
 	if (!this._hasFocus()) {
 		this._fInitialFocusValue = this.getValue();
@@ -892,7 +879,15 @@ sap.m.Slider.prototype.ontouchstart = function(oEvent) {
 	// mark the event for components that needs to know if the event was handled by the Slider
 	oEvent.setMarked();
 
-	if (oEvent.targetTouches.length > 1 || this._bDisabled) {	// suppress multiTouch events
+	// only process single touches
+	if (oEvent.targetTouches.length > 1 ||
+		!this.getEnabled() ||
+
+		// detect which mouse button caused the event and only process the standard click
+		// (this is usually the left button, oEvent.button === 0 for standard click)
+		// note: if the current event is a touch event oEvent.button property will be not defined
+		oEvent.button) {
+
 		return;
 	}
 
@@ -911,7 +906,6 @@ sap.m.Slider.prototype.ontouchstart = function(oEvent) {
 	// recalculate some styles,
 	// those values may change when the device orientation changes
 	this._recalculateStyles();
-
 	this._fDiffX = this._fSliderPaddingLeft;
 	this._fInitialValue = this.getValue();
 
@@ -925,8 +919,8 @@ sap.m.Slider.prototype.ontouchstart = function(oEvent) {
 
 		fNewValue = (((oEvent.targetTouches[0].pageX - this._fSliderPaddingLeft - this._fSliderOffsetLeft) / this._fSliderWidth) * (this.getMax() - fMin)) +  fMin;
 
-		if (sap.m.Slider._bRtl) {
-			fNewValue = this._convertValueForRtlMode(fNewValue);
+		if (sap.ui.getCore().getConfiguration().getRTL()) {
+			fNewValue = this._convertValueToRtlMode(fNewValue);
 		}
 
 		// update the value
@@ -955,7 +949,13 @@ sap.m.Slider.prototype.ontouchmove = function(oEvent) {
 	// note: prevent native document scrolling
 	oEvent.preventDefault();
 
-	if (this._bDisabled) {
+	if (!this.getEnabled() ||
+
+		// detect which mouse button caused the event and only process the standard click
+		// (this is usually the left button, oEvent.button === 0 for standard click)
+		// note: if the current event is a touch event oEvent.button property will be not defined
+		oEvent.button) {
+
 		return;
 	}
 
@@ -963,8 +963,9 @@ sap.m.Slider.prototype.ontouchmove = function(oEvent) {
 		fValue = this.getValue(),
 		fNewValue = (((oEvent.targetTouches[0].pageX - this._fDiffX - this._fSliderOffsetLeft) / this._fSliderWidth) * (this.getMax() - fMin)) +  fMin;
 
-	if (sap.m.Slider._bRtl) {
-		fNewValue = this._convertValueForRtlMode(fNewValue);
+	// RTL mirror
+	if (sap.ui.getCore().getConfiguration().getRTL()) {
+		fNewValue = this._convertValueToRtlMode(fNewValue);
 	}
 
 	this.setValue(fNewValue);
@@ -988,14 +989,20 @@ sap.m.Slider.prototype.ontouchend = function(oEvent) {
 	// mark the event for components that needs to know if the event was handled by the Slider
 	oEvent.setMarked();
 
-	var fValue = this.getValue();
+	if (!this.getEnabled() ||
 
-	if (this._bDisabled) {
+		// detect which mouse button caused the event and only process the standard click
+		// (this is usually the left button, oEvent.button === 0 for standard click)
+		// note: if the current event is a touch event oEvent.button property will be not defined
+		oEvent.button) {
+
 		return;
 	}
 
-	// remove active state
-	this._$SliderInner.removeClass(sap.m.SliderRenderer.CSS_CLASS + "Pressed");
+	var fValue = this.getValue();
+
+	// remove the active state
+	this.$("inner").removeClass(sap.m.SliderRenderer.CSS_CLASS + "Pressed");
 
 	if (this._fInitialValue !== fValue) {
 		this.fireChange({ value: fValue });
@@ -1252,7 +1259,7 @@ sap.m.Slider.prototype.stepDown = function(iStep) {
  *
  * Default value is <code>0</code>.
  *
- * @param {float} fValue new value for property <code>value</code>.
+ * @param {float} fNewValue new value for property <code>value</code>.
  * @returns {sap.m.Slider} <code>this</code> to allow method chaining.
  * @public
  * @name sap.m.Slider#setValue

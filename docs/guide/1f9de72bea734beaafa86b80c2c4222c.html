@@ -12,11 +12,13 @@
 <meta name="abstract" content="Devices such as Windows 8 touch-enabled laptops now support both mouse and touch input methods together. As a control developer you have take this into consideration."/>
 <meta name="description" content="Devices such as Windows 8 touch-enabled laptops now support both mouse and touch input methods together. As a control developer you have take this into consideration."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7451910406348069"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4345839396725186"/>
 <title>Windows 8 Support</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -49,7 +51,7 @@
 
 			<p class="p">The following figure shows how this is implemented:</p>
 
-			<div class="fig fignone" id="loio1f9de72bea734beaafa86b80c2c4222c__fig_z1g_xcq_qn"><div class="figcontainer"><img class="image" id="loio1f9de72bea734beaafa86b80c2c4222c__image_tm4_pwk_4n" src="56d796e4026f463ab92c1ec10818f339.image"/></div></div>
+			<div class="fig fignone" id="loio1f9de72bea734beaafa86b80c2c4222c__fig_z1g_xcq_qn"><div class="figcontainer"><img class="image" id="loio1f9de72bea734beaafa86b80c2c4222c__image_tm4_pwk_4n" src="loio56d796e4026f463ab92c1ec10818f339_LowRes.png"/></div></div>
 
 			<p class="p">A desktop control is defined as a control that listens to mouse events, whereas a
 				mobile control listens to touch events. To ensure that all events can be received,
@@ -74,10 +76,10 @@ So it is ensured that all events can be handled and no event is triggered
 		</div></div>
 <div class="section"><div class="section_title">Support mouse and touch events together</div><div type="Support mouse and touch events together">
 			
-			<p class="p">Touch interfaces try to emulate mouse and click events obviously because touch
-				interfaces need to work with applications that have only interacted with mouse
-				events before. Which means for a single tap on touch interfaces, the following
-				events are fired in the written order:</p>
+			<p class="p">Touch interfaces try to emulate mouse and click events obviously because touch interfaces need
+				to work with applications that have only interacted with mouse events before. This
+				means for a single tap on touch interfaces, the following events are fired in the
+				written order:</p>
 
 			<ol class="ol" id="loio1f9de72bea734beaafa86b80c2c4222c__ol_fmx_sry_mn"><li class="li"><samp class="ph codeph">touchstart</samp></li>
 <li class="li"><samp class="ph codeph">touchend</samp></li>
@@ -94,9 +96,6 @@ So it is ensured that all events can be handled and no event is triggered
 		</div></div>
 </div>
 <div class="related-links"> 
-
-<div class="familylinks">
-</div>
 <div class="relinfo"><div class="relinfotitle ">Related Information</div>
 <div><a class="link" href="b54d7d73eff245d3ab91b96e21177ebf.html" title="SAPUI5 event delegation automatically handles both mouse and touch events simultanuously. If you are using jQuery or native browser API (domElement.addEventListener) to handle events, you have to adapt your coding to support both.">Adapting Event Handling to Support Windows 8 Devices</a></div>
 <div><a class="link" href="a53ec81aca59413cac86267b0fd5c787.html" title="To implement a different behavior for your control depending on the device it is running on, you can now also use the property combi for devices which support touch and mouse together.">Distinguish Control Behavior between Mobile and Desktop</a></div>

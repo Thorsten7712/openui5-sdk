@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.layout (1.22.4)
+ * Initialization Code and shared classes of library sap.ui.layout (1.24.2)
  */
 jQuery.sap.declare("sap.ui.layout.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -60,11 +60,11 @@ sap.ui.getCore().initLibrary({
     "sap.ui.layout.form.GridContainerData",
     "sap.ui.layout.form.GridElementData"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -80,9 +80,11 @@ jQuery.sap.require('sap.ui.base.DataType');
 /**
  * @class A string type that represents Grid's indent values for large, medium and small screens. Allowed values are separated by space Letters L, M or S followed by number of columns from 1 to 11 that the container has to take, for example: "L2 M4 S6", "M12", "s10" or "l4 m4". Note that the parameters has to be provided in the order large  medium  small.
  *
- * @author SAP AG
+ * @author SAP SE
+ * @final
  * @static
  * @public
+ * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.GridIndent = sap.ui.base.DataType.createType('sap.ui.layout.GridIndent', {
     isValid : function(vValue) {
@@ -95,7 +97,7 @@ sap.ui.layout.GridIndent = sap.ui.base.DataType.createType('sap.ui.layout.GridIn
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -111,9 +113,10 @@ jQuery.sap.declare("sap.ui.layout.GridPosition");
 /**
  * @class Position of the Grid. Can be "Left", "Center" or "Right". "Left" is default.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.GridPosition = {
 
@@ -138,7 +141,7 @@ sap.ui.layout.GridPosition = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -154,9 +157,11 @@ jQuery.sap.require('sap.ui.base.DataType');
 /**
  * @class A string type that represents Grid's span values for large, medium and small screens. Allowed values are separated by space Letters L, M or S followed by number of columns from 1 to 12 that the container has to take, for example: "L2 M4 S6", "M12", "s10" or "l4 m4". Note that the parameters has to be provided in the order large  medium  small.
  *
- * @author SAP AG
+ * @author SAP SE
+ * @final
  * @static
  * @public
+ * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.GridSpan = sap.ui.base.DataType.createType('sap.ui.layout.GridSpan', {
     isValid : function(vValue) {
@@ -169,7 +174,7 @@ sap.ui.layout.GridSpan = sap.ui.base.DataType.createType('sap.ui.layout.GridSpan
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -187,6 +192,7 @@ jQuery.sap.require('sap.ui.base.DataType');
  *
  * @static
  * @public
+ * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.GridElementCells = sap.ui.base.DataType.createType('sap.ui.layout.form.GridElementCells', {
     isValid : function(vValue) {
@@ -199,7 +205,7 @@ sap.ui.layout.form.GridElementCells = sap.ui.base.DataType.createType('sap.ui.la
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -215,10 +221,11 @@ jQuery.sap.declare("sap.ui.layout.form.SimpleFormLayout");
 /**
  * @class Available FormLayouts used for the SimpleForm.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.16.0
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.SimpleFormLayout = {
 

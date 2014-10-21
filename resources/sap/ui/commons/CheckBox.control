@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 
 	<name>CheckBox</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>
         Provides a box which can be flagged, the box has a label. A check box can either stand alone, or in a group with other check boxes. As an option, the boxes can initially be set to status 'Not Editable'.</documentation>
 	<baseType>sap.ui.core/Control</baseType>

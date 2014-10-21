@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,25 +61,22 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * 
  * Non-control element used as part of a matrix layout's inner structure.
- * 
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.MatrixLayoutCell
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"addStyleClass", "removeStyleClass", "hasStyleClass"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	aggregatingType : "MatrixLayoutRow",
 	properties : {
@@ -93,7 +90,7 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -119,7 +116,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * Getter for property <code>backgroundDesign</code>.
  * 
  * Determines the matrix layout cell's background design.
- * 
  *
  * Default value is <code>'Transparent'</code>
  *
@@ -147,7 +143,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines how many columns of the underlying grid structure are occupied
  * by this matrix layout cell.
- * 
  *
  * Default value is <code>1</code>
  *
@@ -175,7 +170,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines the horizontal alignment of the matrix layout cell's content
  * with the cell's borders.
- * 
  *
  * Default value is <code>'Begin'</code>
  *
@@ -205,7 +199,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * cell's borders. The default value is appropriate for all cells in a
  * form-like layout. Consider to remove the padding on the outer layout in
  * case of nesting.
- * 
  *
  * Default value is <code>'End'</code>
  *
@@ -259,7 +252,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines how a matrix layout cell is separated from its predecessor,
  * via a vertical gutter of variable width, with or without a vertical line.
- * 
  *
  * Default value is <code>'None'</code>
  *
@@ -287,7 +279,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines the vertical alignment of the matrix layout cell's content
  * with the cell's borders.
- * 
  *
  * Default value is <code>'Middle'</code>
  *
@@ -423,14 +414,13 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutCell.prototype.addStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutCell#addStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the CSS class name to be added
-
  * @type sap.ui.commons.layout.MatrixLayoutCell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -440,28 +430,26 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutCell.prototype.removeStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutCell#removeStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to be removed
-
  * @type sap.ui.commons.layout.MatrixLayoutCell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns true if the given style class string is valid and if this Element has this style class set via a previous call to addStyleClass().
  *
- * @name sap.ui.commons.layout.MatrixLayoutCell.prototype.hasStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutCell#hasStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to check for
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -69,18 +69,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * Users can move the pointer along the line to change values with graphical support.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Slider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Slider", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
@@ -531,14 +529,13 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 	
 /**
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @name sap.ui.commons.Slider#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {float} oControlEvent.getParameters.value Current value of the slider after a change.
  * @public
  */
@@ -548,7 +545,7 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Slider</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -595,14 +592,13 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 
 /**
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @name sap.ui.commons.Slider#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {float} oControlEvent.getParameters.value Current value of the slider after a change.
  * @public
  */
@@ -612,7 +608,7 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Slider</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

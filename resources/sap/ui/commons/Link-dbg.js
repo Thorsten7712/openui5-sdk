@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,20 +61,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * 
  * Provides an absolute or relative reference to an internal or external URL. The classical target parameters are supported.
  * Another usage scenario is triggering an action, for example to open a popup window. In both cases, the link is a hypertext link.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem,sap.ui.commons.FormattedTextViewControl
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Link
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Link", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem",
 		"sap.ui.commons.FormattedTextViewControl"
@@ -83,8 +82,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Link", { metadata : {
 		// methods
 		"focus"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : ''},
@@ -128,7 +125,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>text</code>.
  * 
  * Link text to be displayed.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -180,7 +176,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>visible</code>.
  * 
  * Invisible links are not rendered.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -207,7 +202,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>helpId</code>.
  * 
  * Unique identifier used for help service.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -259,7 +253,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>target</code>.
  * 
  * Options are _self, _top, _blank, _parent, _search. Alternatively, a frame name can be entered.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -386,14 +379,12 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
 /**
  * 
  * Event is fired when the user clicks the control.
- *  
  *
  * @name sap.ui.commons.Link#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -404,7 +395,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  *  
  * 
  * Event is fired when the user clicks the control.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -450,11 +440,11 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
 /**
  * Puts the focus to the link.
  *
- * @name sap.ui.commons.Link.prototype.focus
+ * @name sap.ui.commons.Link#focus
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

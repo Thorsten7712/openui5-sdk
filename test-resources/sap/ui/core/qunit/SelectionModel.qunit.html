@@ -21,6 +21,8 @@
 	<script type="text/javascript"
 		src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
 	<script type="text/javascript"
+		src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
+	<script type="text/javascript"
 		src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<!-- Test functions -->
@@ -215,6 +217,10 @@
 	check("slice middle (2,22)", function() {
 		this.sliceSelectionInterval(2,22);
 	}, [0, 1, 2, 3, 4], 4, true);
+	
+	check("move interval", function() {
+		this.moveSelectionInterval(1,4);
+	}, [0, 5, 6, 7, 8], 8, true);
 	
 	</script>
 

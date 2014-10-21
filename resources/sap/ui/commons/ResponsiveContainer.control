@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>ResponsiveContainer</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Is used to provide a container, which can show different content depending on its current width. It fires an event, whenever a new range is reached. In addition the content of the new range is automatically shown, if it is set.</documentation>
 	
 	<baseType>sap.ui.core/Control</baseType>

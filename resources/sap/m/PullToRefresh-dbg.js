@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,23 +59,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * In non-touch browsers where scrollbars are used for scrolling, it is always visible and triggers the "refresh" event when clicked.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.2
  * @name sap.m.PullToRefresh
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.PullToRefresh", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"hide"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -239,14 +237,13 @@ sap.m.PullToRefresh.M_EVENTS = {'refresh':'refresh'};
 
 
 /**
- * Event indicates that the user has requested new data 
+ * Event indicates that the user has requested new data
  *
  * @name sap.m.PullToRefresh#refresh
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -255,7 +252,7 @@ sap.m.PullToRefresh.M_EVENTS = {'refresh':'refresh'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.PullToRefresh</code>.<br/> itself. 
  *  
- * Event indicates that the user has requested new data 
+ * Event indicates that the user has requested new data
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -299,11 +296,11 @@ sap.m.PullToRefresh.M_EVENTS = {'refresh':'refresh'};
 /**
  * Hides the control and resets it to the normal state. In non-touch environments the control is not hidden.
  *
- * @name sap.m.PullToRefresh.prototype.hide
+ * @name sap.m.PullToRefresh#hide
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -312,7 +309,6 @@ jQuery.sap.require("sap.ui.core.theming.Parameters");
 
 sap.m.PullToRefresh.prototype.init = function(){
 	this._bTouchMode = sap.ui.Device.support.touch || jQuery.sap.simulateMobileOnDesktop; // FIXME: plus fakeOS mode
-	this._bPltfDpndnt = sap.ui.core.theming.Parameters.get("sapMPlatformDependent") == "true"; 
 	
 	this._iState = 0; // 0 - normal; 1 - release to refresh; 2 - loading
 	this.oRb = sap.ui.getCore().getLibraryResourceBundle("sap.m"); // texts
@@ -324,8 +320,8 @@ sap.m.PullToRefresh.prototype._loadBI = function(){
 	if(this.getVisible() && !this._oBusyIndicator){
 		jQuery.sap.require("sap.m.BusyIndicator");
 		this._oBusyIndicator = new sap.m.BusyIndicator({
-			size: this._bTouchMode ? "2em" : "1.7em", 
-			design: this._bPltfDpndnt? "light" : "auto" 
+			size: this._bTouchMode ? "2em" : "1.7em",
+			design: "auto"
 		});
 		this._oBusyIndicator.setParent(this);
 	}
@@ -371,6 +367,7 @@ sap.m.PullToRefresh.prototype.onAfterRendering = function(){
 			this.calculateTopTrigger();
 		}
 	}
+	
 };
 
 sap.m.PullToRefresh.prototype.exit = function(){
@@ -508,6 +505,34 @@ sap.m.PullToRefresh.prototype.onkeydown = function(event) {
 		// do not refresh browser window
 		event.stopPropagation();
 		event.preventDefault();
+	}
+};
+
+/**
+ * Handle the enter key event
+ *
+ * @param {jQuery.Event} event - the keyboard event.
+ * @private
+ */
+sap.m.PullToRefresh.prototype.onsapenter = function(oEvent) {
+	if (this._iState < 1) {
+		this.setState(2);
+		this.fireRefresh();
+	}
+};
+
+/**
+ * Handle the space key event
+ *
+ * @param {jQuery.Event} event - the keyboard event.
+ * @private
+ */
+sap.m.PullToRefresh.prototype.onsapspace = function(oEvent) {
+	oEvent.preventDefault();
+
+	if (this._iState < 1) {
+		this.setState(2);
+		this.fireRefresh();
 	}
 };
 

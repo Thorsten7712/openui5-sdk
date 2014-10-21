@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,21 +57,16 @@ jQuery.sap.require("sap.ui.commons.Button");
  * @class
  * Common button control that opens a menu when clicked by the user. The control provides an API for configuring the docking position
  * of the menu.
- * 
  * @extends sap.ui.commons.Button
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.MenuButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.Button.extend("sap.ui.commons.MenuButton", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"dockButton" : {type : "string", group : "Misc", defaultValue : null},
@@ -79,7 +74,7 @@ sap.ui.commons.Button.extend("sap.ui.commons.MenuButton", { metadata : {
 	},
 	defaultAggregation : "menu",
 	aggregations : {
-    	"menu" : {type : "sap.ui.unified.Menu", multiple : false}
+		"menu" : {type : "sap.ui.unified.Menu", multiple : false}
 	},
 	events : {
 		"itemSelected" : {}
@@ -189,14 +184,13 @@ sap.ui.commons.MenuButton.M_EVENTS = {'itemSelected':'itemSelected'};
 
 
 /**
- * Event that is fired when a menu item is selected by the user 
+ * Event that is fired when a menu item is selected by the user
  *
  * @name sap.ui.commons.MenuButton#itemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The ID of the selected item
  * @param {sap.ui.commons.MenuItemBase} oControlEvent.getParameters.item The selected item
  * @public
@@ -207,7 +201,7 @@ sap.ui.commons.MenuButton.M_EVENTS = {'itemSelected':'itemSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.MenuButton</code>.<br/> itself. 
  *  
- * Event that is fired when a menu item is selected by the user 
+ * Event that is fired when a menu item is selected by the user
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -361,7 +355,7 @@ sap.ui.commons.MenuButton.prototype.clone = function(sIdSuffix, aLocalIds) {
 
 /**
  * Setter for the aggregated <code>menu</code>.
- * @param oMenu {sap.ui.commons.Menu}
+ * @param {sap.ui.commons.Menu} oMenu
  * @return {sap.ui.commons.MenuButton} <code>this</code> to allow method chaining
  * @public
  */

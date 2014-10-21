@@ -1,5 +1,5 @@
 /**
- * (c) Copyright 2012-2013 SAP AG, All rights Reserved.
+ * (c) Copyright 2012-2013 SAP SE, All rights Reserved.
  * 
  * Helper functions for checking the bootstrap process 
  */

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Callout</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>Callout is a small popup with some useful information and links that is shown when a mouse is hovered over a specific view element.</documentation>
 

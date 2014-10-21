@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>ExactBrowser</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Attribute browse area used within the Exact pattern. The main benefit of this control is the high flexibility when large data amounts shall be displayed 
 	in the form of structured data sets with a high or low interdependency level. From lists - which can be nested according to the defined attributes - the user can choose 
 	entries and thereby trigger the display of further information, depending on the chosen entry/entries (multiple selection supported).</documentation>

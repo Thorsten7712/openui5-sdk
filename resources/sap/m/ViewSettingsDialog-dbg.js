@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64,23 +64,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * ViewSettingsDialog provides functionality to easily select the options for sorting, grouping, and filtering data. It is a composite control, consisting of a modal popover and several internal lists. There are three different tabs (Sort, Group, Filter) in the dialog that can be activated by filling the respecive associations. If only one assication is filled, the other tabs are automatically hidden. The selected options can be used to create sorters and filters for the table.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.ViewSettingsDialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ViewSettingsDialog", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"open", "getSelectedFilters", "getSelectedFilterString", "getSelectedFilterKeys", "setSelectedFilterKeys"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Behavior", defaultValue : null},
@@ -88,10 +86,10 @@ sap.ui.core.Control.extend("sap.m.ViewSettingsDialog", { metadata : {
 		"groupDescending" : {type : "boolean", group : "Behavior", defaultValue : false}
 	},
 	aggregations : {
-    	"sortItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "sortItem", bindable : "bindable"}, 
-    	"groupItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "groupItem", bindable : "bindable"}, 
-    	"filterItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "filterItem", bindable : "bindable"}, 
-    	"presetFilterItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "presetFilterItem", bindable : "bindable"}
+		"sortItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "sortItem", bindable : "bindable"}, 
+		"groupItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "groupItem", bindable : "bindable"}, 
+		"filterItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "filterItem", bindable : "bindable"}, 
+		"presetFilterItems" : {type : "sap.m.ViewSettingsItem", multiple : true, singularName : "presetFilterItem", bindable : "bindable"}
 	},
 	associations : {
 		"selectedSortItem" : {type : "sap.m.ViewSettingsItem", multiple : false}, 
@@ -686,14 +684,13 @@ sap.m.ViewSettingsDialog.M_EVENTS = {'confirm':'confirm','cancel':'cancel','rese
 
 	
 /**
- * The event indicates that the user has pressed the OK button and the selected sort, group, and filter settings should be applied to the data on this page. 
+ * The event indicates that the user has pressed the OK button and the selected sort, group, and filter settings should be applied to the data on this page.
  *
  * @name sap.m.ViewSettingsDialog#confirm
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.ViewSettingsItem} oControlEvent.getParameters.sortItem Selected sort item.
  * @param {boolean} oControlEvent.getParameters.sortDescending Selected sort order (true = descending, false = ascending).
  * @param {sap.m.ViewSettingsItem} oControlEvent.getParameters.groupItem Selected group item
@@ -710,7 +707,7 @@ sap.m.ViewSettingsDialog.M_EVENTS = {'confirm':'confirm','cancel':'cancel','rese
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ViewSettingsDialog</code>.<br/> itself. 
  *  
- * The event indicates that the user has pressed the OK button and the selected sort, group, and filter settings should be applied to the data on this page. 
+ * The event indicates that the user has pressed the OK button and the selected sort, group, and filter settings should be applied to the data on this page.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -764,14 +761,13 @@ sap.m.ViewSettingsDialog.M_EVENTS = {'confirm':'confirm','cancel':'cancel','rese
 
 
 /**
- * Event is called when the cancel button is pressed. It can be used to set the state of custom filter controls. 
+ * Event is called when the cancel button is pressed. It can be used to set the state of custom filter controls.
  *
  * @name sap.m.ViewSettingsDialog#cancel
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -780,7 +776,7 @@ sap.m.ViewSettingsDialog.M_EVENTS = {'confirm':'confirm','cancel':'cancel','rese
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ViewSettingsDialog</code>.<br/> itself. 
  *  
- * Event is called when the cancel button is pressed. It can be used to set the state of custom filter controls. 
+ * Event is called when the cancel button is pressed. It can be used to set the state of custom filter controls.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -822,14 +818,13 @@ sap.m.ViewSettingsDialog.M_EVENTS = {'confirm':'confirm','cancel':'cancel','rese
 
 
 /**
- * Event is called when the reset filters button is pressed. It can be used to clear the state of custom filter controls. 
+ * Event is called when the reset filters button is pressed. It can be used to clear the state of custom filter controls.
  *
  * @name sap.m.ViewSettingsDialog#resetFilters
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -838,7 +833,7 @@ sap.m.ViewSettingsDialog.M_EVENTS = {'confirm':'confirm','cancel':'cancel','rese
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ViewSettingsDialog</code>.<br/> itself. 
  *  
- * Event is called when the reset filters button is pressed. It can be used to clear the state of custom filter controls. 
+ * Event is called when the reset filters button is pressed. It can be used to clear the state of custom filter controls.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -882,61 +877,59 @@ sap.m.ViewSettingsDialog.M_EVENTS = {'confirm':'confirm','cancel':'cancel','rese
 /**
  * Open the dialog.
  *
- * @name sap.m.ViewSettingsDialog.prototype.open
+ * @name sap.m.ViewSettingsDialog#open
  * @function
- * @param {object} 
- *         oControl
+ * @param {object} oControl
  *         This is the control to which the dialog will be placed. It can be not only a UI5 control, but also an existing dom reference.
-
  * @type sap.m.ViewSettingsDialog
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the selected filters as an array of ViewSettingsItems. It can be used to create matching sorters and filters to apply the selected settings to the data.
  *
- * @name sap.m.ViewSettingsDialog.prototype.getSelectedFilters
+ * @name sap.m.ViewSettingsDialog#getSelectedFilters
  * @function
-
  * @type sap.m.ViewSettingsItem[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the filter string in the format "filter name (subfilter1 name, subfilter2 name, ...), ..." to be displayed in table/list headers. For custom filters and preset filters it will only add the filter name to the resulting string.
  *
- * @name sap.m.ViewSettingsDialog.prototype.getSelectedFilterString
+ * @name sap.m.ViewSettingsDialog#getSelectedFilterString
  * @function
-
  * @type string
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the filter state of the dialog based on filter keys 8the following format: { key: boolean }. It can be used to create matching sorters and filters to apply the selected settings to the data.
  *
- * @name sap.m.ViewSettingsDialog.prototype.getSelectedFilterKeys
+ * @name sap.m.ViewSettingsDialog#getSelectedFilterKeys
  * @function
-
  * @type object
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the filter state of the dialog based on filter keys.
  *
- * @name sap.m.ViewSettingsDialog.prototype.setSelectedFilterKeys
+ * @name sap.m.ViewSettingsDialog#setSelectedFilterKeys
  * @function
- * @param {object} 
- *         oFilters
+ * @param {object} oFilters
  *         Configuration object to set the dialogs filter state with the following format: { key: boolean }. Setting boolean to true will set the filter to true, false or ommiting an entry will set the filter to false. It can be used to set the dialog state based on presets.
-
  * @type sap.m.ViewSettingsDialog
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1360,7 +1353,9 @@ sap.m.ViewSettingsDialog.prototype.open = function(oParentControl) {
 		contentPage : this._iContentPage,
 		contentItem : this._oContentItem
 	};
-
+	
+	// set initial focus to the segmentedButton if available
+	this._getDialog().setInitialFocus((sap.ui.Device.system.desktop && this._showSubHeader) ? this._segmentedButton : null);
 	// open dialog
 	this._getDialog().open();
 	return this;
@@ -1486,7 +1481,7 @@ sap.m.ViewSettingsDialog.prototype.getSelectedFilterKeys = function() {
  * 
  * @public
  * @param {object}
- *            oAny an object with filter item and sub keys
+ *            oSelectedFilterKeys an object with filter item and sub keys
  * @return {sap.m.ViewSettingsDialog} this pointer for chaining
  */
 sap.m.ViewSettingsDialog.prototype.setSelectedFilterKeys = function(

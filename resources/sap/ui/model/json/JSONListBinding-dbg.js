@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -132,6 +132,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/C
 	 * @function
 	 */
 	JSONListBinding.prototype.checkUpdate = function(bForceupdate){
+		
+		if (this.bSuspended && !this.bIgnoreSuspend) return;
+		
 		if (!this.bUseExtendedChangeDetection) {
 			var oList = this.oModel._getObject(this.sPath, this.oContext);
 			if (!jQuery.sap.equal(this.oList, oList) || bForceupdate) {

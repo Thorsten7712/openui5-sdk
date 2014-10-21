@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>DateTimeInputType</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A subset of DateTimeInput types that fit to a simple API returning one string.</documentation>
 	<baseType>sap.ui.core/string</baseType>
 	<enumeration>

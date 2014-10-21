@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -125,7 +125,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/PropertyBinding'],
 	 */
 	ODataPropertyBinding.prototype.checkUpdate = function(bForceUpdate){
 		var oValue = this._getValue();
-		if(oValue !== this.oValue || bForceUpdate) {// optimize for not firing the events when unneeded
+		if (!jQuery.sap.equal(oValue, this.oValue) || bForceUpdate) {// optimize for not firing the events when unneeded
 			this.oValue = oValue;
 			this._fireChange({reason: sap.ui.model.ChangeReason.Change});
 		}

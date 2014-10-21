@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>layout/ResponsiveFlowLayoutData</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>This is a LayoutData Element that can be added to a control if this control is used within a ResponsiveFlowLayout</documentation>
 
 	<since>1.9.1</since>

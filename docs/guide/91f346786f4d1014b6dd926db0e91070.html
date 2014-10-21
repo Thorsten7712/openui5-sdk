@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5814995760789375"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=02716875562358101"/>
 <title>Synchronizing with the SAPUI5 Repository</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -33,17 +35,17 @@
 <div class="section" id="loio91f346786f4d1014b6dd926db0e91070__section_E3530B3A127642F4A9C22551EDD7E466"><div class="section_title">Availability</div><div type="Availability">
 			
 			<p class="p">The SAPUI5 repository is available in SAP Business Suite systems with version 7.00 or higher
-				containing the User Interface Add-On for SAP NetWeaver, which contains the software
+				containing the user interface add-on for <span class="ph pname">SAP NetWeaver</span>, which contains the software
 				component <samp class="ph codeph">UI_INFRA</samp>. The team repository provider functionality,
 				which is available in the Eclipse IDE, is available in SAP Business Suite systems
-				with version <strong class="ph b">7.31</strong> containing the User Interface Add-On, which contains the
+				with version <strong class="ph b">7.31</strong> containing the user interface add-on, which contains the
 				software components <samp class="ph codeph">UI_INFRA</samp> and <samp class="ph codeph">UI5_731</samp>. </p>
 
-			<p class="p">The used SAPUI5 libraries are available in SAP Business Suite systems with version
-				7.00 or higher containing the NetWeaver UI Add-On in the software component
+			<p class="p">The used SAPUI5 libraries are available in SAP Business Suite systems with version 7.00 or
+				higher containing the UI add-on for <span class="ph pname">SAP NetWeaver</span> in the software component
 					<samp class="ph codeph">UISAPUI5</samp>.</p>
 
-			<p class="p">As of NetWeaver 7.40 SP1 all required SAPUI5 parts are already part of software
+			<p class="p">As of <span class="ph pname">SAP NetWeaver 7.4</span> SP1 all required SAPUI5 parts are already part of software
 				component <samp class="ph codeph">SAP_UI</samp>.</p>
 
 			<p class="p">As an alternative for SAP Business Suite system of version 7.00 and higher you can
@@ -55,14 +57,14 @@
 			
 			<p class="p">When uploading the files to the SAPUI repository, you can perform a virus scan. </p>
 
-			<p class="p">As of SAP NetWeaver 7.00, SAP delivers the following virus scan profile for ABAP with the UI
+			<p class="p">As of <span class="ph pname">SAP NetWeaver 7.0</span>, SAP delivers the following virus scan profile for ABAP with the UI
 				Add-On: <samp class="ph codeph">/UI5/UI5_INFRA_APP/REP_DT_PUT</samp>. </p>
 
 			<p class="p">This profile is used by the SAPUI5 repository API to store files in the SAPUI5
 				repository based on BSP repository. For example: Upload of a local file using SAPUI5
 				repository API <samp class="ph codeph">/UI5/CL_REP_DT</samp>, method
-					<samp class="ph codeph">/UI5/IF_UI5_REP_DT~PUT_FILE</samp> from NetWeaver 7.00 on, or the
-				SAPUI5 team repository provider in NetWeaver 7.31 or 7.40. </p>
+					<samp class="ph codeph">/UI5/IF_UI5_REP_DT~PUT_FILE</samp> from <span class="ph pname">SAP NetWeaver 7.0</span> on, or the
+				SAPUI5 team repository provider in <span class="ph pname">SAP NetWeaver 7.31</span> or 7.40. </p>
 
 			<p class="p">The profile is deactivated when delivered. To activate it, create at least one basis
 				profile. You can then activate one of the delivered profiles. By default, it links

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Link</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A hyperlink control which can be used to trigger actions or to navigate to other applications or web pages.</documentation>
 	<since>1.12</since>
 	

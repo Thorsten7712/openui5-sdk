@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Image</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A wrapper around the IMG tag. The image can be loaded from a remote or local server.
 
 Density related image will be loaded if image with density awareness name in format [imageName]@[densityValue].[extension] is provided. The valid desity values are 1, 1.5, 2. If the original devicePixelRatio isn't one of the three valid numbers, it's rounded up to the nearest one. 

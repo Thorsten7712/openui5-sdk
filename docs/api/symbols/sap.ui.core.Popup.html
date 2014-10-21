@@ -140,6 +140,16 @@ be able to focus the Popups of the TinyMCE if the RichTextEditor runs within a P
 							<div class="sectionTitle">Method Summary</div>
 							<div class="sectionItems">
 							
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Returns the last z-index that has been handed out."><a href="../symbols/sap.ui.core.Popup.html#.getLastZIndex">sap.ui.core.Popup.getLastZIndex</a></b><span class='signature'>()</span>
+									<span class='description'>Returns the last z-index that has been handed out.</span>
+								</div>
+							
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Returns the next available z-index on top of the existing/previous popups."><a href="../symbols/sap.ui.core.Popup.html#.getNextZIndex">sap.ui.core.Popup.getNextZIndex</a></b><span class='signature'>()</span>
+									<span class='description'>Returns the next available z-index on top of the existing/previous popups.</span>
+								</div>
+							
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Attach event-handler fnFunction to the 'closed' event of this sap.ui.core.Popup."><a href="../symbols/sap.ui.core.Popup.html#attachClosed">attachClosed</a></b><span class='signature'>(<span title="(function) The function to call when the popup has completely closed (after any animation).">fnFunction</span>, <span title="(object) object on which to call the given function.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Attach event-handler <code>fnFunction</code> to the 'closed' event of this <code>sap.ui.core.Popup</code>.</span>
@@ -190,19 +200,14 @@ be able to focus the Popups of the TinyMCE if the RichTextEditor runs within a P
 									<span class='description'>This returns true/false if the default followOf method should be used.</span>
 								</div>
 							
-								<div class="sectionItem classMethod static">
-									<b class="icon" title="Returns the last z-index that has been handed out."><a href="../symbols/sap.ui.core.Popup.html#.getLastZIndex">sap.ui.core.Popup.getLastZIndex</a></b><span class='signature'>()</span>
-									<span class='description'>Returns the last z-index that has been handed out.</span>
-								</div>
-							
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Returns the last z-index that has been handed out."><a href="../symbols/sap.ui.core.Popup.html#getLastZIndex">getLastZIndex</a></b><span class='signature'>()</span>
 									<span class='description'>Returns the last z-index that has been handed out.</span>
 								</div>
 							
-								<div class="sectionItem classMethod static">
-									<b class="icon" title="Returns the next available z-index on top of the existing/previous popups."><a href="../symbols/sap.ui.core.Popup.html#.getNextZIndex">sap.ui.core.Popup.getNextZIndex</a></b><span class='signature'>()</span>
-									<span class='description'>Returns the next available z-index on top of the existing/previous popups.</span>
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Returns the value if a Popup is of modal type"><a href="../symbols/sap.ui.core.Popup.html#getModal">getModal</a></b><span class='signature'>()</span>
+									<span class='description'>Returns the value if a Popup is of modal type</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -221,7 +226,7 @@ be able to focus the Popups of the TinyMCE if the RichTextEditor runs within a P
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Opens the popup's content at the position either specified here or beforehand via #setPosition."><a href="../symbols/sap.ui.core.Popup.html#open">open</a></b><span class='signature'>(<span title="(int) animation duration in milliseconds; default is the jQuery preset &quot;fast&quot;.">iDuration</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the popup content's reference position for docking">my</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the &quot;of&quot; element's reference point for docking to">at</span><i class="help" title="Optional parameter">?</i>, <span title="(Element|sap.ui.core.Element) the DOM Element or UI5 Element to dock to">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) defines whether the popup should follow the dock reference when the reference changes its position.">followOf</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Opens the popup's content at the position either specified here or beforehand via #setPosition."><a href="../symbols/sap.ui.core.Popup.html#open">open</a></b><span class='signature'>(<span title="(int) animation duration in milliseconds; default is the jQuery preset &quot;fast&quot;.">iDuration</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the popup content's reference position for docking">my</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the &quot;of&quot; element's reference point for docking to">at</span><i class="help" title="Optional parameter">?</i>, <span title="(string | sap.ui.core.Element | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should dock to">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) defines whether the popup should follow the dock reference when the reference changes its position.">followOf</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Opens the popup's content at the position either specified here or beforehand via <a href="#setPosition">#setPosition</a>.</span>
 								</div>
 							
@@ -251,12 +256,12 @@ be able to focus the Popups of the TinyMCE if the RichTextEditor runs within a P
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="This enabled/disables the Popup to follow its opening reference."><a href="../symbols/sap.ui.core.Popup.html#setFollowOf">setFollowOf</a></b><span class='signature'>(<span title="(boolean | function | null) boolean value enabled/disables the default followOf-Handler.">a</span>)</span>
+									<b class="icon" title="This enabled/disables the Popup to follow its opening reference."><a href="../symbols/sap.ui.core.Popup.html#setFollowOf">setFollowOf</a></b><span class='signature'>(<span title="(boolean | function | null) a boolean value enabled/disables the default followOf-Handler.">followOf</span>)</span>
 									<span class='description'>This enabled/disables the Popup to follow its opening reference.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Sets the ID of the element that should be focused once the popup opens."><a href="../symbols/sap.ui.core.Popup.html#setInitialFocusId">setInitialFocusId</a></b><span class='signature'>(<span title="the ID of the DOM element to focus">sId</span>)</span>
+									<b class="icon" title="Sets the ID of the element that should be focused once the popup opens."><a href="../symbols/sap.ui.core.Popup.html#setInitialFocusId">setInitialFocusId</a></b><span class='signature'>(<span title="(string) the ID of the DOM element to focus">sId</span>)</span>
 									<span class='description'>Sets the ID of the element that should be focused once the popup opens.</span>
 								</div>
 							
@@ -266,7 +271,7 @@ be able to focus the Popups of the TinyMCE if the RichTextEditor runs within a P
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Sets the position of the Popup (if you refer to a Control as anchor then do not use the DOMRef of the control which might change after re-renderings)."><a href="../symbols/sap.ui.core.Popup.html#setPosition">setPosition</a></b><span class='signature'>(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | {left: sap.ui.core.CSSSize|top: sap.ui.core.CSSSize}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Control | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Sets the position of the Popup (if you refer to a Control as anchor then do not use the DOMRef of the control which might change after re-renderings)."><a href="../symbols/sap.ui.core.Popup.html#setPosition">setPosition</a></b><span class='signature'>(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | {left: sap.ui.core.CSSSize|top: sap.ui.core.CSSSize}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Element | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Sets the position of the Popup (if you refer to a Control as anchor then do not use the DOMRef of the control which might change after re-renderings).</span>
 								</div>
 							
@@ -385,6 +390,82 @@ visually appearing in front of other controls.
 								Method Detail
 							</div>
 							<div class="sectionItems">
+								
+									<div class='sectionItem classMethod static'>
+										<a name=".getLastZIndex"> </a>
+										<div class="itemTitle icon">
+											sap.ui.core.Popup.getLastZIndex<span class="signature">()</span>
+											<span class="light" title="returns Number">: Number</span>
+										</div>
+										<div class="full-description">
+											Returns the last z-index that has been handed out. does not increase the internal z-index counter.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{Number}</span> 
+													</td>
+													<td class="methodItemDesc">
+														
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static'>
+										<a name=".getNextZIndex"> </a>
+										<div class="itemTitle icon">
+											sap.ui.core.Popup.getNextZIndex<span class="signature">()</span>
+											<span class="light" title="returns Number">: Number</span>
+										</div>
+										<div class="full-description">
+											Returns the next available z-index on top of the existing/previous popups. Each call increases the internal z-index counter and the returned z-index.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{Number}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the next z-index on top of the Popup stack
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
 								
 									<div class='sectionItem classMethod'>
 										<a name="attachClosed"> </a>
@@ -880,44 +961,6 @@ the correspodning function is returned.
 										
 									</div>
 								
-									<div class='sectionItem classMethod static'>
-										<a name=".getLastZIndex"> </a>
-										<div class="itemTitle icon">
-											sap.ui.core.Popup.getLastZIndex<span class="signature">()</span>
-											<span class="light" title="returns Number">: Number</span>
-										</div>
-										<div class="full-description">
-											Returns the last z-index that has been handed out. does not increase the internal z-index counter.
-											
-											
-											
-										
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<div class="heading">Returns:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-														<span class="light">{Number}</span> 
-													</td>
-													<td class="methodItemDesc">
-														
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-									</div>
-								
 									<div class='sectionItem classMethod'>
 										<a name="getLastZIndex"> </a>
 										<div class="itemTitle icon">
@@ -956,14 +999,14 @@ the correspodning function is returned.
 										
 									</div>
 								
-									<div class='sectionItem classMethod static'>
-										<a name=".getNextZIndex"> </a>
+									<div class='sectionItem classMethod'>
+										<a name="getModal"> </a>
 										<div class="itemTitle icon">
-											sap.ui.core.Popup.getNextZIndex<span class="signature">()</span>
-											<span class="light" title="returns Number">: Number</span>
+											getModal<span class="signature">()</span>
+											
 										</div>
 										<div class="full-description">
-											Returns the next available z-index on top of the existing/previous popups. Each call increases the internal z-index counter and the returned z-index.
+											Returns the value if a Popup is of modal type
 											
 											
 											
@@ -981,10 +1024,10 @@ the correspodning function is returned.
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{Number}</span> 
+														
 													</td>
 													<td class="methodItemDesc">
-														the next z-index on top of the Popup stack
+														{boolean] bModal whether the Popup is of modal type
 													</td>
 												</tr>
 											
@@ -1111,7 +1154,7 @@ the correspodning function is returned.
 									<div class='sectionItem classMethod'>
 										<a name="open"> </a>
 										<div class="itemTitle icon">
-											open<span class="signature">(<span title="(int) animation duration in milliseconds; default is the jQuery preset &quot;fast&quot;.">iDuration</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the popup content's reference position for docking">my</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the &quot;of&quot; element's reference point for docking to">at</span><i class="help" title="Optional parameter">?</i>, <span title="(Element|sap.ui.core.Element) the DOM Element or UI5 Element to dock to">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) defines whether the popup should follow the dock reference when the reference changes its position.">followOf</span><i class="help" title="Optional parameter">?</i>)</span>
+											open<span class="signature">(<span title="(int) animation duration in milliseconds; default is the jQuery preset &quot;fast&quot;.">iDuration</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the popup content's reference position for docking">my</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.Popup.Dock) the &quot;of&quot; element's reference point for docking to">at</span><i class="help" title="Optional parameter">?</i>, <span title="(string | sap.ui.core.Element | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should dock to">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) defines whether the popup should follow the dock reference when the reference changes its position.">followOf</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -1169,13 +1212,13 @@ If the Popup's OpenState is different from "CLOSED" (i.e. if the Popup is alread
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{Element|<a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a>}</span> 
+													  <span class="light">{string|<a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a>|DOMRef|<a href="../symbols/jQuery.html">jQuery</a>|<a href="../symbols/jQuery.Event.html">jQuery.Event</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>of</b><i class="help" title="Optional parameter">?, Default: document</i>
 													</td>
 													<td class="methodItemDesc">
-												    the DOM Element or UI5 Element to dock to
+												    specifies the reference element to which the given content should dock to
 													</td>
 												</tr>
 											
@@ -1540,7 +1583,7 @@ Default value is "fast" which is the jQuery constant for "200 ms".
 									<div class='sectionItem classMethod'>
 										<a name="setFollowOf"> </a>
 										<div class="itemTitle icon">
-											setFollowOf<span class="signature">(<span title="(boolean | function | null) boolean value enabled/disables the default followOf-Handler.">a</span>)</span>
+											setFollowOf<span class="signature">(<span title="(boolean | function | null) a boolean value enabled/disables the default followOf-Handler.">followOf</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -1562,10 +1605,10 @@ be set the corresponding listener will be attached.
 													  <span class="light">{boolean|function|null}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>a</b>
+													  <b>followOf</b>
 													</td>
 													<td class="methodItemDesc">
-												    boolean value enabled/disables the default followOf-Handler. Or an individual handler can be given. 
+												    a boolean value enabled/disables the default followOf-Handler. Or an individual handler can be given. 
 null deletes all followOf settings.
 													</td>
 												</tr>
@@ -1588,7 +1631,7 @@ null deletes all followOf settings.
 									<div class='sectionItem classMethod'>
 										<a name="setInitialFocusId"> </a>
 										<div class="itemTitle icon">
-											setInitialFocusId<span class="signature">(<span title="the ID of the DOM element to focus">sId</span>)</span>
+											setInitialFocusId<span class="signature">(<span title="(string) the ID of the DOM element to focus">sId</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -1608,7 +1651,7 @@ If no existing element ID is supplied and the Popup is modal or auto-close, the 
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sId</b>
@@ -1700,7 +1743,7 @@ Setting this while the popup is open will change "block layer" immediately.
 									<div class='sectionItem classMethod'>
 										<a name="setPosition"> </a>
 										<div class="itemTitle icon">
-											setPosition<span class="signature">(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | {left: sap.ui.core.CSSSize|top: sap.ui.core.CSSSize}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Control | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
+											setPosition<span class="signature">(<span title="(sap.ui.core.Popup.Dock) specifies which point of the given Content should be aligned">my</span>, <span title="(sap.ui.core.Popup.Dock | {left: sap.ui.core.CSSSize|top: sap.ui.core.CSSSize}) specifies the point of the reference element to which the given Content should be aligned">at</span>, <span title="(string | sap.ui.core.Element | DOMRef | jQuery | jQuery.Event) specifies the reference element to which the given content should be aligned as specified in the other parameters">of</span><i class="help" title="Optional parameter">?</i>, <span title="(string) the offset relative to the docking point, specified as a string with space-separated pixel values (e.g.">offset</span><i class="help" title="Optional parameter">?</i>, <span title="(string) defines how the position of an element should be adjusted in case it overflows the window in some direction.">collision</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns sap.ui.core.Popup">: <a href="../symbols/sap.ui.core.Popup.html">sap.ui.core.Popup</a></span>
 										</div>
 										<div class="full-description">
@@ -1744,7 +1787,7 @@ Optional parameters can only be omitted when all subsequent parameters are omitt
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string|<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>|DOMRef|<a href="../symbols/jQuery.html">jQuery</a>|<a href="../symbols/jQuery.Event.html">jQuery.Event</a>}</span> 
+													  <span class="light">{string|<a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a>|DOMRef|<a href="../symbols/jQuery.html">jQuery</a>|<a href="../symbols/jQuery.Event.html">jQuery.Event</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>of</b><i class="help" title="Optional parameter">?, Default: document</i>

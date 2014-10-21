@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Switch</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A switch is a user interface control on mobile devices that is used for change between binary states. The user can also drag the button handle or tap to change the state.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

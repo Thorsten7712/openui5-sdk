@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	var bCheckBoxSet = true;
 
-	var on1 = new sap.m.ObjectIdentifier("oi1", {
+	var oi1 = new sap.m.ObjectIdentifier("oi1", {
 		title : "Gummib\u00E4" + "r\u00E7" + "he\u00D1",
 		text : "Gummib\u00E4" + "r\u00E7" + "he\u00D1 bla bla bla bla bla bla bla bla bla silly table",
 		badgeNotes : true,
@@ -29,6 +29,24 @@
 			on1.setVisible(bCheckBoxSet);
 		}
 	});
+	
+	var oi2 = new sap.m.ObjectIdentifier("oi2", {
+		title : "Gummib\u00E4" + "r\u00E7" + "he\u00D1" + "are what I need most of all",
+		text : "Tiny Text",
+		badgeNotes : true,
+		badgePeople : true,
+		badgeAttachments : true,
+		visible : true
+	});
+	
+	var oi3 = new sap.m.ObjectIdentifier("oi3", {
+		title : "Gummib\u00E4" + "r\u00E7" + "he\u00D1nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+		text : "Tiny Text",
+		badgeNotes : true,
+		badgePeople : true,
+		badgeAttachments : true,
+		visible : true
+	});
 
 	var app = new sap.m.App();
 	var page = new sap.m.Page({
@@ -38,9 +56,10 @@
 	app.setInitialPage(page.getId());
 	app.addPage(page);
 
-	page.addContent(on1);
+	page.addContent(oi1);
 	page.addContent(cb1);
-
+	page.addContent(oi2);
+	page.addContent(oi3);
 	app.placeAt('body');
 </script>
 </head>

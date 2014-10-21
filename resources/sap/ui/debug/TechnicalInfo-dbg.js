@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -77,7 +77,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Core', 'sap/ui/core/Popup', 'jq
 						html.push("<tr><td align='right' valign='top'><b>SAPUI5 Version</b></td><td>not available</td></tr>");
 					}
 					html.push("<tr><td align='right' valign='top'><b>Core Version</b></td><td>", sap.ui.version, " (built at ", sap.ui.buildinfo.buildtime, ", last change ", sap.ui.buildinfo.lastchange, ")</td></tr>");
-					html.push("<tr><td align='right' valign='top'><b>User Agent</b></td><td>", navigator.userAgent, (document.documentMode? ", Document Mode '" + document.documentMode + "'" : ""), "</td></tr>");
+					html.push("<tr><td align='right' valign='top'><b>User Agent</b></td><td>", jQuery.sap.escapeHTML(navigator.userAgent), (document.documentMode? ", Document Mode '" + document.documentMode + "'" : ""), "</td></tr>");
 					html.push("<tr><td align='right' valign='top'><b>Configuration</b></td><td class='sapUiTInfCfg'>");
 					list(ojQSData.config);
 					html.push("</td></tr>");

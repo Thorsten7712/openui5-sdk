@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -15,8 +15,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object', 'jquery.sap.script'],
 	 * @class Provides library information.
 	 *
 	 * @extends sap.ui.base.Object
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @constructor
 	 * @private
 	 * @name sap.ui.core.util.LibraryInfo
@@ -95,6 +95,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object', 'jquery.sap.script'],
 						result.libs.push({
 							displayName: $Lib.attr("displayName"),
 							homepage: $Lib.attr("homepage"),
+							version: $Lib.attr("version"),
 							license: {
 								url: $license.attr("url"),
 								type: $license.attr("type"),

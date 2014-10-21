@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,19 +54,17 @@ jQuery.sap.require("sap.ui.core.Control");
  * A layout that provides support for horizontal alignment of controls
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.HorizontalLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.layout.HorizontalLayout", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"allowWrapping" : {type : "boolean", group : "Misc", defaultValue : false},
@@ -74,7 +72,7 @@ sap.ui.core.Control.extend("sap.ui.layout.HorizontalLayout", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 

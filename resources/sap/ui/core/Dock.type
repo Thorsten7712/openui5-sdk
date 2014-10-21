@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>Dock</name>
-  <author>SAP AG</author>
+  <author>SAP SE</author>
   <documentation>Docking position: horizontal/vertical.
 Defines a position on the element which is used for aligned positioning of another element (e.g. the left top 
 corner of a popup is positioned at the left bottom corner of the input field). For the horizontal position possible values 

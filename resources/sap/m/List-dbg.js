@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,24 +57,22 @@ jQuery.sap.require("sap.m.ListBase");
  * For mobile devices, the recommended limit of list items is 100 to assure proper performance. To improve initial rendering of large lists, use the "growing" feature. Please refer to the SAPUI5 Developer Guide for more information..
  * @extends sap.m.ListBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.List
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListBase.extend("sap.m.List", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"backgroundDesign" : {type : "sap.m.BackgroundDesign", group : "Appearance", defaultValue : sap.m.BackgroundDesign.Solid}
 	},
 	aggregations : {
-    	"columns" : {type : "sap.m.Column", multiple : true, singularName : "column", deprecated: true}
+		"columns" : {type : "sap.m.Column", multiple : true, singularName : "column", deprecated: true}
 	}
 }});
 

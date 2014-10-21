@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ImageMap</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Combination of image areas where at runtime these areas are starting points for hyperlinks or actions</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -62,23 +62,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.Toolbar,sap.m.IBar
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.Toolbar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Toolbar", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.Toolbar",
 		"sap.m.IBar"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -90,7 +88,7 @@ sap.ui.core.Control.extend("sap.m.Toolbar", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	events : {
 		"press" : {}
@@ -355,14 +353,13 @@ sap.m.Toolbar.M_EVENTS = {'press':'press'};
 
 
 /**
- * If "active" property is set "true" then "press" event is fired when user clicks on the toolbar. 
+ * If "active" property is set "true" then "press" event is fired when user clicks on the toolbar.
  *
  * @name sap.m.Toolbar#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.srcControl The control which caused the press event within the toolbar.
  * @public
  */
@@ -372,7 +369,7 @@ sap.m.Toolbar.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Toolbar</code>.<br/> itself. 
  *  
- * If "active" property is set "true" then "press" event is fired when user clicks on the toolbar. 
+ * If "active" property is set "true" then "press" event is fired when user clicks on the toolbar.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

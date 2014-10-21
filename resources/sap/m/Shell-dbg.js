@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -63,20 +63,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * The Shell control can be used as root element of applications, it can contain an App or SplitApp control.
  * The Shell provides some overarching functionality for the overall application and takes care of visual adaptation, like a frame around the App, on desktop browser platforms.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.Shell
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Shell", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -92,7 +88,7 @@ sap.ui.core.Control.extend("sap.m.Shell", { metadata : {
 	},
 	defaultAggregation : "app",
 	aggregations : {
-    	"app" : {type : "sap.ui.core.Control", multiple : false}
+		"app" : {type : "sap.ui.core.Control", multiple : false}
 	},
 	events : {
 		"logout" : {}
@@ -376,7 +372,6 @@ sap.m.Shell.M_EVENTS = {'logout':'logout'};
  * 
  * See jQuery.sap.setIcons() for full documentation.
  * 
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -432,14 +427,13 @@ sap.m.Shell.M_EVENTS = {'logout':'logout'};
 
 
 /**
- * Fired when the user presses the logout button/link. 
+ * Fired when the user presses the logout button/link.
  *
  * @name sap.m.Shell#logout
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -448,7 +442,7 @@ sap.m.Shell.M_EVENTS = {'logout':'logout'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Shell</code>.<br/> itself. 
  *  
- * Fired when the user presses the logout button/link. 
+ * Fired when the user presses the logout button/link.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

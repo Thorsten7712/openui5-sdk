@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,27 +57,24 @@ jQuery.sap.require("sap.m.ListItemBase");
  * Note: This control should not be used without Column definition in parent control.
  * @extends sap.m.ListItemBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.ColumnListItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListItemBase.extend("sap.m.ColumnListItem", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"vAlign" : {type : "sap.ui.core.VerticalAlign", group : "Appearance", defaultValue : sap.ui.core.VerticalAlign.Inherit}
 	},
 	defaultAggregation : "cells",
 	aggregations : {
-    	"clonedHeaders" : {type : "sap.ui.core.Control", multiple : true, singularName : "clonedHeader", visibility : "hidden"}, 
-    	"cells" : {type : "sap.ui.core.Control", multiple : true, singularName : "cell", bindable : "bindable"}
+		"cells" : {type : "sap.ui.core.Control", multiple : true, singularName : "cell", bindable : "bindable"}
 	}
 }});
 
@@ -237,6 +234,11 @@ sap.m.ListItemBase.extend("sap.m.ColumnListItem", { metadata : {
 // prototype lookup for pop-in id
 sap.m.ColumnListItem.prototype._popinId = "";
 
+sap.m.ColumnListItem.prototype.init = function() {
+	sap.m.ListItemBase.prototype.init.call(this);
+	this._aClonedHeaders = [];
+};
+
 /**
  * remove pop-in from DOM
  * @protected
@@ -246,7 +248,20 @@ sap.m.ColumnListItem.prototype.removePopin = function() {
 		jQuery.sap.byId(this._popinId).remove();
 		this._popinId = "";
 	}
-	return this;
+};
+
+// Adds cloned header to the local collection
+sap.m.ColumnListItem.prototype.addClonedHeader = function(oHeader) {
+	return this._aClonedHeaders.push(oHeader);
+};
+
+// Destroys cloned headers that are generated for popin
+sap.m.ColumnListItem.prototype.destroyClonedHeaders = function() {
+	this._aClonedHeaders.forEach(function(oClone) {
+		oClone.destroy(true);
+	});
+
+	this._aClonedHeaders.length = 0;
 };
 
 /**
@@ -272,8 +287,8 @@ sap.m.ColumnListItem.prototype.setVisible = function() {
 // remove pop-in on destroy
 sap.m.ColumnListItem.prototype.exit = function() {
 	sap.m.ListItemBase.prototype.exit.call(this);
-	this.destroyAggregation("clonedHeaders", true);
-	return this.removePopin();
+	this.destroyClonedHeaders();
+	this.removePopin();
 };
 
 // active feedback for pop-in

@@ -1,7 +1,7 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
  * 
- * (c) Copyright 2009-2014 SAP AG. All rights reserved
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
  */
 
 jQuery.sap.declare("sap.ui.commons.MenuItemBase");
@@ -10,7 +10,7 @@ jQuery.sap.declare("sap.ui.commons.MenuItemBase");
  * @class Provides the standard properties for menu items.
  * @extends sap.ui.unified.MenuItemBase
  *
- * @author SAP AG 
+ * @author SAP SE 
  *
  * @public
  * @deprecated Since version 1.21.0. 

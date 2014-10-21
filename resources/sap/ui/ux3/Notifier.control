@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Notifier</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>This element can be docked to a notification bar to show notification items</documentation>
 
 	<baseType>sap.ui.core/Element</baseType>

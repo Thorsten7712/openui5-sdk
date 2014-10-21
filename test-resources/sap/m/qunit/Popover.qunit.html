@@ -14,6 +14,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-ie.js"></script>
@@ -449,11 +450,7 @@
 			test("Set title", function(){
 				ok(jQuery.sap.domById(oPopover.getId() + "-title"), "Title is rendered");
 				equal(jQuery.sap.byId(oPopover.getId() + "-title").text(), sOldTitleValue, "Title should be with the right value");
-				if(sap.ui.Device.os.ios || sap.m.Popover._bOneDesign){
-					ok(jQuery.sap.byId(oPopover.getId() + "-title").closest("#" + oPopover.getId() + "-intHeader-BarMiddle")[0], "Title should be rendered in the middle part of the bar");
-				}else{
-					ok(jQuery.sap.byId(oPopover.getId() + "-title").closest("#" + oPopover.getId() + "-intHeader-BarLeft")[0], "Title should be rendered in the left part of the bar");	
-				}
+				ok(jQuery.sap.byId(oPopover.getId() + "-title").closest("#" + oPopover.getId() + "-intHeader-BarMiddle")[0], "Title should be rendered in the middle part of the bar");
 				oPopover.setTitle(sNewTitleValue);
 				sap.ui.getCore().applyChanges();
 				equal(jQuery.sap.byId(oPopover.getId() + "-title").text(), sNewTitleValue, "Title should be changed to the new value");
@@ -467,11 +464,7 @@
 				if(!jQuery.support.touch && !jQuery.sap.simulateMobileOnDesktop){
 					equal(oBeginButtonFocusDom, document.activeElement, "beginButton should have the focus");
 				}
-				if(sap.ui.Device.os.ios || sap.m.Popover._bOneDesign){
-					ok(oBeginButton.$().closest("#" + oPopover.getId() + "-intHeader-BarLeft")[0], "Left button is set in the left side of the bar in iOS");
-				}else{
-					ok(oBeginButton.$().closest("#" + oPopover.getId() + "-intHeader-BarRight")[0], "Left button is set in the right side of the bar in other platform");
-				}
+				ok(oBeginButton.$().closest("#" + oPopover.getId() + "-intHeader-BarLeft")[0], "Left button is set in the left side of the bar in iOS");
 			});
 
 			test("Add right button", function(){
@@ -479,9 +472,6 @@
 				sap.ui.getCore().applyChanges();
 				ok(jQuery.sap.domById("endButton"), "EndButton should be rendered");
 				ok(oEndButton.$().closest("#" + oPopover.getId() + "-intHeader-BarRight")[0], "EndButton is set in the right side of the bar");
-				if(!sap.ui.Device.os.ios && !sap.m.Popover._bOneDesign){
-					ok(oEndButton.$().position().left > (oBeginButton.$().position().left + oBeginButton.$().width()), "EndButton should be placed at the right side of the BeginButton");
-				}
 			});
 
 			test("Remove beginButton", function(){
@@ -599,11 +589,18 @@
 
 				var oButton = new sap.m.Button(),
 					oButton2 = new sap.m.Button();
-				oButton.$().removeClass("positioned positioned1 positioned2");
-				oButton.$().addClass("positioned3");
+
 				oButton.placeAt("content");
 				oButton2.placeAt("content");
 				sap.ui.getCore().applyChanges();
+
+				oButton.$().removeClass("positioned positioned1 positioned2");
+				oButton.$().addClass("positioned3");
+				oButton2.$().css({
+					position: "absolute",
+					top: "100px",
+					left: "100px"
+				});
 
 				oPopover.openBy(oButton);
 				ok(oPopover.isOpen(), "Popover should be opened");
@@ -928,6 +925,36 @@
 
 				oPopover.destroy();
 				oSegBtn.destroy();
+			});
+
+			test("Call Popover's open method several times while it's being closed", function(){
+				var oPopover = new sap.m.Popover({
+					contentWidth: "300px",
+					contentHeight: "300px"
+				});
+
+				var oButton = new sap.m.Button({
+					text: "Open"
+				});
+
+				oButton.placeAt("content");
+				sap.ui.getCore().applyChanges();
+
+				oPopover.openBy(oButton);
+				this.clock.tick(500);
+				oPopover.close();
+
+				var oSpy = this.spy(oPopover.oPopup, "open");
+
+				//call openby twice in a row
+				oPopover.openBy(oButton);
+				oPopover.openBy(oButton);
+
+				this.clock.tick(500);
+				equal(oSpy.callCount, 1, "popup's open method should only be called once");
+
+				oPopover.destroy();
+				oButton.destroy();
 			});
 		</script>
 	</head>

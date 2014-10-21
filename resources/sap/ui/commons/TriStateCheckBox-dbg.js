@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,26 +59,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * TriStateCheckBox to reflect mixed state for checkboxes. The control can display three states, namely checked, unchecked and mixed. However, mixed state cannot be directly reached by user interaction on the particular control.
  * It can be only set by the control's public toggle function, to make a behaviour possible which is e.g. required in checkbox trees.
- * 
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.7.2
  * @name sap.ui.commons.TriStateCheckBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.TriStateCheckBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"toggle"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"selectionState" : {type : "sap.ui.commons.TriStateCheckBoxState", group : "Data", defaultValue : sap.ui.commons.TriStateCheckBoxState.Unchecked},
@@ -318,17 +313,14 @@ sap.ui.commons.TriStateCheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @name sap.ui.commons.TriStateCheckBox#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.selectionState
  *         Checks whether the box is flagged or not flagged.
- * 
  * @public
  */
  
@@ -339,7 +331,6 @@ sap.ui.commons.TriStateCheckBox.M_EVENTS = {'change':'change'};
  *  
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -390,18 +381,15 @@ sap.ui.commons.TriStateCheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Changes the current value of the control.
- * 
  *
- * @name sap.ui.commons.TriStateCheckBox.prototype.toggle
+ * @name sap.ui.commons.TriStateCheckBox#toggle
  * @function
- * @param {string} 
- *         sDestState
+ * @param {string} sDestState
  * 
  *         destined selection state of checkbox
- * 
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -474,7 +462,7 @@ if (this.getEnabled() && this.getEditable()) {
 /**
  * Method called whenever a user clicks on a tri-state checkbox
  *
- * @param destState 
+ * @param {sap.ui.commons.TriStateCheckBoxState} destState 
  * @public
  */
 sap.ui.commons.TriStateCheckBox.prototype.toggle = function(destState) {

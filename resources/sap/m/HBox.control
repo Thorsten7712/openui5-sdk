@@ -3,7 +3,7 @@
 
 	<name>HBox</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The HBox control builds the container for a horizontal flexible box layout. HBox is a convenience control as it is just a specialized FlexBox control.
 
 Browser support:

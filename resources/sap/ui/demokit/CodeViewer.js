@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.demokit.CodeViewer");jQuery.sap.require("sap.ui.demokit.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.demokit.CodeViewer",{metadata:{library:"sap.ui.demokit",properties:{"source":{type:"string",group:"Misc",defaultValue:null},"width":{type:"sap.ui.core.CSSSize",group:"Misc",defaultValue:null},"height":{type:"sap.ui.core.CSSSize",group:"Misc",defaultValue:null},"editable":{type:"boolean",group:"Misc",defaultValue:false},"visible":{type:"boolean",group:"Misc",defaultValue:true}},events:{"press":{},"save":{}}}});sap.ui.demokit.CodeViewer.M_EVENTS={'press':'press','save':'save'};

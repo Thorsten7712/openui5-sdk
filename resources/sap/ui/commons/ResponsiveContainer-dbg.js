@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,26 +56,24 @@ jQuery.sap.require("sap.ui.core.Control");
  * Is used to provide a container, which can show different content depending on its current width. It fires an event, whenever a new range is reached. In addition the content of the new range is automatically shown, if it is set.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ResponsiveContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ResponsiveContainer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'}
 	},
 	aggregations : {
-    	"ranges" : {type : "sap.ui.commons.ResponsiveContainerRange", multiple : true, singularName : "range"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"ranges" : {type : "sap.ui.commons.ResponsiveContainerRange", multiple : true, singularName : "range"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"defaultContent" : {type : "sap.ui.core.Control", multiple : false}
@@ -260,14 +258,13 @@ sap.ui.commons.ResponsiveContainer.M_EVENTS = {'rangeSwitch':'rangeSwitch'};
 
 	
 /**
- * The event is fired the width of the container reaches a new range. 
+ * The event is fired the width of the container reaches a new range.
  *
  * @name sap.ui.commons.ResponsiveContainer#rangeSwitch
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.commons.ResponsiveContainerRange} oControlEvent.getParameters.currentRange The current range
  * @public
  */
@@ -277,7 +274,7 @@ sap.ui.commons.ResponsiveContainer.M_EVENTS = {'rangeSwitch':'rangeSwitch'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ResponsiveContainer</code>.<br/> itself. 
  *  
- * The event is fired the width of the container reaches a new range. 
+ * The event is fired the width of the container reaches a new range.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

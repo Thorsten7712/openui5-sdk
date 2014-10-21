@@ -3,7 +3,7 @@
 
 	<name>FileUploadIntrospector</name>
 
-	<documentation>Add your documentation for the new FileUploadInspector</documentation>
+	<documentation>Control that allows to monitor uploaded files in a demo scenario. This is not a general purpose monitor but only works with the demo fileupload service.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>
@@ -22,6 +22,7 @@
 	</properties>
 	<methods>
 		<method name="refresh" type="sap.ui.core/void">
+			<documentation>Trigger an explicit refresh of the displayed information</documentation>
 		</method>
 	</methods>
 </control>

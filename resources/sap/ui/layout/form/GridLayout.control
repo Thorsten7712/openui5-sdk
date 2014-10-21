@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>form/GridLayout</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16.0</since>
 	<documentation>This Layout implements a guideline 2.0 grid. This can be a 16 column grid or an 8 column grid.
 

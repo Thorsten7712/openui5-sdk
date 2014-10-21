@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -30,10 +30,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './BindingMode'
 	 * This is an abstract base class for model objects.
 	 * @abstract
 	 *
-	 * @extends sap.ui.base.Object
+	 * @extends sap.ui.base.EventProvider
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 *
 	 * @constructor
 	 * @public
@@ -728,7 +728,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './BindingMode'
 	 * they are resolved relative to the root element or handled strict and
 	 * stay unresolved until a binding context is set
 	 *
-	 * @param {boolean} bCompatibleSyntax the path syntax to use
+	 * @param {boolean} bLegacySyntax the path syntax to use
 	 *
 	 * @public
 	 * @name sap.ui.model.Model#setLegacySyntax
@@ -753,7 +753,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './BindingMode'
 	
 	/**
 	 * Set the maximum number of entries which are used for for list bindings.
-	 * @param {int} collection size limit  
+	 * @param {int} iSizeLimit collection size limit  
 	 * @public
 	 * @name sap.ui.model.Model#setSizeLimit
 	 * @function

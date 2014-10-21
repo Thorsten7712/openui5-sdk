@@ -3,7 +3,7 @@
 
 	<name>ValueHelpField</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A TextField with an attached icon which triggeres an event.</documentation>
 
 	<baseType>sap.ui.commons/TextField</baseType>

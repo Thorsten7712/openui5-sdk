@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -21,7 +21,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Core'],
 		 * A helper used for (read-only) access to CSS parameters at runtime.
 		 *
 		 * @class A helper used for (read-only) access to CSS parameters at runtime
-		 * @author SAP AG
+		 * @author SAP SE
 		 * @static
 		 *
 		 * @public
@@ -39,10 +39,36 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Core'],
 		/*
 		 * Load parameters for a library/theme combination as identified by the URL of the library.css 
 		 */
-		function loadParameters(sUrl) {
-			var oResponse,
-				oResult;
-			
+		function loadParameters() {
+
+			// read inline parameters from css style rule
+			var sUrl = jQuery(this).css("background-image");
+			var aParams = /\(["']data:text\/plain;utf-8,(.*)["']\)$/i.exec(sUrl);
+			if (aParams && aParams.length >= 2) {
+				var sParams = aParams[1];
+
+				// decode only if necessary 
+				if (sParams.charAt(0) !== "{" && sParams.charAt(sParams.length - 1) !== "}") {
+					try {
+						sParams = decodeURI(sParams);
+					} catch (ex) {
+						jQuery.sap.log.warning("Could not decode theme parameters URI from library.css.");
+					}
+				}
+				try {
+					var oParams = jQuery.parseJSON(sParams);
+					jQuery.extend(mParameters, oParams);
+					return;
+				} catch (ex) {
+					jQuery.sap.log.warning("Could not parse theme parameters from library.css. Loading library-parameters.json as fallback solution.");
+				}
+			}
+
+			// load library-parameters.json (as fallback solution)
+			var sUrl = this.href,
+					oResponse,
+					oResult;
+
 			// derive parameter file URL from CSS file URL
 			// $1: name of library (incl. variants)
 			// $2: additional parameters, e.g. for sap-ui-merged use case
@@ -57,16 +83,15 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Core'],
 				if ( jQuery.isArray(oResult) ) {
 					// in the sap-ui-merged use case, multiple JSON files are merged into and transfered as a single JSON array  
 					for(var j=0; j<oResult.length; j++) {
-					  mParameters = jQuery.extend(mParameters, oResult[j]);
+					  jQuery.extend(mParameters, oResult[j]);
 					}
 				} else {
-				  mParameters = jQuery.extend(mParameters, oResult);
+				  jQuery.extend(mParameters, oResult);
 				}
 			} else {
 				// ignore failure at least temporarily as long as there are libraries built using outdated tools which produce no json file
 				jQuery.sap.log.warning("Could not load theme parameters from: " + sUrl); // could be an error as well, but let's avoid more CSN messages...
 			}
-	
 		}
 	
 		function getParameters() {
@@ -74,26 +99,26 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Core'],
 	
 				mParameters = {};
 				sTheme = sap.ui.getCore().getConfiguration().getTheme();
-				
-				jQuery("link[id^=sap-ui-theme-]").each(function() {
-					loadParameters(this.href);
-				});
-				
+
+				jQuery("link[id^=sap-ui-theme-]").each(loadParameters);
+
 			}
 			return mParameters;
 		}
 	
 		/**
 		 * Called by the Core when a new library and its stylesheet have been loaded.
-		 * @param {string} sUrl URL of the library stylesheet
+		 * Must be called AFTER a link-tag (with id: "sap-ui-theme" + sLibName) for the theme has been created.
+		 * @param {string} sLibName name of the theme library.
 		 * @private
 		 * @name sap.ui.core.theming.Parameters._addLibraryTheme
 		 * @function
 		 */
-		Parameters._addLibraryTheme = function(sUrl) {
+		Parameters._addLibraryTheme = function(sLibName) {
 			// only load parameters if someone had requested them before
 			if ( mParameters ) {
-				loadParameters(sUrl);
+				var oLink = jQuery.sap.domById("sap-ui-theme-" + sLibName);
+				loadParameters.apply(oLink);
 			}
 		};
 		
@@ -112,15 +137,51 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Core'],
 		Parameters.get = function(sName) {
 	
 			if (arguments.length == 1) {
-				return getParameters()[sName];
-	
+
+				var sParam = getParameters()[sName];
+
+				if (typeof sParam === "undefined" && typeof sName === "string") {
+					// compatibility for theming parameters with colon
+					var iIndex = sName.indexOf(":");
+					if (iIndex !== -1) {
+						sName = sName.substr(iIndex + 1);
+					}
+					sParam = getParameters()[sName];
+				}
+
+				return sParam;
+
 			} else if (arguments.length == 0) {
-				var clone = {};
-				return jQuery.extend(clone, getParameters());
-	
+				return jQuery.extend({}, getParameters());
 			} else {
 				return undefined;
 			}
+		};
+		
+		/**
+		 *
+		 * Uses the parameters provide to re-set the parameters map or
+		 * reloads them as usually.
+		 *
+		 * @param {Object} mLibraryParameters
+		 * @private
+		 * @name sap.ui.core.theming.Parameters._setOrLoadParameters
+		 * @function
+		 */
+		Parameters._setOrLoadParameters = function(mLibraryParameters) {
+			mParameters = {};
+			sTheme = sap.ui.getCore().getConfiguration().getTheme();
+			jQuery("link[id^=sap-ui-theme-]").each(function() {
+				var $this = jQuery(this);
+				var sLibname = $this.attr("id").substr(13);
+				if (mLibraryParameters[sLibname]) {
+					// if parameters are already provided for this lib, use them (e.g. from LessSupport)
+					jQuery.extend(mParameters, mLibraryParameters[sLibname]);
+				} else {
+					// otherwise use inline-parameters or library-parameters.json
+					loadParameters.apply(this);
+				}
+			});
 		};
 		
 		/**
@@ -155,7 +216,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Core'],
 				var match = /url[\s]*\('?"?([^\'")]*)'?"?\)/.exec(logo);
 				if(match){
 					logo = match[1];
-				}else if(logo === "''"){
+				}else if(logo === "''" || logo === "none"){
 					logo = null;
 				}
 			}

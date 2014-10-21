@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ViewSettingsCustomItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16</since>
 	<documentation>ViewSettingsCustomItem is used for modelling custom filters in the ViewSettingsDialog.</documentation>
 	<baseType>sap.m/ViewSettingsItem</baseType>

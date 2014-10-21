@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,19 +59,17 @@ jQuery.sap.require("sap.m.ListBase");
  * For mobile devices, the recommended limit of table rows is 100(based on 4 columns) to assure proper performance. To improve initial rendering on large tables, use the "growing" feature. Please refer to the SAPUI5 Developer Guide for more information
  * @extends sap.m.ListBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.Table
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListBase.extend("sap.m.Table", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"backgroundDesign" : {type : "sap.m.BackgroundDesign", group : "Appearance", defaultValue : sap.m.BackgroundDesign.Translucent},
@@ -79,7 +77,7 @@ sap.m.ListBase.extend("sap.m.Table", { metadata : {
 		"showOverlay" : {type : "boolean", group : "Appearance", defaultValue : false}
 	},
 	aggregations : {
-    	"columns" : {type : "sap.m.Column", multiple : true, singularName : "column"}
+		"columns" : {type : "sap.m.Column", multiple : true, singularName : "column"}
 	}
 }});
 
@@ -275,8 +273,8 @@ sap.m.Table.prototype.init = function() {
 };
 
 sap.m.Table.prototype.onBeforeRendering = function() {
-	this.getDomRef() && this._notifyColumns("ItemsRemoved");
 	sap.m.ListBase.prototype.onBeforeRendering.call(this);
+	this._notifyColumns("ItemsRemoved");
 	this._navRenderedBy = "";
 };
 
@@ -500,7 +498,7 @@ sap.m.Table.prototype.onColumnResize = function(oColumn) {
 /*
  * This method is called from Column control when column visibility is changed via CSS media query
  *
- * @param bColVisible {boolean} whether column is now visible or not
+ * @param {boolean} bColVisible whether column is now visible or not
  * @protected
  */
 sap.m.Table.prototype.setTableHeaderVisibility = function(bColVisible) {

@@ -287,7 +287,8 @@
 				{ "name" : "expand-group" },
 				{ "name" : "collapse-group" },
 				{ "name" : "sort-descending" },
-				{ "name" : "sort-ascending" }
+				{ "name" : "sort-ascending" },
+				{ "name" : "arrow-down" }
 			]
 		},
 		

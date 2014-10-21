@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>SearchField</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Enables users to input a search string.</documentation>
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>
@@ -26,14 +26,17 @@
 		</property>
 		<property group="Misc" name="showMagnifier" type="sap.ui.core/boolean" defaultValue="true">
 			<documentation>Set to false to hide the magnifier icon.</documentation>
-			<deprecation since="1.16.0">This parameter was introduced for the obsolete sap_mvi theme due to differences in native rendering of the search field on different devices. It is ignored in the sap_bluecrystal theme that has common design for all devices.</deprecation>
+			<deprecation since="1.16.0">This parameter is deprecated. Use &quot;showSearchButton&quot; instead.</deprecation>
 		</property>
 		<property group="Behavior" name="showRefreshButton" type="sap.ui.core/boolean" defaultValue="false"  since="1.16">
-			<documentation>Set to true to display a &quot;refresh&quot; button. By pressing the refresh button, the user can reload the results list without changing the search string. This is a visual clue only: a normal search event is fired when a user presses on a refresh button.
-</documentation>
+			<documentation>Set to true to display a refresh button in place of the search icon. By pressing the refresh button or F5 key on keyboard, the user can reload the results list without changing the search string. </documentation>
 		</property>
 		<property group="Misc" name="refreshButtonTooltip" type="sap.ui.core/string" since="1.16">
 			<documentation>Tooltip text of the refresh button. If it is not set, the tooltip of the SearchField (if any) is displayed. Tooltips are not displayed on touch devices.</documentation>
+		</property>
+		<property group="Behavior" name="showSearchButton" type="sap.ui.core/boolean" defaultValue="true"  since="1.23">
+			<documentation>Set to true to show the search button with the magnifier icon.
+If false, both the search and refresh buttons are not displayed even if the &quot;showRefreshButton&quot; property is true.</documentation>
 		</property>
 		<property group="Behavior" name="selectOnFocus" type="sap.ui.core/boolean" defaultValue="true" since="1.20">
 			<documentation>Normally, search text is selected for copy when the SearchField is focused by keyboard navigation. If an application re-renders the SearchField during the liveChange event, set this property to false to disable text selection by focus.</documentation>

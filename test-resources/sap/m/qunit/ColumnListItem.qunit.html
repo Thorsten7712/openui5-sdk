@@ -18,6 +18,7 @@
 
 	<!-- QUnit libraries -->
 	<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 	<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<script type="text/javascript">
@@ -51,7 +52,6 @@
 				result = sut.removePopin();
 
 				// Assert
-				equal(sut, result,"method is chainable");
 				ok(hasPopin,"did have a popin before deleting it");
 				ok(sut._popinId === "", "popinId Property is cleared");
 				equal(jQuery("#" + popinId).length, 0,"popin got removed from dom");

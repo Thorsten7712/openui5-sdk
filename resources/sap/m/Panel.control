@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Panel</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The Panel control is a container for controls with a solid background and a header text.</documentation>
 	<since>1.16</since>
 	<baseType>sap.ui.core/Control</baseType>

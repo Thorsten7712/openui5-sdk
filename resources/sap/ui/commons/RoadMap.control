@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>RoadMap</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Is used to display step-by-step work flows of a clearly defined work process</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

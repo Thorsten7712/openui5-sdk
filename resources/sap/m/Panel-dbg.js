@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,19 +61,17 @@ jQuery.sap.require("sap.ui.core.Control");
  * The Panel control is a container for controls with a solid background and a header text.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.Panel
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Panel", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -85,9 +83,9 @@ sap.ui.core.Control.extend("sap.m.Panel", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"headerToolbar" : {type : "sap.m.Toolbar", multiple : false}, 
-    	"infoToolbar" : {type : "sap.m.Toolbar", multiple : false}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"headerToolbar" : {type : "sap.m.Toolbar", multiple : false}, 
+		"infoToolbar" : {type : "sap.m.Toolbar", multiple : false}
 	},
 	events : {
 		"expand" : {}
@@ -420,7 +418,7 @@ sap.m.Panel.M_EVENTS = {'expand':'expand'};
 
 
 /**
- * Indicates that the panel will expand or collapse 
+ * Indicates that the panel will expand or collapse
  *
  * @name sap.m.Panel#expand
  * @event
@@ -428,7 +426,6 @@ sap.m.Panel.M_EVENTS = {'expand':'expand'};
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.expand If the panel will expand, this is true. If the panel will collapse, this is false.
  * @public
  */
@@ -438,7 +435,7 @@ sap.m.Panel.M_EVENTS = {'expand':'expand'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Panel</code>.<br/> itself. 
  *  
- * Indicates that the panel will expand or collapse 
+ * Indicates that the panel will expand or collapse
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -494,7 +491,7 @@ sap.m.Panel.prototype.init = function() {
 /**
  * Sets the width of the panel.
  * 
- * @param {string}
+ * @param {sap.ui.core.CSSSize}
  *          sWidth the width of the panel as CSS size
  * @return {sap.m.Panel} <code>this</code> to allow method chaining
  * @public
@@ -511,7 +508,7 @@ sap.m.Panel.prototype.setWidth = function(sWidth) {
 /**
  * Sets the height of the panel.
  * 
- * @param {string}
+ * @param {sap.ui.core.CSSSize}
  *          sHeight the height of the panel as CSS size
  * @return {sap.m.Panel} <code>this</code> to allow method chaining
  * @public
@@ -528,7 +525,7 @@ sap.m.Panel.prototype.setHeight = function(sHeight) {
 /**
  * Sets the expandable property of the control.
  * 
- * @param {sap.ui.core/boolean}
+ * @param {boolean}
  *          bExpandable defining whether control "expandable" - if yes infoToolbar (if available) and content can be
  *          collapsed/expanded
  * @return {sap.m.Panel} <code>this</code> to allow method chaining
@@ -562,7 +559,7 @@ sap.m.Panel.prototype.setExpandable = function(bExpandable) {
 /**
  * Sets the expanded property of the control.
  * 
- * @param {sap.ui.core/boolean}
+ * @param {boolean}
  *          bExpanded defining whether control is expanded or not
  * @return {sap.m.Panel} <code>this</code> to allow method chaining
  * @public

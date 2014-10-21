@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -18,13 +18,13 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/NumberFormat', 'sap/ui/m
 	 *
 	 * @extends sap.ui.model.SimpleType
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 *
 	 * @constructor
 	 * @public
 	 * @param {object} [oFormatOptions] formatting options. Supports the same options as {@link sap.ui.core.format.NumberFormat.getFloatInstance NumberFormat.getFloatInstance}
-	 * @param {object} [oConstraint]s value constraints. 
+	 * @param {object} [oConstraints] value constraints. 
 	 * @param {float} [oConstraints.minimum] smallest value allowed for this type  
 	 * @param {float} [oConstraints.maximum] largest value allowed for this type  
 	 * @name sap.ui.model.type.Float 

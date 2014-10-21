@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -34,6 +34,7 @@ jQuery.sap.require("sap.ui.core.LayoutData");
  * <li>{@link #getAlignSelf alignSelf} : sap.m.FlexAlignSelf (default: sap.m.FlexAlignSelf.Auto)</li>
  * <li>{@link #getOrder order} : int (default: 0)</li>
  * <li>{@link #getGrowFactor growFactor} : float (default: 0)</li>
+ * <li>{@link #getShrinkFactor shrinkFactor} : float (default: 1)</li>
  * <li>{@link #getStyleClass styleClass} : string (default: '')</li></ul>
  * </li>
  * <li>Aggregations
@@ -57,24 +58,21 @@ jQuery.sap.require("sap.ui.core.LayoutData");
  * @class
  * Holds layout data for a FlexBox
  * @extends sap.ui.core.LayoutData
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.FlexItemData
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.LayoutData.extend("sap.m.FlexItemData", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"alignSelf" : {type : "sap.m.FlexAlignSelf", group : "Misc", defaultValue : sap.m.FlexAlignSelf.Auto},
 		"order" : {type : "int", group : "Misc", defaultValue : 0},
 		"growFactor" : {type : "float", group : "Misc", defaultValue : 0},
+		"shrinkFactor" : {type : "float", group : "Misc", defaultValue : 1},
 		"styleClass" : {type : "string", group : "Misc", defaultValue : '', deprecated: true}
 	}
 }});
@@ -173,6 +171,37 @@ sap.ui.core.LayoutData.extend("sap.m.FlexItemData", { metadata : {
 
 
 /**
+ * Getter for property <code>shrinkFactor</code>.
+ * The shrink factor determines how much the flex item will shrink relative to the rest of the flex items in the flex container when negative free space is distributed.
+ * 
+ * http://www.w3.org/TR/css3-flexbox/#flex-shrink-factor
+ * 
+ * This property is not supported in Internet Explorer 9, Android Native Browser/Webview <4.4, and Safari <7.
+ *
+ * Default value is <code>1</code>
+ *
+ * @return {float} the value of property <code>shrinkFactor</code>
+ * @public
+ * @since 1.24
+ * @name sap.m.FlexItemData#getShrinkFactor
+ * @function
+ */
+
+/**
+ * Setter for property <code>shrinkFactor</code>.
+ *
+ * Default value is <code>1</code> 
+ *
+ * @param {float} fShrinkFactor  new value for property <code>shrinkFactor</code>
+ * @return {sap.m.FlexItemData} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.24
+ * @name sap.m.FlexItemData#setShrinkFactor
+ * @function
+ */
+
+
+/**
  * Getter for property <code>styleClass</code>.
  * The style class will be applied to the flex item and can be used for CSS selectors
  *
@@ -222,12 +251,11 @@ sap.m.FlexItemData.prototype.setGrowFactor = function(sValue) {
 	return this;
 };
 
-//TODO Uncomment when property is supported by any browser
-/*sap.m.FlexItemData.prototype.setShrinkFactor = function(sValue) {
+sap.m.FlexItemData.prototype.setShrinkFactor = function(sValue) {
 	this.setProperty("shrinkFactor", sValue, true);
 	sap.m.FlexBoxStylingHelper.setStyle(null, this, "flex-shrink", sValue);
 	return this;
-};*/
+};
 
 //TODO Uncomment when property is supported by any browser
 /*sap.m.FlexItemData.prototype.setBaseSize = function(sValue) {

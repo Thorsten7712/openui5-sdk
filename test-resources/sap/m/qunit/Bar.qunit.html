@@ -14,12 +14,15 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
 		<script>
-		
+
+		(function () {
+
 			module("rendering");
 			//required if you spy a property on the prototype before using the contructor.
 			jQuery.sap.require("sap.m.Bar");
@@ -236,6 +239,11 @@
 				// Cleanup
 				oBar.destroy();
 			});
+
+			//Firefox has flexbox therefore positioning is different
+			if(sap.ui.Device.browser.firefox) {
+				return;
+			}
 
 			module("positioning");
 
@@ -739,6 +747,8 @@
 				sut.destroy();
 				jQuery("#qunit-fixture").width("");
 			});
+			
+		})();
 		</script>
 
 	</head>

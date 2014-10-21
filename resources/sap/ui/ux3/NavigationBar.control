@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>NavigationBar</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Provides enhanced navigation capabilities and is the parent control of NavigationItem. It is displayed in the form of a horizontal line 
 	with switching markers depending on the currently selected item. The size of an item which is currently chosen by the user is enlarged. In the case 
 	that a large number of items are defined for the bar, this is made transparent to the user by showing symbols for scrolling options (forwards and backwards) 

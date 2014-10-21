@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -21,7 +21,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 *
 	 * @class Delegate for the ItemNavigation with the keyboard.
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
 	 *
 	 * Delegate for the ItemNavigation with
 	 * arrow keys over a one dimensional list of items.
@@ -93,7 +93,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @param {Element[]} aItemDomRefs Array of DOM elements representing the items for the navigation
 	 * @param {boolean} [bNotInTabChain=false] Whether the selected element should be in the tab chain or not
 	 *
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @constructor
 	 * @name sap.ui.core.delegate.ItemNavigation
 	 * @public
@@ -185,7 +185,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * Returns disabled modifiers 
 	 * These modifiers will not be handled by ItemNavigation
 	 * 
-	 * @return {Object} 
+	 * @param {object} oDisabledModifiers
+	 * @return {object} 
 	 * @public
 	 * @name sap.ui.core.delegate.ItemNavigation#getDisabledModifiers
 	 * @function
@@ -219,6 +220,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	/**
 	 * Sets the root reference surrounding the items
 	 *
+	 * @param {object} oDomRef
 	 * @return {sap.ui.core.delegate.ItemNavigation} <code>this</code> to allow method chaining
 	 * @public
 	 * @name sap.ui.core.delegate.ItemNavigation#setRootDomRef
@@ -268,6 +270,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	/**
 	 * Sets the item dom refs as an array the items
 	 *
+	 * @param {any[]} aItemDomRefs
 	 * @return {sap.ui.core.delegate.ItemNavigation} <code>this</code> to allow method chaining
 	 * @public
 	 * @name sap.ui.core.delegate.ItemNavigation#setItemDomRefs
@@ -503,8 +506,22 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 			return; // item already focused -> nothing to do
 		}
 
-		// if there is no item to put the focus on, we don't even try it
+		// if there is no item to put the focus on, we don't even try it, if working in table mode we just focus the next item
 		if (!this.aItemDomRefs[iIndex] || !jQuery(this.aItemDomRefs[iIndex]).is(":sapFocusable")) {
+			if (this.bTableMode) {
+				var iCol = iIndex % this.iColumns;
+				
+				if (oEvent.keyCode == jQuery.sap.KeyCodes.ARROW_RIGHT) {
+					if (iCol < this.iColumns - 1) {
+						iIndex += 1;
+					}
+				} else {
+					if (iCol > 1) {
+						iIndex -= 1;
+					}
+				}
+				this.focusItem(iIndex, oEvent);
+			}
 			return;
 		}
 

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="UTF-8">
-	<title>Test Page for sap.m.Toolbar</title>
-	<script id="sap-ui-bootstrap"
-			data-sap-ui-noConflict="true"
-			src="../../../../resources/sap-ui-core.js"
-			data-sap-ui-libs="sap.m"
-			data-sap-ui-theme="sap_bluecrystal">
-	</script>
-	<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
-	<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-	<script src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
-	<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
-	<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
-	<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<title>Test Page for sap.m.Toolbar</title>
+<script id="sap-ui-bootstrap"
+		data-sap-ui-noConflict="true"
+		src="../../../../resources/sap-ui-core.js"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-theme="sap_bluecrystal">
+</script>
+<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
+<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
+<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <script>
 	jQuery.sap.require("sap.m.Toolbar");
@@ -382,6 +382,7 @@
 		
 		ok(oTB._sResizeListenerId, "Toolbar has resize handler");
 		ok(oTB.$().hasClass("sapMTBOldFlex"), "Toolbar has correct sapMTBOldFlex class");
+		strictEqual(oTB.$().find(".sapMLabel").css("display"), "block", "Display is set to block for shrinkable item");
 		strictEqual(spy.callCount, 1, "Content resize handler is registered once");
 		oTB.destroy();
 	});
@@ -507,9 +508,9 @@
 			var oTB = createToolbar(oConfig || {});
 			var oDomRef = oTB.getDomRef();
 			sMessage += " so Toolbar should not overflow";
-			strictEqual(oDomRef.scrollWidth, oDomRef.clientWidth, sMessage + ".");
+			ok(oDomRef.scrollWidth === oDomRef.clientWidth, sMessage + ".");
 			oTB.setWidth("500px")._reflexie();	// runs the polyfill
-			strictEqual(oDomRef.scrollWidth, oDomRef.clientWidth, sMessage + " even after resize.");
+			ok(oDomRef.scrollWidth === oDomRef.clientWidth, sMessage + " even after resize.");
 			oTB.destroy();
 		};
 		

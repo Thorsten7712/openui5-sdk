@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -69,22 +69,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * entries and thereby trigger the display of further information, depending on the chosen entry/entries (multiple selection supported).
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ExactBrowser
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ExactBrowser", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"reset"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -101,10 +99,10 @@ sap.ui.core.Control.extend("sap.ui.ux3.ExactBrowser", { metadata : {
 	},
 	defaultAggregation : "attributes",
 	aggregations : {
-    	"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
-    	"optionsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
-    	"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}, 
-    	"rootAttribute" : {type : "sap.ui.core.Element", multiple : false, visibility : "hidden"}
+		"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
+		"optionsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
+		"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}, 
+		"rootAttribute" : {type : "sap.ui.core.Element", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"followUpControl" : {type : "sap.ui.core.Control", multiple : false}
@@ -536,7 +534,6 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * 
  * The successor control of the Exact Browser. The id of this control is used in the ARIA description of the control.
  * Additionally it is possible to directly jump to this control via the F6 key.
- * 
  *
  * @return {string} Id of the element which is the current target of the <code>followUpControl</code> association, or null
  * @public
@@ -548,7 +545,6 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * 
  * The successor control of the Exact Browser. The id of this control is used in the ARIA description of the control.
  * Additionally it is possible to directly jump to this control via the F6 key.
- * 
  *
  * @param {string | sap.ui.core.Control} vFollowUpControl 
  *    Id of an element which becomes the new target of this <code>followUpControl</code> association.
@@ -562,14 +558,13 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
 
 	
 /**
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @name sap.ui.ux3.ExactBrowser#attributeSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.attribute The attribute which was selected or unselected recently
  * @param {object} oControlEvent.getParameters.allAttributes Array of all selected ExactAttributes
  * @public
@@ -580,7 +575,7 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactBrowser</code>.<br/> itself. 
  *  
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -628,14 +623,13 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
 
 
 /**
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @name sap.ui.ux3.ExactBrowser#save
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -644,7 +638,7 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactBrowser</code>.<br/> itself. 
  *  
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -688,11 +682,11 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
 /**
  * Deselects all currently selected attributes and closes all attribute lists.
  *
- * @name sap.ui.ux3.ExactBrowser.prototype.reset
+ * @name sap.ui.ux3.ExactBrowser#reset
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

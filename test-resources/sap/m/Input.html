@@ -25,7 +25,7 @@
 			suggestUrl: "../../../proxy/http/en.wikipedia.org/w/api.php?action=opensearch&namespace=0&search={searchTerms}",
 			suggestType: "json"
 		});
-		
+
 		var oSuggestInput1 = new sap.m.Input("suginput1", {
 			placeholder: "Suggest starts with 2 letters",
 			showSuggestion: true,
@@ -291,7 +291,7 @@
 			suggestionColumns: [
 				new sap.m.Column({
 					styleClass: "name",
-					hAlign: "Left",
+					hAlign: "Begin",
 					header: new sap.m.Label({
 						text: "{i18n>/Name}"
 					})
@@ -317,7 +317,7 @@
 					demandPopin : true
 				}),
 				new sap.m.Column({
-					hAlign : "Right",
+					hAlign : "End",
 					styleClass : "price",
 					width : "30%",
 					popinDisplay : "Inline",
@@ -348,7 +348,7 @@
 			suggestionColumns : [
 				new sap.m.Column({
 					styleClass : "name",
-					hAlign : "Left",
+					hAlign : "Begin",
 					header : new sap.m.Label({
 						text : "{i18n>/Name}"
 					})
@@ -374,7 +374,7 @@
 					demandPopin : true
 				}),
 				new sap.m.Column({
-					hAlign : "Right",
+					hAlign : "End",
 					styleClass : "price",
 					width : "30%",
 					popinDisplay : "Inline",
@@ -427,7 +427,7 @@
 			suggestionColumns : [
 				new sap.m.Column({
 					styleClass : "name",
-					hAlign : "Left",
+					hAlign : "Begin",
 					header : new sap.m.Label({
 						text : "{i18n>/Name}"
 					})
@@ -453,7 +453,7 @@
 					demandPopin : true
 				}),
 				new sap.m.Column({
-					hAlign : "Right",
+					hAlign : "End",
 					styleClass : "price",
 					width : "30%",
 					popinDisplay : "Inline",
@@ -489,7 +489,7 @@
 			suggestionColumns : [
 				new sap.m.Column({
 					styleClass : "name",
-					hAlign : "Left",
+					hAlign : "Begin",
 					header : new sap.m.Label({
 						text : "{i18n>/Name}"
 					})
@@ -515,7 +515,7 @@
 					demandPopin : true
 				}),
 				new sap.m.Column({
-					hAlign : "Right",
+					hAlign : "End",
 					styleClass : "price",
 					width : "30%",
 					popinDisplay : "Inline",
@@ -554,7 +554,7 @@
 			suggestionColumns : [
 				new sap.m.Column({
 					styleClass : "name",
-					hAlign : "Left",
+					hAlign : "Begin",
 					header : new sap.m.Label({
 						text : "{i18n>/Name}"
 					})
@@ -580,7 +580,7 @@
 					demandPopin : true
 				}),
 				new sap.m.Column({
-					hAlign : "Right",
+					hAlign : "End",
 					styleClass : "price",
 					width : "30%",
 					popinDisplay : "Inline",
@@ -619,7 +619,7 @@
 			suggestionColumns : [
 				new sap.m.Column({
 					styleClass : "name",
-					hAlign : "Left",
+					hAlign : "Begin",
 					header : new sap.m.Label({
 						text : "{i18n>/Name}"
 					})
@@ -645,7 +645,7 @@
 					demandPopin : true
 				}),
 				new sap.m.Column({
-					hAlign : "Right",
+					hAlign : "End",
 					styleClass : "price",
 					width : "30%",
 					popinDisplay : "Inline",
@@ -691,7 +691,7 @@
 					oSuggestTableInput7.removeAllSuggestionColumns();
 					oSuggestTableInput7.addSuggestionColumn(new sap.m.Column({
 						styleClass : "name",
-						hAlign : "Left",
+						hAlign : "Begin",
 						header : new sap.m.Label({
 							text : "{i18n>/Name}"
 						})
@@ -717,7 +717,7 @@
 						demandPopin : true
 					}));
 					oSuggestTableInput7.addSuggestionColumn(new sap.m.Column({
-						hAlign : "Right",
+						hAlign : "End",
 						styleClass : "price",
 						width : "30%",
 						popinDisplay : "Inline",
@@ -762,6 +762,11 @@
 					text: "Input in List",
 					press: function(){
 						app.to("page3");
+					}
+				}), new sap.m.Button({
+					text: "Input Data Update",
+					press: function(){
+						app.to("page4");
 					}
 				})]
 			});
@@ -808,7 +813,53 @@
 					oSuggestTableInput4,
 					oSuggestTableInput5,
 					oSuggestTableInput6,
-					oSuggestTableInput7
+					oSuggestTableInput7,
+					new sap.m.Input({
+						value: "10",
+						description: "PC",
+						width:"100px",
+						fieldWidth:"60%"
+					}),
+					new sap.m.Input({
+						value: "EDP_LAPTOP",
+						description: "IT Laptops",
+						width:"200px",
+						fieldWidth:"50%"
+					}),
+					new sap.m.Input({
+						value: "long input long input long input long input",
+						description: "long description long description long description long description long description long description long description long description long description long description long description long description "		
+					}),
+					new sap.m.Input({
+						value: "220",
+						description: "EUR / 5 pieses",
+						fieldWidth: "30%"
+					}),
+					new sap.m.Input({
+						value: "220",
+						description: "EUR",
+						fieldWidth: "30%"
+					}),
+					new sap.m.Input({
+						value: "220",
+						description: "Trinidad and Tobago Dollar",
+						fieldWidth: "30%"
+					}),
+					new sap.m.Input({
+						value: "220",
+						description: "East Caribbean Dollar",
+						fieldWidth: "30%"
+					}),
+					new sap.m.Input({
+						value: "220.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000",
+						description: "EUR",
+						fieldWidth: "85%"
+					}),
+					new sap.m.Input({
+						value: "007",
+						description: "Bastian Schweinsteigerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+						fieldWidth: "20%"
+					})
 			],
 			footer: createFooter()
 		});
@@ -870,8 +921,22 @@
 			new sap.m.Input({value: "ValueHelpOnly", showValueHelp: true, valueHelpOnly: true, valueHelpRequest: function(evt) { sap.m.MessageBox.alert("Value help requested"); }}),
 		]}));
 		page3.addContent(list);
-		app.addPage(page1).addPage(page2).addPage(page3);
 		
+		var page4 = new sap.m.Page("page4",{
+			title: "Input Data Update",
+			footer: createFooter()
+		});
+
+		var p4i1 = new sap.m.Input();		
+		p4i1.setModel(oModel2);
+		p4i1.bindValue("/0/name");
+
+		page4.addContent(new sap.m.Label({text: "JSON Model binding"}));
+		page4.addContent(p4i1);
+		page4.addContent(new sap.m.Button({text: "Submit", press: function() {
+			alert(oModel2.getProperty('/0/name'));
+		}}));
+		app.addPage(page1).addPage(page2).addPage(page3).addPage(page4);
 		app.placeAt("body");
 		
 </script>

@@ -16,9 +16,13 @@
 		<property group="Misc" name="growFactor" type="sap.ui.core/float" defaultValue="0">
 			<documentation>Determines the flexibility of the flex item when allocatable space is remaining.</documentation>
 		</property>
-<!-- 		<property group="Misc" name="shrinkFactor" type="sap.ui.core/float" defaultValue="1"> -->
-<!-- 			<documentation>Determines the flexibility of the flex item when the available space would be insufficient for all box items.</documentation> -->
-<!-- 		</property> -->
+		<property group="Misc" name="shrinkFactor" type="sap.ui.core/float" defaultValue="1" since="1.24">
+			<documentation>The shrink factor determines how much the flex item will shrink relative to the rest of the flex items in the flex container when negative free space is distributed.
+			
+			http://www.w3.org/TR/css3-flexbox/#flex-shrink-factor
+
+This property is not supported in Internet Explorer 9, Android Native Browser/Webview &lt;4.4, and Safari &lt;7.</documentation>
+		</property>
 <!-- 		<property group="Misc" name="baseSize" type="sap.ui.core/CSSSize" defaultValue="auto"> -->
 <!-- 			<documentation>Sets the base size of the flex item</documentation> -->
 <!-- 		</property> -->

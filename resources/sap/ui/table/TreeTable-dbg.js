@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,23 +57,19 @@ jQuery.sap.require("sap.ui.table.Table");
  * @class
  * The TreeTable Control.
  * @extends sap.ui.table.Table
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.table.TreeTable
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.table.Table.extend("sap.ui.table.TreeTable", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"expand", "collapse", "isExpanded"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.table",
 	properties : {
 		"expandFirstLevel" : {type : "boolean", group : "", defaultValue : false},
@@ -181,14 +177,13 @@ sap.ui.table.TreeTable.M_EVENTS = {'toggleOpenState':'toggleOpenState'};
 
 
 /**
- * fired when a node has been expanded or collapsed (only available in hierachical mode) 
+ * fired when a node has been expanded or collapsed (only available in hierachical mode)
  *
  * @name sap.ui.table.TreeTable#toggleOpenState
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.rowIndex index of the expanded/collapsed row
  * @param {object} oControlEvent.getParameters.rowContext binding context of the selected row
  * @param {boolean} oControlEvent.getParameters.expanded flag whether the node has been expanded or collapsed
@@ -200,7 +195,7 @@ sap.ui.table.TreeTable.M_EVENTS = {'toggleOpenState':'toggleOpenState'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.TreeTable</code>.<br/> itself. 
  *  
- * fired when a node has been expanded or collapsed (only available in hierachical mode) 
+ * fired when a node has been expanded or collapsed (only available in hierachical mode)
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -251,42 +246,39 @@ sap.ui.table.TreeTable.M_EVENTS = {'toggleOpenState':'toggleOpenState'};
 /**
  * expands the row for the given row index
  *
- * @name sap.ui.table.TreeTable.prototype.expand
+ * @name sap.ui.table.TreeTable#expand
  * @function
- * @param {int} 
- *         iRowIndex
+ * @param {int} iRowIndex
  *         index of the row to expand
-
  * @type sap.ui.table.TreeTable
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * collapses the row for the given row index
  *
- * @name sap.ui.table.TreeTable.prototype.collapse
+ * @name sap.ui.table.TreeTable#collapse
  * @function
- * @param {int} 
- *         iRowIndex
+ * @param {int} iRowIndex
  *         index of the row to collapse
-
  * @type sap.ui.table.TreeTable
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * returns whether the row is expanded or collapsed
  *
- * @name sap.ui.table.TreeTable.prototype.isExpanded
+ * @name sap.ui.table.TreeTable#isExpanded
  * @function
- * @param {int} 
- *         iRowIndex
+ * @param {int} iRowIndex
  *         index of the row to check
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -306,8 +298,7 @@ sap.ui.table.TreeTable.prototype.init = function() {
 		jQuery.sap.require("sap.ui.core.IconPool");
 		sap.ui.core.IconPool.insertFontFaceStyle();
 		
-		// defaulting the rowHeight
-		this.setRowHeight(32);
+		// defaulting the rowHeight -> is set via CSS 
 		
 	}
 	

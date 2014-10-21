@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=45847939493366785"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6650829138343005"/>
 <title>Implementing an OData Model</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -32,7 +34,7 @@
 			<div class="note note" id="loio91f11c116f4d1014b6dd926db0e91070__note_N10020_N10013_N10001"><span class="notetitle">Note</span> Be aware of the Same-Origin-Policy security concept
 				which prevents access to backends on different domains or sites.</div>
 
-		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps" id="loio91f11c116f4d1014b6dd926db0e91070__steps_ejn_4zs_5k"><li class="li step stepexpand"><span class="ph cmd">To create an OData model instance: </span> 
+		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><ol class="ol steps" id="loio91f11c116f4d1014b6dd926db0e91070__steps_ejn_4zs_5k"><li class="li step stepexpand"><span class="ph cmd">To create an OData model instance: </span><div class="itemgroup info">
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.odata.ODataModel("http://services.odata.org/Northwind/Northwind.svc/");</pre></div>
 
 					<p class="p">Requests to the service to fetch data are made automatically according to the
@@ -42,8 +44,8 @@
 						instance can only cover one OData service. If you need access to multiple
 						services, you have to create multiple instances of the OData model. </p>
 
-				</li>
-<li class="li step stepexpand"><span class="ph cmd">To add additional parameters: </span> 
+				</div></li>
+<li class="li step stepexpand"><span class="ph cmd">To add additional parameters: </span><div class="itemgroup info">
 					<p class="p">When using OData services, you can use URL parameters for configuration.
 						SAPUI5 sets most of the required URL parameters automatically according to
 						the data binding. Two options for adding custom parameters to the request
@@ -57,7 +59,7 @@
 
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oModel = new sap.ui.model.odata.ODataModel("http://myserver/MyService.svc/?custom1=value1&amp;custom2=value2");</pre></div>
 
-				</li>
+				</div></li>
 <li class="li step stepexpand"><span class="ph cmd">For other parameters it makes no sense to include them in every request. These
 					parameters should only be added to specific aggregation or element bindings, for
 					example, <samp class="ph codeph">$expand</samp> or <samp class="ph codeph">$select</samp>. For this, the
@@ -100,7 +102,7 @@ oTable.bindRows({
 					</li>
 </ul>
 </li>
-<li class="li step stepexpand"><span class="ph cmd">To add custom query options:</span> 
+<li class="li step stepexpand"><span class="ph cmd">To add custom query options:</span><div class="itemgroup info">
 					<p class="p">You can add custom query options by placing them as a query string in the
 						URL. The name of a query string does <strong class="ph b">not</strong> begin with a $
 						character:</p>
@@ -118,8 +120,8 @@ oTable.bindRows({
 
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">oTextField.bindElement("/GetProducts", { custom: { "price" : "500" } });</pre></div>
 
-				</li>
-<li class="li step stepexpand"><span class="ph cmd">To create virtual entries:</span> 
+				</div></li>
+<li class="li step stepexpand"><span class="ph cmd">To create virtual entries:</span><div class="itemgroup info">
 					<p class="p">You can create empty objects for a specified collection name. The application
 						can bind against these objects. By calling the
 							<samp class="ph codeph">submitChanges</samp> function, you can determine the point in
@@ -148,7 +150,7 @@ oTable.bindRows({
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint"> // provide optional success and error functions which are called for each request in the queue
  oModel.submitChanges(fnSuccess, fnError); </pre></div>
 
-				</li>
+				</div></li>
 </ol>
 <div class="section postreq"><div class="tasklabel"><h2 class="sectiontitle tasklabel">Next Steps</h2></div>
 			<p class="p">The default binding mode of the OData model is one-way, but as experimental write
@@ -160,11 +162,6 @@ oTable.bindRows({
 				<a class="xref" href="../../docs/api/symbols/sap.ui.model.odata.ODataModel.html">sap.ui.model.odata.ODataModel</a></p>
 
 		</div></div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
-</div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--
  var page_title="Implementing an OData Model";

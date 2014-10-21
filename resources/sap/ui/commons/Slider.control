@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Slider</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>The interactive control is displayed as a horizontal line with a pointer and units of measurement. 
         Users can move the pointer along the line to change values with graphical support.</documentation>

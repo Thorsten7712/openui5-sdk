@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,18 +61,16 @@ jQuery.sap.require("sap.m.NavContainer");
  * It also adds certain header tags to the HTML page which are considered useful for mobile apps.
  * @extends sap.m.NavContainer
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.App
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.NavContainer.extend("sap.m.App", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"homeIcon" : {type : "any", group : "Misc", defaultValue : null},
@@ -266,7 +264,7 @@ sap.m.App.M_EVENTS = {'orientationChange':'orientationChange'};
 
 
 /**
- * Fired when the orientation (portrait/landscape) of the device is changed. 
+ * Fired when the orientation (portrait/landscape) of the device is changed.
  *
  * @name sap.m.App#orientationChange
  * @event
@@ -275,7 +273,6 @@ sap.m.App.M_EVENTS = {'orientationChange':'orientationChange'};
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.landscape Whether the device is in landscape orientation.
  * @public
  */
@@ -285,7 +282,7 @@ sap.m.App.M_EVENTS = {'orientationChange':'orientationChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.App</code>.<br/> itself. 
  *  
- * Fired when the orientation (portrait/landscape) of the device is changed. 
+ * Fired when the orientation (portrait/landscape) of the device is changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

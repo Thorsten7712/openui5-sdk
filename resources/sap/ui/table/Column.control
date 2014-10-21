@@ -54,7 +54,7 @@
 			<documentation>Invisible controls are not rendered.</documentation>
 		</property>
 		<property group="Misc" name="filterType" type="any" since="1.9.2">
-			<documentation>Type of Filter. This is used to transform the search term to the specified type, to make sure that the right columns are displayed. This should be the same as defined in binding for this column. Alternativly, you can pass a function which does the conversion or the classname of the type, e.g.: sap.ui.model.type.Date. The functions only parameter is the string to convert. By default the filter type is sap.ui.model.type.String.</documentation>
+			<documentation>Type of Filter. This is used to transform the search term to the specified type, to make sure that the right columns are displayed. This should be the same as defined in binding for this column. As alternative you can pass a function which does the conversion. The function receives the entered filter value as parameter and returns the proper value for the filter expression. Another option is to pass the classname of the type, e.g.: sap.ui.model.type.Date or an expression similar to the binding syntax, e.g.: "\{type: 'sap.ui.model.type.Date', formatOptions: \{UTC: true\}, constraints: {} \}". Here the escaping is mandatory to avoid handling by the binding parser. By default the filter type is sap.ui.model.type.String.</documentation>
 		</property>
 		<property group="Appearance" name="name" type="sap.ui.core/string" since="1.11.1">
 			<documentation>The name of the column which is used in the column visibility menu item as text. If not set as fallback the column menu tries to get the text from the nested Label.</documentation>
@@ -70,6 +70,10 @@
 		</property>
 		<property group="Behavior" name="autoResizable" type="sap.ui.core/boolean" defaultValue="false" since="1.21.1">
 			<documentation>Enables auto-resizing of the column on doubleclicking the resizer. Currently only implemented to work with the following controls:  sap.m.Text, sap.m.Label, sap.m.Link , sap.m.Input, sap.ui.commons.TextView, sap.ui.commons.Label, sap.ui.commons.Link and sap.ui.commons.TextField, sap.ui.commons.Checkbox, sap.m.Checkbox</documentation>
+		</property>
+		<property group="Behavior" name="defaultFilterOperator" type="sap.ui.core/string">
+			<documentation>If this property is set the default filter operator of the column is overwritten.
+By default &quot;Contains&quot; is used for string and &quot;EQ&quot; for other types. A valid sap.ui.model.FilterOperator needs to be passed.</documentation>
 		</property>
 	</properties>
 	

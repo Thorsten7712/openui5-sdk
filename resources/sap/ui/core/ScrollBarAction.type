@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>ScrollBarAction</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Actions are: Click on track, button, drag of thumb, or mouse wheel click</documentation>
 	<baseType>string</baseType>
 	<enumeration>

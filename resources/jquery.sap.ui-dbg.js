@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -30,9 +30,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Global'],
 	}
 
 //	/**
-//	 * Root Namespace for the jQuery UI-Layer plugin provided by SAP AG.
+//	 * Root Namespace for the jQuery UI-Layer plugin provided by SAP SE.
 //	 *
-//	 * @version 1.22.4
+//	 * @version 1.24.2
 //	 * @namespace
 //	 * @public
 //	 */
@@ -49,6 +49,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Global'],
 	}
 
 	/**
+	 * @param {object} oRootControl
 	 * @name jQuery#root
 	 * @function
 	 * @public
@@ -81,6 +82,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Global'],
 	};
 
 	/**
+	 * @param {int} iIdx
 	 * @name jQuery#uiarea
 	 * @function
 	 * @public

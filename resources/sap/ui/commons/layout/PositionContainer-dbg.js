@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,22 +61,20 @@ jQuery.sap.require("sap.ui.core.Element");
  * Is used to specify the position of a control in the AbsoluteLayout
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.PositionContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.layout.PositionContainer", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"updatePosition"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"top" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -88,7 +86,7 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.PositionContainer", { metadata
 	},
 	defaultAggregation : "control",
 	aggregations : {
-    	"control" : {type : "sap.ui.core.Control", multiple : false}
+		"control" : {type : "sap.ui.core.Control", multiple : false}
 	}
 }});
 
@@ -297,16 +295,15 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.PositionContainer", { metadata
 /**
  * Updates the position properties of the container according to the given position in JSON style.
  *
- * @name sap.ui.commons.layout.PositionContainer.prototype.updatePosition
+ * @name sap.ui.commons.layout.PositionContainer#updatePosition
  * @function
- * @param {object} 
- *         oPos
+ * @param {object} oPos
  *         JSON-like object which defines the position of the child control in the absolute layout. The object is expected
  *         to have one or more out of the attributes top, bottom, left, right (each with a value of type sap.ui.core.CSSSize). If no object
  *         is given, nothing is updated.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

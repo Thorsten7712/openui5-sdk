@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Design</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Font design for texts</documentation>
 	<enumeration>
 		<value name="Standard">

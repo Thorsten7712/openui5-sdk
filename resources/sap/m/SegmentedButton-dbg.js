@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,22 +57,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * A SegmentedButton Control is a horizontal control made of multiple buttons which can display a title or an image. It automatically resizes the buttons to fit proportionally within the control. When no width is set, the control uses the available width.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.SegmentedButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.SegmentedButton", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createButton"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : null},
@@ -81,7 +79,7 @@ sap.ui.core.Control.extend("sap.m.SegmentedButton", { metadata : {
 	},
 	defaultAggregation : "buttons",
 	aggregations : {
-    	"buttons" : {type : "sap.m.Button", multiple : true, singularName : "button"}
+		"buttons" : {type : "sap.m.Button", multiple : true, singularName : "button"}
 	},
 	associations : {
 		"selectedButton" : {type : "sap.m.Button", multiple : false}
@@ -114,7 +112,6 @@ sap.m.SegmentedButton.M_EVENTS = {'select':'select'};
 /**
  * Getter for property <code>width</code>.
  * Set the width of the SegmentedButton control. If not set, it uses the minimum required width to make all buttons inside of the same size (based on the biggest button).
- * 
  * 
  *
  * Default value is empty/<code>undefined</code>
@@ -190,7 +187,7 @@ sap.m.SegmentedButton.M_EVENTS = {'select':'select'};
 
 /**
  * Getter for aggregation <code>buttons</code>.<br/>
- * Buttons of the SegmentedButton control
+ * The buttons of the SegmentedButton control. The items set in this aggregation are used as an interface for the buttons displayed by the control. Only the properties "id", "icon", "text", and "enabled" of the Button control are evaluated. Setting other properties of the button will have no effect. Alternatively, you can use the "createButton" method to add buttons.
  * 
  * <strong>Note</strong>: this is the default aggregation for SegmentedButton.
  * @return {sap.m.Button[]}
@@ -271,7 +268,8 @@ sap.m.SegmentedButton.M_EVENTS = {'select':'select'};
 
 
 /**
- * Pointer to the selected button of a SegmentedButton control.
+ * A reference to the currently selected button control. By default or if the association is set to a falsy value (null, undefined, "", false), the first button will be selected.
+ * If the association is set to an invalid value (e.g. an ID of a button that does not exist) the selection on the SegmentedButton will be removed.
  *
  * @return {string} Id of the element which is the current target of the <code>selectedButton</code> association, or null
  * @public
@@ -280,7 +278,8 @@ sap.m.SegmentedButton.M_EVENTS = {'select':'select'};
  */
 
 /**
- * Pointer to the selected button of a SegmentedButton control.
+ * A reference to the currently selected button control. By default or if the association is set to a falsy value (null, undefined, "", false), the first button will be selected.
+ * If the association is set to an invalid value (e.g. an ID of a button that does not exist) the selection on the SegmentedButton will be removed.
  *
  * @param {string | sap.m.Button} vSelectedButton 
  *    Id of an element which becomes the new target of this <code>selectedButton</code> association.
@@ -294,14 +293,13 @@ sap.m.SegmentedButton.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is fired when the user selects a button, which returns the id and button object 
+ * Event is fired when the user selects a button, which returns the id and button object
  *
  * @name sap.m.SegmentedButton#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.Button} oControlEvent.getParameters.button Reference to the button that has just been selected
  * @param {string} oControlEvent.getParameters.id Id of the button which has just been selected
  * @public
@@ -312,7 +310,7 @@ sap.m.SegmentedButton.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SegmentedButton</code>.<br/> itself. 
  *  
- * Event is fired when the user selects a button, which returns the id and button object 
+ * Event is fired when the user selects a button, which returns the id and button object
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -362,22 +360,19 @@ sap.m.SegmentedButton.M_EVENTS = {'select':'select'};
 /**
  * Convenient method to add a button with a text as title OR an URI for an icon. Using both is not supported.
  *
- * @name sap.m.SegmentedButton.prototype.createButton
+ * @name sap.m.SegmentedButton#createButton
  * @function
- * @param {string} 
- *         sText
+ * @param {string} sText
  *         Set the text of a SegmentedButton button.
- * @param {sap.ui.core.URI} 
- *         sIcon
+ * @param {sap.ui.core.URI} sIcon
  *         Icon to be displayed as graphical element within the button.
  * 
  *         Density related image will be loaded if image with density awareness name in format [imageName]@[densityValue].[extension] is provided.
- * @param {boolean} 
- *         bEnabled
+ * @param {boolean} bEnabled
  *         Boolean property to enable the control (default is true). Buttons that are disabled have other colors than enabled ones, depending on custom settings
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -386,13 +381,12 @@ jQuery.sap.require("sap.ui.core.delegate.ItemNavigation");
 jQuery.sap.require("sap.ui.core.EnabledPropagator");
 sap.ui.core.EnabledPropagator.call(sap.m.SegmentedButton.prototype);
 
-sap.m.SegmentedButton.prototype.init = function() {
-	if(sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version <= 10) {
+sap.m.SegmentedButton.prototype.init = function () {
+	if (sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version <= 10) {
 		this._isMie = true;
 	}
 	this._aButtonWidth = [];
 	this._oGhostButton;
-	var self = this;
 	
 	//create the ghost button which is used to get the actual width of each button
 	this._createGhostButton();
@@ -403,14 +397,14 @@ sap.m.SegmentedButton.prototype.init = function() {
 	this.addDelegate(this._oItemNavigation);
 	
 	//Make sure when a button gets removed to reset the selected button
-	this.removeButton = function(sButton) {
-		sap.m.SegmentedButton.prototype.removeButton.call(this, sButton)
+	this.removeButton = function (sButton) {
+		sap.m.SegmentedButton.prototype.removeButton.call(this, sButton);
 		this.setSelectedButton(this.getButtons()[0]);
 	};
 };
 
-sap.m.SegmentedButton.prototype._createGhostButton = function(oButton) {
-	if(jQuery("#segMtBtn_calc").length == 0) {
+sap.m.SegmentedButton.prototype._createGhostButton = function (oButton) {
+	if (jQuery("#segMtBtn_calc").length == 0) {
 		this._oGhostButton = document.createElement("Button");
 		var span = document.createElement("span");
 		jQuery(span).addClass("sapMBtnContent");
@@ -421,56 +415,64 @@ sap.m.SegmentedButton.prototype._createGhostButton = function(oButton) {
 	}else {
 		this._oGhostButton = jQuery("#segMtBtn_calc");
 	}
-}
+};
 
-sap.m.SegmentedButton.prototype._setGhostButtonText = function(oButton) {
-	var sText = oButton.getText();
-	//refresh the dom pointer
-	var ghostButton = jQuery("#segMtBtn_calc")
-	if(oButton.getIcon().length == 0 && oButton.getWidth().length == 0) {
+sap.m.SegmentedButton.prototype._setGhostButtonText = function (oButton) {
+	var sText = oButton.getText(),
+		ghostButton = jQuery("#segMtBtn_calc"); //refresh the dom pointer
+
+	if (oButton.getIcon().length == 0 && oButton.getWidth().length == 0) {
 		ghostButton.find("span").text(sText);
 		this._aButtonWidth.push(ghostButton.width());
-	}else {
+	} else {
 		this._aButtonWidth.push(0);
 	}
 };
 
-sap.m.SegmentedButton.prototype._getButtonWidths = function() {
-	var aButtons = this.getButtons();
-	var self = this;
-	if(self._oGhostButton.length == 0) {
-		return;
-	}else {
-		for(var i=0; i<aButtons.length; i++) {
-			self._setGhostButtonText(aButtons[i]);
-		}
-	}
-}
+sap.m.SegmentedButton.prototype._getButtonWidths = function () {
+	var aButtons = this.getButtons(),
+		i = 0;
 
-sap.m.SegmentedButton.prototype.onBeforeRendering = function() {
-	this._aButtonWidth = [];
-	var oStatiAreaDom = sap.ui.getCore().getStaticAreaRef();
-	if(this._sResizeListenerId){
-		sap.ui.core.ResizeHandler.deregister(this._sResizeListenerId);
-		this._sResizeListenerId = null;
-	}
-	
-	if(jQuery("#segMtBtn_calc").length == 0) {
-		oStatiAreaDom.appendChild(this._oGhostButton[0]);
+	if (this._oGhostButton.length == 0) {
+		return;
+	} else {
+		for (; i<aButtons.length; i++) {
+			this._setGhostButtonText(aButtons[i]);
+		}
 	}
 };
 
-sap.m.SegmentedButton.prototype.onAfterRendering = function() {
+sap.m.SegmentedButton.prototype.onBeforeRendering = function () {
+	var oStaticAreaDom = sap.ui.getCore().getStaticAreaRef();
+
+	this._aButtonWidth = [];
+
+	if (this._sResizeListenerId){
+		sap.ui.core.ResizeHandler.deregister(this._sResizeListenerId);
+		this._sResizeListenerId = null;
+	}
+
+	if (jQuery("#segMtBtn_calc").length == 0) {
+		oStaticAreaDom.appendChild(this._oGhostButton[0]);
+	}
+
+	if (!this.getSelectedButton()) {
+		this._selectDefaultButton();
+	}
+};
+
+sap.m.SegmentedButton.prototype.onAfterRendering = function () {
 	//register resize listener on parent
-	if(!this._sResizeListenerId){
+	if (!this._sResizeListenerId) {
 		var oParent = this.getParent(), 
-			oParentDom;
-		if(oParent instanceof sap.ui.core.Control){
+			oParentDom = null;
+
+		if (oParent instanceof sap.ui.core.Control) {
 			oParentDom = oParent.getDomRef();
-		}else if(oParent instanceof sap.ui.core.UIArea){
+		} else if (oParent instanceof sap.ui.core.UIArea) {
 			oParentDom = oParent.getRootNode();
 		}
-		if(oParentDom){
+		if (oParentDom) {
 			this._sResizeListenerId = sap.ui.core.ResizeHandler.register(oParentDom,  jQuery.proxy(this._fHandleResize, this));
 		}
 	}
@@ -488,15 +490,15 @@ sap.m.SegmentedButton.prototype.onAfterRendering = function() {
 	var bAllIcons = true;
 	var self = this;
 	for(var i=0; i < aButtons.length; i++) {
-		if(aButtons[i].getIcon() == "") {
+		if (aButtons[i].getIcon() == "") {
 			bAllIcons = false;
 		}
 	}
-	if(bAllIcons) {
+	if (bAllIcons) {
 		this.$().toggleClass("sapMSegBIcons", true);
 	}
-	if(this._isMie) {
-		setTimeout(function() {
+	if (this._isMie) {
+		setTimeout(function () {
 			self._fCalcBtnWidth();
 		},0);
 	}else {
@@ -511,7 +513,7 @@ sap.m.SegmentedButton.prototype.onAfterRendering = function() {
  * Called after the theme has been switched, required for new width calc
  * @private
  */
-sap.m.SegmentedButton.prototype.onThemeChanged = function(oEvent){
+sap.m.SegmentedButton.prototype.onThemeChanged = function (oEvent){
 	//this._fCalcBtnWidth();
 };
 /**
@@ -520,7 +522,7 @@ sap.m.SegmentedButton.prototype.onThemeChanged = function(oEvent){
  * took place. 
  * @private
  */
-sap.m.SegmentedButton.prototype._fCalcBtnWidth = function() {
+sap.m.SegmentedButton.prototype._fCalcBtnWidth = function () {
 	var iItm = this.getButtons().length;
 	if (iItm === 0 || !this.$().is(":visible"))  {
 		return;
@@ -529,17 +531,24 @@ sap.m.SegmentedButton.prototype._fCalcBtnWidth = function() {
 		$this = this.$(),
 		iParentWidth = 0,
 		iCntOutWidth = $this.outerWidth(true) - $this.width(),
+		iBarContainerPadding = $this.closest('.sapMBarContainer').outerWidth() - $this.closest('.sapMBarContainer').width(),
 		iInnerWidth = $this.children('#' + this.getButtons()[0].getId()).outerWidth(true)-$this.children('#' + this.getButtons()[0].getId()).width();
 		// If parent width is bigger than actual screen width set parent width to screen width => android 2.3
 		iParentWidth = (jQuery(window).width() < $this.parent().outerWidth())
 							? jQuery(window).width() :
 								(this._bInsideBar ? $this.closest('.sapMBar').width() : $this.parent().width());
-	if(this.getWidth() && this.getWidth().indexOf("%") === -1) {
+
+	// fix: in 1.22 a padding was added to the bar container, we have to take this into account for the size calculations here
+	if (this._bInsideBar && iBarContainerPadding > 0) {
+		iParentWidth -= iBarContainerPadding;
+	}
+
+	if (this.getWidth() && this.getWidth().indexOf("%") === -1) {
 		iMaxWidth = parseInt(this.getWidth());
 		var iCustomBtnWidths = iItm; 
 		for (var i=0; i < iItm; i++) {
 			var sWidth = this.getButtons()[i].getWidth();
-			if(sWidth.length > 0 && sWidth.indexOf("%") === -1) {
+			if (sWidth.length > 0 && sWidth.indexOf("%") === -1) {
 				iMaxWidth = iMaxWidth - parseInt(sWidth);
 				iCustomBtnWidths--;
 			}
@@ -550,9 +559,7 @@ sap.m.SegmentedButton.prototype._fCalcBtnWidth = function() {
 		iMaxWidth = Math.max.apply(null, this._aButtonWidth);
 		// If buttons' total width is still less than the available space and
 		// buttons shouldn't occupy the whole space (not set with 100%)
-		if (((iParentWidth -iCntOutWidth) > iMaxWidth * iItm) && this.getWidth().indexOf("%") === -1) {
-			iMaxWidth = iMaxWidth;
-		} else {
+		if (!(((iParentWidth -iCntOutWidth) > iMaxWidth * iItm) && this.getWidth().indexOf("%") === -1)) {
 			// otherwise each button gets the same size available
 			iMaxWidth = (iParentWidth-iCntOutWidth) / iItm;
 			iMaxWidth = iMaxWidth - iInnerWidth;
@@ -565,9 +572,9 @@ sap.m.SegmentedButton.prototype._fCalcBtnWidth = function() {
 			// When segmentedButton is in popup, its size can't be increased because otherwise it triggers resize of the dialog again.
 			iMaxWidth = this._isMie && !this._bInsidePopup ? iMaxWidth + 2 : iMaxWidth;
 			// Use the given width of the button (when present)
-			if(this.getButtons()[i].getWidth().length > 0) {
+			if (this.getButtons()[i].getWidth().length > 0) {
 				var sBtnWidth = this.getButtons()[i].getWidth();
-				var iWidth = sBtnWidth.indexOf("%") == -1 ? ( parseInt(sBtnWidth) - iInnerWidth ) : sBtnWidth
+				var iWidth = sBtnWidth.indexOf("%") == -1 ? ( parseInt(sBtnWidth) - iInnerWidth ) : sBtnWidth;
 				$this.children('#' + this.getButtons()[i].getId()).width(iWidth);
 			}else {
 				$this.children('#' + this.getButtons()[i].getId()).width(iMaxWidth);
@@ -578,16 +585,16 @@ sap.m.SegmentedButton.prototype._fCalcBtnWidth = function() {
 /**
  * The orientationchange event listener
 */
-sap.m.SegmentedButton.prototype._fHandleResize = function() {
+sap.m.SegmentedButton.prototype._fHandleResize = function () {
 	this._fCalcBtnWidth();
 };
 
-sap.m.SegmentedButton.prototype.exit = function() {
+sap.m.SegmentedButton.prototype.exit = function () {
 	if (this._sResizeListenerId) {
 		sap.ui.core.ResizeHandler.deregister(this._sResizeListenerId);
 		this._sResizeListenerId = null;
 	}
-	if(this._oGhostButton) {
+	if (this._oGhostButton) {
 		jQuery("#segMtBtn_calc").remove();
 		this._oGhostButton = null;
 	}
@@ -599,7 +606,7 @@ sap.m.SegmentedButton.prototype.exit = function() {
 	}
 };
 
-sap.m.SegmentedButton.prototype._setItemNavigation = function() {
+sap.m.SegmentedButton.prototype._setItemNavigation = function () {
 	var aButtons,
 		oDomRef = this.getDomRef();
 
@@ -621,20 +628,19 @@ sap.m.SegmentedButton.prototype._setItemNavigation = function() {
  *        sURI defines the icon uri of the button
  * @param {boolean}
  *        [bEnabled] sets the enabled status of the button
- * @return
- * @type {sap.m.Button}
+ * @return {sap.m.Button} the created button
  * @public
  */
-sap.m.SegmentedButton.prototype.createButton = function(sText, sURI, bEnabled) {
+sap.m.SegmentedButton.prototype.createButton = function (sText, sURI, bEnabled) {
 	var oButton = new sap.m.Button();
 	
-	if(sURI === null && sText !== null){
+	if (sURI === null && sText !== null){
 		oButton.setText(sText);
-	}else if(sURI !== null && sText === null){
+	}else if (sURI !== null && sText === null){
 		oButton.setIcon(sURI);
 	}else
 		throw new Error("in control: " + this.toString() + ": method createButton() just accepts text or icon");
-	if(bEnabled || bEnabled === undefined) {
+	if (bEnabled || bEnabled === undefined) {
 		oButton.setEnabled(true);
 	}else {
 		oButton.setEnabled(false);
@@ -644,9 +650,9 @@ sap.m.SegmentedButton.prototype.createButton = function(sText, sURI, bEnabled) {
 	return oButton;
 };
 
-(function(){
-	sap.m.SegmentedButton.prototype.addButton = function(oButton) {
-		if(oButton){
+(function (){
+	sap.m.SegmentedButton.prototype.addButton = function (oButton) {
+		if (oButton){
 			processButton(oButton, this);
 			
 			this.addAggregation('buttons', oButton);
@@ -655,47 +661,45 @@ sap.m.SegmentedButton.prototype.createButton = function(sText, sURI, bEnabled) {
 		
 	};
 
-	sap.m.SegmentedButton.prototype.insertButton = function(oButton) {
-		if(oButton){
+	sap.m.SegmentedButton.prototype.insertButton = function (oButton, iIndex) {
+		if (oButton) {
 			processButton(oButton, this);
-			
-			this.insertAggregation('buttons', oButton);
+			this.insertAggregation('buttons', oButton, iIndex);
 			return this;
 		}
-		
+
 	};
 
 	function processButton(oButton, oParent){
-		oButton.attachPress(function(oEvent) {
+		oButton.attachPress(function (oEvent) {
 			oParent._buttonPressed(oEvent);
 		});
 
 		var fnOriginalSetEnabled = sap.m.Button.prototype.setEnabled;
-		oButton.setEnabled = function(bEnabled) {
+		oButton.setEnabled = function (bEnabled) {
 			oButton.$().toggleClass("sapMSegBBtnDis", !bEnabled)
 					   .toggleClass("sapMFocusable", bEnabled);
 
 			fnOriginalSetEnabled.apply(oButton, arguments);
-		}
-		
+		};
 	};
 	
 })();
 
-sap.m.SegmentedButton.prototype.removeButton = function(oButton) {
-	if(oButton){
+sap.m.SegmentedButton.prototype.removeButton = function (oButton) {
+	if (oButton){
 		delete oButton.setEnabled;
 		this.removeAggregation("buttons", oButton);
 	}
 	
 };
 
-sap.m.SegmentedButton.prototype.removeAllButtons = function() {
+sap.m.SegmentedButton.prototype.removeAllButtons = function () {
 	var aButtons = this.getButtons();
-	if(aButtons){
+	if (aButtons){
 		for ( var i = 0; i < aButtons.length; i++) {
 			var oButton = aButtons[i];
-			if(oButton){
+			if (oButton){
 				delete oButton.setEnabled;
 				this.removeAggregation("buttons", oButton);
 			}
@@ -705,43 +709,82 @@ sap.m.SegmentedButton.prototype.removeAllButtons = function() {
 	
 };
 
-sap.m.SegmentedButton.prototype._buttonPressed = function(oEvent) {
-	var sLastSelBtnId = this.getSelectedButton(),
-		oControl = oEvent.getSource();
-	
-	if (sLastSelBtnId !== oControl.getId()) {
-		oControl.$().addClass("sapMSegBBtnSel");
-		sap.ui.getCore().byId(sLastSelBtnId).$().removeClass("sapMSegBBtnSel");
-		
-		this.setAssociation('selectedButton', oControl, true);
-		this.fireSelect({button:oControl, id: oControl.getId()});
-	}
-};
+/** event handler for the internal button press events
+ * @private
+ */
+sap.m.SegmentedButton.prototype._buttonPressed = function (oEvent) {
+	var oButtonPressed = oEvent.getSource();
 
-sap.m.SegmentedButton.prototype.setSelectedButton = function(vButton) {
-	var sOldSelectedButton = this.getSelectedButton();
-
-	this.setAssociation("selectedButton", vButton, true);
-
-	// CSN# 1143859/2014: update selection state in DOM when calling API method to change the selection
-	if (sOldSelectedButton !== this.getSelectedButton()) {
-		if (typeof vButton === "string") {
-			vButton = sap.ui.getCore().byId(vButton);
-		}
+	if (this.getSelectedButton() !== oButtonPressed.getId()) {
+		// CSN# 0001429454/2014: remove class for all other items
 		this.getButtons().forEach(function (oButton) {
 			oButton.$().removeClass("sapMSegBBtnSel");
 		});
-		if (vButton) {
-			vButton.$().addClass("sapMSegBBtnSel");
-		}
-		this._focusSelectedButton();
+		oButtonPressed.$().addClass("sapMSegBBtnSel");
+
+		this.setAssociation('selectedButton', oButtonPressed, true);
+		this.fireSelect({
+			button: oButtonPressed,
+			id: oButtonPressed.getId()
+		});
 	}
 };
 
-sap.m.SegmentedButton.prototype._focusSelectedButton = function() {
+/**
+ * Internal helper function that sets the association <code>selectedButton</code> to the first button.
+ * @private
+ */
+sap.m.SegmentedButton.prototype._selectDefaultButton = function () {
 	var aButtons = this.getButtons();
-	var selectedButtonId = this.getSelectedButton();
-	for (var i = 0; i < aButtons.length; i++) {
+
+	// CSN# 0001429454/2014: when the id evaluates to false (null, undefined, "") the first button should be selected
+	if (aButtons.length > 0) {
+		this.setAssociation('selectedButton', aButtons[0], true);
+	}
+};
+
+/**
+ * Setter for association <code>selectedButton</code>.
+ *
+ * @param {string | sap.m.Button | null | undefined} vButton new value for association <code>setSelectedButton</code>
+ *    An sap.m.Button instance which becomes the new target of this <code>selectedButton</code> association.
+ *    Alternatively, the id of an sap.m.Button instance may be given as a string.
+ *    If the value of null, undefined, or an empty string is provided the first item will be selected.
+ * @returns {sap.m.SegmentedButton} <code>this</code> this pointer for chaining
+ * @public
+ */
+sap.m.SegmentedButton.prototype.setSelectedButton = function (vButton) {
+	var sSelectedButtonBefore = this.getSelectedButton(),
+		oSelectedButton;
+
+	// set the new value
+	this.setAssociation("selectedButton", vButton, true);
+
+	// CSN# 1143859/2014: update selection state in DOM when calling API method to change the selection
+	if (sSelectedButtonBefore !== this.getSelectedButton()) {
+		// CSN# 0001429454/2014: only update DOM when control is already rendered (otherwise it will be done in onBeforeRendering)
+		if (this.$().length) {
+			if (!this.getSelectedButton()) {
+				this._selectDefaultButton();
+			}
+			oSelectedButton = sap.ui.getCore().byId(this.getSelectedButton());
+			this.getButtons().forEach(function (oButton) {
+				oButton.$().removeClass("sapMSegBBtnSel");
+			});
+			if (oSelectedButton) {
+				oSelectedButton.$().addClass("sapMSegBBtnSel");
+			}
+			this._focusSelectedButton();
+		}
+	}
+};
+
+sap.m.SegmentedButton.prototype._focusSelectedButton = function () {
+	var aButtons = this.getButtons(),
+		selectedButtonId = this.getSelectedButton(),
+		i = 0;
+
+	for (; i < aButtons.length; i++) {
 		if (aButtons[i] && aButtons[i].getId() === selectedButtonId) {
 			this._oItemNavigation.setFocusedIndex(i);
 			break;

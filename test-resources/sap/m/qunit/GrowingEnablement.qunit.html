@@ -20,6 +20,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
@@ -274,6 +275,46 @@
 				//Loads the data
 				setODataModelAndBindItems(oList);
 			});
+			
+			module("Grouping", {
+				setup: function() {
+					sinon.config.useFakeTimers = true;
+				},
+				teardown: function() {
+					sinon.config.useFakeTimers = false;
+				}
+			});
+			
+			test("Changing the property in the same group should not rerender whole list", function () {
+				
+				var oJSON = { Products: [{ Id: "1", Group: "G"},
+										 { Id: "2", Group: "G"}] };
+				
+				var oJSONModel = new sap.ui.model.json.JSONModel();
+				oJSONModel.setData(oJSON);
+				var oSorter = new sap.ui.model.Sorter("Group", true, true);
+				var oTemplate = new sap.m.StandardListItem({
+					title: "{Id}"
+				});
+				
+				var oList = new sap.m.List({
+					growing: true
+				}).bindItems("/Products", oTemplate, oSorter).setModel(oJSONModel);
+
+				oList.placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+				
+				var oRenderSpy = this.spy(oList.getRenderer(), "render");
+				oJSONModel.setProperty("/Products/0/Id", "6");
+				strictEqual(oRenderSpy.callCount, 0, "The list should not be rerendered only one");
+				
+				oJSONModel.setProperty("/Products/0/Group", "New Group");
+				this.clock.tick(1);
+				strictEqual(oRenderSpy.callCount, 1, "The list should be rerendered in this method");
+
+				oList.destroy();
+			});
+			
 
 		</script>
 

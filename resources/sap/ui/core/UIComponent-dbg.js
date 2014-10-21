@@ -1,6 +1,6 @@
 /*
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -30,8 +30,8 @@ sap.ui.define(['jquery.sap.global', './Component', './UIComponentMetadata', './m
 	 * @class Base Class for UI Component.
 	 * @extends sap.ui.core.Component
 	 * @abstract
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @name sap.ui.core.UIComponent
 	 * @since 1.9.2
 	 */
@@ -121,7 +121,10 @@ sap.ui.define(['jquery.sap.global', './Component', './UIComponentMetadata', './m
 		if (aRoutes) {
 			jQuery.sap.require("sap.ui.core.routing.Router");
 			var fnRouterConstructor = oRoutingConfig.routerClass || sap.ui.core.routing.Router;
-
+			if (typeof fnRouterConstructor === "string") {
+				fnRouterConstructor = jQuery.sap.getObject(fnRouterConstructor);
+			}
+			
 			this._oRouter = new fnRouterConstructor(aRoutes, oRoutingConfig, this);
 		}
 	
@@ -168,7 +171,7 @@ sap.ui.define(['jquery.sap.global', './Component', './UIComponentMetadata', './m
 	 * 		...
 	 * }
 	 * ...
-	 * @param {sap.ui.core.mvc.View|sap.ui.core.mvc.Controller} either a view or controller
+	 * @param {sap.ui.core.mvc.View|sap.ui.core.mvc.Controller} oControllerOrView either a view or controller
 	 * @return {sap.ui.core.routing.Router} the router instance
 	 * @since 1.16.1
 	 * @public
@@ -225,9 +228,10 @@ sap.ui.define(['jquery.sap.global', './Component', './UIComponentMetadata', './m
 	};
 	
 	/**
-	 * returns an Element by its id in the context of the Component
+	 * Returns an Element by its id in the context of the Component
 	 *
-	 * @return Element by its id
+	 * @param {string} sId
+	 * @return {sap.ui.core.Element} Element by its id
 	 * @public
 	 * @name sap.ui.core.UIComponent#byId
 	 * @function
@@ -237,9 +241,10 @@ sap.ui.define(['jquery.sap.global', './Component', './UIComponentMetadata', './m
 	};
 	
 	/**
-	 * creates an id for an Element prefixed with the component id
+	 * Creates an id for an Element prefixed with the component id
 	 *
-	 * @return prefixed id
+	 * @param {string} sId
+	 * @return {string} prefixed id
 	 * @public
 	 * @name sap.ui.core.UIComponent#createId
 	 * @function

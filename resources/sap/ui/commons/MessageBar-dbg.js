@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,26 +56,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * Creates an instance of a "MessageBar" Control, for displaying "Message"s.
  * There is no imposed limit on the number of "MessageBar"s that can be created, but using only 1 makes sense, specially if accessing it (via Ctl-m) becomes a necessity.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.MessageBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MessageBar", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"addMessages", "deleteMessages", "deleteAllMessages"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"anchorID" : {type : "string", group : "Appearance", defaultValue : ''},
@@ -235,39 +231,37 @@ sap.ui.core.Control.extend("sap.ui.commons.MessageBar", { metadata : {
 /**
  * To add message(s).
  *
- * @name sap.ui.commons.MessageBar.prototype.addMessages
+ * @name sap.ui.commons.MessageBar#addMessages
  * @function
- * @param {sap.ui.commons.Message[]} 
- *         aAMessages
+ * @param {sap.ui.commons.Message[]} aAMessages
  *         Array of messages.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * To deleted messages.
  *
- * @name sap.ui.commons.MessageBar.prototype.deleteMessages
+ * @name sap.ui.commons.MessageBar#deleteMessages
  * @function
- * @param {string[]} 
- *         aIds
+ * @param {string[]} aIds
  *         Messages IDs to be deleted.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * To deleted all messages.
  *
- * @name sap.ui.commons.MessageBar.prototype.deleteAllMessages
+ * @name sap.ui.commons.MessageBar#deleteAllMessages
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -891,6 +885,7 @@ sap.ui.commons.MessageBar.prototype.backHome = function() {
 /**
  * This public API adds/updates a supplied list of messages.
  * The messageBar is to appear should at least one message exists.
+ * @param {sap.ui.commons.Message[]} aMessages
  * @public
  */
 sap.ui.commons.MessageBar.prototype.addMessages = function(aMessages) {
@@ -942,6 +937,7 @@ sap.ui.commons.MessageBar.prototype.addMessages = function(aMessages) {
 /**
  * This public API deletes a supplied list of messages.
  * The messageBar is to disappear should no message remains.
+ * @param {string[]} aIds
  * @public
  */
 sap.ui.commons.MessageBar.prototype.deleteMessages = function(aIds) {

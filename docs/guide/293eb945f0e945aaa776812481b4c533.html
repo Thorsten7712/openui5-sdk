@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=24849782913900198"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8926267806750251"/>
 <title>Running SAPUI5 Mobile Apps in Hybrid Web Containers</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -50,8 +52,8 @@
 			or <samp class="ph codeph">sapui5-mobile-static.zip</samp>.</p>
 <div class="note caution"><span class="cautiontitle">Caution</span> 
 			<p class="p">The packages are <span class="ph emphasis emphasis">not</span> contained in the SAPUI5 runtime deployment. The
-				packages are contained, for example, in the SCN download version of SAPUI5 and in
-				the Open Source version OpenUI5 (file name in the OpenUI5 release:
+				packages are contained in the SCN download version of SAPUI5 and in the Open Source
+				version OpenUI5 (file name in the OpenUI5 release:
 					<samp class="ph codeph">openui5-runtume-mobile*.zip</samp>)</p>
 
 		</div>
@@ -127,6 +129,21 @@
 
 			</li>
 </ul>
+<p class="p">The decision, which libraries to include or not may be disputed. It is only based on a
+			rule of thumb, and adaptations are required anyway for many apps.</p>
+<p class="p">Also, the mobile/hybrid package excludes certain types of files which are typically not
+			needed. Your mileage may vary, so you might need to add the respective files for the
+			requirements of your specific app. One example are the <samp class="ph codeph">library-RTL.css</samp>
+			stylesheets and <samp class="ph codeph">img-RTL</samp> folders containing the visuals for
+			right-to-left languages. The <samp class="ph codeph">library-preload.json</samp> files which contain
+			all controls from a library to reduce the number of HTTP requests are also not required
+			in hybrid apps because there is no HTTP latency. SAPUI5 will by default try to access
+			them, so you might see a failed attempt to load these files in the log file or developer
+			tools. These error messages do not hurt, though, and you can get rid of them by
+			declaring that no such files exist and by setting the following configuration in the
+			SAPUI5 bootstrap script tag:</p>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">data-sap-ui-preload=""
+</pre></div>
 <div class="section"><div class="section_title">Optimization of the Package Size</div><div type="Optimization of the Package Size">
 			
 			<p class="p">Although the static SAPUI5 package is small enough to be included in hybrid apps, you can
@@ -239,11 +256,6 @@ document.addEventListener("deviceready", appReady, false);
 </ul>
 
 		</div></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,20 +59,16 @@ sap.ui.define(['./library','./Control','./Popup'], function() {
  * @class
  * Abstract class that can be extended in order to implement any extended tooltip. For example, RichTooltip Control is based on it. It provides the opening/closing behavior and the main "text" property.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.TooltipBase
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.core.TooltipBase", { metadata : {
 
-	// ---- object ----
 	"abstract" : true,
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"text" : {type : "string", group : "Misc", defaultValue : ""},
@@ -337,7 +333,7 @@ sap.ui.core.TooltipBase.M_EVENTS = {'closed':'closed'};
 
 
 /**
- * This event is fired when the Tooltip has been closed 
+ * This event is fired when the Tooltip has been closed
  *
  * @name sap.ui.core.TooltipBase#closed
  * @event
@@ -345,7 +341,6 @@ sap.ui.core.TooltipBase.M_EVENTS = {'closed':'closed'};
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -354,7 +349,7 @@ sap.ui.core.TooltipBase.M_EVENTS = {'closed':'closed'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.core.TooltipBase</code>.<br/> itself. 
  *  
- * This event is fired when the Tooltip has been closed 
+ * This event is fired when the Tooltip has been closed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

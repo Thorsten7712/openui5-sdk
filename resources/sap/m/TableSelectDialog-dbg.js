@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64,23 +64,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * The Table used in a SelectDialog is a Table with Columns. After selecting an item, the dialog will be closed and a callback function will return the item being selected.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.TableSelectDialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.TableSelectDialog", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"open"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Appearance", defaultValue : null},
@@ -92,9 +90,9 @@ sap.ui.core.Control.extend("sap.m.TableSelectDialog", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.m.ColumnListItem", multiple : true, singularName : "item", bindable : "bindable"}, 
-    	"_dialog" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
-    	"columns" : {type : "sap.m.Column", multiple : true, singularName : "column", bindable : "bindable"}
+		"items" : {type : "sap.m.ColumnListItem", multiple : true, singularName : "item", bindable : "bindable"}, 
+		"_dialog" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"columns" : {type : "sap.m.Column", multiple : true, singularName : "column", bindable : "bindable"}
 	},
 	events : {
 		"confirm" : {}, 
@@ -489,14 +487,13 @@ sap.m.TableSelectDialog.M_EVENTS = {'confirm':'confirm','search':'search','liveC
 
 
 /**
- * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters. 
+ * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters.
  *
  * @name sap.m.TableSelectDialog#confirm
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.StandardListItem} oControlEvent.getParameters.selectedItem Returns the selected list item. When no item is selected, "null" is returned. When multi-selection is enabled and multiple items are selected, only the first selected item is returned.
  * @param {sap.m.StandardListItem[]} oControlEvent.getParameters.selectedItems Returns an array containing the visible selected list items. If no items are selected, an empty array is returned.
  * @param {string} oControlEvent.getParameters.selectedContexts Returns the binding contexts of the selected items including the non-visible items.
@@ -509,7 +506,7 @@ sap.m.TableSelectDialog.M_EVENTS = {'confirm':'confirm','search':'search','liveC
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TableSelectDialog</code>.<br/> itself. 
  *  
- * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters. 
+ * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -559,14 +556,13 @@ Note: In contrast to the parameter "selectedItems", this parameter will also inc
 
 
 /**
- * Fired when the search button has been clicked on dialog. 
+ * Fired when the search button has been clicked on dialog.
  *
  * @name sap.m.TableSelectDialog#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The value entered in the search field.
  * @param {any} oControlEvent.getParameters.itemsBinding The Items binding of the Table Select Dialog. It will only be available if the items aggregation is bound to a model.
  * @public
@@ -577,7 +573,7 @@ Note: In contrast to the parameter "selectedItems", this parameter will also inc
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TableSelectDialog</code>.<br/> itself. 
  *  
- * Fired when the search button has been clicked on dialog. 
+ * Fired when the search button has been clicked on dialog.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -625,14 +621,13 @@ Note: In contrast to the parameter "selectedItems", this parameter will also inc
 
 
 /**
- * This event is fired when the value of the search field is changed by a user - e.g. at each key press. 
+ * This event is fired when the value of the search field is changed by a user - e.g. at each key press.
  *
  * @name sap.m.TableSelectDialog#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The value entered in the search field.
  * @param {any} oControlEvent.getParameters.itemsBinding The Items binding of the Table Select Dialog. It will only be available if the items aggregation is bound to a model.
  * @public
@@ -643,7 +638,7 @@ Note: In contrast to the parameter "selectedItems", this parameter will also inc
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TableSelectDialog</code>.<br/> itself. 
  *  
- * This event is fired when the value of the search field is changed by a user - e.g. at each key press. 
+ * This event is fired when the value of the search field is changed by a user - e.g. at each key press.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -691,14 +686,13 @@ Note: In contrast to the parameter "selectedItems", this parameter will also inc
 
 
 /**
- * This event will be fired when the cancel button is clicked 
+ * This event will be fired when the cancel button is clicked
  *
  * @name sap.m.TableSelectDialog#cancel
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -707,7 +701,7 @@ Note: In contrast to the parameter "selectedItems", this parameter will also inc
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TableSelectDialog</code>.<br/> itself. 
  *  
- * This event will be fired when the cancel button is clicked 
+ * This event will be fired when the cancel button is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -751,14 +745,13 @@ Note: In contrast to the parameter "selectedItems", this parameter will also inc
 /**
  * Opens the table select dialog.
  *
- * @name sap.m.TableSelectDialog.prototype.open
+ * @name sap.m.TableSelectDialog#open
  * @function
- * @param {string} 
- *         sSearchValue
+ * @param {string} sSearchValue
  *         Value for the search. The table will be automatically trigger the search event if value if this parameter is set.
-
  * @type sap.m.TableSelectDialog
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -866,7 +859,8 @@ sap.m.TableSelectDialog.prototype.init = function () {
 		contentHeight: "2000px",
 		subHeader: this._oSubHeader,
 		content: [this._oBusyIndicator, this._oTable],
-		leftButton: this._getCancelButton()
+		leftButton: this._getCancelButton(),
+		initialFocus: ((sap.ui.Device.system.desktop && this._oSearchField) ? this._oSearchField : null)
 	});
 	this._dialog = this._oDialog; // for downward compatibility
 
@@ -966,7 +960,7 @@ sap.m.TableSelectDialog.prototype.invalidate = function () {
 /**
 * Opens the internal dialog with a searchfield and a table.
 * @public
-* @param {string} sValue Value for the table search.
+* @param {string} sSearchValue Value for the table search.
 * @returns {this} <code>this</code> to allow method chaining
 */
 sap.m.TableSelectDialog.prototype.open = function (sSearchValue) {
@@ -983,8 +977,10 @@ sap.m.TableSelectDialog.prototype.open = function (sSearchValue) {
 	// set search field value
 	this._oSearchField.setValue(sSearchValue);
 
+
 	// open the dialog
 	this._oDialog.open();
+
 
 	// open dialog with busy state if a list update is still in progress
 	if (this._bInitBusy) {
@@ -1378,6 +1374,14 @@ sap.m.TableSelectDialog.prototype._setBusy = function (bBusy) {
 		} else {
 			if (this._bFirstRequest) { // also show the header bar again for the first request
 				this._oSubHeader.$().css('display', 'block');
+				// set initial focus manually after all items are visible
+				if(sap.ui.Device.system.desktop){
+					var oFocusControl = sap.ui.getCore().byId(this._oDialog.getInitialFocus());
+					if (oFocusControl.getFocusDomRef()) {
+						oFocusControl.getFocusDomRef().focus();
+					}
+				}
+
 				this._bFirstRequest = false;
 			}
 			this._oTable.removeStyleClass('sapMSelectDialogListHide');

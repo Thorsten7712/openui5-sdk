@@ -3,7 +3,7 @@ jQuery.sap.declare('sap-ui-testenv');
 if ( !jQuery.sap.isDeclared('sap.ui.test.TestEnv') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -13,7 +13,7 @@ jQuery.sap.require('jquery.sap.global'); // unlisted dependency retained
 if ( !jQuery.sap.isDeclared('sap.ui.debug.Highlighter') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -115,7 +115,7 @@ sap.ui.define("sap/ui/debug/Highlighter",['jquery.sap.global', 'jquery.sap.dom',
 if ( !jQuery.sap.isDeclared('sap.ui.test.ControlTree') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -126,7 +126,7 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
 if ( !jQuery.sap.isDeclared('jquery.sap.strings') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -445,7 +445,7 @@ sap.ui.define("sap/ui/test/ControlTree",['jquery.sap.global', 'sap/ui/core/Eleme
 	 *
 	 * @class Control Tree used for the Test Environment
 	 * @author SAPUI5 Designtime
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 *
 	 * @param {sap.ui.core.Core}
 	 *            oCore the core instance to use for analysis
@@ -596,7 +596,7 @@ sap.ui.define("sap/ui/test/TestEnv",['jquery.sap.global', 'sap/ui/debug/Highligh
 	 * @class Central Class for the Test Environment
 	 *
 	 * @author SAPUI5 Designtime
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @constructor
 	 * @private
 	 * @name sap.ui.test.TestEnv

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ListItemBase</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>ListItemBase contains the core features of all specific list items.</documentation>
 

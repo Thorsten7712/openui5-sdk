@@ -13,6 +13,7 @@
 		
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -26,6 +27,14 @@
 					library : "sap.ui.core",
 					properties : {
 						value : {type: "string", group: "Appearance", defaultValue: ""},
+						stringValue : {type: "string", group: "Appearance", defaultValue: ""},
+						floatValue : {type: "float", group: "Appearance", defaultValue: 0},
+						intValue : {type: "int", group: "Appearance", defaultValue: 0},
+						booleanValue : {type: "boolean", group: "Appearance", defaultValue: false},
+						stringArray : {type: "string[]", group: "Appearance", defaultValue: []},
+						floatArray : {type: "float[]", group: "Appearance", defaultValue: []},
+						intArray : {type: "int[]", group: "Appearance", defaultValue: []},
+						booleanArray : {type: "boolean[]", group: "Appearance", defaultValue: []},
 						objectValue : {type: "object", group: "Misc", defaultValue: null}
 					},
 					aggregations : {
@@ -175,6 +184,64 @@
 				ok(bThrown, "Must throw error on unknown property setter")
 			});
 			
+			test("Set properties with different types", function() {
+				var that = this;
+				function test(name, value, shouldThrow) {
+					var bThrown = false,
+						sMessage = "Must " + (shouldThrow ? "throw" : "not throw") + " when setting " + value + " on " + name;
+					try {
+						that.obj.setProperty(name, value);
+					} catch(e) {
+						bThrown = true;
+					}
+					
+					equal(bThrown, shouldThrow, sMessage)
+				}
+				test("stringValue", "test", false);
+				test("stringValue", 23, false);
+				test("stringValue", 23.45, false);
+				test("stringValue", true, false);
+				test("intValue", 23, false);
+				test("intValue", "23", true);
+				test("intValue", 23.45, true);
+				test("intValue", true, true);
+				test("floatValue", 23.45, false);
+				test("floatValue", 23, false);
+				test("floatValue", "23", true);
+				test("floatValue", true, true);
+				test("booleanValue", true, false);
+				test("booleanValue", 23.45, true);
+				test("booleanValue", 23, true);
+				test("booleanValue", "true", true);
+				test("stringArray", ["a", "b", "c"], false);
+				test("stringArray", ["a", 10, true], false);
+				test("stringArray", "test", false);
+				test("stringArray", 23, true);
+				test("stringArray", 23.45, true);
+				test("stringArray", true, true);
+				test("intArray", [1, 2, 3], false);
+				test("intArray", [1, 2, 3.5], true);
+				test("intArray", ["a", 10, true], true);
+				test("intArray", "test", true);
+				test("intArray", 23, true);
+				test("intArray", 23.45, true);
+				test("intArray", true, true);
+				test("floatArray", [1.3, 2.5, 3.123], false);
+				test("floatArray", [1, 2, 3.5], false);
+				test("floatArray", ["a", 10, true], true);
+				test("floatArray", "test", true);
+				test("floatArray", 23, true);
+				test("floatArray", 23.45, true);
+				test("floatArray", true, true);
+				test("booleanArray", [true, false, true], false);
+				test("booleanArray", [true, false, 0], true);
+				test("booleanArray", ["a", 10, true], true);
+				test("booleanArray", "test", true);
+				test("booleanArray", 23, true);
+				test("booleanArray", 23.45, true);
+				test("booleanArray", true, true);
+			});
+						
 			test("Bind property", function() {
 				this.obj.bindProperty("value", "/value");	
 				equal(this.obj.isBound("value"), true, "isBound must return true for bound properties");
@@ -363,6 +430,78 @@
 				this.obj.bindAggregation("subObjects", "/list", this.template);	
 				equal(this.obj.isBound("subObjects"), true, "isBound must return true for bound aggregations");
 				equal(this.obj.getAggregation("subObjects", []).length, 3, "Aggregation length should match model list length");
+			});
+			
+			test("Bind aggregation with template non shareable", function() {
+				this.obj.bindAggregation("subObjects", { path:"/list", template: this.template, templateShareable:false});	
+				equal(this.obj.isBound("subObjects"), true, "isBound must return true for bound aggregations");
+				equal(this.obj.getAggregation("subObjects", []).length, 3, "Aggregation length should match model list length");
+				
+				var oBindingInfo = this.obj.getBindingInfo('subObjects');
+				ok(oBindingInfo, "binding info");
+				ok(oBindingInfo.template, "binding info template");
+				ok(oBindingInfo.template === this.template, "binding info template");
+				ok(!this.template.bIsDestroyed, "Template is not destroyed");
+				
+				this.obj.unbindAggregation("subObjects");
+				equal(this.obj.getAggregation("subObjects"), undefined, "Getter must not return an object");
+				ok(this.template.bIsDestroyed, "Template is destroyed");
+				checkIfDestroyed(this.template);
+				
+			});
+			
+			test("Bind aggregation with template shareable", function() {
+				this.obj.bindAggregation("subObjects", { path:"/list", template: this.template}); // old behavior	
+				equal(this.obj.isBound("subObjects"), true, "isBound must return true for bound aggregations");
+				equal(this.obj.getAggregation("subObjects", []).length, 3, "Aggregation length should match model list length");
+				
+				var oBindingInfo = this.obj.getBindingInfo('subObjects');
+				ok(oBindingInfo, "binding info");
+				ok(oBindingInfo.template, "binding info template");
+				ok(oBindingInfo.template === this.template, "binding info template");
+				ok(!this.template.bIsDestroyed, "Template is not destroyed");
+				
+				this.obj.unbindAggregation("subObjects");
+				equal(this.obj.getAggregation("subObjects"), undefined, "Getter must not return an object");
+				ok(!this.template.bIsDestroyed, "Template is not destroyed");
+				
+			});
+			
+			test("Bind aggregation with template shareable with flag", function() {
+				this.obj.bindAggregation("subObjects", { path:"/list", template: this.template, templateShareable:true}); // old behavior	
+				equal(this.obj.isBound("subObjects"), true, "isBound must return true for bound aggregations");
+				equal(this.obj.getAggregation("subObjects", []).length, 3, "Aggregation length should match model list length");
+				
+				var oBindingInfo = this.obj.getBindingInfo('subObjects');
+				ok(oBindingInfo, "binding info");
+				ok(oBindingInfo.template, "binding info template");
+				ok(oBindingInfo.template === this.template, "binding info template");
+				ok(!this.template.bIsDestroyed, "Template is not destroyed");
+				
+				this.obj.unbindAggregation("subObjects");
+				equal(this.obj.getAggregation("subObjects"), undefined, "Getter must not return an object");
+				ok(!this.template.bIsDestroyed, "Template is not destroyed");
+				
+			});
+			
+			test("Bind aggregation with template non shareable and destroy object", function() {
+				this.obj.bindAggregation("subObjects", { path:"/list", template: this.template, templateShareable:false});	
+				equal(this.obj.isBound("subObjects"), true, "isBound must return true for bound aggregations");
+				equal(this.obj.getAggregation("subObjects", []).length, 3, "Aggregation length should match model list length");
+				
+				var oBindingInfo = this.obj.getBindingInfo('subObjects');
+				ok(oBindingInfo, "binding info");
+				ok(oBindingInfo.template, "binding info template");
+				ok(oBindingInfo.template === this.template, "binding info template");
+				ok(!this.template.bIsDestroyed, "Template is not destroyed");
+				
+				this.obj.destroy();
+				equal(this.obj.getAggregation("subObjects"), undefined, "Getter must not return an object");
+				checkIfDestroyed(this.obj);
+				checkIfDestroyed(this.template);
+				ok(this.obj.bIsDestroyed, "obj is destroyed");
+				ok(this.template.bIsDestroyed, "Template is destroyed");
+				
 			});
 
 			test("Bind aggregation with length", function() {

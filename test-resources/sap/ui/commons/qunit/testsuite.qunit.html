@@ -1,8 +1,7 @@
 <html>
  <head>
   <title>QUnit TestSuite for sap.ui.commons</title>
- </head>
- <body>
+  <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-redirect.js"></script>
   <script language="javascript">
 
   /**
@@ -10,7 +9,7 @@
    * Please order alphabetically
    */
   function suite() {
-    var suite = new top.jsUnitTestSuite();
+    var suite = new parent.jsUnitTestSuite();
     var contextPath = "/" + window.location.pathname.split("/")[1];   
     suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/AbsoluteLayout.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/Accordion.qunit.html");
@@ -68,14 +67,15 @@
     suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/ToolbarOverflow.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/ToolbarRightItems.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/Tree.qunit.html");
-    suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/TriStateCheckBox.qunit.html");    
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/TreeMultiSelection.qunit.html");
+    suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/TriStateCheckBox.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/ValueHelpField.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/commons/qunit/VerticalLayout.qunit.html");
     return suite;
   }
 
-  redirectToTestrunnerIfRequired();
-
   </script>
+ </head>
+ <body>
  </body>
 </html>

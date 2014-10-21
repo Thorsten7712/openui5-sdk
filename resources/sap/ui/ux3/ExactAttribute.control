@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ExactAttribute</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>An element for defining attributes and sub-attributes used within the Exact pattern.
 	</documentation>
 

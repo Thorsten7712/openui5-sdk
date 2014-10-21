@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -66,18 +66,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * There are various size setting options available, and the images can be combined with actions.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.Image
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Image", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"src" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -350,14 +348,13 @@ sap.m.Image.M_EVENTS = {'tap':'tap','press':'press'};
 
 
 /**
- * Event is fired when the user clicks on the control. (This event is deprecated, use the press event instead) 
+ * Event is fired when the user clicks on the control. (This event is deprecated, use the press event instead)
  *
  * @name sap.m.Image#tap
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -366,7 +363,7 @@ sap.m.Image.M_EVENTS = {'tap':'tap','press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Image</code>.<br/> itself. 
  *  
- * Event is fired when the user clicks on the control. (This event is deprecated, use the press event instead) 
+ * Event is fired when the user clicks on the control. (This event is deprecated, use the press event instead)
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -408,14 +405,13 @@ sap.m.Image.M_EVENTS = {'tap':'tap','press':'press'};
 
 
 /**
- * Event is fired when the user clicks on the control. 
+ * Event is fired when the user clicks on the control.
  *
  * @name sap.m.Image#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -424,7 +420,7 @@ sap.m.Image.M_EVENTS = {'tap':'tap','press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Image</code>.<br/> itself. 
  *  
- * Event is fired when the user clicks on the control. 
+ * Event is fired when the user clicks on the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -636,6 +632,7 @@ sap.m.Image.prototype.ontouchend = function(oEvent) {
 /**
  * This overrides the default setter of the src property and update the dom node.
  *
+ * @param {sap.ui.core.URI} sSrc
  * @public
  */
 sap.m.Image.prototype.setSrc = function(sSrc) {
@@ -654,6 +651,7 @@ sap.m.Image.prototype.setSrc = function(sSrc) {
 /**
  * This overrides the default setter of the activeSrc property in order to avoid the rerendering.
  *
+ * @param {sap.ui.core.URI} sActiveSrc
  * @public
  */
 sap.m.Image.prototype.setActiveSrc = function(sActiveSrc) {

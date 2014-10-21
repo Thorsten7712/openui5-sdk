@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,21 +57,18 @@ jQuery.sap.require("sap.ui.core.Control");
  * set of actions that shall be provided in a structured way. The MenuBar contains the menu titles from where users navigate to the single items. The control supports
  * for example long menu item texts, automated scrolling for menu items when the browser space is not large enough to display all items, defining images for single
  * or all items in a menu, automated layouting of items with or w/o image, and active/non-active items.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.MenuBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MenuBar", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enabled" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -81,7 +78,7 @@ sap.ui.core.Control.extend("sap.ui.commons.MenuBar", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.unified.MenuItem", multiple : true, singularName : "item"}
+		"items" : {type : "sap.ui.unified.MenuItem", multiple : true, singularName : "item"}
 	}
 }});
 

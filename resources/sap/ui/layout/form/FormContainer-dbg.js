@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,19 +60,17 @@ jQuery.sap.require("sap.ui.core.Element");
  * Can contain other form elements or containers.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.form.FormContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.layout.form.FormContainer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"expanded" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -81,8 +79,8 @@ sap.ui.core.Element.extend("sap.ui.layout.form.FormContainer", { metadata : {
 	},
 	defaultAggregation : "formElements",
 	aggregations : {
-    	"formElements" : {type : "sap.ui.layout.form.FormElement", multiple : true, singularName : "formElement"}, 
-    	"title" : {type : "sap.ui.core.Title", altTypes : ["string"], multiple : false}
+		"formElements" : {type : "sap.ui.layout.form.FormElement", multiple : true, singularName : "formElement"}, 
+		"title" : {type : "sap.ui.core.Title", altTypes : ["string"], multiple : false}
 	}
 }});
 
@@ -133,6 +131,7 @@ sap.ui.core.Element.extend("sap.ui.layout.form.FormContainer", { metadata : {
 /**
  * Getter for property <code>expandable</code>.
  * Defines if the Container is expandable.
+ * The expander icon will only be shown if a title is set for the Container.
  *
  * Default value is <code>false</code>
  *
@@ -328,7 +327,7 @@ jQuery.sap.require("sap.ui.core.theming.Parameters");
 		if (bExpandable) {
 			var that = this;
 			if (!this._oExpandButton) {
-				this._oExpandButton = sap.ui.layout.form.FormHelper.createButton(this.getId()+"--Exp", handleExpButtonPress, that);
+				this._oExpandButton = sap.ui.layout.form.FormHelper.createButton(this.getId()+"--Exp", _handleExpButtonPress, that);
 				this._oExpandButton.setParent(this);
 			}
 			_setExpanderIcon(that);
@@ -380,6 +379,25 @@ jQuery.sap.require("sap.ui.core.theming.Parameters");
 
 	};
 
+	/*
+	 * Checks if properties are fine
+	 * Expander only visible if title is set -> otherwise give warning
+	 * @return 0 = no problem, 1 = warning, 2 = error
+	 * @private
+	 */
+	sap.ui.layout.form.FormContainer.prototype._checkProperties = function(){
+
+		var iReturn = 0;
+
+		if (this.getExpandable() && !this.getTitle()) {
+			jQuery.sap.log.warning("Expander only displayed if title is set", this.getId(), "FormContainer");
+			iReturn = 1;
+		}
+
+		return iReturn;
+
+	};
+
 	function _setExpanderIcon(oContainer){
 
 		if (!oContainer._oExpandButton) {
@@ -411,7 +429,7 @@ jQuery.sap.require("sap.ui.core.theming.Parameters");
 
 	};
 
-	function handleExpButtonPress(oEvent){
+	function _handleExpButtonPress(oEvent){
 
 		this.setExpanded(!this.getExpanded());
 

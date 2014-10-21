@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>layout/BorderLayout</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Based upon the border layout as it comes with the Java standard. Using this layout, you are able to divide your available UI space into five areas whose sizes can be defined. These areas are: Top: Header; Bottom: Footer; Begin: Left/right-hand side panel; Center: Content area 
 	in the middle; End: Right/left-hand side panel.
 </documentation>

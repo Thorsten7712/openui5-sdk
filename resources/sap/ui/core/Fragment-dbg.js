@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -42,8 +42,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './DeclarativeS
 		 *
 		 * @class Fragment
 		 * @extends sap.ui.base.ManagedObject
-		 * @author SAP AG
-		 * @version 1.22.4
+		 * @author SAP SE
+		 * @version 1.24.2
 		 * @public
 		 * @name sap.ui.core.Fragment
 		 */
@@ -132,7 +132,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './DeclarativeS
 		 * Returns an Element/Control by its ID in the context of the Fragment with the given ID
 		 *
 		 * @param {string} sFragmentId 
-		 * @param {string} sElementId 
+		 * @param {string} sId
 		 * 
 		 * @return Element by its ID and Fragment ID
 		 * @public
@@ -152,7 +152,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './DeclarativeS
 		 * Returns the ID which a Control with the given ID in the context of the Fragment with the given ID would have
 		 *
 		 * @param {string} sFragmentId 
-		 * @param {string} sElementId 
+		 * @param {string} sId 
 		 * 
 		 * @return the prefixed ID
 		 * @public
@@ -291,7 +291,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './DeclarativeS
 		 * Again, if oController is given, the methods referenced in the Fragment will be called on this controller.
 		 *
 		 * @param {string} [sId] id of the newly created Fragment
-		 * @param {string | object} sFragmentName name of the Fragment (or Fragment configuration as described above, in this case no sId may be given. Instead give the id inside the config object, if desired)
+		 * @param {string | object} vFragment name of the Fragment (or Fragment configuration as described above, in this case no sId may be given. Instead give the id inside the config object, if desired)
 		 * @param {sap.ui.core.mvc.Controller} [oController] a Controller to be used for event handlers in the Fragment
 		 * @public
 		 * @static
@@ -402,7 +402,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './DeclarativeS
 		 * Again, if oController is given, the methods referenced in the Fragment will be called on this controller.
 		 *
 		 * @param {string} [sId] id of the newly created Fragment
-		 * @param {string | object} sFragmentName name of the Fragment (or Fragment configuration as described above, in this case no sId may be given. Instead give the id inside the config object, if desired.)
+		 * @param {string | object} vFragment name of the Fragment (or Fragment configuration as described above, in this case no sId may be given. Instead give the id inside the config object, if desired.)
 		 * @param {sap.ui.core.mvc.Controller} [oController] a Controller to be used for event handlers in the Fragment
 		 * @public
 		 * @static

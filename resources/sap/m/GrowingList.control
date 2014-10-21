@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>GrowingList</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>sap.m.GrowingList control is the container for all list items and inherits from sap.m.List control. Everything like the selection, deletion, unread states  and inset style are also maintained here. In addition the control provides a loading mechanism to request data from the model and append the list items to the list. The request is started manually by tapping on the trigger at the end of the list.</documentation>
 	<baseType>sap.m/List</baseType>
 	<deprecation since="1.16">Instead use &quot;List&quot; or &quot;Table&quot; control with setting &quot;growing&quot; property to &quot;true&quot;</deprecation>

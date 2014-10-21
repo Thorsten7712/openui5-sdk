@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ToggleButton</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The ToggleButton Control is a Button that can be toggled between pressed and normal state</documentation>
 
 	<baseType>sap.ui.commons/Button</baseType>

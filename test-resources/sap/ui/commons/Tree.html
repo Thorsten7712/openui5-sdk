@@ -168,7 +168,69 @@
 		oTree4.addNode(oNode42);
 
 		oTree4.placeAt( "uiTreeIcon" );
-		
+
+		////Fifth Tree
+
+	function createStandardTree() {
+		var oTree5 = new sap.ui.commons.Tree("tree5", {title : "Tree scrollIntoView", width : "240px", height : "250px", showHearderIcons : true, showHorizontalScrollbar : true});
+		var oNode50 = new sap.ui.commons.TreeNode("node50", {text : "Root"});
+		oTree5.addNode(oNode50);
+		var oNode51 = new sap.ui.commons.TreeNode("node51", {text : "Node"});
+		oNode50.addNode(oNode51);
+		var oNode52 = new sap.ui.commons.TreeNode("node52", {text : "Node"});
+		oNode51.addNode(oNode52);
+		var oNode53 = new sap.ui.commons.TreeNode("node53", {text : "Node"});
+		oNode52.addNode(oNode53);
+		var oNode54 = new sap.ui.commons.TreeNode("node54", {text : "Node"});
+		oNode53.addNode(oNode54);
+		var oNode55 = new sap.ui.commons.TreeNode("node55", {text : "Node"});
+		oNode54.addNode(oNode55);
+		var oNode56 = new sap.ui.commons.TreeNode("node56", {text : "Node"});
+		oNode55.addNode(oNode56);
+		var oNode57 = new sap.ui.commons.TreeNode("node57", {text : "Node"});
+		oNode56.addNode(oNode57);
+		var oNode58 = new sap.ui.commons.TreeNode("node58", {text : "Node"});
+		oNode57.addNode(oNode58);
+		var oNode59 = new sap.ui.commons.TreeNode("node59", {text : "Node"});
+		oNode58.addNode(oNode59);
+		var oNode60 = new sap.ui.commons.TreeNode("node60", {text : "Node"});
+		oNode59.addNode(oNode60);
+		var oNode61 = new sap.ui.commons.TreeNode("node61", {text : "Node"});
+		oNode60.addNode(oNode61);
+		var oNode62 = new sap.ui.commons.TreeNode("node62", {text : "Node"});
+		oNode61.addNode(oNode62);
+		var oNode63 = new sap.ui.commons.TreeNode("node63", {text : "Node"});
+		oNode62.addNode(oNode63);
+		var oNode64 = new sap.ui.commons.TreeNode("node64", {text : "Node"});
+		oNode63.addNode(oNode64);
+		var oNode65 = new sap.ui.commons.TreeNode("node65", {text : "Node"});
+		oNode64.addNode(oNode65);
+		var oNode66 = new sap.ui.commons.TreeNode("node66", {text : "Node"});
+		oNode65.addNode(oNode66);
+		var oNode67 = new sap.ui.commons.TreeNode("node67", {text : "Node"});
+		oNode66.addNode(oNode67);
+		return oTree5;
+		}
+
+	var oStandardTree = createStandardTree();
+	oStandardTree.placeAt('uiTreeScrollIntoView1');
+
+	var oButton1 = new sap.ui.commons.Button();
+	oButton1.setText("Select first Node");
+	oButton1.placeAt('uiTreeScrollIntoView2');
+	oButton1.attachPress(function() {
+	var selnode1 = sap.ui.getCore().getControl("node66");
+	selnode1.select();
+	});
+
+	var oButton2 = new sap.ui.commons.Button();
+	oButton2.setText("Select second Node");
+	oButton2.placeAt('uiTreeScrollIntoView2');
+	oButton2.attachPress(function() {
+	var selnode2 = sap.ui.getCore().getControl("node51");
+	selnode2.select();
+	});
+
 		/*function test(oEvent){
 			var oTree = oTree1;
 			var oNode = oNode13;
@@ -210,5 +272,8 @@
 		<div id="uiTreeCustom"></div>
 		<br/>
 		<div id="uiTreeIcon"></div>
+		<br/>
+		<div id="uiTreeScrollIntoView1" style="display:inline-block;"></div>
+		<div id="uiTreeScrollIntoView2" style="display:inline-block; vertical-align: top;"></div>
 	</body>
 </html>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,23 +60,19 @@ jQuery.sap.require("sap.ui.commons.ComboBox");
  * The control provides a field that allows end users to an entry out of a list of pre-defined items. The choosable items can be provided in the form of complete list boxes or single list items.
  * Binding (see DataBinding) is also supported for list items.
  * @extends sap.ui.commons.ComboBox
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.DropdownBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.ComboBox.extend("sap.ui.commons.DropdownBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"clearHistory"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"searchHelpEnabled" : {type : "boolean", group : "Behavior", defaultValue : false},
@@ -237,14 +233,13 @@ sap.ui.commons.DropdownBox.M_EVENTS = {'searchHelp':'searchHelp'};
 
 
 /**
- * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed. 
+ * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed.
  *
  * @name sap.ui.commons.DropdownBox#searchHelp
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The current value of the DropdownBox.
  * @public
  */
@@ -254,7 +249,7 @@ sap.ui.commons.DropdownBox.M_EVENTS = {'searchHelp':'searchHelp'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.DropdownBox</code>.<br/> itself. 
  *  
- * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed. 
+ * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -304,11 +299,11 @@ sap.ui.commons.DropdownBox.M_EVENTS = {'searchHelp':'searchHelp'};
  * Using this method the history of the DropdownBox can be cleared.
  * This might be necessary if the items of the DropdownBox have changed. Otherwise invalid items may appear in the history.
  *
- * @name sap.ui.commons.DropdownBox.prototype.clearHistory
+ * @name sap.ui.commons.DropdownBox#clearHistory
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -326,7 +321,11 @@ sap.ui.commons.DropdownBox.prototype.init = function() {
 	this._oValueBeforeOpen = null;
 	this.__aItems = null;
 	this._iCursorPosBeforeBackspace = null;
-	/** {sap.ui.core.ListItem[]} Array of ListItems containing SearchHelp followed by Separator @private */
+	/** 
+	 * Array of ListItems containing SearchHelp followed by Separator 
+	 * @type {sap.ui.core.ListItem[]} 
+	 * @private 
+	 */
 	this._searchHelpItem = null;
 	this._iItemsForHistory = 10; // UX defined history shall appear if there are more than 10 items
 	this._oHistory = new sap.ui.core.History(this.getId());
@@ -366,6 +365,7 @@ sap.ui.commons.DropdownBox.prototype.exit = function() {
 
 /**
  * Ensure that handed in ListBoxes are taken from the visible UI immediately.
+ * @param {object} oEvent
  * @protected
  */
 sap.ui.commons.DropdownBox.prototype.onAfterRendering = function(oEvent){

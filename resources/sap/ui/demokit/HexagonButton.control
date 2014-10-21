@@ -3,7 +3,7 @@
 
 	<name>HexagonButton</name>
 
-	<documentation>Add your documentation for the new HexagonButton</documentation>
+	<documentation>A custom button with a 'hexagon' shape</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>

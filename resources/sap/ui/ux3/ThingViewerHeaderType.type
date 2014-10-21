@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>ThingViewerHeaderType</name>
-  <author>SAP AG</author>
+  <author>SAP SE</author>
   <documentation>Available ThingViewer header display types.</documentation>
   <since>1.16.3</since>
   

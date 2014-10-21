@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>ActionSelect</name>
 	<since>1.16</since>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The ActionSelect control provides a list of predefined items that allows end users to choose options and additionally trigger some actions.</documentation>
 	<baseType>sap.m/Select</baseType>
 	<associations>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -62,7 +62,10 @@ sap.ui.define(['jquery.sap.global'],
 			GE: "GE",
 	
 			/**
-			 * FilterOperator between
+			 * FilterOperator between.
+			 * When used on strings, the BT operator might not behave intuitively. For example, 
+			 * when filtering a list of Names with BT "A", "B", all Names starting with "A" will be 
+			 * included as well as the name "B" itself, but no other name starting with "B".
 			 * @name sap.ui.model.FilterOperator#BT
 			 * @public
 			 */

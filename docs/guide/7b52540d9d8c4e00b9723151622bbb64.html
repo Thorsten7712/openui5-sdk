@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2811291803939483"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5004061995089006"/>
 <title>Defining the Control Metadata</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,8 +28,7 @@
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">Defining the Control Metadata</h1>
 <div class="body"><p class="shortdesc"/>
-<p class="p">The control metadata define the properties, aggregations, events, and so on of a
-			control.</p>
+<p class="p">The control metadata defines the properties, aggregations, events, and so on of a control.</p>
 <ul class="ul" id="loio7b52540d9d8c4e00b9723151622bbb64__ul_gqc_fgp_zm"><li class="li">
 				<p class="p">Properties</p>
 
@@ -52,9 +53,10 @@
 					</li>
 </ul>
 
-				<p class="p">These control-specific settings are not available for class extensions, because they do not
-					inherit the properties from a control or an element but from a more generic
-					class, see <a class="xref" href="91f29fea6f4d1014b6dd926db0e91070.html">Object Metadata and Implementation</a>.</p>
+				<p class="p">These control-specific settings are only available when inheriting from a control or one of
+					the base classes <samp class="ph codeph">sap.ui.core.Control</samp>,
+						<samp class="ph codeph">sap.ui.core.Element</samp>,
+						<samp class="ph codeph">sap.ui.base.ManagedObject</samp>, see <a class="xref" href="91f29fea6f4d1014b6dd926db0e91070.html">Object Metadata and Implementation</a>.</p>
 
 			</li>
 <li class="li">
@@ -106,7 +108,7 @@
 							<samp class="ph codeph">singularName</samp>: For 0..n aggregations, the aggregation
 							name typically is plural, but certain methods are created where the
 							singular form is required (for example, <samp class="ph codeph">addWorksetItem</samp>}
-							for the "worksetItem' <em class="ph i">s'</em>" aggregation). </p>
+							for the "worksetItems" aggregation). </p>
 
 					</li>
 </ul>
@@ -124,11 +126,13 @@
                                              // a fully specified aggregation
 }</pre></div>
 
-				<p class="p">Multiple methods are created, depending on the multiplicity, for example
-						<samp class="ph codeph">getWorksetItems</samp>, <samp class="ph codeph">insertWorksetItem</samp>,
+				<p class="p">Multiple methods are created automatically at runtime, depending on the multiplicity, for
+					example <samp class="ph codeph">getWorksetItems</samp>, <samp class="ph codeph">insertWorksetItem</samp>,
 						<samp class="ph codeph">addWorksetItem</samp>, <samp class="ph codeph">removeWorksetItem</samp>,
 						<samp class="ph codeph">removeAllWorksetItems</samp>, <samp class="ph codeph">indexOfWorksetItem</samp>,
-						<samp class="ph codeph">destroyWorksetItems</samp>.</p>
+						<samp class="ph codeph">destroyWorksetItems</samp>. These methods have a default
+					implementation which does everything to handle the aggregation properly, but
+					they can be overridden and extended by the control implementation.</p>
 
 				<p class="p">If you want to mark one aggregation as default aggregation in order to be able to omit the
 					aggregation tag in XML views, you can do this by setting the
@@ -143,11 +147,6 @@ defaultAggregation: "content"</pre></div>
 
 			</li>
 </ul>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

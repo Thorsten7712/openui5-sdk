@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,22 +54,20 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayout");
  * This is a layout where several controls can be added. These controls are blown up to fit a whole line. If the window resizes the controls are moved between the lines and resized again.
  * @extends sap.ui.layout.ResponsiveFlowLayout
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.layout.ResponsiveFlowLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.ResponsiveFlowLayout.extend("sap.ui.commons.layout.ResponsiveFlowLayout", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 

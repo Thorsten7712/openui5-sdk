@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -68,23 +68,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * 
  * When using this control, please be aware that it fulfills rather specific requirements: it has been designed for and is used within composite controls QuickView and ThingInspector.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ActionBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ActionBar", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"closePopups"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"followState" : {type : "sap.ui.ux3.FollowActionState", group : "Misc", defaultValue : sap.ui.ux3.FollowActionState.Default},
@@ -100,9 +96,9 @@ sap.ui.core.Control.extend("sap.ui.ux3.ActionBar", { metadata : {
 		"dividerWidth" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-    	"businessActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "businessAction"}, 
-    	"_businessActionButtons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "_businessActionButton", visibility : "hidden"}, 
-    	"_socialActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "_socialAction", visibility : "hidden"}
+		"businessActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "businessAction"}, 
+		"_businessActionButtons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "_businessActionButton", visibility : "hidden"}, 
+		"_socialActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "_socialAction", visibility : "hidden"}
 	},
 	events : {
 		"actionSelected" : {}, 
@@ -136,7 +132,6 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * - FollowActionState.Default
  * - FollowActionState.Follow
  * - FollowActionState.Hold
- * 
  *
  * Default value is <code>Default</code>
  *
@@ -498,14 +493,13 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * ‘Open Thing Inspector’ button id: open
  * Business Actions: id: the ThingAction id
  * 
- * For ‘Update’, please refer to event ‘feedSubmit’ 
+ * For ‘Update’, please refer to event ‘feedSubmit’
  *
  * @name sap.ui.ux3.ActionBar#actionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected ThingAction
  * @param {sap.ui.ux3.ThingAction} oControlEvent.getParameters.action Selected ThingAction
  * @param {string} oControlEvent.getParameters.newState New State of the selected action.Only filled if the respective action maintains a state property, for example 'FollowUp' or 'Favorite'
@@ -524,7 +518,7 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * ‘Open Thing Inspector’ button id: open
  * Business Actions: id: the ThingAction id
  * 
- * For ‘Update’, please refer to event ‘feedSubmit’ 
+ * For ‘Update’, please refer to event ‘feedSubmit’
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -573,14 +567,13 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.ActionBar#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Feed text
  * @public
  */
@@ -590,7 +583,7 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ActionBar</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -639,11 +632,11 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 /**
  * Closes all popups which might be opened as ActionBar children. These are the more- and follow menu and the feeder popup
  *
- * @name sap.ui.ux3.ActionBar.prototype.closePopups
+ * @name sap.ui.ux3.ActionBar#closePopups
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

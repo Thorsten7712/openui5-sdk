@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 /*global crossroads *///declare unusual global vars for JSLint/SAPUI5 validation
@@ -39,7 +39,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 		 * @name sap.ui.core.routing.Router
 		 */
 		var Router = EventProvider.extend("sap.ui.core.routing.Router", /** @lends sap.ui.core.routing.Router.prototype */ {
-	
+
 			constructor : function(oRoutes, oConfig, oOwner) {
 				EventProvider.apply(this);
 	
@@ -49,13 +49,13 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 				this._oRoutes = {};
 				this._oViews = {};
 				this._oOwner = oOwner;
-	
+
 				var that = this;
-	
+
 				if (!oRoutes) {
 					oRoutes = {};
 				}
-	
+
 				if (jQuery.isArray(oRoutes)) {
 					//Convert route object
 					var aRoutes = oRoutes;
@@ -64,19 +64,19 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 						oRoutes[oRouteConfig.name] = oRouteConfig;
 					});
 				}
-	
+
 				jQuery.each(oRoutes, function(sRouteName, oRouteConfig) {
 					if (oRouteConfig.name == undefined) {
 						oRouteConfig.name = sRouteName;
 					}
 					that.addRoute(oRouteConfig);
 				});
-	
+
 			},
 			metadata : {
 				publicMethods: ["initialize", "getURL", "register"]
 			}
-	
+
 		});
 		
 		Router.M_EVENTS = {
@@ -84,7 +84,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 			RoutePatternMatched : "routePatternMatched",
 			ViewCreated : "viewCreated"
 		};
-		
+
 		/**
 		 * Creates a new subclass of class sap.ui.core.routing.Router with name <code>sClassName</code> 
 		 * and enriches it with the information contained in <code>oClassInfo</code>.
@@ -101,7 +101,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 		 * @name sap.ui.core.routing.Router.extend
 		 * @function
 		 */
-		
+
 		/**
 		 * Adds a route to the router
 		 * 
@@ -121,11 +121,11 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 			}
 			this._oRoutes[oConfig.name] = new Route(this, oConfig, oParent);
 		};
-	
+
 		Router.prototype.parse = function (sNewHash, sOldHash) {
 			this._oRouter.parse(sNewHash);
 		};
-		
+
 		/**
 		 * Attaches the router to the hash changer @see sap.ui.core.routing.HashChanger
 		 *
@@ -137,24 +137,24 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 		Router.prototype.initialize = function () {
 			var that = this,
 				oHashChanger = this.oHashChanger = HashChanger.getInstance();
-	
+
 			if(this._bIsInitialized) {
 				jQuery.sap.log.warning("Router is already initialized.");
 				return this;
 			}
-	
+
 			this._bIsInitialized = true;
 	
 			this.fnHashChanged = function(oEvent) {
 				that.parse(oEvent.getParameter("newHash"), oEvent.getParameter("oldHash"));
 			};
-	
+
 			oHashChanger.attachEvent("hashChanged", this.fnHashChanged);
-	
+
 			if(!oHashChanger.init()) {
 				this.parse(oHashChanger.getHash());
 			}
-	
+
 			return this;
 		};
 		
@@ -213,8 +213,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 		/**
 		 * Returns the URL for the route and replaces the placeholders with the values in oParameters
 		 * 
-		 * @param {string} Name of the route
-		 * @param {object} Parameters for the route
+		 * @param {string} sName Name of the route
+		 * @param {object} oParameters Parameters for the route
 		 * @return {string} the unencoded pattern with interpolated arguments
 		 * @public
 		 * @name sap.ui.core.routing.Router#getURL
@@ -489,7 +489,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 		/**
 		 * Registers the router to access it from another context. Use sap.ui.routing.Router.getRouter() to receive the instance
 		 * 
-		 * @param {string} Name of the router
+		 * @param {string} sName Name of the router
 		 * @public
 		 * @name sap.ui.core.routing.Router#register
 		 * @function
@@ -502,7 +502,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/base/Ma
 		/**
 		 * Get a registered router
 		 * 
-		 * @param {string} Name of the router
+		 * @param {string} sName Name of the router
 		 * @return {sap.ui.core.routing.Router} The router with the specified name, else undefined
 		 * @public
 		 * @name sap.ui.core.routing.Router.getRouter

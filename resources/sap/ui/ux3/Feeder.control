@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Feeder</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>This feed control flavor represents a lean common feed, or a comment feed, with a text commit function.
 	The control can be used stand alone or in a multiple way, and generally would be integrated directly into a UIArea.</documentation>
 	<developmentState state="experimental" since="1.2">The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.</developmentState>

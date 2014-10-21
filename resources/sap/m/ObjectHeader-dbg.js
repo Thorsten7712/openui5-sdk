@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -77,20 +77,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * ObjectHeader is a display control that enables the user to easily identify a specific object. The object header title is the key identifier of the object and additional text and icons can be used to further distinguish it from other objects.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.ObjectHeader
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ObjectHeader", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -114,12 +110,12 @@ sap.ui.core.Control.extend("sap.m.ObjectHeader", { metadata : {
 	},
 	defaultAggregation : "attributes",
 	aggregations : {
-    	"attributes" : {type : "sap.m.ObjectAttribute", multiple : true, singularName : "attribute"}, 
-    	"firstStatus" : {type : "sap.m.ObjectStatus", multiple : false, deprecated: true}, 
-    	"secondStatus" : {type : "sap.m.ObjectStatus", multiple : false, deprecated: true}, 
-    	"statuses" : {type : "sap.ui.core.Control", multiple : true, singularName : "status"}, 
-    	"_objectNumber" : {type : "sap.m.ObjectNumber", multiple : false, visibility : "hidden"}, 
-    	"headerContainer" : {type : "sap.m.ObjectHeaderContainer", multiple : false}
+		"attributes" : {type : "sap.m.ObjectAttribute", multiple : true, singularName : "attribute"}, 
+		"firstStatus" : {type : "sap.m.ObjectStatus", multiple : false, deprecated: true}, 
+		"secondStatus" : {type : "sap.m.ObjectStatus", multiple : false, deprecated: true}, 
+		"statuses" : {type : "sap.ui.core.Control", multiple : true, singularName : "status"}, 
+		"_objectNumber" : {type : "sap.m.ObjectNumber", multiple : false, visibility : "hidden"}, 
+		"headerContainer" : {type : "sap.m.ObjectHeaderContainer", multiple : false}
 	},
 	events : {
 		"titlePress" : {}, 
@@ -897,14 +893,13 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
 
 
 /**
- * Event is fired when the title is active and the user tap/click on it 
+ * Event is fired when the title is active and the user tap/click on it
  *
  * @name sap.m.ObjectHeader#titlePress
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {object} oControlEvent.getParameters.domRef Dom reference of the object header' title to be used for positioning.
  * @public
  */
@@ -914,7 +909,7 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ObjectHeader</code>.<br/> itself. 
  *  
- * Event is fired when the title is active and the user tap/click on it 
+ * Event is fired when the title is active and the user tap/click on it
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -961,14 +956,13 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
 
 
 /**
- * Event is fired when the title is active and the user tap/click on it 
+ * Event is fired when the title is active and the user tap/click on it
  *
  * @name sap.m.ObjectHeader#introPress
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {object} oControlEvent.getParameters.domRef Dom reference of the object header' intro to be used for positioning.
  * @public
  */
@@ -978,7 +972,7 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ObjectHeader</code>.<br/> itself. 
  *  
- * Event is fired when the title is active and the user tap/click on it 
+ * Event is fired when the title is active and the user tap/click on it
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1025,14 +1019,13 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
 
 
 /**
- * Event is fired when the title icon is active and the user tap/click on it 
+ * Event is fired when the title icon is active and the user tap/click on it
  *
  * @name sap.m.ObjectHeader#iconPress
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {object} oControlEvent.getParameters.domRef Dom reference of the object header' icon to be used for positioning.
  * @public
  */
@@ -1042,7 +1035,7 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ObjectHeader</code>.<br/> itself. 
  *  
- * Event is fired when the title icon is active and the user tap/click on it 
+ * Event is fired when the title icon is active and the user tap/click on it
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1089,7 +1082,7 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
 
 
 /**
- * Event is fired when the object header title selector (down-arrow) is pressed 
+ * Event is fired when the object header title selector (down-arrow) is pressed
  *
  * @name sap.m.ObjectHeader#titleSelectorPress
  * @event
@@ -1097,7 +1090,6 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {object} oControlEvent.getParameters.domRef Dom reference of the object header' titleArrow to be used for positioning.
  * @public
  */
@@ -1107,7 +1099,7 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ObjectHeader</code>.<br/> itself. 
  *  
- * Event is fired when the object header title selector (down-arrow) is pressed 
+ * Event is fired when the object header title selector (down-arrow) is pressed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1161,50 +1153,62 @@ sap.m.ObjectHeader.M_EVENTS = {'titlePress':'titlePress','introPress':'introPres
 jQuery.sap.require("sap.ui.core.IconPool");
 
 sap.m.ObjectHeader.prototype.init = function() {
-	this._fNumberWidth = undefined;
-	
+	var that = this;
+
 	//TODO Remove placeholder when Safari iconFont issue is addressed.
-	var oPlaceholderIconUri = sap.ui.core.IconPool.getIconURI("fridge");
 	this._oPlaceholderIcon = sap.ui.core.IconPool.createControlByURI({
 		id : this.getId() + "-placeholder",
-		src : oPlaceholderIconUri
+		src : sap.ui.core.IconPool.getIconURI("fridge")
 	});	
 	this._oPlaceholderIcon.addStyleClass("sapMObjStatusMarkerInvisible");
 
-	var oFlagIconUri = sap.ui.core.IconPool.getIconURI("flag");
 	this._oFlagIcon = sap.ui.core.IconPool.createControlByURI({
 		id : this.getId() + "-flag",
-		src : oFlagIconUri,
+		src : sap.ui.core.IconPool.getIconURI("flag"),
 		visible : false
 	});
 
-	var oFavIconUri = sap.ui.core.IconPool.getIconURI("favorite");	
 	this._oFavIcon = sap.ui.core.IconPool.createControlByURI({
 		id : this.getId() + "-favorite",
-		src : oFavIconUri,
-		visible : false
-	});
-		
-	var oTitleArrowIconUri = sap.ui.core.IconPool.getIconURI("slim-arrow-down");	
-	this._oTitleArrowIcon = sap.ui.core.IconPool.createControlByURI({
-		id : this.getId() + "-titleArrow",
-		src : oTitleArrowIconUri,
+		src : sap.ui.core.IconPool.getIconURI("favorite"),
 		visible : false
 	});
 
+	this._oTitleArrowIcon = sap.ui.core.IconPool.createControlByURI({
+		id : this.getId() + "-titleArrow",
+		src: sap.ui.core.IconPool.getIconURI("arrow-down"),
+		decorative: false,
+		visible : false,
+		size: (this.getCondensed() ? "1.125rem" : "1.375rem"),
+		press : function(oEvent) {
+			that.fireTitleSelectorPress({
+				domRef : this.getDomRef()	 
+			});
+		}
+	});
+
+	this._fNumberWidth = undefined;
 	this._titleText = new sap.m.Text(this.getId() + "-titleText");
 	this._titleText.setMaxLines(3);
 
-//	sap.ui.Device.media.attachHandler(
-//			this._handleMediaChange, this, sap.ui.Device.media.RANGESETS.SAP_STANDARD
-//	);
-
 };
 
-//sap.m.ObjectHeader.prototype._handleMediaChange = function (mParams) {
-//	var sDeviceName = mParams.name;
-//	this._lastDeviceName = sDeviceName;
-//};
+/**
+ * Set the condensed flag
+ * @override
+ * @public
+ * @param {boolean} bCondensed the new value
+ * @returns {this} this pointer for chaining
+ */
+sap.m.ObjectHeader.prototype.setCondensed = function (bCondensed) {
+	this.setProperty("condensed", bCondensed);
+	if (this.getCondensed()) {
+		this._oTitleArrowIcon.setSize("1.125rem");
+	} else {
+		this._oTitleArrowIcon.setSize("1.375rem");
+	}
+	return this;
+};
 
 /**
  * Set the number value to the internal aggregation
@@ -1270,15 +1274,11 @@ sap.m.ObjectHeader.prototype.ontap = function(oEvent) {
 		});
 	} else if (this.getTitleActive() && oEvent.srcControl === this._titleText) {
 		this.fireTitlePress({
-			domRef : jQuery.sap.domById(sourceId)
+			domRef : this._titleText.getFocusDomRef()
 		});
 	} else if (this.getIconActive() && (sourceId === this.getId() + "-img" || sourceId === this.getId() + "-icon")) {
 		this.fireIconPress({
 			domRef : jQuery.sap.domById(sourceId)
-		});
-	} else if (sourceId === this.getId() + "-titleArrow") {		
-		this.fireTitleSelectorPress({
-			domRef : jQuery.sap.domById(sourceId)	 
 		});
 	} 
 };

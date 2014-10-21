@@ -3,7 +3,7 @@
 
 	<name>CodeViewer</name>
 
-	<documentation>Add your documentation for the new CodeViewer</documentation>
+	<documentation>Shows a piece of (Javascript) code and allows to edit it</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>
@@ -20,6 +20,7 @@
 			<documentation>Whether the code can be edited or not</documentation>
 		</property>
 		<property group="Misc" name="visible" type="sap.ui.core/boolean" defaultValue="true">
+			<documentation>Whether the code viewer should be visible</documentation>
 		</property>
 	</properties>
 	<events>

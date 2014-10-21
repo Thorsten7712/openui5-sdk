@@ -16,6 +16,8 @@
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
 <script type="text/javascript"
+	src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
+<script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <script type="text/javascript">
@@ -43,47 +45,82 @@ var fnOriginalClearTimeout = window.setTimeout;
 
 
 var aServices = [{
+	name             : "Northwind",
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/northwind-annotations-normal.xml",
 	serviceValid     : true,
 	annotationsValid : true
 }, {
+	name             : "Northwind",
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/northwind-annotations-malformed.xml",
 	serviceValid     : true,
 	annotationsValid : false
 }, {
+	name             : "Northwind",
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
 	serviceValid     : true,
 	annotationsValid : false
 },{
+	name             : "Invalid",
 	service          : "fakeService://testdata/odata/NOT_EXISTANT/",
 	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
 	serviceValid     : false,
 	annotationsValid : false
 },{
+	name             : "Northwind",
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/northwind-annotations-normal.xml",
 	serviceValid     : true,
 	annotationsValid : true,
 	sharedMetadata   : true
 }, {
+	name             : "Northwind",
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/northwind-annotations-malformed.xml",
 	serviceValid     : true,
 	annotationsValid : false,
 	sharedMetadata   : true
 }, {
+	name             : "Northwind",
 	service          : "fakeService://testdata/odata/northwind/",
 	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
 	serviceValid     : true,
 	annotationsValid : false,
 	sharedMetadata   : true
 },{
+	name             : "Invalid",
 	service          : "fakeService://testdata/odata/NOT_EXISTANT/",
 	annotations      : "fakeService://testdata/odata/NOT_EXISTANT",
 	serviceValid     : false,
+	annotationsValid : false,
+	sharedMetadata   : true
+},{
+	name             : "Northwind with annotated metadata",
+	service          : "fakeService://testdata/odata/northwind-annotated/",
+	annotations      : "fakeService://testdata/odata/northwind-annotated/$metadata",
+	serviceValid     : true,
+	annotationsValid : true,
+	sharedMetadata   : true
+},{
+	name             : "Northwind with annotated metadata + annotations",
+	service          : "fakeService://testdata/odata/northwind-annotated/",
+	annotations      : [ 
+		"fakeService://testdata/odata/northwind-annotated/$metadata",
+		"fakeService://testdata/odata/northwind-annotations-normal.xml"
+	],
+	serviceValid     : true,
+	annotationsValid : true,
+	sharedMetadata   : true
+},{
+	name             : "Northwind with annotated metadata + annotations",
+	service          : "fakeService://testdata/odata/northwind-annotated/",
+	annotations      : [ 
+		"fakeService://testdata/odata/northwind-annotated/$metadata",
+		"fakeService://testdata/odata/northwind-annotations-malformed.xml"
+	],
+	serviceValid     : true,
 	annotationsValid : false,
 	sharedMetadata   : true
 }];
@@ -102,11 +139,14 @@ for (var i = 0; i < aServices.length; ++i) {
 	var bAnnotationsValid = aServices[i].annotationsValid;
 	var bShouldFail = !bServiceValid || !bAnnotationsValid;
 	var bSharedMetadata = aServices[i].sharedMetadata;
+	var sTestName = aServices[i].name ? aServices[i].name : "";
 	
 	var sTestType = 
+		sTestName + " (" + 
 		(bServiceValid ? "Valid Service" : "Broken Service") + "/" + 
 		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations") +
-		(bSharedMetadata ?  "/Shared Metadata" : "");
+		(bSharedMetadata ?  "/Shared Metadata" : "") + 
+		")";
 	
 	// Check synchronous loading
 	mModelOptions.loadAnnotationsJoined = false;
@@ -155,16 +195,19 @@ for (var i = 0; i < aServices.length; ++i) {
 	var bAnnotationsValid = mService.annotationsValid;
 	var bShouldFail = !bServiceValid || !bAnnotationsValid;
 	var bSharedMetadata = mService.sharedMetadata;
+	var sTestName = aServices[i].name ? aServices[i].name : "";
 	
 	// Check asynchronous loading
 	mModelOptions.loadAnnotationsJoined = false;
 	mModelOptions.loadMetadataAsync = true;
-
-	var sTestType = 
-		(bServiceValid ? "Valid Service" : "Broken Service") + "/" + 
-		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations")+
-		(bSharedMetadata ?  "/Shared Metadata" : "");
 	
+	var sTestType = 
+		sTestName + " (" + 
+		(bServiceValid ? "Valid Service" : "Broken Service") + "/" + 
+		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations") +
+		(bSharedMetadata ?  "/Shared Metadata" : "") + 
+		")";
+
 	jQuery.sap.log.debug("testtype: " + sTestType);
 
 	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid, bSharedMetadata) {
@@ -282,17 +325,19 @@ for (var i = 0; i < aServices.length; ++i) {
 	var bAnnotationsValid = mService.annotationsValid;
 	var bShouldFail = !bServiceValid || !bAnnotationsValid;
 	var bSharedMetadata = mService.sharedMetadata;
+	var sTestName = aServices[i].name ? aServices[i].name : "";
 	
 	// Check asynchronous loading
 	mModelOptions.loadAnnotationsJoined = true;
 	mModelOptions.loadMetadataAsync = true;
 
-	var sTestType = "[" 
-		+ (bServiceValid ? "Valid Service" : "Broken Service") 
-		+ "/"
-		+ (bAnnotationsValid ? "Valid Annotations" : "Broken Annotations")
-		+ (bSharedMetadata ?  "/Shared Metadata" : "")
-		+ "]: ";
+	
+	var sTestType = 
+		sTestName + " (" +
+		(bServiceValid ? "Valid Service" : "Broken Service") + "/" +
+		(bAnnotationsValid ? "Valid Annotations" : "Broken Annotations") +
+		(bSharedMetadata ?  "/Shared Metadata" : "") +
+		")";
 	var fnTest = (function(sServiceURI, mModelOptions, bServiceValid, bAnnotationsValid, bSharedMetadata) {
 		return function() {
 			if (!bSharedMetadata){
@@ -398,6 +443,112 @@ for (var i = 0; i < aServices.length; ++i) {
 
 	asyncTest("Asynchronous loading (joined events) - " + sTestType, fnTest); 
 }
+
+
+module("Multiple Annotation Sources Merged");
+
+asyncTest("Asynchronous loading", function() {
+	expect(12);
+	asyncStartsExpected = 2; // The number of asynchronous starts expected before the real start is triggered
+	
+	var oModel1 = new sap.ui.model.odata.ODataModel(
+		"fakeService://testdata/odata/northwind-annotated/", 
+		{
+			annotationURI : [
+				"fakeService://testdata/odata/northwind-annotated/$metadata",
+				"fakeService://testdata/odata/northwind-annotations-normal.xml",
+			],
+			json : true,
+			loadAnnotationsJoined : false,
+			loadMetadataAsync : false
+		}
+	);
+	
+	var oAnnotations = oModel1.getServiceAnnotations();
+
+	ok(oAnnotations.UnitTest["Test.FromAnnotations"][0].Value.Path === "Annotations", "Annotation from correct source (Annotations)");
+	ok(oAnnotations.UnitTest["Test.FromMetadata"][0].Value.Path === "Metadata", "Annotation from correct source (Metadata)");
+	ok(oAnnotations.UnitTest["Test.Merged"][0].Value.Path === "Annotations", "Annotation from correct source (Annotations)");
+	
+	var oModel2 = new sap.ui.model.odata.ODataModel(
+		"fakeService://testdata/odata/northwind-annotated/", 
+		{
+			annotationURI : [
+				"fakeService://testdata/odata/northwind-annotations-normal.xml",
+				"fakeService://testdata/odata/northwind-annotated/$metadata",
+			],
+			json : true,
+			loadAnnotationsJoined : false,
+			loadMetadataAsync : false
+		}
+	);
+	
+	var oAnnotations = oModel2.getServiceAnnotations();
+
+	ok(oAnnotations.UnitTest["Test.FromAnnotations"][0].Value.Path === "Annotations", "Annotation from correct source (Annotations)");
+	ok(oAnnotations.UnitTest["Test.FromMetadata"][0].Value.Path === "Metadata", "Annotation from correct source (Metadata)");
+	ok(oAnnotations.UnitTest["Test.Merged"][0].Value.Path === "Metadata", "Annotation from correct source (Metadata)");
+	
+	var oModel3 = new sap.ui.model.odata.ODataModel(
+		"fakeService://testdata/odata/northwind-annotated/", 
+		{
+			annotationURI : [
+				"fakeService://testdata/odata/northwind-annotations-normal.xml",
+				"fakeService://testdata/odata/northwind-annotated/$metadata",
+			],
+			json : true,
+			loadAnnotationsJoined : false,
+			loadMetadataAsync : true
+		}
+	);
+	oModel3.attachAnnotationsLoaded(function() {
+		var oAnnotations = oModel3.getServiceAnnotations();
+		ok(oAnnotations.UnitTest["Test.FromAnnotations"][0].Value.Path === "Annotations", "Annotation from correct source (Annotations)");
+		ok(oAnnotations.UnitTest["Test.FromMetadata"][0].Value.Path === "Metadata", "Annotation from correct source (Metadata)");
+		ok(oAnnotations.UnitTest["Test.Merged"][0].Value.Path === "Metadata", "Annotation from correct source (Metadata)");
+		asyncStart();
+	});
+	
+	var oModel4 = new sap.ui.model.odata.ODataModel(
+		"fakeService://testdata/odata/northwind-annotated/", 
+		{
+			annotationURI : [
+				"fakeService://testdata/odata/northwind-annotated/$metadata",
+				"fakeService://testdata/odata/northwind-annotations-normal.xml",
+			],
+			json : true,
+			loadAnnotationsJoined : false,
+			loadMetadataAsync : true
+		}
+	);
+	oModel4.attachAnnotationsLoaded(function() {
+		var oAnnotations = oModel4.getServiceAnnotations();
+		ok(oAnnotations.UnitTest["Test.FromAnnotations"][0].Value.Path === "Annotations", "Annotation from correct source (Annotations)");
+		ok(oAnnotations.UnitTest["Test.FromMetadata"][0].Value.Path === "Metadata", "Annotation from correct source (Metadata)");
+		ok(oAnnotations.UnitTest["Test.Merged"][0].Value.Path === "Annotations", "Annotation from correct source (Annotations)");
+		asyncStart();
+	});
+	
+	
+	function asyncStart() {
+		if (asyncStart.num === undefined) {
+			asyncStart.num = 0;
+		}
+		
+		if (++asyncStart.num >= asyncStartsExpected) {
+			oModel1.destroy();
+			oModel2.destroy();
+			oModel3.destroy();
+			oModel4.destroy();
+			
+			start();
+		}
+	}
+	
+});
+
+
+
 
 
 </script>

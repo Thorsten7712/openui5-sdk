@@ -81,6 +81,11 @@
 
 
 					
+						
+						
+						
+						
+					
 		
 
 
@@ -142,6 +147,13 @@
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.model.Model.html">sap.ui.model.Model</a></div>
 									<div class="sectionItems">
 									<a href="../symbols/sap.ui.model.Model.html#attachParseError">attachParseError</a>, <a href="../symbols/sap.ui.model.Model.html#attachRequestCompleted">attachRequestCompleted</a>, <a href="../symbols/sap.ui.model.Model.html#attachRequestFailed">attachRequestFailed</a>, <a href="../symbols/sap.ui.model.Model.html#attachRequestSent">attachRequestSent</a>, <a href="../symbols/sap.ui.model.Model.html#bindContext">bindContext</a>, <a href="../symbols/sap.ui.model.Model.html#bindList">bindList</a>, <a href="../symbols/sap.ui.model.Model.html#bindTree">bindTree</a>, <a href="../symbols/sap.ui.model.Model.html#createBindingContext">createBindingContext</a>, <a href="../symbols/sap.ui.model.Model.html#destroy">destroy</a>, <a href="../symbols/sap.ui.model.Model.html#destroyBindingContext">destroyBindingContext</a>, <a href="../symbols/sap.ui.model.Model.html#detachParseError">detachParseError</a>, <a href="../symbols/sap.ui.model.Model.html#detachRequestCompleted">detachRequestCompleted</a>, <a href="../symbols/sap.ui.model.Model.html#detachRequestFailed">detachRequestFailed</a>, <a href="../symbols/sap.ui.model.Model.html#detachRequestSent">detachRequestSent</a>, <a href="../symbols/sap.ui.model.Model.html#fireParseError">fireParseError</a>, <a href="../symbols/sap.ui.model.Model.html#fireRequestCompleted">fireRequestCompleted</a>, <a href="../symbols/sap.ui.model.Model.html#fireRequestFailed">fireRequestFailed</a>, <a href="../symbols/sap.ui.model.Model.html#fireRequestSent">fireRequestSent</a>, <a href="../symbols/sap.ui.model.Model.html#getDefaultBindingMode">getDefaultBindingMode</a>, <a href="../symbols/sap.ui.model.Model.html#getObject">getObject</a>, <a href="../symbols/sap.ui.model.Model.html#isBindingModeSupported">isBindingModeSupported</a>, <a href="../symbols/sap.ui.model.Model.html#isLegacySyntax">isLegacySyntax</a>, <a href="../symbols/sap.ui.model.Model.html#refresh">refresh</a>, <a href="../symbols/sap.ui.model.Model.html#setDefaultBindingMode">setDefaultBindingMode</a>, <a href="../symbols/sap.ui.model.Model.html#setLegacySyntax">setLegacySyntax</a>, <a href="../symbols/sap.ui.model.Model.html#setSizeLimit">setSizeLimit</a>
+									</div>
+								</div>
+							
+								<div class="summary section">
+									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a></div>
+									<div class="sectionItems">
+									<a href="../symbols/sap.ui.base.EventProvider.html#attachEvent">attachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#attachEventOnce">attachEventOnce</a>, <a href="../symbols/sap.ui.base.EventProvider.html#detachEvent">detachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#getEventingParent">getEventingParent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#toString">toString</a>
 									</div>
 								</div>
 							
@@ -218,6 +230,18 @@
 													</td>
 													<td class="methodItemDesc">
 												    an optional locale; when not given, the default is the active locale from the UI5 configuration
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oData.async</b><i class="help" title="Optional parameter">?, Default: false</i>
+													</td>
+													<td class="methodItemDesc">
+												    whether the language bundle should be loaded asynchronously
 													</td>
 												</tr>
 											
@@ -334,7 +358,7 @@ see <a href="../symbols/sap.ui.base.Object.html#.extend">Object.extend</a>.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="enhance"> </a>
 										<div class="itemTitle icon protected">
 											enhance<span class="signature">(<span title="(object) parameters used to initialize the ResourceModel; at least either bundleUrl or bundleName must be set on this object; if both are set, bundleName wins">oData</span>)</span>
@@ -414,6 +438,20 @@ can be called several times.
 											</dl>
 										
 										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														
+													</td>
+													<td class="methodItemDesc">
+														Promise in async case (async ResourceModel) which is resolved when the the enhancement is finished
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										
@@ -502,7 +540,7 @@ can be called several times.
 														
 													</td>
 													<td class="methodItemDesc">
-														loaded resource bundle
+														loaded resource bundle or ECMA Script 6 Promise in asynchronous case
 													</td>
 												</tr>
 											

@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ID</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A string type representing an Id or a name.</documentation>
 	<baseType>string</baseType>
 	

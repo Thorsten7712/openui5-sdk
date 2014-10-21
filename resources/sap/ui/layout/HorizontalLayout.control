@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>HorizontalLayout</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16.0</since>
 	<documentation>A layout that provides support for horizontal alignment of controls</documentation>
 

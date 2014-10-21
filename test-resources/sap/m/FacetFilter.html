@@ -149,8 +149,66 @@
 		});
 		ffl2.setModel(oDataModel2);
 		
+        var oTypeDate = new sap.ui.model.type.Date(  
+                {    
+                 style: "short"
+               });  
+        
+  		var ffl3 = new sap.m.FacetFilterList( {
+            title: "Order Dates (growing)",
+            growingThreshold: 20,
+			key: "OrderDate",
+            dataType: sap.m.FacetFilterListDataType.Date,
+			items: {
+				 path: "/Orders",
+				template: new sap.m.FacetFilterItem( {
+                    text: {path: 'OrderDate', type: oTypeDate},
+                    key: "{OrderID}"
+				} 
+			)
+			},  		
+			
+			listOpen: handleListOpen,
+			listClose: handleListClose			
+		});
+		ffl3.setModel(oDataModel1);   
+
+		
+		var oTypeN = new sap.ui.model.type.Float(
+				{
+ 			  minIntegerDigits: 1, // minimal number of non-fraction digits
+			  maxIntegerDigits: 99, // maximal number of non-fraction digits
+			  minFractionDigits: 0, // minimal number of fraction digits
+			  maxFractionDigits: 99, // maximal number of fraction digits
+			  groupingEnabled: true, // enable grouping (show the grouping separators)
+			  groupingSeparator: ",", // the used grouping separator
+			  decimalSeparator: "." // the used decimal separator 
+			} 
+				);		
+		
+		
+		var ffl4 = new sap.m.FacetFilterList( {
+			title: "Category Sales(not growing)",
+ 			growing: false,
+			key: "Category_Sales_for_1997",
+            dataType: sap.m.FacetFilterListDataType.Float,
+			items: {
+				 path: "/Category_Sales_for_1997",
+				template: new sap.m.FacetFilterItem( {
+                  text: {path: 'CategorySales', type: oTypeN},
+					key: "{CategorySales}"
+				} 
+			)
+
+			}, 
+
+			listOpen: handleListOpen,
+			listClose: handleListClose			
+		});
+		ffl4.setModel(oDataModel2);	 			
+        
 		var oFF = new sap.m.FacetFilter(genId(), {
-			lists: [ffl1,ffl2],
+			lists: [ffl1,ffl2,ffl3,ffl4],
 			reset: handleReset,
 			showPersonalization: true
 		});

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -36,6 +36,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * <li>{@link #getShowCurtain showCurtain} : boolean</li>
  * <li>{@link #getShowCurtainPane showCurtainPane} : boolean</li>
  * <li>{@link #getHeaderHiding headerHiding} : boolean</li>
+ * <li>{@link #getHeaderVisible headerVisible} : boolean (default: true)</li>
  * <li>{@link #getSearchVisible searchVisible} : boolean (default: true)</li></ul>
  * </li>
  * <li>Aggregations
@@ -62,22 +63,23 @@ jQuery.sap.require("sap.ui.core.Control");
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * The Shell
+ * The shell control is meant as root control (full-screen) of an application.
+ * It was build as root control of the Fiori Launchpad application and provides the basic capabilities
+ * for this purpose. Do not use this control within applications which run inside the Fiori Lauchpad and
+ * do not use it for other scenarios than the root control usecase.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.15.1
  * @name sap.ui.unified.Shell
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.unified.Shell", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.unified",
 	properties : {
 		"icon" : {type : "sap.ui.core.URI", group : "Appearance", defaultValue : null},
@@ -85,20 +87,21 @@ sap.ui.core.Control.extend("sap.ui.unified.Shell", { metadata : {
 		"showCurtain" : {type : "boolean", group : "Appearance", defaultValue : null, deprecated: true},
 		"showCurtainPane" : {type : "boolean", group : "Appearance", defaultValue : null, deprecated: true},
 		"headerHiding" : {type : "boolean", group : "Appearance", defaultValue : null},
+		"headerVisible" : {type : "boolean", group : "Appearance", defaultValue : true},
 		"searchVisible" : {type : "boolean", group : "Appearance", defaultValue : true}
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"paneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "paneContent"}, 
-    	"curtainContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "curtainContent"}, 
-    	"curtainPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "curtainPaneContent"}, 
-    	"headItems" : {type : "sap.ui.unified.ShellHeadItem", multiple : true, singularName : "headItem"}, 
-    	"headEndItems" : {type : "sap.ui.unified.ShellHeadItem", multiple : true, singularName : "headEndItem"}, 
-    	"search" : {type : "sap.ui.core.Control", multiple : false}, 
-    	"canvasSplitContainer" : {type : "sap.ui.unified.SplitContainer", multiple : false, visibility : "hidden"}, 
-    	"curtainSplitContainer" : {type : "sap.ui.unified.SplitContainer", multiple : false, visibility : "hidden"}, 
-    	"user" : {type : "sap.ui.unified.ShellHeadUserItem", multiple : false}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"paneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "paneContent"}, 
+		"curtainContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "curtainContent"}, 
+		"curtainPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "curtainPaneContent"}, 
+		"headItems" : {type : "sap.ui.unified.ShellHeadItem", multiple : true, singularName : "headItem"}, 
+		"headEndItems" : {type : "sap.ui.unified.ShellHeadItem", multiple : true, singularName : "headEndItem"}, 
+		"search" : {type : "sap.ui.core.Control", multiple : false}, 
+		"canvasSplitContainer" : {type : "sap.ui.unified.SplitContainer", multiple : false, visibility : "hidden"}, 
+		"curtainSplitContainer" : {type : "sap.ui.unified.SplitContainer", multiple : false, visibility : "hidden"}, 
+		"user" : {type : "sap.ui.unified.ShellHeadUserItem", multiple : false}
 	}
 }});
 
@@ -249,6 +252,33 @@ sap.ui.core.Control.extend("sap.ui.unified.Shell", { metadata : {
  * @return {sap.ui.unified.Shell} <code>this</code> to allow method chaining
  * @public
  * @name sap.ui.unified.Shell#setHeaderHiding
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>headerVisible</code>.
+ * If set to false, no header (and no items, search, ...) is shown.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>headerVisible</code>
+ * @public
+ * @since 1.23
+ * @name sap.ui.unified.Shell#getHeaderVisible
+ * @function
+ */
+
+/**
+ * Setter for property <code>headerVisible</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bHeaderVisible  new value for property <code>headerVisible</code>
+ * @return {sap.ui.unified.Shell} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.23
+ * @name sap.ui.unified.Shell#setHeaderVisible
  * @function
  */
 
@@ -846,8 +876,9 @@ sap.ui.unified.Shell._SIDEPANE_WIDTH_DESKTOP = 240;
 sap.ui.unified.Shell._HEADER_ALWAYS_VISIBLE = true; /*Whether header hiding is technically possible (touch enabled)*/
 sap.ui.unified.Shell._HEADER_AUTO_CLOSE = true;
 sap.ui.unified.Shell._HEADER_TOUCH_TRESHOLD = 30;
-if(sap.ui.Device.os.windows && sap.ui.Device.os.version == 8 && sap.ui.Device.browser.chrome){
-	sap.ui.unified.Shell._HEADER_TOUCH_TRESHOLD = 15;
+if(sap.ui.Device.browser.chrome){
+	//see https://groups.google.com/a/chromium.org/forum/#!topic/input-dev/Ru9xjSsvLHw --> chrome://flags/#touch-scrolling-mode
+	sap.ui.unified.Shell._HEADER_TOUCH_TRESHOLD = sap.ui.Device.browser.version < 36 ? 10 : 15;
 }
 	
 sap.ui.unified.Shell.prototype.init = function(){
@@ -1130,6 +1161,17 @@ sap.ui.unified.Shell.prototype.setSearchVisible = function(bSearchVisible){
 };
 
 
+sap.ui.unified.Shell.prototype.setHeaderVisible = function(bHeaderVisible){
+	bHeaderVisible = !!bHeaderVisible;
+	this.setProperty("headerVisible", bHeaderVisible, true);
+	this.$().toggleClass("sapUiUfdShellNoHead", !bHeaderVisible);
+	if(bHeaderVisible){
+		this._refreshHeader();
+	}
+	return this;
+};
+
+
 sap.ui.unified.Shell.prototype.setSearch = function(oSearch){
 	return this._mod(function(bRendered){
 		this.setAggregation("search", oSearch, bRendered);
@@ -1167,6 +1209,9 @@ sap.ui.unified.Shell.prototype.destroyContent = function() {
 	this._cont.destroyContent();
 	return this;
 };
+sap.ui.unified.Shell.prototype.indexOfContent = function(oContent) {
+	return this._cont.indexOfContent(oContent);
+};
 
 
 sap.ui.unified.Shell.prototype.getPaneContent = function() {
@@ -1190,7 +1235,9 @@ sap.ui.unified.Shell.prototype.destroyPaneContent = function() {
 	this._cont.destroySecondaryContent();
 	return this;
 };
-
+sap.ui.unified.Shell.prototype.indexOfPaneContent = function(oContent) {
+	return this._cont.indexOfSecondaryContent(oContent);
+};
 
 sap.ui.unified.Shell.prototype.getCurtainContent = function() {
 	return this._curtCont.getContent();
@@ -1213,7 +1260,9 @@ sap.ui.unified.Shell.prototype.destroyCurtainContent = function() {
 	this._curtCont.destroyContent();
 	return this;
 };
-
+sap.ui.unified.Shell.prototype.indexOfCurtainContent = function(oContent) {
+	return this._curtCont.indexOfCurtainContent(oContent);
+};
 
 sap.ui.unified.Shell.prototype.getCurtainPaneContent = function() {
 	return this._curtCont.getSecondaryContent();
@@ -1236,7 +1285,9 @@ sap.ui.unified.Shell.prototype.destroyCurtainPaneContent = function() {
 	this._curtCont.destroySecondaryContent();
 	return this;
 };
-
+sap.ui.unified.Shell.prototype.indexOfCurtainPaneContent = function(oContent) { 
+	return this._curtCont.indexOfSecondaryContent(oContent);
+};
 
 sap.ui.unified.Shell.prototype.insertHeadItem = function(oHeadItem, iIndex) {
 	return this._mod(function(bRendered){
@@ -1264,7 +1315,6 @@ sap.ui.unified.Shell.prototype.destroyHeadItems = function() {
 	}, this._headBeginRenderer);
 };
 
-
 sap.ui.unified.Shell.prototype.insertHeadEndItem = function(oHeadItem, iIndex) {
 	return this._mod(function(bRendered){
 		return this.insertAggregation("headEndItems", oHeadItem, iIndex, bRendered);
@@ -1291,6 +1341,7 @@ sap.ui.unified.Shell.prototype.destroyHeadEndItems = function() {
 	}, this._headEndRenderer);
 };
 
+
 /*Restricted API for Launchpad to set a Strong BG style*/
 sap.ui.unified.Shell.prototype._setStrongBackground = function(bUseStongBG){	
 	this._useStrongBG = !!bUseStongBG;
@@ -1301,12 +1352,25 @@ sap.ui.unified.Shell.prototype._setStrongBackground = function(bUseStongBG){
 
 
 sap.ui.unified.Shell.prototype._doShowHeader = function(bShow){
+	var bWasVisible = this._showHeader;
 	this._showHeader = this._isHeaderHidingActive() ? !!bShow : true;
 	
 	this.$().toggleClass("sapUiUfdShellHeadHidden", !this._showHeader).toggleClass("sapUiUfdShellHeadVisible", this._showHeader);
 	
 	if(this._showHeader){
 		this._timedHideHeader();
+	}
+	
+	if (bWasVisible != this._showHeader && this._isHeaderHidingActive()){
+		jQuery.sap.delayedCall(500, this, function(){
+			try {
+				var oResizeEvent = document.createEvent("UIEvents");
+				oResizeEvent.initUIEvent("resize", true, false, window, 0);
+				window.dispatchEvent(oResizeEvent);
+			} catch(e) {
+				jQuery.sap.log.error(e);
+			}
+		});
 	}
 };
 
@@ -1323,7 +1387,6 @@ sap.ui.unified.Shell.prototype._timedHideHeader = function(bClearOnly){
 	this._headerHidingTimer = jQuery.sap.delayedCall(this._iHeaderHidingDelay, this, function(){
 		if(this._isHeaderHidingActive() && this._iHeaderHidingDelay > 0 && !jQuery.sap.containsOrEquals(this.getDomRef("hdr"), document.activeElement)){
 			this._doShowHeader(false);
-			this._refreshCSSWorkaround();
 		}
 	});
 };
@@ -1434,19 +1497,21 @@ sap.ui.unified.Shell.prototype._repaint = function(oDom){
 		oDom.style.display = "none";
 		oDom.offsetHeight;
 		oDom.style.display = display;
+		
+		this._refreshCSSWorkaround();
 	}
 };
 
 sap.ui.unified.Shell.prototype._isHeaderHidingActive = function(){
 	// Not active if no touch, the curtain is open or the hiding is deactivated via API
-	if(sap.ui.unified.Shell._HEADER_ALWAYS_VISIBLE || this.getShowCurtain() || !this.getHeaderHiding() || sap.ui.unified._iNumberOfOpenedShellOverlays > 0){
+	if(sap.ui.unified.Shell._HEADER_ALWAYS_VISIBLE || this.getShowCurtain() || !this.getHeaderHiding() || sap.ui.unified._iNumberOfOpenedShellOverlays > 0 || !this.getHeaderVisible()){
 		return false;
 	}
 	return true;
 };
 
 sap.ui.unified.Shell.prototype._refreshCSSWorkaround = function() {
-	if(!sap.ui.Device.browser.chrome || !sap.ui.Device.support.touch){
+	if(!sap.ui.Device.browser.webkit || !sap.ui.Device.support.touch){
 		return;
 	}
 	

@@ -136,6 +136,13 @@
 				"samples" : [ "sap.m.sample.Table" ]
 			},
 			{
+				"id" : "sap.m.ComboBox",
+				"name" : "ComboBox",
+				"category" : "User Input",
+				"since" : "1.22",
+				"samples" : [ "sap.m.sample.ComboBox" ]
+			},
+			{
 				"id" : "sap.m.ColumnListItem",
 				"name" : "Column List Item",
 				"category" : "List",
@@ -271,6 +278,7 @@
 					"sap.m.sample.InputAssistedTwoValues",
 					"sap.m.sample.InputAssistedTabularSuggestions",
 					"sap.m.sample.InputChecked",
+					"sap.m.sample.InputDescription",
 					"sap.m.sample.InputPassword",
 					"sap.m.sample.InputSuggestionsCustomFilter",
 					"sap.m.sample.InputSuggestionsDynamic",
@@ -316,6 +324,7 @@
 					"sap.m.sample.ListFooter",
 					"sap.m.sample.ListGrouping",
 					"sap.m.sample.ListGrowing",
+					"sap.m.sample.ListItemTypes",
 					"sap.m.sample.ListLoading",
 					"sap.m.sample.ListNavType",
 					"sap.m.sample.ListNoData",
@@ -331,7 +340,7 @@
 				"name" : "Message Box",
 				"category" : "Popup",
 				"since" : "1.10",
-				"samples" : [ "sap.m.sample.MessageBox" ]
+				"samples" : [ "sap.m.sample.MessageBox", "sap.m.sample.MessageBoxCustom" ]
 			},
 			{
 				"id" : "sap.m.MessageToast",
@@ -347,6 +356,16 @@
 				"since" : "1.10",
 				"formFactors" : "-",
 				"samples" : [ "sap.m.sample.NavContainer" ]
+			},
+			{
+				"id" : "sap.m.ObjectAttribute",
+				"name" : "Object Attribute",
+				"category" : "Display",
+				"since" : "1.12",
+				"samples" : [
+					"sap.m.sample.ObjectHeaderResponsiveI",
+					"sap.m.sample.ObjectHeaderActiveAttributes"
+				]
 			},
 			{
 				"id" : "sap.m.ObjectHeader",
@@ -403,7 +422,9 @@
 				"since" : "1.10",
 				"samples" : [
 					"sap.m.sample.Page",
-					"sap.m.sample.PageSpacing"
+					"sap.m.sample.PageSpacing",
+					"sap.m.sample.PageListReportIconTabBar",
+					"sap.m.sample.PageListReportToolbar"
 				]
 			},
 			{
@@ -497,6 +518,13 @@
 				"samples" : [ "sap.m.sample.MultiComboBox" ]
 			},
 			{
+				"id" : "sap.m.MultiInput",
+				"name" : "Multi Input",
+				"category" : "User Input",
+				"since" : "1.22",
+				"samples" : [ "sap.m.sample.MultiInput" ]
+			},
+			{
 				"id" : "sap.m.SelectDialog",
 				"name" : "Select Dialog",
 				"category" : "Popup",
@@ -517,7 +545,13 @@
 				"name" : "Standard List Item",
 				"category" : "List",
 				"since" : "1.10",
-				"samples" : [ "sap.m.sample.StandardListItem", "sap.m.sample.StandardListItemTitle" ]
+				"samples" : [ 
+					"sap.m.sample.StandardListItem", 
+					"sap.m.sample.StandardListItemTitle",
+					"sap.m.sample.StandardListItemDescription",
+					"sap.m.sample.StandardListItemIcon",
+					"sap.m.sample.StandardListItemInfo"
+				]
 			},
 			{
 				"id" : "sap.m.StandardTile",
@@ -547,7 +581,8 @@
 					"sap.m.sample.TablePerso",
 					"sap.m.sample.TableVerticalAlignment",
 					"sap.m.sample.TableViewSettingsDialog",
-					"sap.m.sample.TableExport"
+					"sap.m.sample.TableExport",
+					"sap.m.sample.TableOutdated"
 				]
 			},
 			{
@@ -587,6 +622,20 @@
 				"samples" : [ "sap.m.sample.ToggleButton" ]
 			},
 			{
+				"id" : "sap.m.Token",
+				"name" : "Token",
+				"category" : "User Input",
+				"since" : "1.22",
+				"samples" : [ "sap.m.sample.Token" ]
+			},
+			{
+				"id" : "sap.m.Tokenizer",
+				"name" : "Tokenizer",
+				"category" : "User Input",
+				"since" : "1.22",
+				"samples" : [ "sap.m.sample.Tokenizer" ]
+			},
+			{
 				"id" : "sap.m.Toolbar",
 				"name" : "Toolbar",
 				"category" : "Container",
@@ -618,6 +667,11 @@
 			}
 		],
 		"samples" : [
+			{
+				"id": "sap.m.sample.ComboBox",
+				"name": "ComboBox",
+				"description": "The ComboBox control provides a list box with items and a text field allowing the user to either type a value directly into the control or choose from the list of existing items."
+			},
 			{
 				"id": "sap.m.sample.DateRangeSelection",
 				"name": "Date Range Selection",
@@ -680,7 +734,7 @@
 			},
 			{
 				"id": "sap.m.sample.ToolbarShrinkable",
-				"name": "Toolbar - Shrikable",
+				"name": "Toolbar - Shrinkable",
 				"description": "Toolbar items can be set as shrinkable to fit items into the container when overflow happens. You can configure this feature with providing ToolbarLayoutData which can enable/disable the shrinking or define shrinking priority with min/max width."
 			},
 			{
@@ -789,6 +843,16 @@
 				"description": "This page shows a standard setup for showing the details of an object based on: Object Header, Icon Tab Bar, Form, List, Table and Panel. By applying the CSS class 'sapUiFioriObjectPage' you arrange all the controls with a standard spacing."
 			},
 			{
+				"id": "sap.m.sample.PageListReportIconTabBar",
+				"name": "Fiori List Report Page - Icon Tab Bar",
+				"description": "This page shows the floorplan for a list report with an Icon Tab Bar: VBox with Filter Bar, Icon Tab Bar with Analytical Tables and a Footer. By applying a bit custom CSS you arrange all the controls with the correct spacing."
+			},
+			{
+				"id": "sap.m.sample.PageListReportToolbar",
+				"name": "Fiori List Report Page - Toolbar ",
+				"description": "This page shows the floorplan for a list report with a Title Bar, Toolbar and a Footer: Filter Bar, Toolbar, second Toolbar, Analytical Table and Footer inside a VBox. By applying a bit custom CSS you arrange all the controls with the correct spacing."
+			},
+			{
 				"id": "sap.m.sample.IconTabBar",
 				"name": "Icon Tab Bar - Filter",
 				"description": "In this example the Icon Tab Bar is used to apply filters on the same content and show a quick preview of how many items can be expected for each view."
@@ -852,6 +916,11 @@
 				"id": "sap.m.sample.ObjectHeader",
 				"name": "Object Header",
 				"description": "This is a Object Header which displays the basic information about objects similar to the Object List Item. Besides a title and number you can show multiple attributes (on the left) and statuses (on the right)."
+			},
+			{
+				"id": "sap.m.sample.ObjectHeaderActiveAttributes",
+				"name": "Object Header – Active Attributes",
+				"description": "Active Object Attributes can trigger actions, such as navigating to related content inside or outside of the current application, or displaying additional information in a popover."
 			},
 			{
 				"id": "sap.m.sample.ObjectHeaderImage",
@@ -964,6 +1033,21 @@
 				"description": "Choose one or more out of multiple options with the MultiComboBox control."
 			},
 			{
+				"id": "sap.m.sample.MultiInput",
+				"name": "MultiInput", 
+				"description": "MultiInput provides functionality to add / remove / enter tokens."
+			},
+			{
+				"id": "sap.m.sample.Token",
+				"name": "Token", 
+				"description": "Token renders a token containing text and an optional delete icon."
+			},
+			{
+				"id": "sap.m.sample.Tokenizer",
+				"name": "Tokenizer", 
+				"description": "Tokenizer displays multiple tokens."
+			},
+			{
 				"id": "sap.m.sample.Slider",
 				"name": "Slider",
 				"description": "With the Slider a user can choose a value from a numerical range."
@@ -1054,6 +1138,11 @@
 				"description": "This example demonstrates the different input field states, e.g. disabled, editable, with value help and value help only."
 			},
 			{
+				"id": "sap.m.sample.InputDescription",
+				"name": "Input - Description",
+				"description": "This sample illustrates the usage of the description with input fields, e.g. description for units of measurements and currencies."
+			},
+			{
 				"id": "sap.m.sample.ListToolbar",
 				"name": "List - Header & Info Toolbar",
 				"description": "The 'headerText' property is an easy but limited way of setting the list header. If you need more flexibility you should assemble your own header or info toolbar that can also contain buttons."
@@ -1072,6 +1161,11 @@
 				"id": "sap.m.sample.ListSelection",
 				"name": "List - Selection",
 				"description": "'Single selection' forces the user to choose exactly one out of many items. With the 'multi' selection the user can pick multiple items at the same time. This is helpful for e.g. batch processing. With 'includeItem' the selection is also changed when pressing the item."
+			},
+			{
+				"id": "sap.m.sample.ListItemTypes",
+				"name": "List - Items Type",
+				"description": "You can use the ‘type’ property of any list item, which inherits from ListItemBase control, to demonstrate all possible types (see sap.m.ListType). In this example, you can see the Standard List Item behavior when different values of ‘type’ property are selected."
 			},
 			{
 				"id": "sap.m.sample.ListDeletion",
@@ -1139,6 +1233,11 @@
 				"description": "This is a good example of how to vertically align different elements within a Table's ColumnListItem row template."
 			},
 			{
+				"id": "sap.m.sample.TableOutdated",
+				"name": "Table - Outdated Data",
+				"description": "You can use the 'showOverlay' property to indicate that the table data is no longer up to date. When the user modifies the filter values of the table, this results in displaying an overlay, which disables operations on the table. Once the user chooses 'Search', the filter values and table data are synchronized again and the overlay is removed."
+			},
+			{
 				"id": "sap.m.sample.TableBreadcrumb",
 				"name": "Table - Breadcrumb",
 				"description": "With an InfoToolbar and some crumb logic you can navigate simple hierarchies with a breadcrumb table approach."
@@ -1191,7 +1290,22 @@
 			{
 				"id": "sap.m.sample.StandardListItem",
 				"name": "Standard List Item",
-				"description": "This list item offers a standardized user interface for list content. Use any combination of title, description, info and icon."
+				"description": "This list item offers a standardized user interface for list content with only title."
+			},
+			{
+				"id": "sap.m.sample.StandardListItemDescription",
+				"name": "Standard List Item - Description",
+				"description": "This list item offers a standardized user interface for list content with title and description."
+			},
+			{
+				"id": "sap.m.sample.StandardListItemIcon",
+				"name": "Standard List Item - Icon",
+				"description": "This list item offers a standardized user interface for list content with title, description and icon."
+			},
+			{
+				"id": "sap.m.sample.StandardListItemInfo",
+				"name": "Standard List Item - Info",
+				"description": "This list item offers a standardized user interface for list content with title and info."
 			},
 			{
 				"id": "sap.m.sample.StandardListItemTitle",
@@ -1202,6 +1316,11 @@
 				"id": "sap.m.sample.MessageBox",
 				"name": "Message Box",
 				"description": "MessageBox is an easier way of showing a message type dialog. You only need to provide the message that you want to show to the user."
+			},
+			{
+				"id": "sap.m.sample.MessageBoxCustom",
+				"name": "Message Box with Custom Content",
+				"description": "Here a MessageBox is described how it can be used with custom content - a layout e.g. Additionaly it is show how any binding can be used within the custom content."
 			},
 			{
 				"id": "sap.m.sample.MessageToast",
@@ -1255,7 +1374,7 @@
 			},
 			{
 				"id": "sap.m.sample.TitleToolBar",
-				"name": "TitleToolBar",
+				"name": "Title Toolbar",
 				"description": "A TitleToolBar is always 3 rem in height. The Text inside of it should always have the header font-size of 4. This results in 16px. For achieving this you can add the style-class sapMH4FontSize"
 			}
 		]

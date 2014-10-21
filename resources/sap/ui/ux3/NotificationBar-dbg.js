@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,31 +58,29 @@ jQuery.sap.require("sap.ui.core.Control");
  * Its position, height and width is inherited from the element that the notification bar is added to.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.7.0
  * @name sap.ui.ux3.NotificationBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.NotificationBar", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"hasItems"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"visibleStatus" : {type : "sap.ui.ux3.NotificationBarStatus", group : "Misc", defaultValue : sap.ui.ux3.NotificationBarStatus.Default},
 		"resizeEnabled" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
-    	"messageNotifier" : {type : "sap.ui.core.Element", multiple : false}, 
-    	"notifiers" : {type : "sap.ui.core.Element", multiple : true, singularName : "notifier"}
+		"messageNotifier" : {type : "sap.ui.core.Element", multiple : false}, 
+		"notifiers" : {type : "sap.ui.core.Element", multiple : true, singularName : "notifier"}
 	},
 	events : {
 		"display" : {}, 
@@ -273,14 +271,13 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
 
 
 /**
- * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do. 
+ * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do.
  *
  * @name sap.ui.ux3.NotificationBar#display
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.show Indicates if the bar wants to be shown or hidden
  * @public
  */
@@ -290,7 +287,7 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.NotificationBar</code>.<br/> itself. 
  *  
- * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do. 
+ * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -337,7 +334,7 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
 
 
 /**
- * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event. 
+ * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event.
  *
  * @name sap.ui.ux3.NotificationBar#resize
  * @event
@@ -345,7 +342,6 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.NotificationBarStatus} oControlEvent.getParameters.status The corresponding status to which the bar was resized. The corresponding heights can be taken for the bar's CSS file.
  * @public
  */
@@ -355,7 +351,7 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.NotificationBar</code>.<br/> itself. 
  *  
- * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event. 
+ * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -407,11 +403,11 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
 /**
  * This method checks if the NotificationBar has any items (notifications or messages) to show and returns true if there are any items to show. So the application should decide if the bar should be displayed.
  *
- * @name sap.ui.ux3.NotificationBar.prototype.hasItems
+ * @name sap.ui.ux3.NotificationBar#hasItems
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -892,7 +888,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.NotificationBar.MessageView", {
 	};
 	/**
 	 * This method creates an instance of the internal control
-	 * {sap.ui.ux3.NotificationBar.MessageView} corresponding to the given
+	 * {@link sap.ui.ux3.NotificationBar.MessageView} corresponding to the given
 	 * message
 	 * 
 	 * @param {sap.ui.core.Message}
@@ -1357,7 +1353,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.NotificationBar.MessageView", {
 
 			// create key for description text
 			var iCount = oMN.getMessages().length;
-			var sKey = "NOTIBAR_MESSAGE_NOTIFIER_DESC_LEVEL_" + (sLvl.toUpperCase() + iCount === 1 ? "SING" : "PL");
+			var sKey = "NOTIBAR_MESSAGE_NOTIFIER_DESC_LEVEL_" + sLvl.toUpperCase() + (iCount === 1 ? "_SING" : "_PL");
 
 			// set description (i.e. "3 messages available: Highest severity
 			// "Error")

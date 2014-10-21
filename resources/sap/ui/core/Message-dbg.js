@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,22 +60,20 @@ sap.ui.define(['./library','./Element','./theming/Parameters'], function() {
  * Its default level is none.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.Message
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.core.Message", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getDefaultIcon"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"text" : {type : "string", group : "Misc", defaultValue : null},
@@ -234,14 +232,13 @@ sap.ui.core.Element.extend("sap.ui.core.Message", { metadata : {
 /**
  * Returns the icon's default URI depending on given size. There are default icons for messages available that can be used this way. If no parameter is given the size will be 16x16 per default. If larger icons are needed the parameter "32x32" might be given.
  *
- * @name sap.ui.core.Message.prototype.getDefaultIcon
+ * @name sap.ui.core.Message#getDefaultIcon
  * @function
- * @param {string} 
- *         sSize
+ * @param {string} sSize
  *         If parameter is not set the default icon's size will be 16x16. If parameter is set to "32x32" the icon size will be 32x32.
-
  * @type sap.ui.core.URI
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -289,7 +286,17 @@ sap.ui.core.Message.prototype.getDefaultIcon = function(sSize) {
 };
 
 /**
- * See sap.ui.core.Message.compare
+ * Compares the given message with <code>this</code> message. The types of
+ * {@link sap.ui.core.MessageType} are ordered from "Error" > "Warning" > "Success" >
+ * "Information" > "None".
+ * 
+ * See  {@link sap.ui.core.Message.compareByType}
+ *
+ * @param {sap.ui.core.Message} oOther message to compare with this one
+ * @return {int} returns <code>0</code> if both messages are at
+ *         the same level. <code>-1</code> if <code>this</code>
+ *         message has a lower level. <code>1</code> if <code>this</code>
+ *         message has a higher level.
  * @public
  */
 sap.ui.core.Message.prototype.compareByType = function(oOther) {
@@ -297,18 +304,19 @@ sap.ui.core.Message.prototype.compareByType = function(oOther) {
 };
 
 /**
- * Compares a given message with <strong>this</strong> message. The types of
- * {sap.ui.core.MessageType} is ordered from "Error" > "Warning" > "Success" >
+ * Compares two given messages with each other. 
+ *
+ * The types of {@link sap.ui.core.MessageType} are ordered from "Error" > "Warning" > "Success" >
  * "Information" > "None".
  * 
+ * @param {sap.ui.core.Message} oMessage1 first message to compare 
+ * @param {sap.ui.core.Message} oMessage2 second message to compare
+ * @return {int} returns <code>0</code> if both messages are at
+ *         the same level. <code>-1</code> if <code>this</code>
+ *         message has a lower level. <code>1</code> if <code>this</code>
+ *         message has a higher level.
  * @static
  * @public
- * @param {sap.ui.core.Message}
- *            a message to compare with
- * @return {sap.ui.core.int} returns <strong>0</strong> if both messages are at
- *         the same level. <strong>-1</strong> if <strong>this</strong>
- *         message has a lower level. <strong>1</strong> if <strong>this</strong>
- *         message has a higher level.
  */
 sap.ui.core.Message.compareByType = function(oMessage1, oMessage2) {
 	if (!oMessage1 && !oMessage2) {

@@ -107,7 +107,7 @@ must be explicitly executed before the class can be used. Example:
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Closes all of the open dialogs."><a href="../symbols/sap.m.InstanceManager.html#.closeAllDialogs">sap.m.InstanceManager.closeAllDialogs</a></b><span class='signature'>(<span>fnCallback</span>)</span>
+									<b class="icon" title="Closes all of the open dialogs."><a href="../symbols/sap.m.InstanceManager.html#.closeAllDialogs">sap.m.InstanceManager.closeAllDialogs</a></b><span class='signature'>(<span title="(Function) Function">fnCallback</span>)</span>
 									<span class='description'>Closes all of the open dialogs.</span>
 								</div>
 							
@@ -162,7 +162,7 @@ must be explicitly executed before the class can be used. Example:
 								</div>
 							
 								<div class="sectionItem classMethod static protected">
-									<b class="icon protected" title="Removes control from predefined dialog category in instance manager."><a href="../symbols/sap.m.InstanceManager.html#.removeDialogInstance">sap.m.InstanceManager.removeDialogInstance</a></b><span class='signature'>(<span title="(sap.ui.core.Control) to be removed from instance manager.">Dialog</span>)</span>
+									<b class="icon protected" title="Removes control from predefined dialog category in instance manager."><a href="../symbols/sap.m.InstanceManager.html#.removeDialogInstance">sap.m.InstanceManager.removeDialogInstance</a></b><span class='signature'>(<span title="(sap.ui.core.Control) to be removed from instance manager.">oDialog</span>)</span>
 									<span class='description'>Removes control from predefined dialog category in instance manager.</span>
 								</div>
 							
@@ -172,7 +172,7 @@ must be explicitly executed before the class can be used. Example:
 								</div>
 							
 								<div class="sectionItem classMethod static protected">
-									<b class="icon protected" title="Removes control from predefined popover category in instance manager."><a href="../symbols/sap.m.InstanceManager.html#.removePopoverInstance">sap.m.InstanceManager.removePopoverInstance</a></b><span class='signature'>(<span title="(sap.ui.core.Control) to be removed from instance manager.">Popover</span>)</span>
+									<b class="icon protected" title="Removes control from predefined popover category in instance manager."><a href="../symbols/sap.m.InstanceManager.html#.removePopoverInstance">sap.m.InstanceManager.removePopoverInstance</a></b><span class='signature'>(<span title="(sap.ui.core.Control) to be removed from instance manager.">oPopover</span>)</span>
 									<span class='description'>Removes control from predefined popover category in instance manager.</span>
 								</div>
 							
@@ -203,7 +203,7 @@ must be explicitly executed before the class can be used. Example:
 							</div>
 							<div class="sectionItems">
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".addDialogInstance"> </a>
 										<div class="itemTitle icon protected">
 											sap.m.InstanceManager.addDialogInstance<span class="signature">(<span title="(sap.ui.core.Control) Dialog to be added to instance manager.">oDialog</span>)</span>
@@ -258,14 +258,14 @@ must be explicitly executed before the class can be used. Example:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".addInstance"> </a>
 										<div class="itemTitle icon protected">
 											sap.m.InstanceManager.addInstance<span class="signature">(<span title="(string) The category's id.">sCategoryId</span>, <span title="(object) The instance that will be added to the given category.">oInstance</span>)</span>
 											<span class="light" title="returns sap.m.InstanceManager">: <a href="../symbols/sap.m.InstanceManager.html">sap.m.InstanceManager</a></span>
 										</div>
 										<div class="full-description">
-											Adds an instance to the given category.
+											Adds an instance to the given category. If the instance is already added to the same category, it won't be added again.
 											
 											
 											
@@ -325,7 +325,7 @@ must be explicitly executed before the class can be used. Example:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".addPopoverInstance"> </a>
 										<div class="itemTitle icon protected">
 											sap.m.InstanceManager.addPopoverInstance<span class="signature">(<span title="(sap.ui.core.Control) Popover to be added to instance manager.">oPopover</span>)</span>
@@ -383,7 +383,7 @@ must be explicitly executed before the class can be used. Example:
 									<div class='sectionItem classMethod static'>
 										<a name=".closeAllDialogs"> </a>
 										<div class="itemTitle icon">
-											sap.m.InstanceManager.closeAllDialogs<span class="signature">(<span>fnCallback</span>)</span>
+											sap.m.InstanceManager.closeAllDialogs<span class="signature">(<span title="(Function) Function">fnCallback</span>)</span>
 											<span class="light" title="returns sap.m.InstanceManager">: <a href="../symbols/sap.m.InstanceManager.html">sap.m.InstanceManager</a></span>
 										</div>
 										<div class="full-description">
@@ -401,7 +401,7 @@ must be explicitly executed before the class can be used. Example:
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{Function}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>fnCallback</b>
@@ -473,7 +473,7 @@ must be explicitly executed before the class can be used. Example:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".getInstancesByCategoryId"> </a>
 										<div class="itemTitle icon protected">
 											sap.m.InstanceManager.getInstancesByCategoryId<span class="signature">(<span title="(string) The category's id.">sCategoryId</span>)</span>
@@ -680,7 +680,7 @@ must be explicitly executed before the class can be used. Example:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".isCategoryEmpty"> </a>
 										<div class="itemTitle icon protected">
 											sap.m.InstanceManager.isCategoryEmpty<span class="signature">(<span title="(string) The category's id.">sCategoryId</span>)</span>
@@ -795,7 +795,7 @@ preferred to be called than this function.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".isInstanceManaged"> </a>
 										<div class="itemTitle icon protected">
 											sap.m.InstanceManager.isInstanceManaged<span class="signature">(<span title="(string) The category that the instance is supposed to be in.">sCategoryId</span>, <span title="(object) The instance that needs to be checked.">oInstance</span>)</span>
@@ -922,10 +922,10 @@ preferred to be called than this function.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".removeDialogInstance"> </a>
 										<div class="itemTitle icon protected">
-											sap.m.InstanceManager.removeDialogInstance<span class="signature">(<span title="(sap.ui.core.Control) to be removed from instance manager.">Dialog</span>)</span>
+											sap.m.InstanceManager.removeDialogInstance<span class="signature">(<span title="(sap.ui.core.Control) to be removed from instance manager.">oDialog</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -946,7 +946,7 @@ preferred to be called than this function.
 													  <span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>Dialog</b>
+													  <b>oDialog</b>
 													</td>
 													<td class="methodItemDesc">
 												    to be removed from instance manager.
@@ -977,7 +977,7 @@ preferred to be called than this function.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".removeInstance"> </a>
 										<div class="itemTitle icon protected">
 											sap.m.InstanceManager.removeInstance<span class="signature">(<span title="(string) The category's id.">sCategoryId</span>, <span title="(object) The instance that will be removed from the given category.">oInstance</span>)</span>
@@ -1044,10 +1044,10 @@ preferred to be called than this function.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".removePopoverInstance"> </a>
 										<div class="itemTitle icon protected">
-											sap.m.InstanceManager.removePopoverInstance<span class="signature">(<span title="(sap.ui.core.Control) to be removed from instance manager.">Popover</span>)</span>
+											sap.m.InstanceManager.removePopoverInstance<span class="signature">(<span title="(sap.ui.core.Control) to be removed from instance manager.">oPopover</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -1068,7 +1068,7 @@ preferred to be called than this function.
 													  <span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>Popover</b>
+													  <b>oPopover</b>
 													</td>
 													<td class="methodItemDesc">
 												    to be removed from instance manager.

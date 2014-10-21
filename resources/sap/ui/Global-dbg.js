@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -18,7 +18,7 @@
  * sap.ui.lazyRequire("sap.ui.core.Control");
  * sap.ui.lazyRequire("sap.ui.commons.Button");
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @author  Martin Schaus, Daniel Brinkmann
  * @public
  */
@@ -35,12 +35,12 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.dom'],
 	"use strict";
 
 	/**
-	 * Root namespace for JavaScript functionality provided by SAP AG.
+	 * Root namespace for JavaScript functionality provided by SAP SE.
 	 *
 	 * The <code>sap</code> namespace is automatically registered with the
 	 * OpenAjax hub if it exists.
 	 *
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @namespace
 	 * @public
 	 * @name sap
@@ -53,7 +53,7 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.dom'],
 	 * The <code>sap.ui</code> namespace is the central OpenAjax compliant entry
 	 * point for UI related JavaScript functionality provided by SAP.
 	 *
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @namespace
 	 * @name sap.ui
 	 * @public
@@ -66,8 +66,8 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.dom'],
 			 * The version of the SAP UI Library
 			 * @type string
 			 */
-			version: "1.22.4",
-			buildinfo : { lastchange : "${ldi.scm.revision}", buildtime : "201407151731" }
+			version: "1.24.2",
+			buildinfo : { lastchange : "${ldi.scm.revision}", buildtime : "201410141426" }
 		});
 
 	/**
@@ -105,6 +105,7 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.dom'],
 	 * Ensures that a given a namespace or hierarchy of nested namespaces exists in the
 	 * current <code>window</code>.
 	 *
+	 * @param {string} sNamespace
 	 * @return {object} the innermost namespace of the hierarchy
 	 * @public
 	 * @static
@@ -230,8 +231,8 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.dom'],
 	 * It DOES work, however, when the given sResourcePath starts with "themes/" (= when it is a theme-dependent resource). Even when for this theme a different
 	 * location outside the normal library location is configured.
 	 *
-	 * @param sLibraryName the name of a library, like "sap.ui.commons"
-	 * @param sResourcePath the relative path of a resource inside this library, like "img/mypic.png" or "themes/my_theme/img/mypic.png"
+	 * @param {string} sLibraryName the name of a library, like "sap.ui.commons"
+	 * @param {string} sResourcePath the relative path of a resource inside this library, like "img/mypic.png" or "themes/my_theme/img/mypic.png"
 	 * @returns {string} the URL of the requested resource
 	 *
 	 * @static

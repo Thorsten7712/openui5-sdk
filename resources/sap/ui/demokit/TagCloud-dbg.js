@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,19 +54,15 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * A simple TagCloud representing a set of weighted tags
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.demokit.TagCloud
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.demokit.TagCloud", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.demokit",
 	properties : {
 		"maxFontSize" : {type : "int", group : "Misc", defaultValue : 30},
@@ -74,7 +70,7 @@ sap.ui.core.Control.extend("sap.ui.demokit.TagCloud", { metadata : {
 	},
 	defaultAggregation : "tags",
 	aggregations : {
-    	"tags" : {type : "sap.ui.demokit.Tag", multiple : true, singularName : "tag"}
+		"tags" : {type : "sap.ui.demokit.Tag", multiple : true, singularName : "tag"}
 	},
 	events : {
 		"press" : {}
@@ -103,7 +99,7 @@ sap.ui.demokit.TagCloud.M_EVENTS = {'press':'press'};
 
 /**
  * Getter for property <code>maxFontSize</code>.
- * 
+ * Maximum font size that may be chosen for a tag in this cloud
  *
  * Default value is <code>30</code>
  *
@@ -128,7 +124,7 @@ sap.ui.demokit.TagCloud.M_EVENTS = {'press':'press'};
 
 /**
  * Getter for property <code>minFontSize</code>.
- * 
+ * Minimum font size that must be used for a tag in this cloud
  *
  * Default value is <code>10</code>
  *
@@ -153,7 +149,7 @@ sap.ui.demokit.TagCloud.M_EVENTS = {'press':'press'};
 
 /**
  * Getter for aggregation <code>tags</code>.<br/>
- * 
+ * The tags displayed in this tag cloud
  * 
  * <strong>Note</strong>: this is the default aggregation for TagCloud.
  * @return {sap.ui.demokit.Tag[]}
@@ -234,14 +230,13 @@ sap.ui.demokit.TagCloud.M_EVENTS = {'press':'press'};
 
 
 /**
- * Fired when a Tag is clicked. 
+ * Fired when a Tag is clicked.
  *
  * @name sap.ui.demokit.TagCloud#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.tagId Id of the selected Tag.
  * @public
  */
@@ -251,7 +246,7 @@ sap.ui.demokit.TagCloud.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.demokit.TagCloud</code>.<br/> itself. 
  *  
- * Fired when a Tag is clicked. 
+ * Fired when a Tag is clicked.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

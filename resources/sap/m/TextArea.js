@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.TextArea");jQuery.sap.require("sap.m.library");jQuery.sap.require("sap.m.InputBase");sap.m.InputBase.extend("sap.m.TextArea",{metadata:{library:"sap.m",properties:{"rows":{type:"int",group:"Appearance",defaultValue:2},"cols":{type:"int",group:"Appearance",defaultValue:20},"height":{type:"sap.ui.core.CSSSize",group:"Appearance",defaultValue:null},"maxLength":{type:"int",group:"Behavior",defaultValue:0},"wrapping":{type:"sap.ui.core.Wrapping",group:"Behavior",defaultValue:null}},events:{"liveChange":{}}}});sap.m.TextArea.M_EVENTS={'liveChange':'liveChange'};

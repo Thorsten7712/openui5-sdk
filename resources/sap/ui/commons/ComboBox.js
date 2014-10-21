@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.ComboBox");jQuery.sap.require("sap.ui.commons.library");jQuery.sap.require("sap.ui.commons.TextField");sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox",{metadata:{interfaces:["sap.ui.commons.ToolbarItem"],library:"sap.ui.commons",properties:{"maxPopupItems":{type:"int",group:"Behavior",defaultValue:10},"displaySecondaryValues":{type:"boolean",group:"Misc",defaultValue:false},"selectedKey":{type:"string",group:"Data",defaultValue:null},"selectedItemId":{type:"string",group:"Data",defaultValue:null}},defaultAggregation:"items",aggregations:{"items":{type:"sap.ui.core.ListItem",multiple:true,singularName:"item",bindable:"bindable"},"myListBox":{type:"sap.ui.commons.ListBox",multiple:false,visibility:"hidden"}},associations:{"listBox":{type:"sap.ui.commons.ListBox",multiple:false}}}});jQuery.sap.require("jquery.sap.strings");jQuery.sap.require("sap.ui.core.Popup");

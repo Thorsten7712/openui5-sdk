@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -33,7 +33,7 @@ sap.ui.define(['jquery.sap.global'],
 	 *
 	 * @param {int} iDelay Delay time in milliseconds
 	 * @param {object} oObject Object from which the method should be called
-	 * @param {string|object} Method function pointer or name of the method
+	 * @param {string|object} method function pointer or name of the method
 	 * @param {array} [aParameters] Method parameters
 	 * @return {string} Id which can be used to cancel the timer with clearDelayedCall
 	 * @public
@@ -65,7 +65,7 @@ sap.ui.define(['jquery.sap.global'],
 	 *
 	 * @param {int} iInterval Interval time in milliseconds
 	 * @param {object} oObject Object from which the method should be called
-	 * @param {string|object} Method function pointer or name of the method
+	 * @param {string|object} method function pointer or name of the method
 	 * @param {array} [aParameters] Method parameters
 	 * @return {string} Id which can be used to cancel the interval with clearIntervalCall
 	 * @public
@@ -98,8 +98,8 @@ sap.ui.define(['jquery.sap.global'],
 	 *
 	 * Use {@link jQuery.sap.getUriParameters} to create an instance of jQuery.sap.util.UriParameters.
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @since 0.9.0
 	 * @name jQuery.sap.util.UriParameters
 	 * @public
@@ -184,6 +184,7 @@ sap.ui.define(['jquery.sap.global'],
 	 * </pre>
 	 *
 	 * @public
+	 * @param {string} sUri Uri to determine the parameters for
 	 * @return {jQuery.sap.util.UriParameters} A new URI parameters instance
 	 */
 	jQuery.sap.getUriParameters = function getUriParameters(sUri) {

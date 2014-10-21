@@ -9,14 +9,16 @@
 
 
 
-<meta name="abstract" content=""/>
-<meta name="description" content=""/>
+<meta name="abstract" content="Gives an overview of the configuration parameters for routers and routes"/>
+<meta name="description" content="Gives an overview of the configuration parameters for routers and routes"/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=934745589670251"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6968377110002489"/>
 <title>Configuration Parameters for Navigation</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,70 +27,65 @@
 <body class="sap_bluecrystal" id="loio902313063d6f45aeaa3388cc4c13c34e">
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">Configuration Parameters for Navigation</h1>
-<div class="body conbody"><p class="shortdesc"/>
+<div class="body conbody"><p class="shortdesc">Gives an overview of the configuration parameters for routers and routes</p>
 <p class="p">To use navigation in SAPUI5, you have to provide configuration for routes and for the
-			router. The following configuration parameters exist for routes:</p>
-<ul class="ul" id="loio902313063d6f45aeaa3388cc4c13c34e__ul_uz1_4g3_ql"><li class="li">
-				<p class="p"><span class="keyword parmname">name</span> (mandatory)</p>
+			router.</p>
+<p class="p">The router supports the following three parameters:</p>
+<ul class="ul" id="loio902313063d6f45aeaa3388cc4c13c34e__ul_qmn_frd_1p"><li class="li">
+				<p class="p"><span class="keyword parmname">routes</span></p>
 
-				<p class="p">The route name parameter identifies the route and has to be unique within one
-					router instance. If you add a callback on the <samp class="ph codeph">routeMatched</samp>
-					event of the router, you need to check for the route name. You also need to
-					provide the route name as first parameter if you want to use the
-						<samp class="ph codeph">navTo</samp> method of the router.</p>
-
-				<p class="p">Example:</p>
-
-				<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">"routing" : {
-            // name used for listening or navigating to this route
-            "specificProduct" : {
-                //all the optionalParameters
-            }
-        }
-</pre></div>
+				<p class="p">The routes parameter defines an array of route configurations.</p>
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">pattern</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">config</span></p>
 
-				<p class="p">The pattern parameter defines the string that is matched against the hash. Only
-					the first route with a matching pattern triggers the callback. The following
-					special character and URL segments exist:</p>
+				<p class="p">The config parameter defines the default values for route configuration.</p>
 
-				<ul class="ul" id="loio902313063d6f45aeaa3388cc4c13c34e__ul_xc3_ch3_ql"><li class="li">/ - seperator for a URL segment</li>
-<li class="li"><samp class="ph codeph">{variableName}</samp> - mandatory variable, for example
-							<samp class="ph codeph">foo/{bar}</samp> does not match against the hash
-							<samp class="ph codeph">/foo</samp></li>
-<li class="li"><samp class="ph codeph">:optionalVariableName:</samp> - optional variable, for example
-							<samp class="ph codeph">foo/:bar:</samp> matches against <samp class="ph codeph">foo/</samp>, but
-							<samp class="ph codeph">bar</samp> is undefined in the callback</li>
-<li class="li"><samp class="ph codeph">:myVariable*:</samp> - ignores separators and puts everything that
-						follows in this variable, for example <samp class="ph codeph">foo/{bar*}</samp> matches
-						against <samp class="ph codeph">foo/bar/one</samp> and the value of <samp class="ph codeph">bar</samp>
-						is "bar/one"</li>
-<li class="li"><samp class="ph codeph">:query?:</samp> - puts the key value pairs into a query variable,
-						for example <samp class="ph codeph">?foo=bar&amp;one=two</samp> adds a parameter <samp class="ph codeph">{
-							query : { foo : "bar" , one : "two" } }</samp></li>
+			</li>
+<li class="li">
+				<p class="p"><span class="keyword parmname">owner</span></p>
+
+				<p class="p">The owner parameter defines the owner of all views that are created by the
+					router. This is typically a UIComponent.</p>
+
+			</li>
 </ul>
+<p class="p">The router configuration does support all the values a route support. If a route does not
+			provide a value, the value of the router configuration will be taken.</p>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">"routing" : {
+    // The default values for every route
+    "config" : {
+        "viewType" : "XML",
+        "viewPath" : "MyApp.view",
+    },
+    // The route configurations
+    "routes" : {
+        "myRoute" : {
+            "viewType" : "JS",
+        "pattern" : "foo",
+        }
+    }
+}</pre></div>
+<p class="p">Routes are used to notify the application if the hash changed to a certain value. When a
+			route matches the hash, it provides the data passed over the hash to a defined handler.
+			For route configuration, SAPUI5 provides the parameters:</p>
+<ul class="ul" id="loio902313063d6f45aeaa3388cc4c13c34e__ul_uz1_4g3_ql"><li class="li">
+				<p class="p"><span class="keyword parmname">name</span></p>
 
-				<div class="note note"><span class="notetitle">Note</span> 
-					<p class="p">Undefined patterns match the empty hash. You usually only skip the pattern
-						for subroutes and subroutes are registered before their parents. So, as a
-						workaround, use the same pattern as one of the subroutes.</p>
-
-				</div>
+				<p class="p">The route name parameter identifies the route and has to be unique within one router
+					instance.</p>
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">subroutes</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">pattern</span></p>
 
-				<p class="p">The subroutes parameter contains an array of routes and can contain the complete
-					route configuration. Routes that are added to subroutes may have subroutes
-					themselves.</p>
+				<p class="p">The pattern parameter defines the string that is matched against the hash. Only the first
+					route with a matching pattern triggers the callback.</p>
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">view</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">view</span></p>
 
 				<p class="p">The view parameter contains the name of the view that is created on the first
 					time a route is matched. To place the view in a control, use
@@ -97,13 +94,13 @@
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">viewType</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">viewType</span></p>
 
 				<p class="p">The view type parameter defines the view type that is created.</p>
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">viewPath</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">viewPath</span></p>
 
 				<p class="p">The view path parameter specifies a prefix that prepends the view; if, for
 					example, <span class="keyword parmname">view</span> is set to "myView" and
@@ -112,14 +109,14 @@
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">targetParent</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">targetParent</span></p>
 
 				<p class="p">The target parent parameter defines the ID of the parent of the
 						<span class="keyword parmname">targetControl</span> parameter.</p>
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">targetControl</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">targetControl</span></p>
 
 				<p class="p">Views are put into a container control, for example a shell control or a
 					NavContainer for mobile applications, or into any other container. The
@@ -128,7 +125,7 @@
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">targetAggregation</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">targetAggregation</span></p>
 
 				<p class="p">The target application parameter contains the name of an aggregation of the
 					target control that contains views. A NavContainer, for example, has an
@@ -137,49 +134,68 @@
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">clearTarget</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">clearTarget</span></p>
 
 				<p class="p">The clear target parameter defines a boolean that is used to specify if the
 					aggregation should be cleared before adding the view to it.</p>
 
 			</li>
 <li class="li">
-				<p class="p"><span class="keyword parmname">callback</span> (optional)</p>
+				<p class="p"><span class="keyword parmname">subroutes</span></p>
+
+				<p class="p">The subroutes parameter contains an array of routes and can contain the complete
+					route configuration. Routes that are added to subroutes may have subroutes
+					themselves.</p>
+
+			</li>
+<li class="li">
+				<p class="p"><span class="keyword parmname">callback</span></p>
 
 				<p class="p">The callback parameter is an optional function that is executed after the route
 					has matched.</p>
 
 			</li>
 </ul>
-<p class="p">The router configuration supports the same values as the route. If the route does not
-			provide a value, the application uses the router configuration. The following code
-			snippet gives an example:</p>
-<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">//provides the default values for all views
-var oRouterConfig = {
-    viewType : "XML",
-    viewPath: "MyApp.view",
-        
-};
-var aRoutes = [{
-        viewType : "JS",
-    pattern : "foo",
-    name : "myRoute"
-}];
-
-//results in following config:
-
-{
-    viewPath: "MyApp.view",
-    viewType : "JS",
-    pattern : "foo",
-    name : "myRoute"
-}
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">metadata: {
+    routing: {
+        config: {
+            viewType: "XML",
+            viewPath: "view",
+            targetControl: "splitApp",
+            clearTarget: false,
+            },
+        routes: [
+            {
+            pattern: "category/{id}",
+            name: "category",
+            view: "Category",
+            targetAggregation: "masterPages",
+            subroutes: [
+                {
+                pattern: "category/{id}/product/{productId}",
+                name: "product",
+                view: "Product",
+                targetAggregation: "detailPages"
+                }
+            ]
+            },
+            {
+            pattern: "",
+            name : "home",
+            view : "Home",
+            targetAggregation : "masterPages",
+            subroutes : [
+                {
+                pattern : "{all*}",
+                name : "notFound",
+                view : "notFound",
+                targetAggregation : "detailPages"
+                }
+                ]
+            }
+            ]
+        }
 </pre></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -13,7 +13,7 @@ jQuery.sap.require("jquery.sap.strings");
  * @class ListBox Renderer
  *
  * @author d046011
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  */
 sap.ui.commons.ListBoxRenderer = {
@@ -312,6 +312,7 @@ sap.ui.commons.ListBoxRenderer.fixWidth = function(sCssWidth) {
 /**
  * The default TabIndex that should be set for the ListBox as well as for the selected element.
  * Can be overwritten in extending sub-classes.
+ * @param {sap.ui.commons.ListBox} oListBox
  * @protected
  */
 sap.ui.commons.ListBoxRenderer.getTabIndex = function(oListBox) {

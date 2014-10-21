@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -40,7 +40,8 @@ jQuery.sap.require("sap.m.ListItemBase");
  * <li>{@link #getSenderActive senderActive} : boolean (default: true)</li>
  * <li>{@link #getIconActive iconActive} : boolean (default: true)</li>
  * <li>{@link #getIconDensityAware iconDensityAware} : boolean (default: true)</li>
- * <li>{@link #getShowIcon showIcon} : boolean (default: true)</li></ul>
+ * <li>{@link #getShowIcon showIcon} : boolean (default: true)</li>
+ * <li>{@link #getMaxCharacters maxCharacters} : int</li></ul>
  * </li>
  * <li>Aggregations
  * <ul></ul>
@@ -63,23 +64,21 @@ jQuery.sap.require("sap.m.ListItemBase");
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * The control provides a set of properties for text, sender information, time stamp
- * 
+ * The control provides a set of properties for text, sender information, time stamp.
+ * Beginning with release 1.23 the new feature expand / collapse was introduced, which uses the property maxCharacters.
  * @extends sap.m.ListItemBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.FeedListItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListItemBase.extend("sap.m.FeedListItem", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"icon" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -91,7 +90,8 @@ sap.m.ListItemBase.extend("sap.m.FeedListItem", { metadata : {
 		"senderActive" : {type : "boolean", group : "Behavior", defaultValue : true},
 		"iconActive" : {type : "boolean", group : "Behavior", defaultValue : true},
 		"iconDensityAware" : {type : "boolean", group : "", defaultValue : true},
-		"showIcon" : {type : "boolean", group : "Behavior", defaultValue : true}
+		"showIcon" : {type : "boolean", group : "Behavior", defaultValue : true},
+		"maxCharacters" : {type : "int", group : "Behavior", defaultValue : null}
 	},
 	events : {
 		"senderPress" : {}, 
@@ -121,7 +121,8 @@ sap.m.FeedListItem.M_EVENTS = {'senderPress':'senderPress','iconPress':'iconPres
 
 /**
  * Getter for property <code>icon</code>.
- * Icon to be displayed as graphical element within the FeedListItem. This can be an image or an icon from the icon font.
+ * Icon to be displayed as graphical element within the FeedListItem. This can be an image or an icon from the icon font. If no icon is provided, a default person-placeholder icon is displayed.
+ * Icon is only shown if showIcon = true.
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -372,14 +373,38 @@ sap.m.FeedListItem.M_EVENTS = {'senderPress':'senderPress','iconPress':'iconPres
 
 
 /**
- * Event is fired when name of the sender is pressed. 
+ * Getter for property <code>maxCharacters</code>.
+ * The expand and collapse feature is set by default and uses 300 characters on mobile devices and 500 characters on desktops as limits. Based on these values, the text of the FeedListItem is collapsed once text reaches these limits. In this case, only the specified number of characters is displayed. By clicking on the text link More, the entire text can be displayed. The text link Less collapses the text. The application is able to set the value to its needs.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {int} the value of property <code>maxCharacters</code>
+ * @public
+ * @name sap.m.FeedListItem#getMaxCharacters
+ * @function
+ */
+
+/**
+ * Setter for property <code>maxCharacters</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {int} iMaxCharacters  new value for property <code>maxCharacters</code>
+ * @return {sap.m.FeedListItem} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.m.FeedListItem#setMaxCharacters
+ * @function
+ */
+
+
+/**
+ * Event is fired when name of the sender is pressed.
  *
  * @name sap.m.FeedListItem#senderPress
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.domRef Dom reference of the feed item's sender string to be used for positioning.
  * @public
  */
@@ -389,7 +414,7 @@ sap.m.FeedListItem.M_EVENTS = {'senderPress':'senderPress','iconPress':'iconPres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.FeedListItem</code>.<br/> itself. 
  *  
- * Event is fired when name of the sender is pressed. 
+ * Event is fired when name of the sender is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -436,14 +461,13 @@ sap.m.FeedListItem.M_EVENTS = {'senderPress':'senderPress','iconPress':'iconPres
 
 
 /**
- * Event is fired when the icon is pressed. 
+ * Event is fired when the icon is pressed.
  *
  * @name sap.m.FeedListItem#iconPress
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.domRef Dom reference of the feed item's icon to be used for positioning.
  * @public
  */
@@ -453,7 +477,7 @@ sap.m.FeedListItem.M_EVENTS = {'senderPress':'senderPress','iconPress':'iconPres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.FeedListItem</code>.<br/> itself. 
  *  
- * Event is fired when the icon is pressed. 
+ * Event is fired when the icon is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -504,18 +528,35 @@ sap.m.FeedListItem.M_EVENTS = {'senderPress':'senderPress','iconPress':'iconPres
 // * This file defines behavior for the control,
 // */
 
+sap.m.FeedListItem._oRb = sap.ui.getCore().getLibraryResourceBundle("sap.m");
+
+sap.m.FeedListItem._nMaxCharactersMobile = 300;
+sap.m.FeedListItem._nMaxCharactersDesktop = 500;
+
+/**
+* Default texts are fetched from the sap.m resource bundle
+*/
+
+sap.m.FeedListItem._sTextShowMore = sap.m.FeedListItem._oRb.getText("TEXT_SHOW_MORE");
+sap.m.FeedListItem._sTextShowLess = sap.m.FeedListItem._oRb.getText("TEXT_SHOW_LESS");
+
+
+
 /**
  * Function is called when exiting the control.
- * 
+ *
  * @private
  */
 sap.m.FeedListItem.prototype.exit = function(oEvent) {
 	// destroy link control if initialized
 	if (this._oLinkControl) {
 		this._oLinkControl.destroy();
-	} 
+	}
 	if (this._oImageControl) {
 		this._oImageControl.destroy();
+	}
+	if (this._oLinkExpandCollapse) {
+		this._oLinkExpandCollapse.destroy();
 	}
 	
 	sap.m.ListItemBase.prototype.exit.apply(this);
@@ -610,5 +651,91 @@ sap.m.FeedListItem.prototype._inactiveHandlingInheritor = function() {
 	var sSrc = this.getIcon();
 	if(!!this._oImageControl) {
 		this._oImageControl.setSrc(sSrc);
-	}	
+	}
+};
+
+
+/**
+* The first this._nMaxCollapsedLength characters of the text are shown in the collapsed form, the text string ends up with a complete word, 
+* the text string contains at least one word
+* @private
+*/
+sap.m.FeedListItem.prototype._getCollapsedText = function() {
+	var sShortText = this._sFullText.substring(0, this._nMaxCollapsedLength);
+	var nLastSpace = sShortText.lastIndexOf(" ");
+	if (nLastSpace > 0) {
+		this._sShortText = sShortText.substr(0, nLastSpace);
+	}
+	return this._sShortText;
+};
+
+/**
+* Expands or collapses the text of the FeedListItem
+* expanded state:  this._sFullText + '  ' + 'LESS'
+* collapsed state: this._sShortText + '...' + 'MORE'
+* @private
+*/
+sap.m.FeedListItem.prototype._toggleTextExpanded = function() {
+	var $text = jQuery.sap.byId(this.getId() + "-realtext");
+	var $threeDots = jQuery.sap.byId(this.getId() + "-threeDots");
+	if (this._bTextExpanded) {
+		$text.text(this._sShortText);
+		$threeDots.text(" ... ");
+		this._oLinkExpandCollapse.setText(sap.m.FeedListItem._sTextShowMore);
+		this._bTextExpanded = false;
+	}
+	else {
+		$text.text(this._sFullText);
+		$threeDots.text("  ");
+		this._oLinkExpandCollapse.setText(sap.m.FeedListItem._sTextShowLess);
+		this._bTextExpanded = true;
+	}
+};
+
+/**
+* Gets the link for expanding/collapsing the text
+*
+* @private
+*/
+sap.m.FeedListItem.prototype._getLinkExpandCollapse = function() {
+	if (!this._oLinkExpandCollapse) {
+		jQuery.sap.require("sap.m.Link");
+		this._oLinkExpandCollapse = new sap.m.Link({
+			text : sap.m.FeedListItem._sTextShowMore,
+			press : jQuery.proxy(function() {
+				this._toggleTextExpanded();
+			}, this)
+		});
+		this._bTextExpanded = false;
+		//Necessary so this gets garbage collected and the text of the link changes at clicking on it
+		this._oLinkExpandCollapse.setParent(this, null, true);
+	}
+	return this._oLinkExpandCollapse;
+};
+
+/**
+* Checks if the text is expandable:
+* If maxCharacters is empty the default values are used, which are 300 characters ( on mobile devices) and 500 characters ( on tablet and desktop). Otherwise maxCharacters
+* is used as limit. Based on this value, the text of the FeedListItem is collapsed once text reaches this limit.
+* @private
+*/
+sap.m.FeedListItem.prototype._checkTextIsExpandable = function() {
+
+	this._nMaxCollapsedLength = this.getMaxCharacters();
+	if (this._nMaxCollapsedLength === 0 ){
+		if (sap.ui.Device.system.phone){
+			this._nMaxCollapsedLength = sap.m.FeedListItem._nMaxCharactersMobile;
+		}
+		else {
+			this._nMaxCollapsedLength = sap.m.FeedListItem._nMaxCharactersDesktop;
+		}
+	}
+
+
+	this._sFullText = this.getText();
+	var bTextIsExpandable = false;
+	if (this._sFullText.length > this._nMaxCollapsedLength) {
+		bTextIsExpandable = true;
+	}
+	return bTextIsExpandable;
 };

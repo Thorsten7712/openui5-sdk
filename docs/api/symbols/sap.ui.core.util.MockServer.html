@@ -131,7 +131,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Simulates an existing OData service by sepcifiying the metadata URL and the base URL for the mockdata."><a href="../symbols/sap.ui.core.util.MockServer.html#simulate">simulate</a></b><span class='signature'>(<span title="(string) url to the service metadata document">sMetadataUrl</span>, <span title="(string) base url which contains the mockdata as single .json files or the .json file containing the complete mock data">sMockdataBaseUrl</span>)</span>
+									<b class="icon" title="Simulates an existing OData service by sepcifiying the metadata URL and the base URL for the mockdata."><a href="../symbols/sap.ui.core.util.MockServer.html#simulate">simulate</a></b><span class='signature'>(<span title="(string) url to the service metadata document">sMetadataUrl</span>, <span title="(string|object) (optional) base url which contains the path to the mockdata, or an object which contains the following properties: sMockdataBaseUrl, bGenerateMissingMockData.">vMockdataSettings</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Simulates an existing OData service by sepcifiying the metadata URL and the base URL for the mockdata.</span>
 								</div>
 							
@@ -559,7 +559,7 @@ Default value is empty/<code>undefined</code>
 									<div class='sectionItem classMethod'>
 										<a name="simulate"> </a>
 										<div class="itemTitle icon">
-											simulate<span class="signature">(<span title="(string) url to the service metadata document">sMetadataUrl</span>, <span title="(string) base url which contains the mockdata as single .json files or the .json file containing the complete mock data">sMockdataBaseUrl</span>)</span>
+											simulate<span class="signature">(<span title="(string) url to the service metadata document">sMetadataUrl</span>, <span title="(string|object) (optional) base url which contains the path to the mockdata, or an object which contains the following properties: sMockdataBaseUrl, bGenerateMissingMockData.">vMockdataSettings</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -592,13 +592,37 @@ no base url for the mockdata is specified then the mockdata are generated from t
 											
 												<tr>
 													<td class="methodItemType">
+													  <span class="light">{string|object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>vMockdataSettings</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    (optional) base url which contains the path to the mockdata, or an object which contains the following properties: sMockdataBaseUrl, bGenerateMissingMockData. See below for descriptions of these parameters. Ommit this parameter to produce random mock data based on the service metadata.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sMockdataBaseUrl</b>
+													  <b>vMockdataSettings.sMockdataBaseUrl</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    base url which contains the mockdata as single .json files or the .json file containing the complete mock data
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>vMockdataSettings.bGenerateMissingMockData</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    true for the MockServer to generate mock data for missing .json files that are not found in sMockdataBaseUrl. Default value is false.
 													</td>
 												</tr>
 											

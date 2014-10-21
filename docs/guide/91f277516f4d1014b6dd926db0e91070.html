@@ -12,11 +12,13 @@
 <meta name="abstract" content="You use the factory method sap.ui.view to instantiate views."/>
 <meta name="description" content="You use the factory method sap.ui.view to instantiate views."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7051059210077196"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=18496129654523286"/>
 <title>Instantiating Views</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -46,7 +48,7 @@
 							contains user-specific data that is available during the whole lifecycle
 							of the view and the controller</span></li>
 </ol>
- 
+<div class="itemgroup stepxmp">
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">...
    var myController = sap.ui.controller("my.own.controller");
    var myView = sap.ui.view({ type: sap.ui.core.mvc.ViewType.XML,
@@ -55,16 +57,11 @@
                             });
 ...</pre></div>
 
-				 
+				</div><div class="itemgroup info">
 					<p class="p">All regular properties of a view (control) can be passed to the object as
 						usual. </p>
 
-				</div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
+				</div></div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

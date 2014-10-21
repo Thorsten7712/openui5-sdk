@@ -12,11 +12,13 @@
 <meta name="abstract" content="To implement a different behavior for your control depending on the device it is running on, you can now also use the property combi for devices which support touch and mouse together."/>
 <meta name="description" content="To implement a different behavior for your control depending on the device it is running on, you can now also use the property combi for devices which support touch and mouse together."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=007417300340286315"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=20921976711182855"/>
 <title>Distinguish Control Behavior between Mobile and Desktop</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -43,47 +45,42 @@
 			SAPUI5 event delegation and the registered handler.</p>
 <p class="p">Here's the table showing the values under <samp class="ph codeph">sap.ui.Device.system</samp> in
 			different browsers of Windows 8 touch-enabled device:</p>
-<table summary="" id="loioa53ec81aca59413cac86267b0fd5c787__table_f13_wsy_mn" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d1017467e46" class="stentry">Browser</th>
-<th valign="bottom" align="left" id="d1017467e48" class="stentry">Touch Supported</th>
-<th valign="bottom" align="left" id="d1017467e50" class="stentry">sap.ui.Device.system.desktop</th>
-<th valign="bottom" align="left" id="d1017467e52" class="stentry">sap.ui.Device.system.tablet</th>
-<th valign="bottom" align="left" id="d1017467e54" class="stentry">sap.ui.Device.system.combi</th>
-<th valign="bottom" align="left" id="d1017467e56" class="stentry">sap.ui.Device.system.mobile</th>
+<table summary="" id="loioa53ec81aca59413cac86267b0fd5c787__table_f13_wsy_mn" border="1" class="simpletable"><tr class="sthead"><th valign="bottom" align="left" id="d1234610e46" class="stentry">Browser</th>
+<th valign="bottom" align="left" id="d1234610e48" class="stentry">Touch Supported</th>
+<th valign="bottom" align="left" id="d1234610e50" class="stentry">sap.ui.Device.system.desktop</th>
+<th valign="bottom" align="left" id="d1234610e52" class="stentry">sap.ui.Device.system.tablet</th>
+<th valign="bottom" align="left" id="d1234610e54" class="stentry">sap.ui.Device.system.combi</th>
+<th valign="bottom" align="left" id="d1234610e56" class="stentry">sap.ui.Device.system.mobile</th>
 </tr>
-<tr class="strow"><td valign="top" headers="d1017467e46" class="stentry">Internet Explorer</td>
-<td valign="top" headers="d1017467e48" class="stentry">NO</td>
-<td valign="top" headers="d1017467e50" class="stentry">YES</td>
-<td valign="top" headers="d1017467e52" class="stentry">NO</td>
-<td valign="top" headers="d1017467e54" class="stentry">NO</td>
-<td valign="top" headers="d1017467e56" class="stentry">NO</td>
+<tr class="strow"><td valign="top" headers="d1234610e46" class="stentry">Internet Explorer</td>
+<td valign="top" headers="d1234610e48" class="stentry">NO</td>
+<td valign="top" headers="d1234610e50" class="stentry">YES</td>
+<td valign="top" headers="d1234610e52" class="stentry">NO</td>
+<td valign="top" headers="d1234610e54" class="stentry">NO</td>
+<td valign="top" headers="d1234610e56" class="stentry">NO</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d1017467e46" class="stentry">Chrome</td>
-<td valign="top" headers="d1017467e48" class="stentry">YES</td>
-<td valign="top" headers="d1017467e50" class="stentry">YES</td>
-<td valign="top" headers="d1017467e52" class="stentry">YES</td>
-<td valign="top" headers="d1017467e54" class="stentry">YES</td>
-<td valign="top" headers="d1017467e56" class="stentry">NO</td>
+<tr class="strow"><td valign="top" headers="d1234610e46" class="stentry">Chrome</td>
+<td valign="top" headers="d1234610e48" class="stentry">YES</td>
+<td valign="top" headers="d1234610e50" class="stentry">YES</td>
+<td valign="top" headers="d1234610e52" class="stentry">YES</td>
+<td valign="top" headers="d1234610e54" class="stentry">YES</td>
+<td valign="top" headers="d1234610e56" class="stentry">NO</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d1017467e46" class="stentry">Firefox</td>
-<td valign="top" headers="d1017467e48" class="stentry">NO</td>
-<td valign="top" headers="d1017467e50" class="stentry">YES</td>
-<td valign="top" headers="d1017467e52" class="stentry">NO</td>
-<td valign="top" headers="d1017467e54" class="stentry">NO</td>
-<td valign="top" headers="d1017467e56" class="stentry">NO</td>
+<tr class="strow"><td valign="top" headers="d1234610e46" class="stentry">Firefox</td>
+<td valign="top" headers="d1234610e48" class="stentry">NO</td>
+<td valign="top" headers="d1234610e50" class="stentry">YES</td>
+<td valign="top" headers="d1234610e52" class="stentry">NO</td>
+<td valign="top" headers="d1234610e54" class="stentry">NO</td>
+<td valign="top" headers="d1234610e56" class="stentry">NO</td>
 </tr>
-<tr class="strow"><td valign="top" headers="d1017467e46" class="stentry">Safari</td>
-<td valign="top" headers="d1017467e48" class="stentry">NO</td>
-<td valign="top" headers="d1017467e50" class="stentry">YES</td>
-<td valign="top" headers="d1017467e52" class="stentry">NO</td>
-<td valign="top" headers="d1017467e54" class="stentry">NO</td>
-<td valign="top" headers="d1017467e56" class="stentry">NO</td>
+<tr class="strow"><td valign="top" headers="d1234610e46" class="stentry">Safari</td>
+<td valign="top" headers="d1234610e48" class="stentry">NO</td>
+<td valign="top" headers="d1234610e50" class="stentry">YES</td>
+<td valign="top" headers="d1234610e52" class="stentry">NO</td>
+<td valign="top" headers="d1234610e54" class="stentry">NO</td>
+<td valign="top" headers="d1234610e56" class="stentry">NO</td>
 </tr>
 </table>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

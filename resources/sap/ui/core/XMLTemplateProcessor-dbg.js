@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -330,7 +330,8 @@ sap.ui.define(['jquery.sap.global'],
 									+ "' in View '" + sCurrentName + "': " + extensionConfig.className);
 						}
 					} else {
-						// no extension configured
+						// no extension configured for this extension point
+						jQuery.sap.log.debug("Customizing: no View extension found for ExtensionPoint '" + node.getAttribute("name") + "' in View '" + sCurrentName + "'.");
 					}
 				}
 				
@@ -420,7 +421,8 @@ sap.ui.define(['jquery.sap.global'],
 	
 					} else if (oInfo && oInfo._iKind === 0 /* PROPERTY */ ) {
 						// other PROPERTY
-						mSettings[sName] = parseScalarType(oInfo.type, sValue, sName, oView._oContainingView.oController);
+						mSettings[sName] = parseScalarType(oInfo.type, sValue, sName, oView._oContainingView.oController); // View._oContainingView.oController is null when [...]
+						// FIXME: ._oContainingView might be the original Fragment for an extension fragment or a fragment in a fragment - so it has no controller bit ITS containingView.
 	
 					} else if (oInfo && oInfo._iKind === 1 /* SINGLE_AGGREGATION */ && oInfo.altTypes ) {
 						// AGGREGATION with scalar type (altType)
@@ -437,13 +439,13 @@ sap.ui.define(['jquery.sap.global'],
 	
 					} else if (oInfo && oInfo._iKind === 3 /* SINGLE_ASSOCIATION */ ) {
 						// ASSOCIATION
-						mSettings[sName] = oView.createId(sValue); // use the value as ID
+						mSettings[sName] = oView._oContainingView.createId(sValue); // use the value as ID
 	
 					} else if (oInfo && oInfo._iKind === 4 /* MULTIPLE_ASSOCIATION */ ) {
 						// we support "," and " " to separate IDs 
 						mSettings[sName] = jQuery.map(sValue.split(/[\s,]+/g), function(sId) {
 							// Note: empty IDs need to ignored, therefore splitting by a sequence of separators is okay. 
-							return sId ? oView.createId(sId) : null;
+							return sId ? oView._oContainingView.createId(sId) : null;
 						});
 	
 					} else if (oInfo && oInfo._iKind === 5 /* EVENT */ ) {
@@ -533,6 +535,11 @@ sap.ui.define(['jquery.sap.global'],
 					var mCustomSettings = sap.ui.core.CustomizingConfiguration.getCustomProperties(sCurrentName, sOriginalControlId);
 					if (mCustomSettings) {
 						mSettings = jQuery.extend(mSettings, mCustomSettings); // override original property initialization with customized property values
+						jQuery.sap.log.info("Customizing: Control modification found for Control '" + sOriginalControlId + "' in View '" + sCurrentName + "': " + JSON.stringify(mCustomSettings));
+					} else {
+						if (document.location.search.indexOf("sap-ui-xx-debugCustomizing") > -1) { // otherwise too many log statements
+							jQuery.sap.log.debug("Customizing: no Control modification found for Control '" + sOriginalControlId + "' in View '" + sCurrentName + "'.");
+						}
 					}
 				}
 				

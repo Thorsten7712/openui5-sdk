@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+
+
+
+<meta name="abstract" content=""/>
+<meta name="description" content=""/>
+
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=929674292555326"/>
+<title>Create a SAPUI5 Application Project with Maven (internal)</title>
+<!--[if lte IE 7]><style>
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
+
+  <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/themes/base/highlight-query-terms.css" />
+  </head>
+<body class="sap_bluecrystal" id="loiob666256b66d64449809d136e67fe38e3">
+<div id="wrapper"><div id="container">
+<h1 class="title topictitle1">Create a SAPUI5 Application Project with Maven (internal)</h1>
+<div class="body"><p class="shortdesc"/>
+<div class="section"><div class="section_title">Prerequisites</div><div type="Prerequisites">
+			
+			<p class="p">You have installed Eclipse version 4.2 (Juno) or newer.</p>
+
+			<p class="p">The <span class="ph uicontrol">Maven Support for SAPUI5 Application Development</span> feature
+				is installed in your Eclipse installation.</p>
+
+		</div></div>
+<div class="section"><div class="section_title">Importing Existing Maven Applications</div><div type="Importing Existing Maven Applications">
+			
+			<p class="p">Before you import an existing Maven project, make sure that you have synchronized the
+				Maven project via your usual Team Provider, for example Git. The Maven project must
+				have packaging type <samp class="ph codeph">var</samp> and have a dependency to the SAPUI5 core
+					(<samp class="ph codeph">groupId:com.sap.ui5</samp>, <samp class="ph codeph">artefactId:core</samp>).</p>
+
+			<p class="p">Proceed as follows:</p>
+
+			<p class="p">Import the existing Maven project in the Eclipse IDE by choosing <span class="ph menucascade"><img src="images/navstart.gif" alt="Start of the navigation path" title="Start of the navigation path"/> <span class="ph uicontrol">File</span> <img src="images/navstep.gif" alt="Next navigation step" title="Next navigation step"/> <span class="ph uicontrol">Import</span> <img src="images/navstep.gif" alt="Next navigation step" title="Next navigation step"/> <span class="ph uicontrol">Maven</span> <img src="images/navstep.gif" alt="Next navigation step" title="Next navigation step"/> <span class="ph uicontrol">Existing Maven Projects</span> <img src="images/navend.gif" alt="End of the navigation path" title="End of the navigation path"/></span>.</p>
+
+			<p class="p"><img class="image" id="loiob666256b66d64449809d136e67fe38e3__image_hyl_trp_z4" src="loioe6680294516b4bbcb5c3197468eedafb_LowRes.png"/></p>
+
+			<p class="p">After the import is finished:</p>
+
+			<ul class="ul" id="loiob666256b66d64449809d136e67fe38e3__ul_fqy_ksp_z4"><li class="li">
+					<p class="p">An Eclipse project based on your Maven settings has been created.</p>
+
+				</li>
+<li class="li">
+					<p class="p">SAPUI5 Application Tools has been configured.</p>
+
+				</li>
+<li class="li">
+					<p class="p">The Java build path is left completely to Maven control.</p>
+
+				</li>
+<li class="li">
+					<p class="p">The SAPUI5 library container, if available, is automatically added to the
+						JavaScript include path.</p>
+
+				</li>
+<li class="li">
+					<p class="p">The JavaScript code completion for SAPUI5 controls is available, see <a class="xref" href="85ce1edb55dd4de3beac5b6d24d36d8a.html" title="When using the SAPUI5 tools, code completion is enabled automatically, without the tools, you need to enable it.">JavaScript Code Completion</a>.</p>
+
+				</li>
+<li class="li">
+					<p class="p">You can use the view wizard.</p>
+
+				</li>
+<li class="li">
+					<p class="p">You can use the Web App preview.</p>
+
+				</li>
+</ul>
+
+		</div></div>
+<div class="section"><div class="section_title">Creating a New Application</div><div type="Creating a New Application">
+			
+			<p class="p">To create a new application, proceed as follows:</p>
+
+			<ol class="ol" id="loiob666256b66d64449809d136e67fe38e3__ol_bjq_ltp_z4"><li class="li"><p class="p">Start th <span class="ph uicontrol">New SAPUI5 Application Project</span> wizard in
+						Eclipse IDE by choosing <span class="ph menucascade"><img src="images/navstart.gif" alt="Start of the navigation path" title="Start of the navigation path"/> <span class="ph uicontrol">Nw</span> <img src="images/navstep.gif" alt="Next navigation step" title="Next navigation step"/> <span class="ph uicontrol">Other...</span> <img src="images/navstep.gif" alt="Next navigation step" title="Next navigation step"/> <span class="ph uicontrol">SAPUI5 Application Development</span> <img src="images/navstep.gif" alt="Next navigation step" title="Next navigation step"/> <span class="ph uicontrol">Application Project</span> <img src="images/navend.gif" alt="End of the navigation path" title="End of the navigation path"/></span>.</p>
+<img class="image" id="loiob666256b66d64449809d136e67fe38e3__image_pbh_g5p_z4" src="loiodc90689a2c1f40b2955392d0e352ba6b_LowRes.png"/></li>
+<li class="li"><p class="p">Fill in the following project-related data:</p>
+<ul class="ul" id="loiob666256b66d64449809d136e67fe38e3__ul_pl1_35p_z4"><li class="li">
+							<p class="p">Project name</p>
+
+						</li>
+<li class="li">
+							<p class="p">Optional: Location; default location is set to current workspace</p>
+
+						</li>
+<li class="li">
+							<p class="p">Set target device to "Desktop" (default) or "Mobile".</p>
+
+						</li>
+<li class="li">
+							<p class="p">Specifiy if you want to create an initial view directly or later with
+								the <span class="ph uicontrol">SAPUI5 Application View</span> wizard.</p>
+
+						</li>
+<li class="li">
+							<p class="p">Select the <span class="ph uicontrol">With Maven Support</span> checkbox.</p>
+
+						</li>
+</ul>
+<img class="image" id="loiob666256b66d64449809d136e67fe38e3__image_zkv_4vp_z4" src="loio82b8c2b4f1d74e9a82ed8afc686b9f10_LowRes.png"/></li>
+<li class="li">
+					<p class="p">Follow the steps and explanations in the Application Creation wizard.</p>
+
+				</li>
+</ol>
+
+			<p class="p">After you have finished the wizard</p>
+
+			<ul class="ul" id="loiob666256b66d64449809d136e67fe38e3__ul_nvv_nwp_z4"><li class="li">
+					<p class="p">a new dynamic web project has been created; all relevant files have been
+						created in the following folder: <samp class="ph codeph">src/main/webapp</samp></p>
+
+				</li>
+<li class="li">
+					<p class="p">a <samp class="ph codeph">pom.xml</samp> file has been created that references the
+							<samp class="ph codeph">com.sap.ui5:maven-webapp-pom</samp> and that has a dependency
+						on <samp class="ph codeph">com.sap.ui5:resource</samp>,
+						<samp class="ph codeph">com.sap.ui5:utils</samp>, <samp class="ph codeph">com.sap.ui5:core</samp>,
+							<samp class="ph codeph">com.sap.ui5:commons</samp>, or
+							<samp class="ph codeph">com.sap.ui5:mobile</samp>, depending on the target device in
+						the currently installed SAPUI5 version</p>
+
+				</li>
+<li class="li">
+					<p class="p">a prefilled index.html file has been created; if the target device is a
+						desktop, it contains the <samp class="ph codeph">sap.ui.commons</samp> lib and th
+							<samp class="ph codeph">sap_goldreflection</samp> theme in the boostrap. Else it
+						contains <samp class="ph codeph">sap.m lib</samp> and <samp class="ph codeph">sap_mvi</samp> theme for a
+						mobile target device.</p>
+
+				</li>
+<li class="li">
+					<p class="p"><samp class="ph codeph">web.xml</samp> has been created, containing settings for
+							<samp class="ph codeph">ResourceServlet</samp> and
+						<samp class="ph codeph">SimpleProxyServlet</samp>; the use of
+							<samp class="ph codeph">SimpleProxyServlet</samp> is restricted to localhost. It is
+						only intended for testing purposes and not for productive use</p>
+
+				</li>
+<li class="li">
+					<p class="p">Java build path is left completely to Maven control; SAPUI5 class path
+						container (if available) has automatically been added to the JavaScript
+						include path</p>
+
+				</li>
+<li class="li">
+					<p class="p">page <samp class="ph codeph">index.html</samp> is opened in the standard editor</p>
+
+				</li>
+<li class="li">
+					<p class="p">JavaScript code completion for SAPUI5 controls is available inside the
+						JavaScript block of the <samp class="ph codeph">index.html</samp>.</p>
+
+				</li>
+<li class="li">
+					<p class="p">an automatic switch to the J2EE perspective is performed</p>
+
+				</li>
+<li class="li">
+					<p class="p">If you have selected <span class="ph uicontrol">Create an Initial View</span> on the
+						first page of the <span class="ph uicontrol">SAPUI5 Application Project</span> wizard,
+						a view and a view controller have been created. Also, the coding to call the
+						view has been added to the <samp class="ph codeph">index.html</samp>, if mobile target
+						device was selected. Additionally, special coding instantiating sap.m.App
+						and sap.m.Page has been generated</p>
+
+				</li>
+</ul>
+
+			<div class="note note"><span class="notetitle">Note</span> 
+				<p class="p">Adjust the maven <samp class="ph codeph">groupId</samp> and version to suit your project's
+					needs.</p>
+
+			</div>
+
+		</div></div>
+</div>
+</div></div>
+<SCRIPT LANGUAGE="JavaScript"><!--
+ var page_title="Create a SAPUI5 Application Project with Maven (internal)";
+
+        if (page_title !='' &&
+        parent.document.title != null) {
+ parent.document.title =
+          page_title;
+ } 
+ var
+        anchor = document.getElementById(location.hash.substring(+1)); if (typeof (anchor)
+        !='undefined' && anchor !=null){
+        var top = anchor.getBoundingClientRect().top; } 
+//-->
+</SCRIPT>
+</body>
+</html>

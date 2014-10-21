@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -62,23 +62,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * ActionSheet is a special kind of control which contains one or more sap.m.Button(s) and the ActionSheet will be closed when one of the buttons is tapped. It looks similar as a sap.m.Dialog in iPhone and Android while as a sap.m.Popover in iPad.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @name sap.m.ActionSheet
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ActionSheet", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"openBy", "close", "isOpen"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"placement" : {type : "sap.m.PlacementType", group : "Appearance", defaultValue : sap.m.PlacementType.Bottom},
@@ -87,8 +85,8 @@ sap.ui.core.Control.extend("sap.m.ActionSheet", { metadata : {
 		"title" : {type : "string", group : "Appearance", defaultValue : null}
 	},
 	aggregations : {
-    	"buttons" : {type : "sap.m.Button", multiple : true, singularName : "button"}, 
-    	"_cancelButton" : {type : "sap.m.Button", multiple : false, visibility : "hidden"}
+		"buttons" : {type : "sap.m.Button", multiple : true, singularName : "button"}, 
+		"_cancelButton" : {type : "sap.m.Button", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"cancelButtonTap" : {deprecated: true}, 
@@ -197,8 +195,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 
 /**
  * Getter for property <code>title</code>.
- * Title will be shown in the header area in iPhone and every Android
- * devices. This property will be ignored in tablets and desktop browser.
+ * Title will be shown in the header area in iPhone and every Android devices. This property will be ignored in tablets and desktop browser.
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -303,7 +300,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 
 
 /**
- * This event is fired when the cancelButton is tapped. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by tapping outside. 
+ * This event is fired when the cancelButton is tapped. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by tapping outside.
  *
  * @name sap.m.ActionSheet#cancelButtonTap
  * @event
@@ -312,7 +309,6 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -321,7 +317,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ActionSheet</code>.<br/> itself. 
  *  
- * This event is fired when the cancelButton is tapped. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by tapping outside. 
+ * This event is fired when the cancelButton is tapped. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by tapping outside.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -369,14 +365,13 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 
 
 /**
- * This event will be fired before the ActionSheet is opened. 
+ * This event will be fired before the ActionSheet is opened.
  *
  * @name sap.m.ActionSheet#beforeOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -385,7 +380,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ActionSheet</code>.<br/> itself. 
  *  
- * This event will be fired before the ActionSheet is opened. 
+ * This event will be fired before the ActionSheet is opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -427,14 +422,13 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 
 
 /**
- * This event will be fired after the ActionSheet is opened. 
+ * This event will be fired after the ActionSheet is opened.
  *
  * @name sap.m.ActionSheet#afterOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -443,7 +437,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ActionSheet</code>.<br/> itself. 
  *  
- * This event will be fired after the ActionSheet is opened. 
+ * This event will be fired after the ActionSheet is opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -485,14 +479,13 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 
 
 /**
- * This event will be fired before the ActionSheet is closed. 
+ * This event will be fired before the ActionSheet is closed.
  *
  * @name sap.m.ActionSheet#beforeClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -501,7 +494,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ActionSheet</code>.<br/> itself. 
  *  
- * This event will be fired before the ActionSheet is closed. 
+ * This event will be fired before the ActionSheet is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -543,14 +536,13 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 
 
 /**
- * This event will be fired after the ActionSheet is closed. 
+ * This event will be fired after the ActionSheet is closed.
  *
  * @name sap.m.ActionSheet#afterClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -559,7 +551,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ActionSheet</code>.<br/> itself. 
  *  
- * This event will be fired after the ActionSheet is closed. 
+ * This event will be fired after the ActionSheet is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -601,14 +593,13 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 
 
 /**
- * This event is fired when the cancelButton is clicked. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by clicking outside. 
+ * This event is fired when the cancelButton is clicked. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by clicking outside.
  *
  * @name sap.m.ActionSheet#cancelButtonPress
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -617,7 +608,7 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ActionSheet</code>.<br/> itself. 
  *  
- * This event is fired when the cancelButton is clicked. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by clicking outside. 
+ * This event is fired when the cancelButton is clicked. For iPad, this event is also fired when showCancelButton is set to true, and Popover is closed by clicking outside.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -661,36 +652,35 @@ sap.m.ActionSheet.M_EVENTS = {'cancelButtonTap':'cancelButtonTap','beforeOpen':'
 /**
  * Calling this method will make the ActionSheet visible on the screen.
  *
- * @name sap.m.ActionSheet.prototype.openBy
+ * @name sap.m.ActionSheet#openBy
  * @function
- * @param {object} 
- *         oControl
+ * @param {object} oControl
  *         The ActionSheet behaves as a sap.m.Popover in iPad and the control parameter is the object to which the popover will be placed. It can be not only a UI5 control, but also an existing dom reference. The side of the placement depends on the placement property set in the popover. In other platforms, ActionSheet behaves as a standard dialog and this parameter is ignored because dialog is aligned to the screen.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Calling this method will make the ActionSheet disappear from the screen.
  *
- * @name sap.m.ActionSheet.prototype.close
+ * @name sap.m.ActionSheet#close
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * The method checks if the ActionSheet is open. It returns true when the ActionSheet is currently open (this includes opening and closing animations), otherwise it returns false.
  *
- * @name sap.m.ActionSheet.prototype.isOpen
+ * @name sap.m.ActionSheet#isOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -776,7 +766,7 @@ sap.m.ActionSheet.prototype.openBy = function(oControl){
 			this.setParent(null);
 		}
 
-		if(jQuery.device.is.ipad || (sap.m.Dialog._bOneDesign && !sap.ui.Device.system.phone)){
+		if(!sap.ui.Device.system.phone){
 		//create a Popover instance for iPad
 			this._parent = new sap.m.Popover({
 				placement: this.getPlacement(),
@@ -847,14 +837,14 @@ sap.m.ActionSheet.prototype.openBy = function(oControl){
 				this._parent.addStyleClass("sapMActionSheetDialogWithTitle");
 			}
 			
-			if(!(jQuery.device.is.iphone || (sap.m.Dialog._bOneDesign && sap.ui.Device.system.phone))){
+			if(!sap.ui.Device.system.phone){
 				this._parent.setBeginButton(this._getCancelButton());
 			}
 			
-			//need to modify some internal methods of Dialog for iPhone, because
+			//need to modify some internal methods of Dialog for phone, because
 			//the actionsheet won't be sized full screen if the content is smaller than the whole screen.
 			//Then the transform animation need to be set at runtime with some height calculation. 
-			if(jQuery.device.is.iphone || (sap.m.Dialog._bOneDesign && sap.ui.Device.system.phone)){
+			if(sap.ui.Device.system.phone){
 				//remove the transparent property from blocklayer
 				this._parent.oPopup.setModal(true);
 				this._parent._setDimensions = function(){
@@ -971,7 +961,7 @@ sap.m.ActionSheet.prototype.openBy = function(oControl){
 	}
 	
 	//open the ActionSheet
-	if(jQuery.device.is.ipad || (sap.m.Dialog._bOneDesign && !sap.ui.Device.system.phone)){
+	if(!sap.ui.Device.system.phone){
 		this._parent.openBy(oControl);
 	}else{
 		this._parent.open();
@@ -1000,7 +990,7 @@ sap.m.ActionSheet.prototype._createCancelButton = function(){
 			text: sCancelButtonText,
 			type: sap.m.ButtonType.Reject,
 			press : function() {
-				if(!(jQuery.device.is.ipad || (sap.m.Dialog._bOneDesign && !sap.ui.Device.system.phone)) && that._parent){
+				if(sap.ui.Device.system.phone && that._parent){
 					that._parent._oCloseTrigger = this;
 				}
 				that.close();
@@ -1009,7 +999,7 @@ sap.m.ActionSheet.prototype._createCancelButton = function(){
 			}
 		}).addStyleClass("sapMActionSheetButton sapMActionSheetCancelButton sapMBtnTransparent sapMBtnInverted");
 		
-		if(jQuery.device.is.iphone || (sap.m.Dialog._bOneDesign && sap.ui.Device.system.phone)){
+		if(sap.ui.Device.system.phone){
 			this.setAggregation("_cancelButton", this._oCancelButton, true);
 		}
 	}
@@ -1017,7 +1007,7 @@ sap.m.ActionSheet.prototype._createCancelButton = function(){
 };
 
 sap.m.ActionSheet.prototype._getCancelButton = function(){
-	if(!(jQuery.device.is.ipad || (sap.m.Dialog._bOneDesign && !sap.ui.Device.system.phone)) && this.getShowCancelButton()){
+	if(sap.ui.Device.system.phone && this.getShowCancelButton()){
 		this._createCancelButton();
 		return this._oCancelButton;
 	}
@@ -1035,10 +1025,8 @@ sap.m.ActionSheet.prototype.setCancelButtonText = function(sText) {
 sap.m.ActionSheet.prototype._preProcessActionButton = function(oButton){
 	var sType = oButton.getType();
 
-	if(sap.m.Dialog._bOneDesign){
-		if(sType !== sap.m.ButtonType.Accept && sType !== sap.m.ButtonType.Reject){
-			oButton.setType(sap.m.ButtonType.Transparent);
-		}
+	if(sType !== sap.m.ButtonType.Accept && sType !== sap.m.ButtonType.Reject){
+		oButton.setType(sap.m.ButtonType.Transparent);
 	}
 	oButton.addStyleClass("sapMBtnInverted"); // dark background
 	return this;
@@ -1046,12 +1034,9 @@ sap.m.ActionSheet.prototype._preProcessActionButton = function(oButton){
 
 sap.m.ActionSheet.prototype.setShowCancelButton = function(bValue){
 	if(this._parent){
-		if(jQuery.device.is.iphone || (sap.m.Dialog._bOneDesign && sap.ui.Device.system.phone)){
+		if(sap.ui.Device.system.phone){
 			//if iPhone, we need to rerender to show or hide the cancel button
 			this.setProperty("showCancelButton", bValue, false);
-		}else if(!sap.m.Dialog._bOneDesign && !sap.ui.Device.os.ios){
-			this.setProperty("showCancelButton", bValue, true);
-			this._parent.setBeginButton(this._getCancelButton());
 		}
 	}else{
 		this.setProperty("showCancelButton", bValue, true);
@@ -1061,7 +1046,7 @@ sap.m.ActionSheet.prototype.setShowCancelButton = function(bValue){
 
 sap.m.ActionSheet.prototype.setTitle = function(sTitle){
 	this.setProperty("title", sTitle, true);
-	if(this._parent && !(jQuery.device.is.ipad || (sap.m.Dialog._bOneDesign && !sap.ui.Device.system.phone))){
+	if(this._parent && sap.ui.Device.system.phone){
 		this._parent.setTitle(sTitle);
 	}
 	
@@ -1078,7 +1063,7 @@ sap.m.ActionSheet.prototype.setTitle = function(sTitle){
 sap.m.ActionSheet.prototype.setPlacement = function(sPlacement){
 	this.setProperty("placement", sPlacement, true);
 	
-	if(jQuery.device.is.ipad || (sap.m.Dialog._bOneDesign && !sap.ui.Device.system.phone)){
+	if(!sap.ui.Device.system.phone){
 		if(this._parent){
 			this._parent.setPlacement(sPlacement);
 		}
@@ -1087,7 +1072,7 @@ sap.m.ActionSheet.prototype.setPlacement = function(sPlacement){
 };
 
 sap.m.ActionSheet.prototype._buttonSelected = function(){
-	if(!(jQuery.device.is.ipad || (sap.m.Dialog._bOneDesign && !sap.ui.Device.system.phone)) && this._parent){
+	if(sap.ui.Device.system.phone && this._parent){
 		this._parent._oCloseTrigger = this;
 	}
 	this.close();

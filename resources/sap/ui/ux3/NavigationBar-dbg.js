@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,22 +60,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * to see the next or previous items.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.NavigationBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.NavigationBar", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setAssociatedItems", "isSelectedItemValid"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"toplevelVariant" : {type : "boolean", group : "Misc", defaultValue : false},
@@ -83,8 +81,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.NavigationBar", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "item"}, 
-    	"overflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "item"}, 
+		"overflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedItem" : {type : "sap.ui.ux3.NavigationItem", multiple : false}, 
@@ -310,14 +308,13 @@ sap.ui.ux3.NavigationBar.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is fired when an item is selected by the user 
+ * Event is fired when an item is selected by the user
  *
  * @name sap.ui.ux3.NavigationBar#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The ID of the newly selected NavigationItem.
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The newly selected NavigationItem.
  * @public
@@ -328,7 +325,7 @@ sap.ui.ux3.NavigationBar.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.NavigationBar</code>.<br/> itself. 
  *  
- * Event is fired when an item is selected by the user 
+ * Event is fired when an item is selected by the user
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -380,25 +377,24 @@ sap.ui.ux3.NavigationBar.M_EVENTS = {'select':'select'};
 /**
  * Replaces the currently associated items with the ones in the given array
  *
- * @name sap.ui.ux3.NavigationBar.prototype.setAssociatedItems
+ * @name sap.ui.ux3.NavigationBar#setAssociatedItems
  * @function
- * @param {sap.ui.ux3.NavigationItem[]} 
- *         aItems
+ * @param {sap.ui.ux3.NavigationItem[]} aItems
  *         The items to associate
-
  * @type sap.ui.ux3.NavigationBar
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether there is a selectedItem set which is actually present in the items aggregation; or, if the aggregation is empty, in the associatedItems association.
  *
- * @name sap.ui.ux3.NavigationBar.prototype.isSelectedItemValid
+ * @name sap.ui.ux3.NavigationBar#isSelectedItemValid
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -522,6 +518,16 @@ sap.ui.ux3.NavigationBar.prototype.onBeforeRendering = function() {
 
 	var arrow = this.getDomRef("arrow");
 	this._iLastArrowPos = arrow ? parseInt(this._bRtl ? arrow.style.right : arrow.style.left, 10) : -100;
+};
+
+
+sap.ui.ux3.NavigationBar.prototype.invalidate = function(oSource) {
+	// In case the source of invalidation is a navigation item, it most likely changed something
+	// that we have to reflect in the overflow-menu
+	if (oSource instanceof sap.ui.ux3.NavigationItem) {
+		this._menuInvalid = true;
+	}
+	sap.ui.core.Control.prototype.invalidate.apply(this, arguments);
 };
 
 /**

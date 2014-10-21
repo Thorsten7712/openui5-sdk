@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29,9 +29,13 @@ sap.m.InputRenderer.addOuterClasses = function(oRm, oControl) {
 		if(oControl.getValueHelpOnly()) {
 			oRm.addClass("sapMInputVHO");
 		}
-		if (sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version < 10) {
+		if (sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version < 11) {
+			// IE9 and IE10 ignore padding-right in <input>
 			oRm.addClass("sapMInputIE9");
 		}
+	}
+	if (oControl.getDescription()) {
+			oRm.addClass("sapMInputDescription");
 	}
 };
 
@@ -70,6 +74,19 @@ sap.m.InputRenderer.addInnerClasses = function(oRm, oControl) {
 };
 
 /**
+ * Add inner styles to the input field
+ *
+ * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
+ * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
+ */
+sap.m.InputRenderer.addInnerStyles = function(oRm, oControl) {
+
+	if (oControl.getDescription()){
+		oRm.addStyle("width", oControl.getFieldWidth() || "50%");
+	}
+};
+
+/**
  * add extra content to Input
  *
  * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
@@ -80,5 +97,10 @@ sap.m.InputRenderer.writeInnerContent = function(oRm, oControl) {
 		oRm.write('<div class="sapMInputValHelp">');
 		oRm.renderControl(oControl._getValueHelpIcon());
 		oRm.write("</div>");
+	 }
+	 if(oControl.getDescription()){
+		 var sDescription = oControl.getDescription();
+		 var sSpan = "<span>" + sDescription + "</span>";
+		 oRm.write(sSpan);
 	 }
 };

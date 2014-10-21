@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>IndexLayout</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.17.0</since>
 	<documentation>Layout which renders content items with equal width and height. The items are arranged in rows.</documentation>
     <developmentState state="experimental" since="1.17.0">API is not yet finished and might change completely</developmentState>

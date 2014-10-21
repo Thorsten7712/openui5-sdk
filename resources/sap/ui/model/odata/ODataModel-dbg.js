@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29,7 +29,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	 * 							json, user, password, headers, tokenHandling, withCredentials, loadMetadataAsync, maxDataServiceVersion (default = '2.0';
 	 * please use the following string format e.g. '2.0' or '3.0'. OData version supported by the ODataModel: '2.0'. '3.0' may work but is currently experimental.), 
 	 * useBatch (all requests will be sent in batch requests default = false),
-	 * refreshAfterChange (enable/disable automatic refresh after change operations: default = true).
+	 * refreshAfterChange (enable/disable automatic refresh after change operations: default = true),
+	 * serviceUrlParams (URL parameters for all requests),
+	 * metadataUrlParams (additional URL parameters for Metadata requests).
 	 * See below for descriptions of these parameters.
 	 * @param {string} [sUser] (optional) user
 	 * @param {string} [sPassword] (optional) password
@@ -38,7 +40,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	 * @param {boolean} [bWithCredentials] (optional, experimental) true when user credentials are to be included in a cross-origin request. Please note that this works only if all requests are asynchronous.
 	 * @param {object} [bLoadMetadataAsync] (optional) determined if the service metadata request is sent synchronous or asynchronous. Default is false.
 	 * Please note that if this is set to true attach to the metadataLoaded event to get notified when the metadata has been loaded before accessing the service metadata.
-	 * @param {string} [annotationURI] (optional) the URL from which the annotation metadata should be loaded
+	 * @param {string|string[]} [annotationURI] (optional) The URL (or an array of URLs) from which the annotation metadata should be loaded
 	 * @param {boolean} [loadAnnotationsJoined] (optional) Whether or not to fire the metadataLoaded-event only after annotations have been loaded as well.
 	 *
 	 * @class
@@ -47,8 +49,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	 * 
 	 * @extends sap.ui.model.Model
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 *
 	 * @constructor
 	 * @public
@@ -67,6 +69,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 				bCountSupported,
 				mMetadataNamespaces,
 				sDefaultCountMode,
+				mServiceUrlParams,
+				mMetadataUrlParams,
 				that = this;
 
 			if (typeof bJSON === "object") {
@@ -83,9 +87,11 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 				bLoadAnnotationsJoined = bJSON.loadAnnotationsJoined;
 				sDefaultCountMode = bJSON.defaultCountMode;
 				mMetadataNamespaces = bJSON.metadataNamespaces;
+				mServiceUrlParams = bJSON.serviceUrlParams;
+				mMetadataUrlParams = bJSON.metadataUrlParams;
 				bJSON = bJSON.json;
 			}
-			
+
 			this.sDefaultBindingMode = sap.ui.model.BindingMode.OneWay;
 			this.mSupportedBindingModes = {"OneWay": true, "OneTime": true, "TwoWay":true};
 			this.bCountSupported = true;
@@ -118,6 +124,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			this.oData = {};
 			this.oMetadata = null;
 			this.oAnnotations = null;
+			this.aUrlParams = [];
 
 			// determine the service base url and the url parameters
 			if (sServiceUrl.indexOf("?") == -1) {
@@ -125,16 +132,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			} else {
 				var aUrlParts = sServiceUrl.split("?");
 				this.sServiceUrl = aUrlParts[0];
-				this.sUrlParams = aUrlParts[1];
+				this.aUrlParams.push(aUrlParts[1]);
 			}
 
 			if (sap.ui.getCore().getConfiguration().getStatistics()) {
 				// add statistics parameter to every request (supported only on Gateway servers)
-				if (this.sUrlParams) {
-					this.sUrlParams = this.sUrlParams + "&sap-statistics=true";
-				} else {
-					this.sUrlParams = "sap-statistics=true";
-				}
+				this.aUrlParams.push("sap-statistics=true");
 			}
 
 			// Remove trailing slash (if any)
@@ -160,15 +163,23 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 
 			if (!this.oServiceData.oMetadata) {
 				//create Metadata object
-				this.oMetadata = new sap.ui.model.odata.ODataMetadata(this._createRequestUrl("$metadata"), { async: this.bLoadMetadataAsync, user: this.sUser, password: this.sPassword, namespaces: mMetadataNamespaces});
+				this.oMetadata = new sap.ui.model.odata.ODataMetadata(this._createRequestUrl("$metadata", undefined, mMetadataUrlParams), 
+						{ async: this.bLoadMetadataAsync, user: this.sUser, password: this.sPassword, headers: this.mCustomHeaders, namespaces: mMetadataNamespaces, withCredentials: this.bWithCredentials});
 				that.oServiceData.oMetadata = that.oMetadata;
 			} else {
 				this.oMetadata = this.oServiceData.oMetadata;
 			}
-			
+
+			if (mServiceUrlParams) {
+				// new URL params used -> add to ones from sServiceUrl
+				// do this after the Metadata request is created to not put the serviceUrlParams on this one
+				this.aUrlParams = this.aUrlParams.concat(ODataUtils._createUrlParamsArray(mServiceUrlParams));
+			}
+
 			if(!this.oMetadata.isLoaded()) {
 				this.oMetadata.attachLoaded(function(oEvent){
 					that._initializeMetadata();
+					that.initialize();
 				}, this);
 				this.oMetadata.attachFailed(this.fireMetadataFailed, this);
 			}
@@ -288,15 +299,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	ODataModel.prototype._initializeMetadata = function(bDelayEvent) {
 		var that = this;
 		this.bUseBatch = this.bUseBatch || this.oMetadata.getUseBatch();
-		var doFire = function(bInitialize, bDelay){
-			if(!!bDelay){
-				that.metadataLoadEvent = jQuery.sap.delayedCall(0, that, doFire, [that.bLoadMetadataAsync]);
+		var doFire = function(bDelay){
+			if (!!bDelay) {
+				that.metadataLoadEvent = jQuery.sap.delayedCall(0, that, doFire);
 			} else {
 				that.fireMetadataLoaded({metadata: that.oMetadata});
 				jQuery.sap.log.debug("ODataModel fired metadataloaded");
-				if(bInitialize){
-					that.initialize();
-				}
 			}
 		};
 
@@ -305,17 +313,17 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			// This is also tested in the fireMetadataLoaded-method and no event is fired in case
 			// of joined loading.
 			if (this.oAnnotations && this.oAnnotations.bInitialized) {
-				doFire(true);
+				doFire();
 			} else {
 				this.oAnnotations.attachLoaded(function() {
 					// Now metadata was loaded and the annotations have been parsed
-					doFire(true);
+					doFire();
 				}, this);
 			}
 		} else {
 			// In case of synchronous or asynchronous non-joined loading, or if no annotations are
 			// loaded at all, the events are fired individually
-				doFire(this.bLoadMetadataAsync, bDelayEvent);
+				doFire(bDelayEvent);
 		}
 	};
 
@@ -580,8 +588,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 
 		aUrlParams = ODataUtils._createUrlParamsArray(oUrlParams);
 
-		if (this.sUrlParams) {
-			aUrlParams.push(this.sUrlParams);
+		if (this.aUrlParams) {
+			aUrlParams = aUrlParams.concat(this.aUrlParams);
 		}
 		if (sUrlParams) {
 			aUrlParams.push(sUrlParams);
@@ -666,9 +674,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			if (oResultData.__next){
 				// replace request uri with next uri to retrieve additional data
 				var oURI = new URI(oResultData.__next);
-				sRequestUri = oURI.absoluteTo(oResponse.requestUri).toString();
-				sRequestUri += that.sUrlParams ? '&'+ that.sUrlParams : '';
-				oRequest.requestUri = sRequestUri;
+				oRequest.requestUri = oURI.absoluteTo(oResponse.requestUri).toString();
 				_submit(oRequest);
 			}else{
 				// all data is read so merge all data
@@ -694,7 +700,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 				}
 				that.checkUpdate(false, mChangedEntities);
 				if (fnCompleted) {
-					fnCompleted();
+					fnCompleted(oResultData);
 				}
 				that.fireRequestCompleted({url : oRequest.requestUri, type : "GET", async : oRequest.async,
 					info: "Accept headers:" + that.oHeaders["Accept"], infoObject : {acceptHeaders: that.oHeaders["Accept"]}, success: true});
@@ -705,7 +711,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			// If error is a 403 with XSRF token "Required" reset token and retry sending request
 			if (that.bTokenHandling && oError.response) {
 				var sToken = that._getHeader("x-csrf-token", oError.response.headers);
-				if (!oRequest.bTokenReset && oError.response.statusCode == '403' && sToken.toLowerCase() == "required") {
+				if (!oRequest.bTokenReset && oError.response.statusCode == '403' && sToken && sToken.toLowerCase() == "required") {
 					that.resetSecurityToken();
 					oRequest.bTokenReset = true;
 					_submit();
@@ -724,6 +730,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	
 			// Don't fire RequestFailed for intentionally aborted requests; fire event if we have no (OData.read fails before handle creation) 
 			if (!oRequestHandle || !oRequestHandle.bAborted) {
+				mParameters.url = oRequest.requestUri;
 				that.fireRequestFailed(mParameters);
 			}
 		}
@@ -912,21 +919,30 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	 * Refresh the model.
 	 * This will check all bindings for updated data and update the controls if data has been changed.
 	 *
-	 * @param {boolean} bForceUpdate Update controlsODataModelanged
-	 * @param {object} mChangedEntities
-	 * @param {string} [sEntityType]
+	 * @param {boolean} [bForceUpdate=false] Force update of controls
+	 * @param {boolean} [bRemoveData=false] If set to true then the model data will be removed/cleared. 
+	 * 					Please note that the data might not be there when calling e.g. getProperty too early before the refresh call returned. 
 	 *
 	 * @public
 	 * @name sap.ui.model.odata.ODataModel#refresh
 	 * @function
 	 */
-	ODataModel.prototype.refresh = function(bForceUpdate, mChangedEntities, mEntityTypes) {
+	ODataModel.prototype.refresh = function(bForceUpdate, bRemoveData) {
+		// Call refresh on all bindings instead of checkUpdate to properly reset cached data in bindings
+		if (bRemoveData) {
+			this.removeData();
+		}
+		this._refresh(bForceUpdate);
+	};
+	
+	ODataModel.prototype._refresh = function(bForceUpdate, mChangedEntities, mEntityTypes) {
 		// Call refresh on all bindings instead of checkUpdate to properly reset cached data in bindings
 		var aBindings = this.aBindings.slice(0);
 		jQuery.each(aBindings, function(iIndex, oBinding) {
 			oBinding.refresh(bForceUpdate, mChangedEntities, mEntityTypes);
 		});
 	};
+	
 	
 	/**
 	 * Private method iterating the registered bindings of this model instance and initiating their check for update
@@ -1046,28 +1062,88 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	 * @function
 	 */
 	ODataModel.prototype._isReloadNeeded = function(sFullPath, oData, mParameters) {
-		var sNavProps, aNavProps = [],
+		var sNavProps, aNavProps = [], aChainedNavProp,
 			sSelectProps, aSelectProps = [];
 	
-		// no data --> load needed
+		// no data --> reload needed
 		if (!oData) {
 			return true;
 		}
 	
+		//Split the Navigation-Properties (or multi-level chains) which should be expanded
 		if (mParameters && mParameters["expand"]) {
 			sNavProps = mParameters["expand"].replace(/\s/g, "");
 			aNavProps = sNavProps.split(',');
 		}
+		
+		//Split the Navigation properties again, if there are multi-level properties chained together by "/"
+		//The resulting aNavProps array will look like this: ["a", ["b", "c/d/e"], ["f", "g/h"], "i"]
+		if (aNavProps) {
+			for (var i = 0; i < aNavProps.length; i++) {
+				var chainedPropIndex = aNavProps[i].indexOf("/");
+				if (chainedPropIndex !== -1) {
+					//cut of the first nav property of the chain
+					var chainedPropFirst = aNavProps[i].slice(0, chainedPropIndex);
+					var chainedPropRest = aNavProps[i].slice(chainedPropIndex+1);
+					//keep track of the newly splitted nav prop chain
+					aNavProps[i] = [chainedPropFirst, chainedPropRest];
+				}
+			}
+		}
+
+		//Iterate all nav props and follow the given expand-chain 
+		for (var i = 0; i < aNavProps.length; i++) {
+			var navProp = aNavProps[i];
+			
+			//check if the navProp was split into multiple parts (meaning it's an array), e.g. ["Orders", "Products/Suppliers"]
+			if (jQuery.isArray(navProp)) {
+				
+				var oFirstNavProp = oData[navProp[0]];
+				var sNavPropRest = navProp[1];
+				
+				//first nav prop in the chain is either undefined or deferred -> reload needed
+				if (!oFirstNavProp || (oFirstNavProp && oFirstNavProp.__deferred)) {
+					return true;
+				} else {
+					//the first nav prop exists on the Data-Object
+					if (oFirstNavProp) {
+						//the first nav prop contains a __list of entry-keys (and the __list is not empty)
+						if (oFirstNavProp.__list && oFirstNavProp.__list.length > 0) {
+							//Follow all keys in the __list collection by recursively calling
+							//this function to check if all linked properties are loaded.
+							//This is basically a depth-first search.
+							for (var iNavIndex = 0; iNavIndex < oFirstNavProp.__list.length; iNavIndex++) {
+								var sPropKey = "/" + oFirstNavProp.__list[iNavIndex];
+								var oDataObject = this.getObject(sPropKey);
+								var bReloadNeeded = this._isReloadNeeded(sPropKey, oDataObject, {expand: sNavPropRest});
+								if (bReloadNeeded) { //if a single nav-prop path is not loaded -> reload needed
+									return true;
+								}
+							}
+						} else if (oFirstNavProp.__ref) {
+							//the first nav-prop is not a __list, but only a reference to a single entry (__ref)
+							var sPropKey = "/" + oFirstNavProp.__ref;
+							var oDataObject = this.getObject(sPropKey);
+							var bReloadNeeded = this._isReloadNeeded(sPropKey, oDataObject, {expand: sNavPropRest});
+							if (bReloadNeeded) {
+								return true;
+							}
+						}
+					}
+				}
+				
+			} else {
+				//only one single Part, e.g. "Orders"
+				//@TODO: why 'undefined'? Old compatibility issue?
+				if (oData[navProp] === undefined || (oData[navProp] && oData[navProp].__deferred)) { 
+					return true;
+				}
+			}
+		}
+		
 		if (mParameters && mParameters["select"]) {
 			sSelectProps = mParameters["select"].replace(/\s/g, "");
 			aSelectProps = sSelectProps.split(',')
-		}
-	
-		for(var i = 0; i < aNavProps.length; i++) {
-			// reload data if nav property not available or if nav property data is deferred
-			if (oData[aNavProps[i]] === undefined || (oData[aNavProps[i]] && oData[aNavProps[i]].__deferred)) {
-				return true;
-			}
 		}
 	
 		for(var i = 0; i < aSelectProps.length; i++) {
@@ -1205,11 +1281,13 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	/**
 	 * Returns the key part from the entry URI or the given context
 	 * 
-	 * @param {object|sap.ui.model.Context} 
+	 * @param {object|sap.ui.model.Context} oObject
+	 * @param {boolean} bDecode Whether the URI decoding should be applied on the key
 	 * @name sap.ui.model.odata.ODataModel#_getKey
+	 * @private
 	 * @function
 	 */
-	ODataModel.prototype._getKey = function(oObject) {
+	ODataModel.prototype._getKey = function(oObject, bDecode) {
 		var sKey, sURI;
 		if (oObject instanceof sap.ui.model.Context) {
 			sKey = oObject.getPath().substr(1);
@@ -1217,14 +1295,69 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			sURI = oObject.__metadata.uri; 
 			sKey = sURI.substr(sURI.lastIndexOf("/") + 1);
 		} 
+		if (bDecode) sKey = decodeURIComponent(sKey);
 		return sKey;
 	};
 	
 	/**
-	 * Returns the value for the property with the given <code>sPropertyName</code>
+	 * Returns the key part from the entry URI or the given context or object
+	 * 
+	 * @param {object|sap.ui.model.Context} oObject The context or object
+	 * @param {boolean} bDecode Whether the URI decoding should be applied on the key
+	 * @name sap.ui.model.odata.ODataModel#getKey
+	 * @public
+	 * @function
+	 */
+	ODataModel.prototype.getKey = function(oObject, bDecode) {
+		return this._getKey(oObject, bDecode);
+	};
+
+	/**
+	 * Creates the key from the given collection name and property map
 	 *
-	 * @param {string}
-	 *          sPath the path/name of the property
+	 * @param {string} sCollection The name of the collection
+	 * @param {object} oKeyParameters The object containing at least all the key properties of the entity type
+	 * @param {boolean} bDecode Whether the URI decoding should be applied on the key
+	 * @name sap.ui.model.odata.ODataModel#createKey
+	 * @public
+	 * @function
+	 */
+	ODataModel.prototype.createKey = function(sCollection, oKeyProperties, bDecode) {
+		var oEntityType = this.oMetadata._getEntityTypeByPath(sCollection),
+			sKey = sCollection,
+			that = this,
+			aKeys,
+			sName,
+			sValue,
+			oProperty;
+		jQuery.sap.assert(oEntityType, "Could not find entity type of collection \"" + sCollection + "\" in service metadata!");
+		sKey += "(";
+		if (oEntityType.key.propertyRef.length == 1) {
+			sName = oEntityType.key.propertyRef[0].name;
+			jQuery.sap.assert(sName in oKeyProperties, "Key property \"" + sName + "\" is missing in object!");
+			oProperty = this.oMetadata._getPropertyMetadata(oEntityType, sName);
+			sValue = ODataUtils.formatValue(oKeyProperties[sName], oProperty.type);
+			sKey += bDecode ? sValue : encodeURIComponent(sValue);
+		} else {
+			jQuery.each(oEntityType.key.propertyRef, function(i, oPropertyRef) {
+				if (i > 0) sKey += ",";
+				sName = oPropertyRef.name;
+				jQuery.sap.assert(sName in oKeyProperties, "Key property \"" + sName + "\" is missing in object!");
+				oProperty = that.oMetadata._getPropertyMetadata(oEntityType, sName);
+				sValue = ODataUtils.formatValue(oKeyProperties[sName], oProperty.type);
+				sKey += sName;
+				sKey += "=";
+				sKey += bDecode ? sValue : encodeURIComponent(sValue);
+			});
+		}
+		sKey += ")";
+		return sKey;
+	};
+	
+	/**
+	 * Returns the value for the property with the given <code>sPath</code>
+	 *
+	 * @param {string} sPath the path/name of the property
 	 * @param {object} [oContext] the context if available to access the property value
 	 * @param {boolean} [bIncludeExpandEntries=null] This parameter should be set when a URI or custom parameter
 	 * with a $expand System Query Option was used to retrieve associated entries embedded/inline.
@@ -1260,9 +1393,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			// remove expanded references
 			return this._removeReferences(oValue);
 		}
-	
 	};
-	
+
 	/**
 	 * @param {string} sPath
 	 * @param {object} oContext
@@ -1307,7 +1439,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 						oNode = oNode.__list;
 					}
 					else if (oNode.__deferred) {
-						oNode = null;
+						// set to undefined and not to null because navigation properties can have null value
+						oNode = undefined;
 					}
 				}
 				iIndex++;
@@ -1453,7 +1586,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			that._updateRequestQueue(oRequest, bBatch)
 			
 			if (that._isRefreshNeeded(oRequest, oResponse)){
-				that.refresh(false, oRequest.keys, oRequest.entityTypes );
+				that._refresh(false, oRequest.keys, oRequest.entityTypes );
 			}
 			
 			if (fnSuccess) {
@@ -1519,8 +1652,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	
 		sUrl = this.sServiceUrl	+ "/$batch";
 	
-		if (this.sUrlParams) {
-			sUrl += "?" + this.sUrlParams;
+		if (this.aUrlParams) {
+			sUrl += "?" + this.aUrlParams.join("&");
 		}
 	
 		jQuery.extend(oChangeHeader, this.mCustomHeaders, this.oHeaders);
@@ -1718,7 +1851,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	 * If false the associated/expanded entry properties are removed and not included in the
 	 * desired entry as properties at all. This is useful for performing updates on the base entry only. Note: A copy and not a reference of the entry will be returned.
 	 *
-	 * return {object} oData Object containing the requested data if the path is valid.
+	 * @return {object} oData Object containing the requested data if the path is valid.
 	 * @public
 	 * @deprecated please use {@link #getProperty} instead
 	 * @name sap.ui.model.odata.ODataModel#getData
@@ -2421,6 +2554,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 	 * additional error information.
 	 * @param {boolean} [bAsync] true for asynchronous request. Default is true.
 	 *
+	 * @param {boolean} bImportData
 	 * @return {object} an object which has an <code>abort</code> function to abort the current request. Returns false if no request will be performed because the batch is empty.
 	 *
 	 * @public
@@ -2560,6 +2694,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			}
 	
 			oRequest = this._createRequest(this.sChangeKey, "MERGE", true, oPayload, sETag);
+			if (this.sUrlParams) {
+				oRequest.requestUri += "?" + this.sUrlParams; 
+			}
 			
 			//get entry from model. If entry exists get key for update bindings
 			oRequest.keys = {};
@@ -2570,22 +2707,40 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			
 			this.oRequestQueue[this.sChangeKey] = oRequest;
 		}
+		
+		if (jQuery.isEmptyObject(this.oRequestQueue)) {
+			return undefined;
+		}
 	
 		if (this.bUseBatch) {
 			var aChangeRequests = [];
 			jQuery.each(this.oRequestQueue, function(sKey, oCurrentRequest){
-				oCurrentRequest.requestUri = oCurrentRequest.requestUri.replace(that.sServiceUrl + '/','');
-				oCurrentRequest.data._bCreate ? delete oCurrentRequest.data._bCreate : false;
-				aChangeRequests.push(oCurrentRequest);
+				delete oCurrentRequest._oRef;
+				var oReqClone = jQuery.extend(true, {}, oCurrentRequest);
+				oCurrentRequest._oRef = oReqClone;
+				
+				oReqClone.requestUri = oReqClone.requestUri.replace(that.sServiceUrl + '/','');
+				oReqClone.data._bCreate ? delete oReqClone.data._bCreate : false;
+				aChangeRequests.push(oReqClone);
 			});
+			
 			oRequest = this._createBatchRequest([{__changeRequests:aChangeRequests}], true)
 			this._submitRequest(oRequest, this.bUseBatch, fnSuccess, fnError, true);
 		} else {
 			//loop request queue
 			jQuery.each(this.oRequestQueue, function(sKey, oCurrentRequest){
+				// clone request and store the clone as reference to compare it in updateRequestQueue. 
+				// We send the cloned request which will be modified by datajs but we want to keep the original request stored
+				// because it may fail and we need to send the request again.
+				delete oCurrentRequest._oRef;
+				var oReqClone = jQuery.extend(true, {}, oCurrentRequest);
+				oCurrentRequest._oRef = oReqClone;
 				//remove create flag
-				oCurrentRequest.data._bCreate ? delete oCurrentRequest.data._bCreate : false;
-				that._submitRequest(oCurrentRequest, this.bUseBatch, fnSuccess, fnError, true);
+				 if (oReqClone.data && oReqClone.data._bCreate) {
+					 delete oReqClone.data._bCreate;
+				 }
+
+				that._submitRequest(oReqClone, this.bUseBatch, fnSuccess, fnError, true);
 			});
 		}
 		return undefined;
@@ -2613,7 +2768,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 						for(var j = 0; j < aChangeRequests.length; j++){
 							oChangeRequest = aChangeRequests[j];
 							jQuery.each(this.oRequestQueue, function(sKey,oCurrentRequest) {
-								if (oCurrentRequest === oChangeRequest && sKey !== that.sChangeKey) {
+								if (oCurrentRequest._oRef === oChangeRequest && sKey !== that.sChangeKey) {
 									delete that.oRequestQueue[sKey];
 									delete that.oData[sKey];
 									delete that.mContexts["/" + sKey];
@@ -2628,7 +2783,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', './ODataUtils', './Cou
 			}
 		} else {
 			jQuery.each(this.oRequestQueue, function(sKey,oCurrentRequest) {
-				if (oCurrentRequest === oRequest && sKey !== that.sChangeKey) {
+				if (oCurrentRequest._oRef === oRequest && sKey !== that.sChangeKey) {
 					delete that.oRequestQueue[sKey];
 					delete that.oData[sKey];
 					delete that.mContexts["/" + sKey];

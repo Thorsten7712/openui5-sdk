@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -32,34 +32,13 @@ sap.ui.define(['jquery.sap.global'],
 	 */
 	TemplateControlRenderer.render = function(oRM, oControl) {
 		
-		// render the control
-		/*
-		var rHTML = /([^<]*)<(\w+)([^>]*)>/i.exec(sHTML);
-		if (rHTML) {
-			// append the control data
-			// TODO: addStyleClass and attributes support!
-			oRM.write(rHTML[1]);
-			oRM.write("<");
-			oRM.write(rHTML[2]);
-			oRM.writeControlData(oControl);
-			oRM.write(rHTML[3]);
-			oRM.write(">");
-			oRM.write(sHTML.substring(rHTML[0].length));
-		} else {
-			// TODO: is this really valid or should we put a root tag around
-			// to write the control data!
-			oRM.write(sHTML);
-		}
-		*/
-	
-		// check the control being inlined
-		var bInline = oControl.isInline();
+		// check the control being inlined or renders the control data itself
+		var bSkipRootElement = oControl.isInline() || this.hasControlData;
 		
 		// we need to make sure to have a common root tag (therefore we add a DIV)
 		// if we have no common root tag, the re-rendering would not clean up
 		// the old markup properly.
-		//   -> the approach above enhance the root tag from the template
-		if (!bInline) {
+		if (!bSkipRootElement) {
 			oRM.write("<div");
 			oRM.writeControlData(oControl);
 			oRM.writeStyles();
@@ -75,7 +54,7 @@ sap.ui.define(['jquery.sap.global'],
 			fnRenderer.apply(this, arguments);
 		}
 		
-		if (!bInline) {
+		if (!bSkipRootElement) {
 			oRM.write("</div>");
 		}
 		

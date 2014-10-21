@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Toolbar</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A horizontal row of items where in many cases the single toolbar items are buttons containing icons. Note that all controls with the 
 	sap.ui.commons.ToolbarItem interface can be used as item: Button, ComboBox, TextField.</documentation>
 

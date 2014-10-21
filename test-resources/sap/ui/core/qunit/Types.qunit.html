@@ -21,6 +21,8 @@
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
 <script type="text/javascript"
+	src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
+<script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <!-- Test functions -->
@@ -326,7 +328,7 @@
 			equal(dateType.formatValue("2012/01/23","string"),"23.01.2012", "format test with source pattern");
 		
 			dateType = new sap.ui.model.type.Date({source: {pattern: "timestamp"}, pattern: "dd.MM.yy"});
-			equal(dateType.formatValue(1044068706007,"string"),"01.02.03", "format test with timestamp");
+			equal(dateType.formatValue(dateValue.getTime(), "string"), "01.02.03", "format test with timestamp");
 			equal(dateType.formatValue(null,"string"), "", "format test");
 			equal(dateType.formatValue(undefined,"string"), "", "format test");
 			raises(function(){dateType.formatValue(1044068706007,"untype")},sap.ui.model.FormatException, "format test");

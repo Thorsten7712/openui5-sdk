@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,22 +54,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * This control gives the user the opportunity to choose a color. The color can be defined using HEX-, RGB- or HSV-values or a CSS colorname.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ColorPicker
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ColorPicker", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getRGB"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"colorString" : {type : "string", group : "Misc", defaultValue : null}
@@ -128,14 +126,13 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @name sap.ui.commons.ColorPicker#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.r Parameter containing the RED value (0-255)
  * @param {int} oControlEvent.getParameters.g Parameter containing the GREEN value (0-255)
  * @param {int} oControlEvent.getParameters.b Parameter containing the BLUE value (0-255)
@@ -152,7 +149,7 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ColorPicker</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -206,14 +203,13 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @name sap.ui.commons.ColorPicker#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.r Parameter containing the RED value (0-255)
  * @param {int} oControlEvent.getParameters.g Parameter containing the GREEN value (0-255)
  * @param {int} oControlEvent.getParameters.b Parameter containing the BLUE value (0-255)
@@ -230,7 +226,7 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ColorPicker</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -286,11 +282,11 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
 /**
  * This method delivers the current RGB-values
  *
- * @name sap.ui.commons.ColorPicker.prototype.getRGB
+ * @name sap.ui.commons.ColorPicker#getRGB
  * @function
-
  * @type object
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1097,63 +1093,54 @@ sap.ui.commons.ColorPicker.prototype._updateCursorPosition = function(){
  */
 sap.ui.commons.ColorPicker.prototype._calculateRGB = function( hue, sat, val){
 
-	//	easy case: value = 0
-	if (val == 0 ){
-		this.RGB.r = Math.round(sat*2.55);
-		this.RGB.g = Math.round(sat*2.55);
-		this.RGB.b = Math.round(sat*2.55);
-
-		// calculate values
-	} else {
-		hue = hue / 60;
-		//hue value is cyclic, so 360 = 0
-		if (hue == 6) {
-			hue = 0;
-		}
-		sat = sat / 100;
-		val = val / 100;
-		var redValue, greenValue, blueValue;
-		var i = Math.floor(hue);
-		var f = hue - i;
-		var p = val * (1 - sat);
-		var q = val * (1 - sat * f);
-		var t = val * (1 - sat * (1 - f));
-		switch (i) {
+	//hue value is cyclic, so 360 = 0
+	if (hue == 360) {
+		hue = 0;
+	}
+	hue /= 60;
+	sat /= 100;
+	val /= 100;
+	
+	
+	//Formula taken from http://www.rapidtables.com/convert/color/hsv-to-rgb.htm
+	var c = val * sat;
+	var x = c * (1 - Math.abs(hue % 2 - 1));
+	var m = val - c;
+	
+	// calculate values
+	var redValue = 0, greenValue = 0, blueValue = 0;
+	var i = Math.floor(hue);
+	
+	switch (i) {
 		case 0:
-			redValue   = val;
-			greenValue = t;
-			blueValue  = p;
+			redValue   = c;
+			greenValue = x;
 			break;
 		case 1:
-			redValue   = q;
-			greenValue = val;
-			blueValue  = p;
+			redValue   = x;
+			greenValue = c;
 			break;
 		case 2:
-			redValue   = p;
-			greenValue = val;
-			blueValue  = t;
+			greenValue = c;
+			blueValue  = x;
 			break;
 		case 3:
-			redValue   = p;
-			greenValue = q;
-			blueValue  = val;
+			greenValue = x;
+			blueValue  = c;
 			break;
 		case 4:
-			redValue   = t;
-			greenValue = p;
-			blueValue  = val;
+			redValue   = x;
+			blueValue  = c;
 			break;
-		default:
-			redValue   = val;
-		greenValue = p;
-		blueValue  = q;
-		break;
-		}
-		this.RGB.r = Math.round(redValue*255);
-		this.RGB.g = Math.round(greenValue*255);
-		this.RGB.b = Math.round(blueValue*255);
+		case 5:
+			redValue   = c;
+			blueValue  = x;
+			break;
 	}
+	
+	this.RGB.r = Math.floor((redValue + m) * 255);
+	this.RGB.g = Math.floor((greenValue + m) * 255);
+	this.RGB.b = Math.floor((blueValue + m) * 255);
 }
 
 

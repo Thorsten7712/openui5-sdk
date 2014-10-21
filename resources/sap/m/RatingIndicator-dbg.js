@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -63,19 +63,17 @@ jQuery.sap.require("sap.ui.core.Control");
  * image icons which shall be used as rating symbols. When the user performs a rating, an event is fired.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.14
  * @name sap.m.RatingIndicator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.RatingIndicator", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -89,9 +87,9 @@ sap.ui.core.Control.extend("sap.m.RatingIndicator", { metadata : {
 		"visualMode" : {type : "sap.m.RatingIndicatorVisualMode", group : "Behavior", defaultValue : sap.m.RatingIndicatorVisualMode.Half}
 	},
 	aggregations : {
-    	"_iconsSelected" : {type : "sap.ui.core.Control", multiple : true, singularName : "_iconsSelected", visibility : "hidden"}, 
-    	"_iconsUnselected" : {type : "sap.ui.core.Control", multiple : true, singularName : "_iconsUnselected", visibility : "hidden"}, 
-    	"_iconsHovered" : {type : "sap.ui.core.Control", multiple : true, singularName : "_iconsHovered", visibility : "hidden"}
+		"_iconsSelected" : {type : "sap.ui.core.Control", multiple : true, singularName : "_iconsSelected", visibility : "hidden"}, 
+		"_iconsUnselected" : {type : "sap.ui.core.Control", multiple : true, singularName : "_iconsUnselected", visibility : "hidden"}, 
+		"_iconsHovered" : {type : "sap.ui.core.Control", multiple : true, singularName : "_iconsHovered", visibility : "hidden"}
 	},
 	events : {
 		"change" : {}, 
@@ -367,14 +365,13 @@ sap.m.RatingIndicator.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 
 /**
- * The event is fired when the user has done a rating. 
+ * The event is fired when the user has done a rating.
  *
  * @name sap.m.RatingIndicator#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.value The rated value
  * @public
  */
@@ -384,7 +381,7 @@ sap.m.RatingIndicator.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.RatingIndicator</code>.<br/> itself. 
  *  
- * The event is fired when the user has done a rating. 
+ * The event is fired when the user has done a rating.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -431,14 +428,13 @@ sap.m.RatingIndicator.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 
 /**
- * This event is triggered during the dragging period, each time the rating value changes. 
+ * This event is triggered during the dragging period, each time the rating value changes.
  *
  * @name sap.m.RatingIndicator#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {float} oControlEvent.getParameters.value The current value of the rating after a live change event.
  * @public
  */
@@ -448,7 +444,7 @@ sap.m.RatingIndicator.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.RatingIndicator</code>.<br/> itself. 
  *  
- * This event is triggered during the dragging period, each time the rating value changes. 
+ * This event is triggered during the dragging period, each time the rating value changes.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -528,7 +524,7 @@ sap.m.RatingIndicator.prototype.init = function () {
 };
 
 /**
- * Sets the rating value. The method is automatically checking whether the value is in the valid range of 0-{maxValue} and if it is a valid number.
+ * Sets the rating value. The method is automatically checking whether the value is in the valid range of 0-{@link #getMaxValue maxValue} and if it is a valid number.
  *
  * @param {float} fValue The rating value to be set.
  * @returns {sap.m.RatingIndicator} Returns <code>this</code> to facilitate method chaining.
@@ -717,7 +713,7 @@ sap.m.RatingIndicator.prototype._toPx = function (cssSize) {
  * Updates the controls's interface to reflect a value change of the rating.
  *
  * @param {float} fValue the rating value to be set
- * @param {boolean} bHover if this parameter is set to true, the hover mode is activated and the value is displayed with {iconHovered} instead of {iconSelected}
+ * @param {boolean} bHover if this parameter is set to true, the hover mode is activated and the value is displayed with {@link #getIconHovered iconHovered} instead of {@link #getIconSelected iconSelected}
  * @private
  */
 sap.m.RatingIndicator.prototype._updateUI = function (fValue, bHover) {
@@ -765,7 +761,7 @@ sap.m.RatingIndicator.prototype._updateUI = function (fValue, bHover) {
 /**
  * Load the icons/images of the rating for the different rating states.
  *
- * @param {int} iState The icon to be returned (0 = {iconSelected},  1 = {iconUnseleced}, 2 = {iconHovered}
+ * @param {int} iState The icon to be returned (0 = {@link #getIconSelected iconSelected},  1 = {@link #getIconUnselected  iconUnselected}, 2 = {@link #getIconHovered iconHovered}
  * @returns {object} either an sap.m.Image or an sap.m.Icon depending on the URI of the control parameters
  * @private
  */
@@ -813,10 +809,10 @@ sap.m.RatingIndicator.prototype._getIcon = function (iState) {
 
 /**
  * Calculated the selected value based on the event position of the tap/move/click event.
- * This function is called by the event handlers to determine the {value} of the rating.
+ * This function is called by the event handlers to determine the {@link #getValue value} of the rating.
  *
  * @param {jQuery.Event} oEvent The event object passed to the event handler.
- * @returns {float} The rounded rating value based on {visualMode}.
+ * @returns {float} The rounded rating value based on {@link #getVisualMode visualMode}.
  * @private
  */
 sap.m.RatingIndicator.prototype._calculateSelectedValue = function (oEvent) {
@@ -868,11 +864,12 @@ sap.m.RatingIndicator.prototype._calculateSelectedValue = function (oEvent) {
 };
 
 /**
- * Rounds the float value according to the parameter {visualMode}:
+ * Rounds the float value according to the parameter {@link #getVisualMode visualMode}:
  * - A value of "Full" will result in integer values.
  * - A value of "Half" will result in float values rounded to 0.5.
  *
  * @param {float} fValue The rating value.
+ * @param {boolean} bInputMode whether the given value represents user input
  * @returns {float} The rounded rating value.
  * @private
  */

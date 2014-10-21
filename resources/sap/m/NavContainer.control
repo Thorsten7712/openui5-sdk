@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>NavContainer</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>The NavContainer control handles hierarchic navigation between Pages or other fullscreen controls.
 

@@ -140,6 +140,16 @@
 									<span class='description'>Creates a new subclass of class sap.m.Popover with name <code>sClassName</code> and enriches it with the information contained in <code>oClassInfo</code>.</span>
 								</div>
 							
+								<div class="sectionItem classMethod static protected">
+									<b class="icon protected" title="calculate outerWidth of the element, for IE specific return the float number of width"><a href="../symbols/sap.m.Popover.html#.outerWidth">sap.m.Popover.outerWidth</a></b><span class='signature'>(<span>oElement</span>, <span>bIncludeMargin</span>)</span>
+									<span class='description'>calculate outerWidth of the element, for IE specific return the float number of width</span>
+								</div>
+							
+								<div class="sectionItem classMethod static protected">
+									<b class="icon protected" title="Return width of the element, for IE specific return the float number of width"><a href="../symbols/sap.m.Popover.html#.width">sap.m.Popover.width</a></b><span class='signature'>(<span>oElement</span>)</span>
+									<span class='description'>Return width of the element, for IE specific return the float number of width</span>
+								</div>
+							
 								<div class="sectionItem classMethod protected">
 									<b class="icon protected" title="If customHeader is set, this will return the customHeaer."><a href="../symbols/sap.m.Popover.html#_getAnyHeader">_getAnyHeader</a></b><span class='signature'>()</span>
 									<span class='description'>If customHeader is set, this will return the customHeaer.</span>
@@ -346,8 +356,8 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Opens the popover and set the popover position according to the {placement} property around the {oControl} parameter."><a href="../symbols/sap.m.Popover.html#openBy">openBy</a></b><span class='signature'>(<span title="(object) The control to which the popover is aligned based on the {placement} property">oControl</span>, <span>bSkipInstanceManager</span>)</span>
-									<span class='description'>Opens the popover and set the popover position according to the {placement} property around the {oControl} parameter.</span>
+									<b class="icon" title="Opens the popover and set the popover position according to the #getPlacement() placement property around the oControl parameter."><a href="../symbols/sap.m.Popover.html#openBy">openBy</a></b><span class='signature'>(<span title="(object) The control to which the popover is aligned based on the placement property">oControl</span>, <span title="(boolean) boolean">bSkipInstanceManager</span>)</span>
+									<span class='description'>Opens the popover and set the popover position according to the <a href="#getPlacement">placement</a>() property around the <code>oControl</code> parameter.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -426,7 +436,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Set the placement of the popover."><a href="../symbols/sap.m.Popover.html#setPlacement">setPlacement</a></b><span class='signature'>(<span>sPlacement</span>)</span>
+									<b class="icon" title="Set the placement of the popover."><a href="../symbols/sap.m.Popover.html#setPlacement">setPlacement</a></b><span class='signature'>(<span title="(string) string">sPlacement</span>)</span>
 									<span class='description'>Set the placement of the popover.</span>
 								</div>
 							
@@ -441,7 +451,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="The setter of the title property."><a href="../symbols/sap.m.Popover.html#setTitle">setTitle</a></b><span class='signature'>(<span>sTitle</span>)</span>
+									<b class="icon" title="The setter of the title property."><a href="../symbols/sap.m.Popover.html#setTitle">setTitle</a></b><span class='signature'>(<span title="(string) string">sTitle</span>)</span>
 									<span class='description'>The setter of the title property.</span>
 								</div>
 							
@@ -497,7 +507,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Element.html#$">$</a>, <a href="../symbols/sap.ui.core.Element.html#addCustomData">addCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#addDependent">addDependent</a>, <a href="../symbols/sap.ui.core.Element.html#addEventDelegate">addEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#applyFocusInfo">applyFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#bindElement">bindElement</a>, <a href="../symbols/sap.ui.core.Element.html#data">data</a>, <a href="../symbols/sap.ui.core.Element.html#destroy">destroy</a>, <a href="../symbols/sap.ui.core.Element.html#destroyCustomData">destroyCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyDependents">destroyDependents</a>, <a href="../symbols/sap.ui.core.Element.html#enhanceAccessibilityState">enhanceAccessibilityState</a>, <a href="../symbols/sap.ui.core.Element.html#findElements">findElements</a>, <a href="../symbols/sap.ui.core.Element.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.core.Element.html#getCustomData">getCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#getDependents">getDependents</a>, <a href="../symbols/sap.ui.core.Element.html#getDomRef">getDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getElementBinding">getElementBinding</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusDomRef">getFocusDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusInfo">getFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#getInterface">getInterface</a>, <a href="../symbols/sap.ui.core.Element.html#getLayoutData">getLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#getMetadata">getMetadata</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip">getTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_AsString">getTooltip_AsString</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_Text">getTooltip_Text</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfCustomData">indexOfCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfDependent">indexOfDependent</a>, <a href="../symbols/sap.ui.core.Element.html#insertCustomData">insertCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#insertDependent">insertDependent</a>, <a href="../symbols/sap.ui.core.Element.html#prop">prop</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllCustomData">removeAllCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllDependents">removeAllDependents</a>, <a href="../symbols/sap.ui.core.Element.html#removeCustomData">removeCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeDependent">removeDependent</a>, <a href="../symbols/sap.ui.core.Element.html#removeEventDelegate">removeEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#setLayoutData">setLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#setTooltip">setTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#toString">toString</a>, <a href="../symbols/sap.ui.core.Element.html#unbindElement">unbindElement</a>
+									<a href="../symbols/sap.ui.core.Element.html#$">$</a>, <a href="../symbols/sap.ui.core.Element.html#addCustomData">addCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#addDependent">addDependent</a>, <a href="../symbols/sap.ui.core.Element.html#addEventDelegate">addEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#applyFocusInfo">applyFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#bindElement">bindElement</a>, <a href="../symbols/sap.ui.core.Element.html#data">data</a>, <a href="../symbols/sap.ui.core.Element.html#destroy">destroy</a>, <a href="../symbols/sap.ui.core.Element.html#destroyCustomData">destroyCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyDependents">destroyDependents</a>, <a href="../symbols/sap.ui.core.Element.html#destroyLayoutData">destroyLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyTooltip">destroyTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#enhanceAccessibilityState">enhanceAccessibilityState</a>, <a href="../symbols/sap.ui.core.Element.html#findElements">findElements</a>, <a href="../symbols/sap.ui.core.Element.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.core.Element.html#getCustomData">getCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#getDependents">getDependents</a>, <a href="../symbols/sap.ui.core.Element.html#getDomRef">getDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getElementBinding">getElementBinding</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusDomRef">getFocusDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusInfo">getFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#getInterface">getInterface</a>, <a href="../symbols/sap.ui.core.Element.html#getLayoutData">getLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#getMetadata">getMetadata</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip">getTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_AsString">getTooltip_AsString</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_Text">getTooltip_Text</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfCustomData">indexOfCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfDependent">indexOfDependent</a>, <a href="../symbols/sap.ui.core.Element.html#insertCustomData">insertCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#insertDependent">insertDependent</a>, <a href="../symbols/sap.ui.core.Element.html#prop">prop</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllCustomData">removeAllCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllDependents">removeAllDependents</a>, <a href="../symbols/sap.ui.core.Element.html#removeCustomData">removeCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeDependent">removeDependent</a>, <a href="../symbols/sap.ui.core.Element.html#removeEventDelegate">removeEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#setLayoutData">setLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#setTooltip">setTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#toString">toString</a>, <a href="../symbols/sap.ui.core.Element.html#unbindElement">unbindElement</a>
 									</div>
 								</div>
 							
@@ -1034,7 +1044,101 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod static protected'>
+										<a name=".outerWidth"> </a>
+										<div class="itemTitle icon protected">
+											sap.m.Popover.outerWidth<span class="signature">(<span>oElement</span>, <span>bIncludeMargin</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											calculate outerWidth of the element, for IE specific return the float number of width
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  
+													</td>
+													<td class="methodItemName">
+													  <b>oElement</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  
+													</td>
+													<td class="methodItemName">
+													  <b>bIncludeMargin</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static protected'>
+										<a name=".width"> </a>
+										<div class="itemTitle icon protected">
+											sap.m.Popover.width<span class="signature">(<span>oElement</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											Return width of the element, for IE specific return the float number of width
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  
+													</td>
+													<td class="methodItemName">
+													  <b>oElement</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected'>
 										<a name="_getAnyHeader"> </a>
 										<div class="itemTitle icon protected">
 											_getAnyHeader<span class="signature">()</span>
@@ -1996,7 +2100,7 @@ The passed function and listener object must match the ones used for event regis
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireAfterClose"> </a>
 										<div class="itemTitle icon protected">
 											fireAfterClose<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2056,7 +2160,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireAfterOpen"> </a>
 										<div class="itemTitle icon protected">
 											fireAfterOpen<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2116,7 +2220,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireBeforeClose"> </a>
 										<div class="itemTitle icon protected">
 											fireBeforeClose<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2176,7 +2280,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireBeforeOpen"> </a>
 										<div class="itemTitle icon protected">
 											fireBeforeOpen<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -3120,12 +3224,12 @@ and returns its index if found or -1 otherwise.
 									<div class='sectionItem classMethod'>
 										<a name="openBy"> </a>
 										<div class="itemTitle icon">
-											openBy<span class="signature">(<span title="(object) The control to which the popover is aligned based on the {placement} property">oControl</span>, <span>bSkipInstanceManager</span>)</span>
+											openBy<span class="signature">(<span title="(object) The control to which the popover is aligned based on the placement property">oControl</span>, <span title="(boolean) boolean">bSkipInstanceManager</span>)</span>
 											
 										</div>
 										<div class="full-description">
-											Opens the popover and set the popover position according to the {placement} property
-around the {oControl} parameter.
+											Opens the popover and set the popover position according to the <a href="#getPlacement">placement</a>() property
+around the <code>oControl</code> parameter.
 											
 											
 											
@@ -3145,13 +3249,13 @@ around the {oControl} parameter.
 													  <b>oControl</b>
 													</td>
 													<td class="methodItemDesc">
-												    The control to which the popover is aligned based on the {placement} property
+												    The control to which the popover is aligned based on the <code>placement</code> property
 													</td>
 												</tr>
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>bSkipInstanceManager</b>
@@ -3325,7 +3429,7 @@ Additionally unregisters them from the hosting UIArea.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="setBounce"> </a>
 										<div class="itemTitle icon protected">
 											setBounce<span class="signature">(<span title="(boolean) new value for property bounce">bBounce</span>)</span>
@@ -3621,7 +3725,7 @@ Default value is empty/<code>undefined</code>
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="setFollowOf"> </a>
 										<div class="itemTitle icon protected">
 											setFollowOf<span class="signature">(<span title="(boolean) enables the followOf feature when set to true and disable the followOf when set to false">bValue</span>)</span>
@@ -4048,7 +4152,7 @@ Default value is <code>0</code>
 									<div class='sectionItem classMethod'>
 										<a name="setPlacement"> </a>
 										<div class="itemTitle icon">
-											setPlacement<span class="signature">(<span>sPlacement</span>)</span>
+											setPlacement<span class="signature">(<span title="(string) string">sPlacement</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -4066,7 +4170,7 @@ Default value is <code>0</code>
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sPlacement</b>
@@ -4206,12 +4310,14 @@ Default value is <code>true</code>
 									<div class='sectionItem classMethod'>
 										<a name="setTitle"> </a>
 										<div class="itemTitle icon">
-											setTitle<span class="signature">(<span>sTitle</span>)</span>
+											setTitle<span class="signature">(<span title="(string) string">sTitle</span>)</span>
 											
 										</div>
 										<div class="full-description">
-											The setter of the title property. If you want to show a header in the popover, don't forget to
-set the {showHeader} to true.
+											The setter of the title property. 
+</p><p>
+If you want to show a header in the popover, don't forget to set the 
+<a href="#setShowHeader">showHeader</a> property to true.
 											
 											
 											
@@ -4225,7 +4331,7 @@ set the {showHeader} to true.
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sTitle</b>
@@ -4328,7 +4434,7 @@ Default value is <code>true</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.15.0. 
 This property is deprecated. Please use properties verticalScrolling and horizontalScrolling instead. If you still use this property it will be mapped on the new properties verticalScrolling and horizontalScrolling.
@@ -4374,7 +4480,7 @@ This property is deprecated. Please use properties verticalScrolling and horizon
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.15.1. 
 </p><p>
@@ -4421,7 +4527,7 @@ This property has been deprecated since 1.15.1. Please use the beginButton inste
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.15.1. 
 </p><p>
@@ -4487,7 +4593,7 @@ Default value is <code>true</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.15.0. 
 This property is deprecated. Please use properties verticalScrolling and horizontalScrolling instead. If you still use this property it will be mapped on the new properties verticalScrolling and horizontalScrolling.
@@ -4551,7 +4657,7 @@ This property is deprecated. Please use properties verticalScrolling and horizon
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.15.1. 
 </p><p>
@@ -4616,7 +4722,7 @@ This property has been deprecated since 1.15.1. Please use the beginButton inste
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.15.1. 
 </p><p>

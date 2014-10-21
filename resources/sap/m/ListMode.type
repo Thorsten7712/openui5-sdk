@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ListMode</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Different modes for the list selection (predefined modes)</documentation>
 	<baseType>sap.ui.core/string</baseType>
 	<enumeration>

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>BusyIndicator</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Control to indicate that the system is busy with some task and the user has to wait. When no image or gif is provided, the control renders the platforms native indicator using css.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

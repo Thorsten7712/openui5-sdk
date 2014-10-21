@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.ux3.CollectionInspector");jQuery.sap.require("sap.ui.ux3.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.ux3.CollectionInspector",{metadata:{library:"sap.ui.ux3",properties:{"sidebarVisible":{type:"boolean",group:"Appearance",defaultValue:true},"fitParent":{type:"boolean",group:"Appearance",defaultValue:true}},aggregations:{"collections":{type:"sap.ui.ux3.Collection",multiple:true,singularName:"collection"},"content":{type:"sap.ui.core.Control",multiple:true,singularName:"content"}},associations:{"selectedCollection":{type:"sap.ui.ux3.Collection",multiple:false}},events:{"collectionSelected":{},"itemSelectionChanged":{},"editCollection":{}}}});sap.ui.ux3.CollectionInspector.M_EVENTS={'collectionSelected':'collectionSelected','itemSelectionChanged':'itemSelectionChanged','editCollection':'editCollection'};jQuery.sap.require("sap.ui.core.delegate.ItemNavigation");

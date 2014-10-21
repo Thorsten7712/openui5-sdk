@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.ux3.Collection");jQuery.sap.require("sap.ui.ux3.library");jQuery.sap.require("sap.ui.core.Element");sap.ui.core.Element.extend("sap.ui.ux3.Collection",{metadata:{library:"sap.ui.ux3",properties:{"title":{type:"string",group:"Appearance",defaultValue:null},"editable":{type:"boolean",group:"Appearance",defaultValue:false},"multiSelection":{type:"boolean",group:"Accessibility",defaultValue:false}},aggregations:{"items":{type:"sap.ui.core.Item",multiple:true,singularName:"item"}},associations:{"selectedItems":{type:"sap.ui.core.Item",multiple:true,singularName:"selectedItem"}},events:{"selectionChanged":{},"propertyChanged":{}}}});sap.ui.ux3.Collection.M_EVENTS={'selectionChanged':'selectionChanged','propertyChanged':'propertyChanged'};jQuery.sap.require("sap.ui.model.SelectionModel");

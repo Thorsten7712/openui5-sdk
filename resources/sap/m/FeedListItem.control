@@ -2,15 +2,16 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>FeedListItem</name>
-	<author>SAP AG</author>
-	<documentation>The control provides a set of properties for text, sender information, time stamp
-	</documentation>
+	<author>SAP SE</author>
+	<documentation>The control provides a set of properties for text, sender information, time stamp.
+Beginning with release 1.23 the new feature expand / collapse was introduced, which uses the property maxCharacters.</documentation>
 	<since>1.12</since>
 
 	<baseType>sap.m/ListItemBase</baseType>
 	<properties>
 		<property group="Data" name="icon" type="sap.ui.core/URI">
-			<documentation>Icon to be displayed as graphical element within the FeedListItem. This can be an image  or an icon from the icon font.</documentation>
+			<documentation>Icon to be displayed as graphical element within the FeedListItem. This can be an image  or an icon from the icon font. If no icon is provided, a default person-placeholder icon is displayed.
+Icon is only shown if showIcon = true.</documentation>
 		</property>
 		<property group="Data" name="activeIcon" type="sap.ui.core/URI">
 			<documentation>Icon displayed when the list item is active.</documentation>
@@ -40,6 +41,9 @@ If bandwidth is the key for the application, set this value to false.</documenta
 		</property>
 		<property group="Behavior" name="showIcon" type="sap.ui.core/boolean" defaultValue="true">
 			<documentation>If set to &quot;true&quot; (default), icons will be displayed, if set to false icons are hidden</documentation>
+		</property>
+		<property group="Behavior" name="maxCharacters" type="sap.ui.core/int">
+			<documentation>The expand and collapse feature is set by default and uses 300 characters on mobile devices and 500 characters on desktops as limits. Based on these values, the text of the FeedListItem is collapsed once text reaches these limits. In this case, only the specified number of characters is displayed. By clicking on the text link More, the entire text can be displayed. The text link Less collapses the text. The application is able to set the value to its needs.</documentation>
 		</property>
 	</properties>
 	<aggregations>

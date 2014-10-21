@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -36,7 +36,8 @@ jQuery.sap.require("sap.ui.core.Control");
  * <li>{@link #getMultiSelect multiSelect} : boolean (default: false)</li>
  * <li>{@link #getGrowingThreshold growingThreshold} : int</li>
  * <li>{@link #getContentWidth contentWidth} : sap.ui.core.CSSSize</li>
- * <li>{@link #getRememberSelections rememberSelections} : boolean (default: false)</li></ul>
+ * <li>{@link #getRememberSelections rememberSelections} : boolean (default: false)</li>
+ * <li>{@link #getContentHeight contentHeight} : sap.ui.core.CSSSize</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
@@ -70,35 +71,34 @@ jQuery.sap.require("sap.ui.core.Control");
  * NOTE: The growing functionality of the list does not support Two Way Binding, so if you use this control with a JSON model make sure the binding mode is set to "OneWay" and that you update the selection model manually with the items passed in the "confirm" event.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.SelectDialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.SelectDialog", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"open"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Appearance", defaultValue : null},
 		"noDataText" : {type : "string", group : "Appearance", defaultValue : null},
 		"multiSelect" : {type : "boolean", group : "Dimension", defaultValue : false},
 		"growingThreshold" : {type : "int", group : "Misc", defaultValue : null},
-		"contentWidth" : {type : "sap.ui.core.CSSSize", group : "Appearance", defaultValue : null},
-		"rememberSelections" : {type : "boolean", group : "Behavior", defaultValue : false}
+		"contentWidth" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
+		"rememberSelections" : {type : "boolean", group : "Behavior", defaultValue : false},
+		"contentHeight" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null}
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.m.ListItemBase", multiple : true, singularName : "item"}, 
-    	"_dialog" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.m.ListItemBase", multiple : true, singularName : "item"}, 
+		"_dialog" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"confirm" : {}, 
@@ -283,6 +283,31 @@ sap.m.SelectDialog.M_EVENTS = {'confirm':'confirm','search':'search','liveChange
 
 
 /**
+ * Getter for property <code>contentHeight</code>.
+ * The content height of the inner dialog. See dialog documentation for more details.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {sap.ui.core.CSSSize} the value of property <code>contentHeight</code>
+ * @public
+ * @name sap.m.SelectDialog#getContentHeight
+ * @function
+ */
+
+/**
+ * Setter for property <code>contentHeight</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {sap.ui.core.CSSSize} sContentHeight  new value for property <code>contentHeight</code>
+ * @return {sap.m.SelectDialog} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.m.SelectDialog#setContentHeight
+ * @function
+ */
+
+
+/**
  * Getter for aggregation <code>items</code>.<br/>
  * The items of the list shown in the search dialog. It is recommended to use a StandardListItem for the dialog but other combinations are also possible.
  * 
@@ -365,14 +390,13 @@ sap.m.SelectDialog.M_EVENTS = {'confirm':'confirm','search':'search','liveChange
 
 
 /**
- * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters. 
+ * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters.
  *
  * @name sap.m.SelectDialog#confirm
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.StandardListItem} oControlEvent.getParameters.selectedItem Returns the selected list item. When no item is selected, "null" is returned. When multi-selection is enabled and multiple items are selected, only the first selected item is returned.
  * @param {sap.m.StandardListItem[]} oControlEvent.getParameters.selectedItems Returns an array containing the visible selected list items. If no items are selected, an empty array is returned.
  * @param {string} oControlEvent.getParameters.selectedContexts Returns the binding contexts of the selected items including the non-visible items.
@@ -386,7 +410,7 @@ sap.m.SelectDialog.M_EVENTS = {'confirm':'confirm','search':'search','liveChange
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SelectDialog</code>.<br/> itself. 
  *  
- * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters. 
+ * This event will be fired when the dialog is confirmed by selecting an item in single selection mode or by pressing the confirmation button in multi selection mode . The items being selected are returned as event parameters.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -437,14 +461,13 @@ NOTE: When the list binding is pre-filtered and there are items in the selection
 
 
 /**
- * This event will be fired when the search button has been clicked on the searchfield on the visual control 
+ * This event will be fired when the search button has been clicked on the searchfield on the visual control
  *
  * @name sap.m.SelectDialog#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The value entered in the search
  * @param {any} oControlEvent.getParameters.itemsBinding The Items binding of the Select Dialog for search purposes. It will only be available if the items aggregation is bound to a model.
  * @public
@@ -455,7 +478,7 @@ NOTE: When the list binding is pre-filtered and there are items in the selection
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SelectDialog</code>.<br/> itself. 
  *  
- * This event will be fired when the search button has been clicked on the searchfield on the visual control 
+ * This event will be fired when the search button has been clicked on the searchfield on the visual control
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -503,14 +526,13 @@ NOTE: When the list binding is pre-filtered and there are items in the selection
 
 
 /**
- * This event will be fired when the value of the search field is changed by a user - e.g. at each key press 
+ * This event will be fired when the value of the search field is changed by a user - e.g. at each key press
  *
  * @name sap.m.SelectDialog#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The value to search on, which can change at any keypress
  * @param {any} oControlEvent.getParameters.itemsBinding The Items binding of the Select Dialog. It will only be available if the items aggregation is bound to a model.
  * @public
@@ -521,7 +543,7 @@ NOTE: When the list binding is pre-filtered and there are items in the selection
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SelectDialog</code>.<br/> itself. 
  *  
- * This event will be fired when the value of the search field is changed by a user - e.g. at each key press 
+ * This event will be fired when the value of the search field is changed by a user - e.g. at each key press
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -569,14 +591,13 @@ NOTE: When the list binding is pre-filtered and there are items in the selection
 
 
 /**
- * This event will be fired when the cancel button is clicked 
+ * This event will be fired when the cancel button is clicked
  *
  * @name sap.m.SelectDialog#cancel
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -585,7 +606,7 @@ NOTE: When the list binding is pre-filtered and there are items in the selection
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SelectDialog</code>.<br/> itself. 
  *  
- * This event will be fired when the cancel button is clicked 
+ * This event will be fired when the cancel button is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -629,14 +650,13 @@ NOTE: When the list binding is pre-filtered and there are items in the selection
 /**
  * Opens the select dialog
  *
- * @name sap.m.SelectDialog.prototype.open
+ * @name sap.m.SelectDialog#open
  * @function
- * @param {string} 
- *         sSearchValue
+ * @param {string} sSearchValue
  *         A value for the search can be passed to match with the filter applied to the list binding.
-
  * @type sap.m.SelectDialog
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -750,7 +770,8 @@ sap.m.SelectDialog.prototype.init = function () {
 		contentHeight: "2000px",
 		subHeader: this._oSubHeader,
 		content: [this._oBusyIndicator, this._oList],
-		leftButton: this._getCancelButton()
+		leftButton: this._getCancelButton(),
+		initialFocus: (sap.ui.Device.system.desktop ? this._oSearchField : null)
 	}).addStyleClass("sapMSelectDialog", true);
 	// for downward compatibility reasons
 	this._dialog = this._oDialog;
@@ -852,7 +873,7 @@ sap.m.SelectDialog.prototype.invalidate = function () {
 /**
 * Opens the internal dialog with a searchfield and a list.
 * @public
-* @param {string} sValue Value for the list search.
+* @param {string} sSearchValue Value for the list search.
 * @returns {this} this pointer for chaining
 */
 sap.m.SelectDialog.prototype.open = function (sSearchValue) {
@@ -984,6 +1005,30 @@ sap.m.SelectDialog.prototype.setContentWidth = function (sWidth) {
 
 	return this;
 };
+
+/**
+ * Reflector for the internal Dialog's contentHeight property
+ * @override
+ * @public
+ * @returns {sap.ui.core.CSSSize} sHeight the content width of the internal dialog
+ */
+sap.m.SelectDialog.prototype.getContentHeight = function () {
+	return this._oDialog.getContentHeight();
+};
+
+/**
+ * Reflector for the internal Dialog's contentHeight property
+ * @param {sap.ui.core.CSSSize} sHeight the new content width value for the dialog
+ * @public
+ * @override
+ * @returns {this} this pointer for chaining
+ */
+sap.m.SelectDialog.prototype.setContentHeight = function (sHeight) {
+	this._oDialog.setContentHeight(sHeight);
+
+	return this;
+};
+
 
 /**
  * Forward method to the inner dialog: addStyleClass
@@ -1260,6 +1305,13 @@ sap.m.SelectDialog.prototype._setBusy = function (bBusy) {
 		} else {
 			if (this._bFirstRequest) { // also show the header bar again for the first request
 				this._oSubHeader.$().css('display', 'block');
+				// set initial focus manually after all items are visible
+				if(sap.ui.Device.system.desktop){
+					var oFocusControl = sap.ui.getCore().byId(this._oDialog.getInitialFocus());
+					if (oFocusControl.getFocusDomRef()) {
+						oFocusControl.getFocusDomRef().focus();
+					}
+				}
 				this._bFirstRequest = false;
 			}
 			this._oList.removeStyleClass('sapMSelectDialogListHide');
@@ -1369,11 +1421,12 @@ sap.m.SelectDialog.prototype._onCancel = function (oEvent) {
 			// detach this function
 			that._oDialog.detachAfterClose(fnAfterClose);
 
+			// reset selection to the previous selection
+			// CSN# 1166619/2014: selections need to be restored before the cancel event is fired because the filter is usually reset in the cancel event
+			that._resetSelection();
+
 			// fire cancel event
 			that.fireCancel();
-
-			// reset selection
-			that._resetSelection();
 		};
 
 	// attach the reset function to afterClose to hide the dialog changes from the end user 

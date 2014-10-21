@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ToolPopup</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A pop up which the user can open from the Shell's tool pane. Generally, the starting point would be an icon.
 	For this pop up, buttons can be defined with any text; therefore, it has the same purpose and similar look like any common dialog box.   
 	A ToolPopup can have any content. Depending on the application type and design, the structure of the texts and input fields can be for 	

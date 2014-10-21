@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -75,25 +75,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * You should <b>avoid nesting</b> matrix layouts. You should only use a
  * matrix layout if you need to align controls horizontally across rows.
  * </p>
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.MatrixLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createRow"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -105,7 +102,7 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
 	},
 	defaultAggregation : "rows",
 	aggregations : {
-    	"rows" : {type : "sap.ui.commons.layout.MatrixLayoutRow", multiple : true, singularName : "row"}
+		"rows" : {type : "sap.ui.commons.layout.MatrixLayoutRow", multiple : true, singularName : "row"}
 	}
 }});
 
@@ -132,7 +129,6 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
  * 
  * Determines whether the matrix layout, including all its content, is
  * visible. An invisible control will not be rendered.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -185,7 +181,6 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
  * Getter for property <code>height</code>.
  * 
  * CSS height of the matrix layout.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -291,7 +286,6 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
  * 
  * The matrix layout's individual rows.
  * 
- * 
  * <strong>Note</strong>: this is the default aggregation for layout/MatrixLayout.
  * @return {sap.ui.commons.layout.MatrixLayoutRow[]}
  * @public
@@ -373,15 +367,14 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
 /**
  * Creates a new matrix layout row and appends it to this matrix layout.
  *
- * @name sap.ui.commons.layout.MatrixLayout.prototype.createRow
+ * @name sap.ui.commons.layout.MatrixLayout#createRow
  * @function
- * @param {sap.ui.core.Control} 
- *         oControls
+ * @param {sap.ui.core.Control} oControls
  *         Each argument must be either a matrix layout cell, which is added to the row "as is", or an arbitrary content control, which is wrapped with a new (default) matrix layout cell first and then added to the row.
  *         Supports a variable number of arguments!
-
  * @type sap.ui.commons.layout.MatrixLayout
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

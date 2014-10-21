@@ -1,6 +1,6 @@
 /*
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29,8 +29,8 @@ sap.ui.define(['jquery.sap.global', './ApplicationMetadata', 'sap/ui/core/Compon
 		 * @class Base class for application classes
 		 * @extends sap.ui.core.Component
 		 * @abstract
-		 * @author SAP AG
-		 * @version 1.22.4
+		 * @author SAP SE
+		 * @version 1.24.2
 		 * @name sap.ui.app.Application
 		 * @experimental Since 1.11.1. The Application class is still under construction, so some implementation details can be changed in future.
 		 * @deprecated Since 1.15.1. The Component class is enhanced to take care about the Application code.

@@ -209,6 +209,7 @@
     "sapUiUx3ShellHoverColor": "#000000",
     "sapUiUx3ShellSideBarBaseWidth": "40px",
     "sapUiUx3ShellPaneOverflowButtonHeight": "120px",
+    "sapUiUx3ShellToolPaletteIconFontColor": "#8899aa",
     "sapUiUx3ExactLstExpandOffset": "0 0",
     "sapUiUx3ExactLstRootExpandOffset": "0 3",
     "sapUiUx3ExactLstCollapseWidth": "24px",
@@ -264,6 +265,7 @@
     "sapUiPositiveBG": "#b5e7a8",
     "sapUiShadowTint": "#000000",
     "sapUiShadow": "5px 5px 10px rgba(0, 0, 0, 0.5)",
+    "sapUiThemeDesignerCustomCss": "false",
     "sapMShellAppWidthLimit": "1280px",
     "sapMShellAppWidthLimitBy2": "640px",
     "sapMShellAppHeight": "1500px",
@@ -272,14 +274,5 @@
     "sapMShellMinWidthForLogoAside": "1480px",
     "sapMShellMinWidthForBigLogoAside": "1680px",
     "sapMShellContentBG": "rgba(255, 255, 255, 0.3)",
-    "sapMShellAppWidthLimitPlusPadding": "1296px",
-    "sap.m.Shell:sapMShellAppHeight": "1500px",
-    "sap.m.Shell:sapMShellAppWidthLimit": "1280px",
-    "sap.m.Shell:sapMShellAppWidthLimitBy2": "640px",
-    "sap.m.Shell:sapMShellAppWidthLimitPlusPadding": "1296px",
-    "sap.m.Shell:sapMShellContentBG": "rgba(255, 255, 255, 0.3)",
-    "sap.m.Shell:sapMShellHeaderHeight": "68px",
-    "sap.m.Shell:sapMShellMinHeightForHeader": "1568px",
-    "sap.m.Shell:sapMShellMinWidthForBigLogoAside": "1680px",
-    "sap.m.Shell:sapMShellMinWidthForLogoAside": "1480px"
+    "sapMShellAppWidthLimitPlusPadding": "1296px"
 }

@@ -3,7 +3,7 @@ jQuery.sap.declare('sap.ui.ux3.library-all');
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ActionBarRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -219,6 +219,9 @@ sap.ui.ux3.ActionBarRenderer._renderMoreMenuButton = function (rm, oMoreMenuButt
 	} else {
 		rm.write("<a  role=\"button\" aria-disabled=\"false\" aria-haspopup=\"false\"");
 	}
+	if (action.name == oControl.mActionKeys.Flag || action.name == oControl.mActionKeys.Favorite) {
+		rm.writeAttribute("aria-pressed", action.fnCalculateState(oControl) == "Selected" ? "true" : "false");
+	}
 	rm.writeAttribute("tabindex", "0");
 	rm.writeElementData(action);
 	rm.addClass(action.cssClass);
@@ -245,7 +248,7 @@ sap.ui.ux3.ActionBarRenderer._renderMoreMenuButton = function (rm, oMoreMenuButt
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.CollectionInspectorRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -438,7 +441,7 @@ sap.ui.ux3.CollectionInspectorRenderer.renderContent = function(rm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.DataSetRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -542,7 +545,7 @@ sap.ui.ux3.DataSetRenderer.renderFilterArea = function(oRenderManager,oControl) 
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.DataSetSimpleViewRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -617,7 +620,7 @@ sap.ui.ux3.DataSetSimpleViewRenderer.renderItem = function(rm, oControl, oItem){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactAreaRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -678,7 +681,7 @@ sap.ui.ux3.ExactAreaRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactBrowserRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -742,7 +745,7 @@ sap.ui.ux3.ExactBrowserRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactListRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -925,7 +928,7 @@ sap.ui.ux3.ExactListRenderer.getExpanderSymbol = function(bExpanded, bHorizontal
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -969,7 +972,7 @@ sap.ui.ux3.ExactRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FacetFilterListRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1023,7 +1026,7 @@ sap.ui.ux3.FacetFilterListRenderer.render = function(oRenderManager, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FacetFilterRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1074,7 +1077,7 @@ sap.ui.ux3.FacetFilterRenderer.render = function(oRenderManager, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FeedChunkRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1321,7 +1324,7 @@ sap.ui.ux3.FeedChunkRenderer.renderExpander = function(oChunk){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FeedRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1398,7 +1401,7 @@ sap.ui.ux3.FeedRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FeederRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1483,7 +1486,7 @@ sap.ui.ux3.FeederRenderer.getEmptyTextInfo = function( oFeeder ){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.NavigationBarRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1607,7 +1610,7 @@ sap.ui.ux3.NavigationBarRenderer.renderItems = function(oRm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.NotificationBarRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.ux3.NotificationBarRenderer");
@@ -2123,7 +2126,7 @@ sap.ui.ux3.NotificationBarRenderer = {};
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.OverlayRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2193,7 +2196,7 @@ sap.ui.ux3.OverlayRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.QuickViewRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2231,7 +2234,8 @@ sap.ui.ux3.QuickViewRenderer.renderContent = function(oRenderManager, oControl){
 		sDesc	= oControl.getSecondTitle(),
 		sWidth	= oControl.getWidth(),
 		sId = oControl.getId(),
-		tooltip = oControl.getTooltip_AsString();
+		tooltip = oControl.getTooltip_AsString(),
+		oIconAttr;
 
 	// container for the QuickView header and content
 	rm.write("<div");
@@ -2271,18 +2275,16 @@ sap.ui.ux3.QuickViewRenderer.renderContent = function(oRenderManager, oControl){
 		rm.write(">")
 
 		//icon
-		if(sIcon){
-			rm.write("<img alt=\"\"");
-			rm.addClass("sapUiUx3QVIcon");
-			rm.writeClasses();
-			rm.writeAttributeEscaped("src", sIcon);
-			rm.writeAttributeEscaped("title", sName);
-			if(bAcc){
-				// ARIA - icon is decorative
-				rm.writeAttribute("role", "presentation");
+		if (sIcon) {
+			if (sIcon.indexOf("sap-icon://") !== 0) {
+				//setting title & tabindex here
+				//alt, src and role=presentation are set by writeIcon
+				oIconAttr = {
+					title	: sName,
+					tabindex: "-1"
+				};
 			}
-			rm.write(" tabindex=\"-1\"");
-			rm.write("></img>"); 
+			rm.writeIcon(sIcon, "sapUiUx3QVIcon", oIconAttr);
 		}
 
 		//name 
@@ -2374,7 +2376,7 @@ if ( !jQuery.sap.isDeclared('sap.ui.ux3.ShellColorPicker') ) {
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2427,8 +2429,17 @@ sap.ui.ux3.ShellColorPicker.prototype.isOpen = function() {
 
 
 /**
- *
- * @param oColor a hsl-based color object, as returned by parseCssRgbString()
+ * Opens the color picker, initially showing the given color.
+ *  
+ * All parameters after <code>oColor</code> have the same meaning and accept the same values as in {@link sap.ui.core.Popup#open Popup.open()}.
+ *  
+ * @param {object} oColor a hsl-based color object, as returned by parseCssRgbString()
+ * @param {int} [iDuration] animation duration in milliseconds; default is the jQuery preset "fast". For iDuration == 0 the opening happens synchronously without animation.
+ * @param {sap.ui.core.Popup.Dock} [my=sap.ui.core.Popup.Dock.CenterCenter] the popup content's reference position for docking
+ * @param {sap.ui.core.Popup.Dock} [at=sap.ui.core.Popup.Dock.CenterCenter] the "of" element's reference point for docking to
+ * @param {Element|sap.ui.core.Element} [of=document] the DOM Element or UI5 Element to dock to
+ * @param {string} [offset='0 0'] the offset relative to the docking point, specified as a string with space-separated pixel values (e.g. "0 10" to move the popup 10 pixels to the right). If the docking of both "my" and "at" are both RTL-sensitive ("begin" or "end"), this offset is automatically mirrored in the RTL case as well.
+ * @param {string} [collision='flip'] defines how the position of an element should be adjusted in case it overflows the window in some direction.
  *
  * @public
  */
@@ -2675,7 +2686,7 @@ sap.ui.ux3.ShellColorPicker.hslToCss = function(oColor) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ShellPersonalization') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2717,7 +2728,7 @@ sap.ui.base.EventProvider.extend("sap.ui.ux3.ShellPersonalization", {
 /**
  * Makes the personalization use the given settings.
  *
- * @param oSettings
+ * @param {object} oSettings
  * @public
  */
 sap.ui.ux3.ShellPersonalization.prototype.initializeSettings = function(oSettings) {
@@ -3317,7 +3328,7 @@ sap.ui.ux3.ShellPersonalization.prototype._handleDrop = function(evt) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ShellRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -3614,9 +3625,16 @@ sap.ui.ux3.ShellRenderer.renderToolPalette = function(rm, oControl) {
 					rm.writeEscaped(sTooltip);
 					rm.write("' ");
 				}
-				rm.write(" tabindex='0' role='button' aria-pressed='false'><img src='");
-				rm.writeEscaped(oToolItem.getIcon());
-				rm.write("' alt='' role='presentation'/></a>");
+				rm.write(" tabindex='0' role='button' aria-pressed='false'>");
+				var sIconUrl = oToolItem.getIcon();
+				if (sap.ui.core.IconPool.isIconURI(sIconUrl)) {
+					rm.writeIcon(sIconUrl, ["sapUiUx3ShellToolFontIcon"], {});
+				} else {
+					rm.write("<img src='");
+					rm.writeEscaped(sIconUrl);
+					rm.write("' alt='' role='presentation'/>")
+				}
+				rm.write("</a>");
 			}
 		}
 		rm.write("</div>");
@@ -3690,7 +3708,7 @@ sap.ui.ux3.ShellRenderer.renderFacetBar = function(rm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ThingInspectorRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -3757,7 +3775,7 @@ sap.ui.ux3.ThingInspectorRenderer.addOverlayClasses = function(oRenderManager, o
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ThingViewerRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
  
@@ -4026,7 +4044,7 @@ sap.ui.ux3.ThingViewerRenderer.renderFacetContent = function(rm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ToolPopupRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4145,7 +4163,7 @@ sap.ui.ux3.ToolPopupRenderer.render = function(rm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.library') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4155,7 +4173,7 @@ if ( !jQuery.sap.isDeclared('sap.ui.ux3.library') ) {
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.ux3 (1.22.4)
+ * Initialization Code and shared classes of library sap.ui.ux3 (1.24.2)
  */
 jQuery.sap.declare("sap.ui.ux3.library");
 jQuery.sap.require('sap.ui.core.Core'); // unlisted dependency retained
@@ -4227,11 +4245,11 @@ sap.ui.getCore().initLibrary({
     "sap.ui.ux3.ThingAction",
     "sap.ui.ux3.ThingGroup"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4247,11 +4265,12 @@ jQuery.sap.declare("sap.ui.ux3.ActionBarSocialActions");
 /**
  * @class Enumeration of available standard actions for 'sap.ui.ux3.ActionBar'. To be used as parameters for function 'sap.ui.ux3.ActionBar.getSocialAction'.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @experimental Since version 1.2. 
  * API is not yet finished and might change completely
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ActionBarSocialActions = {
 
@@ -4295,11 +4314,12 @@ sap.ui.ux3.ActionBarSocialActions = {
  * @name sap.ui.ux3.DataSetView
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4315,10 +4335,11 @@ jQuery.sap.declare("sap.ui.ux3.ExactOrder");
 /**
  * @class Defines the order of the sub lists of a list in the ExactBrowser.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.7.1
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ExactOrder = {
 
@@ -4337,7 +4358,7 @@ sap.ui.ux3.ExactOrder = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4353,11 +4374,12 @@ jQuery.sap.declare("sap.ui.ux3.FeederType");
 /**
  * @class Type of an Feeder.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @experimental Since version 1.2. 
  * The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.FeederType = {
 
@@ -4382,7 +4404,7 @@ sap.ui.ux3.FeederType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4398,9 +4420,10 @@ jQuery.sap.declare("sap.ui.ux3.FollowActionState");
 /**
  * @class Defines the states of the follow action
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.FollowActionState = {
 
@@ -4425,7 +4448,7 @@ sap.ui.ux3.FollowActionState = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4441,9 +4464,10 @@ jQuery.sap.declare("sap.ui.ux3.NotificationBarStatus");
 /**
  * @class This entries are used to set the visibility status of a NotificationBar
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.NotificationBarStatus = {
 
@@ -4474,7 +4498,7 @@ sap.ui.ux3.NotificationBarStatus = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4490,10 +4514,11 @@ jQuery.sap.declare("sap.ui.ux3.ShellDesignType");
 /**
  * @class Available shell design types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.12.0
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ShellDesignType = {
 
@@ -4525,7 +4550,7 @@ sap.ui.ux3.ShellDesignType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4541,9 +4566,10 @@ jQuery.sap.declare("sap.ui.ux3.ShellHeaderType");
 /**
  * @class Available shell header display types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ShellHeaderType = {
 
@@ -4574,7 +4600,7 @@ sap.ui.ux3.ShellHeaderType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4590,10 +4616,11 @@ jQuery.sap.declare("sap.ui.ux3.ThingViewerHeaderType");
 /**
  * @class Available ThingViewer header display types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.16.3
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ThingViewerHeaderType = {
 
@@ -4612,7 +4639,7 @@ sap.ui.ux3.ThingViewerHeaderType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4628,9 +4655,10 @@ jQuery.sap.declare("sap.ui.ux3.VisibleItemCountMode");
 /**
  * @class VisibleItemCountMode of the FacetFilter defines if the FacetFilter takes the whole available height (Auto) in the surrounding container, or is so high as needed to show 5 Items ("Fixed " - default).
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.VisibleItemCountMode = {
 
@@ -4652,7 +4680,7 @@ sap.ui.ux3.VisibleItemCountMode = {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ActionBar') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4721,23 +4749,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * 
  * When using this control, please be aware that it fulfills rather specific requirements: it has been designed for and is used within composite controls QuickView and ThingInspector.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ActionBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ActionBar", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"closePopups"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"followState" : {type : "sap.ui.ux3.FollowActionState", group : "Misc", defaultValue : sap.ui.ux3.FollowActionState.Default},
@@ -4753,9 +4777,9 @@ sap.ui.core.Control.extend("sap.ui.ux3.ActionBar", { metadata : {
 		"dividerWidth" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-    	"businessActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "businessAction"}, 
-    	"_businessActionButtons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "_businessActionButton", visibility : "hidden"}, 
-    	"_socialActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "_socialAction", visibility : "hidden"}
+		"businessActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "businessAction"}, 
+		"_businessActionButtons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "_businessActionButton", visibility : "hidden"}, 
+		"_socialActions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "_socialAction", visibility : "hidden"}
 	},
 	events : {
 		"actionSelected" : {}, 
@@ -4789,7 +4813,6 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * - FollowActionState.Default
  * - FollowActionState.Follow
  * - FollowActionState.Hold
- * 
  *
  * Default value is <code>Default</code>
  *
@@ -5151,14 +5174,13 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * ‘Open Thing Inspector’ button id: open
  * Business Actions: id: the ThingAction id
  * 
- * For ‘Update’, please refer to event ‘feedSubmit’ 
+ * For ‘Update’, please refer to event ‘feedSubmit’
  *
  * @name sap.ui.ux3.ActionBar#actionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected ThingAction
  * @param {sap.ui.ux3.ThingAction} oControlEvent.getParameters.action Selected ThingAction
  * @param {string} oControlEvent.getParameters.newState New State of the selected action.Only filled if the respective action maintains a state property, for example 'FollowUp' or 'Favorite'
@@ -5177,7 +5199,7 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * ‘Open Thing Inspector’ button id: open
  * Business Actions: id: the ThingAction id
  * 
- * For ‘Update’, please refer to event ‘feedSubmit’ 
+ * For ‘Update’, please refer to event ‘feedSubmit’
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -5226,14 +5248,13 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.ActionBar#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Feed text
  * @public
  */
@@ -5243,7 +5264,7 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ActionBar</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -5292,11 +5313,11 @@ sap.ui.ux3.ActionBar.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 /**
  * Closes all popups which might be opened as ActionBar children. These are the more- and follow menu and the feeder popup
  *
- * @name sap.ui.ux3.ActionBar.prototype.closePopups
+ * @name sap.ui.ux3.ActionBar#closePopups
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -6662,7 +6683,7 @@ sap.ui.ux3.ActionBar.prototype.invalidate = function(oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.Collection') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -6723,20 +6744,16 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Collection
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.0
  * @name sap.ui.ux3.Collection
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.Collection", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Appearance", defaultValue : null},
@@ -6744,7 +6761,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.Collection", { metadata : {
 		"multiSelection" : {type : "boolean", group : "Accessibility", defaultValue : false}
 	},
 	aggregations : {
-    	"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
+		"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
 	},
 	associations : {
 		"selectedItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "selectedItem"}
@@ -6969,14 +6986,13 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
 
 	
 /**
- * Fired when ever the selected items changer 
+ * Fired when ever the selected items changer
  *
  * @name sap.ui.ux3.Collection#selectionChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -6985,7 +7001,7 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Collection</code>.<br/> itself. 
  *  
- * Fired when ever the selected items changer 
+ * Fired when ever the selected items changer
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -7027,14 +7043,13 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
 
 
 /**
- * Fires if a property has changed, and the collection inspector needs to do something after that 
+ * Fires if a property has changed, and the collection inspector needs to do something after that
  *
  * @name sap.ui.ux3.Collection#propertyChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -7043,7 +7058,7 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Collection</code>.<br/> itself. 
  *  
- * Fires if a property has changed, and the collection inspector needs to do something after that 
+ * Fires if a property has changed, and the collection inspector needs to do something after that
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -7096,6 +7111,7 @@ sap.ui.ux3.Collection.prototype.init = function() {
 /**
  * Set multi selection for selection model
  *
+ * @param {boolean} bMultiSelection
  * @public
  */
 sap.ui.ux3.Collection.prototype.setMultiSelection = function(bMultiSelection) {
@@ -7111,6 +7127,7 @@ sap.ui.ux3.Collection.prototype.setMultiSelection = function(bMultiSelection) {
 /**
  * Set editable
  *
+ * @param {boolean} bEditable
  * @public
  */
 sap.ui.ux3.Collection.prototype.setEditable = function(bEditable) {
@@ -7121,6 +7138,7 @@ sap.ui.ux3.Collection.prototype.setEditable = function(bEditable) {
 /**
  * Set title
  *
+ * @param {string} sTitle
  * @public
  */
 sap.ui.ux3.Collection.prototype.setTitle = function(sTitle) {
@@ -7208,7 +7226,7 @@ sap.ui.ux3.Collection.prototype.removeAllSelectedItems = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.CollectionInspector') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -7267,28 +7285,24 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * CollectionInspector
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.0
  * @name sap.ui.ux3.CollectionInspector
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.CollectionInspector", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"sidebarVisible" : {type : "boolean", group : "Appearance", defaultValue : true},
 		"fitParent" : {type : "boolean", group : "Appearance", defaultValue : true}
 	},
 	aggregations : {
-    	"collections" : {type : "sap.ui.ux3.Collection", multiple : true, singularName : "collection"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"collections" : {type : "sap.ui.ux3.Collection", multiple : true, singularName : "collection"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	associations : {
 		"selectedCollection" : {type : "sap.ui.ux3.Collection", multiple : false}
@@ -7556,14 +7570,13 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
 
 	
 /**
- * Event is fired if user selects a collection 
+ * Event is fired if user selects a collection
  *
  * @name sap.ui.ux3.CollectionInspector#collectionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -7572,7 +7585,7 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.CollectionInspector</code>.<br/> itself. 
  *  
- * Event is fired if user selects a collection 
+ * Event is fired if user selects a collection
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -7614,14 +7627,13 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
 
 
 /**
- * Fires when an item in a collection is selected 
+ * Fires when an item in a collection is selected
  *
  * @name sap.ui.ux3.CollectionInspector#itemSelectionChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -7630,7 +7642,7 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.CollectionInspector</code>.<br/> itself. 
  *  
- * Fires when an item in a collection is selected 
+ * Fires when an item in a collection is selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -7672,14 +7684,13 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
 
 
 /**
- * Fires when the edit button is clicked 
+ * Fires when the edit button is clicked
  *
  * @name sap.ui.ux3.CollectionInspector#editCollection
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -7688,7 +7699,7 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.CollectionInspector</code>.<br/> itself. 
  *  
- * Fires when the edit button is clicked 
+ * Fires when the edit button is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -8291,7 +8302,7 @@ sap.ui.ux3.CollectionInspector.prototype.getEditButton = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.DataSet') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8352,23 +8363,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * DataSet
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.DataSet
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.DataSet", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setLeadSelection", "getLeadSelection", "addToolbarItem", "removeToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"showToolbar" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -8377,11 +8384,11 @@ sap.ui.core.Control.extend("sap.ui.ux3.DataSet", { metadata : {
 		"multiSelect" : {type : "boolean", group : "Behavior", defaultValue : false}
 	},
 	aggregations : {
-    	"items" : {type : "sap.ui.ux3.DataSetItem", multiple : true, singularName : "item", bindable : "bindable"}, 
-    	"views" : {type : "sap.ui.ux3.DataSetView", multiple : true, singularName : "view"}, 
-    	"filter" : {type : "sap.ui.core.Control", multiple : true, singularName : "filter"}, 
-    	"_viewSwitches" : {type : "sap.ui.core.Control", multiple : true, singularName : "_viewSwitch", visibility : "hidden"}, 
-    	"_toolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.ui.ux3.DataSetItem", multiple : true, singularName : "item", bindable : "bindable"}, 
+		"views" : {type : "sap.ui.ux3.DataSetView", multiple : true, singularName : "view"}, 
+		"filter" : {type : "sap.ui.core.Control", multiple : true, singularName : "filter"}, 
+		"_viewSwitches" : {type : "sap.ui.core.Control", multiple : true, singularName : "_viewSwitch", visibility : "hidden"}, 
+		"_toolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedView" : {type : "sap.ui.ux3.DataSetView", multiple : false}
@@ -8802,14 +8809,13 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
 
 	
 /**
- * selection Changed 
+ * selection Changed
  *
  * @name sap.ui.ux3.DataSet#selectionChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.oldLeadSelectedIndex Old lead selected index
  * @param {int} oControlEvent.getParameters.newLeadSelectedIndex New lead selected index
  * @public
@@ -8820,7 +8826,7 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.DataSet</code>.<br/> itself. 
  *  
- * selection Changed 
+ * selection Changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -8868,14 +8874,13 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
 
 
 /**
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @name sap.ui.ux3.DataSet#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The search query
  * @public
  */
@@ -8885,7 +8890,7 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.DataSet</code>.<br/> itself. 
  *  
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -8934,53 +8939,48 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
 /**
  * Set LeadSelection index
  *
- * @name sap.ui.ux3.DataSet.prototype.setLeadSelection
+ * @name sap.ui.ux3.DataSet#setLeadSelection
  * @function
- * @param {int} 
- *         iIIndex
- * 
-
+ * @param {int} iIIndex
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Get LeadSelection index
  *
- * @name sap.ui.ux3.DataSet.prototype.getLeadSelection
+ * @name sap.ui.ux3.DataSet#getLeadSelection
  * @function
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * add a toolbarItem to the toolbar
  *
- * @name sap.ui.ux3.DataSet.prototype.addToolbarItem
+ * @name sap.ui.ux3.DataSet#addToolbarItem
  * @function
- * @param {sap.ui.commons.ToolbarItem} 
- *         oOToolbarItem
+ * @param {sap.ui.commons.ToolbarItem} oOToolbarItem
  *         ToolbarItem
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * remove a toolbarItem to the toolbar
  *
- * @name sap.ui.ux3.DataSet.prototype.removeToolbarItem
+ * @name sap.ui.ux3.DataSet#removeToolbarItem
  * @function
- * @param {sap.ui.commons.ToolbarItem} 
- *         oOToolbarItem
- * 
-
+ * @param {sap.ui.commons.ToolbarItem} oOToolbarItem
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -9345,7 +9345,7 @@ sap.ui.ux3.DataSet.prototype._rerenderFilter = function() {
 
 /**
  * setter for multi selection mode
- *  * @param {boolean}
+ * @param {boolean}
  *            bMode true for multi mode, false for single mode
  * @public
  */
@@ -9610,7 +9610,7 @@ sap.ui.ux3.DataSet.prototype.updateItems = function(sChangeReason) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.DataSetItem') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9669,19 +9669,15 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * DataSet Item
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.DataSetItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.DataSetItem", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"iconSrc" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
@@ -9690,7 +9686,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.DataSetItem", { metadata : {
 		"subtitle" : {type : "string", group : "Misc", defaultValue : 'Subtitle'}
 	},
 	aggregations : {
-    	"_template" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"_template" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"selected" : {}
@@ -9770,7 +9766,6 @@ sap.ui.ux3.DataSetItem.M_EVENTS = {'selected':'selected'};
 /**
  * Getter for property <code>checkable</code>.
  * checkable
- * 
  *
  * Default value is <code>true</code>
  *
@@ -9820,14 +9815,12 @@ sap.ui.ux3.DataSetItem.M_EVENTS = {'selected':'selected'};
 
 /**
  * Event Fired when Datset item is selected.
- *  
  *
  * @name sap.ui.ux3.DataSetItem#selected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId Id of the selected Datset item
  * @public
  */
@@ -9838,7 +9831,6 @@ sap.ui.ux3.DataSetItem.M_EVENTS = {'selected':'selected'};
  * otherwise to this <code>sap.ui.ux3.DataSetItem</code>.<br/> itself. 
  *  
  * Event Fired when Datset item is selected.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -9910,7 +9902,7 @@ sap.ui.ux3.DataSetItem.prototype.ondblclick = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.DataSetSimpleView') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9972,25 +9964,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  *
  * @class
  * DataSetSimpleView provides a simple view example for DataSet usage.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.ux3.DataSetView
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.DataSetSimpleView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.DataSetSimpleView", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.ux3.DataSetView"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"floating" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -10006,7 +9993,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.DataSetSimpleView", { metadata : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Appearance", defaultValue : null}
 	},
 	aggregations : {
-    	"template" : {type : "sap.ui.core.Control", multiple : false}
+		"template" : {type : "sap.ui.core.Control", multiple : false}
 	}
 }});
 
@@ -10459,7 +10446,7 @@ sap.ui.ux3.DataSetSimpleView.prototype.initView = function(aItems) {
 /**
  * View update: Called when pagination adds items
  *
- * @param {array} aItems Array of DataSetItems added to the parent DataSet
+ * @param {sap.ui.ux3.DataSetItem[]} aDiff Array of DataSetItems added to the parent DataSet
  * @protected
  */
 sap.ui.ux3.DataSetSimpleView.prototype.updateView = function(aDiff) {
@@ -10488,7 +10475,7 @@ sap.ui.ux3.DataSetSimpleView.prototype.updateView = function(aDiff) {
 			rm.flush(this.$()[0], false, iIndex);
 			this.items.splice(iIndex, 0, oItem);
 		} else {
-			this.items.slice(iIndex, 1);
+			this.items.splice(iIndex, 1);
 			oItem.$().remove();
 			oItem.destroy();
 		}
@@ -10502,6 +10489,7 @@ sap.ui.ux3.DataSetSimpleView.prototype.updateView = function(aDiff) {
 /**
  * View finalization: Called when leaving the view
  *
+ * @param {sap.ui.ux3.DataSetItem[]} aItems
  * @protected
  */
 sap.ui.ux3.DataSetSimpleView.prototype.exitView = function(aItems) {
@@ -10737,6 +10725,8 @@ sap.ui.ux3.DataSetSimpleView.prototype._computeWidths = function(bInitial){
 };
 
 /**
+ * @param {any[]} aScrollArea
+ * @param {boolean} bSupress
  * @public
  */
 sap.ui.ux3.DataSetSimpleView.prototype.setScrollArea = function(aScrollArea, bSupress) {
@@ -10750,7 +10740,7 @@ sap.ui.ux3.DataSetSimpleView.prototype.setScrollArea = function(aScrollArea, bSu
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactArea') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10807,20 +10797,18 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * The ExactArea is intended to be used for the Exact design approach but alternatively also in a stand alone version.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.6. 
  * API is not yet finished and might change completely
  * @name sap.ui.ux3.ExactArea
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ExactArea", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"toolbarVisible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -10828,8 +10816,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.ExactArea", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"toolbarItems" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "toolbarItem"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"toolbarItems" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "toolbarItem"}
 	}
 }});
 
@@ -11092,7 +11080,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.ExactAreaToolbarTitle", {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactAttribute') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -11155,25 +11143,22 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  *
  * @class
  * An element for defining attributes and sub-attributes used within the Exact pattern.
- * 
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ExactAttribute
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.ExactAttribute", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getShowSubAttributesIndicator_Computed", "scrollTo"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"text" : {type : "string", group : "Misc", defaultValue : null},
@@ -11187,7 +11172,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.ExactAttribute", { metadata : {
 	},
 	defaultAggregation : "attributes",
 	aggregations : {
-    	"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}
+		"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}
 	},
 	events : {
 		"supplyAttributes" : {}
@@ -11509,14 +11494,13 @@ sap.ui.ux3.ExactAttribute.M_EVENTS = {'supplyAttributes':'supplyAttributes'};
 
 
 /**
- * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called. 
+ * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called.
  *
  * @name sap.ui.ux3.ExactAttribute#supplyAttributes
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.attribute The ExactAttribute
  * @public
  */
@@ -11526,7 +11510,7 @@ sap.ui.ux3.ExactAttribute.M_EVENTS = {'supplyAttributes':'supplyAttributes'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactAttribute</code>.<br/> itself. 
  *  
- * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called. 
+ * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -11575,25 +11559,24 @@ sap.ui.ux3.ExactAttribute.M_EVENTS = {'supplyAttributes':'supplyAttributes'};
 /**
  * See attribute showSubAttributesIndicator
  *
- * @name sap.ui.ux3.ExactAttribute.prototype.getShowSubAttributesIndicator_Computed
+ * @name sap.ui.ux3.ExactAttribute#getShowSubAttributesIndicator_Computed
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Scrolls the corresponding list of this attribute until the given direct child attribute is visible. If the corresponding list is not yet visible the call is buffered until the list is available.
  *
- * @name sap.ui.ux3.ExactAttribute.prototype.scrollTo
+ * @name sap.ui.ux3.ExactAttribute#scrollTo
  * @function
- * @param {sap.ui.ux3.ExactAttribute} 
- *         oOAttribute
+ * @param {sap.ui.ux3.ExactAttribute} oOAttribute
  *         The direct child attribute
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -11641,6 +11624,7 @@ sap.ui.ux3.ExactAttribute.prototype.setWidth = function(iWidth) {
 
 
 /**
+ * @param {string|sap.ui.core.TooltipBase} oTooltip
  * @see sap.ui.core.Element.prototype.setTooltip
  * @public
  */
@@ -11775,6 +11759,9 @@ sap.ui.ux3.ExactAttribute.prototype.attachSupplyAttributes = function(oData, fnF
 
 sap.ui.ux3.ExactAttribute.prototype._setProperty_Orig = sap.ui.ux3.ExactAttribute.prototype.setProperty;
 /**
+ * @param {string} sPropertyName
+ * @param {object} oValue
+ * @param {boolean} bSuppressRerendering
  * @see sap.ui.core.Element.prototype.setProperty
  * @protected
  */
@@ -11854,7 +11841,7 @@ sap.ui.ux3.ExactAttribute._checkWidth = function(iWidth) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactList') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -11912,18 +11899,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Internal sub-control of the ExactBrowser. The control is not intended to be used stand alone. For this purpose, the ExactBrowser control can be used.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ExactList
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ExactList", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"showClose" : {type : "boolean", group : "Misc", defaultValue : false},
@@ -11931,8 +11916,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.ExactList", { metadata : {
 		"topHeight" : {type : "int", group : "Appearance", defaultValue : 290}
 	},
 	aggregations : {
-    	"subLists" : {type : "sap.ui.ux3.ExactList", multiple : true, singularName : "subList"}, 
-    	"controls" : {type : "sap.ui.commons.ListBox", multiple : true, singularName : "control", visibility : "hidden"}
+		"subLists" : {type : "sap.ui.ux3.ExactList", multiple : true, singularName : "subList"}, 
+		"controls" : {type : "sap.ui.commons.ListBox", multiple : true, singularName : "control", visibility : "hidden"}
 	},
 	associations : {
 		"data" : {type : "sap.ui.ux3.ExactAttribute", multiple : false}
@@ -12143,14 +12128,13 @@ sap.ui.ux3.ExactList.M_EVENTS = {'attributeSelected':'attributeSelected'};
 
 	
 /**
- * Event which is fired when an attribute is selected/unselected 
+ * Event which is fired when an attribute is selected/unselected
  *
  * @name sap.ui.ux3.ExactList#attributeSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.attribute The attribute which was selected/unselected recently
  * @param {object} oControlEvent.getParameters.allAttributes Array of all ExactAttributes
  * @public
@@ -12161,7 +12145,7 @@ sap.ui.ux3.ExactList.M_EVENTS = {'attributeSelected':'attributeSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactList</code>.<br/> itself. 
  *  
- * Event which is fired when an attribute is selected/unselected 
+ * Event which is fired when an attribute is selected/unselected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -12220,7 +12204,7 @@ sap.ui.ux3.ExactList.M_EVENTS = {'attributeSelected':'attributeSelected'};
  * Internal sub-control of the ExactBrowser. The control is not intended to be used stand alone. For this purpose, the ExactBrowser control can be used.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
+ * @author SAP SE 
  * @version 1.15.1-SNAPSHOT
  *
  * @constructor   
@@ -13649,7 +13633,7 @@ var getOrCreateListItem = function(oAttribute){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FacetFilter') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -13704,25 +13688,23 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * FacetFilter Control.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.FacetFilter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.FacetFilter", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"visible" : {type : "boolean", group : "", defaultValue : true},
 		"visibleItemCountMode" : {type : "sap.ui.ux3.VisibleItemCountMode", group : "Appearance", defaultValue : sap.ui.ux3.VisibleItemCountMode.Fixed}
 	},
 	aggregations : {
-    	"lists" : {type : "sap.ui.ux3.FacetFilterList", multiple : true, singularName : "list"}
+		"lists" : {type : "sap.ui.ux3.FacetFilterList", multiple : true, singularName : "list"}
 	}
 }});
 
@@ -13881,7 +13863,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.FacetFilter", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FacetFilterList') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -13940,18 +13922,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * List to be used with the FacetFilter control. The control is not intended to be used stand alone.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.FacetFilterList
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.FacetFilterList", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -13961,8 +13941,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.FacetFilterList", { metadata : {
 		"showCounter" : {type : "boolean", group : "Behavior", defaultValue : true}
 	},
 	aggregations : {
-    	"items" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "item"}, 
-    	"controls" : {type : "sap.ui.commons.ListBox", multiple : true, singularName : "control", visibility : "hidden"}
+		"items" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "item"}, 
+		"controls" : {type : "sap.ui.commons.ListBox", multiple : true, singularName : "control", visibility : "hidden"}
 	},
 	events : {
 		"select" : {}
@@ -14198,14 +14178,13 @@ sap.ui.ux3.FacetFilterList.M_EVENTS = {'select':'select'};
 
 
 /**
- * On Select event. 
+ * On Select event.
  *
  * @name sap.ui.ux3.FacetFilterList#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of the FacetFilterList taht fires the event.
  * @param {int[]} oControlEvent.getParameters.selectedIndices Array of selected Indices.
  * @param {sap.ui.core.ListItem[]} oControlEvent.getParameters.selectedItems Array of selected Items.
@@ -14218,7 +14197,7 @@ sap.ui.ux3.FacetFilterList.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FacetFilterList</code>.<br/> itself. 
  *  
- * On Select event. 
+ * On Select event.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -14481,7 +14460,7 @@ sap.ui.ux3.FacetFilterList.prototype.onSelect = function(oFFList, oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.Feeder') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -14539,20 +14518,18 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * The control can be used stand alone or in a multiple way, and generally would be integrated directly into a UIArea.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.
  * @name sap.ui.ux3.Feeder
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Feeder", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"thumbnailSrc" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -14687,14 +14664,13 @@ sap.ui.ux3.Feeder.M_EVENTS = {'submit':'submit'};
 
 
 /**
- * Event is fired when the entered text is submitted 
+ * Event is fired when the entered text is submitted
  *
  * @name sap.ui.ux3.Feeder#submit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text The text that is submitted
  * @public
  */
@@ -14704,7 +14680,7 @@ sap.ui.ux3.Feeder.M_EVENTS = {'submit':'submit'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feeder</code>.<br/> itself. 
  *  
- * Event is fired when the entered text is submitted 
+ * Event is fired when the entered text is submitted
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -15005,7 +14981,7 @@ sap.ui.ux3.Feeder.prototype.onAfterPaste = function(){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.NavigationBar') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -15066,22 +15042,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * to see the next or previous items.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.NavigationBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.NavigationBar", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setAssociatedItems", "isSelectedItemValid"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"toplevelVariant" : {type : "boolean", group : "Misc", defaultValue : false},
@@ -15089,8 +15063,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.NavigationBar", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "item"}, 
-    	"overflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "item"}, 
+		"overflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedItem" : {type : "sap.ui.ux3.NavigationItem", multiple : false}, 
@@ -15316,14 +15290,13 @@ sap.ui.ux3.NavigationBar.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is fired when an item is selected by the user 
+ * Event is fired when an item is selected by the user
  *
  * @name sap.ui.ux3.NavigationBar#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The ID of the newly selected NavigationItem.
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The newly selected NavigationItem.
  * @public
@@ -15334,7 +15307,7 @@ sap.ui.ux3.NavigationBar.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.NavigationBar</code>.<br/> itself. 
  *  
- * Event is fired when an item is selected by the user 
+ * Event is fired when an item is selected by the user
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -15386,25 +15359,24 @@ sap.ui.ux3.NavigationBar.M_EVENTS = {'select':'select'};
 /**
  * Replaces the currently associated items with the ones in the given array
  *
- * @name sap.ui.ux3.NavigationBar.prototype.setAssociatedItems
+ * @name sap.ui.ux3.NavigationBar#setAssociatedItems
  * @function
- * @param {sap.ui.ux3.NavigationItem[]} 
- *         aItems
+ * @param {sap.ui.ux3.NavigationItem[]} aItems
  *         The items to associate
-
  * @type sap.ui.ux3.NavigationBar
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether there is a selectedItem set which is actually present in the items aggregation; or, if the aggregation is empty, in the associatedItems association.
  *
- * @name sap.ui.ux3.NavigationBar.prototype.isSelectedItemValid
+ * @name sap.ui.ux3.NavigationBar#isSelectedItemValid
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -15530,6 +15502,16 @@ sap.ui.ux3.NavigationBar.prototype.onBeforeRendering = function() {
 
 	var arrow = this.getDomRef("arrow");
 	this._iLastArrowPos = arrow ? parseInt(this._bRtl ? arrow.style.right : arrow.style.left, 10) : -100;
+};
+
+
+sap.ui.ux3.NavigationBar.prototype.invalidate = function(oSource) {
+	// In case the source of invalidation is a navigation item, it most likely changed something
+	// that we have to reflect in the overflow-menu
+	if (oSource instanceof sap.ui.ux3.NavigationItem) {
+		this._menuInvalid = true;
+	}
+	sap.ui.core.Control.prototype.invalidate.apply(this, arguments);
 };
 
 /**
@@ -16103,7 +16085,7 @@ sap.ui.ux3.NavigationBar.prototype.isSelectedItemValid = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.NavigationItem') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -16161,18 +16143,16 @@ jQuery.sap.require('sap.ui.core.Item'); // unlisted dependency retained
  * Is the item to be used within the NavigationBar
  * @extends sap.ui.core.Item
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.NavigationItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Item.extend("sap.ui.ux3.NavigationItem", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -16180,7 +16160,7 @@ sap.ui.core.Item.extend("sap.ui.ux3.NavigationItem", { metadata : {
 	},
 	defaultAggregation : "subItems",
 	aggregations : {
-    	"subItems" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "subItem"}
+		"subItems" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "subItem"}
 	}
 }});
 
@@ -16343,7 +16323,7 @@ sap.ui.core.Item.extend("sap.ui.ux3.NavigationItem", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.NotificationBar') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -16402,31 +16382,29 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Its position, height and width is inherited from the element that the notification bar is added to.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.7.0
  * @name sap.ui.ux3.NotificationBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.NotificationBar", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"hasItems"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"visibleStatus" : {type : "sap.ui.ux3.NotificationBarStatus", group : "Misc", defaultValue : sap.ui.ux3.NotificationBarStatus.Default},
 		"resizeEnabled" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
-    	"messageNotifier" : {type : "sap.ui.core.Element", multiple : false}, 
-    	"notifiers" : {type : "sap.ui.core.Element", multiple : true, singularName : "notifier"}
+		"messageNotifier" : {type : "sap.ui.core.Element", multiple : false}, 
+		"notifiers" : {type : "sap.ui.core.Element", multiple : true, singularName : "notifier"}
 	},
 	events : {
 		"display" : {}, 
@@ -16617,14 +16595,13 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
 
 
 /**
- * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do. 
+ * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do.
  *
  * @name sap.ui.ux3.NotificationBar#display
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.show Indicates if the bar wants to be shown or hidden
  * @public
  */
@@ -16634,7 +16611,7 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.NotificationBar</code>.<br/> itself. 
  *  
- * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do. 
+ * Event is fired when the bar wants to be displayed depending on given flag. This allows the application to decide what to do.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -16681,7 +16658,7 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
 
 
 /**
- * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event. 
+ * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event.
  *
  * @name sap.ui.ux3.NotificationBar#resize
  * @event
@@ -16689,7 +16666,6 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.NotificationBarStatus} oControlEvent.getParameters.status The corresponding status to which the bar was resized. The corresponding heights can be taken for the bar's CSS file.
  * @public
  */
@@ -16699,7 +16675,7 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.NotificationBar</code>.<br/> itself. 
  *  
- * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event. 
+ * This event is thrown when the bar was resized (to the different valid states: Min, Max, Default, None). The event itself can be used from SAPUI5-version 1.12.2 since there was a bug in the previous versions firing this event.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -16751,11 +16727,11 @@ sap.ui.ux3.NotificationBar.M_EVENTS = {'display':'display','resize':'resize'};
 /**
  * This method checks if the NotificationBar has any items (notifications or messages) to show and returns true if there are any items to show. So the application should decide if the bar should be displayed.
  *
- * @name sap.ui.ux3.NotificationBar.prototype.hasItems
+ * @name sap.ui.ux3.NotificationBar#hasItems
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -17238,7 +17214,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.NotificationBar.MessageView", {
 	};
 	/**
 	 * This method creates an instance of the internal control
-	 * {sap.ui.ux3.NotificationBar.MessageView} corresponding to the given
+	 * {@link sap.ui.ux3.NotificationBar.MessageView} corresponding to the given
 	 * message
 	 * 
 	 * @param {sap.ui.core.Message}
@@ -17703,7 +17679,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.NotificationBar.MessageView", {
 
 			// create key for description text
 			var iCount = oMN.getMessages().length;
-			var sKey = "NOTIBAR_MESSAGE_NOTIFIER_DESC_LEVEL_" + (sLvl.toUpperCase() + iCount === 1 ? "SING" : "PL");
+			var sKey = "NOTIBAR_MESSAGE_NOTIFIER_DESC_LEVEL_" + sLvl.toUpperCase() + (iCount === 1 ? "_SING" : "_PL");
 
 			// set description (i.e. "3 messages available: Highest severity
 			// "Error")
@@ -18042,7 +18018,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.NotificationBar.MessageView", {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.Notifier') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -18101,30 +18077,28 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * This element can be docked to a notification bar to show notification items
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.Notifier
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.Notifier", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"hasItems"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"icon" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
 		"title" : {type : "string", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-    	"messages" : {type : "sap.ui.core.Message", multiple : true, singularName : "message"}, 
-    	"views" : {type : "sap.ui.core.Control", multiple : true, singularName : "view", visibility : "hidden"}
+		"messages" : {type : "sap.ui.core.Message", multiple : true, singularName : "message"}, 
+		"views" : {type : "sap.ui.core.Control", multiple : true, singularName : "view", visibility : "hidden"}
 	},
 	events : {
 		"messageSelected" : {}
@@ -18283,14 +18257,13 @@ sap.ui.ux3.Notifier.M_EVENTS = {'messageSelected':'messageSelected'};
 
 
 /**
- * Event is fired when a message of the notifiers was selected. 
+ * Event is fired when a message of the notifiers was selected.
  *
  * @name sap.ui.ux3.Notifier#messageSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Message} oControlEvent.getParameters.message The message that was selected
  * @param {sap.ui.ux3.Notifier} oControlEvent.getParameters.notifier The notifier that contains the selected message
  * @public
@@ -18301,7 +18274,7 @@ sap.ui.ux3.Notifier.M_EVENTS = {'messageSelected':'messageSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Notifier</code>.<br/> itself. 
  *  
- * Event is fired when a message of the notifiers was selected. 
+ * Event is fired when a message of the notifiers was selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -18351,11 +18324,11 @@ sap.ui.ux3.Notifier.M_EVENTS = {'messageSelected':'messageSelected'};
 /**
  * This method checks if the notifier has any items.
  *
- * @name sap.ui.ux3.Notifier.prototype.hasItems
+ * @name sap.ui.ux3.Notifier#hasItems
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -18385,6 +18358,9 @@ jQuery.sap.require('sap.ui.commons.Callout'); // unlisted dependency retained
 		if (oEvent.getSource()) {
 			oEvent.getSource().destroyContent();
 		}
+		if (this._oCallout) {
+			this._oCallout.$().css("display", "none");
+		}
 	};
 
 	sap.ui.ux3.Notifier.prototype.hasItems = function() {
@@ -18404,7 +18380,10 @@ jQuery.sap.require('sap.ui.commons.Callout'); // unlisted dependency retained
 			beforeOpen : jQuery.proxy(fBeforeOpen, this),
 			open : function(oEvent) {
 				// to prevent that the Callout moves if the window is scrolled
-				this.$().css("position", "fixed");
+				this.$().css({
+					position : "fixed",
+					display  : "block"
+				});
 			},
 			close : jQuery.proxy(fCalloutClosed, this),
 			collision : "none"
@@ -18567,7 +18546,7 @@ jQuery.sap.require('sap.ui.commons.Callout'); // unlisted dependency retained
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.Overlay') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -18625,16 +18604,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.PopupInterface
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.Overlay
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Overlay", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.PopupInterface"
 	],
@@ -18642,8 +18621,6 @@ sap.ui.core.Control.extend("sap.ui.ux3.Overlay", { metadata : {
 		// methods
 		"open", "close", "isOpen"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"openButtonVisible" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -18727,14 +18704,13 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 
 
 /**
- * Event is fired when the ThingInspector is closed 
+ * Event is fired when the ThingInspector is closed
  *
  * @name sap.ui.ux3.Overlay#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The Id of the Thing which is inspected in this ThingInspector instance
  * @public
  */
@@ -18744,7 +18720,7 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Overlay</code>.<br/> itself. 
  *  
- * Event is fired when the ThingInspector is closed 
+ * Event is fired when the ThingInspector is closed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -18793,14 +18769,13 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 
 
 /**
- * Event is fired when the 'Open' button of the ThingInspector is clicked 
+ * Event is fired when the 'Open' button of the ThingInspector is clicked
  *
  * @name sap.ui.ux3.Overlay#openNew
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The Id of the Thing which is inspected in this ThingInspector instance
  * @public
  */
@@ -18810,7 +18785,7 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Overlay</code>.<br/> itself. 
  *  
- * Event is fired when the 'Open' button of the ThingInspector is clicked 
+ * Event is fired when the 'Open' button of the ThingInspector is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -18857,14 +18832,13 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 
 
 /**
- * Event is fired when the ThingInspector is opened 
+ * Event is fired when the ThingInspector is opened
  *
  * @name sap.ui.ux3.Overlay#open
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The Id of the Thing which is inspected in this ThingInspector instance
  * @public
  */
@@ -18874,7 +18848,7 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Overlay</code>.<br/> itself. 
  *  
- * Event is fired when the ThingInspector is opened 
+ * Event is fired when the ThingInspector is opened
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -18923,36 +18897,35 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 /**
  * Opens Overlay as pop up
  *
- * @name sap.ui.ux3.Overlay.prototype.open
+ * @name sap.ui.ux3.Overlay#open
  * @function
- * @param {string} 
- *         sInitialFocusId
+ * @param {string} sInitialFocusId
  *         ID of the control that gets focused when the overlay is openend
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes Overlay
  *
- * @name sap.ui.ux3.Overlay.prototype.close
+ * @name sap.ui.ux3.Overlay#close
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Checks whether Overlay is open
  *
- * @name sap.ui.ux3.Overlay.prototype.isOpen
+ * @name sap.ui.ux3.Overlay#isOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -18982,13 +18955,31 @@ sap.ui.ux3.Overlay.prototype.init = function() {
 			jQuery.sap.focus(domRef);
 		}
 	});
+	
 	this._overridePopupEventing();
+};
+
+/**
+ * Override Popup Events. Don't put Overlay to the front on mousedown. Existing 
+ * ToolPopups should always be in front of the Overlay.
+ *
+ * @private
+ */
+sap.ui.ux3.Overlay.prototype._overridePopupEventing = function() {
+	this._oPopup.onmousedown = function(oEvent) {
+		return;
+	}
 };
 
 /**
  * Returns the Shell (if both Overlay and Shell are rendered)
  */
 sap.ui.ux3.Overlay.prototype._getShell = function() {
+	var oShell = jQuery(".sapUiUx3Shell").control();
+	
+	if (oShell.length > 0 && !this._oShell) {
+		this._oShell = oShell.length ? oShell[0] : null;
+	}
 	return this._oShell;
 };
 
@@ -19074,6 +19065,7 @@ sap.ui.ux3.Overlay.prototype.exit = function() {
 /**
  * Opens this instance of Overlay
  *
+ * @param {string} [initialFocusId]
  * @public
  */
 sap.ui.ux3.Overlay.prototype.open = function(initialFocusId) {
@@ -19167,19 +19159,6 @@ sap.ui.ux3.Overlay.prototype._getText = function(sKey, aArgs) {
 };
 
 /**
- * Override Popup Events
- *
- * @private
- */
-sap.ui.ux3.Overlay.prototype._overridePopupEventing = function() {
-	// don't bring Overlay to the front on mouse down. Existing
-	// Toolpopups should always be in front
-	this._oPopup.onmousedown = function(oEvent) {
-		return;
-	};
-};
-
-/**
  * Returns the first focusable Dom element which is contained in this Overlay.
  * This function is used for the Shell integration for a proper keyboard handling (tab chain).
  * 
@@ -19226,7 +19205,7 @@ sap.ui.ux3.Overlay.prototype.isOpen = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.OverlayContainer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19281,22 +19260,20 @@ jQuery.sap.declare("sap.ui.ux3.OverlayContainer");
  * Is to be embedded into the Overlay control as content container
  * @extends sap.ui.ux3.Overlay
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.OverlayContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.Overlay.extend("sap.ui.ux3.OverlayContainer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -19434,7 +19411,7 @@ sap.ui.ux3.OverlayContainer.prototype._setFocusFirst = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.OverlayContainerRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19504,7 +19481,7 @@ sap.ui.ux3.OverlayContainerRenderer.addOverlayClasses = function(oRenderManager,
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.OverlayDialog') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19560,26 +19537,22 @@ jQuery.sap.declare("sap.ui.ux3.OverlayDialog");
  * @class
  * Dialog implementation based on the Overlay. If used in a Shell it leaves the Tool-Palette, Pane-Bar and Header-Items accessible.
  * @extends sap.ui.ux3.Overlay
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.OverlayDialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.Overlay.extend("sap.ui.ux3.OverlayDialog", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : 'auto'},
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : 'auto'}
 	},
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -19774,6 +19747,7 @@ sap.ui.ux3.OverlayDialog.prototype._setFocusFirst = function() {
 
 /**
  * This Method is not supported for the OverlayDialog 
+ * @param {boolean} bVisible
  * @public
  */
 sap.ui.ux3.OverlayDialog.prototype.setOpenButtonVisible = function(bVisible) {
@@ -19910,7 +19884,7 @@ sap.ui.ux3.OverlayDialog.prototype._checkChange = function(){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.OverlayDialogRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19980,7 +19954,7 @@ sap.ui.ux3.OverlayDialogRenderer.addOverlayClasses = function(oRenderManager, oC
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.QuickView') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -20055,21 +20029,18 @@ jQuery.sap.require('sap.ui.commons.CalloutBase'); // unlisted dependency retaine
  * @class
  * QuickView is a small popup with a short overview of a Thing.
  * QuickView is shown when a user holds the mouse pointer over a related screen element.
- * 
  * @extends sap.ui.commons.CalloutBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.QuickView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.CalloutBase.extend("sap.ui.ux3.QuickView", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"type" : {type : "string", group : "Misc", defaultValue : null},
@@ -20089,9 +20060,9 @@ sap.ui.commons.CalloutBase.extend("sap.ui.ux3.QuickView", { metadata : {
 		"openActionEnabled" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Element", multiple : true, singularName : "content"}, 
-    	"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
-    	"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}
+		"content" : {type : "sap.ui.core.Element", multiple : true, singularName : "content"}, 
+		"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
+		"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}
 	},
 	events : {
 		"actionSelected" : {}, 
@@ -20690,14 +20661,13 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Action is selected in Action Bar 
+ * Action is selected in Action Bar
  *
  * @name sap.ui.ux3.QuickView#actionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected ThingAction
  * @param {sap.ui.ux3.ThingAction} oControlEvent.getParameters.action Selected ThingAction
  * @param {string} oControlEvent.getParameters.newState New State of the selected action. Only filled if the respective action maintains a state property, for example 'FollowUp' or 'Favorite'
@@ -20709,7 +20679,7 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.QuickView</code>.<br/> itself. 
  *  
- * Action is selected in Action Bar 
+ * Action is selected in Action Bar
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -20758,14 +20728,13 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.QuickView#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Feed text
  * @public
  */
@@ -20775,7 +20744,7 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.QuickView</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -20822,14 +20791,13 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation. 
+ * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation.
  *
  * @name sap.ui.ux3.QuickView#navigate
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.href URI of the Thing Inspector application.
  * @public
  */
@@ -20839,7 +20807,7 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.QuickView</code>.<br/> itself. 
  *  
- * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation. 
+ * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -21225,7 +21193,7 @@ sap.ui.ux3.QuickView.prototype.setActionBar = function(oActionBar) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.Shell') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -21307,23 +21275,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * The Ux3 GoldReflection Shell, which is an application frame with navigation capabilities.
  * It is supposed to be added to a direct child of the BODY tag of a page and there should be no other parts of the page consuming space outside the Shell.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.Shell
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Shell", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setContent", "setPaneContent", "openPersonalizationDialog", "initializePersonalization", "getSearchField", "openPane", "closePane", "isPaneOpen"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"appTitle" : {type : "string", group : "Misc", defaultValue : null},
@@ -21345,14 +21309,14 @@ sap.ui.core.Control.extend("sap.ui.ux3.Shell", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"worksetItems" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "worksetItem"}, 
-    	"paneBarItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "paneBarItem"}, 
-    	"paneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "paneContent"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"toolPopups" : {type : "sap.ui.ux3.ToolPopup", multiple : true, singularName : "toolPopup"}, 
-    	"headerItems" : {type : "sap.ui.core.Control", multiple : true, singularName : "headerItem"}, 
-    	"notificationBar" : {type : "sap.ui.ux3.NotificationBar", multiple : false}, 
-    	"_paneOverflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
+		"worksetItems" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "worksetItem"}, 
+		"paneBarItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "paneBarItem"}, 
+		"paneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "paneContent"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"toolPopups" : {type : "sap.ui.ux3.ToolPopup", multiple : true, singularName : "toolPopup"}, 
+		"headerItems" : {type : "sap.ui.core.Control", multiple : true, singularName : "headerItem"}, 
+		"notificationBar" : {type : "sap.ui.ux3.NotificationBar", multiple : false}, 
+		"_paneOverflowMenu" : {type : "sap.ui.commons.Menu", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedWorksetItem" : {type : "sap.ui.ux3.NavigationItem", multiple : false}
@@ -22355,14 +22319,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 	
 /**
- * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected. 
+ * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected.
  *
  * @name sap.ui.ux3.Shell#worksetItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The id of the workset item that has been newly selected by the user. If a top-level item has been clicked which has sub-items, the ID of the currently active sub-item (/leaf) is given.
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The selected NavigationItem
  * @param {string} oControlEvent.getParameters.key The key of the selected NavigationItem (or null if there is no key)
@@ -22374,7 +22337,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected. 
+ * Fired when a workset item was selected by the user. The application may populate the sub-items of the given workset item in the event handler, but this must happen synchronously. If this is done, the application is responsible for displaying the correct content for the selected one of the newly created sub-items. The Shell will currently always mark the first sub-item as selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22425,14 +22388,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements. 
+ * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements.
  *
  * @name sap.ui.ux3.Shell#paneBarItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The ID of the selected PaneBarItem.
  * @param {sap.ui.core.Item} oControlEvent.getParameters.item The selected Item
  * @param {string} oControlEvent.getParameters.key The key of the selected Item (or null if there is no key)
@@ -22444,7 +22406,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements. 
+ * An item in the right-hand-side pane bar has been selected, the pane is now visible and can be filled with UI elements.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22493,14 +22455,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired when the user clicks the "Log-off" button 
+ * Fired when the user clicks the "Log-off" button
  *
  * @name sap.ui.ux3.Shell#logout
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -22509,7 +22470,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when the user clicks the "Log-off" button 
+ * Fired when the user clicks the "Log-off" button
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22551,14 +22512,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired when search has been triggered. 
+ * Fired when search has been triggered.
  *
  * @name sap.ui.ux3.Shell#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -22567,7 +22527,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when search has been triggered. 
+ * Fired when search has been triggered.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22609,14 +22569,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.Shell#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -22625,7 +22584,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22667,7 +22626,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
 
 
 /**
- * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before. 
+ * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before.
  *
  * @name sap.ui.ux3.Shell#paneClosed
  * @event
@@ -22675,7 +22634,6 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The id of the PaneBarItem to which the closed pane belonged.
  * @public
  */
@@ -22685,7 +22643,7 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Shell</code>.<br/> itself. 
  *  
- * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before. 
+ * Fired after a side pane of the shell is closed. It is also fired, when an open pane is closed by calling setShowPane(false), if and only if the pane was opened before.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22740,17 +22698,15 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * By default the old content is not destroyed and is returned by this method in an array for further usage. To avoid memory leaks, the old content should be destroyed (if not needed later), by setting the "destroyOldContent" flag or by destroying it manually later on. If "destroyOldContent" is set, an empty array is returned.
  *
- * @name sap.ui.ux3.Shell.prototype.setContent
+ * @name sap.ui.ux3.Shell#setContent
  * @function
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         The new Content. In this method it must be exactly one control (-tree). Use addContent() to add more control (-trees) to the main content area of the Shell.
- * @param {boolean} 
- *         bDestroyOldContent
+ * @param {boolean} bDestroyOldContent
  *         If set, the controls previously contained in the Shell will be destroyed, to avoid memory leaks.
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -22759,28 +22715,26 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * By default, the old pane content is not destroyed and is returned by this method in an array for further usage. To avoid memory leaks, the old content should be destroyed (if not needed later), by setting the "destroyOldContent" flag or by destroying it manually later on. If "destroyOldContent" is set, an empty array is returned.
  *
- * @name sap.ui.ux3.Shell.prototype.setPaneContent
+ * @name sap.ui.ux3.Shell#setPaneContent
  * @function
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         The new Pane content. In this method it must be exactly one control (-tree). This could likely be a layout or a specific ux3 Pane control. Use addPaneContent() to add more control (-trees) to the Pane.
- * @param {boolean} 
- *         bDestroyOldContent
+ * @param {boolean} bDestroyOldContent
  *         If set, the controls previously contained in the pane will be destroyed, to avoid memory leaks.
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Experimental method! Do not use!
  *
- * @name sap.ui.ux3.Shell.prototype.openPersonalizationDialog
+ * @name sap.ui.ux3.Shell#openPersonalizationDialog
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -22789,25 +22743,24 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * Makes Shell personalization available and injects the given personalization settings. This should be called before the user can do any adaptations per drag&drop or using the personalization dialog. Otherwise it may override the user's new settings.
  *
- * @name sap.ui.ux3.Shell.prototype.initializePersonalization
+ * @name sap.ui.ux3.Shell#initializePersonalization
  * @function
- * @param {object} 
- *         oSettings
+ * @param {object} oSettings
  *         Personalization settings object
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the SearchField control which is used in the Search Tool.
  *
- * @name sap.ui.ux3.Shell.prototype.getSearchField
+ * @name sap.ui.ux3.Shell#getSearchField
  * @function
-
  * @type sap.ui.commons.SearchField
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -22819,14 +22772,13 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * Returns 'this' to allow method chaining.
  *
- * @name sap.ui.ux3.Shell.prototype.openPane
+ * @name sap.ui.ux3.Shell#openPane
  * @function
- * @param {string} 
- *         sPaneBarItemId
+ * @param {string} sPaneBarItemId
  *         The ID of the PaneBarItem which should be marked as selected.
-
  * @type sap.ui.ux3.Shell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -22835,22 +22787,22 @@ sap.ui.ux3.Shell.M_EVENTS = {'worksetItemSelected':'worksetItemSelected','paneBa
  * 
  * Returns 'this' to allow method chaining.
  *
- * @name sap.ui.ux3.Shell.prototype.closePane
+ * @name sap.ui.ux3.Shell#closePane
  * @function
-
  * @type sap.ui.ux3.Shell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns 'true' if the side Pane is currently open.
  *
- * @name sap.ui.ux3.Shell.prototype.isPaneOpen
+ * @name sap.ui.ux3.Shell#isPaneOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -25128,7 +25080,7 @@ sap.ui.ux3.Shell.prototype.onThemeChanged = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ThingAction') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25185,19 +25137,15 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Thing Action for Swatch, QuickView, Thinginspector
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ThingAction
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.ThingAction", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"text" : {type : "string", group : "Misc", defaultValue : null},
@@ -25279,14 +25227,13 @@ sap.ui.ux3.ThingAction.M_EVENTS = {'select':'select'};
 
 
 /**
- * Event will be fired when the action was triggered. 
+ * Event will be fired when the action was triggered.
  *
  * @name sap.ui.ux3.ThingAction#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected action
  * @param {sap.ui.ux3.ThingAction} oControlEvent.getParameters.action Selected Thing Action
  * @public
@@ -25297,7 +25244,7 @@ sap.ui.ux3.ThingAction.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingAction</code>.<br/> itself. 
  *  
- * Event will be fired when the action was triggered. 
+ * Event will be fired when the action was triggered.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -25367,7 +25314,7 @@ sap.ui.ux3.ThingAction.prototype.onsapselect = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ThingGroup') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25425,19 +25372,15 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Thing Group Area
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ThingGroup
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.ThingGroup", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -25445,8 +25388,8 @@ sap.ui.core.Element.extend("sap.ui.ux3.ThingGroup", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"actions" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "action"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"actions" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "action"}
 	}
 }});
 
@@ -25692,7 +25635,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.ThingGroup", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ThingViewer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25757,20 +25700,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * ThingViewer: Same as ThingInspector but decoupled from the Overlay and the ActionBar.
  * The control can be added to a Parent container that has a defined width. The ThingViewer fill the whole container. If the parent container has no width defined the control will not work properly.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @name sap.ui.ux3.ThingViewer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ThingViewer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -25782,11 +25721,11 @@ sap.ui.core.Control.extend("sap.ui.ux3.ThingViewer", { metadata : {
 		"headerType" : {type : "sap.ui.ux3.ThingViewerHeaderType", group : "Misc", defaultValue : sap.ui.ux3.ThingViewerHeaderType.Standard}
 	},
 	aggregations : {
-    	"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
-    	"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
-    	"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
-    	"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
-    	"navBar" : {type : "sap.ui.ux3.NavigationBar", multiple : false, visibility : "hidden"}
+		"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
+		"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
+		"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
+		"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
+		"navBar" : {type : "sap.ui.ux3.NavigationBar", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedFacet" : {type : "sap.ui.ux3.NavigationItem", multiple : false}
@@ -26291,14 +26230,13 @@ sap.ui.ux3.ThingViewer.M_EVENTS = {'facetSelected':'facetSelected'};
 
 	
 /**
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @name sap.ui.ux3.ThingViewer#facetSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected NavigationItem
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The selected NavigationItem
  * @param {string} oControlEvent.getParameters.key Key of selected NavigationItem
@@ -26310,7 +26248,7 @@ sap.ui.ux3.ThingViewer.M_EVENTS = {'facetSelected':'facetSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingViewer</code>.<br/> itself. 
  *  
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -26753,7 +26691,7 @@ sap.ui.ux3.ThingViewer.M_EVENTS = {'facetSelected':'facetSelected'};
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ToolPopup') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -26828,20 +26766,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * For this pop up, buttons can be defined with any text; therefore, it has the same purpose and similar look like any common dialog box.
  * A ToolPopup can have any content. Depending on the application type and design, the structure of the texts and input fields can be for
  * example form-like.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.PopupInterface
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ToolPopup
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ToolPopup", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.PopupInterface"
 	],
@@ -26849,8 +26786,6 @@ sap.ui.core.Control.extend("sap.ui.ux3.ToolPopup", { metadata : {
 		// methods
 		"isOpen", "open", "close", "setPosition", "getEnabled", "addFocusableArea", "removeFocusableArea"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -26867,8 +26802,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.ToolPopup", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	associations : {
 		"initialFocus" : {type : "sap.ui.core.Control", multiple : false}, 
@@ -27435,14 +27370,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 	
 /**
- * Event is fired when the pop up opens 
+ * Event is fired when the pop up opens
  *
  * @name sap.ui.ux3.ToolPopup#open
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -27451,7 +27385,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is fired when the pop up opens 
+ * Event is fired when the pop up opens
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -27493,14 +27427,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation. 
+ * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation.
  *
  * @name sap.ui.ux3.ToolPopup#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -27509,7 +27442,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation. 
+ * Event is fired when the pop up closes because the user pressed Escape or the ToolPopup Button in the Shell. This is called before the closing animation.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -27553,14 +27486,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * Event is fired whenever the user clicks the Enter or the Return key inside the pop up 
+ * Event is fired whenever the user clicks the Enter or the Return key inside the pop up
  *
  * @name sap.ui.ux3.ToolPopup#enter
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {object} oControlEvent.getParameters.originalEvent The onsapenter event, received by the pop up
  * @param {sap.ui.core.Control} oControlEvent.getParameters.originalSrcControl The control that was focused when the user pressed the Enter key (may be null)
  * @public
@@ -27571,7 +27503,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is fired whenever the user clicks the Enter or the Return key inside the pop up 
+ * Event is fired whenever the user clicks the Enter or the Return key inside the pop up
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -27620,14 +27552,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 /**
  * Event is fired when one of the icon properties is modified (Note: The icon is not rendered by the ToolPopup).
- * To be used by other controls which want to update the icon in their UI. 
+ * To be used by other controls which want to update the icon in their UI.
  *
  * @name sap.ui.ux3.ToolPopup#iconChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -27637,7 +27568,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
  * Event is fired when one of the icon properties is modified (Note: The icon is not rendered by the ToolPopup).
- * To be used by other controls which want to update the icon in their UI. 
+ * To be used by other controls which want to update the icon in their UI.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -27679,14 +27610,13 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call. 
+ * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call.
  *
  * @name sap.ui.ux3.ToolPopup#closed
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -27695,7 +27625,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call. 
+ * This event is fired after the ToolPopup has finished its closing animation. It is called for EVERY close, regardless of whether the user has triggered the close or whether the ToolPopup was closed via API call.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -27737,7 +27667,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 
 
 /**
- * Event is being fired after the ToolPopup has been opened. 
+ * Event is being fired after the ToolPopup has been opened.
  *
  * @name sap.ui.ux3.ToolPopup#opened
  * @event
@@ -27745,7 +27675,6 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -27754,7 +27683,7 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ToolPopup</code>.<br/> itself. 
  *  
- * Event is being fired after the ToolPopup has been opened. 
+ * Event is being fired after the ToolPopup has been opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -27801,28 +27730,26 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
 /**
  * Returns whether the pop up is currently open
  *
- * @name sap.ui.ux3.ToolPopup.prototype.isOpen
+ * @name sap.ui.ux3.ToolPopup#isOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Opens the pop up.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.open
+ * @name sap.ui.ux3.ToolPopup#open
  * @function
- * @param {string} 
- *         sMy
+ * @param {string} sMy
  *         The ToolPopup's content reference position for docking. This value is optional if the position of the ToolPopup is set via 'setPosition'.
- * @param {string} 
- *         sAt
+ * @param {string} sAt
  *         The "of" element's reference point for docking to. This value is optional if the position of the ToolPopup is set via 'setPosition'.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -27830,25 +27757,24 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * Closes the pop up. Can be called by the Shell when the pop up's button is clicked again; or by the application
  * when the interaction in the pop up has been completed or canceled.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.close
+ * @name sap.ui.ux3.ToolPopup#close
  * @function
- * @param {boolean} 
- *         bPreventRestoreFocus
+ * @param {boolean} bPreventRestoreFocus
  *         If set, the focus is NOT restored to the element that had the focus before the ToolPopup was opened. This makes sense when the ToolPopup is closed programmatically from a different area of the application (outside the ToolPopup) and the focus should not move aways from that place.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the position of the pop up, the same parameters as for sap.ui.core.Popup can be used.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.setPosition
+ * @name sap.ui.ux3.ToolPopup#setPosition
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -27857,42 +27783,40 @@ sap.ui.ux3.ToolPopup.M_EVENTS = {'open':'open','close':'close','enter':'enter','
  * 
  * Applications can't control the enabled state via a property. A ToolPopup is implicitly enabled while it is OPENING or OPEN. Descendant controls that honor the enabled state of their ancestors will appear disabled after the ToolPopup is closed.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.getEnabled
+ * @name sap.ui.ux3.ToolPopup#getEnabled
  * @function
-
  * @type boolean
  * @public
  * @since 1.13.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Add an identified area to the parent Popup as additional focusable area that can be used for an "autoclose" ToolPopup. This added area can be focused and prevent the ToolPopup from closing if the added area is outside of the ToolPopup.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.addFocusableArea
+ * @name sap.ui.ux3.ToolPopup#addFocusableArea
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         ID of a control or DOM-node
-
  * @type void
  * @public
  * @since 1.19.0
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the control's or DOM-node's id from focusable areas.
  *
- * @name sap.ui.ux3.ToolPopup.prototype.removeFocusableArea
+ * @name sap.ui.ux3.ToolPopup#removeFocusableArea
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         ID of a control or DOM-node
-
  * @type void
  * @public
  * @since 1.19.0
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -28272,7 +28196,7 @@ sap.ui.ux3.ToolPopup.prototype.open = function(my, at) {
 
 	// the opener is needed for the intelligent arrow positioning
 	fnCheckOpener(this);
-	
+
 	// function(iDuration, my, at, of, offset, collision /*empty to avoid any override*/, followOf /*true*/)
 	this.oPopup.open(this.getOpenDuration(), this._my, this._at, $OpenerRef, this.sOffset, "", true);
 	fnSetArrow(this);
@@ -28813,6 +28737,7 @@ sap.ui.ux3.ToolPopup.prototype.isInverted = function() {
  * This is just a forward to the Popup's function (sap.ui.core.Popup.setAutoCloseAreas)
  * with the same functionality.
  * 
+ * @param {Element[]} aAutoCloseAreas
  * @public
  * @since: 1.19.0
  */
@@ -28900,7 +28825,7 @@ sap.ui.ux3.ToolPopup.prototype.setMaxWidth = function(sMaxWidth) {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ExactBrowser') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -28970,22 +28895,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * entries and thereby trigger the display of further information, depending on the chosen entry/entries (multiple selection supported).
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ExactBrowser
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ExactBrowser", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"reset"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -29002,10 +28925,10 @@ sap.ui.core.Control.extend("sap.ui.ux3.ExactBrowser", { metadata : {
 	},
 	defaultAggregation : "attributes",
 	aggregations : {
-    	"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
-    	"optionsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
-    	"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}, 
-    	"rootAttribute" : {type : "sap.ui.core.Element", multiple : false, visibility : "hidden"}
+		"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
+		"optionsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
+		"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}, 
+		"rootAttribute" : {type : "sap.ui.core.Element", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"followUpControl" : {type : "sap.ui.core.Control", multiple : false}
@@ -29437,7 +29360,6 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * 
  * The successor control of the Exact Browser. The id of this control is used in the ARIA description of the control.
  * Additionally it is possible to directly jump to this control via the F6 key.
- * 
  *
  * @return {string} Id of the element which is the current target of the <code>followUpControl</code> association, or null
  * @public
@@ -29449,7 +29371,6 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * 
  * The successor control of the Exact Browser. The id of this control is used in the ARIA description of the control.
  * Additionally it is possible to directly jump to this control via the F6 key.
- * 
  *
  * @param {string | sap.ui.core.Control} vFollowUpControl 
  *    Id of an element which becomes the new target of this <code>followUpControl</code> association.
@@ -29463,14 +29384,13 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
 
 	
 /**
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @name sap.ui.ux3.ExactBrowser#attributeSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.attribute The attribute which was selected or unselected recently
  * @param {object} oControlEvent.getParameters.allAttributes Array of all selected ExactAttributes
  * @public
@@ -29481,7 +29401,7 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactBrowser</code>.<br/> itself. 
  *  
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -29529,14 +29449,13 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
 
 
 /**
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @name sap.ui.ux3.ExactBrowser#save
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -29545,7 +29464,7 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactBrowser</code>.<br/> itself. 
  *  
- * Event is fired when an attribute is selected or unselected. 
+ * Event is fired when an attribute is selected or unselected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -29589,11 +29508,11 @@ sap.ui.ux3.ExactBrowser.M_EVENTS = {'attributeSelected':'attributeSelected','sav
 /**
  * Deselects all currently selected attributes and closes all attribute lists.
  *
- * @name sap.ui.ux3.ExactBrowser.prototype.reset
+ * @name sap.ui.ux3.ExactBrowser#reset
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -29852,7 +29771,7 @@ jQuery.sap.require('sap.ui.commons.Button'); // unlisted dependency retained
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.Feed') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29914,23 +29833,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  *
  * @class
  * A container control representing a full feed page, including feeder and updates.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.
  * @name sap.ui.ux3.Feed
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Feed", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"feederThumbnailSrc" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -29939,9 +29855,9 @@ sap.ui.core.Control.extend("sap.ui.ux3.Feed", { metadata : {
 		"title" : {type : "string", group : "Data", defaultValue : null}
 	},
 	aggregations : {
-    	"filterItems" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "filterItem", bindable : "bindable"}, 
-    	"chunks" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "chunk", bindable : "bindable"}, 
-    	"toolsMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "toolsMenuItem", bindable : "bindable"}
+		"filterItems" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "filterItem", bindable : "bindable"}, 
+		"chunks" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "chunk", bindable : "bindable"}, 
+		"toolsMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "toolsMenuItem", bindable : "bindable"}
 	},
 	events : {
 		"filterChange" : {}, 
@@ -30385,14 +30301,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when the filter is changed 
+ * Event is fired when the filter is changed
  *
  * @name sap.ui.ux3.Feed#filterChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.newValue The new/changed value of the filter
  * @public
  */
@@ -30402,7 +30317,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when the filter is changed 
+ * Event is fired when the filter is changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -30449,14 +30364,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when the search function on SearchField is triggered 
+ * Event is fired when the search function on SearchField is triggered
  *
  * @name sap.ui.ux3.Feed#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The search query
  * @public
  */
@@ -30466,7 +30380,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when the search function on SearchField is triggered 
+ * Event is fired when the search function on SearchField is triggered
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -30513,14 +30427,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when a new chunk is added 
+ * Event is fired when a new chunk is added
  *
  * @name sap.ui.ux3.Feed#chunkAdded
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.FeedChunk} oControlEvent.getParameters.chunk New chunk
  * @public
  */
@@ -30530,7 +30443,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when a new chunk is added 
+ * Event is fired when a new chunk is added
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -30577,14 +30490,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when an item from the tools MenuButton was selected 
+ * Event is fired when an item from the tools MenuButton was selected
  *
  * @name sap.ui.ux3.Feed#toolsItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The Id of the selected item
  * @param {sap.ui.commons.MenuItemBase} oControlEvent.getParameters.item The selected item
  * @public
@@ -30595,7 +30507,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when an item from the tools MenuButton was selected 
+ * Event is fired when an item from the tools MenuButton was selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -30643,14 +30555,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when the live mode has changed 
+ * Event is fired when the live mode has changed
  *
  * @name sap.ui.ux3.Feed#toggleLive
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.live Current live indicator
  * @public
  */
@@ -30660,7 +30571,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when the live mode has changed 
+ * Event is fired when the live mode has changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -31060,7 +30971,7 @@ sap.ui.ux3.Feed.prototype.unbindFilterItems = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.FeedChunk') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -31139,23 +31050,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * The unit that is embedded - single-wise or in a multiple way - into a Feed control.
  * The control provides a set of properties for text, sender information, time stamp,
  * comments, and functions such as flagging the entry to be favorite, shared, or flagged.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.
  * @name sap.ui.ux3.FeedChunk
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.FeedChunk", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"thumbnailSrc" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -31176,8 +31084,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.FeedChunk", { metadata : {
 		"enableFavorite" : {type : "boolean", group : "Appearance", defaultValue : true}
 	},
 	aggregations : {
-    	"comments" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "comment", bindable : "bindable"}, 
-    	"actionMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "actionMenuItem", bindable : "bindable"}
+		"comments" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "comment", bindable : "bindable"}, 
+		"actionMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "actionMenuItem", bindable : "bindable"}
 	},
 	events : {
 		"deleted" : {}, 
@@ -31828,14 +31736,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when the deletion button is pressed. 
+ * Event is fired when the deletion button is pressed.
  *
  * @name sap.ui.ux3.FeedChunk#deleted
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -31844,7 +31751,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when the deletion button is pressed. 
+ * Event is fired when the deletion button is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -31886,14 +31793,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when a comment is added to the entry. This event is not supported for comment chunks. 
+ * Event is raised when a comment is added to the entry. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#commentAdded
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.FeedChunk} oControlEvent.getParameters.comment New comment chunk
  * @public
  */
@@ -31903,7 +31809,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when a comment is added to the entry. This event is not supported for comment chunks. 
+ * Event is raised when a comment is added to the entry. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -31950,14 +31856,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#toggleFlagged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.flagged Current flagged state
  * @public
  */
@@ -31967,7 +31872,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32014,14 +31919,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when the thumbnail or the name of the sender is clicked. 
+ * Event is fired when the thumbnail or the name of the sender is clicked.
  *
  * @name sap.ui.ux3.FeedChunk#senderClicked
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -32030,7 +31934,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when the thumbnail or the name of the sender is clicked. 
+ * Event is fired when the thumbnail or the name of the sender is clicked.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32072,14 +31976,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Click on a @-reference 
+ * Click on a @-reference
  *
  * @name sap.ui.ux3.FeedChunk#referenceClicked
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Text of the @-reference
  * @public
  */
@@ -32089,7 +31992,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Click on a @-reference 
+ * Click on a @-reference
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32136,14 +32039,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#toggleFavorite
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.favorite Current favorite state
  * @public
  */
@@ -32153,7 +32055,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32200,14 +32102,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when the inspect button was pressed 
+ * Event is fired when the inspect button was pressed
  *
  * @name sap.ui.ux3.FeedChunk#inspect
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -32216,7 +32117,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when the inspect button was pressed 
+ * Event is fired when the inspect button was pressed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32258,14 +32159,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#toggleShared
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.shareed Current shared state
  * @public
  */
@@ -32275,7 +32175,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32322,14 +32222,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when an item from the action menu button was selected. 
+ * Event is fired when an item from the action menu button was selected.
  *
  * @name sap.ui.ux3.FeedChunk#actionItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The Id of the selected item
  * @param {sap.ui.commons.MenuItemBase} oControlEvent.getParameters.item The selected item
  * @public
@@ -32340,7 +32239,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when an item from the action menu button was selected. 
+ * Event is fired when an item from the action menu button was selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32854,7 +32753,7 @@ sap.ui.ux3.FeedChunk.prototype.handleHCMMenuButtonSelected = function(oEvent){
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.ThingInspector') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -32928,19 +32827,15 @@ jQuery.sap.declare("sap.ui.ux3.ThingInspector");
  * @class
  * Thing Inspector
  * @extends sap.ui.ux3.Overlay
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ThingInspector
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.Overlay.extend("sap.ui.ux3.ThingInspector", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"firstTitle" : {type : "string", group : "Misc", defaultValue : null},
@@ -32957,12 +32852,12 @@ sap.ui.ux3.Overlay.extend("sap.ui.ux3.ThingInspector", { metadata : {
 		"headerType" : {type : "sap.ui.ux3.ThingViewerHeaderType", group : "Misc", defaultValue : sap.ui.ux3.ThingViewerHeaderType.Standard}
 	},
 	aggregations : {
-    	"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
-    	"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
-    	"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
-    	"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
-    	"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
-    	"thingViewer" : {type : "sap.ui.ux3.ThingViewer", multiple : false, visibility : "hidden"}
+		"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
+		"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
+		"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
+		"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
+		"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
+		"thingViewer" : {type : "sap.ui.ux3.ThingViewer", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedFacet" : {type : "sap.ui.ux3.NavigationItem", multiple : false}
@@ -33653,7 +33548,6 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 /**
  * The Facet that is currently selected.
- * 
  *
  * @return {string} Id of the element which is the current target of the <code>selectedFacet</code> association, or null
  * @public
@@ -33663,7 +33557,6 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 /**
  * The Facet that is currently selected.
- * 
  *
  * @param {string | sap.ui.ux3.NavigationItem} vSelectedFacet 
  *    Id of an element which becomes the new target of this <code>selectedFacet</code> association.
@@ -33677,14 +33570,13 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 	
 /**
- * Further thing related Action selected 
+ * Further thing related Action selected
  *
  * @name sap.ui.ux3.ThingInspector#actionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected ThingAction
  * @param {sap.ui.ux3.ThingAction} oControlEvent.getParameters.action Selected ThingAction
  * @public
@@ -33695,7 +33587,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingInspector</code>.<br/> itself. 
  *  
- * Further thing related Action selected 
+ * Further thing related Action selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -33743,14 +33635,13 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 
 /**
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @name sap.ui.ux3.ThingInspector#facetSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected NavigationItem
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The selected NavigationItem
  * @param {string} oControlEvent.getParameters.key Key of selected NavigationItem
@@ -33762,7 +33653,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingInspector</code>.<br/> itself. 
  *  
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -33813,14 +33704,13 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.ThingInspector#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Feed text
  * @public
  */
@@ -33830,7 +33720,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingInspector</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -33975,6 +33865,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 	/**
 	 * Opens this instance of ThingIspector
 	 *
+	 * @param {string} [initialFocusId]
 	 * @public
 	 */
 	sap.ui.ux3.ThingInspector.prototype.open = function(initialFocusId) {
@@ -34419,7 +34310,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 if ( !jQuery.sap.isDeclared('sap.ui.ux3.Exact') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -34477,33 +34368,31 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * ("Explore and Act (Exact) Pattern").
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * API is not yet finished and might change completely
  * @name sap.ui.ux3.Exact
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Exact", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getResultArea", "getSearchField"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"resultText" : {type : "string", group : "Misc", defaultValue : null}
 	},
 	defaultAggregation : "attributes",
 	aggregations : {
-    	"settingsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
-    	"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
-    	"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}
+		"settingsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
+		"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
+		"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}
 	},
 	events : {
 		"search" : {}, 
@@ -34670,14 +34559,13 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
 
 
 /**
- * Event is fired when the search button is clicked 
+ * Event is fired when the search button is clicked
  *
  * @name sap.ui.ux3.Exact#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The query string which was entered in the search field.
  * @public
  */
@@ -34687,7 +34575,7 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Exact</code>.<br/> itself. 
  *  
- * Event is fired when the search button is clicked 
+ * Event is fired when the search button is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -34734,14 +34622,13 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
 
 
 /**
- * Event which is fired when an attribute is selected or unselected. 
+ * Event which is fired when an attribute is selected or unselected.
  *
  * @name sap.ui.ux3.Exact#refineSearch
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The query string which was entered in the search field
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.changedAttribute The attribute which was selected or unselected recently
  * @param {object} oControlEvent.getParameters.allSelectedAttributes Array of all selected ExcatAttribute.
@@ -34753,7 +34640,7 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Exact</code>.<br/> itself. 
  *  
- * Event which is fired when an attribute is selected or unselected. 
+ * Event which is fired when an attribute is selected or unselected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -34804,22 +34691,22 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
 /**
  * Returns the ExactArea representing the result section. Arbitrary content can be added here.
  *
- * @name sap.ui.ux3.Exact.prototype.getResultArea
+ * @name sap.ui.ux3.Exact#getResultArea
  * @function
-
  * @type sap.ui.ux3.ExactArea
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the SearchField control which is used by the Exact control.
  *
- * @name sap.ui.ux3.Exact.prototype.getSearchField
+ * @name sap.ui.ux3.Exact#getSearchField
  * @function
-
  * @type sap.ui.commons.SearchField
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

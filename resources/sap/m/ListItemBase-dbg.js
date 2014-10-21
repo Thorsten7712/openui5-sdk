@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,22 +60,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * ListItemBase contains the core features of all specific list items.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.ListItemBase
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ListItemBase", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"isSelected"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"type" : {type : "sap.m.ListType", group : "Misc", defaultValue : sap.m.ListType.Inactive},
@@ -192,7 +190,6 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
  * This property defines the select state of the list item when using Single/Multi-Selection.
  * 
  * Note: Binding the "selected" property in single selection mode, may cause unwanted results, if you have more than one selected item in your binding
- * 
  *
  * Default value is <code>false</code>
  *
@@ -241,7 +238,7 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
 
 
 /**
- * tap event 
+ * tap event
  *
  * @name sap.m.ListItemBase#tap
  * @event
@@ -250,7 +247,6 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -259,7 +255,7 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListItemBase</code>.<br/> itself. 
  *  
- * tap event 
+ * tap event
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -307,7 +303,7 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
 
 
 /**
- * detail tap event 
+ * detail tap event
  *
  * @name sap.m.ListItemBase#detailTap
  * @event
@@ -316,7 +312,6 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -325,7 +320,7 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListItemBase</code>.<br/> itself. 
  *  
- * detail tap event 
+ * detail tap event
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -373,14 +368,13 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
 
 
 /**
- * Event is fired when the user clicks on the control. 
+ * Event is fired when the user clicks on the control.
  *
  * @name sap.m.ListItemBase#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -389,7 +383,7 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListItemBase</code>.<br/> itself. 
  *  
- * Event is fired when the user clicks on the control. 
+ * Event is fired when the user clicks on the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -431,14 +425,13 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
 
 
 /**
- * Event is fired when the user clicks on the detail button of the control. 
+ * Event is fired when the user clicks on the detail button of the control.
  *
  * @name sap.m.ListItemBase#detailPress
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -447,7 +440,7 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ListItemBase</code>.<br/> itself. 
  *  
- * Event is fired when the user clicks on the detail button of the control. 
+ * Event is fired when the user clicks on the detail button of the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -491,13 +484,13 @@ sap.m.ListItemBase.M_EVENTS = {'tap':'tap','detailTap':'detailTap','press':'pres
 /**
  * returns the state of the item selection as a boolean
  *
- * @name sap.m.ListItemBase.prototype.isSelected
+ * @name sap.m.ListItemBase#isSelected
  * @function
-
  * @type boolean
  * @public
  * @deprecated Since version 1.10.2. 
  * API Change makes this method unnecessary
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -912,6 +905,9 @@ sap.m.ListItemBase.prototype._isActivationHandled = function(oEvent) {
 
 /* Keyboard Handling */
 sap.m.ListItemBase.prototype.onsapspace = function(oEvent) {
+	// prevent default not to scroll down
+	oEvent.preventDefault();
+
 	if (!this._listId ||
 		oEvent.isMarked() ||
 		!this.isSelectable() ||
@@ -929,8 +925,7 @@ sap.m.ListItemBase.prototype.onsapspace = function(oEvent) {
 		sap.ui.getCore().byId(this._listId)._selectTapped(this);
 	}
 
-	// let the parent know and prevent default not to scroll down
-	oEvent.preventDefault();
+	// mark event after handled
 	oEvent.setMarked();
 };
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>FacetFilterList</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>List to be used with the FacetFilter control. The control is not intended to be used stand alone.</documentation>
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>

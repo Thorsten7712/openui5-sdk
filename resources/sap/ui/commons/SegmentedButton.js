@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.SegmentedButton");jQuery.sap.require("sap.ui.commons.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.commons.SegmentedButton",{metadata:{interfaces:["sap.ui.commons.ToolbarItem"],library:"sap.ui.commons",properties:{"enabled":{type:"boolean",group:"Misc",defaultValue:true},"visible":{type:"boolean",group:"Misc",defaultValue:true}},aggregations:{"buttons":{type:"sap.ui.commons.Button",multiple:true,singularName:"button"}},associations:{"selectedButton":{type:"sap.ui.commons.Button",multiple:false}},events:{"select":{}}}});sap.ui.commons.SegmentedButton.M_EVENTS={'select':'select'};jQuery.sap.require("sap.ui.core.delegate.ItemNavigation");

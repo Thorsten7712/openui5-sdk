@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -72,16 +72,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TextField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.TextField", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -89,8 +89,6 @@ sap.ui.core.Control.extend("sap.ui.commons.TextField", { metadata : {
 		// methods
 		"focus", "getLiveValue"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"value" : {type : "string", group : "Data", defaultValue : '', bindable : "bindable"},
@@ -641,14 +639,13 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
 
 	
 /**
- * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed.
  *
  * @name sap.ui.commons.TextField#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.newValue The new / changed value of the textfield.
  * @public
  */
@@ -658,7 +655,7 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TextField</code>.<br/> itself. 
  *  
- * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -705,14 +702,13 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
 
 
 /**
- * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @name sap.ui.commons.TextField#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.liveValue Current value of the Textfield.
  * @public
  */
@@ -722,7 +718,7 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TextField</code>.<br/> itself. 
  *  
- * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -771,22 +767,22 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
 /**
  * Puts the focus to this control.
  *
- * @name sap.ui.commons.TextField.prototype.focus
+ * @name sap.ui.commons.TextField#focus
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the current value of the TextField. In case of editing the TextField you can access the current value via this method. The validated value is accessible via the property value.
  *
- * @name sap.ui.commons.TextField.prototype.getLiveValue
+ * @name sap.ui.commons.TextField#getLiveValue
  * @function
-
  * @type string
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -842,6 +838,7 @@ sap.ui.commons.TextField.prototype.onsapfocusleave = function(oEvent) {
 
 /**
  * Event handler called when enter key is pressed.
+ * @param {object} oEvent
  * @see sap.ui.commons.TextField#onfocusout
  * @protected
  */
@@ -974,6 +971,15 @@ sap.ui.commons.TextField.prototype.onsapescape = function(oEvent) {
 
 };
 
+sap.ui.commons.TextField.prototype.onkeydown = function(oEvent) {
+
+	if (oEvent.which == jQuery.sap.KeyCodes.Z && oEvent.ctrlKey) {
+		// prevent browsers standard history logic because different in different browsers
+		oEvent.preventDefault();
+	}
+
+};
+
 /*
  * Event handler for keypress
  * in Firefox the escape value must be reseted here
@@ -1027,6 +1033,7 @@ sap.ui.commons.TextField.prototype._doOnEscape = function(oEvent) {
 /**
  * Event handler for keyup.
  * fire the liveChange event
+ * @param {object} oEvent
  * @protected
  */
 sap.ui.commons.TextField.prototype.onkeyup = function(oEvent) {
@@ -1049,6 +1056,7 @@ sap.ui.commons.TextField.prototype.onkeyup = function(oEvent) {
 /**
  * Event handler for paste.
  * fire the liveChange event
+ * @param {object} oEvent
  * @protected
  */
 sap.ui.commons.TextField.prototype.onpaste = function(oEvent) {
@@ -1237,13 +1245,15 @@ sap.ui.commons.TextField.prototype.setValue = function(sValue) {
 			if (newValue) {
 				this.$().removeClass('sapUiTfPlace');
 				oInput.value = newValue;
-			} else {
+			} else if (document.activeElement !== oInput){
 				this.$().addClass('sapUiTfPlace');
 				var sPlaceholder = this.getPlaceholder();
 				if (this.getRenderer().convertPlaceholder) {
 					sPlaceholder = this.getRenderer().convertPlaceholder(this);
 				}
 				oInput.value = sPlaceholder;
+			} else {
+				oInput.value = "";
 			}
 		}else {
 			oInput.value =  newValue;
@@ -1300,12 +1310,25 @@ sap.ui.commons.TextField.prototype.applyFocusInfo = function (oFocusInfo) {
 		var that = this;
 		setTimeout(function(){
 			that.focus();
+			that._restoreUnsavedUserInput(oFocusInfo.userinput);
 			jQuery(that.getFocusDomRef()).cursorPos(oPos);
 		}, 0);
 	}else{
 		this.focus();
+		this._restoreUnsavedUserInput(oFocusInfo.userinput);
 	}
 	return this;
+};
+
+/**
+ * Returns an object representing the serialized focus information
+ * @type object
+ * @return an object representing the serialized focus information
+ * @protected
+ * @function
+ */
+sap.ui.commons.TextField.prototype.getFocusInfo = function () {
+	return {id: this.getId(), userinput: this._getUnsavedUserInputInfo()};
 };
 
 /*
@@ -1368,4 +1391,28 @@ sap.ui.commons.TextField.prototype.getFocusDomRef = function() {
 
 	return this.getInputDomRef();
 
+};
+
+
+sap.ui.commons.TextField.prototype._getUnsavedUserInputInfo = function() {
+	var $tf = this.$();
+	if($tf.length && $tf.hasClass("sapUiTfFoc") && !$tf.hasClass("sapUiTfPlace") && this.getEnabled() && this.getEditable()){
+		var sVal = jQuery(this.getInputDomRef()).val();
+		var sValue = this.getValue();
+		if(sVal != sValue){
+			return {userinput: sVal, value: sValue};
+		}
+	}
+	return null;
+};
+
+sap.ui.commons.TextField.prototype._restoreUnsavedUserInput = function(oUnsavedUserInputInfo) {
+	if(oUnsavedUserInputInfo && this.getEnabled() && this.getEditable() && this.getValue() == oUnsavedUserInputInfo.value){
+		var sVal = oUnsavedUserInputInfo.userinput;
+		if ( sVal && sVal.length > this.getMaxLength() && this.getMaxLength() > 0) {
+			sVal = sVal.substring(0,this.getMaxLength());
+		}
+		
+		jQuery(this.getInputDomRef()).val(sVal);
+	}
 };

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.routing.RouteMatchedHandler");
@@ -12,11 +12,11 @@ jQuery.sap.require("sap.m.SplitContainer");
 jQuery.sap.require("sap.m.NavContainer");
 
 /**
- * Instantiates a RouteMatchedHandler
+ * Instantiates a RouteMatchedHandler.
  * 
  * @class
- * This class will attach to the Events of a provided router and add the views created by it to a  @link {sap.m.SplitContainer} or a @link {sap.m.NavContainer} Control, if this is the target control of the route.</br>
- * If the targetControl is no @link {sap.m.SplitContainer} or a @link {sap.m.NavContainer}, It will only close the dialogs, according to the property value.</br>
+ * This class will attach to the Events of a provided router and add the views created by it to a  {@link sap.m.SplitContainer} or a {@link sap.m.NavContainer} Control, if this is the target control of the route.</br>
+ * If the targetControl is no {@link sap.m.SplitContainer} or a {@link sap.m.NavContainer}, It will only close the dialogs, according to the property value.</br>
  * </br>
  * When a navigation is triggered, this class will try to determine the transition of the pages based on the history.</br>
  * Eg: if a user presses browser back, it will show a backwards animation.</br>
@@ -36,7 +36,7 @@ jQuery.sap.require("sap.m.NavContainer");
  * If you want to preserve the current view when navigating, but you want to navigate to it when nothing is displayed in the navContainer, you can set preservePageInSplitContainer = true</br>
  * When the route that has this flag directly matches the pattern, the view will still be switched by the splitContainer.
  * </br>
- * @link {sap.m.NavContainer}
+ * @see sap.m.NavContainer
  * 
  * @param {sap.ui.core.routing.Router} router - A router that creates views</br>
  * @param {boolean} closeDialogs - the default is true - will close all open dialogs before navigating, if set to true. If set to false it will just navigate without closing dialogs.

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -66,22 +66,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * Note: when displa Internet Explorer 9, page changes are not animated.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.Carousel
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Carousel", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"next", "previous"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
@@ -95,7 +93,7 @@ sap.ui.core.Control.extend("sap.m.Carousel", { metadata : {
 	},
 	defaultAggregation : "pages",
 	aggregations : {
-    	"pages" : {type : "sap.ui.core.Control", multiple : true, singularName : "page"}
+		"pages" : {type : "sap.ui.core.Control", multiple : true, singularName : "page"}
 	},
 	associations : {
 		"activePage" : {type : "sap.ui.core.Control", multiple : false}
@@ -443,7 +441,7 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
 
 	
 /**
- * Carousel requires a new page to be loaded. This event may be used to fill the content of that page 
+ * Carousel requires a new page to be loaded. This event may be used to fill the content of that page
  *
  * @name sap.m.Carousel#loadPage
  * @event
@@ -452,7 +450,6 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.pageId Id of the page which will be loaded
  * @public
  */
@@ -462,7 +459,7 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Carousel</code>.<br/> itself. 
  *  
- * Carousel requires a new page to be loaded. This event may be used to fill the content of that page 
+ * Carousel requires a new page to be loaded. This event may be used to fill the content of that page
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -515,7 +512,7 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
 
 
 /**
- * Carousel does not display a page any longer and unloads it. This event may be used to clean up the content of that page. 
+ * Carousel does not display a page any longer and unloads it. This event may be used to clean up the content of that page.
  *
  * @name sap.m.Carousel#unloadPage
  * @event
@@ -524,7 +521,6 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.pageId Id of the page which will be unloaded
  * @public
  */
@@ -534,7 +530,7 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Carousel</code>.<br/> itself. 
  *  
- * Carousel does not display a page any longer and unloads it. This event may be used to clean up the content of that page. 
+ * Carousel does not display a page any longer and unloads it. This event may be used to clean up the content of that page.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -587,14 +583,13 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
 
 
 /**
- * This event is fired after a carousel swipe has been completed. It is triggered both by physical swipe events and through API carousel manipulations such as calling 'next', 'previous' or 'setActivePageId' functions. 
+ * This event is fired after a carousel swipe has been completed. It is triggered both by physical swipe events and through API carousel manipulations such as calling 'next', 'previous' or 'setActivePageId' functions.
  *
  * @name sap.m.Carousel#pageChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.oldActivePageId Id of the page which was active before the page change.
  * @param {string} oControlEvent.getParameters.newActivePageId Id of the page which is active after the page change.
  * @public
@@ -605,7 +600,7 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Carousel</code>.<br/> itself. 
  *  
- * This event is fired after a carousel swipe has been completed. It is triggered both by physical swipe events and through API carousel manipulations such as calling 'next', 'previous' or 'setActivePageId' functions. 
+ * This event is fired after a carousel swipe has been completed. It is triggered both by physical swipe events and through API carousel manipulations such as calling 'next', 'previous' or 'setActivePageId' functions.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -655,22 +650,22 @@ sap.m.Carousel.M_EVENTS = {'loadPage':'loadPage','unloadPage':'unloadPage','page
 /**
  * Call this method to display the next page (corresponds to a swipe right). Returns 'this' for method chaining.
  *
- * @name sap.m.Carousel.prototype.next
+ * @name sap.m.Carousel#next
  * @function
-
  * @type sap.m.Carousel
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Call this method to display the previous page (corresponds to a swipe left). Returns 'this' for method chaining.
  *
- * @name sap.m.Carousel.prototype.previous
+ * @name sap.m.Carousel#previous
  * @function
-
  * @type sap.m.Carousel
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1030,25 +1025,15 @@ sap.m.Carousel.prototype.setActivePage = function (vPage) {
 		var iPageNr = this._getPageNumber(sPageId);
 		
 		if(!isNaN(iPageNr)) {
-			bPageFound = true;
 			if(this._oMobifyCarousel) {
 				//mobify carousel's move function is '1' based
 				this._oMobifyCarousel.move(iPageNr + 1);
-				this._changePage(iPageNr + 1);
 			}
 			// if oMobifyCarousel is not present yet, move takes place
 			// 'onAfterRendering', when oMobifyCarousel is created
 		} 
 	} 
-	
-	if(bPageFound) {
-		//active page shall only be set, if vPage has been 
-		//found amongst the carousel's pages
-		this.setAssociation("activePage", sPageId, true);
-	} else {
-		jQuery.sap.log.warning("sap.m.Carousel.prototype.setActivePage: Cannot set active page " + 
-	 	"because it is neither of type 'string' nor a 'sap.ui.core.Control'");
-	}
+	this.setAssociation("activePage", sPageId, true);
 	
 	return this;
 };
@@ -1058,7 +1043,7 @@ sap.m.Carousel.prototype.setActivePage = function (vPage) {
 /**
  * API method to set the carousel's height
  *
- * @param oHeight the new height as CSSSize
+ * @param {sap.ui.core.CSSSize} oHeight the new height as CSSSize
  * @public
  * @override
  */
@@ -1072,7 +1057,7 @@ sap.m.Carousel.prototype.setHeight = function(oHeight) {
 /**
  * API method to set the carousel's width
  *
- * @param oWidth the new width as CSSSize
+ * @param {sap.ui.core.CSSSize} oWidth the new width as CSSSize
  * @public
  * @override
  */
@@ -1084,9 +1069,9 @@ sap.m.Carousel.prototype.setWidth = function(oWidth) {
 };
 
 /**
- * API method to place the page inidicator. 
+ * API method to place the page indicator. 
  *
- * @param sPlacement either sap.m.PlacementType.Top or sap.m.PlacementType.Bottom
+ * @param {sap.m.PlacementType} sPlacement either sap.m.PlacementType.Top or sap.m.PlacementType.Bottom
  * @public
  * @override
  */
@@ -1122,7 +1107,7 @@ sap.m.Carousel.prototype.setPageIndicatorPlacement = function(sPlacement) {
 /**
  * API method to set whether the carousel should display the page indicator
  *
- * @param bShowPageIndicator the new show property
+ * @param {boolean} bShowPageIndicator the new show property
  * @public
  * @override
  */
@@ -1144,7 +1129,7 @@ sap.m.Carousel.prototype.setShowPageIndicator = function(bShowPageIndicator) {
  * show the first page after the last page is reached and vice 
  * versa.
  *
- * @param bLoop the new loop property
+ * @param {boolean} bLoop the new loop property
  * @public
  * @override
  */

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55,19 +55,17 @@ jQuery.sap.require("sap.m.Select");
  * The ActionSelect control provides a list of predefined items that allows end users to choose options and additionally trigger some actions.
  * @extends sap.m.Select
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.ActionSelect
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.Select.extend("sap.m.ActionSelect", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	associations : {
 		"buttons" : {type : "sap.m.Button", multiple : true, singularName : "button"}
@@ -158,10 +156,10 @@ sap.m.ActionSelect.prototype.hasContent = function() {
  */
 sap.m.ActionSelect.prototype.addContent = function() {
 	var oCore = sap.ui.getCore(),
-		oPopup = this.getPopup();
+		oPicker = this.getPicker();
 
 	this.getButtons().forEach(function(sButtonId) {
-		oPopup.addContent(oCore.byId(sButtonId));
+		oPicker.addContent(oCore.byId(sButtonId));
 	});
 };
 
@@ -170,16 +168,15 @@ sap.m.ActionSelect.prototype.addContent = function() {
 /* =========================================================== */
 
 /**
- * Called after the ActionSelect pop-up is render.
+ * Called after the ActionSelect picker pop-up is render.
  *
  * @override
  * @protected
- * @name sap.m.ActionSelect#onAfterRenderingPopup
+ * @name sap.m.ActionSelect#onAfterRenderingPicker
  */
-sap.m.ActionSelect.prototype.onAfterRenderingPopup = function() {
-	sap.m.Select.prototype.onAfterRenderingPopup.call(this);
-
-	this.getPopup().addStyleClass(sap.m.ActionSelectRenderer.CSS_CLASS + "Popup");
+sap.m.ActionSelect.prototype.onAfterRenderingPicker = function() {
+	sap.m.Select.prototype.onAfterRenderingPicker.call(this);
+	this.getPicker().addStyleClass(sap.m.ActionSelectRenderer.CSS_CLASS + "Picker");
 };
 
 /* =========================================================== */
@@ -200,15 +197,15 @@ sap.m.ActionSelect.prototype.onAfterRenderingPopup = function() {
  * @function
  */
 sap.m.ActionSelect.prototype.removeButton = function(vButton) {
-	var oPopup = this.getPopup();
+	var oPicker = this.getPicker();
 
-	if (oPopup) {
+	if (oPicker) {
 
 		if (typeof vButton === "number") {
 			vButton = this.getButtons()[vButton];
 		}
 
-		oPopup.removeContent(vButton);
+		oPicker.removeContent(vButton);
 	}
 
 	return this.removeAssociation("buttons", vButton);
@@ -223,11 +220,11 @@ sap.m.ActionSelect.prototype.removeButton = function(vButton) {
  * @function
  */
 sap.m.ActionSelect.prototype.removeAllButtons = function() {
-	var oPopup = this.getPopup();
+	var oPicker = this.getPicker();
 
-	if (oPopup) {
+	if (oPicker) {
 		this.getButtons().forEach(function(sButtonId) {
-			oPopup.removeContent(sButtonId);
+			oPicker.removeContent(sButtonId);
 		});
 	}
 

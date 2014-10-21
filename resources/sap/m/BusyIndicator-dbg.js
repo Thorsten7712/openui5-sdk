@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,18 +61,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * Control to indicate that the system is busy with some task and the user has to wait. When no image or gif is provided, the control renders the platforms native indicator using css.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.BusyIndicator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.BusyIndicator", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"text" : {type : "string", group : "Data", defaultValue : null},
@@ -87,8 +85,8 @@ sap.ui.core.Control.extend("sap.m.BusyIndicator", { metadata : {
 		"design" : {type : "string", group : "Appearance", defaultValue : 'auto'}
 	},
 	aggregations : {
-    	"_iconImage" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
-    	"_busyLabel" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"_iconImage" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}, 
+		"_busyLabel" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	}
 }});
 
@@ -371,20 +369,19 @@ sap.ui.core.Control.extend("sap.m.BusyIndicator", { metadata : {
 jQuery.sap.require("sap.ui.core.theming.Parameters");
 
 sap.m.BusyIndicator.prototype.init = function(){
-	if(sap.ui.core.theming.Parameters.get("sapMPlatformDependent") != "true"){
-		// Blue crystal design: rotating arc
-		// bugs.webkit.org: id=82647, id=74801 dynamically created SVG does not animate
-		// do not use SVG in ios and android < 4.2 
-		if(sap.ui.Device.browser.chrome 
-				|| sap.ui.Device.os.blackberry
-				|| sap.ui.Device.os.android && sap.ui.Device.os.version > 4.1){
-			// Browsers with correct SMIL animation show SVG (crisp rendering)
-			this._bUseSvg = true;
-		} else {
-			// Fall-back for other browsers: show canvas animation (aliased rendering)
-			this._bUseCanvas = true;
-		}
+	// Blue crystal design: rotating arc
+	// bugs.webkit.org: id=82647, id=74801 dynamically created SVG does not animate
+	// do not use SVG in ios and android < 4.2 
+	if(sap.ui.Device.browser.chrome 
+			|| sap.ui.Device.os.blackberry
+			|| sap.ui.Device.os.android && sap.ui.Device.os.version > 4.1){
+		// Browsers with correct SMIL animation show SVG (crisp rendering)
+		this._bUseSvg = true;
+	} else {
+		// Fall-back for other browsers: show canvas animation (aliased rendering)
+		this._bUseCanvas = true;
 	}
+
 	this._bIosStyle = sap.ui.Device.os.ios;
 	this._sBColor = sap.ui.core.theming.Parameters.get("sapUiPageBG") || "rgba(0, 0, 0, 0)";
 };
@@ -438,7 +435,7 @@ sap.m.BusyIndicator.prototype._animateCanvas = function(){
 	var clientWidth = this.oCanvas.clientWidth,
 		clientHeight = this.oCanvas.clientHeight;
 	
-	if(!clientWidth || !clientHeight){
+	if(!this.getVisible() || !clientWidth || !clientHeight){
 			// if the indicator becomes invisible, client width and height are set to 0. 
 			// Stop animation
 			this._animationId = undefined;

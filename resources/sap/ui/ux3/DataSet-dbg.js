@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,23 +60,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * DataSet
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.DataSet
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.DataSet", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setLeadSelection", "getLeadSelection", "addToolbarItem", "removeToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"showToolbar" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -85,11 +81,11 @@ sap.ui.core.Control.extend("sap.ui.ux3.DataSet", { metadata : {
 		"multiSelect" : {type : "boolean", group : "Behavior", defaultValue : false}
 	},
 	aggregations : {
-    	"items" : {type : "sap.ui.ux3.DataSetItem", multiple : true, singularName : "item", bindable : "bindable"}, 
-    	"views" : {type : "sap.ui.ux3.DataSetView", multiple : true, singularName : "view"}, 
-    	"filter" : {type : "sap.ui.core.Control", multiple : true, singularName : "filter"}, 
-    	"_viewSwitches" : {type : "sap.ui.core.Control", multiple : true, singularName : "_viewSwitch", visibility : "hidden"}, 
-    	"_toolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.ui.ux3.DataSetItem", multiple : true, singularName : "item", bindable : "bindable"}, 
+		"views" : {type : "sap.ui.ux3.DataSetView", multiple : true, singularName : "view"}, 
+		"filter" : {type : "sap.ui.core.Control", multiple : true, singularName : "filter"}, 
+		"_viewSwitches" : {type : "sap.ui.core.Control", multiple : true, singularName : "_viewSwitch", visibility : "hidden"}, 
+		"_toolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedView" : {type : "sap.ui.ux3.DataSetView", multiple : false}
@@ -510,14 +506,13 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
 
 	
 /**
- * selection Changed 
+ * selection Changed
  *
  * @name sap.ui.ux3.DataSet#selectionChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.oldLeadSelectedIndex Old lead selected index
  * @param {int} oControlEvent.getParameters.newLeadSelectedIndex New lead selected index
  * @public
@@ -528,7 +523,7 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.DataSet</code>.<br/> itself. 
  *  
- * selection Changed 
+ * selection Changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -576,14 +571,13 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
 
 
 /**
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @name sap.ui.ux3.DataSet#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The search query
  * @public
  */
@@ -593,7 +587,7 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.DataSet</code>.<br/> itself. 
  *  
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -642,53 +636,48 @@ sap.ui.ux3.DataSet.M_EVENTS = {'selectionChanged':'selectionChanged','search':'s
 /**
  * Set LeadSelection index
  *
- * @name sap.ui.ux3.DataSet.prototype.setLeadSelection
+ * @name sap.ui.ux3.DataSet#setLeadSelection
  * @function
- * @param {int} 
- *         iIIndex
- * 
-
+ * @param {int} iIIndex
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Get LeadSelection index
  *
- * @name sap.ui.ux3.DataSet.prototype.getLeadSelection
+ * @name sap.ui.ux3.DataSet#getLeadSelection
  * @function
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * add a toolbarItem to the toolbar
  *
- * @name sap.ui.ux3.DataSet.prototype.addToolbarItem
+ * @name sap.ui.ux3.DataSet#addToolbarItem
  * @function
- * @param {sap.ui.commons.ToolbarItem} 
- *         oOToolbarItem
+ * @param {sap.ui.commons.ToolbarItem} oOToolbarItem
  *         ToolbarItem
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * remove a toolbarItem to the toolbar
  *
- * @name sap.ui.ux3.DataSet.prototype.removeToolbarItem
+ * @name sap.ui.ux3.DataSet#removeToolbarItem
  * @function
- * @param {sap.ui.commons.ToolbarItem} 
- *         oOToolbarItem
- * 
-
+ * @param {sap.ui.commons.ToolbarItem} oOToolbarItem
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1052,7 +1041,7 @@ sap.ui.ux3.DataSet.prototype._rerenderFilter = function() {
 
 /**
  * setter for multi selection mode
- *  * @param {boolean}
+ * @param {boolean}
  *            bMode true for multi mode, false for single mode
  * @public
  */

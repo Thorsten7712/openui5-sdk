@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -30,8 +30,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject'],
 	 * @class Base Class for Template.
 	 * @extends sap.ui.base.ManagedObject
 	 * @abstract
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @name sap.ui.core.tmpl.Template
 	 * @experimental Since 1.15.0. The Template concept is still under construction, so some implementation details can be changed in future.
 	 */
@@ -249,7 +249,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject'],
 	
 				// add the custom renderer function
 				renderer: {
-					renderTemplate: fnRenderer
+					renderTemplate: fnRenderer,
+					hasControlData: oMetadata._hasControlData
 				}
 				
 			});
@@ -267,6 +268,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject'],
 	 * 
 	 * @param {string} sId the control ID
 	 * @param {object} [oContext] the context for the renderer/templating
+	 * @param {sap.ui.core.mvc.View} oView
 	 * @return {sap.ui.core.tmpl.TemplateControl} the created control instance
 	 * @public
 	 * @name sap.ui.core.tmpl.Template#createControl
@@ -297,7 +299,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject'],
 	 * 
 	 * @param {string|DomRef} oRef the id or the DOM reference where to render the template
 	 * @param {object} [oContext] The context to use to evaluate the Template. It will be applied as value for the context property of the created control.
-	 * @param {string|int} [oPosition] Describes the position where the control should be put into the container
+	 * @param {string|int} [vPosition] Describes the position where the control should be put into the container
+	 * @param {boolean} bInline
 	 * @return {sap.ui.core.tmpl.TemplateControl} the created control instance
 	 * @public
 	 * @name sap.ui.core.tmpl.Template#placeAt

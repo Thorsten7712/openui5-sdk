@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.Toolbar");jQuery.sap.require("sap.m.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.m.Toolbar",{metadata:{interfaces:["sap.ui.core.Toolbar","sap.m.IBar"],library:"sap.m",properties:{"visible":{type:"boolean",group:"Appearance",defaultValue:true},"width":{type:"sap.ui.core.CSSSize",group:"Appearance",defaultValue:null},"active":{type:"boolean",group:"Behavior",defaultValue:false},"enabled":{type:"boolean",group:"Behavior",defaultValue:true},"height":{type:"sap.ui.core.CSSSize",group:"Appearance",defaultValue:''},"design":{type:"sap.m.ToolbarDesign",group:"Appearance",defaultValue:sap.m.ToolbarDesign.Auto}},defaultAggregation:"content",aggregations:{"content":{type:"sap.ui.core.Control",multiple:true,singularName:"content"}},events:{"press":{}}}});sap.m.Toolbar.M_EVENTS={'press':'press'};jQuery.sap.require("sap.m.ToolbarSpacer");jQuery.sap.require("sap.m.ToolbarDesign");jQuery.sap.require("sap.m.BarInPageEnabler");jQuery.sap.require("sap.m.ToolbarLayoutData");jQuery.sap.require("sap.ui.core.ResizeHandler");jQuery.sap.require("sap.ui.core.EnabledPropagator");sap.ui.core.EnabledPropagator.call(sap.m.Toolbar.prototype);sap.m.Toolbar.shrinkClass="sapMTBShrinkItem";

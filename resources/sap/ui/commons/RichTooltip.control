@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>RichTooltip</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>
 	Is used to provide tool tips that can have long text, image and title. This tool tip extends the TooltipBase.
 	</documentation>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -74,16 +74,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.SearchField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.SearchField", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -91,8 +91,6 @@ sap.ui.core.Control.extend("sap.ui.commons.SearchField", { metadata : {
 		// methods
 		"clearHistory", "suggest"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enableListSuggest" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -114,7 +112,7 @@ sap.ui.core.Control.extend("sap.ui.commons.SearchField", { metadata : {
 		"maxHistoryItems" : {type : "int", group : "Behavior", defaultValue : 0}
 	},
 	aggregations : {
-    	"searchProvider" : {type : "sap.ui.core.search.SearchProvider", multiple : false}
+		"searchProvider" : {type : "sap.ui.core.search.SearchProvider", multiple : false}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -478,7 +476,6 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * 
  * Defines the number of items in the suggestion list that shall be displayed at once. If the overall number of list items is higher than the setting,
  * a scroll bar is provided.
- * 
  *
  * Default value is <code>20</code>
  *
@@ -505,7 +502,6 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * Getter for property <code>startSuggestion</code>.
  * 
  * Minimum length of the entered string triggering the suggestion list.
- * 
  *
  * Default value is <code>3</code>
  *
@@ -532,7 +528,6 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * Getter for property <code>maxSuggestionItems</code>.
  * 
  * Maximum number of suggestion items in the suggestion list.
- * 
  *
  * Default value is <code>10</code>
  *
@@ -687,14 +682,13 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
 
 	
 /**
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @name sap.ui.commons.SearchField#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The search query
  * @public
  */
@@ -704,7 +698,7 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.SearchField</code>.<br/> itself. 
  *  
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -751,14 +745,13 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
 
 
 /**
- * Event which is fired when new suggest values are required. 
+ * Event which is fired when new suggest values are required.
  *
  * @name sap.ui.commons.SearchField#suggest
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The value for which suggestions are required.
  * @public
  */
@@ -768,7 +761,7 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.SearchField</code>.<br/> itself. 
  *  
- * Event which is fired when new suggest values are required. 
+ * Event which is fired when new suggest values are required.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -817,28 +810,26 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
 /**
  * Clears the history of the control
  *
- * @name sap.ui.commons.SearchField.prototype.clearHistory
+ * @name sap.ui.commons.SearchField#clearHistory
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Callback function used to provide the suggest values in the handler of the suggest event (only in list suggestion mode)
  *
- * @name sap.ui.commons.SearchField.prototype.suggest
+ * @name sap.ui.commons.SearchField#suggest
  * @function
- * @param {string} 
- *         sSSuggestValue
+ * @param {string} sSSuggestValue
  *         The value which was provided in the corresponding suggest event (parameter 'value')
- * @param {string[]} 
- *         aASuggestions
+ * @param {string[]} aASuggestions
  *         The list of suggestions belonging to the suggest value
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -866,6 +857,7 @@ var _DEFAULT_VISIBLE_ITEM_COUNT = 20;
 sap.ui.commons.SearchField.prototype.init = function(){
 	_initChildControls(this, this.getEnableListSuggest());
 	this._oHistory = new sap.ui.core.History(this.getId());
+	this._clearTooltipText = getText("SEARCHFIELD_CLEAR_TOOLTIP");
 };
 
 
@@ -911,6 +903,7 @@ sap.ui.commons.SearchField.prototype.onAfterRendering = function(){
 		var iButtonWidth = this._btn.$().outerWidth(true);
 		this._ctrl.$().css(sap.ui.getCore().getConfiguration().getRTL() ? "left" : "right", iButtonWidth+"px");
     }
+	_setClearTooltip(this);
 };
 
 
@@ -937,14 +930,20 @@ sap.ui.commons.SearchField.prototype.oncut = sap.ui.commons.SearchField.prototyp
 
 sap.ui.commons.SearchField.prototype.fireSearch = function(mArguments) {
 	var sVal = jQuery(this._ctrl.getInputDomRef()).val();
-	if((!sVal && !this.getEnableFilterMode()) || !this.getEditable() || !this.getEnabled()) {
+	if(!this.getEditable() || !this.getEnabled()) {
 		return this;
 	}
+	
+	this.setValue(sVal);
+	
+	if(!sVal && !this.getEnableFilterMode()){
+		return this;
+	}
+	
 	if(!mArguments) {
 		mArguments = {};
 	}
-
-	this.setValue(sVal);
+	
 	if(!mArguments.noFocus){
 		sVal = this.getValue();
 		this.focus();
@@ -996,7 +995,12 @@ sap.ui.commons.SearchField.prototype.getValue = function() {
 };
 
 sap.ui.commons.SearchField.prototype.setValue = function(sValue) {
-	return _set(this, "Value", sValue, !!this.getDomRef(), true);
+	var res = _set(this, "Value", sValue, !!this.getDomRef(), true);
+	if(this.getEnableClear() && this.getDomRef()){
+		this.$().toggleClass("sapUiSearchFieldVal", !!sValue);
+		_setClearTooltip(this);
+	}
+	return res;
 };
 
 sap.ui.commons.SearchField.prototype.setEnableCache = function(bEnableCache) {
@@ -1114,6 +1118,17 @@ sap.ui.commons.SearchField.prototype.addAriaLabelledBy = function(v) {
 // Private helper functions
 //***********************************************
 
+var _setClearTooltip = function(oThis){
+	var $this = oThis.$(),
+		$ico = oThis._ctrl.$("searchico");
+	
+	if($this.hasClass("sapUiSearchFieldClear") && $this.hasClass("sapUiSearchFieldVal")){
+		$ico.attr("title", oThis._clearTooltipText);
+	}else{
+		$ico.removeAttr("title");
+	}
+};
+
 var _set = function(oThis, sMutator, oVal, bSuppressRerendering, bUpdateModelProperty) {
 	var oOldVal = _get(oThis, sMutator);
 	oThis._ctrl["set"+sMutator](oVal);
@@ -1146,6 +1161,11 @@ var _initChildControls = function(oThis, bEnableListSuggest) {
 		oNewControl = new sap.ui.commons.SearchField.TF(oThis.getId()+"-tf");
 	}
 	oNewControl.setParent(oThis);
+	oNewControl.addEventDelegate({
+		onAfterRendering: function(){
+			_setClearTooltip(oThis);
+		}
+	});
 	if(oOldControl){
 		oNewControl.setValue(oOldControl.getValue());
 		oNewControl.setEnabled(oOldControl.getEnabled());
@@ -1379,7 +1399,8 @@ sap.ui.commons.ComboBox.extend("sap.ui.commons.SearchField.CB", {
   onkeypress : sap.ui.commons.SearchField.TF.prototype.onkeypress,
   
   onkeyup : function(oEvent, bSkipOpen) {
-	this.getParent().$().toggleClass("sapUiSearchFieldVal", !!jQuery(this.getInputDomRef()).val())
+	this.getParent().$().toggleClass("sapUiSearchFieldVal", !!jQuery(this.getInputDomRef()).val());
+	_setClearTooltip(this.getParent());
 	  
   	if(oEvent){
   		var oKC = jQuery.sap.KeyCodes;

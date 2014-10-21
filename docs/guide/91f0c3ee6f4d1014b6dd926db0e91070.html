@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7304410795137086"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=739813710885199"/>
 <title>Custom Data - Attaching Data Objects to Controls</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -90,7 +92,7 @@ ctrl.bindAggregation("items", "questions", oItemTemplate);</pre></div>
 		<p class="p">In XML views, <samp class="ph codeph">CustomData</samp> objects can be written as normal aggregated objects.
 				However, to reduce the amount of code and improve the readability, a shortcut
 				notation has been introduced: You can directly write the data attributes into the
-				control tags. Simply use the following namespace for the rspective attributes:</p>
+				control tags. Simply use the following namespace for the respective attributes:</p>
 
 			<p class="p"><samp class="ph codeph">myNamespace="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1</samp>.</p>
  
@@ -171,11 +173,18 @@ ctrl.bindAggregation("items", "questions", oItemTemplate);</pre></div>
             };</pre></div>
  
 	 </div></div>
-</div>
-<div class="related-links"> 
+<div class="section"><div class="section_title">Use in HTML Views</div><div type="Use in HTML Views">
+			
+			<p class="p">To add custom data objects to a control or an element in HTML views, use a specific
+				HTML attribute with the following syntax:
+					<samp class="ph codeph">data-custom-data:my-key="myValue"</samp>. A custom data attribute
+				starts with <samp class="ph codeph">data-custom-data:</samp> followed by the name of the key. The
+				dashes convert the respective following character into an upper case character. The
+				value can be either a string or a binding expression:</p>
 
-<div class="familylinks">
-</div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;div data-sap-ui-type="sap.ui.commons.Button" data-text="This button is added dynamically" data-custom-data:my-key="myValue" data-custom-data:my-bound-key="{/mypath}"&gt;&lt;/div&gt;</pre></div>
+
+		</div></div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

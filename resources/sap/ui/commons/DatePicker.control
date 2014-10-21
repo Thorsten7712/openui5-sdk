@@ -3,7 +3,7 @@
 
 	<name>DatePicker</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Allows end users to interact with dates.
 Entries can directly be written in, or selected from a calendar pad.
 Note: Dates can always be manually entered in the fix YYYYMMDD format, on top of the flexible &quot;locale&quot; format.

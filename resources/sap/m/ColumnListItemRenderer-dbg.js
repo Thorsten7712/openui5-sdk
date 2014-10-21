@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,7 +53,7 @@ sap.m.ColumnListItemRenderer.renderLIContent = function(rm, oLI, oTable) {
 		aCells = oLI.getCells();
 
 	// remove cloned headers
-	oLI.destroyAggregation("clonedHeaders", true);
+	oLI.destroyClonedHeaders();
 
 	// remove pop-in if list is not in rendering phase
 	// in rendering phase all pop-ins are already removed
@@ -165,7 +165,8 @@ sap.m.ColumnListItemRenderer.renderPopin = function(rm, oLI, oTable) {
 			rm.writeClasses();
 			rm.write(">");
 			oHeader = oHeader.clone();
-			oLI.addAggregation("clonedHeaders", oHeader, true);
+			oColumn.addDependent(oHeader);
+			oLI.addClonedHeader(oHeader);
 			oColumn.applyAlignTo(oHeader, "Begin");
 			rm.renderControl(oHeader);
 			rm.write("</div>");

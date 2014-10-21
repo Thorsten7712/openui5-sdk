@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Label</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Label control is used in a UI5 mobile application to provide label text for other controls. Design such as bold, and text alignment can be specified. </documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

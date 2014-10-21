@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -51,8 +51,8 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 	 *
 	 * @class Base Class for managed objects.
 	 * @extends sap.ui.base.EventProvider
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @public
 	 * @name sap.ui.base.ManagedObject
 	 * @experimental Since 1.11.2. ManagedObject as such is public and usable. Only the support for the optional parameter 
@@ -605,6 +605,14 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 					oValue = "" + oValue;
 				}
 			} else if (oType.getName() == "string[]") {
+				// For compatibility convert string values to array with single entry
+				if (typeof oValue == "string") {
+					oValue = [oValue];
+				}
+				if (!jQuery.isArray(oValue)) {
+					throw new Error("\"" + oValue + "\" is of type " + typeof oValue + ", expected string[]" +
+							" for property \"" + sPropertyName + "\" of " + this);
+				}
 				for (var i = 0; i < oValue.length; i++) {
 					if (!typeof oValue[i] == "string") {
 						oValue[i] = "" + oValue[i];
@@ -1901,8 +1909,8 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 				oPart.model = oPart.path.substr(0, iSeparatorPos);
 				oPart.path = oPart.path.substr(iSeparatorPos + 1);
 			}
-			// if we have multiple bindings the binding mode can be one way only
-			if (oBindingInfo.parts.length > 1) {
+			// if a formatter exists or we have multiple bindings the binding mode can be one way only 
+			if (oBindingInfo.formatter || oBindingInfo.parts.length > 1) {
 				oPart.mode = sap.ui.model.BindingMode.OneWay;
 			}
 			
@@ -2052,6 +2060,7 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 			this[oPropertyInfo._sMutator](oValue);
 			oBindingInfo.skipModelUpdate = false;
 		} catch (oException) {
+			oBindingInfo.skipModelUpdate = false;
 			if (oException instanceof sap.ui.model.FormatException) {
 				this.fireFormatError({
 					element : this,
@@ -2110,6 +2119,7 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 						}, false, true); // bAllowPreventDefault, bEnableEventBubbling
 					}
 				} catch (oException) {
+					oBindingInfo.skipPropertyUpdate = false;
 					if (oException instanceof sap.ui.model.ParseException) {
 						this.fireParseError({
 							element : this,
@@ -2149,6 +2159,7 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 	 * @param {object} oBindingInfo the binding info
 	 * @param {string} oBindingInfo.path the binding path
 	 * @param {sap.ui.base.ManagedObject} oBindingInfo.template the template to clone for each item in the aggregation
+	 * @param {boolean} [oBindingInfo.templateShareable=true] option to enable that the template will be shared which means that it won't be destroyed or cloned automatically 
 	 * @param {function} oBindingInfo.factory the factory function
 	 * @param {number} oBindingInfo.startIndex the first entry of the list to be created
 	 * @param {number} oBindingInfo.length the amount of entries to be created (may exceed the sizelimit of the model)
@@ -2208,6 +2219,10 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 		
 		// if we have a template we will create a factory function
 		if (oBindingInfo.template) {
+			// set default for templateShareable
+			if (oBindingInfo.templateShareable === undefined) { 
+				oBindingInfo.templateShareable = true;
+			}
 			oBindingInfo.factory = function(sId) {
 				return oBindingInfo.template.clone(sId);
 			} 
@@ -2297,6 +2312,11 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 				oBindingInfo.binding.detachRefresh(oBindingInfo.modelRefreshHandler);
 				oBindingInfo.binding.detachEvents(oBindingInfo.events);
 			}
+			// remove template if any
+			if (!oBindingInfo.templateShareable && oBindingInfo.template && oBindingInfo.template.destroy) {
+					oBindingInfo.template.destroy();
+			}
+			
 			delete this.mBindingInfos[sName];
 			if (!bSuppressReset) {
 				this[oAggregationInfo._sDestructor]();
@@ -2574,7 +2594,7 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 	 * Note: A ManagedObject inherits binding contexts from the Core only when it is a descendant of an UIArea.
 	 *  
 	 * @param {Object} oContext the new binding context for this object
-	 * @param {string} [sName] the name of the model to set the context for or <code>undefined</code>
+	 * @param {string} [sModelName] the name of the model to set the context for or <code>undefined</code>
 	 *
 	 * @return {sap.ui.base.ManagedObject} reference to the instance itself
 	 * @public
@@ -2702,7 +2722,7 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 	 *  
 	 * Note: A ManagedObject inherits binding contexts from the Core only when it is a descendant of an UIArea.
 	 *  
-	 * @param {string} [sName] the name of the model or <code>undefined</code>
+	 * @param {string} [sModelName] the name of the model or <code>undefined</code>
 	 * @return {Object} the binding context of this object
 	 * @public
 	 * @name sap.ui.base.ManagedObject#getBindingContext
@@ -3035,8 +3055,15 @@ sap.ui.define(['jquery.sap.global', './BindingParser', './DataType', './EventPro
 		if (bCloneBindings) {
 			jQuery.each(this.mBindingInfos, function(sName, oBindingInfo) {
 				var oCloneBindingInfo = jQuery.extend({}, oBindingInfo);
+				
+				// clone the template if it is not shared
+				if (!oBindingInfo.templateShareable && oBindingInfo.template && oBindingInfo.template.clone) {
+					oCloneBindingInfo.template = oBindingInfo.template.clone(sIdSuffix,	aLocalIds);
+					delete oCloneBindingInfo.factory;
+				}
+				
 				delete oCloneBindingInfo.binding; // remove the runtime binding info (otherwise the property will not be connected again!)
-				if (oBindingInfo.factory) {
+				if (oBindingInfo.factory || oBindingInfo.template) {
 					oClone.bindAggregation(sName, oCloneBindingInfo);
 				} else {
 					oClone.bindProperty(sName, oCloneBindingInfo);

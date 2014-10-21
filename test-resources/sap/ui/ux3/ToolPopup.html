@@ -273,25 +273,32 @@
 	}).placeAt("sample1");
 
 	var oDefBtn1 = new sap.ui.commons.Button("oDefBtn1", {
-		text: "OK1"
+		text: "OK1",
+		press: function(){
+			openAlert("OK1").placeAt("sample1");
+		}
 	});
 	var oDefBtn2 = new sap.ui.commons.Button("oDefBtn2", {
-		text: "OK2"
+		text: "OK2",
+		press: function(){
+			openAlert("OK2").placeAt("sample1");
+		}
 	});
 	var oDefBtn3 = new sap.ui.commons.Button("oDefBtn3", {
-		text: "Default"
+		text: "Default",
+		press: function(){
+			openAlert("Default").placeAt("sample1");
+		}
 	});
 	var oDefBtn4 = new sap.ui.commons.Button("oDefBtn4", {
 		text: "Close",
 		press:function(){
-			oToolPopupDefBtn.close();
+			sap.ui.commons.MessageBox.confirm("Do you want to close the ToolPopup?", function(bResult){if(bResult==true){oToolPopupDefBtn.close();}}, "Confirm");
 		}
 	});
 	
 	var oToolPopupDefBtn = new sap.ui.ux3.ToolPopup({
-		content : [ new sap.ui.commons.Button({
-				text : "button"
-			}),
+		content : [ 
 			new sap.ui.commons.FormattedTextView({
 				htmlText : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 			})
@@ -321,7 +328,7 @@
 		text: "OK1",
 		press: function(){
 			openAlert("OK1").placeAt("sample1");
-			}
+		}
 	});
 	var oDefFocBtn2 = new sap.ui.commons.Button("oDefFocBtn2", {
 		text: "Initial Focus",

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ProgressIndicator</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Shows the progress of a process in a graphical way. The indicator can be displayed with or without numerical values. 
 	The filling can be displayed in color only, or additionally with the percentage rate. The indicator status can be interactive.</documentation>
 

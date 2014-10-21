@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -40,6 +40,7 @@ jQuery.sap.require("sap.ui.core.Control");
  * <li>{@link #getShowMagnifier showMagnifier} : boolean (default: true)</li>
  * <li>{@link #getShowRefreshButton showRefreshButton} : boolean (default: false)</li>
  * <li>{@link #getRefreshButtonTooltip refreshButtonTooltip} : string</li>
+ * <li>{@link #getShowSearchButton showSearchButton} : boolean (default: true)</li>
  * <li>{@link #getSelectOnFocus selectOnFocus} : boolean (default: true)</li></ul>
  * </li>
  * <li>Aggregations
@@ -63,18 +64,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * Enables users to input a search string.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.SearchField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.SearchField", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"value" : {type : "string", group : "Data", defaultValue : null, bindable : "bindable"},
@@ -86,6 +85,7 @@ sap.ui.core.Control.extend("sap.m.SearchField", { metadata : {
 		"showMagnifier" : {type : "boolean", group : "Misc", defaultValue : true, deprecated: true},
 		"showRefreshButton" : {type : "boolean", group : "Behavior", defaultValue : false},
 		"refreshButtonTooltip" : {type : "string", group : "Misc", defaultValue : null},
+		"showSearchButton" : {type : "boolean", group : "Behavior", defaultValue : true},
 		"selectOnFocus" : {type : "boolean", group : "Behavior", defaultValue : true}
 	},
 	events : {
@@ -295,7 +295,7 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
  * @return {boolean} the value of property <code>showMagnifier</code>
  * @public
  * @deprecated Since version 1.16.0. 
- * This parameter was introduced for the obsolete sap_mvi theme due to differences in native rendering of the search field on different devices. It is ignored in the sap_bluecrystal theme that has common design for all devices.
+ * This parameter is deprecated. Use "showSearchButton" instead.
  * @name sap.m.SearchField#getShowMagnifier
  * @function
  */
@@ -309,7 +309,7 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
  * @return {sap.m.SearchField} <code>this</code> to allow method chaining
  * @public
  * @deprecated Since version 1.16.0. 
- * This parameter was introduced for the obsolete sap_mvi theme due to differences in native rendering of the search field on different devices. It is ignored in the sap_bluecrystal theme that has common design for all devices.
+ * This parameter is deprecated. Use "showSearchButton" instead.
  * @name sap.m.SearchField#setShowMagnifier
  * @function
  */
@@ -317,8 +317,7 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
 
 /**
  * Getter for property <code>showRefreshButton</code>.
- * Set to true to display a "refresh" button. By pressing the refresh button, the user can reload the results list without changing the search string. This is a visual clue only: a normal search event is fired when a user presses on a refresh button.
- * 
+ * Set to true to display a refresh button in place of the search icon. By pressing the refresh button or F5 key on keyboard, the user can reload the results list without changing the search string.
  *
  * Default value is <code>false</code>
  *
@@ -371,6 +370,34 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
 
 
 /**
+ * Getter for property <code>showSearchButton</code>.
+ * Set to true to show the search button with the magnifier icon.
+ * If false, both the search and refresh buttons are not displayed even if the "showRefreshButton" property is true.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>showSearchButton</code>
+ * @public
+ * @since 1.23
+ * @name sap.m.SearchField#getShowSearchButton
+ * @function
+ */
+
+/**
+ * Setter for property <code>showSearchButton</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bShowSearchButton  new value for property <code>showSearchButton</code>
+ * @return {sap.m.SearchField} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.23
+ * @name sap.m.SearchField#setShowSearchButton
+ * @function
+ */
+
+
+/**
  * Getter for property <code>selectOnFocus</code>.
  * Normally, search text is selected for copy when the SearchField is focused by keyboard navigation. If an application re-renders the SearchField during the liveChange event, set this property to false to disable text selection by focus.
  *
@@ -398,14 +425,13 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
 
 
 /**
- * Event which is fired when the user triggers a search. 
+ * Event which is fired when the user triggers a search.
  *
  * @name sap.m.SearchField#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The search query string.
  * @param {boolean} oControlEvent.getParameters.refreshButtonPressed Indicates if the user pressed the refresh button.
  * @public
@@ -416,7 +442,7 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SearchField</code>.<br/> itself. 
  *  
- * Event which is fired when the user triggers a search. 
+ * Event which is fired when the user triggers a search.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -464,7 +490,7 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
 
 
 /**
- * This event is fired when the value of the search field is changed by a user - e.g. at each key press. Do not invalidate or re-render a focused search field, especially during the liveChange event. 
+ * This event is fired when the value of the search field is changed by a user - e.g. at each key press. Do not invalidate or re-render a focused search field, especially during the liveChange event.
  *
  * @name sap.m.SearchField#liveChange
  * @event
@@ -472,7 +498,6 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.newValue Current search string.
  * @public
  */
@@ -482,7 +507,7 @@ sap.m.SearchField.M_EVENTS = {'search':'search','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SearchField</code>.<br/> itself. 
  *  
- * This event is fired when the value of the search field is changed by a user - e.g. at each key press. Do not invalidate or re-render a focused search field, especially during the liveChange event. 
+ * This event is fired when the value of the search field is changed by a user - e.g. at each key press. Do not invalidate or re-render a focused search field, especially during the liveChange event.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -544,11 +569,6 @@ sap.m.SearchField.prototype.init = function() {
 
 	// IE9 does not fire input event when characters are deleted in an input field, use keyup instead
 	this._inputEvent = sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version < 10 ? "keyup" : "input";
-
-	// New design: right-aligned magnifying glass and refresh button
-	if(sap.ui.core.theming.Parameters.get("sapMPlatformDependent") !== "true"){
-		this._sDesign = "bluecrystal";
-	}
 
 	// Default placeholder: "Search"
 	this.setProperty("placeholder", sap.ui.getCore().getLibraryResourceBundle("sap.m").getText("FACETFILTER_SEARCH"),true);

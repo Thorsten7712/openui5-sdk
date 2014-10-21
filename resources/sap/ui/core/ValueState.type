@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>ValueState</name>
-  <author>SAP AG</author>
+  <author>SAP SE</author>
   <documentation>Marker for the correctness of the current value.</documentation>
   
   <enumeration>

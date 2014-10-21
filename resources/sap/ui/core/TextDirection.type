@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>TextDirection</name>
-  <author>SAP AG</author>
+  <author>SAP SE</author>
   <documentation>Configuration options for the direction of texts.</documentation>
   
   <enumeration>

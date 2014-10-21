@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>App</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>App is the root element of a UI5 mobile application. It inherits from NavContainer and thus provides its navigation capabilities.
 It also adds certain header tags to the HTML page which are considered useful for mobile apps.</documentation>
 

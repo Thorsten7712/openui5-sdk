@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -41,8 +41,8 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.properties', 'jquery.sap.strings
 	 *
 	 * Exception: Fallback for "zh_HK" is "zh_TW" before zh.
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @since 0.9.0
 	 * @name jQuery.sap.util.ResourceBundle
 	 * @public
@@ -211,7 +211,7 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.properties', 'jquery.sap.strings
 	/*
 	 * Implements jQuery.sap.util.ResourceBundle
 	 */
-	var Bundle = function(sUrl, sLocale, bIncludeInfo){
+	var Bundle = function(sUrl, sLocale, bIncludeInfo, bAsync){
 		//last fallback is english if no or no valid locale is given
 		//TODO: If the browsers allow to access the users language preference this should be the fallback
 		this.sLocale = normalize(sLocale) || defaultLocale();
@@ -226,7 +226,10 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.properties', 'jquery.sap.strings
 		this.aPropertyFiles = [];
 		this.aLocales = [];
 		//load the most specific property file
-		load(this, this.sLocale);
+		var p = load(this, this.sLocale, bAsync);
+		if(bAsync){
+			this._promise = p;
+		}
 	};
 
 	Bundle.prototype = {};
@@ -331,14 +334,16 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.properties', 'jquery.sap.strings
 	 * adds it to the bundle.
 	 * @param {string} sLocale the text to parse
 	 * @param oBundle the resource bundle to extend
+	 * @param bAsync whether the resource should be loaded asynchronously. A Promise is returned in this case
 	 * @return The newly loaded properties or <code>null</code>
 	 *         when the properties for the given locale already loaded.
 	 * @private
 	 */
-	function load(oBundle, sLocale) {
+	function load(oBundle, sLocale, bAsync) {
 		var oUrl = oBundle.oUrlInfo,
 			oRequest,
-			oProperties; 
+			oProperties,
+			oPromise; 
 
 		if( jQuery.inArray(sLocale, oBundle.aLocales) == -1 ){
 			if ( shouldRequest(sLocale) ) {
@@ -359,21 +364,38 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.properties', 'jquery.sap.strings
 						};
 						break;
 				}
-				oProperties = jQuery.sap.properties(oRequest);
+				
+				if(bAsync){
+					oRequest.async = true;
+					oPromise = window.Promise.resolve(jQuery.sap.properties(oRequest));
+				}else{
+					oProperties = jQuery.sap.properties(oRequest);
+				}
 			} else {
 				// dummy result (empty)
 				oProperties = {
 						getProperty : function() { return undefined; }
 				}
+				if(bAsync){
+					oPromise = window.Promise.resolve(oProperties);
+				}
 			}
 			
 			// remember result and locales that have been loaded so far (to avoid repeated roundtrips) 
-			oBundle.aPropertyFiles.push(oProperties);
-			oBundle.aLocales.push(sLocale);
-			
-			return oProperties;
+			if(bAsync){
+				oPromise.then(function(oProps){
+					oBundle.aPropertyFiles.push(oProps);
+					oBundle.aLocales.push(sLocale);
+				});
+				return oPromise;
+			}else{
+				oBundle.aPropertyFiles.push(oProperties);
+				oBundle.aLocales.push(sLocale);
+				return oProperties;
+			}
 		}
-		return null;
+		
+		return bAsync ? window.Promise.resolve(null) : null;
 	}
 
 	function shouldRequest(sLocale) {
@@ -393,13 +415,25 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.properties', 'jquery.sap.strings
 	 * @param {string} [mParams.url=''] The URL to the base .properties file of a bundle (.properties file without any locale information, e.g. "mybundle.properties")
 	 * @param {string} [mParams.locale='en'] Optional string of the language and an optional country code separated by underscore (e.g. "en_GB" or "fr")
 	 * @param {boolean} [mParams.includeInfo=false] Optional boolean whether to include origin information into the returned property values
-	 * @return {jQuery.sap.util.ResourceBundle} A new resource bundle instance
+	 * @param {boolean} [mParams.async=false] Optional boolean whether first bundle should be loaded asynchronously. Note: fallback bundles will still be loaded synchronously afterwards if needed.
+	 * @return {jQuery.sap.util.ResourceBundle|Promise} A new resource bundle instance or a ECMA Script 6 Promise (in asynchronous case)
 	 * @SecSink {0|PATH} Parameter is used for future HTTP requests
 	 */
 	jQuery.sap.resources = function resources(mParams) {
 		mParams = jQuery.extend({url: "", locale: undefined, includeInfo: false}, mParams);
-		var oBundle = new Bundle(mParams.url, mParams.locale, mParams.includeInfo);
-		return oBundle;
+		var bAsync = !!mParams.async;
+		var oBundle = new Bundle(mParams.url, mParams.locale, mParams.includeInfo, bAsync);
+		if(bAsync){
+			return new window.Promise(function(resolve, reject){
+				function _resolve(){
+					resolve(oBundle);
+					delete oBundle._promise;
+				}
+				oBundle._promise.then(_resolve, _resolve);
+			});
+		}else{
+			return oBundle;
+		}
 	};
 
 	jQuery.sap.resources._getFallbackLocales = function(sLocale, aSupportedLocales) {

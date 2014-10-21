@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,26 +54,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Creates the "Message"s to be supplied to the "MessageBar" Control.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.Message
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Message", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"bindDetails"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"type" : {type : "sap.ui.commons.MessageType", group : "Behavior", defaultValue : null},
@@ -208,11 +204,11 @@ sap.ui.core.Control.extend("sap.ui.commons.Message", { metadata : {
  * where
  * function getDetails(sId) {... return htmlString;}
  *
- * @name sap.ui.commons.Message.prototype.bindDetails
+ * @name sap.ui.commons.Message#bindDetails
  * @function
-
  * @type string
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -432,6 +428,7 @@ sap.ui.commons.Message.LEFT_INCR = 10;
  * This function will be supplied the ID of the Message.
  * This function is expected to return the (simple) HTML string giving the
  * details belonging to this message ID.
+ * @param {Function} fnCallBack
  * @public
  */
 sap.ui.commons.Message.prototype.bindDetails = function(fnCallBack) {

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,18 +57,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * Internal sub-control of the ExactBrowser. The control is not intended to be used stand alone. For this purpose, the ExactBrowser control can be used.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ExactList
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ExactList", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"showClose" : {type : "boolean", group : "Misc", defaultValue : false},
@@ -76,8 +74,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.ExactList", { metadata : {
 		"topHeight" : {type : "int", group : "Appearance", defaultValue : 290}
 	},
 	aggregations : {
-    	"subLists" : {type : "sap.ui.ux3.ExactList", multiple : true, singularName : "subList"}, 
-    	"controls" : {type : "sap.ui.commons.ListBox", multiple : true, singularName : "control", visibility : "hidden"}
+		"subLists" : {type : "sap.ui.ux3.ExactList", multiple : true, singularName : "subList"}, 
+		"controls" : {type : "sap.ui.commons.ListBox", multiple : true, singularName : "control", visibility : "hidden"}
 	},
 	associations : {
 		"data" : {type : "sap.ui.ux3.ExactAttribute", multiple : false}
@@ -288,14 +286,13 @@ sap.ui.ux3.ExactList.M_EVENTS = {'attributeSelected':'attributeSelected'};
 
 	
 /**
- * Event which is fired when an attribute is selected/unselected 
+ * Event which is fired when an attribute is selected/unselected
  *
  * @name sap.ui.ux3.ExactList#attributeSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.attribute The attribute which was selected/unselected recently
  * @param {object} oControlEvent.getParameters.allAttributes Array of all ExactAttributes
  * @public
@@ -306,7 +303,7 @@ sap.ui.ux3.ExactList.M_EVENTS = {'attributeSelected':'attributeSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactList</code>.<br/> itself. 
  *  
- * Event which is fired when an attribute is selected/unselected 
+ * Event which is fired when an attribute is selected/unselected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -365,7 +362,7 @@ sap.ui.ux3.ExactList.M_EVENTS = {'attributeSelected':'attributeSelected'};
  * Internal sub-control of the ExactBrowser. The control is not intended to be used stand alone. For this purpose, the ExactBrowser control can be used.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
+ * @author SAP SE 
  * @version 1.15.1-SNAPSHOT
  *
  * @constructor   

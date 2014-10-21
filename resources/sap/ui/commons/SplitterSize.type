@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>SplitterSize</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A string type that represents subset of CSS size values. For the Splitter only px and % are allowed.</documentation>
 	<baseType>string</baseType>
 

@@ -365,11 +365,16 @@ Website: http://www.json.org/js.html
 License: Public Domain
 
 Component: JSZip 6.3.2
-Licensor: Stuart Knightley, David Duponchel, Franz Buchinger, António Afonso
+Licensor: Stuart Knightley, David Duponchel, Franz Buchinger, AntÃ³nio Afonso
 Website: https://github.com/Stuk/jszip
 License: MIT License
 <year> = 2009-2012
-<copyright holders> = Stuart Knightley, David Duponchel, Franz Buchinger, António Afonso
+<copyright holders> = Stuart Knightley, David Duponchel, Franz Buchinger, AntÃ³nio Afonso
+
+Component: JUnit Reporter for QUnit
+Licensor: jQuery Foundation and other contributors
+Website: https://github.com/jquery/qunit-reporter-junit
+License: MIT License
 
 Component: less.js 1.6.3
 Licensor: Alexis Sellier & The Core Less Team
@@ -433,6 +438,11 @@ Website: http://github.com/cubiq/SwipeView/
 License: MIT License
 <year> = 2012
 <copyright holders> = Matteo Spinelli
+
+Component: Unicode Common Locale Data Repository
+Licensor: Unicode, Inc.
+Website: http://cldr.unicode.org/
+License: Unicode, Inc. License Agreement - Data Files And Software (http://www.unicode.org/copyright.html)
 
 Component: URI.js
 Licensor: Rodney Rehm

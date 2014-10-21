@@ -59,6 +59,11 @@
 	    var view2 = sap.ui.view({type:sap.ui.core.mvc.ViewType.JSON,viewName:"testdata.test"});
 	    view.placeAt("target5");
 	    view2.placeAt("target6");
+	    
+	    var oLabel7 = new c.Label({text:"Async:"});
+    	oLabel7.placeAt("target7");
+	    var oTextField7 = new c.TextField({value: "{async>TEXT_FIRSTNAME}"});
+    	oTextField7.placeAt("target7");
 
 	    function switchLanguage() { 
 			if (locale === "de") {
@@ -72,6 +77,8 @@
 		function createModel() {
 			var oModel = new sap.ui.model.resource.ResourceModel({bundleName:"testdata.text",bundleLocale:locale});
     		sap.ui.getCore().setModel(oModel);
+    		oModel = new sap.ui.model.resource.ResourceModel({bundleName:"testdata.text", bundleLocale:locale, async: true});
+    		sap.ui.getCore().setModel(oModel, "async");
     		changeParam();
 		}
 
@@ -105,6 +112,8 @@
       <div id="target5"></div>
       <h3>JSONView:</h3>
       <div id="target6"></div>
+      <hr/>
+      <div id="target7"></div>
     </div>
 
   </body>

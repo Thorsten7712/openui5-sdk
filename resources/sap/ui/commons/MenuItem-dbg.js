@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52,24 +52,21 @@ jQuery.sap.require("sap.ui.unified.MenuItem");
  *
  * @class
  * Smallest unit in the menu hierarchy. An item can be a direct part of a menu bar, of a menu, or of a sub menu.
- * 
  * @extends sap.ui.unified.MenuItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the control sap.ui.unified.MenuItem of the library sap.ui.unified instead.
  * @name sap.ui.commons.MenuItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.MenuItem.extend("sap.ui.commons.MenuItem", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 

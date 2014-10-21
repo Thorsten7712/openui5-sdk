@@ -13,7 +13,11 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
+
 		<script type="text/javascript">
 
 		var sText = "Hello",
@@ -113,6 +117,70 @@
 			sap.ui.getCore().applyChanges();
 			ok(!sut.$().hasClass("sapMLabelMaxWidth"), "Label has width and does not have max width restriction.");
 		});
+
+		module("tooltip");
+
+		test("Should render a tooltip", function() {
+			// System under Test + Act
+			var oLabel = new sap.m.Label({
+				tooltip : "foo"
+			});
+			oLabel.placeAt("qunit-fixture");
+			sap.ui.getCore().applyChanges();
+
+			// Assert
+			strictEqual(oLabel.$().attr("title"), "foo", "Tooltip got rendered");
+
+			// Cleanup
+			oLabel.destroy();
+		});
+
+		//I build this one in because if you bind the tooltip of a label to a json model wich is connected to an input, 
+		//blur will be triggered on every keystroke
+		test("Should supress rerendering when tooltip is set", function() {
+			// Arrange
+			var oRerenderingSpy = this.spy();
+
+			// System under Test
+			var oLabel = new sap.m.Label({
+				tooltip : "foo"
+			});
+			oLabel.placeAt("qunit-fixture");
+			sap.ui.getCore().applyChanges();
+
+			oLabel.addEventDelegate({
+				onBeforeRendering : oRerenderingSpy
+			});
+
+			// Act
+			oLabel.setTooltip("bar");
+			sap.ui.getCore().applyChanges();
+
+			// Assert
+			strictEqual(oRerenderingSpy.callCount, 0, "Did not rerender");
+			strictEqual(oLabel.$().attr("title"), "bar", "Tooltip got updated");
+
+			// Cleanup
+			oLabel.destroy();
+		});
+		
+		test("Should be able to set the text to 0", function() {
+			// System under Test
+			var oLabel = new sap.m.Label({
+				text : ""
+			});
+
+			// Act
+			oLabel.setText(0);
+			var sText = oLabel.getText();
+
+			// Assert
+			strictEqual(sText, "0", "Did set the text");
+
+			// Cleanup
+			oLabel.destroy();
+		});
+
 		</script>
 
 	</head>

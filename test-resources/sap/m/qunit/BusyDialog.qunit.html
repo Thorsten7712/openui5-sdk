@@ -13,6 +13,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-ie.js"></script>
@@ -41,7 +42,12 @@
 		})
 		var busyDialog2 = (busyDialog2) ? busyDialog2 : new sap.m.BusyDialog('busyDialog2',{text:'i am soo busy doing stuff', title: 'Busy'})
 		var busyDialog3 = (busyDialog3) ? busyDialog3 : new sap.m.BusyDialog('busyDialog3',{customIcon: '../images/settings_64.png'})
-		
+		var busyDialog4 = (busyDialog4) ? busyDialog4 : new sap.m.BusyDialog('busyDialog4',{
+			text:'cancel detection test', 
+			title: 'Busy Dialog', 
+			showCancelButton: true,
+			cancelButtonText: 'Cancel'
+			});
 		
 		app.addPage(page).placeAt("content");
 		
@@ -136,6 +142,42 @@
 				busyDialog3.close();
 				equal(jQuery.sap.byId("busyDialog3").css("display"), "none", "Dialog closed");
 			},1000)
+		});
+
+		test("Close event fired because cancel cancel button is pressed", function(){
+			busyDialog4.open();
+			var bCancelPressed = false;
+			busyDialog4.attachEvent("close", function(oEvent){
+				bCancelPressed = oEvent.getParameter("cancelPressed"); 
+			});
+			
+			busyDialog4.$().find("button").control(0).firePress();
+			ok(bCancelPressed, "Dialog closed");
+		}); 
+		
+		test("Close event fired because cancel esc key is pressed", function(){
+			busyDialog4.open();
+			var bCancelPressed = false;
+			busyDialog4.attachEvent("close", function(oEvent){
+				bCancelPressed = oEvent.getParameter("cancelPressed"); 
+			});
+			
+			sap.ui.test.qunit.triggerKeydown(busyDialog4.$().find("button"), jQuery.sap.KeyCodes.ESCAPE);
+			
+			ok(bCancelPressed, "Dialog closed");
+		});
+		
+		asyncTest("Close event fired because operation terminates", function(){
+			busyDialog4.open();
+			var bCancelPressed = true;
+			busyDialog4.attachEvent("close", function(oEvent){
+				bCancelPressed = oEvent.getParameter("cancelPressed"); 
+			});
+			setTimeout(function() {
+				start();
+				busyDialog4.close();
+				ok(!bCancelPressed, "Dialog closed");
+			},1000);
 		});
 		
 		module("Property Setter");

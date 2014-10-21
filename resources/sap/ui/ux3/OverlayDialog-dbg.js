@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,26 +56,22 @@ jQuery.sap.require("sap.ui.ux3.Overlay");
  * @class
  * Dialog implementation based on the Overlay. If used in a Shell it leaves the Tool-Palette, Pane-Bar and Header-Items accessible.
  * @extends sap.ui.ux3.Overlay
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.OverlayDialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.Overlay.extend("sap.ui.ux3.OverlayDialog", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : 'auto'},
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : 'auto'}
 	},
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -269,6 +265,7 @@ sap.ui.ux3.OverlayDialog.prototype._setFocusFirst = function() {
 
 /**
  * This Method is not supported for the OverlayDialog 
+ * @param {boolean} bVisible
  * @public
  */
 sap.ui.ux3.OverlayDialog.prototype.setOpenButtonVisible = function(bVisible) {

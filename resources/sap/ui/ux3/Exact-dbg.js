@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,33 +57,31 @@ jQuery.sap.require("sap.ui.core.Control");
  * ("Explore and Act (Exact) Pattern").
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * API is not yet finished and might change completely
  * @name sap.ui.ux3.Exact
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Exact", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getResultArea", "getSearchField"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"resultText" : {type : "string", group : "Misc", defaultValue : null}
 	},
 	defaultAggregation : "attributes",
 	aggregations : {
-    	"settingsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
-    	"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
-    	"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}
+		"settingsMenu" : {type : "sap.ui.commons.Menu", multiple : false}, 
+		"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}, 
+		"controls" : {type : "sap.ui.core.Control", multiple : true, singularName : "control", visibility : "hidden"}
 	},
 	events : {
 		"search" : {}, 
@@ -250,14 +248,13 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
 
 
 /**
- * Event is fired when the search button is clicked 
+ * Event is fired when the search button is clicked
  *
  * @name sap.ui.ux3.Exact#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The query string which was entered in the search field.
  * @public
  */
@@ -267,7 +264,7 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Exact</code>.<br/> itself. 
  *  
- * Event is fired when the search button is clicked 
+ * Event is fired when the search button is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -314,14 +311,13 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
 
 
 /**
- * Event which is fired when an attribute is selected or unselected. 
+ * Event which is fired when an attribute is selected or unselected.
  *
  * @name sap.ui.ux3.Exact#refineSearch
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The query string which was entered in the search field
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.changedAttribute The attribute which was selected or unselected recently
  * @param {object} oControlEvent.getParameters.allSelectedAttributes Array of all selected ExcatAttribute.
@@ -333,7 +329,7 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Exact</code>.<br/> itself. 
  *  
- * Event which is fired when an attribute is selected or unselected. 
+ * Event which is fired when an attribute is selected or unselected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -384,22 +380,22 @@ sap.ui.ux3.Exact.M_EVENTS = {'search':'search','refineSearch':'refineSearch'};
 /**
  * Returns the ExactArea representing the result section. Arbitrary content can be added here.
  *
- * @name sap.ui.ux3.Exact.prototype.getResultArea
+ * @name sap.ui.ux3.Exact#getResultArea
  * @function
-
  * @type sap.ui.ux3.ExactArea
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the SearchField control which is used by the Exact control.
  *
- * @name sap.ui.ux3.Exact.prototype.getSearchField
+ * @name sap.ui.ux3.Exact#getSearchField
  * @function
-
  * @type sap.ui.commons.SearchField
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

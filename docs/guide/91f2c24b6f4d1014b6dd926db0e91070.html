@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=1725472890138411"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3953613239682243"/>
 <title>Right-to-Left Support in Controls</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,7 +28,7 @@
 <div class="body"><p class="p">Unicode defines the direction in which a browser arranges characters to form words. CSS 2.1
 			also provides a <samp class="ph codeph">direction</samp> property. The <samp class="ph codeph">dir</samp> attribute
 			in HTML overrides the overall direction of blocks and influences the text alignment, if
-			not set explicitely. The <samp class="ph codeph">lang</samp> attribute does <span class="ph emphasis emphasis">not</span>
+			not set explicitly. The <samp class="ph codeph">lang</samp> attribute does <span class="ph emphasis emphasis">not</span>
 			influence the text direction.</p>
 <p class="p">It is possible to use <samp class="ph codeph">document.dir</samp> for text direction. The browser
 			supports it and it can be set in the bootstrap. However, if it is set too early, webkit
@@ -115,15 +117,16 @@
 <li class="li">
 					<p class="p">The respective <samp class="ph codeph">library-RTL.css</samp> files are loaded.</p>
 
+					<p class="p">However, as notepad controls do not belong to any control library, this
+						second step is not available. Consider developing a control library if your
+						custom control needs to support RTL. Notepad controls can, however, use CSS
+						that depends on the dir=”rtl” attribute in the HTML, or use JavaScript to
+						query for RTL mode and change the behavior appropriately.</p>
+
 				</li>
 </ol>
 
 		</div></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

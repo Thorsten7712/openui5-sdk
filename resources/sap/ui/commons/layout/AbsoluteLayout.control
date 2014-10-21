@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>layout/AbsoluteLayout</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>
 	The Absolute Layout positions its child controls absolutely
 	</documentation>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -27,10 +27,9 @@ sap.m.BusyDialogRenderer.render = function(oRm, oControl){
 	if(jQuery.device.is.iphone){
 		oRm.addClass("sapMDialogHidden");
 	}
-	if(!oControl._isPlatformDependent) {
-		if(!oControl.getText() && !oControl.getTitle() && !oControl.getShowCancelButton()) {
-			oRm.addClass("sapMBusyDialogSimple");
-		}
+	
+	if(!oControl.getText() && !oControl.getTitle() && !oControl.getShowCancelButton()) {
+		oRm.addClass("sapMBusyDialogSimple");
 	}
 
 	// test dialog with sap-ui-xx-formfactor=compact
@@ -49,14 +48,10 @@ sap.m.BusyDialogRenderer.render = function(oRm, oControl){
 		oRm.writeEscaped(oControl.getTitle());
 		oRm.write("</header>");
 	}
-	if(sap.ui.Device.os.ios || !oControl._isPlatformDependent) {
-		oRm.renderControl(oControl._oLabel);
-		oRm.renderControl(oControl._busyIndicator);
-	} else {
-		oRm.renderControl(oControl._busyIndicator);
-		oRm.renderControl(oControl._oLabel);
-	}
-	
+
+	oRm.renderControl(oControl._oLabel);
+	oRm.renderControl(oControl._busyIndicator);
+
 	if(oControl.getShowCancelButton()){
 		if (sap.ui.Device.system.phone) {
 			oRm.write("<footer class='sapMBusyDialogFooter sapMFooter-CTX'>");

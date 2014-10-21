@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.ux3 (1.22.4)
+ * Initialization Code and shared classes of library sap.ui.ux3 (1.24.2)
  */
 jQuery.sap.declare("sap.ui.ux3.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -79,11 +79,11 @@ sap.ui.getCore().initLibrary({
     "sap.ui.ux3.ThingAction",
     "sap.ui.ux3.ThingGroup"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -99,11 +99,12 @@ jQuery.sap.declare("sap.ui.ux3.ActionBarSocialActions");
 /**
  * @class Enumeration of available standard actions for 'sap.ui.ux3.ActionBar'. To be used as parameters for function 'sap.ui.ux3.ActionBar.getSocialAction'.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @experimental Since version 1.2. 
  * API is not yet finished and might change completely
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ActionBarSocialActions = {
 
@@ -147,11 +148,12 @@ sap.ui.ux3.ActionBarSocialActions = {
  * @name sap.ui.ux3.DataSetView
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -167,10 +169,11 @@ jQuery.sap.declare("sap.ui.ux3.ExactOrder");
 /**
  * @class Defines the order of the sub lists of a list in the ExactBrowser.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.7.1
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ExactOrder = {
 
@@ -189,7 +192,7 @@ sap.ui.ux3.ExactOrder = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -205,11 +208,12 @@ jQuery.sap.declare("sap.ui.ux3.FeederType");
 /**
  * @class Type of an Feeder.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @experimental Since version 1.2. 
  * The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.FeederType = {
 
@@ -234,7 +238,7 @@ sap.ui.ux3.FeederType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -250,9 +254,10 @@ jQuery.sap.declare("sap.ui.ux3.FollowActionState");
 /**
  * @class Defines the states of the follow action
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.FollowActionState = {
 
@@ -277,7 +282,7 @@ sap.ui.ux3.FollowActionState = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -293,9 +298,10 @@ jQuery.sap.declare("sap.ui.ux3.NotificationBarStatus");
 /**
  * @class This entries are used to set the visibility status of a NotificationBar
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.NotificationBarStatus = {
 
@@ -326,7 +332,7 @@ sap.ui.ux3.NotificationBarStatus = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -342,10 +348,11 @@ jQuery.sap.declare("sap.ui.ux3.ShellDesignType");
 /**
  * @class Available shell design types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.12.0
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ShellDesignType = {
 
@@ -377,7 +384,7 @@ sap.ui.ux3.ShellDesignType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -393,9 +400,10 @@ jQuery.sap.declare("sap.ui.ux3.ShellHeaderType");
 /**
  * @class Available shell header display types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ShellHeaderType = {
 
@@ -426,7 +434,7 @@ sap.ui.ux3.ShellHeaderType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -442,10 +450,11 @@ jQuery.sap.declare("sap.ui.ux3.ThingViewerHeaderType");
 /**
  * @class Available ThingViewer header display types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.16.3
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.ThingViewerHeaderType = {
 
@@ -464,7 +473,7 @@ sap.ui.ux3.ThingViewerHeaderType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -480,9 +489,10 @@ jQuery.sap.declare("sap.ui.ux3.VisibleItemCountMode");
 /**
  * @class VisibleItemCountMode of the FacetFilter defines if the FacetFilter takes the whole available height (Auto) in the surrounding container, or is so high as needed to show 5 Items ("Fixed " - default).
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.VisibleItemCountMode = {
 

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.DialogRenderer");
@@ -21,7 +21,6 @@ sap.m.DialogRenderer = {};
  */
 sap.m.DialogRenderer.render = function(oRm, oControl) {
 	var id = oControl.getId(),
-		bShowHeader = oControl.getShowHeader(),
 		sType = oControl.getType(),
 		oHeader = oControl._getAnyHeader(),
 		oSubHeader = oControl.getSubHeader(),
@@ -67,21 +66,7 @@ sap.m.DialogRenderer.render = function(oRm, oControl) {
 		oRm.addClass("sapMDialogHorScrollDisabled");
 	}
 
-	if (!sap.m.Dialog._bOneDesign) {
-
-		if (sap.ui.Device.os.ios && !oHeader) {
-			oRm.addClass("sapMDialogNoHeader");
-		}
-
-		if (bMessage) {
-			oRm.addClass("sapMCommonDialog");
-		} else if (jQuery.device.is.iphone) {
-			oRm.addClass("sapMDialogHidden sapMDialogIPhone");
-		}
-
-	} else if (sap.ui.Device.system.phone) {
-		oRm.addClass("sapMDialogPhone");
-	}
+	oRm.addClass("sapMDialogPhone");
 
 	// test dialog with sap-ui-xx-formfactor=compact
 	if(sap.m._bSizeCompact){
@@ -108,33 +93,7 @@ sap.m.DialogRenderer.render = function(oRm, oControl) {
 		oRm.write('<span id="' + oControl.getId() + '-firstfe" tabindex="0"/>');
 	}
 
-	if (!sap.m.Dialog._bOneDesign) {
-		if (sap.ui.Device.os.ios) {
-			if (bMessage) {
-
-				if (bShowHeader && oControl.getTitle()) {
-					oRm.write('<header class="sapMDialogTitle">');
-					oRm.writeEscaped(oControl.getTitle());
-					oRm.write("</header>");
-				}
-			} else if (oHeader) {
-				oRm.renderControl(oHeader);
-			}
-		} else if (bShowHeader && (oControl.getIcon() || oControl.getTitle())) {
-				oRm.write('<header class="sapMDialogTitle">');
-				oRm.write("<h1>");
-
-				if (oControl._iconImage) {
-					oRm.renderControl(oControl._iconImage);
-				}
-
-				oRm.write("<span>");
-				oRm.renderControl(oControl._headerTitle);
-				oRm.write("</span>");
-				oRm.write("</h1>");
-				oRm.write("</header>");
-		}
-	} else if (oHeader) {
+	if (oHeader) {
 		oRm.renderControl(oHeader);
 	}
 
@@ -156,10 +115,10 @@ sap.m.DialogRenderer.render = function(oRm, oControl) {
 	oRm.write("</div>");
 	oRm.write("</section>");
 
-	if (sap.m.Dialog._bOneDesign && oControl._oToolbar && oControl._oToolbar.getContent().length > 1) {
+	if (oControl._oToolbar && oControl._oToolbar.getContent().length > 1) {
 		oRm.renderControl(oControl._oToolbar);
-	} else if ((sap.m.Dialog._bOneDesign || !sap.ui.Device.os.ios || bMessage) && (oLeftButton || oRightButton)) {
-		oRm.write('<footer class="sapMDialogActions sapMBar-CTX sapMFooter-CTX sapMIBar-CTX">');
+	} else if (oLeftButton || oRightButton) {
+		oRm.write('<footer id="' + id + '-footer" class="sapMDialogActions sapMBar-CTX sapMFooter-CTX sapMIBar-CTX">');
 		// Render actions
 		if (oLeftButton) {
 			oRm.write('<div class="sapMDialogAction">');

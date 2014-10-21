@@ -1,13 +1,13 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
 /** 
  * Device and Feature Detection API of the SAP UI5 Library.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @namespace
  * @name sap.ui.Device
  * @public
@@ -30,7 +30,7 @@ if(typeof window.sap.ui !== "object"){
 
 	//Skip initialization if API is already available
 	if(typeof window.sap.ui.Device === "object" || typeof window.sap.ui.Device === "function" ){
-		var apiVersion = "1.22.4";
+		var apiVersion = "1.24.2";
 		window.sap.ui.Device._checkAPIVersion(apiVersion);
 		return;
 	}
@@ -84,7 +84,7 @@ if(typeof window.sap.ui !== "object"){
 	
 	//Only used internal to make clear when Device API is loaded in wrong version
 	device._checkAPIVersion = function(sVersion){
-		var v = "1.22.4";
+		var v = "1.24.2";
 		if(v != sVersion){
 			logger.log(WARNING, "Device API version differs: "+v+" <-> "+sVersion);
 		}
@@ -1203,17 +1203,17 @@ if(typeof window.sap.ui !== "object"){
 	};
 
 	var isWin8 = device.os.windows && device.os.version === 8;
+	var isWin7 = device.os.windows && device.os.version === 7;
 
 	device.system = {};
 
-	//TODO: Must also be called in the update function (see pending change https://git.wdf.sap.corp:8080/#/c/259290/)
 	function getSystem(_simMobileOnDesktop) {
 		var t = isTablet();
 		
 		var s = {};
-		s.tablet = (device.support.touch || !!_simMobileOnDesktop) && t;
-		s.phone = (device.support.touch || !!_simMobileOnDesktop) && !t;
-		s.desktop = (!s.tablet && !s.phone) || isWin8;
+		s.tablet = ((device.support.touch && !isWin7) || !!_simMobileOnDesktop) && t;
+		s.phone = ((device.support.touch && !isWin7) || !!_simMobileOnDesktop) && !t;
+		s.desktop = (!s.tablet && !s.phone) || isWin8 || isWin7;
 		s.combi = (s.desktop && s.tablet);
 		s.SYSTEMTYPE = SYSTEMTYPE;
 		

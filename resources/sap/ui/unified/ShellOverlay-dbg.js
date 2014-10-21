@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55,24 +55,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * ShellOverlay to be opened in front of a sap.ui.unified.Shell
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.3
  * @name sap.ui.unified.ShellOverlay
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.unified.ShellOverlay", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.unified",
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"search" : {type : "sap.ui.core.Control", multiple : false}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"search" : {type : "sap.ui.core.Control", multiple : false}
 	},
 	associations : {
 		"shell" : {type : "sap.ui.unified.Shell", multiple : false}
@@ -239,14 +237,13 @@ sap.ui.unified.ShellOverlay.M_EVENTS = {'closed':'closed'};
 
 	
 /**
- * Fired when the overlay was closed. 
+ * Fired when the overlay was closed.
  *
  * @name sap.ui.unified.ShellOverlay#closed
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -255,7 +252,7 @@ sap.ui.unified.ShellOverlay.M_EVENTS = {'closed':'closed'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.unified.ShellOverlay</code>.<br/> itself. 
  *  
- * Fired when the overlay was closed. 
+ * Fired when the overlay was closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -67,22 +67,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * This control displays items in a stacked list format, allowing the user to page in order to see more items or to use the offered filtering and sorting capabilities in order to manipulate the displayed data.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RowRepeater
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RowRepeater", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"triggerShowMore", "resize", "applyFilter", "triggerSort", "firstPage", "lastPage", "previousPage", "nextPage", "gotoPage"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -95,16 +93,16 @@ sap.ui.core.Control.extend("sap.ui.commons.RowRepeater", { metadata : {
 	},
 	defaultAggregation : "rows",
 	aggregations : {
-    	"rows" : {type : "sap.ui.core.Control", multiple : true, singularName : "row", bindable : "bindable"}, 
-    	"title" : {type : "sap.ui.core.Title", multiple : false}, 
-    	"filters" : {type : "sap.ui.commons.RowRepeaterFilter", multiple : true, singularName : "filter"}, 
-    	"sorters" : {type : "sap.ui.commons.RowRepeaterSorter", multiple : true, singularName : "sorter"}, 
-    	"noData" : {type : "sap.ui.core.Control", multiple : false}, 
-    	"filterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
-    	"sorterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
-    	"headerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
-    	"footerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
-    	"footerPager" : {type : "sap.ui.commons.Paginator", multiple : false, visibility : "hidden"}
+		"rows" : {type : "sap.ui.core.Control", multiple : true, singularName : "row", bindable : "bindable"}, 
+		"title" : {type : "sap.ui.core.Title", multiple : false}, 
+		"filters" : {type : "sap.ui.commons.RowRepeaterFilter", multiple : true, singularName : "filter"}, 
+		"sorters" : {type : "sap.ui.commons.RowRepeaterSorter", multiple : true, singularName : "sorter"}, 
+		"noData" : {type : "sap.ui.core.Control", multiple : false}, 
+		"filterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
+		"sorterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
+		"headerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
+		"footerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
+		"footerPager" : {type : "sap.ui.commons.Paginator", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"filter" : {}, 
@@ -639,14 +637,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when a filter is set. 
+ * This event is triggered when a filter is set.
  *
  * @name sap.ui.commons.RowRepeater#filter
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.filterId The ID of the filter that has just been applied.
  * @public
  */
@@ -656,7 +653,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when a filter is set. 
+ * This event is triggered when a filter is set.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -703,14 +700,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when a sorting is applied. 
+ * This event is triggered when a sorting is applied.
  *
  * @name sap.ui.commons.RowRepeater#sort
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.sorterId The ID of the sorter that has just been applied.
  * @public
  */
@@ -720,7 +716,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when a sorting is applied. 
+ * This event is triggered when a sorting is applied.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -767,14 +763,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when paging was executed. 
+ * This event is triggered when paging was executed.
  *
  * @name sap.ui.commons.RowRepeater#page
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.currentPage The value of the currentPage property after the change.
  * @param {int} oControlEvent.getParameters.previousPage The value of the currentPage property before the change.
  * @public
@@ -785,7 +780,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when paging was executed. 
+ * This event is triggered when paging was executed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -833,14 +828,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when the number of rows was changed. 
+ * This event is triggered when the number of rows was changed.
  *
  * @name sap.ui.commons.RowRepeater#resize
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.numberOfRows The value of the numberOfRows property after the change.
  * @param {int} oControlEvent.getParameters.previousNumberOfRows The value of the numberOfRows property before the change.
  * @public
@@ -851,7 +845,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when the number of rows was changed. 
+ * This event is triggered when the number of rows was changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -901,111 +895,107 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 /**
  * Increments the number of rows. This method will only trigger a showMore if the property showMoreSteps is set.
  *
- * @name sap.ui.commons.RowRepeater.prototype.triggerShowMore
+ * @name sap.ui.commons.RowRepeater#triggerShowMore
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Resizes the row repeater by changing the number of displayed rows. This method will only resize the RowRepeater if the property showMoreSteps is set.
  *
- * @name sap.ui.commons.RowRepeater.prototype.resize
+ * @name sap.ui.commons.RowRepeater#resize
  * @function
- * @param {int} 
- *         iNumberOfRows
+ * @param {int} iNumberOfRows
  *         The new value of number of rows displayed.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Applies a filter.
  *
- * @name sap.ui.commons.RowRepeater.prototype.applyFilter
+ * @name sap.ui.commons.RowRepeater#applyFilter
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The ID if the filter.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sort the data.
  *
- * @name sap.ui.commons.RowRepeater.prototype.triggerSort
+ * @name sap.ui.commons.RowRepeater#triggerSort
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The ID of the sorter.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to first page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.firstPage
+ * @name sap.ui.commons.RowRepeater#firstPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to last page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.lastPage
+ * @name sap.ui.commons.RowRepeater#lastPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to previous page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.previousPage
+ * @name sap.ui.commons.RowRepeater#previousPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to next page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.nextPage
+ * @name sap.ui.commons.RowRepeater#nextPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to specified page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.gotoPage
+ * @name sap.ui.commons.RowRepeater#gotoPage
  * @function
- * @param {int} 
- *         iPageNumber
+ * @param {int} iPageNumber
  *         The index of the page to go to.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

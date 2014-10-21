@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,21 +60,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.Label
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.Label
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Label", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.Label"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"design" : {type : "sap.m.LabelDesign", group : "Appearance", defaultValue : sap.m.LabelDesign.Standard},
@@ -322,9 +320,18 @@ sap.m.Label.prototype.getLabelForRendering = function(){
 
 sap.m.Label.prototype.setText = function(sText) {
 	var sValue = this.getText();
-	if (sValue != sText) {
+	if (sValue !== sText) {
 		this.setProperty("text", sText, true);
 		this.$().html(jQuery.sap.encodeHTML(this.getProperty("text")));
+	}
+	return this;
+};
+
+sap.m.Label.prototype.setTooltip = function(oTooltip) {
+	var oValue = this.getTooltip();
+	if (oValue !== oTooltip) {
+		this.setAggregation("tooltip", oTooltip, true);
+		this.$().attr("title", this.getTooltip());
 	}
 	return this;
 };

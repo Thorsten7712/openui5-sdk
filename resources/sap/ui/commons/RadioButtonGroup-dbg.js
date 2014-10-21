@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,23 +61,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * a group of RadioButtons to hande as one UI element.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RadioButtonGroup
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RadioButtonGroup", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getSelectedItem", "setSelectedItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -90,7 +86,7 @@ sap.ui.core.Control.extend("sap.ui.commons.RadioButtonGroup", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item", bindable : "bindable"}
+		"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item", bindable : "bindable"}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -478,14 +474,13 @@ sap.ui.commons.RadioButtonGroup.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @name sap.ui.commons.RadioButtonGroup#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.selectedIndex Index of the selected RadioButton.
  * @public
  */
@@ -495,7 +490,7 @@ sap.ui.commons.RadioButtonGroup.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RadioButtonGroup</code>.<br/> itself. 
  *  
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -544,25 +539,24 @@ sap.ui.commons.RadioButtonGroup.M_EVENTS = {'select':'select'};
 /**
  * Returns selected item. When no item is selected, "null" is returned.
  *
- * @name sap.ui.commons.RadioButtonGroup.prototype.getSelectedItem
+ * @name sap.ui.commons.RadioButtonGroup#getSelectedItem
  * @function
-
  * @type sap.ui.core.Item
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the item as seleced and removs the selection from the old one.
  *
- * @name sap.ui.commons.RadioButtonGroup.prototype.setSelectedItem
+ * @name sap.ui.commons.RadioButtonGroup#setSelectedItem
  * @function
- * @param {sap.ui.core.Item} 
- *         oItem
+ * @param {sap.ui.core.Item} oItem
  *         Selected item.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

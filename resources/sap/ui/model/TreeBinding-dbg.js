@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -102,7 +102,8 @@ sap.ui.define(['jquery.sap.global', './Binding'],
 	 *
 	 * @function
 	 * @name sap.ui.model.TreeBinding.prototype.filter
-	 * @param {Array} aFilters Array of sap.ui.model.Filter objects
+	 * @param {sap.ui.model.Filter[]} aFilters Array of sap.ui.model.Filter objects
+	 * @param {sap.ui.model.FilterType} sFilterType Type of the filter which should be adjusted, if it is not given, the standard behaviour applies
 	 *
 	 * @public
 	 */

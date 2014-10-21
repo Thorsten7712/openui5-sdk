@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Accordion</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Contains N sections which act as containers for any library controls</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

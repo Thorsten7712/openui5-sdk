@@ -77,29 +77,30 @@
 			// set the data for the model
 			oModel.setData(mData);
 
-			// set the model to the core
-			sap.ui.getCore().setModel(oModel);
-
 			var oItemTemplate = new sap.ui.core.Item({
-				key: "{value}",
-				text: "{text}"
+				key: "{select-model>value}",
+				text: "{select-model>text}"
 			});
 
 			// select
 			var oSelect0 = new sap.m.Select({
 				items: {
-					path: "/items", template: oItemTemplate
+					path: "select-model>/items",
+					template: oItemTemplate
 				},
 
 				selectedKey: {
-					path : "/selected",
-					template: "{selected}"
+					path : "select-model>/selected",
+					template: "{select-model>selected}"
 				},
 
 				change: function(oControlEvent) {
 					jQuery.sap.log.info('Event fired: "change" value property to ' + oControlEvent.getParameter("selectedItem") + " on " + this);
 				}
 			});
+
+			// set the model to the select
+			oSelect0.setModel(oModel, "select-model");
 
 			// page
 			var oPage = new sap.m.Page("page1", {

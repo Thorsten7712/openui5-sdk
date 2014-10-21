@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>GroupHeaderListItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The group header list item is used to display the title of a group and act as separator between groups in Lists.
 
 There are several API parts inherited from ListItemBase which do not apply here:

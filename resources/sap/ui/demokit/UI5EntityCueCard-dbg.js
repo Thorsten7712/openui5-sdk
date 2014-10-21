@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -63,19 +63,15 @@ jQuery.sap.require("sap.ui.core.Control");
  * and when pressed, the navigate event is fired. This allows consumers to react on a user click on such a type
  * (and to e.g. navigate to the underlying type of a property or aggregation)
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.demokit.UI5EntityCueCard
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.demokit.UI5EntityCueCard", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.demokit",
 	properties : {
 		"collapsible" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -239,14 +235,13 @@ sap.ui.demokit.UI5EntityCueCard.M_EVENTS = {'navigate':'navigate'};
  * 
  * When property "navigable" is set to true, type links are created for the types of properties, aggregations and associations, for the types of event or method parameters and for the return types of methods (if not void).
  * 
- * The default behavior for this event is to set the entityName property to the clicked entityName. Applications can prevent the default by calling the corresponding method on the event object. 
+ * The default behavior for this event is to set the entityName property to the clicked entityName. Applications can prevent the default by calling the corresponding method on the event object.
  *
  * @name sap.ui.demokit.UI5EntityCueCard#navigate
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.entityName Name of the entity (control or type) that has been clicked.
  * @public
  */
@@ -260,7 +255,7 @@ sap.ui.demokit.UI5EntityCueCard.M_EVENTS = {'navigate':'navigate'};
  * 
  * When property "navigable" is set to true, type links are created for the types of properties, aggregations and associations, for the types of event or method parameters and for the return types of methods (if not void).
  * 
- * The default behavior for this event is to set the entityName property to the clicked entityName. Applications can prevent the default by calling the corresponding method on the event object. 
+ * The default behavior for this event is to set the entityName property to the clicked entityName. Applications can prevent the default by calling the corresponding method on the event object.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

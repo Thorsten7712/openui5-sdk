@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,28 +58,24 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * CollectionInspector
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.0
  * @name sap.ui.ux3.CollectionInspector
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.CollectionInspector", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"sidebarVisible" : {type : "boolean", group : "Appearance", defaultValue : true},
 		"fitParent" : {type : "boolean", group : "Appearance", defaultValue : true}
 	},
 	aggregations : {
-    	"collections" : {type : "sap.ui.ux3.Collection", multiple : true, singularName : "collection"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"collections" : {type : "sap.ui.ux3.Collection", multiple : true, singularName : "collection"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	associations : {
 		"selectedCollection" : {type : "sap.ui.ux3.Collection", multiple : false}
@@ -347,14 +343,13 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
 
 	
 /**
- * Event is fired if user selects a collection 
+ * Event is fired if user selects a collection
  *
  * @name sap.ui.ux3.CollectionInspector#collectionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -363,7 +358,7 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.CollectionInspector</code>.<br/> itself. 
  *  
- * Event is fired if user selects a collection 
+ * Event is fired if user selects a collection
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -405,14 +400,13 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
 
 
 /**
- * Fires when an item in a collection is selected 
+ * Fires when an item in a collection is selected
  *
  * @name sap.ui.ux3.CollectionInspector#itemSelectionChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -421,7 +415,7 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.CollectionInspector</code>.<br/> itself. 
  *  
- * Fires when an item in a collection is selected 
+ * Fires when an item in a collection is selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -463,14 +457,13 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
 
 
 /**
- * Fires when the edit button is clicked 
+ * Fires when the edit button is clicked
  *
  * @name sap.ui.ux3.CollectionInspector#editCollection
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -479,7 +472,7 @@ sap.ui.ux3.CollectionInspector.M_EVENTS = {'collectionSelected':'collectionSelec
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.CollectionInspector</code>.<br/> itself. 
  *  
- * Fires when the edit button is clicked 
+ * Fires when the edit button is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

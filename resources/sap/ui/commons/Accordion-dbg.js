@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,22 +57,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * Contains N sections which act as containers for any library controls
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Accordion
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Accordion", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"openSection", "closeSection"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : '200px'},
@@ -80,7 +78,7 @@ sap.ui.core.Control.extend("sap.ui.commons.Accordion", { metadata : {
 	},
 	defaultAggregation : "sections",
 	aggregations : {
-    	"sections" : {type : "sap.ui.commons.AccordionSection", multiple : true, singularName : "section"}
+		"sections" : {type : "sap.ui.commons.AccordionSection", multiple : true, singularName : "section"}
 	},
 	events : {
 		"sectionOpen" : {}, 
@@ -242,14 +240,13 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 
 
 /**
- * Event is triggered when the user opens a section. 
+ * Event is triggered when the user opens a section.
  *
  * @name sap.ui.commons.Accordion#sectionOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.openSectionId ID of the opened section
  * @param {string[]} oControlEvent.getParameters.closeSectionIds IDs of the sections that shall be closed. Can be initial in the case of no previously opened section.
  * @public
@@ -260,7 +257,7 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Accordion</code>.<br/> itself. 
  *  
- * Event is triggered when the user opens a section. 
+ * Event is triggered when the user opens a section.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -308,14 +305,13 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 
 
 /**
- * Event is triggered when the user closes a section. 
+ * Event is triggered when the user closes a section.
  *
  * @name sap.ui.commons.Accordion#sectionClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.closeSectionId ID of the closed section
  * @public
  */
@@ -325,7 +321,7 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Accordion</code>.<br/> itself. 
  *  
- * Event is triggered when the user closes a section. 
+ * Event is triggered when the user closes a section.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -372,14 +368,13 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 
 
 /**
- * Triggered when the user changes the position of a section. 
+ * Triggered when the user changes the position of a section.
  *
  * @name sap.ui.commons.Accordion#sectionsReorder
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.movedSectionId ID of the moved section.
  * @param {int} oControlEvent.getParameters.newIndex New index of the moved section.
  * @public
@@ -390,7 +385,7 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Accordion</code>.<br/> itself. 
  *  
- * Triggered when the user changes the position of a section. 
+ * Triggered when the user changes the position of a section.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -440,28 +435,26 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 /**
  * Opens a section.
  *
- * @name sap.ui.commons.Accordion.prototype.openSection
+ * @name sap.ui.commons.Accordion#openSection
  * @function
- * @param {string} 
- *         sSectionId
+ * @param {string} sSectionId
  *         Id of the section that shall be opened
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes a section, and opens the default one
  *
- * @name sap.ui.commons.Accordion.prototype.closeSection
+ * @name sap.ui.commons.Accordion#closeSection
  * @function
- * @param {string} 
- *         sSectionId
+ * @param {string} sSectionId
  *         Id of the section that shall be closed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

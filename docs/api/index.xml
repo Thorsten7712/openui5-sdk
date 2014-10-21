@@ -579,6 +579,15 @@
 			
 				<namespace>
   <type>namespace</type>
+  <alias>sap.m.FacetFilterListDataType</alias>
+  <description>sap.m.FacetFilterListDataType</description>
+  <name>FacetFilterListDataType</name>
+  <ref>symbols/sap.m.FacetFilterListDataType.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>namespace</type>
   <alias>sap.m.FacetFilterType</alias>
   <description>sap.m.FacetFilterType</description>
   <name>FacetFilterType</name>
@@ -4569,6 +4578,209 @@
   
 </namespace>
 			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.model.analytics.odata4analytics</alias>
+  <description>sap.ui.model.analytics.odata4analytics</description>
+  <name>odata4analytics</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.html</ref>
+  
+		
+		
+		<children>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Dimension</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Dimension</description>
+  <name>Dimension</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Dimension.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.DimensionAttribute</alias>
+  <description>sap.ui.model.analytics.odata4analytics.DimensionAttribute</description>
+  <name>DimensionAttribute</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.DimensionAttribute.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.DimensionMemberSetRequest</alias>
+  <description>sap.ui.model.analytics.odata4analytics.DimensionMemberSetRequest</description>
+  <name>DimensionMemberSetRequest</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.DimensionMemberSetRequest.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.EntitySet</alias>
+  <description>sap.ui.model.analytics.odata4analytics.EntitySet</description>
+  <name>EntitySet</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.EntitySet.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.EntityType</alias>
+  <description>sap.ui.model.analytics.odata4analytics.EntityType</description>
+  <name>EntityType</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.EntityType.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.FilterExpression</alias>
+  <description>sap.ui.model.analytics.odata4analytics.FilterExpression</description>
+  <name>FilterExpression</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.FilterExpression.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Measure</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Measure</description>
+  <name>Measure</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Measure.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Model</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Model</description>
+  <name>Model</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Model.html</ref>
+  
+		
+		
+		<children>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Model.ReferenceByModel</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Model.ReferenceByModel</description>
+  <name>ReferenceByModel</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Model.ReferenceByModel.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Model.ReferenceByURI</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Model.ReferenceByURI</description>
+  <name>ReferenceByURI</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Model.ReferenceByURI.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Model.ReferenceWithWorkaround</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Model.ReferenceWithWorkaround</description>
+  <name>ReferenceWithWorkaround</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Model.ReferenceWithWorkaround.html</ref>
+  
+</namespace>
+			
+		</children>
+		
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Parameter</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Parameter</description>
+  <name>Parameter</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Parameter.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.Parameterization</alias>
+  <description>sap.ui.model.analytics.odata4analytics.Parameterization</description>
+  <name>Parameterization</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.Parameterization.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.ParameterizationRequest</alias>
+  <description>sap.ui.model.analytics.odata4analytics.ParameterizationRequest</description>
+  <name>ParameterizationRequest</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.ParameterizationRequest.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.ParameterValueSetRequest</alias>
+  <description>sap.ui.model.analytics.odata4analytics.ParameterValueSetRequest</description>
+  <name>ParameterValueSetRequest</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.ParameterValueSetRequest.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.QueryResult</alias>
+  <description>sap.ui.model.analytics.odata4analytics.QueryResult</description>
+  <name>QueryResult</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.QueryResult.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.QueryResultRequest</alias>
+  <description>sap.ui.model.analytics.odata4analytics.QueryResultRequest</description>
+  <name>QueryResultRequest</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.QueryResultRequest.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.RecursiveHierarchy</alias>
+  <description>sap.ui.model.analytics.odata4analytics.RecursiveHierarchy</description>
+  <name>RecursiveHierarchy</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.RecursiveHierarchy.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.model.analytics.odata4analytics.SortExpression</alias>
+  <description>sap.ui.model.analytics.odata4analytics.SortExpression</description>
+  <name>SortExpression</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.SortExpression.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.model.analytics.odata4analytics.SortOrder</alias>
+  <description>sap.ui.model.analytics.odata4analytics.SortOrder</description>
+  <name>SortOrder</name>
+  <ref>symbols/sap.ui.model.analytics.odata4analytics.SortOrder.html</ref>
+  
+</namespace>
+			
+		</children>
+		
+  
+</namespace>
+			
 		</children>
 		
   
@@ -5182,6 +5394,101 @@
 			
 				<namespace>
   <type>namespace</type>
+  <alias>sap.ui.test</alias>
+  <description>sap.ui.test</description>
+  <name>test</name>
+  <ref>symbols/sap.ui.test.html</ref>
+  
+		
+		
+		<children>
+			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.test.matchers</alias>
+  <description>sap.ui.test.matchers</description>
+  <name>matchers</name>
+  <ref>symbols/sap.ui.test.matchers.html</ref>
+  
+		
+		
+		<children>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.test.matchers.AggregationContainsPropertyEqual</alias>
+  <description>sap.ui.test.matchers.AggregationContainsPropertyEqual</description>
+  <name>AggregationContainsPropertyEqual</name>
+  <ref>symbols/sap.ui.test.matchers.AggregationContainsPropertyEqual.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.test.matchers.AggregationFilled</alias>
+  <description>sap.ui.test.matchers.AggregationFilled</description>
+  <name>AggregationFilled</name>
+  <ref>symbols/sap.ui.test.matchers.AggregationFilled.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.test.matchers.Matcher</alias>
+  <description>sap.ui.test.matchers.Matcher</description>
+  <name>Matcher</name>
+  <ref>symbols/sap.ui.test.matchers.Matcher.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.test.matchers.PropertyStrictEquals</alias>
+  <description>sap.ui.test.matchers.PropertyStrictEquals</description>
+  <name>PropertyStrictEquals</name>
+  <ref>symbols/sap.ui.test.matchers.PropertyStrictEquals.html</ref>
+  
+</namespace>
+			
+		</children>
+		
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.test.Opa</alias>
+  <description>sap.ui.test.Opa</description>
+  <name>Opa</name>
+  <ref>symbols/sap.ui.test.Opa.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.test.Opa5</alias>
+  <description>sap.ui.test.Opa5</description>
+  <name>Opa5</name>
+  <ref>symbols/sap.ui.test.Opa5.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.test.OpaPlugin</alias>
+  <description>sap.ui.test.OpaPlugin</description>
+  <name>OpaPlugin</name>
+  <ref>symbols/sap.ui.test.OpaPlugin.html</ref>
+  
+</namespace>
+			
+		</children>
+		
+  
+</namespace>
+			
+				<namespace>
+  <type>namespace</type>
   <alias>sap.ui.unified</alias>
   <description>sap.ui.unified</description>
   <name>unified</name>
@@ -5197,6 +5504,33 @@
   <description>sap.ui.unified.Calendar</description>
   <name>Calendar</name>
   <ref>symbols/sap.ui.unified.Calendar.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>namespace</type>
+  <alias>sap.ui.unified.CalendarDayType</alias>
+  <description>sap.ui.unified.CalendarDayType</description>
+  <name>CalendarDayType</name>
+  <ref>symbols/sap.ui.unified.CalendarDayType.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.CalendarLegend</alias>
+  <description>sap.ui.unified.CalendarLegend</description>
+  <name>CalendarLegend</name>
+  <ref>symbols/sap.ui.unified.CalendarLegend.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.CalendarLegendItem</alias>
+  <description>sap.ui.unified.CalendarLegendItem</description>
+  <name>CalendarLegendItem</name>
+  <ref>symbols/sap.ui.unified.CalendarLegendItem.html</ref>
   
 </namespace>
 			
@@ -5233,6 +5567,15 @@
   <description>sap.ui.unified.DateRange</description>
   <name>DateRange</name>
   <ref>symbols/sap.ui.unified.DateRange.html</ref>
+  
+</namespace>
+			
+				<namespace>
+  <type>class</type>
+  <alias>sap.ui.unified.DateTypeRange</alias>
+  <description>sap.ui.unified.DateTypeRange</description>
+  <name>DateTypeRange</name>
+  <ref>symbols/sap.ui.unified.DateTypeRange.html</ref>
   
 </namespace>
 			

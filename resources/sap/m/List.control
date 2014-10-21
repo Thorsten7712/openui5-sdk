@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>List</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The List control provides a container for all types of list items.
 For mobile devices, the recommended limit of list items is 100 to assure proper performance. To improve initial rendering of large lists, use the &quot;growing&quot; feature. Please refer to the SAPUI5 Developer Guide for more information..</documentation>
 	<baseType>sap.m/ListBase</baseType>

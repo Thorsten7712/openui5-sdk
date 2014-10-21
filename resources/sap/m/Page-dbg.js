@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -67,22 +67,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * A page is a basic container for a mobile application screen. Usually one page is displayed at a time (in landscape mode or on tablets depending on the layout two pages might be displayed side-by-side).
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.Page
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Page", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"scrollTo"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Data", defaultValue : null},
@@ -97,12 +95,12 @@ sap.ui.core.Control.extend("sap.m.Page", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"customHeader" : {type : "sap.m.IBar", multiple : false}, 
-    	"footer" : {type : "sap.m.IBar", multiple : false}, 
-    	"subHeader" : {type : "sap.m.IBar", multiple : false}, 
-    	"headerContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "headerContent"}, 
-    	"_internalHeader" : {type : "sap.m.IBar", multiple : false, visibility : "hidden"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"customHeader" : {type : "sap.m.IBar", multiple : false}, 
+		"footer" : {type : "sap.m.IBar", multiple : false}, 
+		"subHeader" : {type : "sap.m.IBar", multiple : false}, 
+		"headerContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "headerContent"}, 
+		"_internalHeader" : {type : "sap.m.IBar", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"navButtonTap" : {deprecated: true}, 
@@ -241,7 +239,6 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
  * If set to false, there will be no scrolling at all; for performance reasons this is highly recommended when scrolling is not needed.
  * 
  * The Page only allows vertical scrolling because horizontal scrolling is discouraged in general for full-page content. If it still needs to be achieved, disable the Page scrolling and use a ScrollContainer as full-page content of the Page. This allows you to freely configure scrolling. It can also be used to create horizontally-scrolling sub-areas of (vertically-scrolling) Pages.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -636,7 +633,7 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
 
 
 /**
- * this event is fired when Nav Button is tapped 
+ * this event is fired when Nav Button is tapped
  *
  * @name sap.m.Page#navButtonTap
  * @event
@@ -645,7 +642,6 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -654,7 +650,7 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Page</code>.<br/> itself. 
  *  
- * this event is fired when Nav Button is tapped 
+ * this event is fired when Nav Button is tapped
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -702,7 +698,7 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
 
 
 /**
- * this event is fired when Nav Button is pressed 
+ * this event is fired when Nav Button is pressed
  *
  * @name sap.m.Page#navButtonPress
  * @event
@@ -710,7 +706,6 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -719,7 +714,7 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Page</code>.<br/> itself. 
  *  
- * this event is fired when Nav Button is pressed 
+ * this event is fired when Nav Button is pressed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -766,30 +761,19 @@ sap.m.Page.M_EVENTS = {'navButtonTap':'navButtonTap','navButtonPress':'navButton
 /**
  * Scrolls to the given position. Only available if enableScrolling is set to "true".
  *
- * @name sap.m.Page.prototype.scrollTo
+ * @name sap.m.Page#scrollTo
  * @function
- * @param {int} 
- *         iY
+ * @param {int} iY
  *         The vertical pixel position to scroll to. Scrolling down happens with positive values.
- * @param {int} 
- *         iTime
+ * @param {int} iTime
  *         The duration of animated scrolling. To scroll immediately without animation, give 0 as value. 0 is also the default value, when this optional parameter is omitted.
-
  * @type sap.m.Page
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 // Start of sap\m\Page.js
-sap.m.Page.prototype.init = function() {
-	jQuery.sap.require("sap.ui.core.theming.Parameters");
-	this._bIsPlatformDependent = sap.ui.core.theming.Parameters.get("sapMPlatformDependent") == "true";
-	
-	this._rb = sap.ui.getCore().getLibraryResourceBundle("sap.m");
-	if (this.getNavButtonText() == "" && this._bIsPlatformDependent){
-		this.setNavButtonText(this._rb.getText("PAGE_NAVBUTTON_TEXT"));
-	}
-};
 
 // Return true if scrolling is allowed
 sap.m.Page.prototype._hasScrolling = function() {
@@ -852,20 +836,11 @@ sap.m.Page.prototype.setTitle = function(sTitle) {
 	
 	this._headerTitle = this._headerTitle || new sap.m.Label(this.getId() +"-title", {text: sTitle});
 	this._headerTitle.setText(sTitle);
-	
+
 	if(bWasNull){
-		if (this._bIsPlatformDependent){
-			if(sap.ui.Device.os.ios){
-				this._updateHeaderContent(this._headerTitle, 'middle', 0);
-			} else {
-				this._titleIndex = this._titleIndex || 0;
-				this._updateHeaderContent(this._headerTitle, 'left', this._titleIndex);
-			}
-		} else {
-			this._updateHeaderContent(this._headerTitle, 'middle', 0);
-		}
+		this._updateHeaderContent(this._headerTitle, 'middle', 0);
 	}
-	
+
 	this.setProperty("title", sTitle, true);
 	return this;
 };
@@ -883,19 +858,9 @@ sap.m.Page.prototype.setShowNavButton = function (bShowNavBtn) {
 		this._navBtn.setType(sap.m.ButtonType.Up);
 	} else {
 		this._navBtn.setType(sNavButtonType);
-		if (this._bIsPlatformDependent){
-			this._navBtn.setText(this.getNavButtonText()); 
-		}
 	}
 
 	if (bShowNavBtn){
-		if (sap.ui.Device.os.android && this._bIsPlatformDependent){
-			//On android show the title after the navButton
-			this._titleIndex = 1;
-			if(this.getIcon()) {
-				this._navBtn.setIcon(this.getIcon());
-			}
-		}
 		if (this._appIcon){
 			this._updateHeaderContent(this._appIcon, 'left', -1);
 		}
@@ -904,10 +869,6 @@ sap.m.Page.prototype.setShowNavButton = function (bShowNavBtn) {
 	} else {
 		// remove back button from header bar
 		this._updateHeaderContent(this._navBtn, 'left', -1);
-		if (this._bIsPlatformDependent && !sap.ui.Device.os.ios && this.getIcon()){
-			this._appIcon = this._appIcon || new sap.m.Image(this.getId()+"-icon", {src: this.getIcon()});
-			this._updateHeaderContent(this._appIcon, 'left', 0);
-		}
 	}
 	return this;
 };
@@ -926,12 +887,6 @@ sap.m.Page.prototype.setNavButtonType = function (sNavButtonType) {
 
 sap.m.Page.prototype.setNavButtonText = function (sText) {
 	this._navBtn = this._navBtn || new sap.m.Button(this.getId() + "-navButton", {press: jQuery.proxy(function(){this.fireNavButtonPress(); this.fireNavButtonTap();},this)});
-	if (sText == "" && this._bIsPlatformDependent){
-		sText = this._rb.getText("PAGE_NAVBUTTON_TEXT");
-	}
-	if(sap.ui.Device.os.ios && this._bIsPlatformDependent){
-		this._navBtn.setText(sText);
-	}
 	this.setProperty("navButtonText", sText, true);
 	return this;
 };
@@ -941,34 +896,7 @@ sap.m.Page.prototype.setIcon = function (sIconSrc) {
 	if(sOldValue === sIconSrc){
 		return this;
 	}
-	
-	if (!sap.ui.Device.os.ios && this._bIsPlatformDependent){
-		if(sIconSrc){
-			if (this.getShowNavButton()){
-				this._navBtn = this._navBtn || new sap.m.Button(this.getId() + "-navButton", {press: jQuery.proxy(function(){this.fireNavButtonPress(); this.fireNavButtonTap();},this)});
-				this._navBtn.setIcon(sIconSrc);	
-				if (this._appIcon){
-					this._updateHeaderContent(this._appIcon, 'left', -1);
-				}
-			} else {
-				this._appIcon = this._appIcon || new sap.m.Image(this.getId()+"-icon", {src: sIconSrc}).addStyleClass("sapMPageAppIcon");
-				this._appIcon.setSrc(sIconSrc);
-				if (this._navBtn){
-					this._updateHeaderContent(this._navBtn, 'left', -1);
-				}
-				this._updateHeaderContent(this._appIcon, 'left', 0);
-			}
-			this._titleIndex = 1;
-		}else{
-			//I can't remove the icon from button, so we need to do it later...
-			if(this._appIcon){
-				this._updateHeaderContent(this._appIcon, 'left', -1);
-				this._titleIndex = 0;
-				this._appIcon.destroy();
-				this._appIcon = null;
-			}
-		}
-	}
+
 	this.setProperty("icon", sIconSrc, true);
 	return this;
 };
@@ -1049,19 +977,9 @@ sap.m.Page.prototype._getInternalHeader= function() {
 			if (this.getShowNavButton() && this._navBtn){
 				this._updateHeaderContent(this._navBtn, 'left', 0);
 				this._titleIndex = 1;
-			} else {
-				if(this._bIsPlatformDependent && this.getIcon() && this._appIcon){
-					this._updateHeaderContent(this._appIcon, 'left', 0);
-					this._titleIndex = 1;
-				}
 			}
 			if (this.getTitle() && this._headerTitle){
-				if (this._bIsPlatformDependent){
-					this._titleIndex = this._titleIndex || 0;
-					this._updateHeaderContent(this._headerTitle, 'left', this._titleIndex);
-				} else {
-					this._updateHeaderContent(this._headerTitle, 'middle', 0);
-				}
+				this._updateHeaderContent(this._headerTitle, 'middle', 0);
 			}
 		}
 	}

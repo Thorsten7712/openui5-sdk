@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5439554092389715"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8759625516105266"/>
 <title>Dependent Facets</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -34,7 +36,7 @@
             handle dependencies between facets. Instead, use <samp class="ph codeph">FacetFilterList</samp> events
             in the application.</p>
 <div class="example"><h2 class="exampletitle">Example</h2><p class="p">In this example, only products from the selected category are displayed. </p>
-<img class="image" id="loioe7027747b8ef4ef483cadeeec4cffb1e__image_xq2_wnj_qn" src="1f47e6058f5747b687d1822040e46b1f.image"/><div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oCategoriesModel = new sap.ui.model.odata.ODataModel(
+<img class="image" id="loioe7027747b8ef4ef483cadeeec4cffb1e__image_xq2_wnj_qn" src="loio1f47e6058f5747b687d1822040e46b1f_LowRes.png"/><div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var oCategoriesModel = new sap.ui.model.odata.ODataModel(
 "/uilib-sample/proxy/http/services.odata.org/V3/Northwind/Northwind.svc", 
 true);
 
@@ -90,11 +92,6 @@ var oFF = new sap.m.FacetFilter(genId(), {
     lists : [ oCategoriesFFL, oProductsFFL ],
 });
 </pre></div>
-</div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
 </div>
 </div>
 </div></div>

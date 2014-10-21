@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -65,20 +65,19 @@ jQuery.sap.require("sap.ui.core.Control");
  *
  * @class
  * Enables users to trigger actions such as save or print. For the button UI, you can define some text or an icon, or both.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Button
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Button", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -86,8 +85,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Button", { metadata : {
 		// methods
 		"focus"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : ''},
@@ -137,7 +134,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>text</code>.
  * 
  * Button text displayed at runtime.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -164,7 +160,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>enabled</code>.
  * 
  * Boolean property to enable the control (default is true). Buttons that are disabled have other colors than enabled ones, depending on custom settings.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -191,7 +186,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>visible</code>.
  * 
  * Invisible buttons are not rendered
- * 
  *
  * Default value is <code>true</code>
  *
@@ -218,7 +212,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>width</code>.
  * 
  * Control width as common CSS-size (px or % as unit, for example)
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -245,7 +238,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>helpId</code>.
  * 
  * Unique identifier used for help service
- * 
  *
  * Default value is <code>''</code>
  *
@@ -350,7 +342,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>iconFirst</code>.
  * 
  * If set to true (default), the display sequence is 1. icon 2. control text .
- * 
  *
  * Default value is <code>true</code>
  *
@@ -551,14 +542,12 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
 /**
  * 
  * Event is fired when the user presses the control.
- *  
  *
  * @name sap.ui.commons.Button#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -569,7 +558,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  *  
  * 
  * Event is fired when the user presses the control.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -613,11 +601,11 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
 /**
  * Puts the focus to the button.
  *
- * @name sap.ui.commons.Button.prototype.focus
+ * @name sap.ui.commons.Button#focus
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

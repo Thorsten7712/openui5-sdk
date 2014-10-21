@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>SelectDialog</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A SelectDialog is a dialog containing a list and search functionality to filter the list and confirmation/cancel buttons. The control can be used when the user should select one or multiple items out of many.
 
 The list used in the SelectDialog is a growing list and can be filled with a any kind of list item. The search field triggers the events &quot;search&quot; and &quot;liveChange&quot; where a filter function can be applied to the list binding.
@@ -26,11 +26,14 @@ NOTE: The growing functionality of the list does not support Two Way Binding, so
 		<property group="Misc" name="growingThreshold" type="sap.ui.core/int">
 			<documentation>Number of items initially displayed in the list</documentation>
 		</property>
-		<property group="Appearance" name="contentWidth" type="sap.ui.core/CSSSize" since="1.18">
+		<property group="Dimension" name="contentWidth" type="sap.ui.core/CSSSize" since="1.18">
 			<documentation>The content width of the inner dialog. See dialog documentation for more details.</documentation>
 		</property>
 		<property group="Behavior" name="rememberSelections" type="sap.ui.core/boolean" defaultValue="false" since="1.18">
 			<documentation>This flag controls whether the dialog clears the selection or not after the confirm event has been fired. When the dialog is opened multiple times in the same context to allow for corrections of previous user inputs, set this flag to &quot;true&quot;. When the dialog should reset the selection to allow for a new selection each time set it to &quot;false&quot;.</documentation>
+		</property>
+		<property group="Dimension" name="contentHeight" type="sap.ui.core/CSSSize">
+			<documentation>The content height of the inner dialog. See dialog documentation for more details.</documentation>
 		</property>
 	</properties>
 	<events>

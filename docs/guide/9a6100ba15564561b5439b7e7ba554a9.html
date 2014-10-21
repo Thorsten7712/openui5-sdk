@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=012860425348658167"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8131817170576889"/>
 <title>Creating a Simple Square Control</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -71,8 +73,12 @@
 <p class="p">The information for the visual appearance can be written to the control HTML in the
                 <samp class="ph codeph">renderer</samp> method in the same way as the instance-specific width and
             height. We recommend, however, to define style information that is common to all control
-            instances in a CSS file or in a &lt;style&gt; tag. Thus, it is only written once and can be
-            easily modified by the application.</p>
+            instances in a CSS file or in a &lt;style&gt; tag. Thus, it is only written once and can
+            be easily modified by the application.</p>
+<p class="p">In general, however, when controls need their own CSS and are also supposed to
+            participate in the theming concept, it is recommended not to use on-the-fly controls,
+            but to create real control libraries. Those take care of loading the CSS, providing
+            right-to-left support, and so on.</p>
 <p class="p">To add a grey background, a red border and some alignment information, use the following
             code:</p>
 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;style&gt;
@@ -89,11 +95,6 @@
 <p class="p">This custom control can now be used like any SAPUI5 control: </p>
 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">var myControl = new my.Square({text:"Hello", size: "100px"});
 myControl.placeAt("content");</pre></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

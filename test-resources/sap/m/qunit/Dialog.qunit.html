@@ -15,6 +15,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -119,27 +120,13 @@
 					equal(oLeftButtonFocusDom, document.activeElement, "left button should have the focus");
 				}
 
-				if(sap.ui.Device.os.ios && !sap.m.Dialog._bOneDesign){
-					var oBarDom = jQuery.sap.domById(oDialog.getId() + "-header");
-					if(jQuery.support.touch || jQuery.sap.simulateMobileOnDesktop){
-						expect(11);	
-					}else{
-						expect(12);
-					}
-					ok(oBarDom, "Bar control should be rendered inside the dialog");
-					ok(!oIconDom, "Icon shouldn't be rendered.");
-					ok(jQuery.contains(oBarDom, oTitleDom), "Title should be rendered inside the Bar control");
-					ok(jQuery.contains(oBarDom, oLeftButtonDom), "LeftButton should be rendered inside the Bar control");
-					ok(jQuery.contains(oBarDom, oRightButtonDom), "RightButton should be rendered inside the Bar control");
+				if(jQuery.support.touch || jQuery.sap.simulateMobileOnDesktop){
+					expect(8);
 				}else{
-					if(jQuery.support.touch || jQuery.sap.simulateMobileOnDesktop){
-						expect(8);
-					}else{
-						expect(9);
-					}
-					ok(oIconDom, "Icon should be rendered.");
-					ok(oTitleDom, "Title should be rendered");
+					expect(9);
 				}
+				ok(oIconDom, "Icon should be rendered.");
+				ok(oTitleDom, "Title should be rendered");
 			});
 			
 			test("Close Dialog", function(){
@@ -270,46 +257,44 @@
 				jQuery("html").removeClass("sap-desktop");
 			});
 
-			if(sap.m.Dialog._bOneDesign){
-				test("Dialog: set stretch to true", function(){
-					jQuery("html").css("overflow", "hidden"); // hide scrollbar during test
-					var oDialog = new sap.m.Dialog({
-						stretch: true,
-						content: new sap.ui.core.HTML({
-							content: "<div style='width: 1000px; height: 1000px'></div>"
-						})
-					});
-					oDialog.open();
-					this.clock.tick(500);
-
-					var $dialog = oDialog.$();
-					equal(jQuery(window).width(), $dialog.outerWidth(), "Stretched Dialog's width equals window's width");
-					equal(jQuery(window).height(), $dialog.outerHeight(), "Stretched Dialog's width equals window's width");
-					equal($dialog.width(), oDialog._$content.width(), "content should be as wide as dialog");
-					oDialog.destroy();
-					jQuery("html").css("overflow", ""); // restore scrollbar after test
+			test("Dialog: set stretch to true", function(){
+				jQuery("html").css("overflow", "hidden"); // hide scrollbar during test
+				var oDialog = new sap.m.Dialog({
+					stretch: true,
+					content: new sap.ui.core.HTML({
+						content: "<div style='width: 1000px; height: 1000px'></div>"
+					})
 				});
+				oDialog.open();
+				this.clock.tick(500);
 
-				test("Dialog: set contentWidth when stretch set to true", function(){
-					jQuery("html").css("overflow", "hidden"); // hide scrollbar during test
-					var oDialog = new sap.m.Dialog({
-						stretch: true,
-						content: new sap.ui.core.HTML({
-							content: "<div style='width: 1000px; height: 1000px'></div>"
-						}),
-						contentWidth: "600px"
-					});
-					oDialog.open();
-					this.clock.tick(500);
+				var $dialog = oDialog.$();
+				equal(jQuery(window).width(), $dialog.outerWidth(), "Stretched Dialog's width equals window's width");
+				equal(jQuery(window).height(), $dialog.outerHeight(), "Stretched Dialog's width equals window's width");
+				equal($dialog.width(), oDialog._$content.width(), "content should be as wide as dialog");
+				oDialog.destroy();
+				jQuery("html").css("overflow", ""); // restore scrollbar after test
+			});
 
-					var $dialog = oDialog.$();
-					equal(jQuery(window).width(), $dialog.outerWidth(), "Stretched Dialog's width equals window's width");
-					equal(jQuery(window).height(), $dialog.outerHeight(), "Stretched Dialog's width equals window's width");
-					equal($dialog.width(), oDialog._$content.width(), "content should be as wide as dialog");
-					oDialog.destroy();
-					jQuery("html").css("overflow", ""); // restore scrollbar after test
+			test("Dialog: set contentWidth when stretch set to true", function(){
+				jQuery("html").css("overflow", "hidden"); // hide scrollbar during test
+				var oDialog = new sap.m.Dialog({
+					stretch: true,
+					content: new sap.ui.core.HTML({
+						content: "<div style='width: 1000px; height: 1000px'></div>"
+					}),
+					contentWidth: "600px"
 				});
-			}
+				oDialog.open();
+				this.clock.tick(500);
+
+				var $dialog = oDialog.$();
+				equal(jQuery(window).width(), $dialog.outerWidth(), "Stretched Dialog's width equals window's width");
+				equal(jQuery(window).height(), $dialog.outerHeight(), "Stretched Dialog's width equals window's width");
+				equal($dialog.width(), oDialog._$content.width(), "content should be as wide as dialog");
+				oDialog.destroy();
+				jQuery("html").css("overflow", ""); // restore scrollbar after test
+			});
 
 			test("Set contentWidth to a fixed value", function(){
 				var oDialog = new sap.m.Dialog({
@@ -417,8 +402,8 @@
 
 				// destroy
 				oDialog.destroy();
-				oBBtn.destroy();
-				oEBtn.destroy();
+				ok(oBBtn.bIsDestroyed, "beginButton should also be destroyed");
+				ok(oEBtn.bIsDestroyed, "endButton should also be destroyed");
 				aButtons.forEach(function(oButton){
 					oButton.destroy();
 				});
@@ -483,8 +468,8 @@
 
 				//destroy
 				oDialog.destroy();
-				oBBtn.destroy();
-				oEBtn.destroy();
+				ok(oBBtn.bIsDestroyed, "beginButton should also be destroyed");
+				ok(oEBtn.bIsDestroyed, "endButton should also be destroyed");
 				aButtons.forEach(function(oButton){
 					oButton.destroy();
 				});

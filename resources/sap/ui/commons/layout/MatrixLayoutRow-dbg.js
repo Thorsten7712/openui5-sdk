@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55,25 +55,22 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * 
  * Non-control element used as part of a matrix layout's inner structure.
- * 
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.MatrixLayoutRow
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"addStyleClass", "removeStyleClass", "hasStyleClass"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	aggregatingType : "MatrixLayout",
 	properties : {
@@ -81,7 +78,7 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
 	},
 	defaultAggregation : "cells",
 	aggregations : {
-    	"cells" : {type : "sap.ui.commons.layout.MatrixLayoutCell", multiple : true, singularName : "cell"}
+		"cells" : {type : "sap.ui.commons.layout.MatrixLayoutCell", multiple : true, singularName : "cell"}
 	}
 }});
 
@@ -132,7 +129,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
  * Getter for aggregation <code>cells</code>.<br/>
  * 
  * The matrix layout row's individual cells.
- * 
  * 
  * <strong>Note</strong>: this is the default aggregation for layout/MatrixLayoutRow.
  * @return {sap.ui.commons.layout.MatrixLayoutCell[]}
@@ -241,14 +237,13 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutRow.prototype.addStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutRow#addStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the CSS class name to be added
-
  * @type sap.ui.commons.layout.MatrixLayoutRow
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -258,28 +253,26 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutRow.prototype.removeStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutRow#removeStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to be removed
-
  * @type sap.ui.commons.layout.MatrixLayoutRow
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns true if the given style class string is valid and if this Element has this style class set via a previous call to addStyleClass().
  *
- * @name sap.ui.commons.layout.MatrixLayoutRow.prototype.hasStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutRow#hasStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to check for
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

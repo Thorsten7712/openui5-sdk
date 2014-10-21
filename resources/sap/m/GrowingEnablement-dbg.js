@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -272,6 +272,60 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 	},
 
 	/**
+	 * Returns real getItems() index from context(bound) index
+	 * Note: GroupHeaders are inserted as items aggregation but they are not in the context
+	 *
+	 * @param iContextIndex index of the bound item that is in the context
+	 * @returns {Number} index of items aggregation or -1 when not found
+	 */
+	_getItemIndexByContextIndex : function(iContextIndex) {
+		var oItem,
+			iItemCount = 0,
+			aItems = this._oControl.getItems();
+
+		for (var i = 0; i < aItems.length; i++) {
+			oItem = aItems[i];
+			if (oItem.data("GroupKey") != null) {
+				continue;
+			} else if (iItemCount == iContextIndex) {
+				return i;
+			} else {
+				iItemCount++;
+			}
+		}
+
+		return -1;
+	},
+
+	/**
+	 * Returns the group key of the context(bound) index
+	 * by searching last found GroupHeaders GroupKey data
+	 * Note: GroupHeaders are inserted as items aggregation but they are not in the context
+	 *
+	 * @param iContextIndex index of the bound item that is in the context
+	 * @returns {String} key of the related group
+	 */
+	_getGroupKeyByContextIndex : function(iContextIndex) {
+		var oItem,
+			sGroupKey,
+			iItemIndex = 0,
+			aItems = this._oControl.getItems();
+
+		for (var i = 0; i < aItems.length; i++) {
+			oItem = aItems[i];
+			if (oItem.data("GroupKey") != null) {
+				sGroupKey = oItem.data("GroupKey");
+			} else if (iItemIndex == iContextIndex) {
+				break;
+			} else {
+				iItemIndex++;
+			}
+		}
+
+		return sGroupKey;
+	},
+
+	/**
 	 * Only call when grouped
 	 */
 	_getGroupForContext : function(oContext) {
@@ -452,7 +506,8 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 	updateItems : function(sChangeReason) {
 		var oBindingInfo = this._oControl.getBindingInfo("items"),
 			oBinding = oBindingInfo.binding,
-			fnFactory = oBindingInfo.factory;
+			fnFactory = oBindingInfo.factory,
+			oModel = oBindingInfo.model;
 
 		// set iItemCount to initial value if not set or filtered
 		if (!this._iItemCount || sChangeReason == sap.ui.model.ChangeReason.Filter) {
@@ -471,9 +526,6 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 		}
 
 		// get the context from binding
-		// aContexts.diff ==> undefined : New data we should build from scratch
-		// aContexts.diff ==> [] : There is no diff, means data did not changed but maybe it was already grouped and we need to handle group headers
-		// aContexts.diff ==> [{index : 0, type: "delete"}, ...] : Run the diff logic
 		var aContexts = oBinding ? oBinding.getContexts(0, this._iItemCount) || [] : [];
 
 		// if the binding context is already requested
@@ -482,11 +534,19 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 			return;
 		}
 
+		// aContexts.diff ==> undefined : New data we should build from scratch
+		// aContexts.diff ==> [] : There is no diff, means data did not changed but maybe it was already grouped and we need to handle group headers
+		// aContexts.diff ==> [{index : 0, type: "delete"}, ...] : Run the diff logic
+		var vDiff = aContexts.diff;
+
 		// cache dom ref for internal functions not to lookup again and again
 		this._oContainerDomRef = this._oControl.getItemsContainerDomRef();
 
 		// check control based logic to handle from scratch is required or not
 		var bCheckGrowingFromScratch = this._oControl.checkGrowingFromScratch && this._oControl.checkGrowingFromScratch();
+
+		// init vars
+		var aItems, oClone, oContext, iIndex, iFlushIndex = -1, iLastIndex = -1;
 
 		// when data is grouped we insert the sequential items to the end
 		// but with diff calculation we may need to create GroupHeaders
@@ -496,9 +556,9 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 			if (aContexts.length > 0) {
 				if (this._oContainerDomRef) {
 					// check if diff array exists
-					if (aContexts.diff) {
+					if (vDiff) {
 						// check if the model diff-array is empty
-						if (!aContexts.diff.length) {
+						if (!vDiff.length) {
 							// no diff, we do not need to rebuild list when grouping is not changed
 							if (this._sGroupingPath == this._getGroupingPath(oBinding)) {
 								bFromScratch = false;
@@ -506,21 +566,44 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 						} else {
 							// check the diff array and whether rebuild is required
 							bFromScratch = false;
-							var bFirstAddedItemChecked = false;
-							for (var i = 0, l = aContexts.diff.length; i < l; i++) {
-								if (aContexts.diff[i].type === "delete") {
-									bFromScratch = true;
-									break;
-								}
-								else if (aContexts.diff[i].type === "insert") {
-									if (!bFirstAddedItemChecked && aContexts.diff[i].index !== this._iRenderedDataItems) {
+
+							// If change(delete/insert) comes from same index and
+							// old item context and new context is in the same group
+							// then we may not need to rerender everything but only the row
+							if (!bCheckGrowingFromScratch &&
+								vDiff.length == 2 &&
+								vDiff[0].index == vDiff[1].index && ((
+									vDiff[0].type == "delete" && vDiff[1].type == "insert"
+								) || (
+									vDiff[0].type == "insert" && vDiff[1].type == "delete"
+								)) && this._getGroupKeyByContextIndex(vDiff[0].index) == this._getGroupForContext(aContexts[vDiff[0].index]).key) {
+
+								iIndex = this._getItemIndexByContextIndex(vDiff[0].index);
+								aItems = this._oControl.mAggregations["items"]; // access via getItems() copies the array, so direct access... it is only used in the next line to give the item instance, so it's fine
+								this.deleteListItem(aItems[iIndex]);
+
+								oContext = aContexts[vDiff[0].index];
+								oClone = fnFactory("", oContext);
+								oClone.setBindingContext(oContext, oModel);
+								this.insertListItem(oClone, iIndex);
+							} else {
+								var bFirstAddedItemChecked = false;
+								for (var i = 0, l = vDiff.length; i < l; i++) {
+									if (vDiff[i].type === "delete") {
 										bFromScratch = true;
 										break;
 									}
-									bFirstAddedItemChecked = true;
-									var oClone = fnFactory("", aContexts[aContexts.diff[i].index]);
-									oClone.setBindingContext(aContexts[aContexts.diff[i].index], oBindingInfo.model);
-									this.addListItem(oClone, true);
+									else if (vDiff[i].type === "insert") {
+										if (!bFirstAddedItemChecked && vDiff[i].index !== this._iRenderedDataItems) {
+											bFromScratch = true;
+											break;
+										}
+										bFirstAddedItemChecked = true;
+										oContext = aContexts[vDiff[i].index];
+										oClone = fnFactory("", oContext);
+										oClone.setBindingContext(oContext, oModel);
+										this.addListItem(oClone, true);
+									}
 								}
 							}
 						}
@@ -542,7 +625,7 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 			if (aContexts.length > 0) {
 				if (this._oContainerDomRef) {
 					// check if model diff-array exists and execute
-					if (aContexts.diff) {
+					if (vDiff) {
 						// if previously grouped
 						if (this._sGroupingPath) {
 							// we need to remove all GroupHeaders first
@@ -551,11 +634,10 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 
 						this._oRenderManager = sap.ui.getCore().createRenderManager(); // one shared RenderManager for all the items that need to be rendered
 
-						var aItems, oClone, iIndex, iFlushIndex = -1, iLastIndex = -1;
-						for (var i = 0, l = aContexts.diff.length; i < l; i++) {
-							iIndex = aContexts.diff[i].index;
-
-							if (aContexts.diff[i].type === "delete") { // case 1: element is removed
+						for (var i = 0, l = vDiff.length; i < l; i++) {
+							iIndex = vDiff[i].index;
+							oContext = aContexts[iIndex];
+							if (vDiff[i].type === "delete") { // case 1: element is removed
 								if (iFlushIndex !== -1) {
 									this._oRenderManager.flush(this._oContainerDomRef, false, this._getDomIndex(iFlushIndex));
 									iFlushIndex = -1;
@@ -565,9 +647,9 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 								aItems = this._oControl.mAggregations["items"]; // access via getItems() copies the array, so direct access... it is only used in the next line to give the item instance, so it's fine
 								this.deleteListItem(aItems[iIndex]);
 							}
-							else if (aContexts.diff[i].type === "insert") { // case 2: element is added
-								oClone = fnFactory("", aContexts[iIndex]);
-								oClone.setBindingContext(aContexts[iIndex], oBindingInfo.model);
+							else if (vDiff[i].type === "insert") { // case 2: element is added
+								oClone = fnFactory("", oContext);
+								oClone.setBindingContext(oContext, oModel);
 
 								// start a new burst of subsequent items
 								if (iFlushIndex === -1) {
@@ -586,7 +668,7 @@ sap.ui.base.Object.extend("sap.m.GrowingEnablement", {
 						// update context on all items after applying diff
 						aItems = this._oControl.getItems();
 						for (var i = 0, l = aContexts.length; i < l; i++) {
-							aItems[i].setBindingContext(aContexts[i], oBindingInfo.model);
+							aItems[i].setBindingContext(aContexts[i], oModel);
 						}
 
 						if (iFlushIndex !== -1) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 <name>Text</name>
-<author>SAP AG</author>
+<author>SAP SE</author>
 <documentation>The Text control is used to display some continuous text.</documentation>
 <baseType>sap.ui.core/Control</baseType>
 <properties>

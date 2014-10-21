@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -62,25 +62,22 @@ jQuery.sap.require("sap.ui.core.Element");
  *
  * @class
  * An element for defining attributes and sub-attributes used within the Exact pattern.
- * 
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ExactAttribute
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.ExactAttribute", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getShowSubAttributesIndicator_Computed", "scrollTo"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"text" : {type : "string", group : "Misc", defaultValue : null},
@@ -94,7 +91,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.ExactAttribute", { metadata : {
 	},
 	defaultAggregation : "attributes",
 	aggregations : {
-    	"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}
+		"attributes" : {type : "sap.ui.ux3.ExactAttribute", multiple : true, singularName : "attribute"}
 	},
 	events : {
 		"supplyAttributes" : {}
@@ -416,14 +413,13 @@ sap.ui.ux3.ExactAttribute.M_EVENTS = {'supplyAttributes':'supplyAttributes'};
 
 
 /**
- * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called. 
+ * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called.
  *
  * @name sap.ui.ux3.ExactAttribute#supplyAttributes
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.ExactAttribute} oControlEvent.getParameters.attribute The ExactAttribute
  * @public
  */
@@ -433,7 +429,7 @@ sap.ui.ux3.ExactAttribute.M_EVENTS = {'supplyAttributes':'supplyAttributes'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ExactAttribute</code>.<br/> itself. 
  *  
- * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called. 
+ * A supply function is a handler which is attached to the supplyAttributes event. The event is fired when the corresponding ExactAttribute is selected, it was already selected when a handler is attached or function getAttributes() is called.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -482,25 +478,24 @@ sap.ui.ux3.ExactAttribute.M_EVENTS = {'supplyAttributes':'supplyAttributes'};
 /**
  * See attribute showSubAttributesIndicator
  *
- * @name sap.ui.ux3.ExactAttribute.prototype.getShowSubAttributesIndicator_Computed
+ * @name sap.ui.ux3.ExactAttribute#getShowSubAttributesIndicator_Computed
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Scrolls the corresponding list of this attribute until the given direct child attribute is visible. If the corresponding list is not yet visible the call is buffered until the list is available.
  *
- * @name sap.ui.ux3.ExactAttribute.prototype.scrollTo
+ * @name sap.ui.ux3.ExactAttribute#scrollTo
  * @function
- * @param {sap.ui.ux3.ExactAttribute} 
- *         oOAttribute
+ * @param {sap.ui.ux3.ExactAttribute} oOAttribute
  *         The direct child attribute
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -548,6 +543,7 @@ sap.ui.ux3.ExactAttribute.prototype.setWidth = function(iWidth) {
 
 
 /**
+ * @param {string|sap.ui.core.TooltipBase} oTooltip
  * @see sap.ui.core.Element.prototype.setTooltip
  * @public
  */
@@ -682,6 +678,9 @@ sap.ui.ux3.ExactAttribute.prototype.attachSupplyAttributes = function(oData, fnF
 
 sap.ui.ux3.ExactAttribute.prototype._setProperty_Orig = sap.ui.ux3.ExactAttribute.prototype.setProperty;
 /**
+ * @param {string} sPropertyName
+ * @param {object} oValue
+ * @param {boolean} bSuppressRerendering
  * @see sap.ui.core.Element.prototype.setProperty
  * @protected
  */

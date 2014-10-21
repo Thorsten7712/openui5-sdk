@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,18 +59,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * Is used to display step-by-step work flows of a clearly defined work process
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RoadMap
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RoadMap", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"numberOfVisibleSteps" : {type : "int", group : "Misc", defaultValue : null},
@@ -81,7 +79,7 @@ sap.ui.core.Control.extend("sap.ui.commons.RoadMap", { metadata : {
 	},
 	defaultAggregation : "steps",
 	aggregations : {
-    	"steps" : {type : "sap.ui.commons.RoadMapStep", multiple : true, singularName : "step"}
+		"steps" : {type : "sap.ui.commons.RoadMapStep", multiple : true, singularName : "step"}
 	},
 	events : {
 		"stepSelected" : {}, 
@@ -317,14 +315,13 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
 
 
 /**
- * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action. 
+ * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action.
  *
  * @name sap.ui.commons.RoadMap#stepSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.stepId Id of the selected step
  * @public
  */
@@ -334,7 +331,7 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RoadMap</code>.<br/> itself. 
  *  
- * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action. 
+ * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -381,14 +378,13 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
 
 
 /**
- * Event is fired when a given step is expanded or collapsed by user. 
+ * Event is fired when a given step is expanded or collapsed by user.
  *
  * @name sap.ui.commons.RoadMap#stepExpanded
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.stepId Id of the expanded/collapsed step
  * @public
  */
@@ -398,7 +394,7 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RoadMap</code>.<br/> itself. 
  *  
- * Event is fired when a given step is expanded or collapsed by user. 
+ * Event is fired when a given step is expanded or collapsed by user.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

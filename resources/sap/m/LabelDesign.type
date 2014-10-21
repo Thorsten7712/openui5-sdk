@@ -3,7 +3,7 @@
 
 	<name>LabelDesign</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Available label display modes.</documentation>
 	<baseType>sap.ui.core/string</baseType>
 	<enumeration>

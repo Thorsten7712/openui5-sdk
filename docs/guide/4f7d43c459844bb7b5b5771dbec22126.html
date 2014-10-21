@@ -12,11 +12,13 @@
 <meta name="abstract" content="An easy way to cover simple CustomListItems is to add an HTML control, in which you can write your HTML either directly, or if you use a model and data binding, you can use a formatter to integrate it between the HTML."/>
 <meta name="description" content="An easy way to cover simple CustomListItems is to add an HTML control, in which you can write your HTML either directly, or if you use a model and data binding, you can use a formatter to integrate it between the HTML."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=12904743157029785"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=03104476722420202"/>
 <title>Creating a Custom List Item</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -36,7 +38,7 @@
 
 		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p"><span class="ph cmd">Let's assume we have a model with first name, last name, age, and city properties. We
 					create a <samp class="ph codeph">CustomListItem</samp>, add an HTML control to the list item
-					content and than write a formatter as follows: </span> 
+					content and than write a formatter as follows: </span><div class="itemgroup info">
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">
 var myCustomListItem = new sap.m.CustomListItem({
   content: new sap.ui.core.HTML({
@@ -55,12 +57,7 @@ var myCustomListItem = new sap.m.CustomListItem({
   tap : myTapEvent
 });</pre></div>
 
-				</div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
+				</div></div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

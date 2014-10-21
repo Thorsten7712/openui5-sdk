@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>ShellHeadItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.15.1</since>
 	<documentation>Header Action item of the Shell.</documentation>
 	<baseType>sap.ui.core/Element</baseType>
@@ -9,6 +9,9 @@
 		<property name="startsSection" type="boolean" defaultValue="false" group="Appearance">
 			<documentation>If set to true, a divider is displayed before the item.</documentation>
 			<deprecation since="1.18">Dividers are not supported anymore.</deprecation>
+		</property>
+		<property name="showSeparator" type="boolean" defaultValue="true" group="Appearance" since="1.22.5">
+			<documentation>If set to true, a separator is displayed after the item.</documentation>
 		</property>	
 		<property name="selected" type="boolean" defaultValue="false" group="Appearance">
 			<documentation>If set to true, the item gets a special design.</documentation>

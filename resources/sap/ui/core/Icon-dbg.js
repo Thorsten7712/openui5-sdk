@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -65,19 +65,17 @@ sap.ui.define(['./library','./Control','./IconPool'], function() {
  * A set of built in Icons is available and they can be fetched by calling sap.ui.core.IconPool.getIconURI and set this value to the src property on the Icon.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.11.1
  * @name sap.ui.core.Icon
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.core.Icon", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"src" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -396,7 +394,6 @@ sap.ui.core.Icon.M_EVENTS = {'press':'press'};
 /**
  * Getter for property <code>decorative</code>.
  * A decorative icon is included for design reasons. Accessibility tools will ignore decorative icons. Decorative icons don't have tab stop.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -422,14 +419,13 @@ sap.ui.core.Icon.M_EVENTS = {'press':'press'};
 
 
 /**
- * This event is fired when icon is pressed/activated by the user. 
+ * This event is fired when icon is pressed/activated by the user.
  *
  * @name sap.ui.core.Icon#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -438,7 +434,7 @@ sap.ui.core.Icon.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.core.Icon</code>.<br/> itself. 
  *  
- * This event is fired when icon is pressed/activated by the user. 
+ * This event is fired when icon is pressed/activated by the user.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -493,6 +489,9 @@ sap.ui.core.Icon.M_EVENTS = {'press':'press'};
 sap.ui.core.Icon.prototype.onAfterRendering = function() {
 	var $Icon = this.$();
 
+	if (this.hasListeners("press")) {
+		$Icon.css("cursor", "pointer");
+	}
 	// This is to check if no cursor property inherited from parent DOM.
 	// If the current value is auto, set it to default.
 	// This is to fix the cursor: auto interpreted as text cursor in firefox and IE.
@@ -773,7 +772,7 @@ sap.ui.core.Icon.prototype.setHoverBackgroundColor = function(sColor) {
 sap.ui.core.Icon.prototype.attachPress = function() {
 	var aMyArgs = Array.prototype.slice.apply(arguments);
 	aMyArgs.splice(0, 0, "press");
-	this.addStyleClass("sapUiIconPointer");
+	this.$().css("cursor", "pointer");
 	return sap.ui.core.Control.prototype.attachEvent.apply(this, aMyArgs);
 };
 
@@ -782,7 +781,7 @@ sap.ui.core.Icon.prototype.detachPress = function() {
 	aMyArgs.splice(0, 0, "press");
 	sap.ui.core.Control.prototype.detachEvent.apply(this, aMyArgs);
 	if (!this.hasListeners("press")) {
-		this.removeStyleClass("sapUiIconPointer");
+		this.$().css("cursor", "default");
 	}
 	return this;
 };

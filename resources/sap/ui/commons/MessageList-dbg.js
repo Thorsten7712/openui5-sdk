@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,26 +53,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Instantiated by the "MessageBar" Control if the user ever requests to generate the corresponding "MessageList".
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.MessageList
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MessageList", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"setMessages"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : false},
@@ -177,14 +173,13 @@ sap.ui.core.Control.extend("sap.ui.commons.MessageList", { metadata : {
 /**
  * Sets the message list to be displayed.
  *
- * @name sap.ui.commons.MessageList.prototype.setMessages
+ * @name sap.ui.commons.MessageList#setMessages
  * @function
- * @param {sap.ui.commons.Message[]} 
- *         aMessages
+ * @param {sap.ui.commons.Message[]} aMessages
  *         Message list.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

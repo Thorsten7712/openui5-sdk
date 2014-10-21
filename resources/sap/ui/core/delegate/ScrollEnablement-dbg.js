@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -28,7 +28,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 			 *
 			 * @class Delegate for touch scrolling on mobile devices
 			 *
-			 * @author SAP AG
+			 * @author SAP SE
 			 *
 			 * This delegate uses CSS (-webkit-overflow-scrolling) only if supported. Otherwise the desired
 			 * scrolling library is used. Please also consider the documentation
@@ -51,7 +51,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 			 * @param {boolean} [oConfig.preventDefault=false] If set, the default of touchmove is prevented
 			 * @param {boolean} [oConfig.nonTouchScrolling=false] If true, the delegate will also be active to allow touch like scrolling with the mouse on non-touch platforms; if set to "scrollbar", there will be normal scrolling with scrollbars and no touch-like scrolling where the content is dragged
 			 *
-			 * @version 1.22.4
+			 * @version 1.24.2
 			 * @constructor
 			 * @protected
 			 */
@@ -714,18 +714,15 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 				var container = this._$Container[0];
 				if(!container) return;
 
-				// vertically scrollable, for rubber page prevention
-				this._bAllowScroll = !sap.ui.Device.os.ios || this._bVertical && (container.scrollHeight > container.clientHeight + 1);
-	
-				if(this._bAllowScroll && sap.ui.Device.os.ios){
-					if(container.scrollTop == 0){
-						container.scrollTop = 1;
-					}
-					var delta = container.scrollHeight - container.clientHeight;
-					if(container.scrollTop === delta){
-						container.scrollTop = delta-1;
-					}
+				// Drag instead of native scroll
+				this._bDoDrag = this._bDragScroll;
+
+				// find if container is scrollable vertically or horizontally
+				if(!this._scrollable){
+					this._scrollable = {};
 				}
+				this._scrollable.vertical = this._bVertical && container.scrollHeight > container.clientHeight;
+				this._scrollable.horizontal = this._bHorizontal && container.scrollWidth > container.clientWidth;
 
 				// Prevent false tap event during momentum scroll in IOS
 				if(this._oIOSScroll && this._oIOSScroll.bMomentum){
@@ -738,6 +735,17 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 				var point = oEvent.touches ? oEvent.touches[0] : oEvent;
 				this._iX = point.pageX;
 				this._iY = point.pageY;
+				if(this._oIOSScroll){ // preventing rubber page
+					if(!this._scrollable.vertical){
+						this._oIOSScroll.iTopDown = 0;
+					} else if(container.scrollTop === 0){
+						this._oIOSScroll.iTopDown = 1;
+					} else if(container.scrollTop === container.scrollHeight - container.clientHeight){
+						this._oIOSScroll.iTopDown = -1;
+					} else {
+						this._oIOSScroll.iTopDown = 0;
+					};
+				}
 				this._bPullDown = false;
 				this._iDirection = ""; // h - horizontal, v - vertical
 			},
@@ -745,10 +753,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 			_onTouchMove : function(oEvent){
 				var container = this._$Container[0];
 				var point = oEvent.touches[0];
+				var dx = point.pageX - this._iX;
+				var dy = point.pageY - this._iY;
 
 				if(this._iDirection == ""){ // do once at start
-					var dx = point.pageX - this._iX;
-					var dy = point.pageY - this._iY;
 
 					if(dx != 0 || dy != 0){
 						this._iDirection = Math.abs(dy) > Math.abs(dx) ? "v" : "h";
@@ -763,6 +771,13 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 						}
 					}
 				}
+
+				if(this._oIOSScroll && this._oIOSScroll.iTopDown && dy != 0){
+					if(dy * this._oIOSScroll.iTopDown > 0){
+						this._bDoDrag = true;
+					}
+				}
+
 				if(this._bPullDown === true){
 					var pd = this._oPullDown.getDomRef();
 					var top = oEvent.touches[0].pageY - this._iY - pd.offsetHeight;
@@ -772,33 +787,32 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 					this._oPullDown.doPull(top);
 					// prevent scrolling
 					oEvent.preventDefault();
+					this._bDoDrag = false; // avoid interference with drag scrolling
 				}
 
-				// Special case for scrolling without overflow: auto
-				if(this._bDragScroll){
-					// Check first if the touch move direction is correct
-					if(this._iDirection == "v" && this._bVertical || this._iDirection == "h" && this._bHorizontal){
-						container.scrollLeft = container.scrollLeft + this._iX - point.pageX;
-						container.scrollTop = container.scrollTop + this._iY - point.pageY;
-						this._iX = point.pageX;
-						this._iY = point.pageY;
-						oEvent.stopPropagation();
-						oEvent.preventDefault();
-					}
+				// Special case for dragging instead of scrolling:
+				if(this._bDoDrag){
+					container.scrollLeft = container.scrollLeft + this._iX - point.pageX;
+					container.scrollTop = container.scrollTop + this._iY - point.pageY;
+					this._iX = point.pageX;
+					this._iY = point.pageY;
+					oEvent.setMarked();
+					oEvent.preventDefault();
 					return;
 				}
 
 				// Prevent false tap event during momentum scroll in IOS
-				if(this._oIOSScroll && this._bAllowScroll && this._iDirection == "v" && Math.abs(oEvent.touches[0].pageY - this._iY) >= 10){
+				if(this._oIOSScroll && !this._bDoDrag && this._iDirection == "v" && Math.abs(oEvent.touches[0].pageY - this._iY) >= 10){
 					this._oIOSScroll.bMomentum = true;
 					this._oIOSScroll.iTimeStamp = oEvent.timeStamp;
 				}
 
-				if(this._bAllowScroll || this._bHorizontal && this._iDirection == "h"){
+				if(!this._oIOSScroll || this._scrollable.vertical || this._scrollable.horizontal && this._iDirection == "h"){
 					oEvent.setMarked(); // see jQuery.sap.mobile.js
-					if(window.iScroll){ // if both iScroll and native scrolling are used (IconTabBar)
-						oEvent.setMarked("scroll");
-					}
+				}
+
+				if(window.iScroll){ // if both iScroll and native scrolling are used (IconTabBar)
+					oEvent.setMarked("scroll");
 				}
 			},
 	

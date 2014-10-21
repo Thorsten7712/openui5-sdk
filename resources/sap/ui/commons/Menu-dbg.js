@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,21 +54,19 @@ jQuery.sap.require("sap.ui.unified.Menu");
  * A container for menu items. When the space in the browser is not large enough to display all defined items, a scroll bar is provided.
  * @extends sap.ui.unified.Menu
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the control sap.ui.unified.Menu of the library sap.ui.unified instead.
  * @name sap.ui.commons.Menu
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.Menu.extend("sap.ui.commons.Menu", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 

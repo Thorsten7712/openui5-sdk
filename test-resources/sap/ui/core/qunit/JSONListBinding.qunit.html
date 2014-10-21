@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 <!-- Test functions -->
@@ -107,6 +108,8 @@
 		var listBinding = bindings[0];
 		equal(listBinding.getPath(), "/teamMembers", "ListBinding path");
 		equal(listBinding.getModel(), oModel, "ListBinding model");
+		equal(listBinding.getLength(), 7, "ListBinding getLength");
+		equal(listBinding.isLengthFinal(), true, "ListBinding isLengthFinal");
 
 		jQuery(listBinding.getContexts()).each(function(i, context){
 			equal(context.getPath(), "/teamMembers/" + i, "ListBinding context");

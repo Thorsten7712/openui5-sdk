@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52,25 +52,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * Add your documentation for the new FileUploadInspector
+ * Control that allows to monitor uploaded files in a demo scenario. This is not a general purpose monitor but only works with the demo fileupload service.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.demokit.FileUploadIntrospector
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.demokit.FileUploadIntrospector", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"refresh"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.demokit",
 	properties : {
 		"uploadUrl" : {type : "string", group : "Misc", defaultValue : null},
@@ -199,13 +195,13 @@ sap.ui.core.Control.extend("sap.ui.demokit.FileUploadIntrospector", { metadata :
 
 
 /**
- * 
+ * Trigger an explicit refresh of the displayed information
  *
- * @name sap.ui.demokit.FileUploadIntrospector.prototype.refresh
+ * @name sap.ui.demokit.FileUploadIntrospector#refresh
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

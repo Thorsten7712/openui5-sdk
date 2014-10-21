@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
   <name>ContentSwitcher</name>
-  <author>SAP AG</author>
+  <author>SAP SE</author>
   <since>1.16.0</since>
   <documentation>Switches between two control areas and animates it via CSS transitions</documentation>
   <developmentState state="experimental" since="1.16.0">API is not yet finished and might change completely</developmentState>

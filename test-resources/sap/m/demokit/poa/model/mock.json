@@ -19,7 +19,7 @@
 			"CreatedByName": "EPM USER",
 			"ChangedByName": "EPM USER",
 			"Supplier": {
-				"Name": "SAP AG",
+				"Name": "SAP SE",
 				"Id": "100000000",
 				"Street": "Dietmar-Hopp-Allee",
 				"Building": "15",
@@ -1333,7 +1333,7 @@
 			"CreatedByName": "EPM USER",
 			"ChangedByName": "EPM USER",
 			"Supplier" : {
-				"Name": "SAP AG",
+				"Name": "SAP SE",
 				"Id": "100000000",
 				"Street": "Dietmar-Hopp-Allee",
 				"Building": "15",
@@ -1990,7 +1990,7 @@
 			"CreatedByName": "EPM USER",
 			"ChangedByName": "EPM USER",
 			"Supplier": {
-				"Name": "SAP AG",
+				"Name": "SAP SE",
 				"Id": "100000000",
 				"Street": "Dietmar-Hopp-Allee",
 				"Building": "15",

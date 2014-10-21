@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.ux3.DataSet");jQuery.sap.require("sap.ui.ux3.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.ux3.DataSet",{metadata:{publicMethods:["setLeadSelection","getLeadSelection","addToolbarItem","removeToolbarItem"],library:"sap.ui.ux3",properties:{"showToolbar":{type:"boolean",group:"Misc",defaultValue:true},"showFilter":{type:"boolean",group:"Misc",defaultValue:true},"showSearchField":{type:"boolean",group:"Misc",defaultValue:true},"multiSelect":{type:"boolean",group:"Behavior",defaultValue:false}},aggregations:{"items":{type:"sap.ui.ux3.DataSetItem",multiple:true,singularName:"item",bindable:"bindable"},"views":{type:"sap.ui.ux3.DataSetView",multiple:true,singularName:"view"},"filter":{type:"sap.ui.core.Control",multiple:true,singularName:"filter"},"_viewSwitches":{type:"sap.ui.core.Control",multiple:true,singularName:"_viewSwitch",visibility:"hidden"},"_toolbar":{type:"sap.ui.commons.Toolbar",multiple:false,visibility:"hidden"}},associations:{"selectedView":{type:"sap.ui.ux3.DataSetView",multiple:false}},events:{"selectionChanged":{},"search":{}}}});sap.ui.ux3.DataSet.M_EVENTS={'selectionChanged':'selectionChanged','search':'search'};jQuery.sap.require("sap.ui.core.ResizeHandler");

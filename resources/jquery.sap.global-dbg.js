@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -82,8 +82,8 @@
 	 * 
 	 * @class Represents a version consisting of major, minor, patch version and suffix, e.g. '1.2.7-SNAPSHOT'.
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @constructor
 	 * @public
 	 * @since 1.15.0
@@ -197,6 +197,8 @@
 	 * <code>jQuery.sap.Version</code> instances (e.g. <code>v.inRange(v1, v2)</code>), as strings (e.g. <code>v.inRange("1.4", "2.7")</code>)
 	 * or as arrays (e.g. <code>v.inRange([1,4], [2,7])</code>).
 	 * 
+	 * @param {string|any[]|jQuery.sap.Version} vMin the start of the range (inclusive)
+	 * @param {string|any[]|jQuery.sap.Version} vMax the end of the range (exclusive)
 	 * @return {boolean} <code>true</code> if this version is greater or equal to <code>vMin</code> and smaller than <code>vMax</code>, <code>false</code> otherwise.
 	 * @name jQuery.sap.Version#inRange
 	 * @public
@@ -474,9 +476,9 @@
 	}
 
 	/**
-	 * Root Namespace for the jQuery plug-in provided by SAP AG.
+	 * Root Namespace for the jQuery plug-in provided by SAP SE.
 	 *
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @namespace
 	 * @public
 	 * @static
@@ -654,8 +656,12 @@
 		}
 
 		/**
+		 * Creates a new Logger instance which will use the given component string 
+		 * for all logged messages without a specific component.
+		 *
+		 * @param {string} sDefaultComponent 
+		 *
 		 * @class A Logger class
-		 * @param sDefaultComponent
 		 * @name jQuery.sap.log.Logger
 		 * @since 1.1.2
 		 * @public
@@ -857,7 +863,7 @@
 		 * is added to the log. The listener can be used for displaying log entries in a separate page area,
 		 * or for sending it to some external target (server).
 		 *
-		 * @author SAP AG
+		 * @author SAP SE
 		 * @since 0.9.0
 		 * @namespace
 		 * @public
@@ -1033,6 +1039,9 @@
 		 *              is optimized during build. Therefore, callers should not rely on any side effects
 		 *              of this method.
 		 *
+		 * @param {boolean} bResult result of the checked assertion
+		 * @param {string} sMessage message that will be raised when the result is <code>false</code>
+		 *
 		 * @public
 		 * @static
 		 * @SecSink {1|SECRET} Could expose secret data in logs
@@ -1069,6 +1078,7 @@
 	 * Returns a new constructor function that creates objects with
 	 * the given prototype.
 	 *
+	 * @param {object} oPrototype
 	 * @return {function} the newly created constructor function
 	 * @public
 	 * @static
@@ -1085,6 +1095,8 @@
 	 * If several objects with the same prototype are to be created,
 	 * {@link jQuery.sap.factory} should be used instead.
 	 *
+	 * @param {object} oPrototype
+	 * @return {object} new object
 	 * @public
 	 * @static
 	 */
@@ -1099,6 +1111,8 @@
 	 *
 	 * As closures don't come for free, this function should only be used when polluting
 	 * the enclosing object is an absolute "must-not" (as it is the case in public base classes).
+	 *
+	 * @param {object} oValue
 	 *
 	 * @public
 	 * @static
@@ -1362,6 +1376,7 @@
 				'sap/ui/thirdparty/datajs.js': true,
 				'sap/ui/thirdparty/hasher.js': true,
 				'sap/ui/thirdparty/IPv6.js': true,
+				'sap/ui/thirdparty/jquery/jquery-1.11.1.js': true,
 				'sap/ui/thirdparty/jquery/jquery-1.10.2.js': true,
 				'sap/ui/thirdparty/jquery/jquery-1.10.1.js': true,
 				'sap/ui/thirdparty/jquery/jquery.1.7.1.js': true,
@@ -1497,23 +1512,35 @@
 		}
 
 		function guessResourceName(sURL) {
-			var iLength = -1, 
-				sResourceName, 
-				sCandidate,
-				sCandidateUrl;
-			
-			for(var sCandidate in mUrlPrefixes) {
-				sCandidateUrl = mUrlPrefixes[sCandidate];
-				sCandidateUrl = sCandidateUrl + (sCandidateUrl.slice(-1) !== '/' ? "/" : "");
-				if ( mUrlPrefixes.hasOwnProperty(sCandidate)
-						 && sCandidate.length > iLength
-						 && (sURL === sCandidateUrl || sURL.indexOf(sCandidateUrl) === 0) ) {
-					iLength = sCandidate.length;
-					sResourceName = sCandidate + (sCandidate ? "/" : "") + sURL.slice(sCandidateUrl.length);
+			var sNamePrefix,
+				sUrlPrefix,
+				sResourceName;
+
+			for(sNamePrefix in mUrlPrefixes) {
+				if ( mUrlPrefixes.hasOwnProperty(sNamePrefix) ) {
+
+					// Note: configured URL prefixes are guaranteed to end with a '/'
+					// But to support the legacy scenario promoted by the application tools ( "registerModulePath('Application','Application')" )
+					// the prefix check here has to be done without the slash
+					sUrlPrefix = mUrlPrefixes[sNamePrefix].slice(0,-1);
+					
+					if ( sURL.indexOf(sUrlPrefix) === 0 ) {
+
+						// calc resource name   
+						sResourceName = sNamePrefix + sURL.slice(sUrlPrefix.length);
+						// remove a leading '/' (occurs if name prefix is empty and if match was a full segment match
+						if ( sResourceName.charAt(0) === '/' ) {
+							sResourceName = sResourceName.slice(1);
+						}
+
+						if ( mModules[sResourceName] && mModules[sResourceName].data ) {
+							return sResourceName;
+						}
+					}
 				}
 			}
 			
-			return iLength < 0 ? undefined : sResourceName;
+			// return undefined;
 		}
 		
 		function declareModule(sModuleName) {
@@ -1649,7 +1676,7 @@
 		function execModule(sModuleName) {
 			
 			var oModule = mModules[sModuleName],
-				sOldPrefix, oUri, sAbsoluteUrl;
+				sOldPrefix, sScript;
 			
 			if ( oModule && oModule.state === LOADED && typeof oModule.data !== "undefined" ) {
 				try {
@@ -1665,20 +1692,30 @@
 					_execStack.push(sModuleName);
 					if ( typeof oModule.data === "function" ) {
 						oModule.data.apply(window);
-					} else if (_window.execScript && (!oModule.data || oModule.data.length < MAX_EXEC_SCRIPT_LENGTH) ) { 
-						try {
-							oModule.data && _window.execScript(oModule.data); // execScript fails if data is empty
-						} catch (e) {
-							_execStack.pop();
-							// eval again with different approach - should fail with a more informative exception
-							jQuery.sap.globalEval(oModule.data);
-							throw e; // rethrow err in case globalEval succeeded unexpectedly
-						}
 					} else {
-						// make URL absolute so Chrome displays the file tree correctly
-						oUri = URI(oModule.url);
-						sAbsoluteUrl = oUri.absoluteTo(sDocumentLocation);
-						_window.eval(oModule.data + "\r\n//# sourceURL=" + sAbsoluteUrl); // Firebug, Chrome and Safari debugging help, appending the string seems to cost ZERO performance
+
+						sScript = oModule.data;
+
+						// sourceURL: Firebug, Chrome, Safari and IE11 debugging help, appending the string seems to cost ZERO performance
+						// Note: IE11 supports sourceURL even when running in IE9 or IE10 mode
+						// Note: make URL absolute so Chrome displays the file tree correctly
+						// Note: do not append if there is already a sourceURL / sourceMappingURL
+						if (sScript && !sScript.match(/\/\/[#@] source(Mapping)?URL=.*$/)) {
+							sScript += "\n//# sourceURL=" + URI(oModule.url).absoluteTo(sDocumentLocation);
+						}
+
+						if (_window.execScript && (!oModule.data || oModule.data.length < MAX_EXEC_SCRIPT_LENGTH) ) { 
+							try {
+								oModule.data && _window.execScript(sScript); // execScript fails if data is empty
+							} catch (e) {
+								_execStack.pop();
+								// eval again with different approach - should fail with a more informative exception
+								jQuery.sap.globalEval(oModule.data);
+								throw e; // rethrow err in case globalEval succeeded unexpectedly
+							}
+						} else {
+							_window.eval(sScript);
+						}
 					}
 					_execStack.pop();
 					oModule.state = READY;
@@ -1736,6 +1773,10 @@
 		 *
 		 * The returned name (without the suffix) doesn't end with a slash.
 		 *
+		 * @param {string} sModuleName module name to detemrine the path for 
+		 * @param {string} sSuffix suffix to be added to the resulting path
+		 * @return {string} calculated path (URL) to the given module
+		 *
 		 * @public
 		 * @static
 		 */
@@ -1767,6 +1808,9 @@
 		 *
 		 * Note that the empty prefix ('') will always match and thus serves as a fallback for
 		 * any search.
+		 *
+		 * @param {string} sModuleName module name to register a path for
+		 * @param {string} sUrlPrefix path to register
 		 *
 		 * @public
 		 * @static
@@ -1802,6 +1846,8 @@
 		 * Note that the empty prefix ('') will always match and thus serves as a fallback for
 		 * any search.
 		 *
+		 * @param {string} sResourceNamePrefix
+		 * @param {string} sUrlPrefix
 		 * @public
 		 * @static
 		 * @SecSink {1|PATH} Parameter is used for future HTTP requests
@@ -2225,12 +2271,15 @@
 		 * be returned. In any other case, an exception will be thrown, or if option failOnError is set to true,
 		 * <code>null</code> will be returned.
 		 * 
-		 * Future implementations of this API might add more options, esp. asynchronous calls might 
-		 * be possible. Generic implementations that accept an <code>mOptions</code> object and propagate it
-		 * to this function should limit the options to the currently defined set of options or they might fail 
-		 * for unknown options (e.g. async calls won't return the resource immediately). 
+		 * Future implementations of this API might add more options. Generic implementations that accept an
+		 * <code>mOptions</code> object and propagate it to this function should limit the options to the currently
+		 * defined set of options or they might fail for unknown options. 
 		 * 
-		 * For asynchronous calls the return type of this method will change. 
+		 * For asynchronous calls the return value of this method is an ECMA Script 6 Promise object which callbacks are triggered
+		 * when the resource is ready:
+		 * If <code>failOnError</code> is <code>false</code> the catch callback of the promise is not called. The argument given to the fullfilled
+		 * callback is null in error case.
+		 * If <code>failOnError</code> is <code>true</code> the catch callback will be triggered. The argument is an Error object in this case.
 		 * 
 		 * @param {string} [sResourceName] resourceName in unified resource name syntax
 		 * @param {object} [mOptions] options 
@@ -2239,7 +2288,8 @@
 		 * @param {string} [mOptions.url] url of a resource to load (alternative syntax, name will only be a guess)
 		 * @param {string} [mOptions.headers] Http headers for an eventual XHR request
 		 * @param {string} [mOptions.failOnError=true] whether to propagate load errors or not
-		 * @return {string|Document|object} content of the resource. A string for text or html, an Object for JSON, a Document for XML
+		 * @param {string} [mOptions.async=false] whether the loading should be performed asynchronously.
+		 * @return {string|Document|object|Promise} content of the resource. A string for text or html, an Object for JSON, a Document for XML. For asynchronous calls an ECMA Script 6 Promise object will be returned.
 		 * @throws Error if loading the resource failed
 		 * @private
 		 * @experimental API is not yet fully mature and may change in future.
@@ -2249,9 +2299,9 @@
 
 			var sType,
 				oData,
-				vConverter, 
 				sUrl,
-				oError;
+				oError,
+				oDeferred;
 
 			if ( typeof sResourceName === "string" ) {
 				mOptions = mOptions || {};
@@ -2263,7 +2313,7 @@
 				}
 			}
 			// defaulting
-			mOptions = jQuery.extend({ failOnError: true }, mOptions);
+			mOptions = jQuery.extend({ failOnError: true, async: false }, mOptions);
 			
 			sType = mOptions.dataType; 
 			if ( sType == null && sResourceName ) {
@@ -2271,41 +2321,67 @@
 			}
 
 			jQuery.sap.assert(/^(xml|html|json|text)$/.test(sType), "type must be one of xml, html, json or text");
+			
+			oDeferred = mOptions.async ? new jQuery.Deferred() : null;
+			
+			function handleData(d, e) {
+				if ( d == null && mOptions.failOnError ) {
+					e = e || new Error("no data returned for " + sResourceName);
+					if(mOptions.async){
+						oDeferred.reject(e);
+						jQuery.sap.log.error(e);
+						return d;
+					}
+					throw e;
+				}
+				
+				if(mOptions.async){
+					oDeferred.resolve(d);
+				}
+				
+				return d;
+			}
+			
+			function convertData(d) {
+				var vConverter = jQuery.ajaxSettings.converters["text " + sType];
+				if ( typeof vConverter === "function" ) {
+					d = vConverter(d);
+				}
+				return handleData(d);
+			}
 
 			oData = sResourceName && mModules[sResourceName] && mModules[sResourceName].data;
 			if ( oData != null ) {
 
-				vConverter = jQuery.ajaxSettings.converters["text " + sType];
-				if ( typeof vConverter === "function" ) {
-					oData = vConverter(oData);
+				if(mOptions.async){
+					//Use timeout to simulate async behavior for this sync case for easier usage
+					setTimeout(function(){convertData(oData);}, 0);
+				}else{
+					oData = convertData(oData);
 				}
 
 			} else {
 
 				jQuery.ajax({
 					url : sUrl = mOptions.url || getResourcePath(sResourceName),
-					async : false,
+					async : mOptions.async,
 					dataType : sType,
 					headers: mOptions.headers,
 					success : function(data, textStatus, xhr) {
-						oData = data;
+						oData = handleData(data);
 					},
 					error : function(xhr, textStatus, error) {
-						oData = null; // normalize 
 						oError = new Error("resource " + sResourceName + " could not be loaded from " + sUrl + ". Check for 'file not found' or parse errors.");
 						oError.status = textStatus;
 						oError.error = error;
 						oError.statusCode = xhr.status;
+						oData = handleData(null, oError);
 					}
 				});
 
 			}
 
-			if ( oData == null && mOptions.failOnError ) {
-				throw oError || new Error("no data returned for " + sResourceName);
-			}
-
-			return oData;
+			return mOptions.async ? window.Promise.resolve(oDeferred) : oData;
 		};
 
 		return function() {
@@ -2428,7 +2504,7 @@
 
 		var _appendStyle = function(sUrl, sId, fnLoadCallback, fnErrorCallback){
 
-			if (sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version <= 9 && document.styleSheets.length >= 29) {
+			if (sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version <= 9 && document.styleSheets.length >= 28) {
 				// in IE9 only 30 links are alowed, so use stylesheet object insted
 				var sRootUrl = URI.parse(document.URL).path;
 				jQuery.sap.log.warning("StlyeSheet "+sId+" not added as LINK because of IE limits", sUrl, "jQuery.sap.includeStyleSheet");
@@ -2453,8 +2529,18 @@
 						this._oIEStyleSheet.addImport(URI(sUrl).absoluteTo(sRootUrl));
 					}
 				}
-			}else {
-				appendHead(_createLink(sUrl, sId, fnLoadCallback, fnErrorCallback));
+				// always make sure to re-append the customcss in the end if it exists  
+				var oCustomCss = document.getElementById('sap-ui-core-customcss');
+				if (!jQuery.isEmptyObject(oCustomCss)){
+					appendHead(oCustomCss);
+				}
+			} else {
+				var oLink = _createLink(sUrl, sId, fnLoadCallback, fnErrorCallback);
+				if (jQuery('#sap-ui-core-customcss').length > 0){
+					jQuery('#sap-ui-core-customcss').first().before(jQuery(oLink));
+				} else {
+					appendHead(oLink);
+				}
 			}
 
 		};
@@ -2926,7 +3012,6 @@
 		/**
 		 * Clears all performance measurements
 		 *
-		 * @return
 		 * @name jQuery.sap.measure#clear
 		 * @function
 		 * @public
@@ -2937,14 +3022,12 @@
 			}
 
 			this.mMeasurements = {};
-			return;
 		};
 
 		/**
 		 * Removes a performance measure
 		 *
 		 * @param {string} sId ID of the measurement
-		 * @return
 		 * @name jQuery.sap.measure#remove
 		 * @function
 		 * @public
@@ -2955,7 +3038,6 @@
 			}
 
 			delete this.mMeasurements[sId];
-			return;
 		};
 
 		/**
@@ -3023,7 +3105,7 @@
 	}
 
 	/**
-	 * Namespace for the jQuery performance measurement plug-in provided by SAP AG.
+	 * Namespace for the jQuery performance measurement plug-in provided by SAP SE.
 	 *
 	 * @namespace
 	 * @name jQuery.sap.measure

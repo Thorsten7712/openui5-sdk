@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,7 +53,7 @@ sap.ui.demokit.DemokitApp = function(sTitle, sVersion, aThemes) {
 	
 	jQuery(window).bind('hashchange', function() { 
 		var sHash = window.location.hash; 
-		jQuery.sap.log.debug("hashchange occured, current='" + oDemokit._sCurrentContent + "', new='" + sHash + "'");
+		jQuery.sap.log.debug("hashchange occured, current='" + that._sCurrentContent + "', new='" + sHash + "'");
 		if ( sHash  &&  sHash != "#" + that._sCurrentContent ) {
 			jQuery.sap.log.info("navigate to " + sHash);
 			that.navigateTo(sHash, true);
@@ -486,6 +486,7 @@ sap.ui.demokit.DemokitApp.prototype.placeAt = function(sId) {
 // Listen to IFrame load
 sap.ui.demokit.DemokitApp.prototype.onContentLoaded = function (e) {
 	
+	var that=this;
 	var oContentWindow = jQuery("#content")[0].contentWindow;
 	var sIFrameContent = this.calcRelativeUrl(oContentWindow.location.href);
 	if(sIFrameContent && !this._bIgnoreIFrameOnLoad){
@@ -496,12 +497,12 @@ sap.ui.demokit.DemokitApp.prototype.onContentLoaded = function (e) {
 	this._bIgnoreIFrameOnLoad = false;
 
 	jQuery(oContentWindow).bind("hashchange", function() {
-		var sIFrameContent = this.calcRelativeUrl(oContentWindow.location.href);
-		if(sIFrameContent && !this._bIgnoreIFrameOnLoad){
-			this.navigateTo(sIFrameContent, true, true);
+		var sIFrameContent = that.calcRelativeUrl(oContentWindow.location.href);
+		if(sIFrameContent && !that._bIgnoreIFrameOnLoad){
+			that.navigateTo(sIFrameContent, true, true);
 			window.location.hash = sIFrameContent;
 		}
-		this._bIgnoreIFrameOnLoad = false;
+		that._bIgnoreIFrameOnLoad = false;
 	});
 	
 };
@@ -628,7 +629,7 @@ sap.ui.demokit.DemokitApp.prototype.navigateTo = function(sName, bSkipSetHash, b
 	
 	if(!bSkipSwitchLocation){
 		
-		bIgnoreIFrameOnLoad = true;
+		this._bIgnoreIFrameOnLoad = true;
 		
 		// set fakeOS for mobile test pages (BUT not for mobile demo apps)
 		var isMobilePage = sPageName && sPageName.match(/\/sap\/me?\//);

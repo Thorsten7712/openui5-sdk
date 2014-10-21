@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25,8 +25,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @class
 	 * Implementation to access oData metadata
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 *
 	 * @constructor
 	 * @public
@@ -44,7 +44,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 			this.sUrl = sMetadataURI;
 			this.bAsync = mParams.async;
 			this.sUser = mParams.user;
+			this.bWithCredentials = mParams.withCredentials;
 			this.sPassword = mParams.password;
+			this.mHeaders = mParams.headers;
 			this.oLoadEvent = null;
 			this.oFailedEvent = null;
 			this.oMetadata = null;
@@ -166,7 +168,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @return {sap.ui.model.odata.ODataMetadata} <code>this</code> to allow method chaining
 	 * @protected
 	 */
-	sap.ui.model.odata.ODataMetadata.prototype.fireLoaded = function() {
+	ODataMetadata.prototype.fireLoaded = function() {
 		this.bLoaded = true;
 		this.fireEvent("loaded");
 		jQuery.sap.log.debug('loaded on Metadata object was fired');
@@ -188,7 +190,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @return {sap.ui.model.odata.ODataMetadata} <code>this</code> to allow method chaining
 	 * @public
 	 */
-	sap.ui.model.odata.ODataMetadata.prototype.attachLoaded = function(oData, fnFunction, oListener) {
+	ODataMetadata.prototype.attachLoaded = function(oData, fnFunction, oListener) {
 		this.attachEvent("loaded", oData, fnFunction, oListener);
 		return this;
 	};
@@ -205,7 +207,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @return {sap.ui.model.odata.ODataMetadata} <code>this</code> to allow method chaining
 	 * @public
 	 */
-	sap.ui.model.odata.ODataMetadata.prototype.detachLoaded = function(fnFunction, oListener) {
+	ODataMetadata.prototype.detachLoaded = function(fnFunction, oListener) {
 		this.detachEvent("loaded", fnFunction, oListener);
 		return this;
 	};
@@ -223,7 +225,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @return {sap.ui.model.odata.ODataMetadata} <code>this</code> to allow method chaining
 	 * @protected
 	 */
-	sap.ui.model.odata.ODataMetadata.prototype.fireFailed = function(mArguments) {
+	ODataMetadata.prototype.fireFailed = function(mArguments) {
 		this.fireEvent("failed", mArguments);
 		return this;
 	};
@@ -244,7 +246,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @return {sap.ui.model.odata.ODataMetadata} <code>this</code> to allow method chaining
 	 * @public
 	 */
-	sap.ui.model.odata.ODataMetadata.prototype.attachFailed = function(oData, fnFunction, oListener) {
+	ODataMetadata.prototype.attachFailed = function(oData, fnFunction, oListener) {
 		this.attachEvent("failed", oData, fnFunction, oListener);
 		return this;
 	};
@@ -261,7 +263,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @return {sap.ui.model.odata.ODataMetadata} <code>this</code> to allow method chaining
 	 * @public
 	 */
-	sap.ui.model.odata.ODataMetadata.prototype.detachFailed = function(fnFunction, oListener) {
+	ODataMetadata.prototype.detachFailed = function(fnFunction, oListener) {
 		this.detachEvent("failed", fnFunction, oListener);
 		return this;
 	};
@@ -794,20 +796,23 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @return {object} request object
 	 * @private
 	 */
-	sap.ui.model.odata.ODataMetadata.prototype._createRequest = function(sUrl) {
+	ODataMetadata.prototype._createRequest = function(sUrl) {
 
-		var oLangHeader = {"Accept-Language" : sap.ui.getCore().getConfiguration().getLanguage()};
+		var oHeaders = {}, oLangHeader = {"Accept-Language" : sap.ui.getCore().getConfiguration().getLanguage()};
+		
+		jQuery.extend(oHeaders, this.mHeaders, oLangHeader);
+		
 		
 		var oRequest = {
-				headers : oLangHeader,
+				headers : oHeaders,
 				requestUri : sUrl,
 				method : 'GET',
 				user: this.sUser,
 				password: this.sPassword,
-				async: !!this.bAsync
+				async: this.bAsync
 		};
 
-		if (!!this.bAsync) {
+		if (this.bAsync) {
 			oRequest.withCredentials = this.bWithCredentials;
 		}
 

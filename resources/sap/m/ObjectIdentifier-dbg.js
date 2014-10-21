@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,27 +56,23 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * ObjectIdentifier is a display control that enables the user to easily identify a specific object. The object identifier title is the key identifier of the object and additional text and icons can be used to further distinguish it from other objects.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.ObjectIdentifier
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ObjectIdentifier", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
 		"text" : {type : "string", group : "Misc", defaultValue : null},
-		"badgeNotes" : {type : "boolean", group : "Misc", defaultValue : null},
-		"badgePeople" : {type : "boolean", group : "Misc", defaultValue : null},
-		"badgeAttachments" : {type : "boolean", group : "Misc", defaultValue : null},
+		"badgeNotes" : {type : "boolean", group : "Misc", defaultValue : null, deprecated: true},
+		"badgePeople" : {type : "boolean", group : "Misc", defaultValue : null, deprecated: true},
+		"badgeAttachments" : {type : "boolean", group : "Misc", defaultValue : null, deprecated: true},
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true}
 	}
 }});
@@ -157,6 +153,8 @@ sap.ui.core.Control.extend("sap.m.ObjectIdentifier", { metadata : {
  *
  * @return {boolean} the value of property <code>badgeNotes</code>
  * @public
+ * @deprecated Since version 1.24.0. 
+ * Will be replaced in the future by a more generic mechansism.
  * @name sap.m.ObjectIdentifier#getBadgeNotes
  * @function
  */
@@ -169,6 +167,8 @@ sap.ui.core.Control.extend("sap.m.ObjectIdentifier", { metadata : {
  * @param {boolean} bBadgeNotes  new value for property <code>badgeNotes</code>
  * @return {sap.m.ObjectIdentifier} <code>this</code> to allow method chaining
  * @public
+ * @deprecated Since version 1.24.0. 
+ * Will be replaced in the future by a more generic mechansism.
  * @name sap.m.ObjectIdentifier#setBadgeNotes
  * @function
  */
@@ -182,6 +182,8 @@ sap.ui.core.Control.extend("sap.m.ObjectIdentifier", { metadata : {
  *
  * @return {boolean} the value of property <code>badgePeople</code>
  * @public
+ * @deprecated Since version 1.24.0. 
+ * Will be replaced in the future by a more generic mechansism.
  * @name sap.m.ObjectIdentifier#getBadgePeople
  * @function
  */
@@ -194,6 +196,8 @@ sap.ui.core.Control.extend("sap.m.ObjectIdentifier", { metadata : {
  * @param {boolean} bBadgePeople  new value for property <code>badgePeople</code>
  * @return {sap.m.ObjectIdentifier} <code>this</code> to allow method chaining
  * @public
+ * @deprecated Since version 1.24.0. 
+ * Will be replaced in the future by a more generic mechansism.
  * @name sap.m.ObjectIdentifier#setBadgePeople
  * @function
  */
@@ -207,6 +211,8 @@ sap.ui.core.Control.extend("sap.m.ObjectIdentifier", { metadata : {
  *
  * @return {boolean} the value of property <code>badgeAttachments</code>
  * @public
+ * @deprecated Since version 1.24.0. 
+ * Will be replaced in the future by a more generic mechansism.
  * @name sap.m.ObjectIdentifier#getBadgeAttachments
  * @function
  */
@@ -219,6 +225,8 @@ sap.ui.core.Control.extend("sap.m.ObjectIdentifier", { metadata : {
  * @param {boolean} bBadgeAttachments  new value for property <code>badgeAttachments</code>
  * @return {sap.m.ObjectIdentifier} <code>this</code> to allow method chaining
  * @public
+ * @deprecated Since version 1.24.0. 
+ * Will be replaced in the future by a more generic mechansism.
  * @name sap.m.ObjectIdentifier#setBadgeAttachments
  * @function
  */

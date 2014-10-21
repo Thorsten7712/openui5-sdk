@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -73,23 +73,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * This control acts responsively to the type of device. It acts as a sap.m.Popover on desktop and tablet while acts as a sap.m.Dialog with stretch set to true on phone.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.15.1
  * @name sap.m.ResponsivePopover
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ResponsivePopover", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"openBy", "close", "isOpen"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"placement" : {type : "sap.m.PlacementType", group : "Misc", defaultValue : sap.m.PlacementType.Right},
@@ -106,12 +104,12 @@ sap.ui.core.Control.extend("sap.m.ResponsivePopover", { metadata : {
 		"showCloseButton" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"customHeader" : {type : "sap.m.IBar", multiple : false}, 
-    	"subHeader" : {type : "sap.m.IBar", multiple : false}, 
-    	"beginButton" : {type : "sap.m.Button", multiple : false}, 
-    	"endButton" : {type : "sap.m.Button", multiple : false}, 
-    	"_popup" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"customHeader" : {type : "sap.m.IBar", multiple : false}, 
+		"subHeader" : {type : "sap.m.IBar", multiple : false}, 
+		"beginButton" : {type : "sap.m.Button", multiple : false}, 
+		"endButton" : {type : "sap.m.Button", multiple : false}, 
+		"_popup" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"initialFocus" : {type : "sap.ui.core.Control", multiple : false}
@@ -673,17 +671,15 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
 
 	
 /**
- * Event is fired before popover or dialog is open. 
+ * Event is fired before popover or dialog is open.
  *
  * @name sap.m.ResponsivePopover#beforeOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.openBy
  *         This parameter contains the control which is passed as the parameter when calling openBy method. When runs on the phone, this parameter is undefined.
- * 
  * @public
  */
  
@@ -692,7 +688,7 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ResponsivePopover</code>.<br/> itself. 
  *  
- * Event is fired before popover or dialog is open. 
+ * Event is fired before popover or dialog is open.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -741,17 +737,15 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
 
 
 /**
- * Event is fired after popover or dialog is open. 
+ * Event is fired after popover or dialog is open.
  *
  * @name sap.m.ResponsivePopover#afterOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.openBy
  *         This parameter contains the control which is passed as the parameter when calling openBy method. When runs on the phone, this parameter is undefined.
- * 
  * @public
  */
  
@@ -760,7 +754,7 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ResponsivePopover</code>.<br/> itself. 
  *  
- * Event is fired after popover or dialog is open. 
+ * Event is fired after popover or dialog is open.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -809,20 +803,17 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
 
 
 /**
- * Event is fired before popover or dialog is closed. 
+ * Event is fired before popover or dialog is closed.
  *
  * @name sap.m.ResponsivePopover#beforeClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.openBy
  *         This parameter contains the control which is passed as the parameter when calling openBy method. When runs on the phone, this parameter is undefined.
- * 
  * @param {sap.m.Button} oControlEvent.getParameters.origin
  *         This parameter contains the control which triggers the close of the ResponsivePopover. This parameter is undefined when runs on desktop or tablet.
- * 
  * @public
  */
  
@@ -831,7 +822,7 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ResponsivePopover</code>.<br/> itself. 
  *  
- * Event is fired before popover or dialog is closed. 
+ * Event is fired before popover or dialog is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -883,20 +874,17 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
 
 
 /**
- * Event is fired after popover or dialog is closed. 
+ * Event is fired after popover or dialog is closed.
  *
  * @name sap.m.ResponsivePopover#afterClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.openBy
  *         This parameter contains the control which is passed as the parameter when calling openBy method. When runs on the phone, this parameter is undefined.
- * 
  * @param {sap.m.Button} oControlEvent.getParameters.origin
  *         This parameter contains the control which triggers the close of the ResponsivePopover. This parameter is undefined when runs on desktop or tablet.
- * 
  * @public
  */
  
@@ -905,7 +893,7 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ResponsivePopover</code>.<br/> itself. 
  *  
- * Event is fired after popover or dialog is closed. 
+ * Event is fired after popover or dialog is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -959,38 +947,36 @@ sap.m.ResponsivePopover.M_EVENTS = {'beforeOpen':'beforeOpen','afterOpen':'after
 /**
  * Opens the ResponsivePopover. The ResponsivePopover is positioned relatively to the control parameter when runs on tablet or desktop and is full screen when runs on phone. Therefore the control parameter only has its usage when runs on tablet or desktop and is ignored when runs on phone.
  *
- * @name sap.m.ResponsivePopover.prototype.openBy
+ * @name sap.m.ResponsivePopover#openBy
  * @function
- * @param {object} 
- *         oControl
+ * @param {object} oControl
  * 
  *         When this control runs on tablet or desktop, the ResponsivePopover is positioned relatively to this control.
- * 
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes the ResponsivePopover.
  *
- * @name sap.m.ResponsivePopover.prototype.close
+ * @name sap.m.ResponsivePopover#close
  * @function
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Checks whether the ResponsivePopover is currently open.
  *
- * @name sap.m.ResponsivePopover.prototype.isOpen
+ * @name sap.m.ResponsivePopover#isOpen
  * @function
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

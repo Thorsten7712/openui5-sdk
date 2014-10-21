@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 
 	<name>TextArea</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.9.0</since>
 	<documentation>Enable users to input multi-line text.</documentation>	
 	<baseType>sap.m/InputBase</baseType>	

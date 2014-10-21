@@ -20,6 +20,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script>
 		
@@ -209,6 +210,45 @@
 			ok(size, "No size for scroll bar returned")
 			ok(size.width, "No width for scroll bar returned");
 			ok(size.height, "No height for scroll bar returned");
+		});
+
+		test("disableSelection", function() {
+
+			// arrange
+			var oDomRef = document.createElement("div");
+			oDomRef.innerHTML = "text";
+			document.body.appendChild(oDomRef);
+
+			// act
+			jQuery(oDomRef).disableSelection();
+
+			// arrange
+			var sEvent = jQuery.support.selectstart ? "selectstart" : "mousedown";
+			var oSelectstarListener = jQuery._data(oDomRef, "events")[sEvent];
+
+			// assertions
+			strictEqual(oSelectstarListener.length, 1);
+
+			// cleanup
+			document.body.removeChild(oDomRef);
+		});
+
+		test("enableSelection", function() {
+
+			// arrange
+			var oDomRef = document.createElement("div");
+			oDomRef.innerHTML = "text";
+			document.body.appendChild(oDomRef);
+
+			// act
+			jQuery(oDomRef).disableSelection();
+			jQuery(oDomRef).enableSelection();
+
+			// assertions
+			strictEqual(jQuery._data(oDomRef, "events"), undefined);
+
+			// cleanup
+			document.body.removeChild(oDomRef);
 		});
 		</script>
 	</head>

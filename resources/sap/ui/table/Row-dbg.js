@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,27 +54,23 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * The row.
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.table.Row
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.table.Row", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getIndex"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.table",
 	defaultAggregation : "cells",
 	aggregations : {
-    	"cells" : {type : "sap.ui.core.Control", multiple : true, singularName : "cell"}
+		"cells" : {type : "sap.ui.core.Control", multiple : true, singularName : "cell"}
 	}
 }});
 
@@ -181,11 +177,11 @@ sap.ui.core.Element.extend("sap.ui.table.Row", { metadata : {
 /**
  * Returns the index of the row in the table or -1 if not added to a table.
  *
- * @name sap.ui.table.Row.prototype.getIndex
+ * @name sap.ui.table.Row#getIndex
  * @function
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

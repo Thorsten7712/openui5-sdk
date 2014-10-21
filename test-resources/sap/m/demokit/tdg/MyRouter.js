@@ -23,9 +23,9 @@ sap.ui.core.routing.Router.extend("sap.ui.demo.tdg.MyRouter", {
 	},
 
 	/**
-	 * @public Changes the view without changing the hash
+	 * Changes the view without changing the hash
 	 * 
-	 * @param oOptions {object} must have the following properties
+	 * @param {object} oOptions must have the following properties
 	 * <ul>
 	 * 	<li> currentView : the view you start the navigation from.</li>
 	 * 	<li> targetViewName : the fully qualified name of the view you want to navigate to.</li>
@@ -34,6 +34,7 @@ sap.ui.core.routing.Router.extend("sap.ui.demo.tdg.MyRouter", {
 	 * 	<li> transition : default is "show", the navigation transition</li>
 	 * 	<li> data : the data passed to the navContainers livecycle events</li>
 	 * </ul>
+	 * @public
 	 */
 	myNavToWithoutHash : function (oOptions) {
 		var oSplitApp = this._findSplitApp(oOptions.currentView);

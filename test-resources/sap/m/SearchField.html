@@ -102,6 +102,9 @@
 			new sap.m.SearchField("SF6", { // remove default placeholder
 					placeholder: "", search:onSearch, liveChange:onLiveChange
 				}),
+			new sap.m.SearchField("SF7", { // showSearchButton = false
+					placeholder: "Without search button..", showSearchButton: false, search:onSearch, liveChange:onLiveChange
+				}),
 			new sap.m.Button({
 					text: "Open a Dialog",
 					press : function() {

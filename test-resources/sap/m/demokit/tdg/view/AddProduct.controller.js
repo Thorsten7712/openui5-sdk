@@ -22,9 +22,15 @@ sap.ui.core.mvc.Controller.extend("sap.ui.demo.tdg.view.AddProduct", {
 	},
 
 	dateFromString : function(sDate) {
-		// Try to create date directly, otherwise assume dd/mm/yyyy
+		// try to create date directly
 		var oDate = new Date(sDate);
-		return oDate === "Invalid Date" ? new Date(sDate.split("/").reverse()) : oDate;
+		// if this is not working build manually
+		if(!(oDate instanceof Date && isFinite(oDate))){
+			var d = sDate.split('.').reverse();
+			for(var i in d){ d[i] = parseInt(d[i]);}
+			oDate = new Date(d[0], d[1], d[2]);
+		}
+		return oDate;
 	},
 
 	saveProduct : function(nID) {

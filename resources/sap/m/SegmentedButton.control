@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>SegmentedButton</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>A SegmentedButton Control is a horizontal control made of multiple buttons which can display a title or an image. It automatically resizes the buttons to fit proportionally within the control. When no width is set, the control uses the available width.</documentation>
 
@@ -35,12 +35,13 @@
 	</events>
 	<aggregations default="buttons">
 		<aggregation cardinality="0..n" type="Button" name="buttons">
-			<documentation>Buttons of the SegmentedButton control</documentation>
+			<documentation>The buttons of the SegmentedButton control. The items set in this aggregation are used as an interface for the buttons displayed by the control. Only the properties "id", "icon", "text", and "enabled" of the Button control are evaluated. Setting other properties of the button will have no effect. Alternatively, you can use the "createButton" method to add buttons.</documentation>
 		</aggregation>
 	</aggregations>
 	<associations>
 		<association cardinality="0..1" name="selectedButton" type="Button">
-			<documentation>Pointer to the selected button of a SegmentedButton control.</documentation>
+			<documentation>A reference to the currently selected button control. By default or if the association is set to a falsy value (null, undefined, "", false), the first button will be selected.
+			If the association is set to an invalid value (e.g. an ID of a button that does not exist) the selection on the SegmentedButton will be removed.</documentation>
 		</association>
 	</associations>
 	<methods>

@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 	jQuery.sap.require("sap.ui.core.IconPool");
-	
+
 	function addToPage(oOH){
 		page.addContent(oOH);
 		page.addContent(new sap.ui.core.HTML({
@@ -608,6 +608,22 @@
 		})],
 	});
 	
+	var ohCondensedId9 = "ohc9";
+	
+	var ohCondensed9 = new sap.m.ObjectHeader(ohCondensedId9, {
+		title : "InLayoutNotworkingfineWithSapceInName verrrrrrrryyyyyyyyyyylongggggggggggname",
+        showTitleSelector : true,
+        condensed : true,
+		titleSelectorPress : oh16EventHandler
+	});
+	
+	
+	var objectHeaderLayout = new sap.m.VBox({
+		width : "200px"
+	}
+                                            );
+  	objectHeaderLayout.addItem(ohCondensed9);
+	
 	// put all the testing object header objects on the testing page
 	var app = new sap.m.App();
 	var page = new sap.m.Page({
@@ -685,11 +701,13 @@
 	addToPage(ohCondensed2);
 	addToPage(ohCondensed1);
 	addToPage(ohCondensed3);
+	addToPage(objectHeaderLayout);
 	addToPage(ohCondensed4);
 	addToPage(ohCondensed5);
 	addToPage(ohCondensed6);
 	addToPage(ohCondensed7);
 	addToPage(ohCondensed8);
+	
 	
 	app.placeAt('body');
 </script>

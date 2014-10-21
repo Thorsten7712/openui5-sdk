@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 /*global window, document *///declare unusual global vars for JSLint/SAPUI5 validation
@@ -146,11 +146,13 @@ jQuery.sap.declare("sap.m.ios7");
 	 * @private
 	 */
 	sap.m._Ios7.prototype._onFocusout = function (oEvent) {
-		var sTagName = oEvent.srcElement.tagName;
+		var sTagName = oEvent.srcElement.tagName,
+			oRelated = oEvent.relatedTarget,
+			sRelatedTag = (oRelated && (oRelated.getAttribute("readonly") === null) && (oRelated.getAttribute("disabled") === null)) ? oRelated.tagName : "";
 
 		//only handle the focusout for elements that can bring up a soft-keyboard
 		//there are a lot of input types that might not bring up the soft-keyboard - checking for them might be a bit too much
-		if (sap.m._Ios7._rTagRegex.test(sTagName)) {
+		if (sap.m._Ios7._rTagRegex.test(sTagName) && !sap.m._Ios7._rTagRegex.test(sRelatedTag)) {
 			window.scrollTo(0,0);
 
 			//Attach the polling again, since it was disabled in the focus in. But only do it in landscape.

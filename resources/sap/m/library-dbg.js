@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.m (1.22.4)
+ * Initialization Code and shared classes of library sap.m (1.24.2)
  */
 jQuery.sap.declare("sap.m.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -36,6 +36,7 @@ sap.ui.getCore().initLibrary({
     "sap.m.ButtonType",
     "sap.m.DateTimeInputType",
     "sap.m.DialogType",
+    "sap.m.FacetFilterListDataType",
     "sap.m.FacetFilterType",
     "sap.m.FlexAlignItems",
     "sap.m.FlexAlignSelf",
@@ -162,11 +163,11 @@ sap.ui.getCore().initLibrary({
     "sap.m.ViewSettingsFilterItem",
     "sap.m.ViewSettingsItem"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -182,9 +183,10 @@ jQuery.sap.declare("sap.m.BackgroundDesign");
 /**
  * @class Available Background Design.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.BackgroundDesign = {
 
@@ -209,7 +211,7 @@ sap.m.BackgroundDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -225,10 +227,11 @@ jQuery.sap.declare("sap.m.BarDesign");
 /**
  * @class Types of the Bar design
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.20
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.BarDesign = {
 
@@ -259,7 +262,7 @@ sap.m.BarDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -275,9 +278,10 @@ jQuery.sap.declare("sap.m.ButtonType");
 /**
  * @class Different types for a button (predefined types)
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ButtonType = {
 
@@ -332,7 +336,7 @@ sap.m.ButtonType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -348,9 +352,10 @@ jQuery.sap.declare("sap.m.DateTimeInputType");
 /**
  * @class A subset of DateTimeInput types that fit to a simple API returning one string.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.DateTimeInputType = {
 
@@ -377,7 +382,7 @@ sap.m.DateTimeInputType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -393,9 +398,10 @@ jQuery.sap.declare("sap.m.DialogType");
 /**
  * @class Enum for the type of sap.m.Dialog control.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.DialogType = {
 
@@ -414,7 +420,75 @@ sap.m.DialogType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.type, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides enumeration sap.m.FacetFilterListDataType.
+jQuery.sap.declare("sap.m.FacetFilterListDataType");
+
+
+/**
+ * @class FacetFilterList data types.
+ *
+ * @version 1.24.2
+ * @static
+ * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.m.FacetFilterListDataType = {
+
+	/**
+	 * An input control for specifying a date value. The user can select a month, day of the month, and year.
+	 * @public
+	 */
+	Date : "Date",
+
+	/**
+	 * An input control for specifying a date and time value. The user can select a month, day of the month, year, and time of day.
+	 * @public
+	 */
+	DateTime : "DateTime",
+
+	/**
+	 * An input control for specifying a time value. The user can select the hour, minute, and optionally AM or PM.
+	 * @public
+	 */
+	Time : "Time",
+
+	/**
+	 * >An input control for specifying a Integer value
+	 * @public
+	 */
+	Integer : "Integer",
+
+	/**
+	 * >An input control for specifying a Float value
+	 * @public
+	 */
+	Float : "Float",
+
+	/**
+	 * >An input control for specifying a String value
+	 * @public
+	 */
+	String : "String",
+
+	/**
+	 * >An input control for specifying a Boolean value
+	 * @public
+	 */
+	Boolean : "Boolean"
+
+};
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -431,9 +505,10 @@ jQuery.sap.declare("sap.m.FacetFilterType");
  * @class Used by the FacetFilter control to adapt its design according to type.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.FacetFilterType = {
 
@@ -452,7 +527,7 @@ sap.m.FacetFilterType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -468,9 +543,10 @@ jQuery.sap.declare("sap.m.FlexAlignItems");
 /**
  * @class Available options for the layout of all elements along the cross axis of the flexbox layout.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.FlexAlignItems = {
 
@@ -513,7 +589,7 @@ sap.m.FlexAlignItems = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -529,9 +605,10 @@ jQuery.sap.declare("sap.m.FlexAlignSelf");
 /**
  * @class Available options for the layout of individual elements along the cross axis of the flexbox layout overriding the default alignment.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.FlexAlignSelf = {
 
@@ -580,7 +657,7 @@ sap.m.FlexAlignSelf = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -596,9 +673,10 @@ jQuery.sap.declare("sap.m.FlexDirection");
 /**
  * @class Available directions for flex layouts.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.FlexDirection = {
 
@@ -635,7 +713,7 @@ sap.m.FlexDirection = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -651,9 +729,10 @@ jQuery.sap.declare("sap.m.FlexJustifyContent");
 /**
  * @class Available options for the layout of elements along the main axis of the flexbox layout.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.FlexJustifyContent = {
 
@@ -696,7 +775,7 @@ sap.m.FlexJustifyContent = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -712,9 +791,10 @@ jQuery.sap.declare("sap.m.FlexRendertype");
 /**
  * @class Determines the type of HTML elements used for rendering controls.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.FlexRendertype = {
 
@@ -733,7 +813,7 @@ sap.m.FlexRendertype = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -749,9 +829,10 @@ jQuery.sap.declare("sap.m.HeaderLevel");
 /**
  * @class Different levels for headers
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.HeaderLevel = {
 
@@ -798,16 +879,17 @@ sap.m.HeaderLevel = {
  *   If the control does not want to get a context base style class, it has to implement the isContextSensitive method and return false
  *   
  *
- * @author SAP AG
+ * @author SAP SE
  * @since 1.22
  * @name sap.m.IBar
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -823,10 +905,11 @@ jQuery.sap.declare("sap.m.IBarHTMLTag");
 /**
  * @class Allowed tags for the implementation of the IBar interface.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.22
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.IBarHTMLTag = {
 
@@ -855,15 +938,16 @@ sap.m.IBarHTMLTag = {
  *   These controls must implement a method isSelectable().
  *   
  *
- * @author SAP AG
+ * @author SAP SE
  * @name sap.m.IconTab
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -879,9 +963,10 @@ jQuery.sap.declare("sap.m.IconTabFilterDesign");
 /**
  * @class Available Filter Item Design.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.IconTabFilterDesign = {
 
@@ -900,7 +985,7 @@ sap.m.IconTabFilterDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -917,9 +1002,10 @@ jQuery.sap.declare("sap.m.InputType");
  * @class A subset of input types that fit to a simple API returning one string.
  * Not available on purpose: button, checkbox, hidden, image, password, radio, range, reset, search, submit.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.InputType = {
 
@@ -1010,7 +1096,7 @@ sap.m.InputType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1026,9 +1112,10 @@ jQuery.sap.declare("sap.m.LabelDesign");
 /**
  * @class Available label display modes.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.LabelDesign = {
 
@@ -1047,7 +1134,7 @@ sap.m.LabelDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1063,11 +1150,12 @@ jQuery.sap.declare("sap.m.ListHeaderDesign");
 /**
  * @class Defines the differnet header styles.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @deprecated Since version 1.16. 
  * Has no functionality since 1.16.
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListHeaderDesign = {
 
@@ -1086,7 +1174,7 @@ sap.m.ListHeaderDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1102,9 +1190,10 @@ jQuery.sap.declare("sap.m.ListMode");
 /**
  * @class Different modes for the list selection (predefined modes)
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListMode = {
 
@@ -1147,7 +1236,7 @@ sap.m.ListMode = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1163,9 +1252,10 @@ jQuery.sap.declare("sap.m.ListSeparators");
 /**
  * @class Defines which separator style will be applied for the items.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListSeparators = {
 
@@ -1190,7 +1280,7 @@ sap.m.ListSeparators = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1206,9 +1296,10 @@ jQuery.sap.declare("sap.m.ListType");
 /**
  * @class List types
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ListType = {
 
@@ -1250,11 +1341,12 @@ sap.m.ListType = {
  * @name sap.m.ObjectHeaderContainer
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1270,9 +1362,10 @@ jQuery.sap.declare("sap.m.PageBackgroundDesign");
 /**
  * @class Available Page Background Design.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.PageBackgroundDesign = {
 
@@ -1303,7 +1396,7 @@ sap.m.PageBackgroundDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1319,9 +1412,10 @@ jQuery.sap.declare("sap.m.PlacementType");
 /**
  * @class Types for the placement of popover control.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.PlacementType = {
 
@@ -1370,7 +1464,7 @@ sap.m.PlacementType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1386,10 +1480,11 @@ jQuery.sap.declare("sap.m.PopinDisplay");
 /**
  * @class Defines the display of table pop-ins
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.13.2
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.PopinDisplay = {
 
@@ -1408,7 +1503,7 @@ sap.m.PopinDisplay = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1424,9 +1519,10 @@ jQuery.sap.declare("sap.m.RatingIndicatorVisualMode");
 /**
  * @class Possible values for the visualization of float values in the RatingIndicator Control.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.RatingIndicatorVisualMode = {
 
@@ -1445,7 +1541,7 @@ sap.m.RatingIndicatorVisualMode = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1461,9 +1557,10 @@ jQuery.sap.declare("sap.m.ScreenSize");
 /**
  * @class Breakpoint names for different screen sizes.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ScreenSize = {
 
@@ -1530,7 +1627,7 @@ sap.m.ScreenSize = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1546,10 +1643,11 @@ jQuery.sap.declare("sap.m.SelectType");
 /**
  * @class Enumeration for different Select types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.16
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.SelectType = {
 
@@ -1568,7 +1666,7 @@ sap.m.SelectType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1584,9 +1682,10 @@ jQuery.sap.declare("sap.m.SplitAppMode");
 /**
  * @class The mode of SplitContainer or SplitApp control to show/hide the master area.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.SplitAppMode = {
 
@@ -1617,7 +1716,7 @@ sap.m.SplitAppMode = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1633,9 +1732,10 @@ jQuery.sap.declare("sap.m.StandardTileType");
 /**
  * @class Types for StandardTile
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.StandardTileType = {
 
@@ -1660,7 +1760,7 @@ sap.m.StandardTileType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1676,9 +1776,10 @@ jQuery.sap.declare("sap.m.SwipeDirection");
 /**
  * @class Directions for swipe event.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.SwipeDirection = {
 
@@ -1703,7 +1804,7 @@ sap.m.SwipeDirection = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1719,9 +1820,10 @@ jQuery.sap.declare("sap.m.SwitchType");
 /**
  * @class Enumaration for different switch types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.SwitchType = {
 
@@ -1740,7 +1842,7 @@ sap.m.SwitchType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1756,10 +1858,11 @@ jQuery.sap.declare("sap.m.ToolbarDesign");
 /**
  * @class Types of the Toolbar Design.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.16.8
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ToolbarDesign = {
 
@@ -1829,108 +1932,6 @@ if(/sap-ui-xx-formfactor=condensed/.test(location.search)){
 
 // central mobile functionality that should not go into the UI5 Core can go from here
 // ----------------------------------------------------------------------------------
-
-/**
- * Touch helper.
- *
- * @namespace
- * @name sap.m.touch
- * @public
- **/
-
-if (sap.m && !sap.m.touch) {
-	sap.m.touch = {};
-}
-
-/**
- * Given a list of touch objects, find the touch that matches the given one.
- *
- * @param {TouchList} oTouchList The list of touch objects to search.
- * @param {Touch|number} oTouch A touch object to find or a Touch.identifier that uniquely identifies the current finger in the touch session.
- * @return {object|undefined} The touch matching if any.
- * @public
- * @name sap.m.touch.find
- * @function
-*/
-sap.m.touch.find = function(oTouchList, oTouch) {
-	var i,
-		iTouchListLength;
-
-	if (!(oTouchList instanceof Object)) {
-		jQuery.sap.assert(false, 'sap.m.touch.find(): oTouchList must be a touch list object');
-		return;
-	}
-
-	if (oTouch instanceof Object && typeof oTouch.identifier !== "undefined") {
-		oTouch = oTouch.identifier;
-	} else if (typeof oTouch !== "number") {
-		jQuery.sap.assert(false, 'sap.m.touch.find(): oTouch must be a touch object or a number');
-		return;
-	}
-
-	iTouchListLength = oTouchList.length;
-
-	// A TouchList is an object not an array, so we shouldn't use
-	// Array.prototype.forEach, etc.
-	for (i = 0; i < iTouchListLength; i++) {
-		if (oTouchList[i].identifier === oTouch) {
-			return oTouchList[i];
-		}
-	}
-
-	// if the given touch object or touch identifier is not found in the touches list, then return undefined
-};
-
-/**
- * Given a list of touches, count the number of touches related with the given element.
- *
- * @param {TouchList} oTouchList The list of touch objects to search.
- * @param {jQuery|Element|string} vElement A jQuery element or an element reference or an element id.
- * @return {number} The number of touches related with the given element.
- * @public
- * @name sap.m.touch.countContained
- * @function
-*/
-sap.m.touch.countContained = function(oTouchList, vElement) {
-	var i,
-		iTouchCount = 0,
-		iTouchListLength,
-		iElementChildrenL,
-		$TouchTarget;
-
-	if (!(oTouchList instanceof Object)) {
-		jQuery.sap.assert(false, 'sap.m.touch.countContained(): oTouchList must be a TouchList object');
-		return;
-	}
-
-	if (vElement instanceof Element) {
-		vElement = jQuery(vElement);
-	} else if (typeof vElement === "string") {
-		vElement = jQuery.sap.byId(vElement);
-	} else if (!(vElement instanceof jQuery)) {
-		jQuery.sap.assert(false, 'sap.m.touch.countContained(): vElement must be a jQuery object or Element reference or a string');
-		return;
-	}
-
-	iElementChildrenL = vElement.children().length;
-	iTouchListLength = oTouchList.length;
-
-	// A TouchList is an object not an array, so we shouldn't use
-	// Array.prototype.forEach, etc.
-	for (i = 0; i < iTouchListLength; i++) {
-		$TouchTarget = jQuery(oTouchList[i].target);
-
-		//	If the current target have only one HTML element or
-		//	have a HTML element antecessor that match with the given element id.
-		if ((iElementChildrenL === 0  && $TouchTarget.is(vElement)) ||
-			(vElement[0].contains($TouchTarget[0]))) {
-
-			iTouchCount++;
-		}
-	}
-
-	return iTouchCount;
-};
 
 !function(oLib) {
 
@@ -2100,6 +2101,105 @@ sap.m.touch.countContained = function(oTouchList, vElement) {
 
 }(sap.m);
 
+/**
+ * Touch helper.
+ *
+ * @namespace
+ * @name sap.m.touch
+ * @public
+ **/
+
+if (sap.m && !sap.m.touch) {
+	sap.m.touch = {};
+}
+
+/**
+ * Given a list of touch objects, find the touch that matches the given one.
+ *
+ * @param {TouchList} oTouchList The list of touch objects to search.
+ * @param {Touch | number} oTouch A touch object to find or a Touch.identifier that uniquely identifies the current finger in the touch session.
+ * @return {object | undefined} The touch matching if any.
+ * @public
+ * @name sap.m.touch.find
+ * @function
+*/
+sap.m.touch.find = function(oTouchList, oTouch) {
+	var i,
+		iTouchListLength;
+
+	if (!oTouchList) {
+		return;
+	}
+
+	if (oTouch && typeof oTouch.identifier !== "undefined") {
+		oTouch = oTouch.identifier;
+	} else if (typeof oTouch !== "number") {
+		jQuery.sap.assert(false, 'sap.m.touch.find(): oTouch must be a touch object or a number');
+		return;
+	}
+
+	iTouchListLength = oTouchList.length;
+
+	// A TouchList is an object not an array, so we shouldn't use
+	// Array.prototype.forEach, etc.
+	for (i = 0; i < iTouchListLength; i++) {
+		if (oTouchList[i].identifier === oTouch) {
+			return oTouchList[i];
+		}
+	}
+
+	// if the given touch object or touch identifier is not found in the touches list, then return undefined
+};
+
+/**
+ * Given a list of touches, count the number of touches related with the given element.
+ *
+ * @param {TouchList} oTouchList The list of touch objects to search.
+ * @param {jQuery | Element | string} vElement A jQuery element or an element reference or an element id.
+ * @return {number} The number of touches related with the given element.
+ * @public
+ * @name sap.m.touch.countContained
+ * @function
+*/
+sap.m.touch.countContained = function(oTouchList, vElement) {
+	var i,
+		iTouchCount = 0,
+		iTouchListLength,
+		iElementChildrenL,
+		$TouchTarget;
+
+	if (!oTouchList) {
+		return;
+	}
+
+	if (vElement instanceof Element) {
+		vElement = jQuery(vElement);
+	} else if (typeof vElement === "string") {
+		vElement = jQuery.sap.byId(vElement);
+	} else if (!(vElement instanceof jQuery)) {
+		jQuery.sap.assert(false, 'sap.m.touch.countContained(): vElement must be a jQuery object or Element reference or a string');
+		return;
+	}
+
+	iElementChildrenL = vElement.children().length;
+	iTouchListLength = oTouchList.length;
+
+	// A TouchList is an object not an array, so we shouldn't use
+	// Array.prototype.forEach, etc.
+	for (i = 0; i < iTouchListLength; i++) {
+		$TouchTarget = jQuery(oTouchList[i].target);
+
+		//	If the current target have only one HTML element or
+		//	have a HTML element antecessor that match with the given element id.
+		if ((iElementChildrenL === 0  && $TouchTarget.is(vElement)) ||
+			(vElement[0].contains($TouchTarget[0]))) {
+
+			iTouchCount++;
+		}
+	}
+
+	return iTouchCount;
+};
 
 /**
  * <pre>
@@ -2320,7 +2420,6 @@ sap.m.BackgroundHelper = (function($, window) {
 		 * @param {sap.ui.core.RenderManager} rm the RenderManager
 		 * @param {String} [sBgColor] a configured custom background color for the control, if any
 		 * @param {sap.ui.core.URI} [sBgImgUrl] the configured custom background image for the control, if any
-		 * @returns
 		 *
 		 * @protected
 		 * @name sap.m.BackgroundHelper#addBackgroundColorStyles
@@ -2367,7 +2466,6 @@ sap.m.BackgroundHelper = (function($, window) {
 		 * @param {sap.ui.core.URI}  [sBgImgUrl] the image of a configured background image; if this is not given, the theme background will be used and also the other settings are ignored.
 		 * @param {boolean} [bRepeat] whether the background image should be repeated/tiled (or stretched)
 		 * @param {float}   [fOpacity] the background image opacity, if any
-		 * @returns
 		 *
 		 * @protected
 		 * @name sap.m.BackgroundHelper#renderBackgroundImageTag
@@ -2704,7 +2802,7 @@ sap.m.InputODataSuggestProvider = (function(){
 			};
 			if(mValueListAnnotation.searchSupported){
 				var aFilters = [];
-				var sSearchFocus;
+				var sSearchFocus, oCustomParams = {};
 				if (bResolveInput) {
 					jQuery.each(mValueListAnnotation.inParameters, function(sKey, oObj) {
 						if (sKey == mValueListAnnotation.inProperty) {
@@ -2717,16 +2815,23 @@ sap.m.InputODataSuggestProvider = (function(){
 						}
 					});
 				}
+				oCustomParams.search = oEvent.getParameter("suggestValue");
+				
+				if(mValueListAnnotation.inParameters.length) {
+					if (sSearchFocus) {
+						oCustomParams["search-focus"] = sSearchFocus;
+					} else {
+						jQuery.sap.assert(false, 'no search-focus defined');
+					}
+				}
+				
 				oCtrl.bindAggregation("suggestionRows",{
 					path:"/" + mValueListAnnotation.collectionPath,
 					length: iLength,
 					filters: aFilters,
 					parameters: {
 						select: mValueListAnnotation.selection.join(','),
-						custom: {
-							"search-focus": sSearchFocus,
-							search: oEvent.getParameter("suggestValue")
-						}
+						custom: oCustomParams
 					},
 					events: {
 						dataReceived: _fnButtonHandler

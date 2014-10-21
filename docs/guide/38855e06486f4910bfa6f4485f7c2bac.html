@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=48311762470219344"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=12405155714890548"/>
 <title>Implementing a Responsive Table</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -34,7 +36,7 @@
 			options are applicable at the same time. I know this sounds a little bit complicated.
 			Let's go trough on an example.</p>
 <p class="p">Suppose that we build such a nice table for desktop.</p>
-<p class="p"><img class="image" id="loio38855e06486f4910bfa6f4485f7c2bac__image_jlg_xld_mn" src="00a056a29baa412ebfebfdaf544b21cd.image"/></p>
+<p class="p"><img class="image" id="loio38855e06486f4910bfa6f4485f7c2bac__image_jlg_xld_mn" src="loio00a056a29baa412ebfebfdaf544b21cd_LowRes.png"/></p>
 <p class="p">On mobile, we know that we do not have enough space to show all these columns. Now, we
 			should decide which columns are important. Let's say</p>
 <ul class="ul" id="loio38855e06486f4910bfa6f4485f7c2bac__ul_pcb_rtj_ln"><li class="li"><em class="ph i">Name and Status</em> are most important. So they should never be hidden.</li>
@@ -44,7 +46,7 @@
 				so they can go to on an extra pane(pop-in)</li>
 </ul>
 <p class="p">According to our assumption we should have the following on mobile</p>
-<p class="p"><img class="image" id="loio38855e06486f4910bfa6f4485f7c2bac__image_g3d_3md_mn" src="821268b17c3745b6a2ca581740c51b6d.image"/></p>
+<p class="p"><img class="image" id="loio38855e06486f4910bfa6f4485f7c2bac__image_g3d_3md_mn" src="loio821268b17c3745b6a2ca581740c51b6d_LowRes.png"/></p>
 <div class="section"><div class="section_title">RESPONSIVE COLUMN CONTROL</div><div type="RESPONSIVE COLUMN CONTROL">
 			
 			<p class="p">You can control the responsive table design using the API of <samp class="ph codeph">sap.m.Column</samp>.
@@ -105,6 +107,18 @@
 					can look strange. So the best solution is leaving the most important column's
 					width empty that it can take the much space as it can. In our example it will be
 					300px and all will be fine.</li>
+<li class="li">Do not try to give percent width to all columns even if it reaches 100% total
+					column width. What, if there is a <samp class="ph codeph">Selection(3rem width)</samp>,
+						<samp class="ph codeph">Navigation(3rem width)</samp> or <samp class="ph codeph">Deletion(3rem
+						width)</samp>? In this case, the  total width would be 100% + 6rem. Or if
+					the total width is less than 100%, for example one column with 20% and the other
+					column with 40%, the total width would be 60% + 6rem. By default,
+						<samp class="ph codeph">Table</samp> itself is in fixed layout mode and 100% width. The
+					browser needs to decide how to share the width as it cannot fit to 100% width.
+					In some cases browsers are smart and handle this correctly or it just looks
+					correctly, but you should try to avoid such a use to get a cross browser result.
+					As in 2nd point hit leaving the most important column width would fix this
+					problem because then column will be flexible and cover the space. </li>
 </ul>
 
 		</div></div>
@@ -155,7 +169,7 @@
 				in "Block" mode, with the header and content arranged vertically, whereas the two
 				prices are to be displayed in "Inline" mode, with the header and content arranged
 				next to each other.</p>
-<p class="p"><img class="image" id="loio38855e06486f4910bfa6f4485f7c2bac__image_cvv_qmd_mn" src="33460279b86b4bc381dbfe50267d3d36.image"/></p>
+<p class="p"><img class="image" id="loio38855e06486f4910bfa6f4485f7c2bac__image_cvv_qmd_mn" src="loio33460279b86b4bc381dbfe50267d3d36_LowRes.png"/></p>
 </div></div>
 <div class="section"><div class="section_title">API References</div><div type="API References">
 			
@@ -166,11 +180,6 @@
 </ul>
 
 		</div></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

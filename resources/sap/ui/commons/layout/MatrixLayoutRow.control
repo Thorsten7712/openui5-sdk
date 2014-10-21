@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>layout/MatrixLayoutRow</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>
 	Non-control element used as part of a matrix layout's inner structure.
 	</documentation>

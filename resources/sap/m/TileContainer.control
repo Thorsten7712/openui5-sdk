@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>TileContainer</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.12</since>
 	<documentation>A container that arranges same-size tiles nicely on carousel pages</documentation>
 

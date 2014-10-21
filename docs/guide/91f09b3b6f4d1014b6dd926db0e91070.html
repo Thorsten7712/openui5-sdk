@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=07260027811295888"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3717048914863562"/>
 <title>UI Control Constructors</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -23,9 +25,9 @@
 <body class="sap_bluecrystal" id="loio91f09b3b6f4d1014b6dd926db0e91070">
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">UI Control Constructors</h1>
-<div class="body"><p class="p">The constructor is a special type of subroutine called to create an object. The
-			constructor uses values to set control properties, thus preparing the new object for
-			use. The following paragraphs explain the use of  UI control constructors in SAPUI5.</p>
+<div class="body"><p class="p">The constructor is a special type of function called to create an object. The constructor uses
+			values to set control properties, thus preparing the new object for use. The following
+			paragraphs explain the use of UI control constructors in SAPUI5.</p>
 <p class="p">In SAPUI5, control constructors accept the following arguments in the specified
 			order:</p>
 <ol class="ol" id="loio91f09b3b6f4d1014b6dd926db0e91070__ol_tc2_jvj_1j"><li class="li">An optional unique identifier of type <samp class="ph codeph">string</samp> which must either be
@@ -33,12 +35,12 @@
 				automatically computes an ID. Specifying your own identifier allows your application
 				to easily find the control and, for example, retrieve the current user input from
 				it. Alternatively, you can keep a reference to the control in a variable.</li>
-<li class="li"> One JSON-like object (object literal) as <samp class="ph codeph">mSettings</samp> parameter that
-				defines values for any property, aggregation, association, or event. If a specific
-				name for a control is ambiguous, meaning that a property has the same name as an
-				event, the framework assumes in the following order: Property, aggregation,
-				association. To resolve ambiguities, add the respective prefix to the key in the
-				JSON object: "aggregation:", "association:", or "event:".</li>
+<li class="li">One JSON-like object (object literal) as <samp class="ph codeph">mSettings</samp> parameter that defines
+				values for any property, aggregation, association, or event. If a specific name for
+				a control is ambiguous, meaning that a property has the same name as an event, the
+				framework assumes in the following order: Property, aggregation, association. To
+				resolve ambiguities, add the respective prefix to the key in the JSON object:
+				"aggregation:", "association:", or "event:".</li>
 </ol>
 <p class="p">The following code snippet shows an example of a constructor that is called to create a
 			new text field "Hello World" with the specified tooltip and width:</p>
@@ -52,11 +54,6 @@
           tooltip");
     oTextField.setWidth("100px");</pre></div>
 <p class="p">The supported parameters are documented in the JsDoc of the respective control.</p>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

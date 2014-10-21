@@ -14,6 +14,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script>
@@ -455,7 +456,7 @@
 			oSelectDialog.open();
 		});
 
-		asyncTest("Cancel Event", function () {
+		asyncTest("Cancel Event with unfiltered selection", function () {
 			expect(3);
 			var oSelectDialog = new sap.m.SelectDialog("selectDialog", {
 				multiSelect: true
@@ -488,6 +489,86 @@
 				oSelectDialog._oList.getItems()[1].setSelected(false);
 				oSelectDialog._oList.getItems()[3].setSelected(false);
 				strictEqual(oSelectDialog._oList.getSelectedItems().length, 2, 'Before cancelling there should be 2 items selected');
+				oSelectDialog._getCancelButton().firePress();
+			});
+			oSelectDialog.open();
+		});
+
+		asyncTest("Cancel Event with pre-filtered selection", function () {
+			expect(5);
+			var oSelectDialog = new sap.m.SelectDialog("selectDialog", {
+				multiSelect: true
+			});
+
+			// reset selection model & bind items
+			data10.items[1].Selected = true;
+			data10.items[2].Selected = true;
+			data10.items[3].Selected = true;
+			data10.items[7].Selected = true;
+			bindItems(oSelectDialog, data10, "/items", createTemplateListItem(), createPrefilter("Title4"));
+
+			oSelectDialog.attachCancel(function (oEvent) {
+				ok(true, 'The event "cancel" has been fired');
+
+				// the selection is reset immediately ater the cancel event so we do it with setTimeout
+				setTimeout(function () {
+					strictEqual(oSelectDialog._oList.getSelectedItems().length, 1, 'After cancelling there should be 1 visible item selected again');
+					strictEqual(oSelectDialog._oList.getSelectedContexts(true).length, 1, 'After cancelling there should be 4 invisible item selected again (prefiltered items are not added to the contexts initially)');
+					// cleanup
+					setTimeout(function () {
+						oSelectDialog.destroy();
+						start();
+					}, 0);
+				}, 0);
+			});
+
+			// simulate open and close
+			oSelectDialog._oDialog.attachAfterOpen(function(oEvent) {
+				// make a change to the selection (uncheck "Title4" item)
+				oSelectDialog._oList.getItems()[0].setSelected(false);
+				strictEqual(oSelectDialog._oList.getSelectedItems().length, 0, 'Before cancelling there should be 0 visible items selected');
+				strictEqual(oSelectDialog._oList.getSelectedContexts(true).length, 0, 'Before cancelling there should be 0 invisible contexts selected (prefiltered items are not added to the contexts initially)');
+				oSelectDialog._getCancelButton().firePress();
+			});
+			oSelectDialog.open();
+		});
+
+		asyncTest("Cancel Event with user-filtered selection", function () {
+			expect(5);
+			var oSelectDialog = new sap.m.SelectDialog("selectDialog", {
+				multiSelect: true
+			});
+
+			// reset selection model & bind items
+			data10.items[1].Selected = true;
+			data10.items[2].Selected = true;
+			data10.items[3].Selected = true;
+			data10.items[7].Selected = true;
+			bindItems(oSelectDialog, data10, "/items", createTemplateListItem());
+
+			oSelectDialog.attachCancel(function (oEvent) {
+				ok(true, 'The event "cancel" has been fired');
+
+				// the selection is reset immediately ater the cancel event so we do it with setTimeout
+				setTimeout(function () {
+					strictEqual(oSelectDialog._oList.getSelectedItems().length, 1, 'After cancelling there should be 1 visible items selected again');
+					strictEqual(oSelectDialog._oList.getSelectedContexts(true).length, 4, 'After cancelling there should be 4 invisible items selected again');
+					// cleanup
+					setTimeout(function () {
+						oSelectDialog.destroy();
+						start();
+					}, 0);
+				}, 0);
+			});
+
+			// simulate open and close
+			oSelectDialog._oDialog.attachAfterOpen(function(oEvent) {
+				// make a change to the selection
+				oSelectDialog._oList.getItems()[1].setSelected(false);
+				oSelectDialog._oList.getItems()[3].setSelected(false);
+				oSelectDialog._oList.getBinding("items").filter(createPrefilter("Title4"));
+				strictEqual(oSelectDialog._oList.getSelectedItems().length, 0, 'Before cancelling there should be 0 visible items selected');
+				strictEqual(oSelectDialog._oList.getSelectedContexts(true).length, 2, 'Before cancelling there should be 2 invisible items selected');
 				oSelectDialog._getCancelButton().firePress();
 			});
 			oSelectDialog.open();
@@ -655,6 +736,27 @@
 			oSelectDialog._oDialog.close();
 		});
 
+		asyncTest("Check height of content", function(){
+			var oSelectDialog = new sap.m.SelectDialog("selectDialog", {
+				contentHeight: "150px"
+			});
+
+			oSelectDialog._oDialog.attachAfterOpen(function (oEvent) {
+				
+				strictEqual(jQuery.sap.domById("selectDialog-dialog-cont").style.height, "150px", "content in Dialog should have height of 150px.");
+
+				oSelectDialog.setContentHeight("286px");
+				sap.ui.getCore().applyChanges();
+				strictEqual(jQuery.sap.domById("selectDialog-dialog-cont").style.height, "286px", "content in Dialog should have height of 286px.");
+				
+				// cleanup
+				setTimeout(function () {
+					oSelectDialog.destroy();
+					start();
+				}, 0);
+			});
+			oSelectDialog.open();
+		})
 		</script>
 	</head>
 	<body id="body" class="sapUiBody">

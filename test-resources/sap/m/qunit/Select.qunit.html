@@ -12,7 +12,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
-		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
+		<script src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -84,7 +84,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -429,7 +429,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -470,7 +470,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -529,7 +529,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -570,7 +570,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -588,7 +588,7 @@
 		/* getSelectedItemId()            */
 		/* ------------------------------ */
 
-		test("getSelectedItem()", function() {
+		test("getSelectedItemId()", function() {
 
 			// system under test
 			var oExpectedItem;
@@ -615,7 +615,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -656,7 +656,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -669,403 +669,6 @@
 			// cleanup
 			oSelect.destroy();
 		});
-
-		/* ------------------------------ */
-		/* getSelectedKey()               */
-		/* ------------------------------ */
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				items: [
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "0",
-						text: "item 0"
-					}),
-
-					new sap.ui.core.Item({
-						key: "1",
-						text: "item 1"
-					}),
-
-					new sap.ui.core.Item({
-						key: "2",
-						text: "item 2"
-					})
-				],
-
-				selectedKey: undefined
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "0");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				items: [
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "0",
-						text: "item 0"
-					})
-				]
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "0");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				items: [
-					new sap.ui.core.Item({
-						key: "0",
-						text: "item 0"
-					}),
-
-					new sap.ui.core.Item({
-						key: "1",
-						text: "item 1"
-					}),
-
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "2",
-						text: "item 2"
-					}),
-
-					new sap.ui.core.Item({
-						key: "3",
-						text: "item 3"
-					})
-				],
-
-				selectedItem: "item-id"
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "2");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 2");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				selectedItem: "item-id",
-
-				items: [
-					new sap.ui.core.Item({
-						key: "0",
-						text: "item 0"
-					}),
-
-					new sap.ui.core.Item({
-						key: "1",
-						text: "item 1"
-					}),
-
-					new sap.ui.core.Item({
-						key: "2",
-						text: "item 2"
-					}),
-
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "3",
-						text: "item 3"
-					})
-				]
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "3");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 3");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				selectedKey: "1",
-
-				items: [
-					new sap.ui.core.Item({
-						key: "0",
-						text: "item 0"
-					}),
-
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "1",
-						text: "item 1"
-					}),
-
-					new sap.ui.core.Item({
-						key: "2",
-						text: "item 2"
-					})
-				]
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "1");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 1");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oSelect = new sap.m.Select({
-				items: []
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === null);
-			strictEqual(oSelect.getSelectedItemId(), "");
-			strictEqual(oSelect.getSelectedKey(), "");
-			ok(oSelect.getList().getSelectedItem() === null);
-			// strictEqual(oSelect.getValue(), "");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				items: [
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "0",
-						text: "item 0"
-					}),
-
-					new sap.ui.core.Item({
-						key: "1",
-						text: "item 1"
-					}),
-
-					new sap.ui.core.Item({
-						key: "2",
-						text: "item 2"
-					})
-				],
-
-				selectedItem: null
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "0");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				items: [
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "0",
-						text: "item 0"
-					}),
-
-					new sap.ui.core.Item({
-						key: "1",
-						text: "item 1"
-					}),
-
-					new sap.ui.core.Item({
-						key: "2",
-						text: "item 2"
-					})
-				],
-
-				selectedItemId: undefined
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "0");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				items: [
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "0",
-						text: "item 0"
-					}),
-
-					new sap.ui.core.Item({
-						key: "1",
-						text: "item 1"
-					}),
-
-					new sap.ui.core.Item({
-						key: "2",
-						text: "item 2"
-					})
-				],
-
-				selectedItemId: ""
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "0");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		test("getSelectedKey()", function() {
-
-			// system under test
-			var oExpectedItem;
-			var oSelect = new sap.m.Select({
-				items: [
-					oExpectedItem = new sap.ui.core.Item({
-						id: "item-id",
-						key: "0",
-						text: "item 0"
-					}),
-
-					new sap.ui.core.Item({
-						key: "1",
-						text: "item 1"
-					}),
-
-					new sap.ui.core.Item({
-						key: "2",
-						text: "item 2"
-					})
-				],
-
-				selectedKey: "0"
-			});
-
-			// arrange
-			oSelect.placeAt("select-content");
-			sap.ui.getCore().applyChanges();
-
-			// assertions
-			ok(oSelect.getSelectedItem() === oExpectedItem);
-			strictEqual(oSelect.getSelectedItemId(), "item-id");
-			strictEqual(oSelect.getSelectedKey(), "0");
-			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
-
-			// cleanup
-			oSelect.destroy();
-		});
-
-		/* ------------------------------ */
-		/* getSelectedItemId()            */
-		/* ------------------------------ */
 
 		test("getSelectedItemId()", function() {
 
@@ -1082,7 +685,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1128,7 +731,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1174,7 +777,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1215,7 +818,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1274,7 +877,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1315,7 +918,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1356,7 +959,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1397,7 +1000,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -1449,6 +1052,444 @@
 		});
 
 		/* ------------------------------ */
+		/* getSelectedKey()               */
+		/* ------------------------------ */
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "0",
+						text: "item 0"
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					})
+				],
+
+				selectedKey: undefined
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "0");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "0",
+						text: "item 0"
+					})
+				]
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "0");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					new sap.ui.core.Item({
+						key: "0",
+						text: "item 0"
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "2",
+						text: "item 2"
+					}),
+
+					new sap.ui.core.Item({
+						key: "3",
+						text: "item 3"
+					})
+				],
+
+				selectedItem: "item-id"
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "2");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 2");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				selectedItem: "item-id",
+
+				items: [
+					new sap.ui.core.Item({
+						key: "0",
+						text: "item 0"
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					}),
+
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "3",
+						text: "item 3"
+					})
+				]
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "3");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 3");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				selectedKey: "1",
+
+				items: [
+					new sap.ui.core.Item({
+						key: "0",
+						text: "item 0"
+					}),
+
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					})
+				]
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "1");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 1");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oSelect = new sap.m.Select({
+				items: []
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === null);
+			strictEqual(oSelect.getSelectedItemId(), "");
+			strictEqual(oSelect.getSelectedKey(), "");
+			ok(oSelect.getList().getSelectedItem() === null);
+			// strictEqual(oSelect.getValue(), "");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "0",
+						text: "item 0"
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					})
+				],
+
+				selectedItem: null
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "0");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "0",
+						text: "item 0"
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					})
+				],
+
+				selectedItemId: undefined
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "0");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "0",
+						text: "item 0"
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					})
+				],
+
+				selectedItemId: ""
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "0");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("getSelectedKey()", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "0",
+						text: "item 0"
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					})
+				],
+
+				selectedKey: "0"
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "0");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 0");	// not implemented
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		// unit test for CSN 0120061532 0001300097 2014
+		test("getSelectedKey() update the selection when the model has changed", function() {
+
+			// system under test
+			var oSelect = new sap.m.Select({
+				items: {
+					path: "/contries",
+					template: new sap.ui.core.Item({
+						key: "{code}",
+						text: "{name}"
+					})
+				}
+			});
+
+			// arrange + act
+			var oModel = new sap.ui.model.json.JSONModel();
+			var mData = {
+				"contries": [
+					{
+						"code": "GER",
+						"name": "Germany"
+					},
+					{
+						"code": "CU",
+						"name": "Cuba"
+					}
+				]
+			};
+
+			oModel.setData(mData);
+			oSelect.setModel(oModel);
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+			mData.contries.shift();	// remove the first item of the model
+			oModel.setData(mData);
+			sap.ui.getCore().applyChanges();
+
+			// assertions
+			strictEqual(oSelect.getSelectedKey(), "CU");
+			strictEqual(oSelect.getSelectedItem().getKey(), "CU");
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		/* ------------------------------ */
 		/* setName()                      */
 		/* ------------------------------ */
 
@@ -1465,7 +1506,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -1498,7 +1539,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -1529,7 +1570,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -1568,7 +1609,6 @@
 			ok(fnAddAggregationSpy.calledWith("items", oItem), "sap.m.Select.addAggregation() method was called with the expected arguments");
 			ok(fnListAddAggregationSpy.calledWith("items", oItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem")), "sap.m.List.addAggregation() method was called with the expected arguments");
 			ok(fnAddItemSpy.returned(oSelect));
-			ok(oItem.data(sap.m.SelectRenderer.CSS_CLASS + "ItemVisible"), "The item is marked as visible");
 
 			// cleanup
 			oSelect.destroy();
@@ -1599,7 +1639,6 @@
 			ok(fnInsertAggregation.calledWith("items", oItem, 0), "oSelect.insertAggregation() method was called with the expected arguments");
 			ok(fnListInsertAggregation.calledWith("items", oItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"), 0), "oList.insertAggregation() method was called with the expected arguments");
 			ok(fnInsertItem.returned(oSelect), 'oSelect.insertAggregation() method return the "this" reference');
-			ok(oItem.data(sap.m.SelectRenderer.CSS_CLASS + "ItemVisible"), "The item is marked as visible");
 
 			// cleanup
 			oSelect.destroy();
@@ -1684,7 +1723,7 @@
 			strictEqual(oSelect.getSelectedItemId(), "item-id");
 			strictEqual(oSelect.getSelectedKey(), "1");
 			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			ok(fnSetSelectedItemSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItem() method return the "this" reference');
+			ok(fnSetSelectedItemSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItem() returns this to allow method chaining');
 			strictEqual(fnFireChangeSpy.callCount, 0, "The change event was not fired");
 
 			// cleanup
@@ -1735,7 +1774,7 @@
 			strictEqual(oSelect.getSelectedItemId(), "item-id");
 			strictEqual(oSelect.getSelectedKey(), "1");
 			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
-			ok(fnSetSelectedItemSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItem() method return the "this" reference');
+			ok(fnSetSelectedItemSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItem() returns this to allow method chaining');
 			strictEqual(fnFireChangeSpy.callCount, 0, "The change event was not fired");
 			sap.ui.getCore().applyChanges();
 			strictEqual(fnGetDomRefs(oSelect.getId()).$Label.text(), "");
@@ -1769,7 +1808,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -1814,7 +1853,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -1832,7 +1871,7 @@
 			oSelect.destroy();
 		});
 
-		test("setSelectedItem() set the selected item when the Select popup menu is open", function() {
+		test("setSelectedItem() set the selected item when the Select picker pop-up menu is open", function() {
 
 			// system under test
 			var oExpectedItem;
@@ -1858,7 +1897,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			oSelect.open();
@@ -1903,7 +1942,7 @@
 			strictEqual(fnSetAssociationSpy.callCount, 0, "sap.m.Select.prototype.setAssociation() method was not called");
 			strictEqual(fnFireChangeSpy.callCount, 0, "The change event was not fired");
 			strictEqual(fnWarningSpy.callCount, 1, "jQuery.sap.log.warning() method was called");
-			ok(fnSetSelectedItemIdSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItemId() method return the "this" reference');
+			ok(fnSetSelectedItemIdSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItemId() returns this to allow method chaining');
 			ok(oSelect.getSelectedItem() === null);
 			strictEqual(oSelect.getSelectedItemId(), "");
 			strictEqual(oSelect.getSelectedKey(), "");
@@ -1957,7 +1996,7 @@
 			ok(fnSetPropertySpy.calledWith("selectedKey", "1"));
 			ok(fnSetPropertySpy.calledWith("selectedItemId", "item-id"));
 			ok(fnSetAssociationSpy.calledWith("selectedItem", oExpectedItem));
-			ok(fnSetSelectedItemIdSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItemId() method return the "this" reference');
+			ok(fnSetSelectedItemIdSpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedItemId() returns this to allow method chaining');
 			ok(oSelect.getSelectedItem() === oExpectedItem);
 			strictEqual(oSelect.getSelectedItemId(), "item-id");
 			strictEqual(oSelect.getSelectedKey(), "1");
@@ -1995,7 +2034,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -2040,7 +2079,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -2058,7 +2097,7 @@
 			oSelect.destroy();
 		});
 
-		test("setSelectedItemId() set the selected item when the Select popup menu is open", function() {
+		test("setSelectedItemId() set the selected item when the Select picker pop-up menu is open", function() {
 
 			// system under test
 			var oExpectedItem;
@@ -2084,7 +2123,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			oSelect.open();
@@ -2137,7 +2176,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -2184,7 +2223,7 @@
 			strictEqual(oSelect.getSelectedKey(), "1");
 			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
 			// strictEqual(oSelect.getValue(), "item 2");	// not implemented
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			strictEqual(fnGetDomRefs(oSelect.getId()).$Label.text(), "item 1");
 
@@ -2217,7 +2256,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			var fnSetPropertySpy = this.spy(oSelect, "setProperty"),
@@ -2235,7 +2274,7 @@
 			ok(fnSetPropertySpy.calledWith("selectedKey", "1"));
 			ok(fnSetPropertySpy.calledWith("selectedItemId", "item-id"));
 			ok(fnSetAssociationSpy.calledWith("selectedItem", oExpectedItem));
-			ok(fnSetSelectedKeySpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedKey() method return the "this" reference');
+			ok(fnSetSelectedKeySpy.returned(oSelect), 'sap.m.Select.prototype.setSelectedKey() returns this to allow method chaining');
 			ok(oSelect.getSelectedItem() === oExpectedItem);
 			strictEqual(oSelect.getSelectedItemId(), "item-id");
 			strictEqual(oSelect.getSelectedKey(), "1");
@@ -2274,7 +2313,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -2292,7 +2331,7 @@
 			oSelect.destroy();
 		});
 
-		test("setSelectedKey() set the selected item when the Select popup menu is open", function() {
+		test("setSelectedKey() set the selected item when the Select picker pop-up is open", function() {
 
 			// system under test
 			var oExpectedItem;
@@ -2318,7 +2357,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			oSelect.open();
@@ -2444,7 +2483,7 @@
 
 			oModel.setData(mData);
 			sap.ui.getCore().setModel(oModel);
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -2519,7 +2558,7 @@
 			oModel.setData(mData);
 			sap.ui.getCore().setModel(oModel);
 
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -2552,7 +2591,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -2602,7 +2641,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			var fnRemoveAllItemsSpy = this.spy(oSelect, "removeAllItems");
 			var fnRemoveAllAggregationSpy = this.spy(oSelect, "removeAllAggregation");
@@ -2657,7 +2696,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			var fnDestroyItemsSpy = this.spy(oSelect, "destroyItems");
 
@@ -2666,7 +2705,7 @@
 			sap.ui.getCore().applyChanges();
 
 			// assertions
-			ok(fnDestroyItemsSpy.returned(oSelect), "sap.m.Select.prototype.destroyItems() method returns the Select instance");
+			ok(fnDestroyItemsSpy.returned(oSelect), "sap.m.Select.prototype.destroyItems() returns this to allow method chaining");
 			ok(oSelect.getList().getSelectedItem() === null);
 			// strictEqual(oSelect.getValue(), "");	// not implemented
 			strictEqual(fnGetDomRefs(oSelect.getId()).$Label.text(), "");
@@ -2703,7 +2742,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			document.documentElement.style.overflow = "hidden"; // hide scrollbar during test
 
@@ -2725,10 +2764,10 @@
 			ok(oSelect.hasStyleClass(sap.m.SelectRenderer.CSS_CLASS + "Pressed"));
 
 			if (sap.ui.Device.system.desktop || sap.ui.Device.system.tablet) {
-				strictEqual(oSelect.$().outerWidth(), oSelect.getPopup().$().outerWidth(), "The width of the pop-up is strictEqual to the width of the input");
+				strictEqual(oSelect.$().outerWidth(), oSelect.getPicker().$().outerWidth(), "The width of the pop-up is strictEqual to the width of the input");
 				strictEqual(document.activeElement, oSelect.getFocusDomRef(), "The Select should get the focus");
 			} else if (sap.ui.Device.system.phone) {
-				strictEqual(oSelect.getPopup().$().width(), jQuery(window).width(), "The width of the pop-up is strictEqual to the width of the browser view port");
+				strictEqual(oSelect.getPicker().$().width(), jQuery(window).width(), "The width of the pop-up is strictEqual to the width of the browser view port");
 			}
 
 			// cleanup
@@ -2759,7 +2798,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			oSelect.open();
@@ -2777,10 +2816,10 @@
 		});
 
 		/* ------------------------------ */
-		/* _findFirstEnabledItem()        */
+		/* findFirstEnabledItem()         */
 		/* ------------------------------ */
 
-		test("_findFirstEnabledItem()", function() {
+		test("findFirstEnabledItem()", function() {
 
 			// system under test
 			var oExpectedItem;
@@ -2807,11 +2846,11 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
-			var oFirstEnabledItem = oSelect._findFirstEnabledItem(aItems);
+			var oFirstEnabledItem = oSelect.findFirstEnabledItem(aItems);
 
 			// assertions
 			ok(oFirstEnabledItem === oExpectedItem);
@@ -2820,7 +2859,7 @@
 			oSelect.destroy();
 		});
 
-		test("_findFirstEnabledItem()", function() {
+		test("findFirstEnabledItem()", function() {
 
 			// system under test
 			var aItems = [
@@ -2848,11 +2887,11 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
-			var oFirstEnabledItem = oSelect._findFirstEnabledItem(aItems);
+			var oFirstEnabledItem = oSelect.findFirstEnabledItem(aItems);
 
 			// assertions
 			ok(oFirstEnabledItem === null, 'The first enabled item is "null"');
@@ -2861,17 +2900,17 @@
 			oSelect.destroy();
 		});
 
-		test("_findFirstEnabledItem()", function() {
+		test("findFirstEnabledItem()", function() {
 
 			// system under test
 			var oSelect = new sap.m.Select();
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
-			var oFirstEnabledItem = oSelect._findFirstEnabledItem([]);
+			var oFirstEnabledItem = oSelect.findFirstEnabledItem([]);
 
 			// assertions
 			ok(oFirstEnabledItem === null, 'The first enabled item is "null"');
@@ -2881,10 +2920,10 @@
 		});
 
 		/* ------------------------------ */
-		/* _findLastEnabledItem()         */
+		/* findLastEnabledItem()          */
 		/* ------------------------------ */
 
-		test("_findLastEnabledItem()", function() {
+		test("findLastEnabledItem()", function() {
 
 			// system under test
 			var oExpectedItem;
@@ -2912,11 +2951,11 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
-			var oLastEnabledItem = oSelect._findLastEnabledItem(aItems);
+			var oLastEnabledItem = oSelect.findLastEnabledItem(aItems);
 
 			// assertions
 			ok(oLastEnabledItem === oExpectedItem);
@@ -2925,7 +2964,7 @@
 			oSelect.destroy();
 		});
 
-		test("_findLastEnabledItem()", function() {
+		test("findLastEnabledItem()", function() {
 
 			// system under test
 			var aItems = [
@@ -2953,11 +2992,11 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
-			var oLastEnabledItem = oSelect._findLastEnabledItem(aItems);
+			var oLastEnabledItem = oSelect.findLastEnabledItem(aItems);
 
 			// assertions
 			ok(oLastEnabledItem === null, 'The last enabled item is "null"');
@@ -2966,17 +3005,17 @@
 			oSelect.destroy();
 		});
 
-		test("_findLastEnabledItem()", function() {
+		test("findLastEnabledItem()", function() {
 
 			// system under test
 			var oSelect = new sap.m.Select();
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
-			var oLastEnabledItem = oSelect._findLastEnabledItem([]);
+			var oLastEnabledItem = oSelect.findLastEnabledItem([]);
 
 			// assertions
 			ok(oLastEnabledItem === null, 'The last enabled item is "null"');
@@ -3152,7 +3191,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3197,7 +3236,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3216,7 +3255,7 @@
 			var oSelect = new sap.m.Select();
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3259,7 +3298,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3278,7 +3317,7 @@
 			var oSelect = new sap.m.Select();
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3323,7 +3362,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3400,7 +3439,7 @@
 				]
 			});
 
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3410,7 +3449,7 @@
 			// assertions
 			strictEqual(oSelect.getItems().length, 0);
 			ok(oSelect.getDomRef() === null);
-			ok(oSelect.getPopup() === null);
+			ok(oSelect.getPicker() === null);
 			ok(oSelect.getList() === null);
 
 			// cleanup
@@ -3440,7 +3479,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			oSelect.open();
@@ -3453,9 +3492,8 @@
 			// assertions
 			strictEqual(oSelect.getItems().length, 0);
 			ok(oSelect.getDomRef() === null);
-			ok(oSelect.getPopup() === null);
+			ok(oSelect.getPicker() === null);
 			ok(oSelect.getList() === null);
-			ok(oSelect.getPopup() === null);
 		});
 
 		/* =========================================================== */
@@ -3842,14 +3880,14 @@
 			var aSelects = [oSelect1, oSelect2, oSelect3, oSelect4, oSelect5, oSelect6, oSelect7, oSelect8];
 
 			// arrange
-			oSelect1.placeAt("select-content");
-			oSelect2.placeAt("select-content");
-			oSelect3.placeAt("select-content");
-			oSelect4.placeAt("select-content");
-			oSelect5.placeAt("select-content");
-			oSelect6.placeAt("select-content");
-			oSelect7.placeAt("select-content");
-			oSelect8.placeAt("select-content");
+			oSelect1.placeAt("content");
+			oSelect2.placeAt("content");
+			oSelect3.placeAt("content");
+			oSelect4.placeAt("content");
+			oSelect5.placeAt("content");
+			oSelect6.placeAt("content");
+			oSelect7.placeAt("content");
+			oSelect8.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// assertions
@@ -3913,12 +3951,12 @@
 					new sap.ui.core.Item({
 						key: "2",
 						text: "item 2"
-					}),
+					})
 				]
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -3976,7 +4014,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			// act
@@ -4046,10 +4084,10 @@
 
 			// arrange
 			var fnTapSpy = this.spy(oSelect, "ontap"),
-				fnPopupCloseSpy,
-				fnPopupIsOpenSpy;
+				fnPickerCloseSpy,
+				fnPickerIsOpenSpy;
 
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 
 			sap.ui.test.qunit.triggerTouchEvent("touchstart", oSelect.getDomRef(), {
@@ -4072,9 +4110,9 @@
 				}
 			});
 
-			fnOpenSpy = this.spy(oSelect.getPopup(), "open");
-			fnPopupCloseSpy = this.spy(oSelect.getPopup(), "close");
-			fnPopupIsOpenSpy = this.spy(oSelect.getPopup(), "isOpen");
+			fnOpenSpy = this.spy(oSelect.getPicker(), "open");
+			fnPickerCloseSpy = this.spy(oSelect.getPicker(), "close");
+			fnPickerIsOpenSpy = this.spy(oSelect.getPicker(), "isOpen");
 
 			sap.ui.test.qunit.triggerTouchEvent("touchend", oSelect.getDomRef(), {
 				targetTouches: {
@@ -4100,7 +4138,7 @@
 
 			// assertions
 			ok(fnTapSpy.calledOnce, "ontap() event handler must be called exactly once on " + oSelect);
-			strictEqual(fnPopupCloseSpy.callCount, 0, "close() method of the popover must not be called");
+			strictEqual(fnPickerCloseSpy.callCount, 0, "close() method of the popover must not be called");
 			strictEqual(fnOpenSpy.callCount, 1, "open() method was called exactly once");
 			ok(oSelect.$().hasClass(sap.m.SelectRenderer.CSS_CLASS + "Pressed"), 'The select must have the css class “' + sap.m.SelectRenderer.CSS_CLASS + 'Pressed”');
 
@@ -4119,7 +4157,7 @@
 				var oSelect = mOptions.control;
 
 				// arrange
-				oSelect.placeAt("select-content");
+				oSelect.placeAt("content");
 				sap.ui.getCore().applyChanges();
 				oSelect.focus();
 				var fnKeypressSpy = this.spy(oSelect, "onkeypress");
@@ -4216,7 +4254,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeypressSpy = this.spy(oSelect, "onkeypress");
@@ -4260,7 +4298,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnShowSpy = this.spy(oSelect, "onsapshow");
@@ -4271,7 +4309,7 @@
 
 			// assertion
 			strictEqual(fnShowSpy.callCount, 1, "onsapshow() method was called exactly once");
-			strictEqual(oSelect.getPopup().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is opening");
+			strictEqual(oSelect.getPicker().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is opening");
 			ok(oSelect.isOpen(), "Control's picker pop-up is open");
 
 			// cleanup
@@ -4296,7 +4334,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnShowSpy = this.spy(oSelect, "onsapshow");
@@ -4307,7 +4345,7 @@
 
 			// assertion
 			strictEqual(fnShowSpy.callCount, 1, "onsapshow() method was called exactly once");
-			strictEqual(oSelect.getPopup().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is opening");
+			strictEqual(oSelect.getPicker().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is opening");
 			ok(oSelect.isOpen(), "Control's picker pop-up is open");
 
 			// cleanup
@@ -4332,7 +4370,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnShowSpy = this.spy(oSelect, "onsapshow");
@@ -4344,7 +4382,7 @@
 
 			// assertion
 			strictEqual(fnShowSpy.callCount, 2, "onsapshow() method was called twice");
-			strictEqual(oSelect.getPopup().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is closing");
+			strictEqual(oSelect.getPicker().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is closing");
 
 			// cleanup
 			oSelect.destroy();
@@ -4368,7 +4406,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnShowSpy = this.spy(oSelect, "onsapshow");
@@ -4380,7 +4418,7 @@
 
 			// assertion
 			strictEqual(fnShowSpy.callCount, 2, "onsapshow() method was called twice");
-			strictEqual(oSelect.getPopup().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is closing");
+			strictEqual(oSelect.getPicker().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is closing");
 
 			// cleanup
 			oSelect.destroy();
@@ -4408,7 +4446,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnHideSpy = this.spy(oSelect, "onsaphide");
@@ -4419,7 +4457,7 @@
 
 			// assertion
 			strictEqual(fnHideSpy.callCount, 1, "onsaphide() method was called exactly once");
-			strictEqual(oSelect.getPopup().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is opening");
+			strictEqual(oSelect.getPicker().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is opening");
 			ok(oSelect.isOpen(), "Control's picker pop-up is open");
 
 			// cleanup
@@ -4444,7 +4482,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnHideSpy = this.spy(oSelect, "onsaphide");
@@ -4456,7 +4494,7 @@
 
 			// assertion
 			strictEqual(fnHideSpy.callCount, 2, "onsaphide() method was called twice");
-			strictEqual(oSelect.getPopup().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is closing");
+			strictEqual(oSelect.getPicker().oPopup.getOpenState(), sOpenState, "Control's picker pop-up is closing");
 
 			// cleanup
 			oSelect.destroy();
@@ -4466,7 +4504,7 @@
 		/* onsapescape                    */
 		/* ------------------------------ */
 
-		test("onsapescape - close the popup menu if it is open", function() {
+		test("onsapescape - close the picker pop-up if it is open", function() {
 
 			// system under test
 			var oSelect = new sap.m.Select({
@@ -4484,7 +4522,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnEscapeSpy = this.spy(oSelect, "onsapescape");
@@ -4519,7 +4557,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			oSelect.open();
@@ -4561,7 +4599,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnEnterSpy = this.spy(oSelect, "onsapenter");
@@ -4608,7 +4646,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyDownSpy = this.spy(oSelect, "onsapdown");
@@ -4657,7 +4695,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyDownSpy = this.stub(oSelect, "onsapdown");
@@ -4707,7 +4745,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyDownSpy = this.spy(oSelect, "onsapdown");
@@ -4763,7 +4801,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyUpSpy = this.spy(oSelect, "onsapup");
@@ -4812,7 +4850,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyUpSpy = this.spy(oSelect, "onsapup");
@@ -4864,7 +4902,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyUpSpy = this.stub(oSelect, "onsapup");
@@ -4931,7 +4969,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyHomeSpy = this.spy(oSelect, "onsaphome");
@@ -4993,7 +5031,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyHomeSpy = this.spy(oSelect, "onsaphome");
@@ -5004,7 +5042,70 @@
 
 			// assertion
 			strictEqual(fnKeyHomeSpy.callCount, 1, "onsaphome() method was called exactly once");
-			strictEqual(fnFireChangeSpy.callCount, 1, "The change event is fired");
+			strictEqual(fnFireChangeSpy.callCount, 1, "The change event is fired once");
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "1");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 1");	// not implemented
+			strictEqual(fnGetDomRefs(oSelect.getId()).$Label.text(), "item 1");
+
+			// cleanup
+			oSelect.destroy();
+		});
+
+		test("onsaphome should not fire the change event twice", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					new sap.ui.core.Item({
+						key: "0",
+						text: "item 0",
+						enabled: false
+					}),
+
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					}),
+
+					new sap.ui.core.Item({
+						key: "3",
+						text: "item 3"
+					}),
+
+					oItem = new sap.ui.core.Item({
+						key: "4",
+						text: "item 4"
+					})
+				],
+
+				selectedItem: oItem
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+			oSelect.focus();
+			var fnKeyHomeSpy = this.spy(oSelect, "onsaphome");
+			var fnFireChangeSpy = this.spy(oSelect, "fireChange");
+
+			// act
+			sap.ui.test.qunit.triggerKeydown(oSelect.getDomRef(), jQuery.sap.KeyCodes.HOME);
+			sap.ui.test.qunit.triggerKeydown(oSelect.getDomRef(), jQuery.sap.KeyCodes.HOME);
+
+			// assertion
+			strictEqual(fnKeyHomeSpy.callCount, 2, "onsaphome() method was called exactly twice");
+			strictEqual(fnFireChangeSpy.callCount, 1, "The change event is fired once");
 			ok(oSelect.getSelectedItem() === oExpectedItem);
 			strictEqual(oSelect.getSelectedItemId(), "item-id");
 			strictEqual(oSelect.getSelectedKey(), "1");
@@ -5056,7 +5157,7 @@
 			});
 
 			// arrange
-			oSelect.placeAt("select-content");
+			oSelect.placeAt("content");
 			sap.ui.getCore().applyChanges();
 			oSelect.focus();
 			var fnKeyEndSpy = this.spy(oSelect, "onsapend");
@@ -5079,6 +5180,65 @@
 			oSelect.destroy();
 		});
 
+		test("onsapend should not fire the change event twice", function() {
+
+			// system under test
+			var oExpectedItem;
+			var oSelect = new sap.m.Select({
+				items: [
+					new sap.ui.core.Item({
+						key: "0",
+						text: "item 0",
+						enabled: false
+					}),
+
+					new sap.ui.core.Item({
+						key: "1",
+						text: "item 1"
+					}),
+
+					new sap.ui.core.Item({
+						key: "2",
+						text: "item 2"
+					}),
+
+					new sap.ui.core.Item({
+						key: "3",
+						text: "item 3"
+					}),
+
+					oExpectedItem = new sap.ui.core.Item({
+						id: "item-id",
+						key: "4",
+						text: "item 4"
+					})
+				]
+			});
+
+			// arrange
+			oSelect.placeAt("content");
+			sap.ui.getCore().applyChanges();
+			oSelect.focus();
+			var fnKeyEndSpy = this.spy(oSelect, "onsapend");
+			var fnFireChangeSpy = this.spy(oSelect, "fireChange");
+
+			// act
+			sap.ui.test.qunit.triggerKeydown(oSelect.getDomRef(), jQuery.sap.KeyCodes.END);
+			sap.ui.test.qunit.triggerKeydown(oSelect.getDomRef(), jQuery.sap.KeyCodes.END);
+
+			// assertion
+			strictEqual(fnKeyEndSpy.callCount, 2, "onsapend() method was called exactly twice");
+			strictEqual(fnFireChangeSpy.callCount, 1, "The change event is fired once");
+			ok(oSelect.getSelectedItem() === oExpectedItem);
+			strictEqual(oSelect.getSelectedItemId(), "item-id");
+			strictEqual(oSelect.getSelectedKey(), "4");
+			ok(oSelect.getList().getSelectedItem() === oExpectedItem.data(sap.m.SelectRenderer.CSS_CLASS + "ListItem"));
+			// strictEqual(oSelect.getValue(), "item 4");	// not implemented
+			strictEqual(fnGetDomRefs(oSelect.getId()).$Label.text(), "item 4");
+
+			// cleanup
+			oSelect.destroy();
+		});
 		</script>
 	</head>
 	<body id="body" class="sapUiBody">
@@ -5087,6 +5247,6 @@
 		<h2 id="qunit-userAgent"></h2>
 		<div id="qunit-testrunner-toolbar"></div>
 		<ol id="qunit-tests"></ol>
-		<div id="select-content" class="select-content"></div>
+		<div id="content" class="content"></div>
 	</body>
 </html>

@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>RatingIndicatorVisualMode</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Possible values for the visualization of float values in the RatingIndicator Control.</documentation>
 	<enumeration>
 		<value name="Full">

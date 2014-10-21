@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>mvc/HTMLView</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A view defined/constructed by declarative HTML.</documentation>
 	<since>1.9.2</since>
 

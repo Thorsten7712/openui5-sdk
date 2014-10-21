@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>RoadMapStep</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Step used within a RoadMap Control.	
 	</documentation>
 

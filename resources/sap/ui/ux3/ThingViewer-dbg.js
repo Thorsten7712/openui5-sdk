@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64,20 +64,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * ThingViewer: Same as ThingInspector but decoupled from the Overlay and the ActionBar.
  * The control can be added to a Parent container that has a defined width. The ThingViewer fill the whole container. If the parent container has no width defined the control will not work properly.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @name sap.ui.ux3.ThingViewer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.ThingViewer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -89,11 +85,11 @@ sap.ui.core.Control.extend("sap.ui.ux3.ThingViewer", { metadata : {
 		"headerType" : {type : "sap.ui.ux3.ThingViewerHeaderType", group : "Misc", defaultValue : sap.ui.ux3.ThingViewerHeaderType.Standard}
 	},
 	aggregations : {
-    	"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
-    	"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
-    	"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
-    	"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
-    	"navBar" : {type : "sap.ui.ux3.NavigationBar", multiple : false, visibility : "hidden"}
+		"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
+		"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
+		"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
+		"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
+		"navBar" : {type : "sap.ui.ux3.NavigationBar", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedFacet" : {type : "sap.ui.ux3.NavigationItem", multiple : false}
@@ -598,14 +594,13 @@ sap.ui.ux3.ThingViewer.M_EVENTS = {'facetSelected':'facetSelected'};
 
 	
 /**
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @name sap.ui.ux3.ThingViewer#facetSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected NavigationItem
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The selected NavigationItem
  * @param {string} oControlEvent.getParameters.key Key of selected NavigationItem
@@ -617,7 +612,7 @@ sap.ui.ux3.ThingViewer.M_EVENTS = {'facetSelected':'facetSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingViewer</code>.<br/> itself. 
  *  
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

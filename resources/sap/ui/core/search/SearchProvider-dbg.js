@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,23 +53,19 @@ sap.ui.define(['sap/ui/core/library','sap/ui/core/Element'], function() {
  * @class
  * Abstract base class for all SearchProviders which can be e.g. attached to a SearchField. Do not create instances of this class, but use a concrete sub class instead.
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.search.SearchProvider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.core.search.SearchProvider", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"suggest"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"icon" : {type : "string", group : "Misc", defaultValue : null}
@@ -122,17 +118,15 @@ sap.ui.core.Element.extend("sap.ui.core.search.SearchProvider", { metadata : {
 /**
  * Call this function to get suggest values from the search provider. The given callback function is called with the suggest value (type 'string', 1st parameter) and an array of the suggestions (type '[string]', 2nd parameter).
  *
- * @name sap.ui.core.search.SearchProvider.prototype.suggest
+ * @name sap.ui.core.search.SearchProvider#suggest
  * @function
- * @param {string} 
- *         sSValue
+ * @param {string} sSValue
  *         The value for which suggestions are requested.
- * @param {any} 
- *         oFCallBack
+ * @param {any} oFCallBack
  *         The callback function which is called when the suggestions are available.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -145,11 +139,11 @@ sap.ui.core.Element.extend("sap.ui.core.search.SearchProvider", { metadata : {
  * @name sap.ui.core.search.SearchProvider.prototype.suggest
  * @function
  * @param {string} sValue The value for which suggestions are requested.
- * @param {function} fCallBack The callback function which is called when the suggestions are available.
+ * @param {function} fnCallback The callback function which is called when the suggestions are available.
  * @type void
  * @public
  */
-sap.ui.core.search.SearchProvider.prototype.suggest = function(sValue, fCallback) {
+sap.ui.core.search.SearchProvider.prototype.suggest = function(sValue, fnCallback) {
 	jQuery.sap.log.warning("sap.ui.core.search.SearchProvider is the abstract base class for all SearchProviders. Do not create instances of this class, but use a concrete sub class instead.");
 };
 

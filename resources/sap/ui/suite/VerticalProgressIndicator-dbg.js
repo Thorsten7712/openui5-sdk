@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55,24 +55,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * This control shows a vertical progress bar in dependency of the given percentage. Only values between 0 and 100 are valid.
  * @extends sap.ui.core.Control
  *
- * @author Svetozar Buzdumovic 
- * @version 1.22.4
+ * @author Svetozar Buzdumovic
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * The API may change. User with care.
  * @name sap.ui.suite.VerticalProgressIndicator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.suite.VerticalProgressIndicator", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"focus"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.suite",
 	properties : {
 		"percentage" : {type : "int", group : "Misc", defaultValue : null}
@@ -206,14 +204,13 @@ sap.ui.suite.VerticalProgressIndicator.M_EVENTS = {'press':'press'};
 
 	
 /**
- * Event is fired when the user clicks the control. 
+ * Event is fired when the user clicks the control.
  *
  * @name sap.ui.suite.VerticalProgressIndicator#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -222,7 +219,7 @@ sap.ui.suite.VerticalProgressIndicator.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.suite.VerticalProgressIndicator</code>.<br/> itself. 
  *  
- * Event is fired when the user clicks the control. 
+ * Event is fired when the user clicks the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -266,11 +263,11 @@ sap.ui.suite.VerticalProgressIndicator.M_EVENTS = {'press':'press'};
 /**
  * Puts the focus to the control.
  *
- * @name sap.ui.suite.VerticalProgressIndicator.prototype.focus
+ * @name sap.ui.suite.VerticalProgressIndicator#focus
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

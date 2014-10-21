@@ -14,6 +14,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script>
@@ -35,8 +36,8 @@
 				layoutData: new sap.m.FlexItemData({
 					alignSelf: "Center",
 					order: 2,
-					growFactor: 3
-// 					shrinkFactor: 2,
+					growFactor: 3,
+					shrinkFactor: 2
 // 					baseSize: "200px"
 				})
 			});
@@ -46,8 +47,8 @@
 				layoutData: new sap.m.FlexItemData({
 					alignSelf: "Baseline",
 					order: 3,
-					growFactor: 2
-// 					shrinkFactor: 2,
+					growFactor: 2,
+					shrinkFactor: 2
 // 					baseSize: "2500px"
 				})
 			});
@@ -77,8 +78,8 @@
 				layoutData: new sap.m.FlexItemData({
 					alignSelf: "Stretch",
 					order: 1,
-					growFactor: 1.47
-// 					shrinkFactor: 2.666,
+					growFactor: 1.47,
+ 					shrinkFactor: 0
 // 					baseSize: "137px"
 				})
 			});
@@ -87,8 +88,8 @@
 				src: "../images/mark2.png",
 				layoutData: new sap.m.FlexItemData({
 					order: 3,
-					growFactor: 1
-// 					shrinkFactor: 3,
+					growFactor: 1,
+ 					shrinkFactor: 3
 // 					baseSize: "160pt"
 				})
 			});
@@ -115,8 +116,8 @@
 				layoutData: new sap.m.FlexItemData({
 					alignSelf: "Start",
 					order: 1,
-					growFactor: 1.4
-// 					shrinkFactor: 2,
+					growFactor: 1.4,
+ 					shrinkFactor: 2
 // 					baseSize: "888px"
 				})
 				
@@ -127,8 +128,8 @@
 				layoutData: new sap.m.FlexItemData({
 					alignSelf: "End",
 					order: 2,
-					growFactor: 4
-// 					shrinkFactor: 8,
+					growFactor: 4,
+ 					shrinkFactor: 8
 // 					baseSize: "7em"
 				})
 			});
@@ -341,18 +342,18 @@
 						equal(jQuery("#item1").parent().css(sVendorPrefix + 'flex-grow'), 3, "Item 1 " + sVendorPrefix + "flex-grow property should be set correctly");
 						equal(jQuery("#item2").parent().css(sVendorPrefix + 'flex-grow'), 2, "Item 2 " + sVendorPrefix + "flex-grow property should be set correctly");
 						equal(Math.round(jQuery("#item3").parent().css(sVendorPrefix + 'flex-grow')*100)/100, 1.47, "Item 3 " + sVendorPrefix + "flex-grow property should be set correctly");
-						equal(jQuery("#item4").parent().css(sVendorPrefix + 'flex-grow'), 1, "Item 4 " + sVendorPrefix + "flex-grow property should be set correctly in Webkit browsers");
-						equal(Math.round(jQuery("#item5").parent().css(sVendorPrefix + 'flex-grow')*100)/100, 1.4, "Item 5 " + sVendorPrefix + "flex-grow property should be set correctly in Webkit browsers");
-						equal(jQuery("#item6").parent().css(sVendorPrefix + 'flex-grow'), 4, "Item 6 " + sVendorPrefix + "flex-grow property should be set correctly in Webkit browsers");
+						equal(jQuery("#item4").parent().css(sVendorPrefix + 'flex-grow'), 1, "Item 4 " + sVendorPrefix + "flex-grow property should be set correctly");
+						equal(Math.round(jQuery("#item5").parent().css(sVendorPrefix + 'flex-grow')*100)/100, 1.4, "Item 5 " + sVendorPrefix + "flex-grow property should be set correctly");
+						equal(jQuery("#item6").parent().css(sVendorPrefix + 'flex-grow'), 4, "Item 6 " + sVendorPrefix + "flex-grow property should be set correctly");
 					});
-// 					test("flex-shrink", function() {
-// 						equal(jQuery("#item1").parent().css(sVendorPrefix + 'flex-shrink'), 2, "Item 1 " + sVendorPrefix + "flex-shrink property should be set correctly");
-// 						equal(jQuery("#item2").parent().css(sVendorPrefix + 'flex-shrink'), 2, "Item 2 " + sVendorPrefix + "flex-shrink property should be set correctly");
-// 						equal(Math.round(jQuery("#item3").parent().css(sVendorPrefix + 'flex-shrink')*100)/100, 2.67, "Item 3 " + sVendorPrefix + "flex-shrink property should be set correctly");
-// 						equal(jQuery("#item4").parent().css(sVendorPrefix + 'flex-shrink'), 3, "Item 4 " + sVendorPrefix + "flex-shrink property should be set correctly in Webkit browsers");
-// 						equal(jQuery("#item5").parent().css(sVendorPrefix + 'flex-shrink'), 2, "Item 5 " + sVendorPrefix + "flex-shrink property should be set correctly in Webkit browsers");
-// 						equal(jQuery("#item6").parent().css(sVendorPrefix + 'flex-shrink'), 8, "Item 6 " + sVendorPrefix + "flex-shrink property should be set correctly in Webkit browsers");
-// 					});
+					test("flex-shrink", function() {
+						equal(jQuery("#item1").parent().css(sVendorPrefix + 'flex-shrink'), 2, "Item 1 " + sVendorPrefix + "flex-shrink property should be set correctly");
+						equal(jQuery("#item2").parent().css(sVendorPrefix + 'flex-shrink'), 2, "Item 2 " + sVendorPrefix + "flex-shrink property should be set correctly");
+						equal(jQuery("#item3").parent().css(sVendorPrefix + 'flex-shrink'), 0, "Item 3 " + sVendorPrefix + "flex-shrink property should be set correctly");
+						equal(jQuery("#item4").parent().css(sVendorPrefix + 'flex-shrink'), 3, "Item 4 " + sVendorPrefix + "flex-shrink property should be set correctly");
+						equal(jQuery("#item5").parent().css(sVendorPrefix + 'flex-shrink'), 2, "Item 5 " + sVendorPrefix + "flex-shrink property should be set correctly");
+						equal(jQuery("#item6").parent().css(sVendorPrefix + 'flex-shrink'), 8, "Item 6 " + sVendorPrefix + "flex-shrink property should be set correctly");
+					});
 					test("order", function() {
 						// A bug in IE 11 let's it return '' instead of order value
 						if(!navigator.userAgent.match(/Trident.+rv:11\.0/g)) {

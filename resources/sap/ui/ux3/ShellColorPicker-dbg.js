@@ -4,7 +4,7 @@
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,8 +54,17 @@ sap.ui.ux3.ShellColorPicker.prototype.isOpen = function() {
 
 
 /**
- *
- * @param oColor a hsl-based color object, as returned by parseCssRgbString()
+ * Opens the color picker, initially showing the given color.
+ *  
+ * All parameters after <code>oColor</code> have the same meaning and accept the same values as in {@link sap.ui.core.Popup#open Popup.open()}.
+ *  
+ * @param {object} oColor a hsl-based color object, as returned by parseCssRgbString()
+ * @param {int} [iDuration] animation duration in milliseconds; default is the jQuery preset "fast". For iDuration == 0 the opening happens synchronously without animation.
+ * @param {sap.ui.core.Popup.Dock} [my=sap.ui.core.Popup.Dock.CenterCenter] the popup content's reference position for docking
+ * @param {sap.ui.core.Popup.Dock} [at=sap.ui.core.Popup.Dock.CenterCenter] the "of" element's reference point for docking to
+ * @param {Element|sap.ui.core.Element} [of=document] the DOM Element or UI5 Element to dock to
+ * @param {string} [offset='0 0'] the offset relative to the docking point, specified as a string with space-separated pixel values (e.g. "0 10" to move the popup 10 pixels to the right). If the docking of both "my" and "at" are both RTL-sensitive ("begin" or "end"), this offset is automatically mirrored in the RTL case as well.
+ * @param {string} [collision='flip'] defines how the position of an element should be adjusted in case it overflows the window in some direction.
  *
  * @public
  */

@@ -3,7 +3,7 @@ jQuery.sap.declare('sap.ui.commons.library-all');
 if ( !jQuery.sap.isDeclared('sap.ui.commons.AccordionRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -241,7 +241,7 @@ sap.ui.commons.AccordionRenderer.renderSection = function(oRenderManager, oContr
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ApplicationHeaderRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -297,7 +297,16 @@ sap.ui.commons.ApplicationHeaderRenderer.render = function(oRenderManager, oAppH
 sap.ui.commons.ApplicationHeaderRenderer.renderLogoArea = function(oRenderManager, oAppHeader){
 
 	//Add the logo, but first set the source to the right path
-	oAppHeader.getLogoSrc() != "" ? oAppHeader.oLogo.setSrc(oAppHeader.getLogoSrc()) : oAppHeader.oLogo.setSrc(sap.ui.resource("sap.ui.commons", "themes/" + sap.ui.getCore().getConfiguration().getTheme() + "/img/applicationheader/SAPLogo.png"));
+	var sSrc = oAppHeader.getLogoSrc();
+	if(!sSrc){
+		jQuery.sap.require("sap.ui.core.theming.Parameters");
+		sSrc = sap.ui.core.theming.Parameters._getThemeImage(); // theme logo
+	}
+	if(!sSrc){
+		sSrc = sap.ui.resource("sap.ui.commons", "themes/" + sap.ui.getCore().getConfiguration().getTheme() + "/img/applicationheader/SAPLogo.png");
+	}
+	
+	oAppHeader.oLogo.setSrc(sSrc);
 	oRenderManager.renderControl(oAppHeader.oLogo);
 
 	//Insert the logo text if any provided by application
@@ -355,7 +364,7 @@ sap.ui.commons.ApplicationHeaderRenderer.renderWelcomeAndLogoffAreas = function(
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ButtonRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -364,8 +373,8 @@ jQuery.sap.declare("sap.ui.commons.ButtonRenderer");
 
 /**
  * @class
- * @author SAP AG
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  * @static
  */
 sap.ui.commons.ButtonRenderer = {
@@ -672,7 +681,7 @@ sap.ui.commons.ButtonRenderer.changeIcon = function(oButton) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.CalloutBaseRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -718,6 +727,10 @@ sap.ui.commons.CalloutBaseRenderer.render = function(oRenderManager, oControl){
 	if (oControl.getTooltip_AsString()) {
 		rm.writeAttributeEscaped("title", oControl.getTooltip_AsString());
 	}
+	
+	rm.addStyle("display", "none");
+	rm.writeStyles();
+	
 	rm.write(">");
 
 	//first focusable control to provide tab loop
@@ -767,7 +780,7 @@ sap.ui.commons.CalloutBaseRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.CalloutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -845,7 +858,7 @@ sap.ui.commons.CalloutRenderer.addArrowClasses = function(oRenderManager, oContr
 if ( !jQuery.sap.isDeclared('sap.ui.commons.CarouselRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1017,7 +1030,7 @@ sap.ui.commons.CarouselRenderer.render = function(oRenderManager, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.CheckBoxRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1028,7 +1041,7 @@ jQuery.sap.require('sap.ui.core.ValueStateSupport'); // unlisted dependency reta
 
 /**
  * @class
- * @author SAP AG
+ * @author SAP SE
  * @version 0.1
  * @static
  */
@@ -1135,7 +1148,9 @@ sap.ui.commons.CheckBoxRenderer.render = function(rm, oCheckBox) {
 		rm.writeAttributeEscaped("title", tooltip);
 	}
 	if(bReadOnly) {
-		rm.write(" readOnly='readOnly'");
+		//'readonly' property is not supported by input type=checkbox
+		//In order to make readonly checkbox unresponsive, we need to apply 'disabled' property - only affects HCB theme
+		rm.write(" disabled='disabled'");
 	}
 	rm.write(" />"); // close checkbox-input-element
 
@@ -1179,7 +1194,7 @@ sap.ui.commons.CheckBoxRenderer.renderText = function(oRenderManager, sText, eTe
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ColorPickerRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1217,7 +1232,7 @@ sap.ui.commons.ColorPickerRenderer.render = function(oRm, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.DialogRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1366,7 +1381,7 @@ sap.ui.commons.DialogRenderer.render = function(rm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.FileUploaderRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1382,7 +1397,7 @@ sap.ui.commons.FileUploaderRenderer = sap.ui.core.Renderer.extend(sap.ui.unified
 if ( !jQuery.sap.isDeclared('sap.ui.commons.FormattedTextViewRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.FormattedTextViewRenderer");
@@ -1467,7 +1482,7 @@ sap.ui.commons.FormattedTextViewRenderer._renderReplacement = function(rm, contr
 if ( !jQuery.sap.isDeclared('sap.ui.commons.HorizontalDividerRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1525,7 +1540,7 @@ sap.ui.commons.HorizontalDividerRenderer.render = function(oRenderManager, oCont
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ImageMapRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1624,7 +1639,7 @@ sap.ui.commons.ImageMapRenderer.render = function(oImageRenderManager, oImageMap
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ImageRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1721,7 +1736,7 @@ sap.ui.commons.ImageRenderer.render = function(oRenderManager, oImage) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.InPlaceEditRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1861,7 +1876,7 @@ sap.ui.commons.InPlaceEditRenderer.renderEditContent = function(rm, oInPlaceEdit
 if ( !jQuery.sap.isDeclared('sap.ui.commons.LabelRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2013,7 +2028,7 @@ sap.ui.commons.LabelRenderer.getTextAlign = sap.ui.core.Renderer.getTextAlign;
 if ( !jQuery.sap.isDeclared('sap.ui.commons.LinkRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2023,7 +2038,7 @@ jQuery.sap.declare("sap.ui.commons.LinkRenderer");
 /**
  * @class
  *
- * @author SAP AG
+ * @author SAP SE
  * @version 0.1
  * @static
  */
@@ -2099,7 +2114,7 @@ sap.ui.commons.LinkRenderer.render = function(rm, oLink) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ListBoxRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2114,7 +2129,7 @@ jQuery.sap.require('jquery.sap.strings'); // unlisted dependency retained
  * @class ListBox Renderer
  *
  * @author d046011
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  */
 sap.ui.commons.ListBoxRenderer = {
@@ -2413,6 +2428,7 @@ sap.ui.commons.ListBoxRenderer.fixWidth = function(sCssWidth) {
 /**
  * The default TabIndex that should be set for the ListBox as well as for the selected element.
  * Can be overwritten in extending sub-classes.
+ * @param {sap.ui.commons.ListBox} oListBox
  * @protected
  */
 sap.ui.commons.ListBoxRenderer.getTabIndex = function(oListBox) {
@@ -2463,7 +2479,7 @@ sap.ui.commons.ListBoxRenderer.getTextAlign = sap.ui.core.Renderer.getTextAlign;
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuBarRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2580,7 +2596,7 @@ sap.ui.commons.MenuBarRenderer.writeAria = function(rm, sRole, sText, bDisabled,
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuButtonRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2631,7 +2647,7 @@ if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuItemBase') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
  * 
- * (c) Copyright 2009-2014 SAP AG. All rights reserved
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
  */
 
 jQuery.sap.declare("sap.ui.commons.MenuItemBase");
@@ -2640,7 +2656,7 @@ jQuery.sap.declare("sap.ui.commons.MenuItemBase");
  * @class Provides the standard properties for menu items.
  * @extends sap.ui.unified.MenuItemBase
  *
- * @author SAP AG 
+ * @author SAP SE 
  *
  * @public
  * @deprecated Since version 1.21.0. 
@@ -2667,7 +2683,7 @@ sap.ui.commons.MenuItemBase = sap.ui.unified.MenuItemBase;
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2683,7 +2699,7 @@ sap.ui.commons.MenuRenderer = sap.ui.core.Renderer.extend(sap.ui.unified.MenuRen
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageBarRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2759,7 +2775,7 @@ sap.ui.commons.MessageBarRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageListRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2805,7 +2821,7 @@ sap.ui.commons.MessageListRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2869,7 +2885,7 @@ sap.ui.commons.MessageRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageToastRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -2928,7 +2944,7 @@ sap.ui.commons.MessageToastRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.PaginatorRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -3110,7 +3126,7 @@ sap.ui.commons.PaginatorRenderer.updateBackAndForward = function(oPaginator) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.PanelRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -3338,7 +3354,7 @@ sap.ui.commons.PanelRenderer.render = function(rm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ProgressIndicatorRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -3516,7 +3532,7 @@ sap.ui.commons.ProgressIndicatorRenderer.render = function(oRenderManager, oProg
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RadioButtonGroupRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -3633,7 +3649,7 @@ sap.ui.commons.RadioButtonGroupRenderer.render = function(oRenderManager, oRBGro
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RadioButtonRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -3817,7 +3833,7 @@ sap.ui.commons.RadioButtonRenderer.setSelected = function(oRadioButton, bSelecte
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RatingIndicatorRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4013,7 +4029,7 @@ sap.ui.commons.RatingIndicatorRenderer.getThemeSymbol = function(sType, oRating)
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ResponsiveContainerRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4070,7 +4086,7 @@ sap.ui.commons.ResponsiveContainerRenderer.render = function(oRenderManager, oCo
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RichTooltipRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -4186,7 +4202,7 @@ sap.ui.commons.RichTooltipRenderer.render = function(rm, oRichTooltip){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RoadMapRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -5096,7 +5112,7 @@ var updateScrollState = function(oRoadMap, iNewPos, bSkipAnim, fEndCallBack){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.SearchFieldRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -5167,7 +5183,7 @@ sap.ui.commons.SearchFieldRenderer.render = function(oRenderManager, oControl){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.SegmentedButtonRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -5230,7 +5246,7 @@ sap.ui.commons.SegmentedButtonRenderer.renderButtons = function(oRenderManager, 
 if ( !jQuery.sap.isDeclared('sap.ui.commons.SliderRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -5416,7 +5432,7 @@ sap.ui.commons.SliderRenderer.controlAdditionalCode = function(rm, oSlider){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.SplitterRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -5553,7 +5569,7 @@ sap.ui.commons.SplitterRenderer.render = function(oRenderManager, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TabStripRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -5763,7 +5779,7 @@ sap.ui.commons.TabStripRenderer.renderTabContents = function(rm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TextFieldRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -5779,7 +5795,7 @@ jQuery.sap.require('sap.ui.core.ValueStateSupport'); // unlisted dependency reta
  * @class
  * @static
  * @author SAP
- * @version 1.22.4
+ * @version 1.24.2
  * @since 0.9.0
  */
 sap.ui.commons.TextFieldRenderer = {};
@@ -6218,7 +6234,7 @@ sap.ui.commons.TextFieldRenderer.getTextAlign = sap.ui.core.Renderer.getTextAlig
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TextViewRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -6229,7 +6245,7 @@ jQuery.sap.require('sap.ui.core.Renderer'); // unlisted dependency retained
 
 /**
  * @class TextView renderer.
- * @author SAP AG
+ * @author SAP SE
  * @static
  */
 sap.ui.commons.TextViewRenderer = {
@@ -6367,7 +6383,7 @@ sap.ui.commons.TextViewRenderer.getTextAlign = sap.ui.core.Renderer.getTextAlign
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ToggleButtonRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -6452,7 +6468,7 @@ sap.ui.commons.ToggleButtonRenderer._getIconForState = function(oButton, sState)
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ToolbarRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -6683,7 +6699,7 @@ sap.ui.commons.ToolbarRenderer.unsetActive = function(oToolbar) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TreeRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -6905,7 +6921,7 @@ sap.ui.commons.TreeRenderer.renderNode = function(oRenderManager, oNode, iLevel,
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TriStateCheckBoxRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -6916,7 +6932,7 @@ jQuery.sap.require('sap.ui.core.ValueStateSupport'); // unlisted dependency reta
 
 /**
  * @class
- * @author SAP AG
+ * @author SAP SE
  * @version 0.1
  * @static
  */
@@ -7060,7 +7076,7 @@ sap.ui.commons.TriStateCheckBoxRenderer.render = function(oRm, oControl) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ValueHelpFieldRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -7191,7 +7207,7 @@ sap.ui.commons.ValueHelpFieldRenderer.renderIcon = function(rm, oControl, aClass
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.FormLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.form.FormLayoutRenderer");
@@ -7206,7 +7222,7 @@ sap.ui.commons.form.FormLayoutRenderer = sap.ui.core.Renderer.extend(sap.ui.layo
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.FormRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -7221,7 +7237,7 @@ sap.ui.commons.form.FormRenderer = sap.ui.core.Renderer.extend(sap.ui.layout.for
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.GridLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.form.GridLayoutRenderer");
@@ -7235,7 +7251,7 @@ sap.ui.commons.form.GridLayoutRenderer = sap.ui.core.Renderer.extend(sap.ui.layo
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.ResponsiveLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.form.ResponsiveLayoutRenderer");
@@ -7249,7 +7265,7 @@ sap.ui.commons.form.ResponsiveLayoutRenderer = sap.ui.core.Renderer.extend(sap.u
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.SimpleFormRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.form.SimpleFormRenderer");
@@ -7263,7 +7279,7 @@ sap.ui.commons.form.SimpleFormRenderer = sap.ui.core.Renderer.extend(sap.ui.layo
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.AbsoluteLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -7460,7 +7476,7 @@ var getComputedStyles = function(oPosition) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.BorderLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -7686,7 +7702,7 @@ sap.ui.commons.layout.BorderLayoutRenderer = {};
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.HorizontalLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -7701,7 +7717,7 @@ sap.ui.commons.layout.HorizontalLayoutRenderer = sap.ui.core.Renderer.extend(sap
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.MatrixLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8340,7 +8356,7 @@ sap.ui.commons.layout.MatrixLayoutRenderer.getValueUnit = function(sSize) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.ResponsiveFlowLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.layout.ResponsiveFlowLayoutRenderer");
@@ -8354,7 +8370,7 @@ sap.ui.commons.layout.ResponsiveFlowLayoutRenderer = sap.ui.core.Renderer.extend
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.VerticalLayoutRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8371,7 +8387,7 @@ sap.ui.commons.layout.VerticalLayoutRenderer = sap.ui.core.Renderer.extend(sap.u
 if ( !jQuery.sap.isDeclared('sap.ui.commons.library') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8381,7 +8397,7 @@ if ( !jQuery.sap.isDeclared('sap.ui.commons.library') ) {
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.commons (1.22.4)
+ * Initialization Code and shared classes of library sap.ui.commons (1.24.2)
  */
 jQuery.sap.declare("sap.ui.commons.library");
 jQuery.sap.require('sap.ui.core.Core'); // unlisted dependency retained
@@ -8532,11 +8548,11 @@ sap.ui.getCore().initLibrary({
     "sap.ui.commons.layout.PositionContainer",
     "sap.ui.commons.layout.ResponsiveFlowLayoutData"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8552,9 +8568,10 @@ jQuery.sap.declare("sap.ui.commons.ButtonStyle");
 /**
  * @class different styles for a button.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.ButtonStyle = {
 
@@ -8592,11 +8609,12 @@ sap.ui.commons.ButtonStyle = {
  * @name sap.ui.commons.FormattedTextViewControl
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8612,9 +8630,10 @@ jQuery.sap.declare("sap.ui.commons.HorizontalDividerHeight");
 /**
  * @class Enumeration of possible HorizontalDivider height settings.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.HorizontalDividerHeight = {
 
@@ -8645,7 +8664,7 @@ sap.ui.commons.HorizontalDividerHeight = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8661,9 +8680,10 @@ jQuery.sap.declare("sap.ui.commons.HorizontalDividerType");
 /**
  * @class Enumeration of possible HorizontalDivider types.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.HorizontalDividerType = {
 
@@ -8682,7 +8702,7 @@ sap.ui.commons.HorizontalDividerType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8698,9 +8718,10 @@ jQuery.sap.declare("sap.ui.commons.LabelDesign");
 /**
  * @class Available label display modes.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.LabelDesign = {
 
@@ -8719,7 +8740,7 @@ sap.ui.commons.LabelDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8735,9 +8756,10 @@ jQuery.sap.declare("sap.ui.commons.MenuBarDesign");
 /**
  * @class Determines the visual design of a MenuBar. The feature might be not supported by all themes.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.MenuBarDesign = {
 
@@ -8756,7 +8778,7 @@ sap.ui.commons.MenuBarDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8772,9 +8794,10 @@ jQuery.sap.declare("sap.ui.commons.MessageType");
 /**
  * @class [Enter description for MessageType]
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.MessageType = {
 
@@ -8799,7 +8822,7 @@ sap.ui.commons.MessageType = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8815,9 +8838,10 @@ jQuery.sap.declare("sap.ui.commons.PaginatorEvent");
 /**
  * @class Disctinct paginator event types
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.PaginatorEvent = {
 
@@ -8854,7 +8878,7 @@ sap.ui.commons.PaginatorEvent = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8870,9 +8894,10 @@ jQuery.sap.declare("sap.ui.commons.RatingIndicatorVisualMode");
 /**
  * @class Possible values for the visualization of float values in the RatingIndicator Control.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.RatingIndicatorVisualMode = {
 
@@ -8897,7 +8922,7 @@ sap.ui.commons.RatingIndicatorVisualMode = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8913,9 +8938,10 @@ jQuery.sap.declare("sap.ui.commons.RowRepeaterDesign");
 /**
  * @class Determines the visual design of a RowRepeater.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.RowRepeaterDesign = {
 
@@ -8940,7 +8966,7 @@ sap.ui.commons.RowRepeaterDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8957,9 +8983,11 @@ jQuery.sap.require('sap.ui.base.DataType'); // unlisted dependency retained
 /**
  * @class A string type that represents subset of CSS size values. For the Splitter only px and % are allowed.
  *
- * @author SAP AG
+ * @author SAP SE
+ * @final
  * @static
  * @public
+ * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.SplitterSize = sap.ui.base.DataType.createType('sap.ui.commons.SplitterSize', {
     isValid : function(vValue) {
@@ -8972,7 +9000,7 @@ sap.ui.commons.SplitterSize = sap.ui.base.DataType.createType('sap.ui.commons.Sp
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -8988,9 +9016,10 @@ jQuery.sap.declare("sap.ui.commons.TextViewColor");
 /**
  * @class Semantic Colors of a text.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextViewColor = {
 
@@ -9021,7 +9050,7 @@ sap.ui.commons.TextViewColor = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9037,9 +9066,10 @@ jQuery.sap.declare("sap.ui.commons.TextViewDesign");
 /**
  * @class Designs for TextView.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextViewDesign = {
 
@@ -9118,7 +9148,7 @@ sap.ui.commons.TextViewDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9134,9 +9164,10 @@ jQuery.sap.declare("sap.ui.commons.ToolbarDesign");
 /**
  * @class Determines the visual design of a Toolbar.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.ToolbarDesign = {
 
@@ -9176,11 +9207,12 @@ sap.ui.commons.ToolbarDesign = {
  * @name sap.ui.commons.ToolbarItem
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9196,9 +9228,10 @@ jQuery.sap.declare("sap.ui.commons.ToolbarSeparatorDesign");
 /**
  * @class Design of the Toolbar Separator.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.ToolbarSeparatorDesign = {
 
@@ -9217,7 +9250,7 @@ sap.ui.commons.ToolbarSeparatorDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9233,9 +9266,10 @@ jQuery.sap.declare("sap.ui.commons.TreeSelectionMode");
 /**
  * @class Selection mode of the tree
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TreeSelectionMode = {
 
@@ -9260,7 +9294,7 @@ sap.ui.commons.TreeSelectionMode = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9276,10 +9310,11 @@ jQuery.sap.declare("sap.ui.commons.TriStateCheckBoxState");
 /**
  * @class States for TriStateCheckBox
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.7.2
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TriStateCheckBoxState = {
 
@@ -9304,7 +9339,7 @@ sap.ui.commons.TriStateCheckBoxState = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9320,9 +9355,10 @@ jQuery.sap.declare("sap.ui.commons.enums.AreaDesign");
 /**
  * @class Value set for the background design of areas
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.enums.AreaDesign = {
 
@@ -9347,7 +9383,7 @@ sap.ui.commons.enums.AreaDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9363,9 +9399,10 @@ jQuery.sap.declare("sap.ui.commons.enums.BorderDesign");
 /**
  * @class Value set for the border design of areas
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.enums.BorderDesign = {
 
@@ -9384,7 +9421,7 @@ sap.ui.commons.enums.BorderDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9400,9 +9437,10 @@ jQuery.sap.declare("sap.ui.commons.enums.Orientation");
 /**
  * @class Orientation of a UI element
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.enums.Orientation = {
 
@@ -9421,7 +9459,7 @@ sap.ui.commons.enums.Orientation = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9439,9 +9477,10 @@ jQuery.sap.declare("sap.ui.commons.layout.BackgroundDesign");
  * Background design (i.e. color), e.g. of a layout cell.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.layout.BackgroundDesign = {
 
@@ -9504,7 +9543,7 @@ sap.ui.commons.layout.BackgroundDesign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9520,9 +9559,10 @@ jQuery.sap.declare("sap.ui.commons.layout.BorderLayoutAreaTypes");
 /**
  * @class The type (=position) of a BorderLayoutArea
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.layout.BorderLayoutAreaTypes = {
 
@@ -9559,7 +9599,7 @@ sap.ui.commons.layout.BorderLayoutAreaTypes = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9579,9 +9619,10 @@ jQuery.sap.declare("sap.ui.commons.layout.HAlign");
  * others do not.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.layout.HAlign = {
 
@@ -9628,7 +9669,7 @@ sap.ui.commons.layout.HAlign = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9649,9 +9690,10 @@ jQuery.sap.declare("sap.ui.commons.layout.Padding");
  * or end of a line, in the current locale's writing direction.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.layout.Padding = {
 
@@ -9704,7 +9746,7 @@ sap.ui.commons.layout.Padding = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9723,9 +9765,10 @@ jQuery.sap.declare("sap.ui.commons.layout.Separation");
  * defined width, with or without a vertical line in its middle.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.layout.Separation = {
 
@@ -9788,7 +9831,7 @@ sap.ui.commons.layout.Separation = {
 };
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9806,9 +9849,10 @@ jQuery.sap.declare("sap.ui.commons.layout.VAlign");
  * Vertical alignment, e.g. of a layout cell's content within the cell's borders.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.layout.VAlign = {
 
@@ -9924,7 +9968,7 @@ jQuery.sap.setObject("sap.ui.table.TableHelper", {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Accordion') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -9982,22 +10026,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Contains N sections which act as containers for any library controls
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Accordion
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Accordion", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"openSection", "closeSection"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : '200px'},
@@ -10005,7 +10047,7 @@ sap.ui.core.Control.extend("sap.ui.commons.Accordion", { metadata : {
 	},
 	defaultAggregation : "sections",
 	aggregations : {
-    	"sections" : {type : "sap.ui.commons.AccordionSection", multiple : true, singularName : "section"}
+		"sections" : {type : "sap.ui.commons.AccordionSection", multiple : true, singularName : "section"}
 	},
 	events : {
 		"sectionOpen" : {}, 
@@ -10167,14 +10209,13 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 
 
 /**
- * Event is triggered when the user opens a section. 
+ * Event is triggered when the user opens a section.
  *
  * @name sap.ui.commons.Accordion#sectionOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.openSectionId ID of the opened section
  * @param {string[]} oControlEvent.getParameters.closeSectionIds IDs of the sections that shall be closed. Can be initial in the case of no previously opened section.
  * @public
@@ -10185,7 +10226,7 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Accordion</code>.<br/> itself. 
  *  
- * Event is triggered when the user opens a section. 
+ * Event is triggered when the user opens a section.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -10233,14 +10274,13 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 
 
 /**
- * Event is triggered when the user closes a section. 
+ * Event is triggered when the user closes a section.
  *
  * @name sap.ui.commons.Accordion#sectionClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.closeSectionId ID of the closed section
  * @public
  */
@@ -10250,7 +10290,7 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Accordion</code>.<br/> itself. 
  *  
- * Event is triggered when the user closes a section. 
+ * Event is triggered when the user closes a section.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -10297,14 +10337,13 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 
 
 /**
- * Triggered when the user changes the position of a section. 
+ * Triggered when the user changes the position of a section.
  *
  * @name sap.ui.commons.Accordion#sectionsReorder
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.movedSectionId ID of the moved section.
  * @param {int} oControlEvent.getParameters.newIndex New index of the moved section.
  * @public
@@ -10315,7 +10354,7 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Accordion</code>.<br/> itself. 
  *  
- * Triggered when the user changes the position of a section. 
+ * Triggered when the user changes the position of a section.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -10365,28 +10404,26 @@ sap.ui.commons.Accordion.M_EVENTS = {'sectionOpen':'sectionOpen','sectionClose':
 /**
  * Opens a section.
  *
- * @name sap.ui.commons.Accordion.prototype.openSection
+ * @name sap.ui.commons.Accordion#openSection
  * @function
- * @param {string} 
- *         sSectionId
+ * @param {string} sSectionId
  *         Id of the section that shall be opened
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes a section, and opens the default one
  *
- * @name sap.ui.commons.Accordion.prototype.closeSection
+ * @name sap.ui.commons.Accordion#closeSection
  * @function
- * @param {string} 
- *         sSectionId
+ * @param {string} sSectionId
  *         Id of the section that shall be closed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -11226,7 +11263,7 @@ sap.ui.commons.Accordion.prototype.onAfterRendering = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.AccordionSection') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -11287,18 +11324,16 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * Represents a panel which is a container for other controls. The container does not have any layout function.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.AccordionSection
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.AccordionSection", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"maxHeight" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -11308,7 +11343,7 @@ sap.ui.core.Element.extend("sap.ui.commons.AccordionSection", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	events : {
 		"scroll" : {}
@@ -11388,7 +11423,6 @@ sap.ui.commons.AccordionSection.M_EVENTS = {'scroll':'scroll'};
 /**
  * Getter for property <code>collapsed</code>.
  * It is recommended to make some settings for the width when the section is set to 'collapsed'.
- * 
  *
  * Default value is <code>false</code>
  *
@@ -11521,14 +11555,13 @@ sap.ui.commons.AccordionSection.M_EVENTS = {'scroll':'scroll'};
 
 
 /**
- * Event is fired when the user scrolls the panel. 
+ * Event is fired when the user scrolls the panel.
  *
  * @name sap.ui.commons.AccordionSection#scroll
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.left Horizontal scroll position.
  * @param {int} oControlEvent.getParameters.top Vertical scroll position.
  * @public
@@ -11539,7 +11572,7 @@ sap.ui.commons.AccordionSection.M_EVENTS = {'scroll':'scroll'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.AccordionSection</code>.<br/> itself. 
  *  
- * Event is fired when the user scrolls the panel. 
+ * Event is fired when the user scrolls the panel.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -11692,7 +11725,7 @@ sap.ui.commons.AccordionSection.prototype.onBeforeRendering = function() {
 /**
  * Property setter for the "enabled" state
  *
- * @param bEnabled Whether the AccordionSection should be enabled, or not
+ * @param {boolean} bEnabled Whether the AccordionSection should be enabled, or not
  * @return {sap.ui.commons.AccordionSection} 'this' to allow method chaining
  * @public
  */
@@ -11725,7 +11758,7 @@ sap.ui.commons.AccordionSection.prototype._setCollapsed = function(bCollapsed) {
 /**
  * Property setter for the "collapsed" state
  *
- * @param bCollapsed Whether the AccordionSection should be collapsed, or not
+ * @param {boolean} bCollapsed Whether the AccordionSection should be collapsed, or not
  * @return {sap.ui.commons.AccordionSection} 'this' to allow method chaining
  * @public
  */
@@ -11860,7 +11893,7 @@ sap.ui.commons.AccordionSection.prototype.onscroll = function (oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ApplicationHeader') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -11917,19 +11950,15 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The application header control stands on the top of any application page. It consists basically of 4 areas. Logo area/Function area provided by application/Search area/Logout area
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ApplicationHeader
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ApplicationHeader", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"logoSrc" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
@@ -12090,14 +12119,13 @@ sap.ui.commons.ApplicationHeader.M_EVENTS = {'logoff':'logoff'};
 
 /**
  * Fires an event to log off the user from the application.
- * No parameters. 
+ * No parameters.
  *
  * @name sap.ui.commons.ApplicationHeader#logoff
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -12107,7 +12135,7 @@ sap.ui.commons.ApplicationHeader.M_EVENTS = {'logoff':'logoff'};
  * otherwise to this <code>sap.ui.commons.ApplicationHeader</code>.<br/> itself. 
  *  
  * Fires an event to log off the user from the application.
- * No parameters. 
+ * No parameters.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -12242,7 +12270,7 @@ sap.ui.commons.ApplicationHeader.prototype.setDisplayLogoff = function(bDisplayL
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Area') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -12301,18 +12329,16 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * Used for defining areas in an image map. At runtime, the user can trigger an action, or start a URL, from the single image areas.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Area
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.Area", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"shape" : {type : "string", group : "Misc", defaultValue : null},
@@ -12466,7 +12492,7 @@ sap.ui.commons.Area.prototype.onclick = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Button') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -12532,20 +12558,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  *
  * @class
  * Enables users to trigger actions such as save or print. For the button UI, you can define some text or an icon, or both.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Button
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Button", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -12553,8 +12578,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Button", { metadata : {
 		// methods
 		"focus"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : ''},
@@ -12604,7 +12627,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>text</code>.
  * 
  * Button text displayed at runtime.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -12631,7 +12653,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>enabled</code>.
  * 
  * Boolean property to enable the control (default is true). Buttons that are disabled have other colors than enabled ones, depending on custom settings.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -12658,7 +12679,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>visible</code>.
  * 
  * Invisible buttons are not rendered
- * 
  *
  * Default value is <code>true</code>
  *
@@ -12685,7 +12705,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>width</code>.
  * 
  * Control width as common CSS-size (px or % as unit, for example)
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -12712,7 +12731,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>helpId</code>.
  * 
  * Unique identifier used for help service
- * 
  *
  * Default value is <code>''</code>
  *
@@ -12817,7 +12835,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  * Getter for property <code>iconFirst</code>.
  * 
  * If set to true (default), the display sequence is 1. icon 2. control text .
- * 
  *
  * Default value is <code>true</code>
  *
@@ -13018,14 +13035,12 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
 /**
  * 
  * Event is fired when the user presses the control.
- *  
  *
  * @name sap.ui.commons.Button#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -13036,7 +13051,6 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
  *  
  * 
  * Event is fired when the user presses the control.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -13080,11 +13094,11 @@ sap.ui.commons.Button.M_EVENTS = {'press':'press'};
 /**
  * Puts the focus to the button.
  *
- * @name sap.ui.commons.Button.prototype.focus
+ * @name sap.ui.commons.Button#focus
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -13283,7 +13297,7 @@ sap.ui.commons.Button.prototype._setIcon = function(sIcon, sProperty) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.CalloutBase') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -13342,22 +13356,20 @@ jQuery.sap.require('sap.ui.core.TooltipBase'); // unlisted dependency retained
  * CalloutBase is a building block for Callout. Do not use it directly. Use the Callout control instead
  * @extends sap.ui.core.TooltipBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.CalloutBase
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.TooltipBase.extend("sap.ui.commons.CalloutBase", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"adjustPosition", "close", "setPosition"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	events : {
 		"open" : {}, 
@@ -13388,14 +13400,13 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * The event is fired when the popup is opened. 
+ * The event is fired when the popup is opened.
  *
  * @name sap.ui.commons.CalloutBase#open
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.parent Parent control that has this Callout as a tooltip
  * @public
  */
@@ -13405,7 +13416,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * The event is fired when the popup is opened. 
+ * The event is fired when the popup is opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -13452,14 +13463,13 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * Event is fired when the Callout window is closed. 
+ * Event is fired when the Callout window is closed.
  *
  * @name sap.ui.commons.CalloutBase#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -13468,7 +13478,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * Event is fired when the Callout window is closed. 
+ * Event is fired when the Callout window is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -13510,14 +13520,13 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content 
+ * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content
  *
  * @name sap.ui.commons.CalloutBase#beforeOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.parent Parent control that has this Callout as a tooltip
  * @public
  */
@@ -13527,7 +13536,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content 
+ * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -13576,7 +13585,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * Is fired when the Callout has been opened 
+ * Is fired when the Callout has been opened
  *
  * @name sap.ui.commons.CalloutBase#opened
  * @event
@@ -13584,7 +13593,6 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -13593,7 +13601,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * Is fired when the Callout has been opened 
+ * Is fired when the Callout has been opened
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -13643,39 +13651,37 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * Callout window may be changed due to new or changed
  * contents.
  *
- * @name sap.ui.commons.CalloutBase.prototype.adjustPosition
+ * @name sap.ui.commons.CalloutBase#adjustPosition
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes Callout
  *
- * @name sap.ui.commons.CalloutBase.prototype.close
+ * @name sap.ui.commons.CalloutBase#close
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Helper function to set position of the Callout window relative to the parent control. It automatically calculates and sets the correct offset, so it is recommended to use this function instead of setMyPosition and setAtPosition
  *
- * @name sap.ui.commons.CalloutBase.prototype.setPosition
+ * @name sap.ui.commons.CalloutBase#setPosition
  * @function
- * @param {sap.ui.core.Dock} 
- *         sMyPosition
+ * @param {sap.ui.core.Dock} sMyPosition
  *         Docking position of the Callout
- * @param {sap.ui.core.Dock} 
- *         sAtPosition
+ * @param {sap.ui.core.Dock} sAtPosition
  *         Docking position of the Callout
-
  * @type sap.ui.commons.CalloutBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -13731,8 +13737,8 @@ sap.ui.commons.CalloutBase.prototype.exit = function() {
 /**
  * Return the popup to use. Each callout has own popup.
  * (Allow multiple call-outs taking into account pin-up functionality in the next version).
- * Overrides {sap.ui.core.TooltipBase} that has a single common popup for all instances.
- * @type sap.ui.commons.Popup
+ * Overrides {@link sap.ui.core.TooltipBase} that has a single common popup for all instances.
+ * @type sap.ui.core.Popup
  * @return The popup to use
  * @private
  */
@@ -14066,6 +14072,7 @@ sap.ui.commons.CalloutBase.prototype.handleOpened = function() {
 		this.bFocused = true; // Remember to set focus to parent on close
 	}
 	
+	this.$().css("display:", "");
 	this.fireOpened();
 	
 	// - listen to mouse over events outside
@@ -14229,7 +14236,7 @@ sap.ui.commons.CalloutBase.prototype.setPosition = function(myPosition, atPositi
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Carousel') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -14291,23 +14298,21 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Carousel holds multiple controls and displays them vertical or horizontal next to each other. You can define how many content items should be displayed at once or let the carousel determine that for you. Navigation is done through buttons or keys.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.8.0
  * @name sap.ui.commons.Carousel
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Carousel", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"showNext", "showPrevious", "showElementWithId"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"orientation" : {type : "sap.ui.commons.enums.Orientation", group : "Misc", defaultValue : sap.ui.commons.enums.Orientation.horizontal},
@@ -14322,7 +14327,7 @@ sap.ui.core.Control.extend("sap.ui.commons.Carousel", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content", bindable : "bindable"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content", bindable : "bindable"}
 	}
 }});
 
@@ -14679,33 +14684,33 @@ sap.ui.core.Control.extend("sap.ui.commons.Carousel", { metadata : {
 /**
  * Shows next item in carousel. This can be only used after the component is rendered.
  *
- * @name sap.ui.commons.Carousel.prototype.showNext
+ * @name sap.ui.commons.Carousel#showNext
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Shows previous item in carousel. This can be only used after the component is rendered.
  *
- * @name sap.ui.commons.Carousel.prototype.showPrevious
+ * @name sap.ui.commons.Carousel#showPrevious
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Shows the element with id specified. This can be only used after the component is rendered.
  *
- * @name sap.ui.commons.Carousel.prototype.showElementWithId
+ * @name sap.ui.commons.Carousel#showElementWithId
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -15010,13 +15015,17 @@ sap.ui.commons.Carousel.prototype.onmouseup = function(oEvent) {
 	}
 };
 
-sap.ui.commons.Carousel.prototype.onswipeleft = function(oEvent) {
-	this.showNext();
-};
+if (sap.ui.Device.support.touch) {
+	
+	sap.ui.commons.Carousel.prototype.onswipeleft = function(oEvent) {
+		this.showNext();
+	};
+	
+	sap.ui.commons.Carousel.prototype.onswiperight = function(oEvent) {
+		this.showPrevious();
+	};
 
-sap.ui.commons.Carousel.prototype.onswiperight = function(oEvent) {
-	this.showPrevious();
-};
+}
 
 
 /**
@@ -15319,6 +15328,10 @@ sap.ui.commons.Carousel.prototype._getItemIdByIndex = function(iIndex) {
  * @function
  */
 sap.ui.commons.Carousel.prototype.setFirstVisibleIndex = function(iFirstVisibleIndex) {
+	if (iFirstVisibleIndex > this.getContent().length - 1) {
+		jQuery.sap.log.warning("The index is invalid. There are less items available in the carousel.");
+		return this;
+	}
 	this.setProperty("firstVisibleIndex", iFirstVisibleIndex, true);
 	this.showElementWithId(this._getItemIdByIndex(iFirstVisibleIndex));
 	if (this._oItemNavigation) {
@@ -15359,11 +15372,12 @@ sap.ui.commons.Carousel.prototype.setFirstVisibleIndex = function(iFirstVisibleI
 		return result;
 	};
 }) (jQuery.fn.clone);
+
 }; // end of sap/ui/commons/Carousel.js
 if ( !jQuery.sap.isDeclared('sap.ui.commons.CheckBox') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -15428,22 +15442,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Provides a box which can be flagged, the box has a label. A check box can either stand alone, or in a group with other check boxes. As an option, the boxes can initially be set to status 'Not Editable'.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.CheckBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.CheckBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"toggle"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"checked" : {type : "boolean", group : "Data", defaultValue : false, bindable : "bindable"},
@@ -15809,17 +15821,14 @@ sap.ui.commons.CheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @name sap.ui.commons.CheckBox#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.checked
  *         Checks whether the box is flagged or not flagged.
- * 
  * @public
  */
  
@@ -15830,7 +15839,6 @@ sap.ui.commons.CheckBox.M_EVENTS = {'change':'change'};
  *  
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -15881,13 +15889,12 @@ sap.ui.commons.CheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Inverts the current value of the control.
- * 
  *
- * @name sap.ui.commons.CheckBox.prototype.toggle
+ * @name sap.ui.commons.CheckBox#toggle
  * @function
-
  * @type sap.ui.commons.CheckBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -15970,7 +15977,7 @@ sap.ui.commons.CheckBox.prototype.toggle = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ColorPicker') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -16025,22 +16032,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * This control gives the user the opportunity to choose a color. The color can be defined using HEX-, RGB- or HSV-values or a CSS colorname.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ColorPicker
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ColorPicker", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getRGB"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"colorString" : {type : "string", group : "Misc", defaultValue : null}
@@ -16099,14 +16104,13 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @name sap.ui.commons.ColorPicker#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.r Parameter containing the RED value (0-255)
  * @param {int} oControlEvent.getParameters.g Parameter containing the GREEN value (0-255)
  * @param {int} oControlEvent.getParameters.b Parameter containing the BLUE value (0-255)
@@ -16123,7 +16127,7 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ColorPicker</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -16177,14 +16181,13 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @name sap.ui.commons.ColorPicker#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.r Parameter containing the RED value (0-255)
  * @param {int} oControlEvent.getParameters.g Parameter containing the GREEN value (0-255)
  * @param {int} oControlEvent.getParameters.b Parameter containing the BLUE value (0-255)
@@ -16201,7 +16204,7 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ColorPicker</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -16257,11 +16260,11 @@ sap.ui.commons.ColorPicker.M_EVENTS = {'change':'change','liveChange':'liveChang
 /**
  * This method delivers the current RGB-values
  *
- * @name sap.ui.commons.ColorPicker.prototype.getRGB
+ * @name sap.ui.commons.ColorPicker#getRGB
  * @function
-
  * @type object
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -17068,63 +17071,54 @@ sap.ui.commons.ColorPicker.prototype._updateCursorPosition = function(){
  */
 sap.ui.commons.ColorPicker.prototype._calculateRGB = function( hue, sat, val){
 
-	//	easy case: value = 0
-	if (val == 0 ){
-		this.RGB.r = Math.round(sat*2.55);
-		this.RGB.g = Math.round(sat*2.55);
-		this.RGB.b = Math.round(sat*2.55);
-
-		// calculate values
-	} else {
-		hue = hue / 60;
-		//hue value is cyclic, so 360 = 0
-		if (hue == 6) {
-			hue = 0;
-		}
-		sat = sat / 100;
-		val = val / 100;
-		var redValue, greenValue, blueValue;
-		var i = Math.floor(hue);
-		var f = hue - i;
-		var p = val * (1 - sat);
-		var q = val * (1 - sat * f);
-		var t = val * (1 - sat * (1 - f));
-		switch (i) {
+	//hue value is cyclic, so 360 = 0
+	if (hue == 360) {
+		hue = 0;
+	}
+	hue /= 60;
+	sat /= 100;
+	val /= 100;
+	
+	
+	//Formula taken from http://www.rapidtables.com/convert/color/hsv-to-rgb.htm
+	var c = val * sat;
+	var x = c * (1 - Math.abs(hue % 2 - 1));
+	var m = val - c;
+	
+	// calculate values
+	var redValue = 0, greenValue = 0, blueValue = 0;
+	var i = Math.floor(hue);
+	
+	switch (i) {
 		case 0:
-			redValue   = val;
-			greenValue = t;
-			blueValue  = p;
+			redValue   = c;
+			greenValue = x;
 			break;
 		case 1:
-			redValue   = q;
-			greenValue = val;
-			blueValue  = p;
+			redValue   = x;
+			greenValue = c;
 			break;
 		case 2:
-			redValue   = p;
-			greenValue = val;
-			blueValue  = t;
+			greenValue = c;
+			blueValue  = x;
 			break;
 		case 3:
-			redValue   = p;
-			greenValue = q;
-			blueValue  = val;
+			greenValue = x;
+			blueValue  = c;
 			break;
 		case 4:
-			redValue   = t;
-			greenValue = p;
-			blueValue  = val;
+			redValue   = x;
+			blueValue  = c;
 			break;
-		default:
-			redValue   = val;
-		greenValue = p;
-		blueValue  = q;
-		break;
-		}
-		this.RGB.r = Math.round(redValue*255);
-		this.RGB.g = Math.round(greenValue*255);
-		this.RGB.b = Math.round(blueValue*255);
+		case 5:
+			redValue   = c;
+			blueValue  = x;
+			break;
 	}
+	
+	this.RGB.r = Math.floor((redValue + m) * 255);
+	this.RGB.g = Math.floor((greenValue + m) * 255);
+	this.RGB.b = Math.floor((blueValue + m) * 255);
 }
 
 
@@ -17555,7 +17549,7 @@ sap.ui.commons.ColorPicker.prototype.getRGB = function (){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ComboBoxRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -17747,7 +17741,7 @@ sap.ui.commons.ComboBoxRenderer.setEnabled = function(oCmb, bEnabled) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Dialog') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -17822,16 +17816,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.PopupInterface
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Dialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Dialog", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.PopupInterface"
 	],
@@ -17839,8 +17833,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Dialog", { metadata : {
 		// methods
 		"open", "close", "isOpen", "getOpenState"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -17863,8 +17855,8 @@ sap.ui.core.Control.extend("sap.ui.commons.Dialog", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	associations : {
 		"defaultButton" : {type : "sap.ui.commons.Button", multiple : false}, 
@@ -17899,7 +17891,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>width</code>.
  * 
  * Outer width of dialog window. When not set and not constrained by one of the width parameters (minWidth/maxWidth), the window size is automatically adapted to the content.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -17926,7 +17917,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>height</code>.
  * 
  * Outer height of dialog window. When not set and not constrained by one of the height parameters (minHeight/maxHeight), the window size is automatically adapted to the content.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -17953,7 +17943,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>scrollLeft</code>.
  * 
  * Scroll position from left to right. "0" means leftmost position.
- * 
  *
  * Default value is <code>0</code>
  *
@@ -17980,7 +17969,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>scrollTop</code>.
  * 
  * Scroll position from top to buttom. "0" means topmost position.
- * 
  *
  * Default value is <code>0</code>
  *
@@ -18007,7 +17995,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>title</code>.
  * 
  * Dialog title displayed in the header.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -18034,7 +18021,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>applyContentPadding</code>.
  * 
  * Padding is theme-dependent. When set to "false", the content extends to the dialog borders.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -18061,7 +18047,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>showCloseButton</code>.
  * 
  * Displays a close button in the title bar.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -18088,7 +18073,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>resizable</code>.
  * 
  * Specifies whether the dialog window can be resized by the user. The dialog frame contains the visual symbol.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -18115,7 +18099,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>minWidth</code>.
  * 
  * Minimum outer width of the dialog window. When set, neither the user nor some layout settings can make the window smaller.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -18142,7 +18125,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>minHeight</code>.
  * 
  * Minimum outer height of the dialog window. When set, neither the user nor some layout settings can make the window smaller.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -18169,7 +18151,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>maxWidth</code>.
  * 
  * Maximum outer width of the dialog window. If set, neither the user nor some layout settings can make the window larger.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -18196,7 +18177,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>maxHeight</code>.
  * 
  * Maximum outer height of the dialog window. If set, neither the user nor some layout settings can make the window larger.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -18223,7 +18203,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>contentBorderDesign</code>.
  * 
  * Border design is theme-dependent.
- * 
  *
  * Default value is <code>None</code>
  *
@@ -18568,14 +18547,12 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
 /**
  * 
  * Event is fired when the user closes the dialog window. Event parameters provide information about last position and last size.
- *  
  *
  * @name sap.ui.commons.Dialog#closed
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.width the width of the dialog when closed
  * @param {int} oControlEvent.getParameters.height the height of the dialog when closed
  * @param {int} oControlEvent.getParameters.top the top position of the dialog when closed
@@ -18590,7 +18567,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  *  
  * 
  * Event is fired when the user closes the dialog window. Event parameters provide information about last position and last size.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -18642,44 +18618,44 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
 /**
  * Opens the dialog control instance.
  *
- * @name sap.ui.commons.Dialog.prototype.open
+ * @name sap.ui.commons.Dialog#open
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes the dialog control instance.
  *
- * @name sap.ui.commons.Dialog.prototype.close
+ * @name sap.ui.commons.Dialog#close
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether the Dialog is open (this includes opening and closing animations). For more detailed information about the current state check Dialog.getOpenState().
  *
- * @name sap.ui.commons.Dialog.prototype.isOpen
+ * @name sap.ui.commons.Dialog#isOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether the Dialog is currently open, closed, or transitioning between these states.
  *
- * @name sap.ui.commons.Dialog.prototype.getOpenState
+ * @name sap.ui.commons.Dialog#getOpenState
  * @function
-
  * @type sap.ui.core.OpenState
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -19376,7 +19352,7 @@ sap.ui.commons.Dialog.getAutoClose = function(){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.DropdownBoxRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19472,7 +19448,7 @@ sap.ui.commons.DropdownBoxRenderer.renderARIAInfo = function(rm, oDdb) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.FileUploader') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19527,21 +19503,19 @@ jQuery.sap.require('sap.ui.unified.FileUploader'); // unlisted dependency retain
  * The framework generates an input field and a button with text "Browse ...". The API supports features such as on change uploads (the upload starts immediately after a file has been selected), file uploads with explicit calls, adjustable control sizes, text display after uploads, or tooltips containing complete file paths.
  * @extends sap.ui.unified.FileUploader
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the control sap.ui.unified.FileUploader of the library sap.ui.unified instead.
  * @name sap.ui.commons.FileUploader
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.FileUploader.extend("sap.ui.commons.FileUploader", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -19567,7 +19541,7 @@ sap.ui.unified.FileUploader.extend("sap.ui.commons.FileUploader", { metadata : {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
  * 
- * (c) Copyright 2009-2014 SAP AG. All rights reserved
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
  */
 
 jQuery.sap.declare("sap.ui.commons.FileUploader");
@@ -19586,7 +19560,7 @@ jQuery.sap.declare("sap.ui.commons.FileUploader");
 if ( !jQuery.sap.isDeclared('sap.ui.commons.FileUploaderParameter') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19641,21 +19615,19 @@ jQuery.sap.require('sap.ui.unified.FileUploaderParameter'); // unlisted dependen
  * Represents a parameter for the FileUploader which is rendered as a hidden inputfield.
  * @extends sap.ui.unified.FileUploaderParameter
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the element sap.ui.unified.FileUploaderParameter of the library sap.ui.unified instead.
  * @name sap.ui.commons.FileUploaderParameter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.FileUploaderParameter.extend("sap.ui.commons.FileUploaderParameter", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -19681,7 +19653,7 @@ sap.ui.unified.FileUploaderParameter.extend("sap.ui.commons.FileUploaderParamete
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
  * 
- * (c) Copyright 2009-2014 SAP AG. All rights reserved
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
  */
 
 jQuery.sap.declare("sap.ui.commons.FileUploaderParameter");
@@ -19700,7 +19672,7 @@ jQuery.sap.declare("sap.ui.commons.FileUploaderParameter");
 if ( !jQuery.sap.isDeclared('sap.ui.commons.FormattedTextView') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19754,26 +19726,21 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  *
  * @class
  * Allows to use a limited set of HTML tags for display
- * 
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.0
  * @name sap.ui.commons.FormattedTextView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.FormattedTextView", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setContent"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -19781,7 +19748,7 @@ sap.ui.core.Control.extend("sap.ui.commons.FormattedTextView", { metadata : {
 		"htmlText" : {type : "string", group : "Misc", defaultValue : ""}
 	},
 	aggregations : {
-    	"controls" : {type : "sap.ui.commons.FormattedTextViewControl", multiple : true, singularName : "control"}
+		"controls" : {type : "sap.ui.commons.FormattedTextViewControl", multiple : true, singularName : "control"}
 	}
 }});
 
@@ -19962,17 +19929,15 @@ sap.ui.core.Control.extend("sap.ui.commons.FormattedTextView", { metadata : {
 /**
  * Sets text with placeholders and given array of controls
  *
- * @name sap.ui.commons.FormattedTextView.prototype.setContent
+ * @name sap.ui.commons.FormattedTextView#setContent
  * @function
- * @param {string} 
- *         sHtmlText
+ * @param {string} sHtmlText
  *         Contains the corresponding HTML-text
- * @param {sap.ui.commons.FormattedTextViewControl} 
- *         oControls
+ * @param {sap.ui.commons.FormattedTextViewControl} oControls
  *         Array of controls that should be used within given HTML-text
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -20164,7 +20129,7 @@ jQuery.sap.require('jquery.sap.encoder'); // unlisted dependency retained
 if ( !jQuery.sap.isDeclared('sap.ui.commons.HorizontalDivider') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -20219,19 +20184,15 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Divides the screen in visual areas.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.HorizontalDivider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.HorizontalDivider", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -20365,7 +20326,7 @@ sap.ui.core.Control.extend("sap.ui.commons.HorizontalDivider", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Image') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -20427,22 +20388,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem,sap.ui.commons.FormattedTextViewControl
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Image
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Image", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem",
 		"sap.ui.commons.FormattedTextViewControl"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"src" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -20657,14 +20616,13 @@ sap.ui.commons.Image.M_EVENTS = {'press':'press'};
 
 
 /**
- * Event is fired when the user clicks on the control. 
+ * Event is fired when the user clicks on the control.
  *
  * @name sap.ui.commons.Image#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -20673,7 +20631,7 @@ sap.ui.commons.Image.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Image</code>.<br/> itself. 
  *  
- * Event is fired when the user clicks on the control. 
+ * Event is fired when the user clicks on the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -20735,7 +20693,7 @@ sap.ui.commons.Image.prototype.onsapenter = sap.ui.commons.Image.prototype.oncli
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ImageMap') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -20790,28 +20748,26 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Combination of image areas where at runtime these areas are starting points for hyperlinks or actions
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ImageMap
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ImageMap", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createArea"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"name" : {type : "string", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-    	"areas" : {type : "sap.ui.commons.Area", multiple : true, singularName : "area"}
+		"areas" : {type : "sap.ui.commons.Area", multiple : true, singularName : "area"}
 	},
 	events : {
 		"press" : {}
@@ -20945,14 +20901,13 @@ sap.ui.commons.ImageMap.M_EVENTS = {'press':'press'};
 
 
 /**
- * Event for the areas that can be clicked in an ImageMap 
+ * Event for the areas that can be clicked in an ImageMap
  *
  * @name sap.ui.commons.ImageMap#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.areaId Id of clicked Area.
  * @public
  */
@@ -20962,7 +20917,7 @@ sap.ui.commons.ImageMap.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ImageMap</code>.<br/> itself. 
  *  
- * Event for the areas that can be clicked in an ImageMap 
+ * Event for the areas that can be clicked in an ImageMap
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -21011,14 +20966,12 @@ sap.ui.commons.ImageMap.M_EVENTS = {'press':'press'};
 /**
  * Adds an area to the ImageMap
  *
- * @name sap.ui.commons.ImageMap.prototype.createArea
+ * @name sap.ui.commons.ImageMap#createArea
  * @function
- * @param {string[]} 
- *         aArea
- * 
-
+ * @param {string[]} aArea
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -21130,7 +21083,7 @@ sap.ui.commons.ImageMap.prototype.exit = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Label') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -21192,26 +21145,23 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * 
  * Is used for labeling other controls. The API provides formatting options, for example for bold display or alignment. A label can have an icon.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem,sap.ui.core.Label
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Label
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem",
 		"sap.ui.core.Label"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"design" : {type : "sap.ui.commons.LabelDesign", group : "Appearance", defaultValue : sap.ui.commons.LabelDesign.Standard},
@@ -21252,7 +21202,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>design</code>.
  * 
  * Labels can have bold format.
- * 
  *
  * Default value is <code>sap.ui.commons.LabelDesign.Standard</code>
  *
@@ -21279,7 +21228,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>textDirection</code>.
  * 
  * Options for the text direction are RTL and LTR. Alternatively, the control can inherit the text direction from its parent container.
- * 
  *
  * Default value is <code>sap.ui.core.TextDirection.Inherit</code>
  *
@@ -21331,7 +21279,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>width</code>.
  * 
  * Control width as common CSS-size (px or % as unit, for example).
- * 
  *
  * Default value is <code>''</code>
  *
@@ -21358,7 +21305,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>text</code>.
  * 
  * Text to be displayed.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -21385,7 +21331,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>visible</code>.
  * 
  * Invisible labels are not rendered.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -21440,7 +21385,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>textAlign</code>.
  * 
  * Available alignment settings are "Begin", "Center", "End", "Left", and "Right".
- * 
  *
  * Default value is <code>sap.ui.core.TextAlign.Begin</code>
  *
@@ -21696,7 +21640,7 @@ sap.ui.commons.Label.prototype._handleOpened = function(){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Link') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -21758,20 +21702,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * 
  * Provides an absolute or relative reference to an internal or external URL. The classical target parameters are supported.
  * Another usage scenario is triggering an action, for example to open a popup window. In both cases, the link is a hypertext link.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem,sap.ui.commons.FormattedTextViewControl
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Link
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Link", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem",
 		"sap.ui.commons.FormattedTextViewControl"
@@ -21780,8 +21723,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Link", { metadata : {
 		// methods
 		"focus"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : ''},
@@ -21825,7 +21766,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>text</code>.
  * 
  * Link text to be displayed.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -21877,7 +21817,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>visible</code>.
  * 
  * Invisible links are not rendered.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -21904,7 +21843,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>helpId</code>.
  * 
  * Unique identifier used for help service.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -21956,7 +21894,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  * Getter for property <code>target</code>.
  * 
  * Options are _self, _top, _blank, _parent, _search. Alternatively, a frame name can be entered.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -22083,14 +22020,12 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
 /**
  * 
  * Event is fired when the user clicks the control.
- *  
  *
  * @name sap.ui.commons.Link#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -22101,7 +22036,6 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
  *  
  * 
  * Event is fired when the user clicks the control.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22147,11 +22081,11 @@ sap.ui.commons.Link.M_EVENTS = {'press':'press'};
 /**
  * Puts the focus to the link.
  *
- * @name sap.ui.commons.Link.prototype.focus
+ * @name sap.ui.commons.Link#focus
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -22199,7 +22133,7 @@ sap.ui.commons.Link.prototype.onsapenter = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ListBox') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -22271,22 +22205,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * are available.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ListBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ListBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getSelectedIndex", "setSelectedIndex", "addSelectedIndex", "removeSelectedIndex", "getSelectedIndices", "setSelectedIndices", "addSelectedIndices", "isIndexSelected", "getSelectedItem", "getSelectedItems", "clearSelection", "scrollToIndex", "setItems", "setSelectedKeys", "getSelectedKeys"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"editable" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -22306,7 +22238,7 @@ sap.ui.core.Control.extend("sap.ui.commons.ListBox", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
+		"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -22518,7 +22450,6 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * Defines whether the icons of the list items shall also be displayed. Enabling icons requires some space to be reserved for them. Displaying icons can also
  * influence the width and height of a single item, which affects the overall height of the ListBox when defined in number of items.
  * Note that the number of icons that can be displayed in the ListBox depends on the size of the icons themselves and of the total ListBox height.
- * 
  *
  * Default value is <code>false</code>
  *
@@ -22853,14 +22784,13 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @name sap.ui.commons.ListBox#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id ID of the ListBox which triggered the event.
  * @param {int} oControlEvent.getParameters.selectedIndex The currently selected index of the ListBox. In the case of multiple selection, this is exactly one of the selected indices - the one whose selection has triggered the selection change; to get all currently selected indices, use selectedIndices.
  * @param {sap.ui.core.Item} oControlEvent.getParameters.selectedItem The currently selected item of the ListBox. In the case of multiple selection, this is exactly one of the selected items - the one whose selection has triggered the selection change.
@@ -22873,7 +22803,7 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ListBox</code>.<br/> itself. 
  *  
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -22925,64 +22855,61 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
 /**
  * Zero-based index of selected item. Index value for no selection is -1. When multiple selection is enabled and multiple items are selected, the method returns the first selected item.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedIndex
+ * @name sap.ui.commons.ListBox#getSelectedIndex
  * @function
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the zero-based index of the currently selected item. This method removes any previous selections. When the given index is invalid, the call is ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.setSelectedIndex
+ * @name sap.ui.commons.ListBox#setSelectedIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index to be selected
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds the given index to current selection. When multiple selection is disabled, this replaces the current selection. When the given index is invalid, the call is ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.addSelectedIndex
+ * @name sap.ui.commons.ListBox#addSelectedIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index to add to selection.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the given index from this selection. When the index is invalid or not selected, the call is ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.removeSelectedIndex
+ * @name sap.ui.commons.ListBox#removeSelectedIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index that shall be removed from selection.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Zero-based indices of selected items, wrapped in an array. An empty array means "no selection".
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedIndices
+ * @name sap.ui.commons.ListBox#getSelectedIndices
  * @function
-
  * @type int[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -22992,75 +22919,72 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * Any invalid indices are ignored.
  * The previous selection is in any case replaced.
  *
- * @name sap.ui.commons.ListBox.prototype.setSelectedIndices
+ * @name sap.ui.commons.ListBox#setSelectedIndices
  * @function
- * @param {int[]} 
- *         aIndices
+ * @param {int[]} aIndices
  *         Indices of the items to be selected.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds the given indices to selection. Any invalid indices are ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.addSelectedIndices
+ * @name sap.ui.commons.ListBox#addSelectedIndices
  * @function
- * @param {int[]} 
- *         aIndices
+ * @param {int[]} aIndices
  *         Indices of the items that shall additionally be selected.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether the given index is selected.
  *
- * @name sap.ui.commons.ListBox.prototype.isIndexSelected
+ * @name sap.ui.commons.ListBox#isIndexSelected
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index which is checked for selection state.
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns selected item. When no item is selected, "null" is returned. When multi-selection is enabled and multiple items are selected, only the first selected item is returned.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedItem
+ * @name sap.ui.commons.ListBox#getSelectedItem
  * @function
-
  * @type sap.ui.core.Item
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns an array containing the selected items. In the case of no selection, an empty array is returned.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedItems
+ * @name sap.ui.commons.ListBox#getSelectedItems
  * @function
-
  * @type sap.ui.core.Item[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes complete selection.
  *
- * @name sap.ui.commons.ListBox.prototype.clearSelection
+ * @name sap.ui.commons.ListBox#clearSelection
  * @function
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -23068,34 +22992,30 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * If the ListBox has a scroll bar because the number of items is larger than the number of visible items, this method scrolls to the item with the given index. If there are enough items, this item will then appear at the topmost visible position in the ListBox. If bLazy is true, it only scrolls as far as required to make the item visible.
  * Setting the scrollTop property and calling scrollToIndex are two operations influencing the same "physical" property, so the last call "wins".
  *
- * @name sap.ui.commons.ListBox.prototype.scrollToIndex
+ * @name sap.ui.commons.ListBox#scrollToIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         The index to which the ListBox should scroll.
- * @param {boolean} 
- *         bLazy
+ * @param {boolean} bLazy
  *         If set to true, the ListBox only scrolls if the item is not completely visible, and it scrolls for exactly the space to make it fully visible. If set to false, the item is scrolled to the top position (if possible).
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Allows setting the list items as array for this instance of ListBox.
  *
- * @name sap.ui.commons.ListBox.prototype.setItems
+ * @name sap.ui.commons.ListBox#setItems
  * @function
- * @param {sap.ui.core.ListItem[]} 
- *         aItems
+ * @param {sap.ui.core.ListItem[]} aItems
  *         The items to set for this ListBox.
- * @param {boolean} 
- *         bDestroyItems
+ * @param {boolean} bDestroyItems
  *         Optional boolean parameter to indicate that the formerly set items should be destroyed, instead of just removed.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -23104,25 +23024,24 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * and multiple keys are given, the selection is set to the item with the first valid key in the given array. Any invalid keys are ignored.
  * The previous selection is replaced in any case.
  *
- * @name sap.ui.commons.ListBox.prototype.setSelectedKeys
+ * @name sap.ui.commons.ListBox#setSelectedKeys
  * @function
- * @param {string[]} 
- *         aKeys
+ * @param {string[]} aKeys
  *         The keys of the items to be selected
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the keys of the selected items in an array. If a selected item does not have a key, the respective array entry will be undefined.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedKeys
+ * @name sap.ui.commons.ListBox#getSelectedKeys
  * @function
-
  * @type string[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -23513,7 +23432,7 @@ sap.ui.commons.ListBox.prototype.setWidth = function(sWidth) {
 /**
  * Positions the ListBox contents that are scrolled-down by the given number of pixels
  *
- * @param {int} iScrollTip Vertical scroll position in pixels
+ * @param {int} iScrollTop Vertical scroll position in pixels
  * @return {sap.ui.commons.ListBox} <code>this</code> to allow method chaining
  * @public
  */
@@ -24188,7 +24107,7 @@ sap.ui.commons.ListBox.prototype._handleItemChanged = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Menu') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24243,21 +24162,19 @@ jQuery.sap.require('sap.ui.unified.Menu'); // unlisted dependency retained
  * A container for menu items. When the space in the browser is not large enough to display all defined items, a scroll bar is provided.
  * @extends sap.ui.unified.Menu
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the control sap.ui.unified.Menu of the library sap.ui.unified instead.
  * @name sap.ui.commons.Menu
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.Menu.extend("sap.ui.commons.Menu", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -24285,7 +24202,7 @@ sap.ui.unified.Menu.extend("sap.ui.commons.Menu", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuButton') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24342,21 +24259,16 @@ jQuery.sap.declare("sap.ui.commons.MenuButton");
  * @class
  * Common button control that opens a menu when clicked by the user. The control provides an API for configuring the docking position
  * of the menu.
- * 
  * @extends sap.ui.commons.Button
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.MenuButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.Button.extend("sap.ui.commons.MenuButton", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"dockButton" : {type : "string", group : "Misc", defaultValue : null},
@@ -24364,7 +24276,7 @@ sap.ui.commons.Button.extend("sap.ui.commons.MenuButton", { metadata : {
 	},
 	defaultAggregation : "menu",
 	aggregations : {
-    	"menu" : {type : "sap.ui.unified.Menu", multiple : false}
+		"menu" : {type : "sap.ui.unified.Menu", multiple : false}
 	},
 	events : {
 		"itemSelected" : {}
@@ -24474,14 +24386,13 @@ sap.ui.commons.MenuButton.M_EVENTS = {'itemSelected':'itemSelected'};
 
 
 /**
- * Event that is fired when a menu item is selected by the user 
+ * Event that is fired when a menu item is selected by the user
  *
  * @name sap.ui.commons.MenuButton#itemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The ID of the selected item
  * @param {sap.ui.commons.MenuItemBase} oControlEvent.getParameters.item The selected item
  * @public
@@ -24492,7 +24403,7 @@ sap.ui.commons.MenuButton.M_EVENTS = {'itemSelected':'itemSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.MenuButton</code>.<br/> itself. 
  *  
- * Event that is fired when a menu item is selected by the user 
+ * Event that is fired when a menu item is selected by the user
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -24646,7 +24557,7 @@ sap.ui.commons.MenuButton.prototype.clone = function(sIdSuffix, aLocalIds) {
 
 /**
  * Setter for the aggregated <code>menu</code>.
- * @param oMenu {sap.ui.commons.Menu}
+ * @param {sap.ui.commons.Menu} oMenu
  * @return {sap.ui.commons.MenuButton} <code>this</code> to allow method chaining
  * @public
  */
@@ -24756,7 +24667,7 @@ var onItemSelected = function(oEvent){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuItem') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24809,24 +24720,21 @@ jQuery.sap.require('sap.ui.unified.MenuItem'); // unlisted dependency retained
  *
  * @class
  * Smallest unit in the menu hierarchy. An item can be a direct part of a menu bar, of a menu, or of a sub menu.
- * 
  * @extends sap.ui.unified.MenuItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the control sap.ui.unified.MenuItem of the library sap.ui.unified instead.
  * @name sap.ui.commons.MenuItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.MenuItem.extend("sap.ui.commons.MenuItem", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -24854,7 +24762,7 @@ sap.ui.unified.MenuItem.extend("sap.ui.commons.MenuItem", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuTextFieldItem') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24910,21 +24818,19 @@ jQuery.sap.require('sap.ui.unified.MenuTextFieldItem'); // unlisted dependency r
  * The aggregation 'submenu' (inherited from parent class) is not supported for this type of menu item.
  * @extends sap.ui.unified.MenuTextFieldItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the control sap.ui.unified.MenuTextFieldItem of the library sap.ui.unified instead.
  * @name sap.ui.commons.MenuTextFieldItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.MenuTextFieldItem.extend("sap.ui.commons.MenuTextFieldItem", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -24952,7 +24858,7 @@ sap.ui.unified.MenuTextFieldItem.extend("sap.ui.commons.MenuTextFieldItem", { me
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Message') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25007,26 +24913,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Creates the "Message"s to be supplied to the "MessageBar" Control.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.Message
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Message", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"bindDetails"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"type" : {type : "sap.ui.commons.MessageType", group : "Behavior", defaultValue : null},
@@ -25161,11 +25063,11 @@ sap.ui.core.Control.extend("sap.ui.commons.Message", { metadata : {
  * where
  * function getDetails(sId) {... return htmlString;}
  *
- * @name sap.ui.commons.Message.prototype.bindDetails
+ * @name sap.ui.commons.Message#bindDetails
  * @function
-
  * @type string
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -25385,6 +25287,7 @@ sap.ui.commons.Message.LEFT_INCR = 10;
  * This function will be supplied the ID of the Message.
  * This function is expected to return the (simple) HTML string giving the
  * details belonging to this message ID.
+ * @param {Function} fnCallBack
  * @public
  */
 sap.ui.commons.Message.prototype.bindDetails = function(fnCallBack) {
@@ -25394,7 +25297,7 @@ sap.ui.commons.Message.prototype.bindDetails = function(fnCallBack) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageBar') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25451,26 +25354,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Creates an instance of a "MessageBar" Control, for displaying "Message"s.
  * There is no imposed limit on the number of "MessageBar"s that can be created, but using only 1 makes sense, specially if accessing it (via Ctl-m) becomes a necessity.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.MessageBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MessageBar", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"addMessages", "deleteMessages", "deleteAllMessages"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"anchorID" : {type : "string", group : "Appearance", defaultValue : ''},
@@ -25630,39 +25529,37 @@ sap.ui.core.Control.extend("sap.ui.commons.MessageBar", { metadata : {
 /**
  * To add message(s).
  *
- * @name sap.ui.commons.MessageBar.prototype.addMessages
+ * @name sap.ui.commons.MessageBar#addMessages
  * @function
- * @param {sap.ui.commons.Message[]} 
- *         aAMessages
+ * @param {sap.ui.commons.Message[]} aAMessages
  *         Array of messages.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * To deleted messages.
  *
- * @name sap.ui.commons.MessageBar.prototype.deleteMessages
+ * @name sap.ui.commons.MessageBar#deleteMessages
  * @function
- * @param {string[]} 
- *         aIds
+ * @param {string[]} aIds
  *         Messages IDs to be deleted.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * To deleted all messages.
  *
- * @name sap.ui.commons.MessageBar.prototype.deleteAllMessages
+ * @name sap.ui.commons.MessageBar#deleteAllMessages
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -26287,6 +26184,7 @@ sap.ui.commons.MessageBar.prototype.backHome = function() {
 /**
  * This public API adds/updates a supplied list of messages.
  * The messageBar is to appear should at least one message exists.
+ * @param {sap.ui.commons.Message[]} aMessages
  * @public
  */
 sap.ui.commons.MessageBar.prototype.addMessages = function(aMessages) {
@@ -26338,6 +26236,7 @@ sap.ui.commons.MessageBar.prototype.addMessages = function(aMessages) {
 /**
  * This public API deletes a supplied list of messages.
  * The messageBar is to disappear should no message remains.
+ * @param {string[]} aIds
  * @public
  */
 sap.ui.commons.MessageBar.prototype.deleteMessages = function(aIds) {
@@ -26423,7 +26322,7 @@ sap.ui.commons.MessageBar.prototype.setVisible = function(bVisible) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageList') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -26477,26 +26376,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Instantiated by the "MessageBar" Control if the user ever requests to generate the corresponding "MessageList".
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.MessageList
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MessageList", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"setMessages"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : false},
@@ -26601,14 +26496,13 @@ sap.ui.core.Control.extend("sap.ui.commons.MessageList", { metadata : {
 /**
  * Sets the message list to be displayed.
  *
- * @name sap.ui.commons.MessageList.prototype.setMessages
+ * @name sap.ui.commons.MessageList#setMessages
  * @function
- * @param {sap.ui.commons.Message[]} 
- *         aMessages
+ * @param {sap.ui.commons.Message[]} aMessages
  *         Message list.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -26762,7 +26656,7 @@ sap.ui.commons.MessageList.prototype.setVisible = function(bVisible) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageToast') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -26815,26 +26709,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Responsible for displaying the new incoming messages, one at the time, on top of the MessageBar.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.MessageToast
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MessageToast", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"toast", "isIdle"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"anchorId" : {type : "string", group : "Misc", defaultValue : null}
@@ -26890,14 +26780,13 @@ sap.ui.commons.MessageToast.M_EVENTS = {'next':'next'};
 
 
 /**
- * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed. 
+ * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed.
  *
  * @name sap.ui.commons.MessageToast#next
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -26906,7 +26795,7 @@ sap.ui.commons.MessageToast.M_EVENTS = {'next':'next'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.MessageToast</code>.<br/> itself. 
  *  
- * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed. 
+ * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -26951,28 +26840,26 @@ sap.ui.commons.MessageToast.M_EVENTS = {'next':'next'};
  * Triggers the toasting of a message, on top of the MessageBar.
  * If no message is supplied, displayes the "Multiple new messages..." message.
  *
- * @name sap.ui.commons.MessageToast.prototype.toast
+ * @name sap.ui.commons.MessageToast#toast
  * @function
- * @param {sap.ui.commons.Message} 
- *         oMessage
+ * @param {sap.ui.commons.Message} oMessage
  *         The Message to be toasted.
- * @param {string} 
- *         sAnchorId
+ * @param {string} sAnchorId
  *         DOM ID of the anchor against which the Toast Arrow should align for a given Toast.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns TRUE if no message is being toasted.
  *
- * @name sap.ui.commons.MessageToast.prototype.isIdle
+ * @name sap.ui.commons.MessageToast#isIdle
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -27139,6 +27026,8 @@ sap.ui.commons.MessageToast.prototype.getClasses = function() {
 /**
  * This public API receives the list of Messages to be displayed,
  * and re-render this Control if visible.
+ * @param {object} oMessage
+ * @param {string} sAnchorId
  * @public
  */
 sap.ui.commons.MessageToast.prototype.toast = function(oMessage, sAnchorId) {
@@ -27164,7 +27053,7 @@ sap.ui.commons.MessageToast.prototype.isIdle = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Paginator') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -27218,19 +27107,15 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Provides navigation between pages within a list of numbered pages.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Paginator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Paginator", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"currentPage" : {type : "int", group : "Misc", defaultValue : 1},
@@ -27312,14 +27197,13 @@ sap.ui.commons.Paginator.M_EVENTS = {'page':'page'};
 
 
 /**
- * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward. 
+ * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward.
  *
  * @name sap.ui.commons.Paginator#page
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.srcPage The page which is the current one before the page event is fired (and another page is displayed)
  * @param {int} oControlEvent.getParameters.targetPage The page that shall be displayed next after the page event is fired.
  * 
@@ -27335,7 +27219,7 @@ sap.ui.commons.Paginator.M_EVENTS = {'page':'page'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Paginator</code>.<br/> itself. 
  *  
- * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward. 
+ * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -27759,7 +27643,7 @@ sap.ui.commons.Paginator.prototype.applyFocusInfo = function(mFocusInfo) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Panel') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -27826,22 +27710,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Represents a container with scroll functionality, the control can be used for text and controls. The Panel does not layout the embedded controls.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Panel
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Panel", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setDimensions"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
@@ -27859,9 +27741,9 @@ sap.ui.core.Control.extend("sap.ui.commons.Panel", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"title" : {type : "sap.ui.core.Title", multiple : false}, 
-    	"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"title" : {type : "sap.ui.core.Title", multiple : false}, 
+		"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
 	}
 }});
 
@@ -28382,21 +28264,17 @@ sap.ui.core.Control.extend("sap.ui.commons.Panel", { metadata : {
 /**
  * Property for width and height settings for the Panel
  *
- * @name sap.ui.commons.Panel.prototype.setDimensions
+ * @name sap.ui.commons.Panel#setDimensions
  * @function
- * @param {sap.ui.core.CSSSize} 
- *         sWidth
+ * @param {sap.ui.core.CSSSize} sWidth
  * 
  *         Panel width as CSS size
- * 
- * @param {sap.ui.core.CSSSize} 
- *         sHeight
+ * @param {sap.ui.core.CSSSize} sHeight
  * 
  *         Panel height as CSS size
- * 
-
  * @type sap.ui.commons.Panel
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -28725,7 +28603,7 @@ sap.ui.commons.Panel.prototype._hasIcon = function() {
 /**
  * Property setter for the "enabled" state
  *
- * @param bEnabled whether the Panel should be enabled or not
+ * @param {boolean} bEnabled whether the Panel should be enabled or not
  * @return {sap.ui.commons.Panel} <code>this</code> to allow method chaining
  * @public
  */
@@ -28740,7 +28618,7 @@ sap.ui.commons.Panel.prototype.setEnabled = function(bEnabled) {
 /**
  * Property setter for the padding
  *
- * @param bPadding whether the Panel should have padding
+ * @param {boolean} bPadding whether the Panel should have padding
  * @returns {sap.ui.commons.Panel} <code>this</code> to allow method chaining
  * @public
  */
@@ -28754,7 +28632,7 @@ sap.ui.commons.Panel.prototype.setApplyContentPadding = function(bPadding) {
 /**
  * Property setter for the "collapsed" state
  *
- * @param bCollapsed whether the Panel should be collapsed or not
+ * @param {boolean} bCollapsed whether the Panel should be collapsed or not
  * @return {sap.ui.commons.Panel} <code>this</code> to allow method chaining
  * @public
  */
@@ -29040,7 +28918,7 @@ sap.ui.commons.Panel.prototype._handleTrigger = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.PasswordFieldRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29111,7 +28989,7 @@ sap.ui.commons.PasswordFieldRenderer.setEnabled = function(oPasswordField, bEnab
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ProgressIndicator') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29171,18 +29049,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * The filling can be displayed in color only, or additionally with the percentage rate. The indicator status can be interactive.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ProgressIndicator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ProgressIndicator", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -29530,7 +29406,7 @@ sap.ui.commons.ProgressIndicator.prototype.setEndBarGoesBack = function (iPercen
  * Property setter for the PercentValue
  * A new rendering is not necessary, only the bar has to be moved.
  *
- * @param iPercentValue
+ * @param {int} iPercentValue
  * @return {sap.ui.commons.ProgressIndicator} <code>this</code> to allow method chaining
  * @public
  */
@@ -29627,7 +29503,7 @@ sap.ui.commons.ProgressIndicator.prototype.setPercentValue = function(iPercentVa
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RadioButton') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29694,18 +29570,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Available value states are "Error", "None", "Success", "Warning".
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RadioButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RadioButton", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Data", defaultValue : null},
@@ -29802,7 +29676,6 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * Getter for property <code>enabled</code>.
  * 
  * Disabled controls are displayed in another color, depending on the customer settings.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -29879,7 +29752,6 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * Getter for property <code>valueState</code>.
  * 
  * Enumeration sap.ui.core.ValueState provides state values Error, Success, Warning, None
- * 
  *
  * Default value is <code>None</code>
  *
@@ -29931,7 +29803,6 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * Getter for property <code>textDirection</code>.
  * 
  * Available options are LTR and RTL. Alternatively, the control can inherit the text direction from its parent container.
- * 
  *
  * Default value is <code>Inherit</code>
  *
@@ -30081,14 +29952,13 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is triggered when the user makes a change on the radio button. 
+ * Event is triggered when the user makes a change on the radio button.
  *
  * @name sap.ui.commons.RadioButton#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -30097,7 +29967,7 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RadioButton</code>.<br/> itself. 
  *  
- * Event is triggered when the user makes a change on the radio button. 
+ * Event is triggered when the user makes a change on the radio button.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -30306,7 +30176,7 @@ sap.ui.commons.RadioButton.prototype.getTooltipDomRefs = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RadioButtonGroup') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -30368,23 +30238,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * a group of RadioButtons to hande as one UI element.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RadioButtonGroup
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RadioButtonGroup", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getSelectedItem", "setSelectedItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -30397,7 +30263,7 @@ sap.ui.core.Control.extend("sap.ui.commons.RadioButtonGroup", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item", bindable : "bindable"}
+		"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item", bindable : "bindable"}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -30785,14 +30651,13 @@ sap.ui.commons.RadioButtonGroup.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @name sap.ui.commons.RadioButtonGroup#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.selectedIndex Index of the selected RadioButton.
  * @public
  */
@@ -30802,7 +30667,7 @@ sap.ui.commons.RadioButtonGroup.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RadioButtonGroup</code>.<br/> itself. 
  *  
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -30851,25 +30716,24 @@ sap.ui.commons.RadioButtonGroup.M_EVENTS = {'select':'select'};
 /**
  * Returns selected item. When no item is selected, "null" is returned.
  *
- * @name sap.ui.commons.RadioButtonGroup.prototype.getSelectedItem
+ * @name sap.ui.commons.RadioButtonGroup#getSelectedItem
  * @function
-
  * @type sap.ui.core.Item
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the item as seleced and removs the selection from the old one.
  *
- * @name sap.ui.commons.RadioButtonGroup.prototype.setSelectedItem
+ * @name sap.ui.commons.RadioButtonGroup#setSelectedItem
  * @function
- * @param {sap.ui.core.Item} 
- *         oItem
+ * @param {sap.ui.core.Item} oItem
  *         Selected item.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -31344,7 +31208,7 @@ sap.ui.commons.RadioButtonGroup.prototype._handleAfterFocus = function(oControlE
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RangeSliderRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -31440,7 +31304,7 @@ sap.ui.commons.RangeSliderRenderer.controlAdditionalCode = function(rm, oSlider)
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RatingIndicator') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -31505,18 +31369,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * image icons which shall be used as rating symbols. When the user performs a rating, an event is fired.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RatingIndicator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RatingIndicator", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -31884,14 +31746,13 @@ sap.ui.commons.RatingIndicator.M_EVENTS = {'change':'change'};
 
 	
 /**
- * The event is fired when the user has done a rating. 
+ * The event is fired when the user has done a rating.
  *
  * @name sap.ui.commons.RatingIndicator#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.value The rated value
  * @public
  */
@@ -31901,7 +31762,7 @@ sap.ui.commons.RatingIndicator.M_EVENTS = {'change':'change'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RatingIndicator</code>.<br/> itself. 
  *  
- * The event is fired when the user has done a rating. 
+ * The event is fired when the user has done a rating.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32324,7 +32185,7 @@ sap.ui.commons.RatingIndicator.prototype.setMaxValue = function(iMaxValue) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ResponsiveContainer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -32381,26 +32242,24 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Is used to provide a container, which can show different content depending on its current width. It fires an event, whenever a new range is reached. In addition the content of the new range is automatically shown, if it is set.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ResponsiveContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ResponsiveContainer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'}
 	},
 	aggregations : {
-    	"ranges" : {type : "sap.ui.commons.ResponsiveContainerRange", multiple : true, singularName : "range"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"ranges" : {type : "sap.ui.commons.ResponsiveContainerRange", multiple : true, singularName : "range"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"defaultContent" : {type : "sap.ui.core.Control", multiple : false}
@@ -32585,14 +32444,13 @@ sap.ui.commons.ResponsiveContainer.M_EVENTS = {'rangeSwitch':'rangeSwitch'};
 
 	
 /**
- * The event is fired the width of the container reaches a new range. 
+ * The event is fired the width of the container reaches a new range.
  *
  * @name sap.ui.commons.ResponsiveContainer#rangeSwitch
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.commons.ResponsiveContainerRange} oControlEvent.getParameters.currentRange The current range
  * @public
  */
@@ -32602,7 +32460,7 @@ sap.ui.commons.ResponsiveContainer.M_EVENTS = {'rangeSwitch':'rangeSwitch'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ResponsiveContainer</code>.<br/> itself. 
  *  
- * The event is fired the width of the container reaches a new range. 
+ * The event is fired the width of the container reaches a new range.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -32769,7 +32627,7 @@ sap.ui.commons.ResponsiveContainer.prototype.findMatchingRange = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ResponsiveContainerRange') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -32825,18 +32683,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Defines a range for the ResponsiveContainer
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ResponsiveContainerRange
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ResponsiveContainerRange", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : ''},
@@ -32970,7 +32826,7 @@ sap.ui.core.Control.extend("sap.ui.commons.ResponsiveContainerRange", { metadata
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RichTooltip') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -33028,21 +32884,18 @@ jQuery.sap.require('sap.ui.core.TooltipBase'); // unlisted dependency retained
  * @class
  * 
  * Is used to provide tool tips that can have long text, image and title. This tool tip extends the TooltipBase.
- * 
  * @extends sap.ui.core.TooltipBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RichTooltip
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.TooltipBase.extend("sap.ui.commons.RichTooltip", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -33051,8 +32904,8 @@ sap.ui.core.TooltipBase.extend("sap.ui.commons.RichTooltip", { metadata : {
 		"imageAltText" : {type : "string", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-    	"formattedText" : {type : "sap.ui.commons.FormattedTextView", multiple : false, visibility : "hidden"}, 
-    	"individualStateText" : {type : "sap.ui.commons.FormattedTextView", multiple : false, visibility : "hidden"}
+		"formattedText" : {type : "sap.ui.commons.FormattedTextView", multiple : false, visibility : "hidden"}, 
+		"individualStateText" : {type : "sap.ui.commons.FormattedTextView", multiple : false, visibility : "hidden"}
 	}
 }});
 
@@ -33322,7 +33175,7 @@ sap.ui.commons.RichTooltip.prototype.onfocusin = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RoadMap') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -33382,18 +33235,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Is used to display step-by-step work flows of a clearly defined work process
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RoadMap
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RoadMap", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"numberOfVisibleSteps" : {type : "int", group : "Misc", defaultValue : null},
@@ -33404,7 +33255,7 @@ sap.ui.core.Control.extend("sap.ui.commons.RoadMap", { metadata : {
 	},
 	defaultAggregation : "steps",
 	aggregations : {
-    	"steps" : {type : "sap.ui.commons.RoadMapStep", multiple : true, singularName : "step"}
+		"steps" : {type : "sap.ui.commons.RoadMapStep", multiple : true, singularName : "step"}
 	},
 	events : {
 		"stepSelected" : {}, 
@@ -33640,14 +33491,13 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
 
 
 /**
- * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action. 
+ * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action.
  *
  * @name sap.ui.commons.RoadMap#stepSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.stepId Id of the selected step
  * @public
  */
@@ -33657,7 +33507,7 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RoadMap</code>.<br/> itself. 
  *  
- * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action. 
+ * Event is fired when the user selects a step; assumption is that this step was not selected with the previously done select action.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -33704,14 +33554,13 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
 
 
 /**
- * Event is fired when a given step is expanded or collapsed by user. 
+ * Event is fired when a given step is expanded or collapsed by user.
  *
  * @name sap.ui.commons.RoadMap#stepExpanded
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.stepId Id of the expanded/collapsed step
  * @public
  */
@@ -33721,7 +33570,7 @@ sap.ui.commons.RoadMap.M_EVENTS = {'stepSelected':'stepSelected','stepExpanded':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RoadMap</code>.<br/> itself. 
  *  
- * Event is fired when a given step is expanded or collapsed by user. 
+ * Event is fired when a given step is expanded or collapsed by user.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -34199,7 +34048,7 @@ var refreshFocus = function(oThis, sDir){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RoadMapStep') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -34257,21 +34106,18 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  *
  * @class
  * Step used within a RoadMap Control.
- * 
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RoadMapStep
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.RoadMapStep", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"label" : {type : "string", group : "Misc", defaultValue : null},
@@ -34281,7 +34127,7 @@ sap.ui.core.Element.extend("sap.ui.commons.RoadMapStep", { metadata : {
 	},
 	defaultAggregation : "subSteps",
 	aggregations : {
-    	"subSteps" : {type : "sap.ui.commons.RoadMapStep", multiple : true, singularName : "subStep", deprecated: true}
+		"subSteps" : {type : "sap.ui.commons.RoadMapStep", multiple : true, singularName : "subStep", deprecated: true}
 	}
 }});
 
@@ -34697,7 +34543,7 @@ var setProperty = function(oThis, sName, oValue, fDomAdaptationCallback){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RowRepeater') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -34765,22 +34611,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * This control displays items in a stacked list format, allowing the user to page in order to see more items or to use the offered filtering and sorting capabilities in order to manipulate the displayed data.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RowRepeater
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RowRepeater", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"triggerShowMore", "resize", "applyFilter", "triggerSort", "firstPage", "lastPage", "previousPage", "nextPage", "gotoPage"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -34793,16 +34637,16 @@ sap.ui.core.Control.extend("sap.ui.commons.RowRepeater", { metadata : {
 	},
 	defaultAggregation : "rows",
 	aggregations : {
-    	"rows" : {type : "sap.ui.core.Control", multiple : true, singularName : "row", bindable : "bindable"}, 
-    	"title" : {type : "sap.ui.core.Title", multiple : false}, 
-    	"filters" : {type : "sap.ui.commons.RowRepeaterFilter", multiple : true, singularName : "filter"}, 
-    	"sorters" : {type : "sap.ui.commons.RowRepeaterSorter", multiple : true, singularName : "sorter"}, 
-    	"noData" : {type : "sap.ui.core.Control", multiple : false}, 
-    	"filterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
-    	"sorterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
-    	"headerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
-    	"footerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
-    	"footerPager" : {type : "sap.ui.commons.Paginator", multiple : false, visibility : "hidden"}
+		"rows" : {type : "sap.ui.core.Control", multiple : true, singularName : "row", bindable : "bindable"}, 
+		"title" : {type : "sap.ui.core.Title", multiple : false}, 
+		"filters" : {type : "sap.ui.commons.RowRepeaterFilter", multiple : true, singularName : "filter"}, 
+		"sorters" : {type : "sap.ui.commons.RowRepeaterSorter", multiple : true, singularName : "sorter"}, 
+		"noData" : {type : "sap.ui.core.Control", multiple : false}, 
+		"filterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
+		"sorterToolbar" : {type : "sap.ui.commons.Toolbar", multiple : false, visibility : "hidden"}, 
+		"headerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
+		"footerShowMoreButton" : {type : "sap.ui.commons.Button", multiple : false, visibility : "hidden"}, 
+		"footerPager" : {type : "sap.ui.commons.Paginator", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"filter" : {}, 
@@ -35337,14 +35181,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when a filter is set. 
+ * This event is triggered when a filter is set.
  *
  * @name sap.ui.commons.RowRepeater#filter
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.filterId The ID of the filter that has just been applied.
  * @public
  */
@@ -35354,7 +35197,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when a filter is set. 
+ * This event is triggered when a filter is set.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -35401,14 +35244,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when a sorting is applied. 
+ * This event is triggered when a sorting is applied.
  *
  * @name sap.ui.commons.RowRepeater#sort
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.sorterId The ID of the sorter that has just been applied.
  * @public
  */
@@ -35418,7 +35260,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when a sorting is applied. 
+ * This event is triggered when a sorting is applied.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -35465,14 +35307,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when paging was executed. 
+ * This event is triggered when paging was executed.
  *
  * @name sap.ui.commons.RowRepeater#page
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.currentPage The value of the currentPage property after the change.
  * @param {int} oControlEvent.getParameters.previousPage The value of the currentPage property before the change.
  * @public
@@ -35483,7 +35324,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when paging was executed. 
+ * This event is triggered when paging was executed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -35531,14 +35372,13 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 
 
 /**
- * This event is triggered when the number of rows was changed. 
+ * This event is triggered when the number of rows was changed.
  *
  * @name sap.ui.commons.RowRepeater#resize
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.numberOfRows The value of the numberOfRows property after the change.
  * @param {int} oControlEvent.getParameters.previousNumberOfRows The value of the numberOfRows property before the change.
  * @public
@@ -35549,7 +35389,7 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RowRepeater</code>.<br/> itself. 
  *  
- * This event is triggered when the number of rows was changed. 
+ * This event is triggered when the number of rows was changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -35599,111 +35439,107 @@ sap.ui.commons.RowRepeater.M_EVENTS = {'filter':'filter','sort':'sort','page':'p
 /**
  * Increments the number of rows. This method will only trigger a showMore if the property showMoreSteps is set.
  *
- * @name sap.ui.commons.RowRepeater.prototype.triggerShowMore
+ * @name sap.ui.commons.RowRepeater#triggerShowMore
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Resizes the row repeater by changing the number of displayed rows. This method will only resize the RowRepeater if the property showMoreSteps is set.
  *
- * @name sap.ui.commons.RowRepeater.prototype.resize
+ * @name sap.ui.commons.RowRepeater#resize
  * @function
- * @param {int} 
- *         iNumberOfRows
+ * @param {int} iNumberOfRows
  *         The new value of number of rows displayed.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Applies a filter.
  *
- * @name sap.ui.commons.RowRepeater.prototype.applyFilter
+ * @name sap.ui.commons.RowRepeater#applyFilter
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The ID if the filter.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sort the data.
  *
- * @name sap.ui.commons.RowRepeater.prototype.triggerSort
+ * @name sap.ui.commons.RowRepeater#triggerSort
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The ID of the sorter.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to first page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.firstPage
+ * @name sap.ui.commons.RowRepeater#firstPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to last page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.lastPage
+ * @name sap.ui.commons.RowRepeater#lastPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to previous page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.previousPage
+ * @name sap.ui.commons.RowRepeater#previousPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to next page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.nextPage
+ * @name sap.ui.commons.RowRepeater#nextPage
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Switch to specified page.
  *
- * @name sap.ui.commons.RowRepeater.prototype.gotoPage
+ * @name sap.ui.commons.RowRepeater#gotoPage
  * @function
- * @param {int} 
- *         iPageNumber
+ * @param {int} iPageNumber
  *         The index of the page to go to.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -36966,7 +36802,7 @@ sap.ui.commons.RowRepeater.prototype.invalidate = function(oOrigin) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RowRepeaterFilter') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -37024,18 +36860,16 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * This element is used by the RowRepeater and allows to define a filter in this context along with the related data such as a text and an icon.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RowRepeaterFilter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.RowRepeaterFilter", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : null},
@@ -37148,7 +36982,7 @@ sap.ui.core.Element.extend("sap.ui.commons.RowRepeaterFilter", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RowRepeaterSorter') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -37206,18 +37040,16 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * This element is used by the RowRepeater and allows to define a sorter in this context along with the related data such as a text and an icon.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RowRepeaterSorter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.RowRepeaterSorter", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : null},
@@ -37330,7 +37162,7 @@ sap.ui.core.Element.extend("sap.ui.commons.RowRepeaterSorter", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.SearchProvider') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -37384,22 +37216,18 @@ jQuery.sap.require('sap.ui.core.search.OpenSearchProvider'); // unlisted depende
  * @class
  * A SearchProvider which can be attached to a Search Field.
  * @extends sap.ui.core.search.OpenSearchProvider
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.6.0. 
  * Replaced by sap.ui.core.search.OpenSearchProvider
  * @name sap.ui.commons.SearchProvider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.search.OpenSearchProvider.extend("sap.ui.commons.SearchProvider", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -37440,7 +37268,7 @@ sap.ui.commons.SearchProvider.prototype._doSuggest = function(oSearchField, sSug
 if ( !jQuery.sap.isDeclared('sap.ui.commons.SegmentedButton') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -37497,29 +37325,25 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * The SegmentedButton provides a group of multiple buttons. Only one button can be active. The behaviour is more ore less like a radio button group.
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.SegmentedButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.SegmentedButton", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enabled" : {type : "boolean", group : "Misc", defaultValue : true},
 		"visible" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
-    	"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
+		"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
 	},
 	associations : {
 		"selectedButton" : {type : "sap.ui.commons.Button", multiple : false}
@@ -37704,14 +37528,13 @@ sap.ui.commons.SegmentedButton.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event fired when button selected 
+ * Event fired when button selected
  *
  * @name sap.ui.commons.SegmentedButton#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.selectedButtonId Id of selected ToggleButton
  * @public
  */
@@ -37721,7 +37544,7 @@ sap.ui.commons.SegmentedButton.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.SegmentedButton</code>.<br/> itself. 
  *  
- * Event fired when button selected 
+ * Event fired when button selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -37993,7 +37816,7 @@ sap.ui.commons.SegmentedButton.prototype.getFocusDomRef = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Slider') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -38063,18 +37886,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * Users can move the pointer along the line to change values with graphical support.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Slider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Slider", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
@@ -38525,14 +38346,13 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 	
 /**
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @name sap.ui.commons.Slider#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {float} oControlEvent.getParameters.value Current value of the slider after a change.
  * @public
  */
@@ -38542,7 +38362,7 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Slider</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired if the value has changed by an user action. 
+ * Value was changed. This event is fired if the value has changed by an user action.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -38589,14 +38409,13 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
 
 
 /**
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @name sap.ui.commons.Slider#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {float} oControlEvent.getParameters.value Current value of the slider after a change.
  * @public
  */
@@ -38606,7 +38425,7 @@ sap.ui.commons.Slider.M_EVENTS = {'change':'change','liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Slider</code>.<br/> itself. 
  *  
- * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup. 
+ * Value was changed. This event is fired during the mouse move. The normal change event ist only fired by mouseup.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -40120,7 +39939,7 @@ sap.ui.commons.Slider.prototype.getIdForLabel = function () {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Splitter') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -40182,19 +40001,15 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Allows to split the screen into two areas. Make sure that the container for the splitter has an absolute height or set an absolute height for the splitter using the height property. Otherwise the height of the splitter is calculated by the height of its contents.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Splitter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"splitterOrientation" : {type : "sap.ui.core.Orientation", group : "Behavior", defaultValue : sap.ui.core.Orientation.Vertical},
@@ -40208,8 +40023,8 @@ sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 		"splitterBarVisible" : {type : "boolean", group : "Behavior", defaultValue : true}
 	},
 	aggregations : {
-    	"firstPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "firstPaneContent"}, 
-    	"secondPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "secondPaneContent"}
+		"firstPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "firstPaneContent"}, 
+		"secondPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "secondPaneContent"}
 	}
 }});
 
@@ -40285,7 +40100,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 /**
  * Getter for property <code>minSizeFirstPane</code>.
  * The minimum size (width for vertical splitter or height for horizontal splitter) of the first Pane
- * 
  *
  * Default value is <code>0%</code>
  *
@@ -40311,7 +40125,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 /**
  * Getter for property <code>minSizeSecondPane</code>.
  * The minimum size (width for vertical splitter or height for horizontal splitter) of the second Pane
- * 
  *
  * Default value is <code>0%</code>
  *
@@ -40764,7 +40577,7 @@ sap.ui.commons.Splitter.prototype.resizeSplitterElements = function() {
 
 	// fix height if splitterdiv height is 0 we set it to 100 px to show something at least
 	// further resizing should then work correctly
-	if (jQuery(this.splitterDIV).height() == 0){
+	if (jQuery(this.splitterDIV).height() == 0 && !this.splitterDIV.style.height){
 		jQuery(this.splitterDIV).css("height", "100px");
 		jQuery(this.splitterBar).css("height", "100px");
 	}
@@ -41450,7 +41263,7 @@ sap.ui.commons.Splitter.prototype.getText = function(sKey, aArgs) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Tab') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -41508,18 +41321,16 @@ jQuery.sap.declare("sap.ui.commons.Tab");
  * A single page in a TabStrip control.
  * @extends sap.ui.commons.Panel
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Tab
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.Panel.extend("sap.ui.commons.Tab", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"verticalScrolling" : {type : "sap.ui.core.Scrolling", group : "Behavior", defaultValue : sap.ui.core.Scrolling.None},
@@ -41826,7 +41637,7 @@ sap.ui.commons.Tab.prototype._handleTrigger = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TabStrip') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -41883,25 +41694,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * 
  * A container for tab controls which contain the content and generally other controls. The user switches between the tabs then to display the content.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TabStrip
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.TabStrip", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createTab", "closeTab"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -41910,7 +41718,7 @@ sap.ui.core.Control.extend("sap.ui.commons.TabStrip", { metadata : {
 	},
 	defaultAggregation : "tabs",
 	aggregations : {
-    	"tabs" : {type : "sap.ui.commons.Tab", multiple : true, singularName : "tab"}
+		"tabs" : {type : "sap.ui.commons.Tab", multiple : true, singularName : "tab"}
 	},
 	events : {
 		"select" : {}, 
@@ -42096,14 +41904,13 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
 
 
 /**
- * Event is fired when the user selects a tab. 
+ * Event is fired when the user selects a tab.
  *
  * @name sap.ui.commons.TabStrip#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.index Index of the selected tab.
  * @public
  */
@@ -42113,7 +41920,7 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TabStrip</code>.<br/> itself. 
  *  
- * Event is fired when the user selects a tab. 
+ * Event is fired when the user selects a tab.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -42160,14 +41967,13 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
 
 
 /**
- * Event is fired when the user closes a tab. 
+ * Event is fired when the user closes a tab.
  *
  * @name sap.ui.commons.TabStrip#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.index Index of the closed tab.
  * @public
  */
@@ -42177,7 +41983,7 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TabStrip</code>.<br/> itself. 
  *  
- * Event is fired when the user closes a tab. 
+ * Event is fired when the user closes a tab.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -42226,32 +42032,29 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
 /**
  * Convenient method to add a tab with a text as title and a root control as content.
  *
- * @name sap.ui.commons.TabStrip.prototype.createTab
+ * @name sap.ui.commons.TabStrip#createTab
  * @function
- * @param {string} 
- *         sText
+ * @param {string} sText
  *         Defines the title text of the newly created tab.
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         Defines the root control of the content area.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
- * This method closes a atb. If the tab is selecte thenext one will be selected. (If it's the last the previous one will be selected,)
+ * This method closes a tab. If the tab is selecte thenext one will be selected. (If it's the last the previous one will be selected,)
  * This method should be called if the close event is fired. It can not be called automatically because the consumer might need to run some logic before the tab is closed.
  *
- * @name sap.ui.commons.TabStrip.prototype.closeTab
+ * @name sap.ui.commons.TabStrip#closeTab
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index of the tab that should be closed.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -42730,7 +42533,7 @@ sap.ui.commons.TabStrip.prototype._warningInvalidSelectedIndex = function(iSelec
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TextAreaRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -42843,7 +42646,7 @@ sap.ui.commons.TextAreaRenderer.renderInnerContent = function(oRenderManager, oT
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TextField') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -42916,16 +42719,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TextField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.TextField", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -42933,8 +42736,6 @@ sap.ui.core.Control.extend("sap.ui.commons.TextField", { metadata : {
 		// methods
 		"focus", "getLiveValue"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"value" : {type : "string", group : "Data", defaultValue : '', bindable : "bindable"},
@@ -43485,14 +43286,13 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
 
 	
 /**
- * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed.
  *
  * @name sap.ui.commons.TextField#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.newValue The new / changed value of the textfield.
  * @public
  */
@@ -43502,7 +43302,7 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TextField</code>.<br/> itself. 
  *  
- * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the TextField or the Enter key is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -43549,14 +43349,13 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
 
 
 /**
- * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @name sap.ui.commons.TextField#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.liveValue Current value of the Textfield.
  * @public
  */
@@ -43566,7 +43365,7 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TextField</code>.<br/> itself. 
  *  
- * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the TextField and returns the currently enterted value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -43615,22 +43414,22 @@ sap.ui.commons.TextField.M_EVENTS = {'change':'change','liveChange':'liveChange'
 /**
  * Puts the focus to this control.
  *
- * @name sap.ui.commons.TextField.prototype.focus
+ * @name sap.ui.commons.TextField#focus
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the current value of the TextField. In case of editing the TextField you can access the current value via this method. The validated value is accessible via the property value.
  *
- * @name sap.ui.commons.TextField.prototype.getLiveValue
+ * @name sap.ui.commons.TextField#getLiveValue
  * @function
-
  * @type string
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -43687,6 +43486,7 @@ sap.ui.commons.TextField.prototype.onsapfocusleave = function(oEvent) {
 
 /**
  * Event handler called when enter key is pressed.
+ * @param {object} oEvent
  * @see sap.ui.commons.TextField#onfocusout
  * @protected
  */
@@ -43819,6 +43619,15 @@ sap.ui.commons.TextField.prototype.onsapescape = function(oEvent) {
 
 };
 
+sap.ui.commons.TextField.prototype.onkeydown = function(oEvent) {
+
+	if (oEvent.which == jQuery.sap.KeyCodes.Z && oEvent.ctrlKey) {
+		// prevent browsers standard history logic because different in different browsers
+		oEvent.preventDefault();
+	}
+
+};
+
 /*
  * Event handler for keypress
  * in Firefox the escape value must be reseted here
@@ -43872,6 +43681,7 @@ sap.ui.commons.TextField.prototype._doOnEscape = function(oEvent) {
 /**
  * Event handler for keyup.
  * fire the liveChange event
+ * @param {object} oEvent
  * @protected
  */
 sap.ui.commons.TextField.prototype.onkeyup = function(oEvent) {
@@ -43894,6 +43704,7 @@ sap.ui.commons.TextField.prototype.onkeyup = function(oEvent) {
 /**
  * Event handler for paste.
  * fire the liveChange event
+ * @param {object} oEvent
  * @protected
  */
 sap.ui.commons.TextField.prototype.onpaste = function(oEvent) {
@@ -44082,13 +43893,15 @@ sap.ui.commons.TextField.prototype.setValue = function(sValue) {
 			if (newValue) {
 				this.$().removeClass('sapUiTfPlace');
 				oInput.value = newValue;
-			} else {
+			} else if (document.activeElement !== oInput){
 				this.$().addClass('sapUiTfPlace');
 				var sPlaceholder = this.getPlaceholder();
 				if (this.getRenderer().convertPlaceholder) {
 					sPlaceholder = this.getRenderer().convertPlaceholder(this);
 				}
 				oInput.value = sPlaceholder;
+			} else {
+				oInput.value = "";
 			}
 		}else {
 			oInput.value =  newValue;
@@ -44145,12 +43958,25 @@ sap.ui.commons.TextField.prototype.applyFocusInfo = function (oFocusInfo) {
 		var that = this;
 		setTimeout(function(){
 			that.focus();
+			that._restoreUnsavedUserInput(oFocusInfo.userinput);
 			jQuery(that.getFocusDomRef()).cursorPos(oPos);
 		}, 0);
 	}else{
 		this.focus();
+		this._restoreUnsavedUserInput(oFocusInfo.userinput);
 	}
 	return this;
+};
+
+/**
+ * Returns an object representing the serialized focus information
+ * @type object
+ * @return an object representing the serialized focus information
+ * @protected
+ * @function
+ */
+sap.ui.commons.TextField.prototype.getFocusInfo = function () {
+	return {id: this.getId(), userinput: this._getUnsavedUserInputInfo()};
 };
 
 /*
@@ -44215,11 +44041,35 @@ sap.ui.commons.TextField.prototype.getFocusDomRef = function() {
 
 };
 
+
+sap.ui.commons.TextField.prototype._getUnsavedUserInputInfo = function() {
+	var $tf = this.$();
+	if($tf.length && $tf.hasClass("sapUiTfFoc") && !$tf.hasClass("sapUiTfPlace") && this.getEnabled() && this.getEditable()){
+		var sVal = jQuery(this.getInputDomRef()).val();
+		var sValue = this.getValue();
+		if(sVal != sValue){
+			return {userinput: sVal, value: sValue};
+		}
+	}
+	return null;
+};
+
+sap.ui.commons.TextField.prototype._restoreUnsavedUserInput = function(oUnsavedUserInputInfo) {
+	if(oUnsavedUserInputInfo && this.getEnabled() && this.getEditable() && this.getValue() == oUnsavedUserInputInfo.value){
+		var sVal = oUnsavedUserInputInfo.userinput;
+		if ( sVal && sVal.length > this.getMaxLength() && this.getMaxLength() > 0) {
+			sVal = sVal.substring(0,this.getMaxLength());
+		}
+		
+		jQuery(this.getInputDomRef()).val(sVal);
+	}
+};
+
 }; // end of sap/ui/commons/TextField.js
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TextView') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -44285,21 +44135,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TextView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.TextView", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "", defaultValue : '', bindable : "bindable"},
@@ -44792,7 +44640,7 @@ sap.ui.commons.TextView.prototype._handleOpened = function(){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Title') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -44847,21 +44695,19 @@ jQuery.sap.require('sap.ui.core.Title'); // unlisted dependency retained
  * Represents a title element that can be used for aggregation with other controls
  * @extends sap.ui.core.Title
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.core library. Please use this one.
  * @name sap.ui.commons.Title
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Title.extend("sap.ui.commons.Title", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -44916,7 +44762,7 @@ sap.ui.core.Title.extend("sap.ui.commons.Title", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ToggleButton') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -44971,18 +44817,16 @@ jQuery.sap.declare("sap.ui.commons.ToggleButton");
  * The ToggleButton Control is a Button that can be toggled between pressed and normal state
  * @extends sap.ui.commons.Button
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ToggleButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.Button.extend("sap.ui.commons.ToggleButton", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"pressed" : {type : "boolean", group : "Data", defaultValue : false}
@@ -45077,7 +44921,7 @@ sap.ui.commons.ToggleButton.prototype.onAfterRendering = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Toolbar') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -45137,21 +44981,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.Toolbar
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Toolbar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Toolbar", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.Toolbar"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -45161,8 +45003,8 @@ sap.ui.core.Control.extend("sap.ui.commons.Toolbar", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "item"}, 
-    	"rightItems" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "rightItem"}
+		"items" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "item"}, 
+		"rightItems" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "rightItem"}
 	}
 }});
 
@@ -45212,7 +45054,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Toolbar", { metadata : {
 /**
  * Getter for property <code>width</code>.
  * When there is not enough space for the toolbar to display all items, the rightmost items are overflowing into a drop-down menu.
- * 
  *
  * Default value is <code>auto</code>
  *
@@ -45485,7 +45326,7 @@ sap.ui.commons.Toolbar.prototype.onBeforeRendering = function() {
 	sap.ui.commons.ToolbarRenderer.emptyOverflowPopup(this); // if rerendering happens while there are still items in the popup (and it is open), the items will be duplicated
 	this.cleanup();
 
-	this.$("mn").unbind("keyup", this._handleKeyUp);
+	this.$("mn").unbind("keydown", this._handleKeyDown);
 
 	this.bFirstTime = true;
 };
@@ -45510,8 +45351,8 @@ sap.ui.commons.Toolbar.prototype.onAfterRendering = function() {
 	}
 
 	// cannot use sapspace because this triggers onkeydown and sets the focus to the first button in the overflow popup
-	// and the subsequent keyup will make the browser fire a click event on that button
-	this.$("mn").bind("keyup", jQuery.proxy(this._handleKeyUp, this));
+	// and the subsequent keydown will make the browser fire a click event on that button
+	this.$("mn").bind("keydown", jQuery.proxy(this._handleKeyDown, this));
 
 	this.sResizeListenerId = sap.ui.core.ResizeHandler.register(this.oDomRef, jQuery.proxy(this.ontoolbarresize, this));
 	var iRightItemsLength =  this.getRightItems().length;
@@ -45535,7 +45376,7 @@ sap.ui.commons.Toolbar.prototype.onAfterRendering = function() {
  * @param {jQuery.EventObject} oEvent The forwarded browser event
  * @private
  */
-sap.ui.commons.Toolbar.prototype._handleKeyUp = function (oEvent) {
+sap.ui.commons.Toolbar.prototype._handleKeyDown = function (oEvent) {
 	if ((oEvent.keyCode == jQuery.sap.KeyCodes.SPACE)
 			&& (oEvent.target.id === this.getId() + "-mn")) {
 		this.handleOverflowButtonTriggered();
@@ -45919,7 +45760,7 @@ sap.ui.commons.Toolbar.prototype.openPopup = function() {
 
 	//Open popup with a little delay in IE8 to avoid focus calls when the popup is not yet opened
 	var iDuration = !!sap.ui.Device.browser.internet_explorer && (sap.ui.Device.browser.version == 7 || sap.ui.Device.browser.version == 8) ? 1 : 0;
-	this.popup.open(iDuration, sap.ui.core.Popup.Dock.EndTop, sap.ui.core.Popup.Dock.EndBottom, this.$("mn"));
+	this.popup.open(iDuration, sap.ui.core.Popup.Dock.EndTop, sap.ui.core.Popup.Dock.EndBottom, this.$("mn"),"", "fit", true );
 	this.bOpen = true;
 };
 
@@ -46330,13 +46171,11 @@ sap.ui.commons.Toolbar.prototype.cleanup = function() {
 	}
 
 };
-
-
 }; // end of sap/ui/commons/Toolbar.js
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ToolbarSeparator') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -46394,21 +46233,19 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @extends sap.ui.core.Element
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ToolbarSeparator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.ToolbarSeparator", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"displayVisualSeparator" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -46492,7 +46329,7 @@ sap.ui.commons.ToolbarSeparator.prototype.getFocusDomRef = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Tree') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -46554,23 +46391,19 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Simple tree to display item in a hierarchical way
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Tree
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Tree", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"expandAll", "collapseAll"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -46584,7 +46417,7 @@ sap.ui.core.Control.extend("sap.ui.commons.Tree", { metadata : {
 	},
 	defaultAggregation : "nodes",
 	aggregations : {
-    	"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node", bindable : "bindable"}
+		"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node", bindable : "bindable"}
 	},
 	events : {
 		"select" : {allowPreventDefault : true}, 
@@ -46918,14 +46751,13 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 
 
 /**
- * Event is fired when a tree node is selected. 
+ * Event is fired when a tree node is selected.
  *
  * @name sap.ui.commons.Tree#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.commons.TreeNode} oControlEvent.getParameters.node The node which has been selected.
  * @param {object} oControlEvent.getParameters.nodeContext The binding context of the selected node.
  * @public
@@ -46936,7 +46768,7 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Tree</code>.<br/> itself. 
  *  
- * Event is fired when a tree node is selected. 
+ * Event is fired when a tree node is selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -46986,14 +46818,13 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 
 
 /**
- * fired when the selection of the tree has been changed 
+ * fired when the selection of the tree has been changed
  *
  * @name sap.ui.commons.Tree#selectionChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.commons.TreeNode[]} oControlEvent.getParameters.nodes The nodes which has been selected.
  * @param {object[]} oControlEvent.getParameters.nodeContexts The binding context of the selected nodes.
  * @public
@@ -47004,7 +46835,7 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Tree</code>.<br/> itself. 
  *  
- * fired when the selection of the tree has been changed 
+ * fired when the selection of the tree has been changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -47054,22 +46885,22 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 /**
  * Expands all nodes in the tree
  *
- * @name sap.ui.commons.Tree.prototype.expandAll
+ * @name sap.ui.commons.Tree#expandAll
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Collapses all nodes in the tree
  *
- * @name sap.ui.commons.Tree.prototype.collapseAll
+ * @name sap.ui.commons.Tree#collapseAll
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -47077,20 +46908,18 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 sap.ui.commons.Tree.prototype.resizeListenerId;
 
 sap.ui.commons.Tree.prototype.init = function(){
-   this.bAllCollapsed = false;
-   this.allowTextSelection(false);
+	this.bAllCollapsed = false;
+	this.allowTextSelection(false);
 
-   this.oSelectedNode = null;
-   this.oSelectedContext = null;
+	this.iOldScrollTop = null;
 
-//STS
-   this.oSelectedNodeMap = {};
-   this.oSelectedContextMap = {}; 
-//STS
-      
-   this.iOldScrollTop = null;
+	this.oSelectedNodeMap = {};
+	this.oSelectedContextMap = {};
+	this.aLeadSelection = null;
+	this.bDelFlag = null;
+	this.aExpandedTree = [];
 
-   //Create Buttons for Header
+	//Create Buttons for Header
 
 	var oResourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.ui.commons");
 	this.oCollapseAllButton = new sap.ui.commons.Button(this.getId() + "-CollapseAll", { icon: this.getIconPrefix() + "CollapseAll.png", tooltip: oResourceBundle.getText("TREE_COLLAPSE_ALL"), lite: true });
@@ -47123,7 +46952,6 @@ sap.ui.commons.Tree.SelectionType = {
 	Toggle: "Toggle",
 	Range: "Range"
 }
-
 /***********************************************************************************
 * EVENTS HANDLING
 ***********************************************************************************/
@@ -47380,10 +47208,12 @@ sap.ui.commons.Tree.prototype.adjustFocus = function(){
 		var aDomVisiblePrecedingNodes = aDomPrecedingNodes.filter(":visible");
 		var oNewFocusNode		= aDomVisiblePrecedingNodes[aDomVisiblePrecedingNodes.length-1];
 
-		oNewFocusNode.setAttribute("tabindex", "0");
+		if(oNewFocusNode) {
+			oNewFocusNode.setAttribute("tabindex", "0");
 
-		if( jQuery(".sapUiTreeNode:focus").is(":not(:visible)")){
-			oNewFocusNode.focus();
+			if( jQuery(".sapUiTreeNode:focus").is(":not(:visible)")){
+				oNewFocusNode.focus();
+			}
 		}
 
 	}
@@ -47454,7 +47284,7 @@ sap.ui.commons.Tree.prototype.adjustSelectionOnExpanding = function(oExpandingDo
  * @private
  */
 sap.ui.commons.Tree.prototype.adjustSelectionOnCollapsing = function(oDomCollapsingNode){
-
+	var that = this
 	if (this.getSelectionMode() != sap.ui.commons.TreeSelectionMode.Multi) {
 		var $DomCollapsingNode = jQuery(oDomCollapsingNode),
 		sChildrenId = "#" + $DomCollapsingNode.attr("id") + "-children",
@@ -47472,7 +47302,14 @@ sap.ui.commons.Tree.prototype.adjustSelectionOnCollapsing = function(oDomCollaps
 		var $DomCollapsingNode = jQuery(oDomCollapsingNode),
 		sChildrenId = "#" + $DomCollapsingNode.attr("id") + "-children",
 		$DomActualSelSubNode = $DomCollapsingNode.siblings(sChildrenId).find(".sapUiTreeNodeSelected");
-		$DomActualSelSubNode.removeClass("sapUiTreeNodeSelected");		
+		var aSelNode = $DomActualSelSubNode.control();
+		if (aSelNode){
+			if (jQuery.isEmptyObject(aSelNode) == false) {
+				jQuery.each(aSelNode, function(sId, oNode){
+					that._delMultiSelection(oNode);
+				});
+			}
+		}
 	}
 };
 
@@ -47491,15 +47328,12 @@ sap.ui.commons.Tree.prototype.isTreeBinding = function(sName) {
 sap.ui.commons.Tree.prototype.updateNodes = function(){
 	var oContext = this.oSelectedContext, 
 		oNode;
-	this.oSelectedNode = null;
-	this.oSelectedContext = null;
 	this.updateAggregation("nodes");
 	if (oContext) {
 		oNode = this.getNodeByContext(oContext);
 		this.setSelection(oNode, true);
- 	}
+	}
 };
-
 
 /**
  * Returns the node with the given context, or null if no such node currently exists
@@ -47536,40 +47370,58 @@ sap.ui.commons.Tree.prototype.findNode = function(oNode, fnMatch) {
 	return oFoundNode;
 };
 
+sap.ui.commons.Tree.prototype.setSelectionMode = function(oMode){
+	oMode = this.validateProperty("selectionMode", oMode);
+	if (this.getSelectionMode() != oMode) {
+		this.setProperty("selectionMode", oMode);
+		// Clear current selection, whenever the selectionmode changes
+		this._delSelection();
+	}
+};
+
 /**Returns the selected node in the tree. If not selection, returns false.
  * @returns The selected node
  * @private
  */
 sap.ui.commons.Tree.prototype.getSelection = function(){
-	return this.oSelectedNode;
+	for (var sId in this.oSelectedNodeMap) {
+		return this.oSelectedNodeMap[sId];
+	}
+	return null;
 };
 
 /**Sets the selected node reference of the Tree
  * @private
  */
-sap.ui.commons.Tree.prototype.setSelection = function(oNode, sType, bSuppressEvent){
-	var bDoSelected = true;
-	switch (this.getSelectionMode()) {
-	case sap.ui.commons.TreeSelectionMode.Single:
-		this._setSelectedNode(oNode, bSuppressEvent)
-		break;	
-	case sap.ui.commons.TreeSelectionMode.Multi:
-		if (sType == sap.ui.commons.Tree.SelectionType.Range) {
-			this._setSelectedNodeMap(oNode, bSuppressEvent)
-		}
-		else if (sType == sap.ui.commons.Tree.SelectionType.Toggle) {
-			this._setSelectedNodeMap(oNode, bSuppressEvent)
-		}
-		else {
+sap.ui.commons.Tree.prototype.setSelection = function(oNode, bSuppressEvent, sType, bDeselectOtherNodes){
+	var bDoSelect = true;
+	if (!bSuppressEvent) {
+		bDoSelect = this.fireSelect({node: oNode, nodeContext: oNode && oNode.getBindingContext()});
+	}
+	
+	if (bDoSelect) {
+		switch (this.getSelectionMode()) {
+		case sap.ui.commons.TreeSelectionMode.Single:
 			this._setSelectedNode(oNode, bSuppressEvent)
+			break;
+		case sap.ui.commons.TreeSelectionMode.Multi:
+			if (sType == sap.ui.commons.Tree.SelectionType.Range) {
+				this._setSelectedNodeMapRange(oNode, bSuppressEvent)
+			}
+			else if (sType == sap.ui.commons.Tree.SelectionType.Toggle) {
+				this._setSelectedNodeMapToggle(oNode, bSuppressEvent)
+			}
+			else {
+				this._setSelectedNode(oNode, bSuppressEvent)
+			}
+			break;
+		case sap.ui.commons.TreeSelectionMode.None:
+			break;
 		}
-		break;
-	case sap.ui.commons.TreeSelectionMode.None:
-		break;	
 	}
 };
 
-/**Rerendering handling. Sets the scroll position so that the selected node stays on the position it 
+/**Rerendering handling. Sets the scroll position so that the selected node stays on the position it
  * was before rerendering, for example after the expand and adding the nodes dynamically.
  * @private
  */
@@ -47579,6 +47431,54 @@ sap.ui.commons.Tree.prototype.onAfterRendering = function () {
 	}
 };
 
+/**
+ * Whenever nodes are added ore removed from the tree, the selection needs to be adapted, 
+ * so that the selected node map is in sync with the isSelected properties of the contained
+ * nodes
+ * @private
+ */
+sap.ui.commons.Tree.prototype.invalidate = function () {
+	sap.ui.core.Control.prototype.invalidate.apply(this, arguments);
+	this.oSelectedNodeMap = {};
+	this.oSelectedContextMap = {};
+	this.updateSelection(this, true);
+};
+
+/**
+ * Loop through all tree nodes and collect the selected state
+ * @private
+ */
+sap.ui.commons.Tree.prototype.updateSelection = function (oNode, bExpanded) {
+	var that = this;
+	jQuery.each(oNode.getNodes(), function(i, oNode) {
+		if (oNode.getIsSelected()) {
+			switch (that.getSelectionMode()) {
+				case sap.ui.commons.TreeSelectionMode.None:
+					jQuery.sap.log.warning("Added selected nodes in a tree with disabled selection");
+					oNode.setIsSelected(false);
+					break;
+				case sap.ui.commons.TreeSelectionMode.Single:
+					if (jQuery.isEmptyObject(that.oSelectedNodeMap) == false) {
+						jQuery.sap.log.warning("Added multiple selected nodes in single select tree");
+						oNode.setIsSelected(false);
+					} else {
+						that.oSelectedNodeMap[oNode.getId()] = oNode;
+					}
+					break;
+				case sap.ui.commons.TreeSelectionMode.Multi:
+					if (!bExpanded) {
+						jQuery.sap.log.warning("Added selected node inside collapsed node in multi select tree");
+						oNode.setIsSelected(false);
+					} else {
+						that.oSelectedNodeMap[oNode.getId()] = oNode;
+					}
+					break;
+			}
+		}
+		that.updateSelection(oNode, bExpanded && oNode.getExpanded());
+	});
+};
+
 /**Rerendering handling. Remembers the scroll position of the selected node.
  * @private
  */
@@ -47586,69 +47486,139 @@ sap.ui.commons.Tree.prototype.onBeforeRendering = function() {
 	this.iOldScrollTop = this.$("TreeCont").scrollTop();
 };
 
-// STS
 sap.ui.commons.Tree.prototype._setSelectedNode = function(oNode, bSuppressEvent) {
-	var bDoSelect = true;
+	var that = this;
+
+	jQuery.each(this.oSelectedNodeMap, function(sId, oNode){
+		that._delMultiSelection(oNode, bSuppressEvent);
+	});
+
+	if (oNode) {
+		oNode._select(bSuppressEvent, true);
+	}
+
+	this.oSelectedNodeMap[oNode.getId()] = oNode;
+	this.oSelectedContextMap[oNode.getId()] = oNode && oNode.getBindingContext();
+	this.oLeadSelection = oNode;
 	if (!bSuppressEvent) {
-		bDoSelect = this.fireSelect({node: oNode, nodeContext: oNode && oNode.getBindingContext()});
-	}	
-	if (bDoSelect) {
-		if (this.oSelectedNode) {
-			this.oSelectedNode.deselect();
-		}
-		if (oNode) {
-			oNode.select(bSuppressEvent, true);
-		}
-		this.oSelectedNode = oNode;
-		this.oSelectedContext = oNode && oNode.getBindingContext();
-		if (this.getSelectionMode() == sap.ui.commons.TreeSelectionMode.Multi) {
-			this.oSelectedNodeMap = {};
-			this.oSelectedNodeMap[this.oSelectedNode.getId()] = this.oSelectedNode;
-			this.oSelectedContextMap = {};
-			this.oSelectedContextMap[this.oSelectedNode.getId()] = this.oSelectedContext;
-		}
-//		this.fireSelectionChange({nodes: [this.oSelectedNode], nodeContexts: [this.oSelectedContext]});
+		this.fireSelectionChange({nodes: [oNode], nodeContexts: [oNode && oNode.getBindingContext()]});
 	}
 };
 
-sap.ui.commons.Tree.prototype._setSelectedNodeMap = function(oNode, bSuppressEvent) {
+sap.ui.commons.Tree.prototype._setSelectedNodeMapToggle = function(oNode, bSuppressEvent) {
+	this._setNodeSelection(oNode, !oNode.getIsSelected(), bSuppressEvent);
+};
+
+sap.ui.commons.Tree.prototype._setSelectedNodeMapRange = function(oNode, bSuppressEvent) {
 	var aNodes = [], aNodeContexts = [];
-	this.oSelectedNode = oNode;
-	if (this.oSelectedNodeMap[this.oSelectedNode.getId()] != this.oSelectedNode) {
-		if (oNode) {
-			oNode.select(bSuppressEvent, false);
-		}
-		this.oSelectedNode = oNode;
-		this.oSelectedContext = oNode && oNode.getBindingContext();
-		this.oSelectedNodeMap[this.oSelectedNode.getId()] = this.oSelectedNode;
-		this.oSelectedContextMap[this.oSelectedNode.getId()] = this.oSelectedContext;
+	var that = this;
+
+	if (this.bDelFlag == true) {
+		jQuery.each(this.oSelectedNodeMap, function(sId, oNode){
+			that._delMultiSelection(oNode, bSuppressEvent);
+		});
+	};
+
+	if (this.oSelectedNodeMap[oNode.getId()] == oNode) {
+		return; //Nothing to do!
 	}
-	else {
-		delete this.oSelectedNodeMap[this.oSelectedNode.getId()];
-		delete this.oSelectedContextMap[this.oSelectedNode.getId()];
-		if (this.oSelectedNode) {
-			this.oSelectedNode.deselect();
+	else{
+		this.aExpandedTree.length = 0;
+		var aNodes = oNode.getTree().getNodes();
+		var i, a, b;
+		if (aNodes.length>0){
+			this._getSelectableNodes(aNodes);
+			var oStartIndex = this.aExpandedTree.indexOf(this.oLeadSelection);
+			var oEndIndex = this.aExpandedTree.indexOf(oNode);
+			if (oStartIndex < oEndIndex){
+				a = oStartIndex, b = oEndIndex
+			}
+			else {
+				a = oEndIndex, b = oStartIndex
+			};
+			for (i=a;i<=b;i++) {
+				var oSelNode = this.aExpandedTree[i]
+				this._setMultiSelection(oSelNode, bSuppressEvent);
+			};
 		}
-//		if (oNode) {
-//			oNode.select(bSuppressEvent)
-//		}
-//		this.oSelectedNode = oNode;
-//		this.oSelectedContext = oNode && oNode.getBindingContext();
-	}
+	};
+
 	if (!bSuppressEvent) {
 		jQuery.map(this.oSelectedNodeMap, function(sId, oNode) {aNodes.push(oNode)});
 		jQuery.map(this.oSelectedContextMap, function(sId, oNode) {aNodeContexts.push(oNode)});
 		this.fireSelectionChange({nodes: aNodes, nodeContexts: aNodeContexts});
-	}
-
+	};
 };
-// STS
+
+sap.ui.commons.Tree.prototype._getSelectableNodes = function(aNodes) {
+	if (aNodes.length>0){
+		var i;
+		for (i=0;i<aNodes.length;i++) {
+			var oNode = aNodes[i];
+			if (oNode.getSelectable()){
+				this.aExpandedTree.push(oNode);
+			};
+			if (oNode.getExpanded()){
+				var aSubNodes = oNode.getNodes();
+				this._getSelectableNodes(aSubNodes);
+			};
+		}
+	};
+};
+
+sap.ui.commons.Tree.prototype._setNodeSelection = function(oNode, bIsSelected, bSuppressEvent) {
+	var aNodes = [], aNodeContexts = [];
+	this.bDelFlag = true;
+
+	if (bIsSelected) {
+		this._setMultiSelection(oNode, bSuppressEvent);
+		this.oLeadSelection = oNode;
+	} else {
+		this._delMultiSelection(oNode, bSuppressEvent);
+		this.oLeadSelection = oNode;
+	}
+	if (!bSuppressEvent) {
+		jQuery.map(this.oSelectedNodeMap, function(sId, oNode) {aNodes.push(oNode);});
+		jQuery.map(this.oSelectedContextMap, function(sId, oNode) {aNodeContexts.push(oNode);});
+		this.fireSelectionChange({nodes: aNodes, nodeContexts: aNodeContexts});
+	}
+};
+
+sap.ui.commons.Tree.prototype._setMultiSelection = function(oSelNode, bSuppressEvent) {
+	if (!oSelNode) {
+		return;
+	}
+	oSelNode._select(bSuppressEvent);
+	this.oSelectedNodeMap[oSelNode.getId()] = oSelNode;
+	this.oSelectedContextMap[oSelNode.getId()] = oSelNode.getBindingContext();
+};
+
+sap.ui.commons.Tree.prototype._delMultiSelection = function(oSelNode, bSuppressEvent) {
+	if (!oSelNode) {
+		return;
+	}
+	oSelNode._deselect();
+	delete this.oSelectedNodeMap[oSelNode.getId()];
+	delete this.oSelectedContextMap[oSelNode.getId()];
+};
+
+sap.ui.commons.Tree.prototype._delSelection = function() {
+	var that = this;
+	if (this.oSelectedNode) {
+		this.oSelectedNode._deselect();
+	}
+	if (jQuery.isEmptyObject(this.oSelectedNodeMap) == false) {
+		jQuery.each(this.oSelectedNodeMap, function(sId, oNode){
+			that._delMultiSelection(oNode);
+		});
+	};
+};
 
 }; // end of sap/ui/commons/Tree.js
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TreeNode') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -47713,23 +47683,19 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * Tree node element
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TreeNode
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.TreeNode", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"select", "expand", "collapse"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Misc", defaultValue : null},
@@ -47741,7 +47707,7 @@ sap.ui.core.Element.extend("sap.ui.commons.TreeNode", { metadata : {
 	},
 	defaultAggregation : "nodes",
 	aggregations : {
-    	"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node"}
+		"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node"}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -47876,7 +47842,6 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 /**
  * Getter for property <code>isSelected</code>.
  * Node is selected
- * 
  *
  * Default value is <code>false</code>
  *
@@ -48081,14 +48046,13 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 
 	
 /**
- * Node state has changed. 
+ * Node state has changed.
  *
  * @name sap.ui.commons.TreeNode#toggleOpenState
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.opened Node has been opened if true
  * @public
  */
@@ -48098,7 +48062,7 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TreeNode</code>.<br/> itself. 
  *  
- * Node state has changed. 
+ * Node state has changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -48145,14 +48109,13 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 
 
 /**
- * Node is selected 
+ * Node is selected
  *
  * @name sap.ui.commons.TreeNode#selected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -48161,7 +48124,7 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TreeNode</code>.<br/> itself. 
  *  
- * Node is selected 
+ * Node is selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -48205,33 +48168,33 @@ sap.ui.commons.TreeNode.M_EVENTS = {'toggleOpenState':'toggleOpenState','selecte
 /**
  * Select the node, and if any, deselects the previously selected node
  *
- * @name sap.ui.commons.TreeNode.prototype.select
+ * @name sap.ui.commons.TreeNode#select
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Expands the node
  *
- * @name sap.ui.commons.TreeNode.prototype.expand
+ * @name sap.ui.commons.TreeNode#expand
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Collapses the node
  *
- * @name sap.ui.commons.TreeNode.prototype.collapse
+ * @name sap.ui.commons.TreeNode#collapse
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -48246,7 +48209,9 @@ sap.ui.core.CustomStyleClassSupport.apply(sap.ui.commons.TreeNode.prototype);
 //* PUBLIC METHODS
 //***********************************************************************************
 
-/**Expands the node
+/**
+ * Expands the node
+ * @param {boolean} bExpandChildren
  * @public
  */
 
@@ -48279,9 +48244,9 @@ sap.ui.commons.TreeNode.prototype.expand = function(bExpandChildren){
 
 };
 
-
-
-/**Collapses the node
+/**
+ * Collapses the node
+ * @param {boolean} bCollapseChildren
  * @public
  */
 sap.ui.commons.TreeNode.prototype.collapse = function(bCollapseChildren){
@@ -48315,68 +48280,55 @@ sap.ui.commons.TreeNode.prototype.collapse = function(bCollapseChildren){
 
 };
 
-/**Select the node, and if any, deselects the previously selected node
+/**
+ * Select the node, and if any, deselects the previously selected node
+ * @param {boolean} bSuppressEvent
+ * @param {boolean} bDeselectOtherNodes
  * @public
  */
-sap.ui.commons.TreeNode.prototype.select = function(bSuppressEvent, bDeselectOtherNodes) {
-	var oTree = this.getTree(),
-		$Tree;
+sap.ui.commons.TreeNode.prototype.select = function(bSuppressEvent) {
+	var oTree = this.getTree();
 
-	this.setProperty("isSelected", true, true);
-
-	// If not connected to a tree or not rendered yet, return here
-	if (!oTree || !this.getDomRef()) {
-		return;
-	}
-
-	$Tree = oTree.$();
-
-	//Remove selection elsewhere
-	var oDomSelectedNode = $Tree.find(".sapUiTreeNodeSelected");
+	// If connected to a tree call setSelection, otherwise call _select directly
+	if (oTree) {
+		oTree.setSelection(this, bSuppressEvent);
+	} else {
+		this._select()
+	};
 	
-//STS
-	if (bDeselectOtherNodes) {
-		oDomSelectedNode.removeClass("sapUiTreeNodeSelected").removeAttr("aria-selected");
-	} 
-//STS
-
-	$Tree.find(".sapUiTreeNodeSelectedParent").removeClass("sapUiTreeNodeSelectedParent");
-
-	if(oDomSelectedNode.length){
-		//Any Selection found
-		var oSelectedNode = sap.ui.getCore().getControl(oDomSelectedNode[0].id);
-		oSelectedNode.setProperty("isSelected", false, true); //Suppress Re-rendering
-	}
-
-	//Set selection on clicked node
-	this.$().closest(".sapUiTreeNode").addClass("sapUiTreeNodeSelected").attr("aria-selected", "true");
-
-	if (!bSuppressEvent) {
-		this.fireSelected();
-	}
-
-	this.scrollIntoView();
-
 };
 
 //***********************************************************************************
 //* SELECTION PRIVATE METHODS
 //***********************************************************************************
 
+/**Select the node
+ * @private
+ */
+sap.ui.commons.TreeNode.prototype._select = function(bSuppressEvent) {
+	this.setProperty("isSelected", true, true);
+
+	if (!bSuppressEvent) {
+		this.fireSelected();
+	}
+
+	// If node is already rendered, then update the DOM and scroll into view
+	if (this.getDomRef()) {
+		this.$().closest(".sapUiTreeNode").addClass("sapUiTreeNodeSelected").attr("aria-selected", "true");
+		this.scrollIntoView();
+	}
+};
+
 /**Deselect the node
  * @private
  */
-sap.ui.commons.TreeNode.prototype.deselect = function(bSuppressEvent) {
-	var oTree = this.getTree();
-
+sap.ui.commons.TreeNode.prototype._deselect = function(bSuppressEvent) {
 	this.setProperty("isSelected", false, true);
 
-	// If not connected to a tree or not rendered yet, return here
-	if (!oTree || !this.getDomRef()) {
-		return;
+	// If node is already rendered, then update the DOM
+	if (this.getDomRef()) {
+		this.$().removeClass("sapUiTreeNodeSelected").removeAttr("aria-selected");
 	}
-
-	this.$().removeClass("sapUiTreeNodeSelected").removeAttr("aria-selected");
 };
 
 /**Returns true if the node has a selected child node, which is not visible
@@ -48404,18 +48356,22 @@ sap.ui.commons.TreeNode.prototype.hasSelectedHiddenChild = function(){
  * @public
  */
 sap.ui.commons.TreeNode.prototype.setIsSelected = function(bIsSelected) {
-
-	if(!this.getSelectable()){
+	var oTree = this.getTree();
+	
+	if (!this.getSelectable()) {
 		//Node is not selectable.
 		return this;
 	}
 
-	if (bIsSelected) {
-		this.select(true);
+	if (bIsSelected == this.getProperty("isSelected")) {
+		return this;
 	}
-	else {
-		this.deselect();
-	}
+	
+	if (oTree) {
+		oTree._setNodeSelection(this, bIsSelected, true);
+	} else {
+		this.setProperty("isSelected", bIsSelected, true);
+	}	
 	return this;
 };
 
@@ -48479,7 +48435,7 @@ sap.ui.commons.TreeNode.prototype.onclick = function(oEvent){
 				sSelectionType = sap.ui.commons.Tree.SelectionType.Toggle;
 			}
 		}
-		oTree.setSelection(this, sSelectionType);
+		oTree.setSelection(this, false, sSelectionType);
 
 		//Set focus
 		oDomClicked = jQuery(oDomClicked).closest(".sapUiTreeNode")[0];
@@ -48587,8 +48543,6 @@ sap.ui.commons.TreeNode.prototype.blur = function () {
 	}
 };
 
-
-
 //***********************************************************************************
 //* HELPER METHODS
 //***********************************************************************************
@@ -48669,15 +48623,31 @@ sap.ui.commons.TreeNode.prototype.scrollIntoView = function() {
 		iOffsetTop = $Node[0].offsetTop,
 		iScrollTop = $TreeCont.scrollTop(),
 		iHeight = $TreeCont.height(),
-		iNewScrollTop;
+		iNewScrollTop,
+		iOffsetLeft = $Node[0].offsetLeft,
+		iScrollLeft = $TreeCont.scrollLeft(),
+		iWidth = $TreeCont.width(),
+		iNewScrollLeft;
 
-	if (iOffsetTop > iScrollTop + iHeight) {
-		iNewScrollTop = iOffsetTop - Math.floor(iHeight * 0.8);
-		$TreeCont.animate({scrollTop:iNewScrollTop});
+	if (iOffsetTop > iScrollTop + iHeight || iOffsetTop < iScrollTop) {
+		iNewScrollTop = iOffsetTop - Math.floor(iHeight * 0.5);
+		iNewScrollTop = Math.max(iNewScrollTop, 0);
 	}
-	else if (iOffsetTop < iScrollTop) {
-		iNewScrollTop = iOffsetTop - Math.floor(iHeight * 0.2);
-		$TreeCont.animate({scrollTop:iNewScrollTop});
+
+	if (iOffsetLeft > iScrollLeft + iWidth || iOffsetLeft < iScrollLeft) {
+		iNewScrollLeft = iOffsetLeft - Math.floor(iWidth * 0.5);
+		iNewScrollLeft = Math.max(iNewScrollLeft, 0);
+	}
+
+	if (iNewScrollTop !== undefined || iNewScrollLeft !== undefined) {
+		var mScrollPos = {};
+		if (iNewScrollTop !== undefined) {
+			mScrollPos.scrollTop = iNewScrollTop;
+		}
+		if (iNewScrollLeft !== undefined) {
+			mScrollPos.scrollLeft = iNewScrollLeft;
+		}
+		$TreeCont.animate(mScrollPos);
 	}
 };
 
@@ -48707,7 +48677,7 @@ sap.ui.commons.TreeNode.prototype.getTooltip_AsString = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TriStateCheckBox') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -48767,26 +48737,21 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * TriStateCheckBox to reflect mixed state for checkboxes. The control can display three states, namely checked, unchecked and mixed. However, mixed state cannot be directly reached by user interaction on the particular control.
  * It can be only set by the control's public toggle function, to make a behaviour possible which is e.g. required in checkbox trees.
- * 
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.7.2
  * @name sap.ui.commons.TriStateCheckBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.TriStateCheckBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"toggle"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"selectionState" : {type : "sap.ui.commons.TriStateCheckBoxState", group : "Data", defaultValue : sap.ui.commons.TriStateCheckBoxState.Unchecked},
@@ -49026,17 +48991,14 @@ sap.ui.commons.TriStateCheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @name sap.ui.commons.TriStateCheckBox#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.selectionState
  *         Checks whether the box is flagged or not flagged.
- * 
  * @public
  */
  
@@ -49047,7 +49009,6 @@ sap.ui.commons.TriStateCheckBox.M_EVENTS = {'change':'change'};
  *  
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -49098,18 +49059,15 @@ sap.ui.commons.TriStateCheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Changes the current value of the control.
- * 
  *
- * @name sap.ui.commons.TriStateCheckBox.prototype.toggle
+ * @name sap.ui.commons.TriStateCheckBox#toggle
  * @function
- * @param {string} 
- *         sDestState
+ * @param {string} sDestState
  * 
  *         destined selection state of checkbox
- * 
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -49182,7 +49140,7 @@ if (this.getEnabled() && this.getEditable()) {
 /**
  * Method called whenever a user clicks on a tri-state checkbox
  *
- * @param destState 
+ * @param {sap.ui.commons.TriStateCheckBoxState} destState 
  * @public
  */
 sap.ui.commons.TriStateCheckBox.prototype.toggle = function(destState) {
@@ -49194,7 +49152,7 @@ sap.ui.commons.TriStateCheckBox.prototype.toggle = function(destState) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ValueHelpField') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -49252,18 +49210,16 @@ jQuery.sap.declare("sap.ui.commons.ValueHelpField");
  * A TextField with an attached icon which triggeres an event.
  * @extends sap.ui.commons.TextField
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ValueHelpField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.ValueHelpField", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"iconURL" : {type : "sap.ui.core.URI", group : "Appearance", defaultValue : null},
@@ -49374,14 +49330,13 @@ sap.ui.commons.ValueHelpField.M_EVENTS = {'valueHelpRequest':'valueHelpRequest'}
 
 
 /**
- * Event which is fired when the ValueHelp is requested. 
+ * Event which is fired when the ValueHelp is requested.
  *
  * @name sap.ui.commons.ValueHelpField#valueHelpRequest
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -49390,7 +49345,7 @@ sap.ui.commons.ValueHelpField.M_EVENTS = {'valueHelpRequest':'valueHelpRequest'}
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ValueHelpField</code>.<br/> itself. 
  *  
- * Event which is fired when the ValueHelp is requested. 
+ * Event which is fired when the ValueHelp is requested.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -49562,7 +49517,7 @@ sap.ui.commons.ValueHelpField.prototype.exit = function(){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.Form') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -49619,22 +49574,20 @@ jQuery.sap.require('sap.ui.layout.form.Form'); // unlisted dependency retained
  * A Form supports VariantLayoutData for it's conent to allow a simple switching of Layouts.
  * @extends sap.ui.layout.form.Form
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.Form
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.Form.extend("sap.ui.commons.form.Form", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -49692,7 +49645,7 @@ sap.ui.layout.form.Form.extend("sap.ui.commons.form.Form", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.FormContainer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -49748,22 +49701,20 @@ jQuery.sap.require('sap.ui.layout.form.FormContainer'); // unlisted dependency r
  * Can contain other form elements or containers.
  * @extends sap.ui.layout.form.FormContainer
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.FormContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.FormContainer.extend("sap.ui.commons.form.FormContainer", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -49821,7 +49772,7 @@ sap.ui.layout.form.FormContainer.extend("sap.ui.commons.form.FormContainer", { m
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.FormElement') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -49876,22 +49827,20 @@ jQuery.sap.require('sap.ui.layout.form.FormElement'); // unlisted dependency ret
  * A form element is a combination of one label and different controls associated to this label.
  * @extends sap.ui.layout.form.FormElement
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.FormElement
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.FormElement.extend("sap.ui.commons.form.FormElement", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -49948,7 +49897,7 @@ sap.ui.layout.form.FormElement.extend("sap.ui.commons.form.FormElement", { metad
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.FormLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50004,22 +49953,20 @@ jQuery.sap.require('sap.ui.layout.form.FormLayout'); // unlisted dependency reta
  * Other Layouts must inherit from this one.
  * @extends sap.ui.layout.form.FormLayout
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.FormLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.FormLayout.extend("sap.ui.commons.form.FormLayout", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -50050,7 +49997,7 @@ sap.ui.layout.form.FormLayout.extend("sap.ui.commons.form.FormLayout", { metadat
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.GridContainerData') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50106,22 +50053,20 @@ jQuery.sap.require('sap.ui.layout.form.GridContainerData'); // unlisted dependen
  * The width and height properties of the elements are ignored since the witdh and heights are defined by the grid cells.
  * @extends sap.ui.layout.form.GridContainerData
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.GridContainerData
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.GridContainerData.extend("sap.ui.commons.form.GridContainerData", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -50155,7 +50100,7 @@ sap.ui.layout.form.GridContainerData.extend("sap.ui.commons.form.GridContainerDa
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.GridElementData') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50211,22 +50156,20 @@ jQuery.sap.require('sap.ui.layout.form.GridElementData'); // unlisted dependency
  * The width property of the elements is ignored since the width is defined by grid cells.
  * @extends sap.ui.layout.form.GridElementData
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.GridElementData
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.GridElementData.extend("sap.ui.commons.form.GridElementData", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -50260,7 +50203,7 @@ sap.ui.layout.form.GridElementData.extend("sap.ui.commons.form.GridElementData",
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.GridLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50317,22 +50260,20 @@ jQuery.sap.require('sap.ui.layout.form.GridLayout'); // unlisted dependency reta
  * To adjust the content inside the GridLayout GridContainerData and GridElementData could be used.
  * @extends sap.ui.layout.form.GridLayout
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.GridLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.GridLayout.extend("sap.ui.commons.form.GridLayout", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -50362,7 +50303,7 @@ sap.ui.layout.form.GridLayout.extend("sap.ui.commons.form.GridLayout", { metadat
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.ResponsiveLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50417,22 +50358,20 @@ jQuery.sap.require('sap.ui.layout.form.ResponsiveLayout'); // unlisted dependenc
  * Renders a form with responsive layout. Internally the ResponsiveFlowLayout is used.
  * @extends sap.ui.layout.form.ResponsiveLayout
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.10.0
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.ResponsiveLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.ResponsiveLayout.extend("sap.ui.commons.form.ResponsiveLayout", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -50462,7 +50401,7 @@ sap.ui.layout.form.ResponsiveLayout.extend("sap.ui.commons.form.ResponsiveLayout
 if ( !jQuery.sap.isDeclared('sap.ui.commons.form.SimpleForm') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50516,23 +50455,19 @@ jQuery.sap.require('sap.ui.layout.form.SimpleForm'); // unlisted dependency reta
  * @class
  * Use the SimpleForm to create a form based on title, label and fields that are stacked in the content aggregation. Add Title to start a new FormContainer(Group). Add Label to start a new row in the container. Add Input/Display controls as needed. Use LayoutData to influence the layout for special cases in the Input/Display controls.
  * @extends sap.ui.layout.form.SimpleForm
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.form.SimpleForm
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.SimpleForm.extend("sap.ui.commons.form.SimpleForm", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -50589,7 +50524,7 @@ sap.ui.layout.form.SimpleForm.extend("sap.ui.commons.form.SimpleForm", { metadat
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.BorderLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50648,25 +50583,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * Based upon the border layout as it comes with the Java standard. Using this layout, you are able to divide your available UI space into five areas whose sizes can be defined. These areas are: Top: Header; Bottom: Footer; Begin: Left/right-hand side panel; Center: Content area
  * in the middle; End: Right/left-hand side panel.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.BorderLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.layout.BorderLayout", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createArea", "setAreaData", "addContent", "insertContent", "removeContent", "removeAllContent", "getContent", "indexOfContent", "destroyContent", "getAreaData", "getAreaById", "getArea"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"rtl" : {type : "boolean", group : "Appearance", defaultValue : false, deprecated: true},
@@ -50674,11 +50606,11 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.BorderLayout", { metadata : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'}
 	},
 	aggregations : {
-    	"top" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"begin" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"center" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"end" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
-    	"bottom" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}
+		"top" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"begin" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"center" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"end" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}, 
+		"bottom" : {type : "sap.ui.commons.layout.BorderLayoutArea", multiple : false}
 	}
 }});
 
@@ -50937,193 +50869,171 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.BorderLayout", { metadata : {
 /**
  * Creates the specified area and adds the given controls to it. Returns the created area.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.createArea
+ * @name sap.ui.commons.layout.BorderLayout#createArea
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies which area will be created. If the area is already available, the method call is ignored.
- * @param {sap.ui.core.Control} 
- *         oControls
+ * @param {sap.ui.core.Control} oControls
  *         Any number of controls can be submitted to be added to the newly created area; where each control is submitted as one argument.
-
  * @type sap.ui.commons.layout.BorderLayoutArea
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the properties of the specified area with the given values
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.setAreaData
+ * @name sap.ui.commons.layout.BorderLayout#setAreaData
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose properties will be set
- * @param {object} 
- *         oData
+ * @param {object} oData
  *         JSON-like object that contains the values to be set
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds controls to the specified area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.addContent
+ * @name sap.ui.commons.layout.BorderLayout#addContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area where controls will be added
- * @param {sap.ui.core.Control} 
- *         oControls
+ * @param {sap.ui.core.Control} oControls
  *         N controls can be submitted to be added. Each control is submitted as one argument.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Inserts controls to an area at a given index.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.insertContent
+ * @name sap.ui.commons.layout.BorderLayout#insertContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area where the controls shall be inserted.
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Specifies the index where the controls shall be added. For a negative value of iIndex, the content is inserted at
  *         position '0'; for a value greater than the current size of the aggregation, the content is inserted at the last position.
- * @param {sap.ui.core.Control} 
- *         oControl
+ * @param {sap.ui.core.Control} oControl
  *         N controls can be submitted to be added. Each control is submitted as one argument.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the content with the given index from an area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.removeContent
+ * @name sap.ui.commons.layout.BorderLayout#removeContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content shall be removed
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Specifies the index of the control that shall be removed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes all content from an area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.removeAllContent
+ * @name sap.ui.commons.layout.BorderLayout#removeAllContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content shall be removed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns all controls inside the specified area inside an array
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getContent
+ * @name sap.ui.commons.layout.BorderLayout#getContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content controls shall be returned.
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Determines the index of a given content control
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.indexOfContent
+ * @name sap.ui.commons.layout.BorderLayout#indexOfContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area that will be searched
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         Specifies the control whose index will be searched
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Destroys the content of the specified area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.destroyContent
+ * @name sap.ui.commons.layout.BorderLayout#destroyContent
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose content will be destroyed
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns a JSON-like object that contains all property values of the requested area
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getAreaData
+ * @name sap.ui.commons.layout.BorderLayout#getAreaData
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose data will be returned
-
  * @type object
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the object of the specified area. If the area does not exist, the area will be created and returned.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getAreaById
+ * @name sap.ui.commons.layout.BorderLayout#getAreaById
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
  *         Specifies the area whose object will be returned.
-
  * @type sap.ui.commons.layout.BorderLayoutArea
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the area of the given type. If the area does not exist, it will be created when create is set to true.
  *
- * @name sap.ui.commons.layout.BorderLayout.prototype.getArea
+ * @name sap.ui.commons.layout.BorderLayout#getArea
  * @function
- * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} 
- *         oAreaId
- * 
- * @param {boolean} 
- *         bCreate
- * 
-
+ * @param {sap.ui.commons.layout.BorderLayoutAreaTypes} oAreaId
+ * @param {boolean} bCreate
  * @type sap.ui.commons.layout.BorderLayoutAreaTypes
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -51275,7 +51185,7 @@ sap.ui.commons.layout.BorderLayout.prototype.destroyContent = function(sAreaId) 
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.BorderLayoutArea') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -51337,18 +51247,16 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * The BorderLayoutArea represents one area of a BorderLayout
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.BorderLayoutArea
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.layout.BorderLayoutArea", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"areaId" : {type : "sap.ui.commons.layout.BorderLayoutAreaTypes", group : "Identification", defaultValue : sap.ui.commons.layout.BorderLayoutAreaTypes.top, deprecated: true},
@@ -51360,7 +51268,7 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.BorderLayoutArea", { metadata 
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -51650,7 +51558,7 @@ sap.ui.commons.layout.BorderLayoutArea.prototype.setVisible = function(bVisible,
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.HorizontalLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -51705,18 +51613,16 @@ jQuery.sap.require('sap.ui.layout.HorizontalLayout'); // unlisted dependency ret
  * A layout that provides support for horizontal alignment of controls
  * @extends sap.ui.layout.HorizontalLayout
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.HorizontalLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.HorizontalLayout.extend("sap.ui.commons.layout.HorizontalLayout", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -51744,7 +51650,7 @@ sap.ui.layout.HorizontalLayout.extend("sap.ui.commons.layout.HorizontalLayout", 
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.MatrixLayoutCell') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -51806,25 +51712,22 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * 
  * Non-control element used as part of a matrix layout's inner structure.
- * 
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.MatrixLayoutCell
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"addStyleClass", "removeStyleClass", "hasStyleClass"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	aggregatingType : "MatrixLayoutRow",
 	properties : {
@@ -51838,7 +51741,7 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -51864,7 +51767,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * Getter for property <code>backgroundDesign</code>.
  * 
  * Determines the matrix layout cell's background design.
- * 
  *
  * Default value is <code>'Transparent'</code>
  *
@@ -51892,7 +51794,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines how many columns of the underlying grid structure are occupied
  * by this matrix layout cell.
- * 
  *
  * Default value is <code>1</code>
  *
@@ -51920,7 +51821,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines the horizontal alignment of the matrix layout cell's content
  * with the cell's borders.
- * 
  *
  * Default value is <code>'Begin'</code>
  *
@@ -51950,7 +51850,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * cell's borders. The default value is appropriate for all cells in a
  * form-like layout. Consider to remove the padding on the outer layout in
  * case of nesting.
- * 
  *
  * Default value is <code>'End'</code>
  *
@@ -52004,7 +51903,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines how a matrix layout cell is separated from its predecessor,
  * via a vertical gutter of variable width, with or without a vertical line.
- * 
  *
  * Default value is <code>'None'</code>
  *
@@ -52032,7 +51930,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Determines the vertical alignment of the matrix layout cell's content
  * with the cell's borders.
- * 
  *
  * Default value is <code>'Middle'</code>
  *
@@ -52168,14 +52065,13 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutCell.prototype.addStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutCell#addStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the CSS class name to be added
-
  * @type sap.ui.commons.layout.MatrixLayoutCell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -52185,28 +52081,26 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutCell", { metadata 
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutCell.prototype.removeStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutCell#removeStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to be removed
-
  * @type sap.ui.commons.layout.MatrixLayoutCell
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns true if the given style class string is valid and if this Element has this style class set via a previous call to addStyleClass().
  *
- * @name sap.ui.commons.layout.MatrixLayoutCell.prototype.hasStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutCell#hasStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to check for
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -52218,7 +52112,7 @@ sap.ui.core.CustomStyleClassSupport.apply(sap.ui.commons.layout.MatrixLayoutCell
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.MatrixLayoutRow') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52274,25 +52168,22 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * @class
  * 
  * Non-control element used as part of a matrix layout's inner structure.
- * 
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.MatrixLayoutRow
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"addStyleClass", "removeStyleClass", "hasStyleClass"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	aggregatingType : "MatrixLayout",
 	properties : {
@@ -52300,7 +52191,7 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
 	},
 	defaultAggregation : "cells",
 	aggregations : {
-    	"cells" : {type : "sap.ui.commons.layout.MatrixLayoutCell", multiple : true, singularName : "cell"}
+		"cells" : {type : "sap.ui.commons.layout.MatrixLayoutCell", multiple : true, singularName : "cell"}
 	}
 }});
 
@@ -52351,7 +52242,6 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
  * Getter for aggregation <code>cells</code>.<br/>
  * 
  * The matrix layout row's individual cells.
- * 
  * 
  * <strong>Note</strong>: this is the default aggregation for layout/MatrixLayoutRow.
  * @return {sap.ui.commons.layout.MatrixLayoutCell[]}
@@ -52460,14 +52350,13 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutRow.prototype.addStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutRow#addStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the CSS class name to be added
-
  * @type sap.ui.commons.layout.MatrixLayoutRow
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -52477,28 +52366,26 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.MatrixLayoutRow", { metadata :
  * 
  * Returns <code>this</code> to allow method chaining
  *
- * @name sap.ui.commons.layout.MatrixLayoutRow.prototype.removeStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutRow#removeStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to be removed
-
  * @type sap.ui.commons.layout.MatrixLayoutRow
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns true if the given style class string is valid and if this Element has this style class set via a previous call to addStyleClass().
  *
- * @name sap.ui.commons.layout.MatrixLayoutRow.prototype.hasStyleClass
+ * @name sap.ui.commons.layout.MatrixLayoutRow#hasStyleClass
  * @function
- * @param {string} 
- *         sStyleClass
+ * @param {string} sStyleClass
  *         the style to check for
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -52511,7 +52398,7 @@ sap.ui.core.CustomStyleClassSupport.apply(sap.ui.commons.layout.MatrixLayoutRow.
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.PositionContainer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52573,22 +52460,20 @@ jQuery.sap.require('sap.ui.core.Element'); // unlisted dependency retained
  * Is used to specify the position of a control in the AbsoluteLayout
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.PositionContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.layout.PositionContainer", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"updatePosition"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"top" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -52600,7 +52485,7 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.PositionContainer", { metadata
 	},
 	defaultAggregation : "control",
 	aggregations : {
-    	"control" : {type : "sap.ui.core.Control", multiple : false}
+		"control" : {type : "sap.ui.core.Control", multiple : false}
 	}
 }});
 
@@ -52809,16 +52694,15 @@ sap.ui.core.Element.extend("sap.ui.commons.layout.PositionContainer", { metadata
 /**
  * Updates the position properties of the container according to the given position in JSON style.
  *
- * @name sap.ui.commons.layout.PositionContainer.prototype.updatePosition
+ * @name sap.ui.commons.layout.PositionContainer#updatePosition
  * @function
- * @param {object} 
- *         oPos
+ * @param {object} oPos
  *         JSON-like object which defines the position of the child control in the absolute layout. The object is expected
  *         to have one or more out of the attributes top, bottom, left, right (each with a value of type sap.ui.core.CSSSize). If no object
  *         is given, nothing is updated.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -53178,7 +53062,7 @@ var onPropertyChanges = function(oEvent){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.ResponsiveFlowLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53233,22 +53117,20 @@ jQuery.sap.require('sap.ui.layout.ResponsiveFlowLayout'); // unlisted dependency
  * This is a layout where several controls can be added. These controls are blown up to fit a whole line. If the window resizes the controls are moved between the lines and resized again.
  * @extends sap.ui.layout.ResponsiveFlowLayout
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.layout.ResponsiveFlowLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.ResponsiveFlowLayout.extend("sap.ui.commons.layout.ResponsiveFlowLayout", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -53276,7 +53158,7 @@ sap.ui.layout.ResponsiveFlowLayout.extend("sap.ui.commons.layout.ResponsiveFlowL
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.ResponsiveFlowLayoutData') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53331,22 +53213,20 @@ jQuery.sap.require('sap.ui.layout.ResponsiveFlowLayoutData'); // unlisted depend
  * This is a LayoutData Element that can be added to a control if this control is used within a ResponsiveFlowLayout
  * @extends sap.ui.layout.ResponsiveFlowLayoutData
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @deprecated Since version 1.16.0. 
  * moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.layout.ResponsiveFlowLayoutData
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.ResponsiveFlowLayoutData.extend("sap.ui.commons.layout.ResponsiveFlowLayoutData", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -53403,7 +53283,7 @@ sap.ui.layout.ResponsiveFlowLayoutData.extend("sap.ui.commons.layout.ResponsiveF
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.VerticalLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53458,21 +53338,19 @@ jQuery.sap.require('sap.ui.layout.VerticalLayout'); // unlisted dependency retai
  * In this layout the elemnts are orderd one below the other
  * @extends sap.ui.layout.VerticalLayout
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.16.0. 
  * Moved to sap.ui.layout library. Please use this one.
  * @name sap.ui.commons.layout.VerticalLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.VerticalLayout.extend("sap.ui.commons.layout.VerticalLayout", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -53500,7 +53378,7 @@ sap.ui.layout.VerticalLayout.extend("sap.ui.commons.layout.VerticalLayout", { me
 if ( !jQuery.sap.isDeclared('sap.ui.commons.AutoCompleteRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53566,7 +53444,7 @@ sap.ui.commons.AutoCompleteRenderer.renderARIAInfo = function(rm, oCtrl) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.Callout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53621,21 +53499,19 @@ jQuery.sap.declare("sap.ui.commons.Callout");
  * Callout is a small popup with some useful information and links that is shown when a mouse is hovered over a specific view element.
  * @extends sap.ui.commons.CalloutBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Callout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.CalloutBase.extend("sap.ui.commons.Callout", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -53746,7 +53622,7 @@ sap.ui.commons.CalloutBase.extend("sap.ui.commons.Callout", { metadata : {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.ComboBox') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53805,25 +53681,22 @@ jQuery.sap.declare("sap.ui.commons.ComboBox");
  * @class
  * 
  * The control provides a field that allows end users to either enter some text, or to choose an entry out of a list of pre-defined items. The choosable items can be provided in the form of complete list boxes, single listbox items, or text strings defined for the current application.
- * 
  * @extends sap.ui.commons.TextField
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ComboBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"maxPopupItems" : {type : "int", group : "Behavior", defaultValue : 10},
@@ -53833,8 +53706,8 @@ sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "item", bindable : "bindable"}, 
-    	"myListBox" : {type : "sap.ui.commons.ListBox", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "item", bindable : "bindable"}, 
+		"myListBox" : {type : "sap.ui.commons.ListBox", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"listBox" : {type : "sap.ui.commons.ListBox", multiple : false}
@@ -53863,7 +53736,6 @@ sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
  * Getter for property <code>maxPopupItems</code>.
  * 
  * Defines the number of items that shall be displayed at once. If the overall number of list items is higher than the setting, a scrollbar is provided.
- * 
  *
  * Default value is <code>10</code>
  *
@@ -53969,7 +53841,6 @@ sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
  * Getter for aggregation <code>items</code>.<br/>
  * 
  * Getter for aggregation items. Allows setting ListItems (see sap.ui.core.ListBox) that shall be displayed in the list.
- * 
  * 
  * <strong>Note</strong>: this is the default aggregation for ComboBox.
  * @return {sap.ui.core.ListItem[]}
@@ -55762,7 +55633,7 @@ sap.ui.commons.ComboBox.prototype.getFocusDomRef = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.DatePicker') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55822,18 +55693,16 @@ jQuery.sap.declare("sap.ui.commons.DatePicker");
  * Since version 1.22 the unified.Calendar is used inside the datePicker. So applications using the DatePicker should load the unified library. Otherwise it will be loaded the first time a DatePicker is opened.
  * @extends sap.ui.commons.TextField
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.DatePicker
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.DatePicker", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"locale" : {type : "string", group : "Misc", defaultValue : null},
@@ -55862,7 +55731,6 @@ sap.ui.commons.TextField.extend("sap.ui.commons.DatePicker", { metadata : {
 /**
  * Getter for property <code>locale</code>.
  * Defines the locale (language and country), e.g. "en-US", whose translations and Date formatters should be used to render the DatePicker.If the value property is bound to a model using a Date type the locale will be ignored, because the locale information of the model are used.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -55980,11 +55848,15 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 
 	};
 
+	sap.ui.commons.DatePicker.prototype.onsaphide = sap.ui.commons.DatePicker.prototype.onsapshow;
+
 	sap.ui.commons.DatePicker.prototype.onsappageup = function(oEvent){
 
 		//increase by one day
 		var that = this;
 		_incraseDate(that, 1, "day");
+
+		oEvent.preventDefault(); // do not move cursor
 
 	};
 
@@ -55999,6 +55871,8 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 			_incraseDate(that, 1, "year");
 		}
 
+		oEvent.preventDefault(); // do not move cursor
+
 	};
 
 	sap.ui.commons.DatePicker.prototype.onsappagedown = function(oEvent){
@@ -56006,6 +55880,8 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 		//decrease by one day
 		var that = this;
 		_incraseDate(that, -1, "day");
+
+		oEvent.preventDefault(); // do not move cursor
 
 	};
 
@@ -56019,6 +55895,8 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 			// decrease by one year
 			_incraseDate(that, -1, "year");
 		}
+
+		oEvent.preventDefault(); // do not move cursor
 
 	};
 
@@ -56048,7 +55926,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 
 		var sOldValue = this.getValue();
 		if (sValue == sOldValue) {
-			return;
+			return this;
 		}
 
 		var that = this;
@@ -56093,7 +55971,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 
 		var sOldYyyymmdd = this.getYyyymmdd();
 		if (sYyyymmdd == sOldYyyymmdd) {
-			return;
+			return this;
 		}
 
 		this.setProperty("yyyymmdd", sYyyymmdd, true);
@@ -56261,14 +56139,14 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 	/**
 	 * Fire event change to attached listeners.
 	 *
-	 * Expects following event parameters:
+	 * Provides the following event parameters:
 	 * <ul>
 	 * <li>'newValue' of type <code>string</code> The new / changed value of the DatePicker.</li>
 	 * <li>'newYyyymmdd' of type <code>string</code> The new / changed Yyyymmdd of the DatePicker. </li>
 	 * <li>'invalidValue' of type <code>boolean</code> The new / changed value of the DatePicker is not a valid date. </li>
 	 * </ul>
 	 *
-	 * @param {Map} [mArguments] the arguments to pass along with the event.
+	 * @param {boolean} bInvalidValue true is value is invalid
 	 * @return {sap.ui.commons.DatePicker} <code>this</code> to allow method chaining
 	 * @protected
 	 * @name sap.ui.commons.DatePicker#fireChange
@@ -56337,7 +56215,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 
 		return oThis._oFormat;
 
-	};
+	}
 
 	function _getUsedLocale(oThis) {
 
@@ -56352,7 +56230,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 
 		return oLocale;
 
-	};
+	}
 
 	function _checkLocaleAllowed(oThis) {
 
@@ -56364,7 +56242,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 			oThis._bIgnoreLocale = true;
 		}
 
-	};
+	}
 
 	function _open(oThis){
 
@@ -56415,7 +56293,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 		var eDock = sap.ui.core.Popup.Dock;
 		oThis._oPopup.open(0, eDock.BeginTop, eDock.BeginBottom, oThis, null, null, true);
 
-	};
+	}
 
 	function _toggleOpen(oThis){
 
@@ -56428,7 +56306,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 			}
 		}
 
-	};
+	}
 
 	function _selectDate(oEvent){
 
@@ -56459,7 +56337,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 
 		this.fireChange();
 
-	};
+	}
 
 	function _cancel(oEvent) {
 
@@ -56468,7 +56346,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 			this.focus();
 		}
 
-	};
+	}
 
 	function _handleClosed(oEvent) {
 
@@ -56477,7 +56355,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 			this.getRenderer().onblur(this);
 		}
 
-	};
+	}
 
 	function _incraseDate(oThis, iNumber, sUnit) {
 
@@ -56485,7 +56363,9 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 
 		if (oOldDate && oThis.getEditable() && oThis.getEnabled()) {
 			// use a new date object to have a real updated property
-			var oDate = new Date (oOldDate.getTime());
+			var oDate = new Date(oOldDate.getTime());
+			var $Input = jQuery(oThis.getInputDomRef());
+			var iPos = $Input.cursorPos();
 
 			switch (sUnit) {
 			case "day":
@@ -56505,13 +56385,13 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 			oThis._oDate = oDate;
 
 			// update value in input field
-			var $Input = jQuery(oThis.getInputDomRef());
 			var sOutputValue = oThis._formatValue(oDate);
 			$Input.val(sOutputValue);
+			$Input.cursorPos(iPos);
 
 		}
 
-	};
+	}
 
 }());
 
@@ -56519,7 +56399,7 @@ jQuery.sap.require('sap.ui.model.type.Date'); // unlisted dependency retained
 if ( !jQuery.sap.isDeclared('sap.ui.commons.DatePickerRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56562,7 +56442,7 @@ sap.ui.commons.DatePickerRenderer.renderOuterAttributes = function(rm, oControl)
 /**
  * Renders additional HTML for the DatePicker to the TextField (sets the icon)
  *
- * @param {sap.ui.fw.RenderManager} oRenderManager The RenderManager that can be used for
+ * @param {sap.ui.fw.RenderManager} rm The RenderManager that can be used for
  *                                                 writing to the Render-Output-Buffer.
  * @param {sap.ui.fw.Control} oControl An object representation of the control that should
  *                                     be rendered.
@@ -56663,11 +56543,12 @@ sap.ui.commons.DatePickerRenderer.convertPlaceholder = function(oDatePicker) {
 	return sPlaceholder;
 
 };
+
 }; // end of sap/ui/commons/DatePickerRenderer.js
 if ( !jQuery.sap.isDeclared('sap.ui.commons.DropdownBox') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56727,23 +56608,19 @@ jQuery.sap.declare("sap.ui.commons.DropdownBox");
  * The control provides a field that allows end users to an entry out of a list of pre-defined items. The choosable items can be provided in the form of complete list boxes or single list items.
  * Binding (see DataBinding) is also supported for list items.
  * @extends sap.ui.commons.ComboBox
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.DropdownBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.ComboBox.extend("sap.ui.commons.DropdownBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"clearHistory"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"searchHelpEnabled" : {type : "boolean", group : "Behavior", defaultValue : false},
@@ -56904,14 +56781,13 @@ sap.ui.commons.DropdownBox.M_EVENTS = {'searchHelp':'searchHelp'};
 
 
 /**
- * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed. 
+ * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed.
  *
  * @name sap.ui.commons.DropdownBox#searchHelp
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The current value of the DropdownBox.
  * @public
  */
@@ -56921,7 +56797,7 @@ sap.ui.commons.DropdownBox.M_EVENTS = {'searchHelp':'searchHelp'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.DropdownBox</code>.<br/> itself. 
  *  
- * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed. 
+ * Event fired whenever the configured searchHelpItem is clicked or the searchHelpItem is configured and F4 key is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -56971,11 +56847,11 @@ sap.ui.commons.DropdownBox.M_EVENTS = {'searchHelp':'searchHelp'};
  * Using this method the history of the DropdownBox can be cleared.
  * This might be necessary if the items of the DropdownBox have changed. Otherwise invalid items may appear in the history.
  *
- * @name sap.ui.commons.DropdownBox.prototype.clearHistory
+ * @name sap.ui.commons.DropdownBox#clearHistory
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -56995,7 +56871,11 @@ sap.ui.commons.DropdownBox.prototype.init = function() {
 	this._oValueBeforeOpen = null;
 	this.__aItems = null;
 	this._iCursorPosBeforeBackspace = null;
-	/** {sap.ui.core.ListItem[]} Array of ListItems containing SearchHelp followed by Separator @private */
+	/** 
+	 * Array of ListItems containing SearchHelp followed by Separator 
+	 * @type {sap.ui.core.ListItem[]} 
+	 * @private 
+	 */
 	this._searchHelpItem = null;
 	this._iItemsForHistory = 10; // UX defined history shall appear if there are more than 10 items
 	this._oHistory = new sap.ui.core.History(this.getId());
@@ -57035,6 +56915,7 @@ sap.ui.commons.DropdownBox.prototype.exit = function() {
 
 /**
  * Ensure that handed in ListBoxes are taken from the visible UI immediately.
+ * @param {object} oEvent
  * @protected
  */
 sap.ui.commons.DropdownBox.prototype.onAfterRendering = function(oEvent){
@@ -58550,7 +58431,7 @@ sap.ui.commons.ComboBox.prototype._isSetEmptySelectedKeyAllowed = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.InPlaceEdit') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58607,24 +58488,20 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * The InPlaceEdit is a functionality to have text in display mode that can be changed in place.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.8.0
  * @name sap.ui.commons.InPlaceEdit
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.InPlaceEdit", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"clearOldText"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"valueState" : {type : "sap.ui.core.ValueState", group : "Data", defaultValue : sap.ui.core.ValueState.None},
@@ -58633,7 +58510,7 @@ sap.ui.core.Control.extend("sap.ui.commons.InPlaceEdit", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : false}
+		"content" : {type : "sap.ui.core.Control", multiple : false}
 	},
 	events : {
 		"change" : {}, 
@@ -58690,7 +58567,6 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 /**
  * Getter for property <code>undoEnabled</code>.
  * If undo is enabled after changing the text an undo button appears.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -58776,14 +58652,13 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed.
  *
  * @name sap.ui.commons.InPlaceEdit#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.newValue The new / changed value of the InPlaceEdit.
  * @public
  */
@@ -58793,7 +58668,7 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.InPlaceEdit</code>.<br/> itself. 
  *  
- * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -58840,7 +58715,7 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @name sap.ui.commons.InPlaceEdit#liveChange
  * @event
@@ -58848,7 +58723,6 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.liveValue Current value of the Textfield.
  * @public
  */
@@ -58858,7 +58732,7 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.InPlaceEdit</code>.<br/> itself. 
  *  
- * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -58910,11 +58784,11 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 /**
  * Clear the old text after a change to disable the undo functionality. If undoEnabled is false this has no effect.
  *
- * @name sap.ui.commons.InPlaceEdit.prototype.clearOldText
+ * @name sap.ui.commons.InPlaceEdit#clearOldText
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -59805,7 +59679,7 @@ jQuery.sap.require('sap.ui.core.ValueStateSupport'); // unlisted dependency reta
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MenuBar') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59863,21 +59737,18 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * set of actions that shall be provided in a structured way. The MenuBar contains the menu titles from where users navigate to the single items. The control supports
  * for example long menu item texts, automated scrolling for menu items when the browser space is not large enough to display all items, defining images for single
  * or all items in a menu, automated layouting of items with or w/o image, and active/non-active items.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.MenuBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MenuBar", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enabled" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -59887,7 +59758,7 @@ sap.ui.core.Control.extend("sap.ui.commons.MenuBar", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.unified.MenuItem", multiple : true, singularName : "item"}
+		"items" : {type : "sap.ui.unified.MenuItem", multiple : true, singularName : "item"}
 	}
 }});
 
@@ -60590,7 +60461,7 @@ var focusStep = function(oThis, oEvent, sDir){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.PasswordField') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60644,18 +60515,16 @@ jQuery.sap.declare("sap.ui.commons.PasswordField");
  * A text field with masked characters which borrows its properties and methods from TextField.
  * @extends sap.ui.commons.TextField
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.PasswordField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.PasswordField", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -60706,7 +60575,7 @@ sap.ui.commons.PasswordField.prototype.onsapfocusleave = function(oEvent) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RangeSlider') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60762,19 +60631,17 @@ jQuery.sap.declare("sap.ui.commons.RangeSlider");
  * Users can move the pointers along the line to change a range with graphical support.
  * @extends sap.ui.commons.Slider
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.8.0
  * @name sap.ui.commons.RangeSlider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.Slider.extend("sap.ui.commons.RangeSlider", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"value2" : {type : "float", group : "Appearance", defaultValue : 80}
@@ -61436,7 +61303,7 @@ sap.ui.commons.RangeSlider.prototype.setAriaState = function() {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.RowRepeaterRenderer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61806,7 +61673,7 @@ sap.ui.commons.RowRepeaterRenderer.renderFooter = function(oRenderManager, oCont
 if ( !jQuery.sap.isDeclared('sap.ui.commons.SearchField') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61881,16 +61748,16 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.SearchField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.SearchField", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -61898,8 +61765,6 @@ sap.ui.core.Control.extend("sap.ui.commons.SearchField", { metadata : {
 		// methods
 		"clearHistory", "suggest"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enableListSuggest" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -61921,7 +61786,7 @@ sap.ui.core.Control.extend("sap.ui.commons.SearchField", { metadata : {
 		"maxHistoryItems" : {type : "int", group : "Behavior", defaultValue : 0}
 	},
 	aggregations : {
-    	"searchProvider" : {type : "sap.ui.core.search.SearchProvider", multiple : false}
+		"searchProvider" : {type : "sap.ui.core.search.SearchProvider", multiple : false}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -62285,7 +62150,6 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * 
  * Defines the number of items in the suggestion list that shall be displayed at once. If the overall number of list items is higher than the setting,
  * a scroll bar is provided.
- * 
  *
  * Default value is <code>20</code>
  *
@@ -62312,7 +62176,6 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * Getter for property <code>startSuggestion</code>.
  * 
  * Minimum length of the entered string triggering the suggestion list.
- * 
  *
  * Default value is <code>3</code>
  *
@@ -62339,7 +62202,6 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * Getter for property <code>maxSuggestionItems</code>.
  * 
  * Maximum number of suggestion items in the suggestion list.
- * 
  *
  * Default value is <code>10</code>
  *
@@ -62494,14 +62356,13 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
 
 	
 /**
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @name sap.ui.commons.SearchField#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The search query
  * @public
  */
@@ -62511,7 +62372,7 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.SearchField</code>.<br/> itself. 
  *  
- * Event which is fired when the user triggers a search 
+ * Event which is fired when the user triggers a search
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -62558,14 +62419,13 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
 
 
 /**
- * Event which is fired when new suggest values are required. 
+ * Event which is fired when new suggest values are required.
  *
  * @name sap.ui.commons.SearchField#suggest
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The value for which suggestions are required.
  * @public
  */
@@ -62575,7 +62435,7 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.SearchField</code>.<br/> itself. 
  *  
- * Event which is fired when new suggest values are required. 
+ * Event which is fired when new suggest values are required.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -62624,28 +62484,26 @@ sap.ui.commons.SearchField.M_EVENTS = {'search':'search','suggest':'suggest'};
 /**
  * Clears the history of the control
  *
- * @name sap.ui.commons.SearchField.prototype.clearHistory
+ * @name sap.ui.commons.SearchField#clearHistory
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Callback function used to provide the suggest values in the handler of the suggest event (only in list suggestion mode)
  *
- * @name sap.ui.commons.SearchField.prototype.suggest
+ * @name sap.ui.commons.SearchField#suggest
  * @function
- * @param {string} 
- *         sSSuggestValue
+ * @param {string} sSSuggestValue
  *         The value which was provided in the corresponding suggest event (parameter 'value')
- * @param {string[]} 
- *         aASuggestions
+ * @param {string[]} aASuggestions
  *         The list of suggestions belonging to the suggest value
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -62675,6 +62533,7 @@ var _DEFAULT_VISIBLE_ITEM_COUNT = 20;
 sap.ui.commons.SearchField.prototype.init = function(){
 	_initChildControls(this, this.getEnableListSuggest());
 	this._oHistory = new sap.ui.core.History(this.getId());
+	this._clearTooltipText = getText("SEARCHFIELD_CLEAR_TOOLTIP");
 };
 
 
@@ -62720,6 +62579,7 @@ sap.ui.commons.SearchField.prototype.onAfterRendering = function(){
 		var iButtonWidth = this._btn.$().outerWidth(true);
 		this._ctrl.$().css(sap.ui.getCore().getConfiguration().getRTL() ? "left" : "right", iButtonWidth+"px");
     }
+	_setClearTooltip(this);
 };
 
 
@@ -62746,14 +62606,20 @@ sap.ui.commons.SearchField.prototype.oncut = sap.ui.commons.SearchField.prototyp
 
 sap.ui.commons.SearchField.prototype.fireSearch = function(mArguments) {
 	var sVal = jQuery(this._ctrl.getInputDomRef()).val();
-	if((!sVal && !this.getEnableFilterMode()) || !this.getEditable() || !this.getEnabled()) {
+	if(!this.getEditable() || !this.getEnabled()) {
 		return this;
 	}
+	
+	this.setValue(sVal);
+	
+	if(!sVal && !this.getEnableFilterMode()){
+		return this;
+	}
+	
 	if(!mArguments) {
 		mArguments = {};
 	}
-
-	this.setValue(sVal);
+	
 	if(!mArguments.noFocus){
 		sVal = this.getValue();
 		this.focus();
@@ -62805,7 +62671,12 @@ sap.ui.commons.SearchField.prototype.getValue = function() {
 };
 
 sap.ui.commons.SearchField.prototype.setValue = function(sValue) {
-	return _set(this, "Value", sValue, !!this.getDomRef(), true);
+	var res = _set(this, "Value", sValue, !!this.getDomRef(), true);
+	if(this.getEnableClear() && this.getDomRef()){
+		this.$().toggleClass("sapUiSearchFieldVal", !!sValue);
+		_setClearTooltip(this);
+	}
+	return res;
 };
 
 sap.ui.commons.SearchField.prototype.setEnableCache = function(bEnableCache) {
@@ -62923,6 +62794,17 @@ sap.ui.commons.SearchField.prototype.addAriaLabelledBy = function(v) {
 // Private helper functions
 //***********************************************
 
+var _setClearTooltip = function(oThis){
+	var $this = oThis.$(),
+		$ico = oThis._ctrl.$("searchico");
+	
+	if($this.hasClass("sapUiSearchFieldClear") && $this.hasClass("sapUiSearchFieldVal")){
+		$ico.attr("title", oThis._clearTooltipText);
+	}else{
+		$ico.removeAttr("title");
+	}
+};
+
 var _set = function(oThis, sMutator, oVal, bSuppressRerendering, bUpdateModelProperty) {
 	var oOldVal = _get(oThis, sMutator);
 	oThis._ctrl["set"+sMutator](oVal);
@@ -62955,6 +62837,11 @@ var _initChildControls = function(oThis, bEnableListSuggest) {
 		oNewControl = new sap.ui.commons.SearchField.TF(oThis.getId()+"-tf");
 	}
 	oNewControl.setParent(oThis);
+	oNewControl.addEventDelegate({
+		onAfterRendering: function(){
+			_setClearTooltip(oThis);
+		}
+	});
 	if(oOldControl){
 		oNewControl.setValue(oOldControl.getValue());
 		oNewControl.setEnabled(oOldControl.getEnabled());
@@ -63188,7 +63075,8 @@ sap.ui.commons.ComboBox.extend("sap.ui.commons.SearchField.CB", {
   onkeypress : sap.ui.commons.SearchField.TF.prototype.onkeypress,
   
   onkeyup : function(oEvent, bSkipOpen) {
-	this.getParent().$().toggleClass("sapUiSearchFieldVal", !!jQuery(this.getInputDomRef()).val())
+	this.getParent().$().toggleClass("sapUiSearchFieldVal", !!jQuery(this.getInputDomRef()).val());
+	_setClearTooltip(this.getParent());
 	  
   	if(oEvent){
   		var oKC = jQuery.sap.KeyCodes;
@@ -63373,7 +63261,7 @@ sap.ui.commons.ComboBox.extend("sap.ui.commons.SearchField.CB", {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.TextArea') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -63433,19 +63321,15 @@ jQuery.sap.declare("sap.ui.commons.TextArea");
  * @class
  * Control to enter or display multible row text.
  * @extends sap.ui.commons.TextField
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TextArea
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.TextArea", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -63959,7 +63843,7 @@ sap.ui.commons.TextArea.prototype.setCursorPos = function(iCursorPos) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.AbsoluteLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64016,25 +63900,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * @class
  * 
  * The Absolute Layout positions its child controls absolutely
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.AbsoluteLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.layout.AbsoluteLayout", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setPositionOfChild", "destroyContent", "indexOfContent", "removeAllContent", "removeContent", "insertContent", "addContent", "getContent"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "", defaultValue : true},
@@ -64045,7 +63926,7 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.AbsoluteLayout", { metadata : 
 	},
 	defaultAggregation : "positions",
 	aggregations : {
-    	"positions" : {type : "sap.ui.commons.layout.PositionContainer", multiple : true, singularName : "position"}
+		"positions" : {type : "sap.ui.commons.layout.PositionContainer", multiple : true, singularName : "position"}
 	}
 }});
 
@@ -64277,30 +64158,28 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.AbsoluteLayout", { metadata : 
 /**
  * Allows to set or change the position information of the given child control
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.setPositionOfChild
+ * @name sap.ui.commons.layout.AbsoluteLayout#setPositionOfChild
  * @function
- * @param {sap.ui.core.Control} 
- *         oControl
+ * @param {sap.ui.core.Control} oControl
  *         The child control for which to change the position information; if empty or not aggregated, nothing is changed
- * @param {object} 
- *         oPos
+ * @param {object} oPos
  *         JSON-like object which defines the position of the child control. The object is expected to have one or more from the attribute set
  *         top, bottom, left, right; each with a value of type sap.ui.core.CSSSize.
  *         If no object is given, the default is used which is left=0px,right=0px.
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Destroys all aggregated position containers and their child controls. Returns 'this' to allow method chaining.
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.destroyContent
+ * @name sap.ui.commons.layout.AbsoluteLayout#destroyContent
  * @function
-
  * @type sap.ui.commons.layout.AbsoluteLayout
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -64308,90 +64187,83 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.AbsoluteLayout", { metadata : 
  * Checks for the provided sap.ui.core.Control in the aggregated position containers, and returns the index of the container in the positions aggregation
  * if found, or '-1' otherwise.
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.indexOfContent
+ * @name sap.ui.commons.layout.AbsoluteLayout#indexOfContent
  * @function
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         The content of which the index is looked for
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes all aggregated position containers. Returns an array of the controls contained in the removed position containers (might be empty).
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.removeAllContent
+ * @name sap.ui.commons.layout.AbsoluteLayout#removeAllContent
  * @function
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the given control and its corresponding position container from the aggregation named 'positions'.
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.removeContent
+ * @name sap.ui.commons.layout.AbsoluteLayout#removeContent
  * @function
- * @param {object} 
- *         oContent
+ * @param {object} oContent
  *         The content control to remove, its ID, or the index of the corresponding position container in the 'positions' aggregation.
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Inserts the given control and a corresponding position container into the aggregation named 'positions'. Returns 'this' to allow method chaining.
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.insertContent
+ * @name sap.ui.commons.layout.AbsoluteLayout#insertContent
  * @function
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         The content to insert; if empty, nothing is inserted
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         The '0'-based index where the content shall be inserted at. For a negative value of iIndex, the content is inserted at position '0';
  *         for a value greater than the current size of the aggregation, the content is inserted at the last position.
- * @param {object} 
- *         oPos
+ * @param {object} oPos
  *         JSON-like object which defines the position of the child control within the layout. The object is expected to have one or more
  *         from the attribute set top, bottom, left, right; each with a value of type sap.ui.core.CSSSize. If no object is given, the default is left=0px,right=0px.
-
  * @type sap.ui.commons.layout.AbsoluteLayout
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds the given control and a corresponding position container into the aggregation named 'positions'. Returns 'this' to allow method chaining.
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.addContent
+ * @name sap.ui.commons.layout.AbsoluteLayout#addContent
  * @function
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         The content to add; if empty, nothing is inserted.
- * @param {object} 
- *         oPos
+ * @param {object} oPos
  *         JSON-like object which defines the position of the child control in the layout. The object is expected to have one or more from the attribute set
  *         top, bottom, left, right; each with a value of type sap.ui.core.CSSSize. If no object is given, the default is left=0px,right=0px
-
  * @type sap.ui.commons.layout.AbsoluteLayout
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns an array of the controls contained in the aggregated position containers (might be empty).
  *
- * @name sap.ui.commons.layout.AbsoluteLayout.prototype.getContent
+ * @name sap.ui.commons.layout.AbsoluteLayout#getContent
  * @function
-
  * @type sap.ui.core.Control[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -64773,7 +64645,7 @@ var setProp = function(oThis, sProp, oValue, sChangeType) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.layout.MatrixLayout') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64849,25 +64721,22 @@ jQuery.sap.require('sap.ui.core.Control'); // unlisted dependency retained
  * You should <b>avoid nesting</b> matrix layouts. You should only use a
  * matrix layout if you need to align controls horizontally across rows.
  * </p>
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.layout.MatrixLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createRow"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -64879,7 +64748,7 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
 	},
 	defaultAggregation : "rows",
 	aggregations : {
-    	"rows" : {type : "sap.ui.commons.layout.MatrixLayoutRow", multiple : true, singularName : "row"}
+		"rows" : {type : "sap.ui.commons.layout.MatrixLayoutRow", multiple : true, singularName : "row"}
 	}
 }});
 
@@ -64906,7 +64775,6 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
  * 
  * Determines whether the matrix layout, including all its content, is
  * visible. An invisible control will not be rendered.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -64959,7 +64827,6 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
  * Getter for property <code>height</code>.
  * 
  * CSS height of the matrix layout.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -65065,7 +64932,6 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
  * 
  * The matrix layout's individual rows.
  * 
- * 
  * <strong>Note</strong>: this is the default aggregation for layout/MatrixLayout.
  * @return {sap.ui.commons.layout.MatrixLayoutRow[]}
  * @public
@@ -65147,15 +65013,14 @@ sap.ui.core.Control.extend("sap.ui.commons.layout.MatrixLayout", { metadata : {
 /**
  * Creates a new matrix layout row and appends it to this matrix layout.
  *
- * @name sap.ui.commons.layout.MatrixLayout.prototype.createRow
+ * @name sap.ui.commons.layout.MatrixLayout#createRow
  * @function
- * @param {sap.ui.core.Control} 
- *         oControls
+ * @param {sap.ui.core.Control} oControls
  *         Each argument must be either a matrix layout cell, which is added to the row "as is", or an arbitrary content control, which is wrapped with a new (default) matrix layout cell first and then added to the row.
  *         Supports a variable number of arguments!
-
  * @type sap.ui.commons.layout.MatrixLayout
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -65235,7 +65100,7 @@ sap.ui.commons.layout.MatrixLayout.prototype.setWidths = function( aWidths ) {
 if ( !jQuery.sap.isDeclared('sap.ui.commons.AutoComplete') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -65290,21 +65155,20 @@ jQuery.sap.declare("sap.ui.commons.AutoComplete");
  * @class
  * 
  * Textfield with list based text completion.
- * 
  * @extends sap.ui.commons.ComboBox
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.10.0
  * @name sap.ui.commons.AutoComplete
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.ComboBox.extend("sap.ui.commons.AutoComplete", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -65312,8 +65176,6 @@ sap.ui.commons.ComboBox.extend("sap.ui.commons.AutoComplete", { metadata : {
 		// methods
 		"setFilterFunction"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enableScrolling" : {type : "boolean", group : "Misc", defaultValue : true}
@@ -65370,14 +65232,13 @@ sap.ui.commons.AutoComplete.M_EVENTS = {'suggest':'suggest'};
 
 
 /**
- * Fired when the user has changed the value and a suggestion list update should occur. 
+ * Fired when the user has changed the value and a suggestion list update should occur.
  *
  * @name sap.ui.commons.AutoComplete#suggest
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.suggestValue The current value which was typed in.
  * @public
  */
@@ -65387,7 +65248,7 @@ sap.ui.commons.AutoComplete.M_EVENTS = {'suggest':'suggest'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.AutoComplete</code>.<br/> itself. 
  *  
- * Fired when the user has changed the value and a suggestion list update should occur. 
+ * Fired when the user has changed the value and a suggestion list update should occur.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -65436,11 +65297,11 @@ sap.ui.commons.AutoComplete.M_EVENTS = {'suggest':'suggest'};
 /**
  * Sets a custom filter function for items. Default is to check whether the item text begins with the typed value.
  *
- * @name sap.ui.commons.AutoComplete.prototype.setFilterFunction
+ * @name sap.ui.commons.AutoComplete#setFilterFunction
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -65820,7 +65681,7 @@ sap.ui.commons.AutoComplete.prototype.setSelectedItemId = function(){
 if ( !jQuery.sap.isDeclared('sap.ui.commons.MessageBox') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -65985,7 +65846,8 @@ sap.ui.commons.MessageBox.Icon = {
 	 * After the user has selected a button or closed the message box using the close icon, the <code>callback</code>
 	 * function is invoked when given.
 	 *
-	 * The only mandatory parameter is <code>sMessage</code>.
+	 * The only mandatory parameter is <code>vMessage</code>. Either a string with the corresponding text or even
+	 * a layout control could be provided.
 	 *
 	 * The created dialog box is executed asynchronously. When it has been created and registered for rendering,
 	 * this function returns without waiting for a user reaction.
@@ -66000,7 +65862,7 @@ sap.ui.commons.MessageBox.Icon = {
 	 * where <code>oAction</code> is the button that the user has pressed. When the user has pressed the close button,
 	 * a MessageBox.Action.Close is returned.
 	 *
-	 * @param {string} sMessage The message to be displayed.
+	 * @param {string | sap.ui.core.Control} vMessage The message to be displayed.
 	 * @param {sap.ui.commons.MessageBox.Icon} [oIcon=None] The icon to be displayed.
 	 * @param {string} [sTitle=''] The title of the message box.
 	 * @param {sap.ui.commons.MessageBox.Action|sap.ui.commons.MessageBox.Action[]} [vActions] Either a single action, or an array of actions.
@@ -66010,7 +65872,7 @@ sap.ui.commons.MessageBox.Icon = {
 	 * @param {string} [sDialogId] ID to be used for the dialog. Intended for test scenarios, not recommended for productive apps
 	 * @public
 	 */
-	sap.ui.commons.MessageBox.show = function(sMessage, oIcon, sTitle, vActions, fnCallback, oDefaultAction, sDialogId) {
+	sap.ui.commons.MessageBox.show = function(vMessage, oIcon, sTitle, vActions, fnCallback, oDefaultAction, sDialogId) {
 
 		var rb = sap.ui.getCore().getLibraryResourceBundle("sap.ui.commons"),
 			oDialog, oResult, oContent, oMsg, oDefaultButton;
@@ -66076,7 +65938,13 @@ sap.ui.commons.MessageBox.Icon = {
 		}
 
 		oContent = new c.layout.MatrixLayout({id : sDialogId + "--lyt", layoutFixed:false}).addStyleClass("sapUiMboxCont");
-		oMsg = new c.TextView({id : sDialogId + "--msg", text:sMessage}).addStyleClass("sapUiMboxText");
+
+		if (typeof(vMessage) === "string") {
+			oMsg = new c.TextView({id : sDialogId + "--msg"}).setText(vMessage).addStyleClass("sapUiMboxText");
+		} else if (vMessage instanceof sap.ui.core.Control) {
+			oMsg = vMessage.addStyleClass("sapUiMboxText");
+		}
+
 		if ( oIcon !== Icon.NONE ) {
 			oContent.createRow(cell(image(oIcon)), cell(oMsg));
 		} else {
@@ -66115,14 +65983,14 @@ sap.ui.commons.MessageBox.Icon = {
 	 * Applications have to use the <code>fnCallback</code> to continue work after the
 	 * user closed the alert box.
 	 *
-	 * @param {string} sMessage Message to be displayed in the alert box
+	 * @param {string | sap.ui.core.Control} vMessage Message to be displayed in the alert box
 	 * @param {function} [fnCallback] callback function to be called when the user closed the dialog
 	 * @param {string } [sTitle] Title to be displayed in the alert box
 	 * @param {string} [sDialogId] ID to be used for the alert box. Intended for test scenarios, not recommended for productive apps
 	 * @public
 	 */
-	sap.ui.commons.MessageBox.alert = function(sMessage, fnCallback, sTitle, sDialogId) {
-		return c.MessageBox.show(sMessage, Icon.NONE, sTitle, Action.OK,
+	sap.ui.commons.MessageBox.alert = function(vMessage, fnCallback, sTitle, sDialogId) {
+		return c.MessageBox.show(vMessage, Icon.NONE, sTitle, Action.OK,
 				function(oAction) {
 					if ( typeof fnCallback === "function" ) {
 						fnCallback();
@@ -66146,14 +66014,14 @@ sap.ui.commons.MessageBox.Icon = {
 	 * Applications have to use the <code>fnCallback</code> to continue work after the
 	 * user closed the alert box.
 	 *
-	 * @param {string} sMessage Message to display
+	 * @param {string | sap.ui.core.Control} vMessage Message to display
 	 * @param {function} [fnCallback] Callback to be called
 	 * @param {string} [sTitle] Title to display
 	 * @param {string} [sDialogId] ID to be used for the confirmation dialog. Intended for test scenarios, not recommended for productive apps
 	 * @public
 	 */
-	sap.ui.commons.MessageBox.confirm = function(sMessage, fnCallback, sTitle, sDialogId) {
-		return c.MessageBox.show(sMessage, Icon.QUESTION, sTitle, [Action.OK, Action.CANCEL],
+	sap.ui.commons.MessageBox.confirm = function(vMessage, fnCallback, sTitle, sDialogId) {
+		return c.MessageBox.show(vMessage, Icon.QUESTION, sTitle, [Action.OK, Action.CANCEL],
 				function(oAction) {
 					if ( typeof fnCallback === "function" ) {
 						fnCallback(oAction === Action.OK);

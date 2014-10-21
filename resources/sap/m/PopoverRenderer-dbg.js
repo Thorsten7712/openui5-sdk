@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.PopoverRenderer");
@@ -86,15 +86,6 @@ sap.m.PopoverRenderer.renderContent = function(rm, oControl){
 		rm.write("<span id='" + oControl.getId() + "-firstfe' tabindex='0'></span>");
 	}
 
-	if(!sap.ui.Device.os.ios && !sap.m.Popover._bOneDesign){
-		//arrow
-		rm.write("<span");
-		rm.writeAttribute("id", sId+"-arrow");
-		rm.addClass("sapMPopoverArr");
-		rm.writeClasses();
-		rm.write("></span>");//arrow tip
-	}
-
 	//header
 	if(oHeader){
 		if(oHeader.applyTagAndContextClassFor){
@@ -147,15 +138,13 @@ sap.m.PopoverRenderer.renderContent = function(rm, oControl){
 		}
 		rm.renderControl(oFooter.addStyleClass(sFooterClass));
 	}//footer
-	
-	if(sap.ui.Device.os.ios || sap.m.Popover._bOneDesign){
-		//arrow
-		rm.write("<span");
-		rm.writeAttribute("id", sId+"-arrow");
-		rm.addClass("sapMPopoverArr");
-		rm.writeClasses();
-		rm.write("></span>");//arrow tip
-	}
+
+	//arrow
+	rm.write("<span");
+	rm.writeAttribute("id", sId+"-arrow");
+	rm.addClass("sapMPopoverArr");
+	rm.writeClasses();
+	rm.write("></span>");//arrow tip
 
 	if(sap.ui.Device.system.desktop) {
 		//Invisible element for desktop keyboard navigation

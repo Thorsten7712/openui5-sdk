@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,7 +53,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './Filter', './Sorter'],
 	
 			publicMethods : [
 				// methods
-				"getContexts", "sort", "attachSort", "detachSort", "filter", "attachFilter", "detachFilter", "getDistinctValues", "isGrouped"
+				"getContexts", "sort", "attachSort", "detachSort", "filter", "attachFilter", "detachFilter", "getDistinctValues", "isGrouped", "getLength", "isLengthFinal"
 			]
 		}
 		
@@ -109,6 +109,34 @@ sap.ui.define(['jquery.sap.global', './Binding', './Filter', './Sorter'],
 	 * @return {sap.ui.model.ListBinding} returns <code>this</code> to facilitate method chaining 
 	 * @public
 	 */
+	
+	/**
+	 * Returns the number of entries in the list. This might be an estimated or preliminary length, in case
+	 * the full length is not known yet, see method isLengthFinal().
+	 *
+	 * @function
+	 * @name sap.ui.model.ListBinding.prototype.getLength
+	 * @return {int} returns the number of entries in the list
+	 * @since 1.24
+	 * @public
+	 */
+	ListBinding.prototype.getLength = function() {
+		return 0;
+	};
+	
+	/**
+	 * Returns whether the length which can be retrieved using getLength() is a known, final length,
+	 * or an preliminary or estimated length which may change if further data is requested.  
+	 *
+	 * @function
+	 * @name sap.ui.model.ListBinding.prototype.isLengthFinal
+	 * @return {boolean} returns whether the length is final
+	 * @since 1.24
+	 * @public
+	 */
+	ListBinding.prototype.isLengthFinal = function() {
+		return true;
+	};
 	
 	// base methods, may be overridden by child classes
 	/**

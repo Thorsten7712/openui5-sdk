@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ViewSettingsDialog</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>ViewSettingsDialog provides functionality to easily select the options for sorting, grouping, and filtering data. It is a composite control, consisting of a modal popover and several internal lists. There are three different tabs (Sort, Group, Filter) in the dialog that can be activated by filling the respecive associations. If only one assication is filled, the other tabs are automatically hidden. The selected options can be used to create sorters and filters for the table.</documentation>
 	<since>1.16</since>
 	<baseType>sap.ui.core/Control</baseType>

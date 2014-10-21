@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24,8 +24,8 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.sjax'],
 	 * Additionally, the getKeys method can be used to retrieve an array of all keys that are
 	 * currently in the list.
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @since 0.9.0
 	 * @name jQuery.sap.util.Properties
 	 * @public
@@ -244,26 +244,63 @@ sap.ui.define(['jquery.sap.global', 'jquery.sap.sjax'],
 	 * @public
 	 * @param {object} [mParams] Parameters used to initialize the property list
 	 * @param {string} [mParams.url] The URL to the .properties file which should be loaded.
+	 * @param {boolean} [mParams.async] Whether the .properties file which should be loaded asynchronously (Default: <code>false</code>)
 	 * @param {object} [mParams.headers] A map of additional header key/value pairs to send along with the request (see headers option of jQuery.ajax). 
-	 * @return {jQuery.sap.util.Properties} A new property list instance
+	 * @return {jQuery.sap.util.Properties|Promise} A new property list instance (synchronous case). In case of asynchronous loading an ECMA Script 6 Promise is returned.
 	 * @SecSink {0|PATH} Parameter is used for future HTTP requests
 	 */
 	jQuery.sap.properties = function properties(mParams) {
-		var oProp = new Properties();
 		mParams = jQuery.extend({url: undefined, headers: {}}, mParams);
-		if (typeof(mParams.url) == "string"){
-			var sText = jQuery.sap.loadResource({
-				url: mParams.url,
-				dataType: 'text',
-				headers: mParams.headers,
-				failOnError: false
-			});
 		
+		var bAsync = !!mParams.async,
+			oProp = new Properties();
+		
+		
+		function _parse(sText){
 			if (typeof(sText) == "string") {
 				parse(sText, oProp);
 			}
+		};
+		
+		function _load(){
+			var oRes;
+			
+			if (typeof(mParams.url) == "string"){
+				oRes = jQuery.sap.loadResource({
+					url: mParams.url,
+					dataType: 'text',
+					headers: mParams.headers,
+					failOnError: false,
+					async: bAsync
+				});
+			}
+			
+			return oRes;
+		};
+		
+		if(bAsync){
+			return new window.Promise(function(resolve, reject){
+				var oRes = _load();
+				if(!oRes){
+					resolve(oProp);
+					return;
+				}
+				
+				oRes.then(function(oVal){
+					try{
+						_parse(oVal);
+						resolve(oProp);
+					}catch(e){
+						reject(e);
+					}
+				}, function(oVal){
+					reject(oVal instanceof Error ? oVal : new Error("Problem during loading of property file '"+mParams.url+"': "+oVal));
+				});
+			});
+		}else{
+			_parse(_load());
+			return oProp;
 		}
-		return oProp;
 	};
 
 	return jQuery;

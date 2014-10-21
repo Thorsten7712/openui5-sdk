@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>SplitApp</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>SplitApp is another root element of a UI5 mobile application besides App control. It maintains two NavContainers if runs in tablet and one NavContainer in phone. The display of master NavContainer depends on the portrait/landscape of the device and the mode of SplitApp.</documentation>
 	<baseType>SplitContainer</baseType>
 	<properties>

@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta charset="UTF-8">
-		<title>Test Page for sap.m.slider</title>
+		<title>Test page for sap.m.Slider</title>
 		<style type="text/css">
 			div.sapMSliderWithoutPadding {
 				padding-left: 0;
@@ -18,6 +18,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
@@ -55,7 +56,7 @@
 				}
 			};
 
-			function fnGetControlProperty(mOptions) {
+			var fnGetControlProperty = function(mOptions) {
 
 				// arrange
 				var sProperty = mOptions.property.charAt(0).toUpperCase() + mOptions.property.slice(1);
@@ -72,7 +73,40 @@
 
 				// cleanup
 				mOptions.control.destroy();
-			}
+			};
+
+			/**
+			 * Programmatically triggers a touch event specified by its name.
+			 * The onEVENTNAME functions are called directly on the "nearest" control / element of the given target.
+			 *
+			 * @param {string} sEventName The name of the touch event (touchstart, touchmove, touchend)
+			 * @param {string | DOMElement} oTarget The ID of a DOM element or a DOM element which serves as target of the event
+			 * @param {object} [oParams] The parameters which should be attached to the event in JSON notation (depending on the event type).
+			 * @public
+			 */
+			var triggerTouchEvent = function(sEventName, oTarget, oParams) {
+				if (typeof oTarget === "string") {
+					oTarget = jQuery.sap.domById(oTarget);
+				}
+
+				var $Target = jQuery(oTarget);
+
+				var oEvent = jQuery.Event(sEventName);
+				oEvent.originalEvent = {};
+				oEvent.target = oTarget;
+
+				if (oParams) {
+					for(var x in oParams){
+						oEvent[x] = oParams[x];
+						oEvent.originalEvent[x] = oParams[x];
+					}
+				}
+
+				var oElement = $Target.control(0);
+				if (oElement && oElement["_on" + sEventName]) {
+					oElement["_on" + sEventName].apply(oElement, [oEvent]);
+				}
+			};
 
 			/* =========================================================== */
 			/* HTML module                                                 */
@@ -842,7 +876,8 @@
 					oTouches["0"].pageX = i;
 
 					sap.ui.test.qunit.triggerTouchEvent("touchmove", oSlider.getDomRef(), {
-						targetTouches: oTouches
+						targetTouches: oTouches,
+						pageX: i
 					});
 
 					// assertions
@@ -1462,7 +1497,7 @@
 		</script>
 	</head>
 	<body id="body" class="sapUiBody">
-		<h1 id="qunit-header">QUnit tests: sap.m.slider</h1>
+		<h1 id="qunit-header">QUnit tests: sap.m.Slider</h1>
 		<h2 id="qunit-banner"></h2>
 		<h2 id="qunit-userAgent"></h2>
 		<div id="qunit-testrunner-toolbar"></div>

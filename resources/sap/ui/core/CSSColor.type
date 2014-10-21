@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>CSSColor</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A string type that represents CSS color values. Allowed values are CSS hex colors like &quot;#666666&quot; or
 	&quot;#fff&quot;, RGB/HSL values like &quot;rgb(0,0,0)&quot; or &quot;hsla(50%,10%,30%,0.5)&quot; as well as css color
 	names like &quot;green&quot; and &quot;darkblue&quot; and values like &quot;inherit&quot; and &quot;transparent&quot;.

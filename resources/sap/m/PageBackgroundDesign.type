@@ -3,7 +3,7 @@
 
 	<name>PageBackgroundDesign</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Available Page Background Design.</documentation>
 	<baseType>sap.ui.core/string</baseType>
 	<enumeration>

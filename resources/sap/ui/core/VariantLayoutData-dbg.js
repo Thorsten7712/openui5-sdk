@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,23 +53,19 @@ sap.ui.define(['./library','./LayoutData'], function() {
  * @class
  * Allows to add multiple LayoutData to one control in case that a easy switch of layouts (e.g. in a Form) is needed.
  * @extends sap.ui.core.LayoutData
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.2
  * @name sap.ui.core.VariantLayoutData
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.LayoutData.extend("sap.ui.core.VariantLayoutData", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	aggregations : {
-    	"multipleLayoutData" : {type : "sap.ui.core.LayoutData", multiple : true, singularName : "multipleLayoutData"}
+		"multipleLayoutData" : {type : "sap.ui.core.LayoutData", multiple : true, singularName : "multipleLayoutData"}
 	}
 }});
 

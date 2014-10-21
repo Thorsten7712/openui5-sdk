@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>enums/AreaDesign</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Value set for the background design of areas</documentation>
 	<enumeration>
 		<value name="Plain">

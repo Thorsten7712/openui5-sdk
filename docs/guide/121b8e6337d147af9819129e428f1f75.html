@@ -9,14 +9,16 @@
 
 
 
-<meta name="abstract" content="A controller in SAPUI5 is used to separate view logic from model logic. All methods for controlling the data flow should be implemented in a controller."/>
-<meta name="description" content="A controller in SAPUI5 is used to separate view logic from model logic. All methods for controlling the data flow should be implemented in a controller."/>
+<meta name="abstract" content="Explains how controllers are defined and used in SAPUI5, the concept of lifecycle hooks for the implementation, and how event handlers and other functions can be defined in a controller"/>
+<meta name="description" content="Explains how controllers are defined and used in SAPUI5, the concept of lifecycle hooks for the implementation, and how event handlers and other functions can be defined in a controller"/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6296444712324841"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=4750339569003925"/>
 <title>Controllers</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,23 +27,21 @@
 <body class="sap_bluecrystal" id="loio121b8e6337d147af9819129e428f1f75">
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">Controllers</h1>
-<div class="body conbody"><p class="shortdesc">A controller in SAPUI5 is used to separate view logic from model logic. All methods for
-		controlling the data flow should be implemented in a controller. </p>
-<div class="section"><div class="section_title">Controller Definition</div><div type="Controller Definition">
-			
-			<p class="p">You define a simple controller without functions as follows: </p>
-
-			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.hcm.Address", {
+<div class="body conbody"><p class="shortdesc"> Explains how controllers are defined and used in SAPUI5, the concept of lifecycle hooks
+		for the implementation, and how event handlers and other functions can be defined in a
+		controller</p>
+<p class="p">SAPUI5 uses controllers to separate the view logic from the model logic. The methods for
+			controlling the data flow should be implemented in a controller.</p>
+<p class="p">You define a simple controller without functions as follows:</p>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">sap.ui.controller("sap.hcm.Address", {
    // controller logic goes here
 });</pre></div>
+<p class="p">The string in quotes specifies the controller name. The controller file is then named
+				<samp class="ph codeph">Address.controller.js</samp>. </p>
+<div class="note note" id="loio121b8e6337d147af9819129e428f1f75__note_N1002C_N10013_N10001"><span class="notetitle">Note</span> 
+			<p class="p">The suffix <samp class="ph codeph">.controller.js</samp> is mandatory for controllers.</p>
 
-			<p class="p">The string in quotes specifies the controller name. The controller file is then named
-					<samp class="ph codeph">Address.controller.js</samp>. </p>
-
-			<div class="note note" id="loio121b8e6337d147af9819129e428f1f75__note_N1002C_N10013_N10001"><span class="notetitle">Note</span> The suffix <samp class="ph codeph">.controller.js</samp> is
-				mandatory for controllers. </div>
-
-		</div></div>
+		</div>
 <div class="section" id="loio121b8e6337d147af9819129e428f1f75__section_EF7E041513E34F3FAB23FCF5F5BB1F8B"><div class="section_title">Lifecycle Hooks</div><div type="Lifecycle Hooks">
 			
 			<p class="p">SAPUI5 provides predefined lifecycle hooks for implementation. You can add event
@@ -112,11 +112,6 @@
 			<p class="p"><a class="xref" href="../../docs/api/symbols/sap.ui.core.mvc.Controller.html">sap.ui.core.mvc.Controller</a></p>
 
 		</div></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

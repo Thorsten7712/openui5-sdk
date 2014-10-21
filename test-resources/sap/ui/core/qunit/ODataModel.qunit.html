@@ -20,6 +20,8 @@
 <script type="text/javascript"
 	src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
 <script type="text/javascript"
+	src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
+<script type="text/javascript"
 	src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 <!--[if IE]>
@@ -134,6 +136,53 @@
 				});
 		});
 		this.clock.tick(1);
+	});
+	
+	asyncTest("test _isReloadNeeded() - __list check", function(){
+		var oModel = initModel(sURI, false),
+			bReloadNeeded;
+
+		oModel._loadData("Employees", null, function () {
+			equal(oModel.getProperty("/Employees(2)/FirstName"), "Andrew", "Fetching initial data from absolute path");
+			
+			//check if reload needed --> true
+			bReloadNeeded = oModel._isReloadNeeded("/Employees(2)", oModel.getObject("/Employees(2)"), {expand: "Employees1/Employees1/Employees1"});
+			equal(bReloadNeeded, true, "First reload needed for 3 levels of expand");
+			
+			//create context for 3 levels of expand
+			oModel.createBindingContext("/Employees(2)", null, {expand: "Employees1/Employees1/Employees1"}, function (oContext){
+				//reload should not be needed anymore --> false
+				bReloadNeeded = oModel._isReloadNeeded("/Employees(2)", oModel.getObject("/Employees(2)"), {expand: "Employees1/Employees1/Employees1"});
+ 				equal(bReloadNeeded, false, "Second reload should not be needed");
+ 				
+ 				start(); //resume normal testing
+ 			});
+			
+		});
+	});
+	
+	asyncTest("test _isReloadNeeded() - __ref check", function(){
+		var oModel = initModel(sURI, false),
+			bReloadNeeded;
+		
+		//Test another case with internal __ref properties instead of __list
+		oModel._loadData("Products", null, function () {
+			equal(oModel.getProperty("/Products(1)/ProductName"), "Chai", "fetching initial data from absolute path.")
+				
+			//check if reload needed --> true
+			bReloadNeeded = oModel._isReloadNeeded("/Products(1)", oModel.getObject("/Products(1)"), {expand: "Category/Products/Supplier"});
+			equal(bReloadNeeded, true, "First reload needed for 3 levels of expand");
+				
+	 		oModel.createBindingContext("/Products(1)", null, {expand: "Category/Products/Supplier"}, function (oContext){
+	 			//reload should not be needed anymore --> false
+				bReloadNeeded = oModel._isReloadNeeded("/Products(1)", oModel.getObject("/Products(1)"), {expand: "Category/Products/Supplier"});
+	 			equal(bReloadNeeded, false, "Second reload should not be needed");
+	 				
+	 			start(); //resume normal testing
+	 		});
+	 		
+		});
+		
 	});
 
 	asyncTest("test oDataModel _loadData XML",function(){
@@ -518,6 +567,49 @@
 			ok(oContext.getProperty("Category"), "Category loaded");
 			start();          // resume normal testing
 		});
+	});
+
+	asyncTest("test Context.getPath/getObject", function(){
+		
+		var oModel = initModel(sURI, false, "Categories");
+		oModel.createBindingContext("/Products(1)", null, {expand: "Category"}, function(oContext) { // delay the following test
+			equal(oContext.getPath("Category"), "/Products(1)/Category", "Expanded entity path");
+			equal(oContext.getObject("Category").CategoryID, 1, "Expanded entity object");
+			start();          // resume normal testing
+		});
+	});
+
+	asyncTest("test getKey", function(){
+		
+		var oModel = initModel(sURI, false, "Categories");
+		oModel.createBindingContext("/Products(1)", null, {expand: "Category"}, function(oContext) { // delay the following test
+			equal(oModel.getKey(oContext), "Products(1)", "Context key");
+			equal(oModel.getKey(oContext.getObject("Category")), "Categories(1)", "Expanded entity key");
+			var oObject = oContext.getObject();
+			equal(oModel.getKey(oContext), "Products(1)", "Context key");
+			start();          // resume normal testing
+		});
+	});
+
+	test("test getKey decoded", function(){
+		
+		var oModel = initModel(sURI, false, "Categories"),		
+			oObject = {
+			__metadata: {
+				uri: "http://some.host/service/Customers('%2F%3F''%2B')"
+			}
+		};
+		equal(oModel.getKey(oObject), "Customers('%2F%3F''%2B')", "Get customers key encoded");
+		equal(oModel.getKey(oObject, true), "Customers('/?''+')", "Get customers key decoded");
+	});
+	
+	test("test createKey", function(){
+		
+		var oModel = initModel(sURI, false, "Categories");		
+		equal(oModel.createKey("Products", {ProductID: 1}), "Products(1)", "Created product key");
+		equal(oModel.createKey("Order_Details", {OrderID: 1, ProductID :2}), "Order_Details(OrderID=1,ProductID=2)", "Created key with multiple key properties");
+		equal(oModel.createKey("Customers", {CustomerID: "/?'+"}), "Customers('%2F%3F''%2B')", "Created customers key encoded");
+		equal(oModel.createKey("Customers", {CustomerID: "/?'+"}, true), "Customers('/?''+')", "Created customers key decoded");
 	});
 	
 	asyncTest("metadata check", function(){
@@ -1039,7 +1131,6 @@
 			}
 		});
 	});
-
 
 	</script>
 

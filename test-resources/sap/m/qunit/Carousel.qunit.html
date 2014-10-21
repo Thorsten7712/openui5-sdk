@@ -13,12 +13,14 @@
 
 <link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
 <script>
-
+sinon.config.useFakeTimers = false;
 
 
 
@@ -274,6 +276,49 @@ asyncTest("Listen to 'pageChanged' event" , function() {
 		}, 600);
 	}, 600);
 }); 
+
+asyncTest("Should fire pageChanged only once when using 'setActivePage' (CSN 0120061532 0001323934 2014)", function() {
+	//Arrange
+	//System under Test
+	var sut = new sap.m.Carousel({
+			pages : [ new sap.m.Page('firePage1'), new sap.m.Page('firePage2') ]
+		}),
+		oChangePageSpy = this.spy(sut, "_changePage");
+	
+	sut.placeAt("qunit-fixture");
+	sap.ui.getCore().applyChanges();
+	sut.setActivePage('firePage2');
+
+	//Act
+	setTimeout(function() {
+		//Assert 
+		ok(oChangePageSpy.calledOnce, "PageChanged fired once");
+		//Clean up
+		sut.destroy();
+		start();
+	}, 600);
+});
+
+asyncTest("Active page should be set when specified in constructor'", function() {
+	//Arrange
+	//System under Test
+	var sut = new sap.m.Carousel({
+			activePage: 'activePage2',
+			pages : [ new sap.m.Page('activePage1'), new sap.m.Page('activePage2') ]
+		});
+	
+	sut.placeAt("qunit-fixture");
+	sap.ui.getCore().applyChanges();
+
+	//Act
+	setTimeout(function() {
+		//Assert 
+		ok(sut.getActivePage() == 'activePage2', "Active page should be 'activePage2'");
+		//Clean up
+		sut.destroy();
+		start();
+	}, 600);
+});
 
 asyncTest("Should fire pageChanged only once even if it is invalidated meanwhile", function() {
 	// Arrange

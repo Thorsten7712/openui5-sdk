@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>QuickView</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>QuickView is a small popup with a short overview of a Thing.
 QuickView is shown when a user holds the mouse pointer over a related screen element.

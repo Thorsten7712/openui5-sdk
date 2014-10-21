@@ -14,6 +14,7 @@
     
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -266,7 +267,7 @@
 			// make sure it is actually filled
 			var sColor = jQuery(oContDomRef).css("backgroundColor");
 			if (sap.ui.Device.browser.internet_explorer && (!document.documentMode || document.documentMode < 9)) {
-				ok(sColor === "white" || sColor === "#ffffff", "Panel must by default be filled with a white color (Actual: "+sColor+")");
+				ok(sColor === "#f2f2f2", "Panel must by default be filled with a white color (Actual: "+sColor+")");
 			} else {
 				equal(sColor, "rgba(255, 255, 255, 0.8)",	"Panel must by default be filled with a white color");
 			} 
@@ -311,10 +312,6 @@
 			equal(oRootDomRef.className.indexOf("sapUiPanelBorderDesignNone"), -1, "Panel must by default not have BorderDesign.None");
 
 			// make sure it is actually boxed
-			equal(jQuery(oRootDomRef).css("borderLeftWidth"), "0px", "Panel content must not have a border");
-			equal(jQuery(oRootDomRef).css("borderRightWidth"), "0px", "Panel content must not have a border");
-			equal(jQuery(oRootDomRef).css("borderTopWidth"), "0px", "Panel content must not have a border");
-			equal(jQuery(oRootDomRef).css("borderBottomWidth"), "0px", "Panel content must not have a border");
 			equal(jQuery(oRootDomRef).css("borderLeftStyle"), "none", "Panel content must not have a border");
 			equal(jQuery(oRootDomRef).css("borderRightStyle"), "none", "Panel content must not have a border");
 			equal(jQuery(oRootDomRef).css("borderTopStyle"), "none", "Panel content must not have a border");

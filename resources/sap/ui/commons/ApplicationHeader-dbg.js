@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,19 +56,15 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * The application header control stands on the top of any application page. It consists basically of 4 areas. Logo area/Function area provided by application/Search area/Logout area
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ApplicationHeader
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ApplicationHeader", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"logoSrc" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
@@ -229,14 +225,13 @@ sap.ui.commons.ApplicationHeader.M_EVENTS = {'logoff':'logoff'};
 
 /**
  * Fires an event to log off the user from the application.
- * No parameters. 
+ * No parameters.
  *
  * @name sap.ui.commons.ApplicationHeader#logoff
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -246,7 +241,7 @@ sap.ui.commons.ApplicationHeader.M_EVENTS = {'logoff':'logoff'};
  * otherwise to this <code>sap.ui.commons.ApplicationHeader</code>.<br/> itself. 
  *  
  * Fires an event to log off the user from the application.
- * No parameters. 
+ * No parameters.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

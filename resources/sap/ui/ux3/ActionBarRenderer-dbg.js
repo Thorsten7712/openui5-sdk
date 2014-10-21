@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -215,6 +215,9 @@ sap.ui.ux3.ActionBarRenderer._renderMoreMenuButton = function (rm, oMoreMenuButt
 		rm.write("<a role=\"button\" aria-disabled=\"false\" aria-haspopup=\"true\"");
 	} else {
 		rm.write("<a  role=\"button\" aria-disabled=\"false\" aria-haspopup=\"false\"");
+	}
+	if (action.name == oControl.mActionKeys.Flag || action.name == oControl.mActionKeys.Favorite) {
+		rm.writeAttribute("aria-pressed", action.fnCalculateState(oControl) == "Selected" ? "true" : "false");
 	}
 	rm.writeAttribute("tabindex", "0");
 	rm.writeElementData(action);

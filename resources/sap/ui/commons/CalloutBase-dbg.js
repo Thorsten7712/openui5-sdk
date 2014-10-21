@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,22 +58,20 @@ jQuery.sap.require("sap.ui.core.TooltipBase");
  * CalloutBase is a building block for Callout. Do not use it directly. Use the Callout control instead
  * @extends sap.ui.core.TooltipBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.CalloutBase
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.TooltipBase.extend("sap.ui.commons.CalloutBase", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"adjustPosition", "close", "setPosition"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	events : {
 		"open" : {}, 
@@ -104,14 +102,13 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * The event is fired when the popup is opened. 
+ * The event is fired when the popup is opened.
  *
  * @name sap.ui.commons.CalloutBase#open
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.parent Parent control that has this Callout as a tooltip
  * @public
  */
@@ -121,7 +118,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * The event is fired when the popup is opened. 
+ * The event is fired when the popup is opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -168,14 +165,13 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * Event is fired when the Callout window is closed. 
+ * Event is fired when the Callout window is closed.
  *
  * @name sap.ui.commons.CalloutBase#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -184,7 +180,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * Event is fired when the Callout window is closed. 
+ * Event is fired when the Callout window is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -226,14 +222,13 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content 
+ * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content
  *
  * @name sap.ui.commons.CalloutBase#beforeOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.parent Parent control that has this Callout as a tooltip
  * @public
  */
@@ -243,7 +238,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content 
+ * Event is fired before a Callout is displayed. Call the preventDefault method of the event object to postpone opening. Application may use this event to start asynchronous Ajax call to load the Callout content
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -292,7 +287,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
 
 
 /**
- * Is fired when the Callout has been opened 
+ * Is fired when the Callout has been opened
  *
  * @name sap.ui.commons.CalloutBase#opened
  * @event
@@ -300,7 +295,6 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -309,7 +303,7 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.CalloutBase</code>.<br/> itself. 
  *  
- * Is fired when the Callout has been opened 
+ * Is fired when the Callout has been opened
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -359,39 +353,37 @@ sap.ui.commons.CalloutBase.M_EVENTS = {'open':'open','close':'close','beforeOpen
  * Callout window may be changed due to new or changed
  * contents.
  *
- * @name sap.ui.commons.CalloutBase.prototype.adjustPosition
+ * @name sap.ui.commons.CalloutBase#adjustPosition
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes Callout
  *
- * @name sap.ui.commons.CalloutBase.prototype.close
+ * @name sap.ui.commons.CalloutBase#close
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Helper function to set position of the Callout window relative to the parent control. It automatically calculates and sets the correct offset, so it is recommended to use this function instead of setMyPosition and setAtPosition
  *
- * @name sap.ui.commons.CalloutBase.prototype.setPosition
+ * @name sap.ui.commons.CalloutBase#setPosition
  * @function
- * @param {sap.ui.core.Dock} 
- *         sMyPosition
+ * @param {sap.ui.core.Dock} sMyPosition
  *         Docking position of the Callout
- * @param {sap.ui.core.Dock} 
- *         sAtPosition
+ * @param {sap.ui.core.Dock} sAtPosition
  *         Docking position of the Callout
-
  * @type sap.ui.commons.CalloutBase
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -447,8 +439,8 @@ sap.ui.commons.CalloutBase.prototype.exit = function() {
 /**
  * Return the popup to use. Each callout has own popup.
  * (Allow multiple call-outs taking into account pin-up functionality in the next version).
- * Overrides {sap.ui.core.TooltipBase} that has a single common popup for all instances.
- * @type sap.ui.commons.Popup
+ * Overrides {@link sap.ui.core.TooltipBase} that has a single common popup for all instances.
+ * @type sap.ui.core.Popup
  * @return The popup to use
  * @private
  */
@@ -782,6 +774,7 @@ sap.ui.commons.CalloutBase.prototype.handleOpened = function() {
 		this.bFocused = true; // Remember to set focus to parent on close
 	}
 	
+	this.$().css("display:", "");
 	this.fireOpened();
 	
 	// - listen to mouse over events outside

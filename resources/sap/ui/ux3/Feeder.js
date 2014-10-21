@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.ux3.Feeder");jQuery.sap.require("sap.ui.ux3.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.ux3.Feeder",{metadata:{library:"sap.ui.ux3",properties:{"thumbnailSrc":{type:"sap.ui.core.URI",group:"Data",defaultValue:null},"text":{type:"string",group:"Data",defaultValue:null},"type":{type:"sap.ui.ux3.FeederType",group:"Appearance",defaultValue:sap.ui.ux3.FeederType.Large},"placeholderText":{type:"string",group:"Appearance",defaultValue:null}},events:{"submit":{}}}});sap.ui.ux3.Feeder.M_EVENTS={'submit':'submit'};jQuery.sap.require("sap.ui.core.theming.Parameters");jQuery.sap.require("sap.ui.commons.Button");

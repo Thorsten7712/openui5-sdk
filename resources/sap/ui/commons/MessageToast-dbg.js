@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52,26 +52,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Responsible for displaying the new incoming messages, one at the time, on top of the MessageBar.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.4.0. 
  * A new messaging concept will be created in future. Therefore this control might be removed in one of the next versions.
  * @name sap.ui.commons.MessageToast
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.MessageToast", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
 	publicMethods : [
 		// methods
 		"toast", "isIdle"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"anchorId" : {type : "string", group : "Misc", defaultValue : null}
@@ -127,14 +123,13 @@ sap.ui.commons.MessageToast.M_EVENTS = {'next':'next'};
 
 
 /**
- * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed. 
+ * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed.
  *
  * @name sap.ui.commons.MessageToast#next
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -143,7 +138,7 @@ sap.ui.commons.MessageToast.M_EVENTS = {'next':'next'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.MessageToast</code>.<br/> itself. 
  *  
- * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed. 
+ * Fired once the "toast()" method is over, so that the MessageBar can toast() another message if needed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -188,28 +183,26 @@ sap.ui.commons.MessageToast.M_EVENTS = {'next':'next'};
  * Triggers the toasting of a message, on top of the MessageBar.
  * If no message is supplied, displayes the "Multiple new messages..." message.
  *
- * @name sap.ui.commons.MessageToast.prototype.toast
+ * @name sap.ui.commons.MessageToast#toast
  * @function
- * @param {sap.ui.commons.Message} 
- *         oMessage
+ * @param {sap.ui.commons.Message} oMessage
  *         The Message to be toasted.
- * @param {string} 
- *         sAnchorId
+ * @param {string} sAnchorId
  *         DOM ID of the anchor against which the Toast Arrow should align for a given Toast.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns TRUE if no message is being toasted.
  *
- * @name sap.ui.commons.MessageToast.prototype.isIdle
+ * @name sap.ui.commons.MessageToast#isIdle
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -375,6 +368,8 @@ sap.ui.commons.MessageToast.prototype.getClasses = function() {
 /**
  * This public API receives the list of Messages to be displayed,
  * and re-render this Control if visible.
+ * @param {object} oMessage
+ * @param {string} sAnchorId
  * @public
  */
 sap.ui.commons.MessageToast.prototype.toast = function(oMessage, sAnchorId) {

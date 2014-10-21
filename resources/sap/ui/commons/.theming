@@ -1,4 +1,5 @@
 {
   "sEntity" : "Library",
-  "sId" : "sap/ui/commons"
+  "sId" : "sap/ui/commons",
+  "sVersion" : "1.24.2"
 }

@@ -8,8 +8,10 @@
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>
 		<property group="Misc" name="maxFontSize" type="sap.ui.core/int" defaultValue="30">
+			<documentation>Maximum font size that may be chosen for a tag in this cloud</documentation>
 		</property>
 		<property group="Misc" name="minFontSize" type="sap.ui.core/int" defaultValue="10">
+			<documentation>Minimum font size that must be used for a tag in this cloud</documentation>
 		</property>
 	</properties>
 	<events>
@@ -24,6 +26,7 @@
 	</events>
 	<aggregations default="tags">
 		<aggregation cardinality="0..n" name="tags" type="sap.ui.demokit/Tag">
+			<documentation>The tags displayed in this tag cloud</documentation>
 		</aggregation>
 	</aggregations>
 </control>

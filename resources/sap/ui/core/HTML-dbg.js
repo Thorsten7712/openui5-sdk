@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,18 +60,16 @@ sap.ui.define(['./library','./Control'], function() {
  * For further hints about usage restrictions for this control, see also the documentation of the 'content' property.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.HTML
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.core.HTML", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"content" : {type : "string", group : "Misc", defaultValue : null},
@@ -203,14 +201,12 @@ sap.ui.core.HTML.M_EVENTS = {'afterRendering':'afterRendering'};
  * Fired after the HTML control has been rendered. Allows to manipulate the resulting DOM.
  * 
  * When the control doesn't have string content and no preserved DOM existed for this control, then this event will fire, but there won't be a DOM node for this control.
- *  
  *
  * @name sap.ui.core.HTML#afterRendering
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.isPreservedDOM Whether the current DOM of the control has been preserved (true) or not (e.g. rendered from content property or it is an empty HTML control).
  * @public
  */
@@ -223,7 +219,6 @@ sap.ui.core.HTML.M_EVENTS = {'afterRendering':'afterRendering'};
  * Fired after the HTML control has been rendered. Allows to manipulate the resulting DOM.
  * 
  * When the control doesn't have string content and no preserved DOM existed for this control, then this event will fire, but there won't be a DOM node for this control.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -271,6 +266,7 @@ sap.ui.core.HTML.M_EVENTS = {'afterRendering':'afterRendering'};
 
 // Start of sap/ui/core/HTML.js
 /**
+ * @param {string} [sSuffix=''] Suffix of the Element to be retrieved or empty
  * @return {Element} The element's DOM reference or null
  * @public
  */

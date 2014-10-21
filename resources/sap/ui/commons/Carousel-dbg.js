@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,23 +61,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * Carousel holds multiple controls and displays them vertical or horizontal next to each other. You can define how many content items should be displayed at once or let the carousel determine that for you. Navigation is done through buttons or keys.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.8.0
  * @name sap.ui.commons.Carousel
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Carousel", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"showNext", "showPrevious", "showElementWithId"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"orientation" : {type : "sap.ui.commons.enums.Orientation", group : "Misc", defaultValue : sap.ui.commons.enums.Orientation.horizontal},
@@ -92,7 +90,7 @@ sap.ui.core.Control.extend("sap.ui.commons.Carousel", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content", bindable : "bindable"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content", bindable : "bindable"}
 	}
 }});
 
@@ -449,33 +447,33 @@ sap.ui.core.Control.extend("sap.ui.commons.Carousel", { metadata : {
 /**
  * Shows next item in carousel. This can be only used after the component is rendered.
  *
- * @name sap.ui.commons.Carousel.prototype.showNext
+ * @name sap.ui.commons.Carousel#showNext
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Shows previous item in carousel. This can be only used after the component is rendered.
  *
- * @name sap.ui.commons.Carousel.prototype.showPrevious
+ * @name sap.ui.commons.Carousel#showPrevious
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Shows the element with id specified. This can be only used after the component is rendered.
  *
- * @name sap.ui.commons.Carousel.prototype.showElementWithId
+ * @name sap.ui.commons.Carousel#showElementWithId
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -778,13 +776,17 @@ sap.ui.commons.Carousel.prototype.onmouseup = function(oEvent) {
 	}
 };
 
-sap.ui.commons.Carousel.prototype.onswipeleft = function(oEvent) {
-	this.showNext();
-};
+if (sap.ui.Device.support.touch) {
+	
+	sap.ui.commons.Carousel.prototype.onswipeleft = function(oEvent) {
+		this.showNext();
+	};
+	
+	sap.ui.commons.Carousel.prototype.onswiperight = function(oEvent) {
+		this.showPrevious();
+	};
 
-sap.ui.commons.Carousel.prototype.onswiperight = function(oEvent) {
-	this.showPrevious();
-};
+}
 
 
 /**
@@ -1087,6 +1089,10 @@ sap.ui.commons.Carousel.prototype._getItemIdByIndex = function(iIndex) {
  * @function
  */
 sap.ui.commons.Carousel.prototype.setFirstVisibleIndex = function(iFirstVisibleIndex) {
+	if (iFirstVisibleIndex > this.getContent().length - 1) {
+		jQuery.sap.log.warning("The index is invalid. There are less items available in the carousel.");
+		return this;
+	}
 	this.setProperty("firstVisibleIndex", iFirstVisibleIndex, true);
 	this.showElementWithId(this._getItemIdByIndex(iFirstVisibleIndex));
 	if (this._oItemNavigation) {

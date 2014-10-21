@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Dialog</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>An interactive window appearing on request displaying information to the user. The API supports features such as popups with fixed sizes, popups with unlimited width, scrolling bars for large windows, and control nesting (for example, a drop-down list can be included in the window).</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

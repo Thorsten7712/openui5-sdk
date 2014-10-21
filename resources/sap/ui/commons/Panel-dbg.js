@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -66,22 +66,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * Represents a container with scroll functionality, the control can be used for text and controls. The Panel does not layout the embedded controls.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Panel
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Panel", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setDimensions"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
@@ -99,9 +97,9 @@ sap.ui.core.Control.extend("sap.ui.commons.Panel", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"title" : {type : "sap.ui.core.Title", multiple : false}, 
-    	"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"title" : {type : "sap.ui.core.Title", multiple : false}, 
+		"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
 	}
 }});
 
@@ -622,21 +620,17 @@ sap.ui.core.Control.extend("sap.ui.commons.Panel", { metadata : {
 /**
  * Property for width and height settings for the Panel
  *
- * @name sap.ui.commons.Panel.prototype.setDimensions
+ * @name sap.ui.commons.Panel#setDimensions
  * @function
- * @param {sap.ui.core.CSSSize} 
- *         sWidth
+ * @param {sap.ui.core.CSSSize} sWidth
  * 
  *         Panel width as CSS size
- * 
- * @param {sap.ui.core.CSSSize} 
- *         sHeight
+ * @param {sap.ui.core.CSSSize} sHeight
  * 
  *         Panel height as CSS size
- * 
-
  * @type sap.ui.commons.Panel
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -965,7 +959,7 @@ sap.ui.commons.Panel.prototype._hasIcon = function() {
 /**
  * Property setter for the "enabled" state
  *
- * @param bEnabled whether the Panel should be enabled or not
+ * @param {boolean} bEnabled whether the Panel should be enabled or not
  * @return {sap.ui.commons.Panel} <code>this</code> to allow method chaining
  * @public
  */
@@ -980,7 +974,7 @@ sap.ui.commons.Panel.prototype.setEnabled = function(bEnabled) {
 /**
  * Property setter for the padding
  *
- * @param bPadding whether the Panel should have padding
+ * @param {boolean} bPadding whether the Panel should have padding
  * @returns {sap.ui.commons.Panel} <code>this</code> to allow method chaining
  * @public
  */
@@ -994,7 +988,7 @@ sap.ui.commons.Panel.prototype.setApplyContentPadding = function(bPadding) {
 /**
  * Property setter for the "collapsed" state
  *
- * @param bCollapsed whether the Panel should be collapsed or not
+ * @param {boolean} bCollapsed whether the Panel should be collapsed or not
  * @return {sap.ui.commons.Panel} <code>this</code> to allow method chaining
  * @public
  */

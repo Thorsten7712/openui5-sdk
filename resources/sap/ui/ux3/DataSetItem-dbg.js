@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,19 +58,15 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * DataSet Item
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.DataSetItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.DataSetItem", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"iconSrc" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
@@ -79,7 +75,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.DataSetItem", { metadata : {
 		"subtitle" : {type : "string", group : "Misc", defaultValue : 'Subtitle'}
 	},
 	aggregations : {
-    	"_template" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"_template" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"selected" : {}
@@ -159,7 +155,6 @@ sap.ui.ux3.DataSetItem.M_EVENTS = {'selected':'selected'};
 /**
  * Getter for property <code>checkable</code>.
  * checkable
- * 
  *
  * Default value is <code>true</code>
  *
@@ -209,14 +204,12 @@ sap.ui.ux3.DataSetItem.M_EVENTS = {'selected':'selected'};
 
 /**
  * Event Fired when Datset item is selected.
- *  
  *
  * @name sap.ui.ux3.DataSetItem#selected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId Id of the selected Datset item
  * @public
  */
@@ -227,7 +220,6 @@ sap.ui.ux3.DataSetItem.M_EVENTS = {'selected':'selected'};
  * otherwise to this <code>sap.ui.ux3.DataSetItem</code>.<br/> itself. 
  *  
  * Event Fired when Datset item is selected.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

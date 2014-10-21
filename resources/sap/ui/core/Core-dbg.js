@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -30,8 +30,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/Global', 'sap/ui/ba
 	 *
 	 * @extends sap.ui.base.EventProvider
 	 * @final
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @constructor
 	 * @name sap.ui.core.Core 
 	 * @public
@@ -62,6 +62,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/Global', 'sap/ui/ba
 			 * @private
 			 */
 			this.bInitialized = false;
+			
+			/**
+			 * Whether the dom is ready (document.ready)
+			 * @private
+			 */
+			this.bDomReady = false;
 		
 			/**
 			 * Available plugins in the order of registration.
@@ -799,6 +805,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/Global', 'sap/ui/ba
 	 * @function
 	 */
 	Core.prototype.handleLoad = function () {
+		this.bDomReady = true;
 	
 		//do not allow any event processing until the Core is initialized
 		var bWasLocked = this.isLocked();
@@ -1252,7 +1259,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/Global', 'sap/ui/ba
 	
 			// if parameters have been used, update them with the new style sheet
 			if (sap.ui.core.theming && sap.ui.core.theming.Parameters) {
-				sap.ui.core.theming.Parameters._addLibraryTheme(cssPathAndName);
+				sap.ui.core.theming.Parameters._addLibraryTheme(sLibId);
 			}
 		}
 	
@@ -1980,6 +1987,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/Global', 'sap/ui/ba
 	 * If it is not yet available, a DIV is created and appended to the body.
 	 *
 	 * @return {Element} the static, hidden area DOM element belonging to this core instance.
+	 * @throws {Error} an Error if the document is not yet ready
 	 * @public
 	 * @name sap.ui.core.Core#getStaticAreaRef
 	 * @function
@@ -1988,14 +1996,17 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/Global', 'sap/ui/ba
 		var sStaticId = "sap-ui-static";
 		var oStatic = jQuery.sap.domById(sStaticId);
 		if(!oStatic){
+			if(!this.bDomReady){
+				throw new Error("DOM is not ready yet. Static UIArea cannot be created.");
+			}
+			
 			var leftRight = this.getConfiguration().getRTL() ? "right" : "left";
-			oStatic = jQuery("<DIV/>",{id:sStaticId})
-						.css("visibility", "hidden")
-						.css("height", "0")
-						.css("width", "0")
-						.css("overflow", "hidden")
-						.css("float", leftRight)
-						.prependTo(document.body)[0];
+			oStatic = jQuery("<DIV/>", {id:sStaticId}).css({
+				"height"   : "0",
+				"width"    : "0",
+				"overflow" : "hidden",
+				"float"    : leftRight
+			}).prependTo(document.body)[0];
 	
 			// TODO Check whether this is sufficient
 			this.createUIArea(oStatic).bInitial = false;
@@ -2006,6 +2017,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/Global', 'sap/ui/ba
 	/**
 	 * Used to find out whether a certain DOM element is the static area
 	 * 
+	 * @param {object} oDomRef
 	 * @return {boolean} whether the given DomRef is the StaticAreaRef
 	 * @protected
 	 * @name sap.ui.core.Core#isStaticAreaRef

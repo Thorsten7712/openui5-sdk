@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.demokit.CodeSampleContainer");jQuery.sap.require("sap.ui.demokit.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.demokit.CodeSampleContainer",{metadata:{library:"sap.ui.demokit",properties:{"scriptElementId":{type:"string",group:"Misc",defaultValue:null},"uiAreaId":{type:"string",group:"Misc",defaultValue:null},"title":{type:"string",group:"Misc",defaultValue:null},"sourceVisible":{type:"boolean",group:"Misc",defaultValue:false},"width":{type:"sap.ui.core.CSSSize",group:"Misc",defaultValue:'90%'}},aggregations:{"_uiarea":{type:"sap.ui.demokit.UIAreaSubstitute",multiple:false,visibility:"hidden"}},events:{"apply":{}}}});sap.ui.demokit.CodeSampleContainer.M_EVENTS={'apply':'apply'};jQuery.sap.require("sap.ui.core.ResizeHandler");

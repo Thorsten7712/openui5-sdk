@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ExactList</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Internal sub-control of the ExactBrowser. The control is not intended to be used stand alone. For this purpose, the ExactBrowser control can be used.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

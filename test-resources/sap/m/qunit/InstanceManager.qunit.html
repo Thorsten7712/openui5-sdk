@@ -14,6 +14,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 	
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
@@ -182,8 +183,12 @@
 				ok(im.isCategoryEmpty(sCategoryId), "Category is empty now");
 				im.addInstance(sCategoryId, oInstance);
 				ok(!im.isCategoryEmpty(sCategoryId), "Category is not empty anymore");
-				ok(im.getInstancesByCategoryId(sCategoryId).length, "Intance array is not empty");
+				equal(im.getInstancesByCategoryId(sCategoryId).length, 1, "Intance array is not empty and length should equal 1");
 				ok(im.isInstanceManaged(sCategoryId, oInstance), "Instance is managed");
+				// add the same instance again
+				im.addInstance(sCategoryId, oInstance);
+				equal(im.getInstancesByCategoryId(sCategoryId).length, 1, "Intance shouldn't be added again");
+				ok(im.isInstanceManaged(sCategoryId, oInstance), "Instance is still managed");
 			});
 			
 			test("Remove object", function(){

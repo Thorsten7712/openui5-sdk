@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -30,6 +30,7 @@ sap.ui.define(['jquery.sap.global', './FilterType', './ListBinding'],
 	
 		constructor : function(oModel, sPath, oContext, aSorters, aFilters, mParameters){
 			ListBinding.apply(this, arguments);
+			this.bIgnoreSuspend = false;
 			this.update();
 		},
 	
@@ -94,10 +95,8 @@ sap.ui.define(['jquery.sap.global', './FilterType', './ListBinding'],
 	};
 	
 	/**
-	 * Return the length of the list
+	 * @see sap.ui.model.ListBinding.prototype.getLength
 	 *
-	 * @return {int} the length
-	 * @protected
 	 * @name sap.ui.model.ClientListBinding#getLength
 	 * @function
 	 */
@@ -147,9 +146,14 @@ sap.ui.define(['jquery.sap.global', './FilterType', './ListBinding'],
 			this.aSorters = aSorters;
 			this.applySort();
 		}
+		
+		this.bIgnoreSuspend = true;
+		
 		this._fireChange({reason: sap.ui.model.ChangeReason.Sort});
 		// TODO remove this if the sorter event gets removed which is deprecated
-		this._fireSort({sorter: aSorters}); 
+		this._fireSort({sorter: aSorters});
+		this.bIgnoreSuspend = false;
+		
 		return this;
 	};
 	
@@ -272,6 +276,9 @@ sap.ui.define(['jquery.sap.global', './FilterType', './ListBinding'],
 			this.applyFilter();
 		}
 		this.applySort();
+		
+		this.bIgnoreSuspend = true;
+		
 		this._fireChange({reason: sap.ui.model.ChangeReason.Filter});
 		// TODO remove this if the filter event gets removed which is deprecated
 		if (sFilterType == FilterType.Application) {
@@ -279,6 +286,8 @@ sap.ui.define(['jquery.sap.global', './FilterType', './ListBinding'],
 		} else {
 			this._fireFilter({filters: this.aFilters});
 		}
+		this.bIgnoreSuspend = false;
+		
 		return this;
 	};
 	

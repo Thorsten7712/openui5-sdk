@@ -1,14 +1,12 @@
-// Copyright (c) 2013 SAP AG, All Rights Reserved
+// Copyright (c) 2013 SAP SE, All Rights Reserved
 /*global hasher */
 sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/thirdparty/signals', 'sap/ui/thirdparty/hasher'],
 	function(jQuery, EventProvider, signals, hasher1) {
 	"use strict";
 
 	/**
-	 * Class for manipulating and receiving changes of the browserhash with the hasher framework.
+	 * @class Class for manipulating and receiving changes of the browserhash with the hasher framework.
 	 * Fires a "hashChanged" event if the browser hash changes.
-	 *
-	 * @class
 	 * @extends sap.ui.base.EventProvider
 	 *
 	 * @public
@@ -120,7 +118,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/thirdpa
 
 		/**
 		 * Gets a global singleton of the HashChanger. The singleton will get created when this function is invoked for the first time.
-		 * @param oHashChanger {sap.ui.core.routing.HashChanger} The instance for the global singleton.
 		 * @public
 		 * @static
 		 * @name sap.ui.core.routing.HashChanger.getInstance
@@ -135,7 +132,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', 'sap/ui/thirdpa
 
 		/**
 		 * Sets the hashChanger to a new instance, destroys the old one and copies all its event listeners to the new one
-		 * @param oHashChanger {sap.ui.core.routing.HashChanger} the new instance for the global singleton
+		 * @param {sap.ui.core.routing.HashChanger} oHashChanger the new instance for the global singleton
 		 * @protected
 		 * @name sap.ui.core.routing.HashChanger.replaceHashChanger
 		 * @function

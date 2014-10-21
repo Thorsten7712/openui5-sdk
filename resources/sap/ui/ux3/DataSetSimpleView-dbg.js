@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,25 +61,20 @@ jQuery.sap.require("sap.ui.core.Control");
  *
  * @class
  * DataSetSimpleView provides a simple view example for DataSet usage.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.ux3.DataSetView
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.DataSetSimpleView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.DataSetSimpleView", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.ux3.DataSetView"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"floating" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -95,7 +90,7 @@ sap.ui.core.Control.extend("sap.ui.ux3.DataSetSimpleView", { metadata : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Appearance", defaultValue : null}
 	},
 	aggregations : {
-    	"template" : {type : "sap.ui.core.Control", multiple : false}
+		"template" : {type : "sap.ui.core.Control", multiple : false}
 	}
 }});
 
@@ -546,7 +541,7 @@ sap.ui.ux3.DataSetSimpleView.prototype.initView = function(aItems) {
 /**
  * View update: Called when pagination adds items
  *
- * @param {array} aItems Array of DataSetItems added to the parent DataSet
+ * @param {sap.ui.ux3.DataSetItem[]} aDiff Array of DataSetItems added to the parent DataSet
  * @protected
  */
 sap.ui.ux3.DataSetSimpleView.prototype.updateView = function(aDiff) {
@@ -575,7 +570,7 @@ sap.ui.ux3.DataSetSimpleView.prototype.updateView = function(aDiff) {
 			rm.flush(this.$()[0], false, iIndex);
 			this.items.splice(iIndex, 0, oItem);
 		} else {
-			this.items.slice(iIndex, 1);
+			this.items.splice(iIndex, 1);
 			oItem.$().remove();
 			oItem.destroy();
 		}
@@ -589,6 +584,7 @@ sap.ui.ux3.DataSetSimpleView.prototype.updateView = function(aDiff) {
 /**
  * View finalization: Called when leaving the view
  *
+ * @param {sap.ui.ux3.DataSetItem[]} aItems
  * @protected
  */
 sap.ui.ux3.DataSetSimpleView.prototype.exitView = function(aItems) {
@@ -824,6 +820,8 @@ sap.ui.ux3.DataSetSimpleView.prototype._computeWidths = function(bInitial){
 };
 
 /**
+ * @param {any[]} aScrollArea
+ * @param {boolean} bSupress
  * @public
  */
 sap.ui.ux3.DataSetSimpleView.prototype.setScrollArea = function(aScrollArea, bSupress) {

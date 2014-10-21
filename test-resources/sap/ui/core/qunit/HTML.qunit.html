@@ -26,6 +26,7 @@
     
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<script language="javascript">
@@ -444,7 +445,6 @@
 		            ok(jQuery("div", uiAreaD).css("width") == "256px", "div has been rendered");
 		            ok(jQuery("div", uiAreaD).css("height") == "64px", "div has been rendered");
 		            ok(normalize(jQuery("div", uiAreaD).css("background-color")) == "rgb(0,0,255)", "div has been rendered");
-		            start();
 	            });
 
             });

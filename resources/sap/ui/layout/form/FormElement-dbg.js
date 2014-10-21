@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,31 +57,29 @@ jQuery.sap.require("sap.ui.core.Element");
  * A form element is a combination of one label and different controls associated to this label.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.form.FormElement
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.layout.form.FormElement", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getLabelControl"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"visible" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	defaultAggregation : "fields",
 	aggregations : {
-    	"label" : {type : "sap.ui.core.Label", altTypes : ["string"], multiple : false}, 
-    	"fields" : {type : "sap.ui.core.Control", multiple : true, singularName : "field"}
+		"label" : {type : "sap.ui.core.Label", altTypes : ["string"], multiple : false}, 
+		"fields" : {type : "sap.ui.core.Control", multiple : true, singularName : "field"}
 	}
 }});
 
@@ -244,11 +242,11 @@ sap.ui.core.Element.extend("sap.ui.layout.form.FormElement", { metadata : {
 /**
  * Returns the Label Control, even if the Label is entered as Text.
  *
- * @name sap.ui.layout.form.FormElement.prototype.getLabelControl
+ * @name sap.ui.layout.form.FormElement#getLabelControl
  * @function
-
  * @type sap.ui.core.Label
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

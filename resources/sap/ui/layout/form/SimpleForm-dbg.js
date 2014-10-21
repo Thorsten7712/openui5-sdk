@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -67,20 +67,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Use the SimpleForm to create a form based on title, label and fields that are stacked in the content aggregation. Add Title to start a new FormContainer(Group). Add Label to start a new row in the container. Add Input/Display controls as needed. Use LayoutData to influence the layout for special cases in the Input/Display controls.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.form.SimpleForm
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.layout.form.SimpleForm", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"maxContainerCols" : {type : "int", group : "Appearance", defaultValue : 2},
@@ -101,9 +97,9 @@ sap.ui.core.Control.extend("sap.ui.layout.form.SimpleForm", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Element", multiple : true, singularName : "content"}, 
-    	"form" : {type : "sap.ui.layout.form.Form", multiple : false, visibility : "hidden"}, 
-    	"title" : {type : "sap.ui.core.Title", altTypes : ["string"], multiple : false}
+		"content" : {type : "sap.ui.core.Element", multiple : true, singularName : "content"}, 
+		"form" : {type : "sap.ui.layout.form.Form", multiple : false, visibility : "hidden"}, 
+		"title" : {type : "sap.ui.core.Title", altTypes : ["string"], multiple : false}
 	}
 }});
 
@@ -688,6 +684,15 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 		oForm.getTitle = function(){
 			return this.getParent().getTitle();
 		};
+		oForm._origInvalidate = oForm.invalidate;
+		oForm.invalidate = function(oOrigin) {
+			this._origInvalidate(arguments);
+			if (this._bIsBeingDestroyed) return;
+			var oSimpleForm = this.getParent();
+			if (oSimpleForm) {
+				oSimpleForm._formInvalidated(oOrigin);
+			}
+		};
 		this.setAggregation("form",oForm);
 		this._aElements = null;
 		this._aLayouts = [];
@@ -698,6 +703,9 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 	};
 
 	sap.ui.layout.form.SimpleForm.prototype.exit = function() {
+
+		var oForm = this.getAggregation("form");
+		oForm.invalidate = oForm._origInvalidate;
 
 		if (this._sResizeListenerId) {
 			sap.ui.core.ResizeHandler.deregister(this._sResizeListenerId);
@@ -721,6 +729,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 	 */
 	sap.ui.layout.form.SimpleForm.prototype.onBeforeRendering = function() {
 
+		this._bChangedByMe = true;
 		//unregister resize
 		if (this._sResizeListenerId) {
 			sap.ui.core.ResizeHandler.deregister(this._sResizeListenerId);
@@ -734,6 +743,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 		}
 
 		_updateFormContainers(that);
+		this._bChangedByMe = false;
 
 	};
 
@@ -742,22 +752,26 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 	sap.ui.layout.form.SimpleForm.prototype.onAfterRendering = function() {
 
 		if (this.getLayout() == sap.ui.layout.form.SimpleFormLayout.ResponsiveLayout) {
+			this._bChangedByMe = true;
 			this.$().css("visibility", "hidden"); //avoid that a wrong layouting is visible
 			this._applyLinebreaks();
 
 			//attach the resize handler
 			this._sResizeListenerId = sap.ui.core.ResizeHandler.register(this.getDomRef(),  jQuery.proxy(this._resize, this));
+			this._bChangedByMe = false;
 		}
 
 	};
 
 	sap.ui.layout.form.SimpleForm.prototype.setEditable = function(bEditable) {
 
+		this._bChangedByMe = true;
 		this.setProperty("editable", bEditable, true);
 
 		var oForm = this.getAggregation("form");
 		oForm.setEditable(bEditable);
 
+		this._bChangedByMe = false;
 		return this;
 
 	};
@@ -781,6 +795,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 
 	sap.ui.layout.form.SimpleForm.prototype.addContent = function(oElement) {
 
+		this._bChangedByMe = true;
 		oElement = this.validateAggregation("content", oElement, /* multiple */ true);
 
 		if (!this._aElements) {
@@ -855,6 +870,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 		this._aElements.push(oElement);
 		oElement.attachEvent("_change", _handleContentChange, this);
 		this.invalidate();
+		this._bChangedByMe = false;
 		return this;
 
 	};
@@ -879,6 +895,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 			return this;
 		}
 
+		this._bChangedByMe = true;
 		var oOldElement = this._aElements[iNewIndex];
 		var oForm = this.getAggregation("form");
 		var oFormContainer;
@@ -1028,6 +1045,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 		this._aElements.splice(iNewIndex, 0, oElement);
 		oElement.attachEvent("_change", _handleContentChange, this);
 		this.invalidate();
+		this._bChangedByMe = false;
 		return this;
 
 	};
@@ -1062,6 +1080,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 			}
 		}
 		if (oElement) {
+			this._bChangedByMe = true;
 			var oForm = this.getAggregation("form");
 			var oFormContainer;
 			var oFormElement;
@@ -1142,6 +1161,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 			_removeLayoutData(this, oElement);
 
 			this.invalidate();
+			this._bChangedByMe = false;
 			return oElement;
 		}
 		return null;
@@ -1151,6 +1171,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 	sap.ui.layout.form.SimpleForm.prototype.removeAllContent = function() {
 
 		if (this._aElements) {
+			this._bChangedByMe = true;
 			var oForm = this.getAggregation("form");
 			var aFormContainers = oForm.getFormContainers();
 			for ( var i = 0; i < aFormContainers.length; i++) {
@@ -1174,6 +1195,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 			var aElements = this._aElements;
 			this._aElements = null;
 			this.invalidate();
+			this._bChangedByMe = false;
 			return aElements;
 		} else {
 			return [];
@@ -1186,10 +1208,12 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 		var aElements = this.removeAllContent();
 
 		if (aElements) {
+			this._bChangedByMe = true;
 			for (var i = 0; i < aElements.length; i++) {
 				aElements[i].destroy();
 			}
 			this.invalidate();
+			this._bChangedByMe = false;
 		}
 		return this;
 
@@ -1209,6 +1233,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
  */
 	sap.ui.layout.form.SimpleForm.prototype.setLayout = function(sLayout) {
 
+		this._bChangedByMe = true;
 		var sOldLayout = this.getLayout();
 		this.setProperty("layout", sLayout);
 
@@ -1255,6 +1280,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 			}
 		}
 
+		this._bChangedByMe = false;
 		return this;
 
 	};
@@ -1264,6 +1290,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 	 */
 	sap.ui.layout.form.SimpleForm.prototype.clone = function(sIdSuffix) {
 
+		this._bChangedByMe = true;
 		var oClone = sap.ui.core.Control.prototype.clone.apply(this, arguments);
 		var aContent = this.getContent();
 
@@ -1287,6 +1314,7 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 			oClone.addContent(oElementClone);
 		}
 
+		this._bChangedByMe = false;
 		return oClone;
 
 	};
@@ -1701,9 +1729,13 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 	 * @private
 	 */
 	sap.ui.layout.form.SimpleForm.prototype._resize = function(){
+
+		this._bChangedByMe = true;
 		if (this._iCurrentWidth == this.$().outerWidth()) return;
 		this._iCurrentWidth = this.$().outerWidth();
 		this._applyLinebreaks();
+		this._bChangedByMe = false;
+
 	};
 
 	var _markFormElementForUpdate = function(aFormElements, oFormElement){
@@ -1727,6 +1759,89 @@ jQuery.sap.require("sap.ui.layout.ResponsiveFlowLayoutData"); // because Respons
 			var oFormElement= oEvent.oSource.getParent();
 			_updateVisibility(this, oFormElement);
 		}
+	};
+
+	var _getFormContent = function(oForm) {
+
+		var aElements = [];
+		var aFormContainers = oForm.getFormContainers();
+
+		for ( var i = 0; i < aFormContainers.length; i++) {
+			var oFormContainer = aFormContainers[i];
+			var oTitle = oFormContainer.getTitle();
+			if (oTitle) {
+				aElements.push(oTitle);
+			}
+
+			var aFormElements = oFormContainer.getFormElements();
+			for ( var j = 0; j < aFormElements.length; j++) {
+				var oFormElement = aFormElements[j];
+				var oLabel = oFormElement.getLabel();
+				if (oLabel) {
+					aElements.push(oLabel);
+				}
+				var aFields = oFormElement.getFields();
+				for (var k = 0; k < aFields.length; k++) {
+					var oField = aFields[k];
+					aElements.push(oField);
+				}
+			}
+		}
+
+		return aElements;
+
+	};
+
+	sap.ui.layout.form.SimpleForm.prototype._formInvalidated = function(oOrigin){
+
+		if (!this._bChangedByMe) {
+			// check if content is still the same like in array
+			// maybe ca Control was destroyed or removed without using the SimpleForm API
+			// as invalidate is fired for every single object only one object can be changed
+			var aContent = _getFormContent(this.getAggregation("form"));
+			var j = 0;
+			var bCreateNew = false;
+
+			if (aContent.length < this._aElements.length) {
+				// at least one element must be removed -> create completely new,
+				// because for deleted controls it's hard to find out the old parent.
+				bCreateNew = true;
+			} else {
+				for (var i = 0; i < aContent.length; i++) {
+					var oElement1 = aContent[i];
+					var oElement2 = this._aElements[j];
+					if (oElement1 === oElement2) {
+						j++;
+					}else {
+						// check if Element1 is new
+						var oElementNext = aContent[i+1];
+						if (oElementNext === oElement2) {
+							this.insertContent(oElement1, i);
+							break;
+						}
+
+						// check if Element2 is removed
+						var oElementNext = this._aElements[j+1];
+						if (oElementNext === oElement1) {
+							// difficult to find out old Formelement or FormContainer -> create content completely new.
+							bCreateNew = true;
+							break;
+						}
+
+						break;
+					}
+				}
+			}
+
+			if (bCreateNew) {
+				this.removeAllContent();
+				for (var i = 0; i < aContent.length; i++) {
+					var oElement = aContent[i];
+					this.addContent(oElement);
+				}
+			}
+		}
+
 	};
 
 }());

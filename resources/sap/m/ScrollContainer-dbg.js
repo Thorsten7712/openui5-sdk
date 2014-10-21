@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,22 +59,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * Note that it is not recommended to have nested scrolling areas that scroll into the same direction (e.g. a ScrollContainer that scrolls vertically inside a Page control with scrolling enabled). This is currently not considered a valid use-case of a good UI and the behavior will feel wrong.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.ScrollContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ScrollContainer", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"scrollTo"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -85,7 +83,7 @@ sap.ui.core.Control.extend("sap.m.ScrollContainer", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -325,25 +323,22 @@ sap.ui.core.Control.extend("sap.m.ScrollContainer", { metadata : {
  * Scrolls to the given position.
  * When called while the control is not rendered (yet), the scrolling position is still applied, but there is no animation.
  *
- * @name sap.m.ScrollContainer.prototype.scrollTo
+ * @name sap.m.ScrollContainer#scrollTo
  * @function
- * @param {int} 
- *         iX
+ * @param {int} iX
  *         The horizontal pixel position to scroll to.
  *         Scrolling to the right happens with positive values.
  *         If only vertical scrolling is enabled, give 0 as value.
- * @param {int} 
- *         iY
+ * @param {int} iY
  *         The vertical pixel position to scroll to.
  *         Scrolling down happens with positive values.
  *         If only horizontal scrolling is enabled, give 0 as value.
- * @param {int} 
- *         iTime
+ * @param {int} iTime
  *         The duration of animated scrolling.
  *         To scroll immediately without animation, give 0 as value. 0 is also the default value, when this optional parameter is omitted.
-
  * @type sap.m.ScrollContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

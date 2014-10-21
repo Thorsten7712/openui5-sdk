@@ -134,6 +134,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="This event is triggered when the custom filter item of the column menu is pressed."><a href="../symbols/sap.ui.table.Table.html#event:customFilter">customFilter</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+									<span class='description'>This event is triggered when the custom filter item of the column menu is pressed.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="fired when the table is filtered."><a href="../symbols/sap.ui.table.Table.html#event:filter">filter</a></b><span class='signature'>(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
 									<span class='description'>fired when the table is filtered.</span>
 								</div>
@@ -228,6 +233,11 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Attach event handler fnFunction to the 'columnVisibility' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#attachColumnVisibility">attachColumnVisibility</a></b><span class='signature'>(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Attach event handler <code>fnFunction</code> to the 'columnVisibility' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Attach event handler fnFunction to the 'customFilter' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#attachCustomFilter">attachCustomFilter</a></b><span class='signature'>(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Attach event handler <code>fnFunction</code> to the 'customFilter' event of this <code>sap.ui.table.Table</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -341,6 +351,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Detach event handler fnFunction from the 'customFilter' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#detachCustomFilter">detachCustomFilter</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+									<span class='description'>Detach event handler <code>fnFunction</code> from the 'customFilter' event of this <code>sap.ui.table.Table</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Detach event handler fnFunction from the 'filter' event of this sap.ui.table.Table."><a href="../symbols/sap.ui.table.Table.html#detachFilter">detachFilter</a></b><span class='signature'>(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
 									<span class='description'>Detach event handler <code>fnFunction</code> from the 'filter' event of this <code>sap.ui.table.Table</code>.</span>
 								</div>
@@ -406,6 +421,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod protected">
+									<b class="icon protected" title="Fire event customFilter to attached listeners."><a href="../symbols/sap.ui.table.Table.html#fireCustomFilter">fireCustomFilter</a></b><span class='signature'>(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Fire event customFilter to attached listeners.</span>
+								</div>
+							
+								<div class="sectionItem classMethod protected">
 									<b class="icon protected" title="Fire event filter to attached listeners."><a href="../symbols/sap.ui.table.Table.html#fireFilter">fireFilter</a></b><span class='signature'>(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Fire event filter to attached listeners.</span>
 								</div>
@@ -466,8 +486,18 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property enableCustomFilter."><a href="../symbols/sap.ui.table.Table.html#getEnableCustomFilter">getEnableCustomFilter</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>enableCustomFilter</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property enableGrouping."><a href="../symbols/sap.ui.table.Table.html#getEnableGrouping">getEnableGrouping</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>enableGrouping</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property enableSelectAll."><a href="../symbols/sap.ui.table.Table.html#getEnableSelectAll">getEnableSelectAll</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>enableSelectAll</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -706,8 +736,18 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property enableCustomFilter."><a href="../symbols/sap.ui.table.Table.html#setEnableCustomFilter">setEnableCustomFilter</a></b><span class='signature'>(<span title="(boolean) new value for property enableCustomFilter">bEnableCustomFilter</span>)</span>
+									<span class='description'>Setter for property <code>enableCustomFilter</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Setter for property enableGrouping."><a href="../symbols/sap.ui.table.Table.html#setEnableGrouping">setEnableGrouping</a></b><span class='signature'>(<span title="(boolean) new value for property enableGrouping">bEnableGrouping</span>)</span>
 									<span class='description'>Setter for property <code>enableGrouping</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property enableSelectAll."><a href="../symbols/sap.ui.table.Table.html#setEnableSelectAll">setEnableSelectAll</a></b><span class='signature'>(<span title="(boolean) new value for property enableSelectAll">bEnableSelectAll</span>)</span>
+									<span class='description'>Setter for property <code>enableSelectAll</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -882,7 +922,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Element.html#$">$</a>, <a href="../symbols/sap.ui.core.Element.html#addCustomData">addCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#addDependent">addDependent</a>, <a href="../symbols/sap.ui.core.Element.html#addEventDelegate">addEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#applyFocusInfo">applyFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#bindElement">bindElement</a>, <a href="../symbols/sap.ui.core.Element.html#data">data</a>, <a href="../symbols/sap.ui.core.Element.html#destroy">destroy</a>, <a href="../symbols/sap.ui.core.Element.html#destroyCustomData">destroyCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyDependents">destroyDependents</a>, <a href="../symbols/sap.ui.core.Element.html#enhanceAccessibilityState">enhanceAccessibilityState</a>, <a href="../symbols/sap.ui.core.Element.html#findElements">findElements</a>, <a href="../symbols/sap.ui.core.Element.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.core.Element.html#getCustomData">getCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#getDependents">getDependents</a>, <a href="../symbols/sap.ui.core.Element.html#getDomRef">getDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getElementBinding">getElementBinding</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusDomRef">getFocusDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusInfo">getFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#getInterface">getInterface</a>, <a href="../symbols/sap.ui.core.Element.html#getLayoutData">getLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#getMetadata">getMetadata</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip">getTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_AsString">getTooltip_AsString</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_Text">getTooltip_Text</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfCustomData">indexOfCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfDependent">indexOfDependent</a>, <a href="../symbols/sap.ui.core.Element.html#insertCustomData">insertCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#insertDependent">insertDependent</a>, <a href="../symbols/sap.ui.core.Element.html#prop">prop</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllCustomData">removeAllCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllDependents">removeAllDependents</a>, <a href="../symbols/sap.ui.core.Element.html#removeCustomData">removeCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeDependent">removeDependent</a>, <a href="../symbols/sap.ui.core.Element.html#removeEventDelegate">removeEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#setLayoutData">setLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#setTooltip">setTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#toString">toString</a>, <a href="../symbols/sap.ui.core.Element.html#unbindElement">unbindElement</a>
+									<a href="../symbols/sap.ui.core.Element.html#$">$</a>, <a href="../symbols/sap.ui.core.Element.html#addCustomData">addCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#addDependent">addDependent</a>, <a href="../symbols/sap.ui.core.Element.html#addEventDelegate">addEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#applyFocusInfo">applyFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#bindElement">bindElement</a>, <a href="../symbols/sap.ui.core.Element.html#data">data</a>, <a href="../symbols/sap.ui.core.Element.html#destroy">destroy</a>, <a href="../symbols/sap.ui.core.Element.html#destroyCustomData">destroyCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyDependents">destroyDependents</a>, <a href="../symbols/sap.ui.core.Element.html#destroyLayoutData">destroyLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyTooltip">destroyTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#enhanceAccessibilityState">enhanceAccessibilityState</a>, <a href="../symbols/sap.ui.core.Element.html#findElements">findElements</a>, <a href="../symbols/sap.ui.core.Element.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.core.Element.html#getCustomData">getCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#getDependents">getDependents</a>, <a href="../symbols/sap.ui.core.Element.html#getDomRef">getDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getElementBinding">getElementBinding</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusDomRef">getFocusDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusInfo">getFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#getInterface">getInterface</a>, <a href="../symbols/sap.ui.core.Element.html#getLayoutData">getLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#getMetadata">getMetadata</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip">getTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_AsString">getTooltip_AsString</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_Text">getTooltip_Text</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfCustomData">indexOfCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfDependent">indexOfDependent</a>, <a href="../symbols/sap.ui.core.Element.html#insertCustomData">insertCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#insertDependent">insertDependent</a>, <a href="../symbols/sap.ui.core.Element.html#prop">prop</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllCustomData">removeAllCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllDependents">removeAllDependents</a>, <a href="../symbols/sap.ui.core.Element.html#removeCustomData">removeCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeDependent">removeDependent</a>, <a href="../symbols/sap.ui.core.Element.html#removeEventDelegate">removeEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#setLayoutData">setLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#setTooltip">setTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#toString">toString</a>, <a href="../symbols/sap.ui.core.Element.html#unbindElement">unbindElement</a>
 									</div>
 								</div>
 							
@@ -960,7 +1000,9 @@ The supported settings are:
 <li><a href="#getEnableColumnFreeze">enableColumnFreeze</a> : boolean (default: false)</li>
 <li><a href="#getEnableCellFilter">enableCellFilter</a> : boolean (default: false)</li>
 <li><a href="#getNoDataText">noDataText</a> : string</li>
-<li><a href="#getShowOverlay">showOverlay</a> : boolean (default: false)</li></ul>
+<li><a href="#getShowOverlay">showOverlay</a> : boolean (default: false)</li>
+<li><a href="#getEnableSelectAll">enableSelectAll</a> : boolean (default: true)</li>
+<li><a href="#getEnableCustomFilter">enableCustomFilter</a> : boolean (default: false)</li></ul>
 </li>
 <li>Aggregations
 <ul>
@@ -988,7 +1030,8 @@ The supported settings are:
 <li><a href="../symbols/sap.ui.table.Table.html#event:columnVisibility">columnVisibility</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
 <li><a href="../symbols/sap.ui.table.Table.html#event:cellClick">cellClick</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
 <li><a href="../symbols/sap.ui.table.Table.html#event:cellContextmenu">cellContextmenu</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
-<li><a href="../symbols/sap.ui.table.Table.html#event:columnFreeze">columnFreeze</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+<li><a href="../symbols/sap.ui.table.Table.html#event:columnFreeze">columnFreeze</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+<li><a href="../symbols/sap.ui.table.Table.html#event:customFilter">customFilter</a> : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
 </li>
 </ul>
 										</div>
@@ -1659,6 +1702,73 @@ The supported settings are:
 										</tbody></table>
 									
 									
+									
+									
+									
+									
+									
+									</div>
+								
+									<div class='sectionItem classProperty'>
+									<a name="event:customFilter"> </a>
+									<div class="itemTitle icon">
+										customFilter<span class="signature">(<span title="(sap.ui.base.Event) sap.ui.base.Event">oControlEvent</span>)</span>
+										
+									</div>
+									<div class="full-description">
+										This event is triggered when the custom filter item of the column menu is pressed. The column on which the event was triggered is passed as parameter.
+										
+										
+										
+									</div>
+									
+										<div class="heading">Parameters:</div>
+										<table class="methodItem"><tbody>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.Event.html">sap.ui.base.Event</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{<a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a>}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getSource</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="methodItemType">
+												  <span class="light">{object}</span> 
+												</td>
+												<td class="methodItemName">
+												  <b>oControlEvent.getParameters</b>
+												</td>
+												<td class="methodItemDesc">
+											    
+												</td>
+											</tr>
+										
+										</tbody></table>
+									
+									
+									
+										<dl class="detailList since">
+											<dt class="heading since">Since:</dt>
+											<dd>1.23.0</dd>
+										</dl>
 									
 									
 									
@@ -2913,6 +3023,94 @@ fired when the visibility of a table column is changed.
 											</tbody></table>
 										
 										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="attachCustomFilter"> </a>
+										<div class="itemTitle icon">
+											attachCustomFilter<span class="signature">(<span title="(object) An application specific payload object, that will be passed to the event handler along with the event object when firing the event.">oData</span><i class="help" title="Optional parameter">?</i>, <span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object to call the event handler with.">oListener</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Attach event handler <code>fnFunction</code> to the 'customFilter' event of this <code>sap.ui.table.Table</code>.<br/>.
+When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
+</p><p>
+This event is triggered when the custom filter item of the column menu is pressed. The column on which the event was triggered is passed as parameter.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oData</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23.0</dd>
+											</dl>
 										
 										
 										
@@ -4289,6 +4487,80 @@ The passed function and listener object must match the ones used for event regis
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="detachCustomFilter"> </a>
+										<div class="itemTitle icon">
+											detachCustomFilter<span class="signature">(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Detach event handler <code>fnFunction</code> from the 'customFilter' event of this <code>sap.ui.table.Table</code>.<br/>
+</p><p>
+The passed function and listener object must match the ones used for event registration.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{function}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>fnFunction</b>
+													</td>
+													<td class="methodItemDesc">
+												    The function to call, when the event occurs.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oListener</b>
+													</td>
+													<td class="methodItemDesc">
+												    Context object on which the given function had to be called.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="detachFilter"> </a>
 										<div class="itemTitle icon">
 											detachFilter<span class="signature">(<span title="(function) The function to call, when the event occurs.">fnFunction</span>, <span title="(object) Context object on which the given function had to be called.">oListener</span>)</span>
@@ -4568,10 +4840,14 @@ The passed function and listener object must match the ones used for event regis
 										<a name="exportData"> </a>
 										<div class="itemTitle icon">
 											exportData<span class="signature">(<span title="(object) settings for the new Export, see sap.ui.core.util.Export constructor">mSettings</span><i class="help" title="Optional parameter">?</i>)</span>
-											<span class="light" title="returns jQuery.Promise">: jQuery.Promise</span>
+											<span class="light" title="returns Promise">: Promise</span>
 										</div>
 										<div class="full-description">
 											Creates a new <a href="../symbols/sap.ui.core.util.Export.html">sap.ui.core.util.Export</a> object and fills row/column information from the table if not provided. For the cell content, the column's "sortProperty" will be used (experimental!)
+</p><p>
+<p><b>Please note: The return value was changed from jQuery Promises to standard ES6 Promises.
+jQuery specific Promise methods ('done', 'fail', 'always', 'pipe' and 'state') are still available but should not be used. 
+Please use only the standard methods 'then' and 'catch'!</b></p>
 											
 											
 												<p class="tagExperimental"><span class="title">Experimental API:</span><span class="desc">Experimental because the property for the column/cell definitions (sortProperty) could change in future.</span></p> 
@@ -4608,7 +4884,7 @@ The passed function and listener object must match the ones used for event regis
 											
 												<tr>
 													<td class="methodItemType">
-														<span class="light">{jQuery.Promise}</span> 
+														<span class="light">{Promise}</span> 
 													</td>
 													<td class="methodItemDesc">
 														Promise object
@@ -4674,7 +4950,7 @@ The passed function and listener object must match the ones used for event regis
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireCellClick"> </a>
 										<div class="itemTitle icon protected">
 											fireCellClick<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -4743,7 +5019,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireCellContextmenu"> </a>
 										<div class="itemTitle icon protected">
 											fireCellContextmenu<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -4812,7 +5088,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireColumnFreeze"> </a>
 										<div class="itemTitle icon protected">
 											fireColumnFreeze<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -4879,7 +5155,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireColumnMove"> </a>
 										<div class="itemTitle icon protected">
 											fireColumnMove<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -4942,7 +5218,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireColumnResize"> </a>
 										<div class="itemTitle icon protected">
 											fireColumnResize<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -5005,7 +5281,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireColumnSelect"> </a>
 										<div class="itemTitle icon protected">
 											fireColumnSelect<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -5067,7 +5343,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireColumnVisibility"> </a>
 										<div class="itemTitle icon protected">
 											fireColumnVisibility<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -5130,7 +5406,67 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
+										<a name="fireCustomFilter"> </a>
+										<div class="itemTitle icon protected">
+											fireCustomFilter<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Fire event customFilter to attached listeners.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{Map}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mArguments</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    the arguments to pass along with the event.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod protected'>
 										<a name="fireFilter"> </a>
 										<div class="itemTitle icon protected">
 											fireFilter<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -5193,7 +5529,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireGroup"> </a>
 										<div class="itemTitle icon protected">
 											fireGroup<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -5255,7 +5591,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireRowSelectionChange"> </a>
 										<div class="itemTitle icon protected">
 											fireRowSelectionChange<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -5317,7 +5653,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireSort"> </a>
 										<div class="itemTitle icon protected">
 											fireSort<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -5720,6 +6056,52 @@ Default value is <code>true</code>
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="getEnableCustomFilter"> </a>
+										<div class="itemTitle icon">
+											getEnableCustomFilter<span class="signature">()</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>enableCustomFilter</code>.
+Set this parameter to true to implement your own filter behaviour. Instead of the filter input box a button will be rendered for which' press event (customFilter) you can register an event handler.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>enableCustomFilter</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="getEnableGrouping"> </a>
 										<div class="itemTitle icon">
 											getEnableGrouping<span class="signature">()</span>
@@ -5751,6 +6133,52 @@ Default value is <code>false</code>
 													</td>
 													<td class="methodItemDesc">
 														the value of property <code>enableGrouping</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getEnableSelectAll"> </a>
+										<div class="itemTitle icon">
+											getEnableSelectAll<span class="signature">()</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>enableSelectAll</code>.
+Specifies if a select all button should be displayed in the top left corner.
+</p><p>
+Default value is <code>true</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>enableSelectAll</code>
 													</td>
 												</tr>
 											
@@ -7940,6 +8368,68 @@ Default value is <code>true</code>
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="setEnableCustomFilter"> </a>
+										<div class="itemTitle icon">
+											setEnableCustomFilter<span class="signature">(<span title="(boolean) new value for property enableCustomFilter">bEnableCustomFilter</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>enableCustomFilter</code>.
+</p><p>
+Default value is <code>false</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bEnableCustomFilter</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>enableCustomFilter</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="setEnableGrouping"> </a>
 										<div class="itemTitle icon">
 											setEnableGrouping<span class="signature">(<span title="(boolean) new value for property enableGrouping">bEnableGrouping</span>)</span>
@@ -7975,6 +8465,68 @@ Default value is <code>false</code>
 											</tbody></table>
 										
 										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="setEnableSelectAll"> </a>
+										<div class="itemTitle icon">
+											setEnableSelectAll<span class="signature">(<span title="(boolean) new value for property enableSelectAll">bEnableSelectAll</span>)</span>
+											<span class="light" title="returns sap.ui.table.Table">: <a href="../symbols/sap.ui.table.Table.html">sap.ui.table.Table</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>enableSelectAll</code>.
+</p><p>
+Default value is <code>true</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bEnableSelectAll</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>enableSelectAll</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23.0</dd>
+											</dl>
 										
 										
 										
@@ -9516,7 +10068,7 @@ Default value is <code>true</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.5.2. 
 Use the property enableColumnReordering instead.
@@ -9565,7 +10117,7 @@ Default value is empty/<code>undefined</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.22.1. 
 The aggregation noData also supports string values now. Use noData instead.
@@ -9635,7 +10187,7 @@ Default value is <code>true</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.5.2. 
 Use the property enableColumnReordering instead.
@@ -9700,7 +10252,7 @@ Default value is empty/<code>undefined</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.22.1. 
 The aggregation noData also supports string values now. Use noData instead.

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,29 +56,25 @@ jQuery.sap.require("sap.ui.core.Control");
  * The SegmentedButton provides a group of multiple buttons. Only one button can be active. The behaviour is more ore less like a radio button group.
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.SegmentedButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.SegmentedButton", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enabled" : {type : "boolean", group : "Misc", defaultValue : true},
 		"visible" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
-    	"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
+		"buttons" : {type : "sap.ui.commons.Button", multiple : true, singularName : "button"}
 	},
 	associations : {
 		"selectedButton" : {type : "sap.ui.commons.Button", multiple : false}
@@ -263,14 +259,13 @@ sap.ui.commons.SegmentedButton.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event fired when button selected 
+ * Event fired when button selected
  *
  * @name sap.ui.commons.SegmentedButton#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.selectedButtonId Id of selected ToggleButton
  * @public
  */
@@ -280,7 +275,7 @@ sap.ui.commons.SegmentedButton.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.SegmentedButton</code>.<br/> itself. 
  *  
- * Event fired when button selected 
+ * Event fired when button selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

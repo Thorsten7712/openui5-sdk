@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -21,11 +21,13 @@ sap.ui.layout.form.ResponsiveGridLayoutRenderer.getMainClass = function(){
 sap.ui.layout.form.ResponsiveGridLayoutRenderer.renderContainers = function(rm, oLayout, oForm){
 
 	var aContainers = oForm.getFormContainers();
+	var aVisibleContainers = [];
 	var iLength = 0;
 	for ( var i = 0; i < aContainers.length; i++) {
 		var oContainer = aContainers[i];
 		if (oContainer.getVisible()) {
 			iLength++;
+			aVisibleContainers.push(oContainer);
 		}
 	}
 
@@ -34,12 +36,12 @@ sap.ui.layout.form.ResponsiveGridLayoutRenderer.renderContainers = function(rm, 
 		if (iLength > 1) {
 			//render Grid
 			rm.renderControl(oLayout._mainGrid);
-		}else if(oLayout.mContainers[aContainers[0].getId()][0]){
+		}else if(oLayout.mContainers[aVisibleContainers[0].getId()][0]){
 			// render panel
-			rm.renderControl(oLayout.mContainers[aContainers[0].getId()][0]);
+			rm.renderControl(oLayout.mContainers[aVisibleContainers[0].getId()][0]);
 		}else{
 			// render Grid of container
-			rm.renderControl(oLayout.mContainers[aContainers[0].getId()][1]);
+			rm.renderControl(oLayout.mContainers[aVisibleContainers[0].getId()][1]);
 		}
 	}
 

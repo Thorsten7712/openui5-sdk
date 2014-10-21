@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6760170432288818"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=989807525111411"/>
 <title>SAPUI5 Library Location Used for Testing</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,14 +31,14 @@
 <p class="p">If the SAPUI5 bootstrap tag contains <samp class="ph codeph">src="resources/sap-ui-core.js"</samp>, the
 			SAPUI5 runtime libraries from the Eclipse plugin are used.</p>
 <p class="p">If you want to test your SAPUI5 application in Eclipse against a different SAPUI5 Library
-			location, for example on the ABAP server when running in the SAP NetWeaver UI AddOn
+			location, for example on the ABAP server when running in the <span class="ph pname">SAP NetWeaver</span> UI AddOn
 			scenario, you can configure the ResourceServlet. For that, open the web.xml file located
 			in the &lt;WebContent folder name&gt;/WEB-INF folder and configure the parameter
 				<samp class="ph codeph">com.sap.ui5.resource.REMOTE_LOCATION</samp> and
 				<samp class="ph codeph">com.sap.ui5.resource.PREFER_REMOTE_LOCATION</samp> of the ResourceServlet
 			where the placeholders {protocol}, {host name}, {port number}, {path to UI5 library} are
 			to be exchanged by the real protocol, host name, port number and path to the SAPUI5
-			library, see <a class="xref" href="91f2b4d66f4d1014b6dd926db0e91070.html">Resource
+			library, see <a class="xref" href="91f2b4d66f4d1014b6dd926db0e91070.html" title="Explains the concept of resource handling in SAPUI5">Resource
 				Handling</a>, section <em class="ph i">Tunneling a Remote Location</em>.</p>
 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  &lt;servlet&gt;
     &lt;display-name&gt;ResourceServlet&lt;/display-name&gt;
@@ -54,11 +56,6 @@
     &lt;param-name&gt;com.sap.ui5.resource.REMOTE_LOCATION&lt;/param-name&gt;
     &lt;param-value&gt;{protocol}://{host name}:{port number}/{path to UI5 library}&lt;/param-value&gt;
  &lt;/context-param&gt;</pre></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

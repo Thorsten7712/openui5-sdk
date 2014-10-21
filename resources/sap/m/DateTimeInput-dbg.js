@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,19 +60,17 @@ jQuery.sap.require("sap.m.InputBase");
  * Note: Since 1.22, this control should not be used as a date picker(type property "Date"), instead please use dedicated sap.m.DatePicker control.
  * @extends sap.m.InputBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.1
  * @name sap.m.DateTimeInput
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.InputBase.extend("sap.m.DateTimeInput", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"type" : {type : "sap.m.DateTimeInputType", group : "Data", defaultValue : sap.m.DateTimeInputType.Date},
@@ -210,14 +208,13 @@ sap.m.DateTimeInput.M_EVENTS = {'change':'change'};
 
 
 /**
- * This event gets fired when the selection has finished and the value has changed. 
+ * This event gets fired when the selection has finished and the value has changed.
  *
  * @name sap.m.DateTimeInput#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The string value of the control in given valueFormat(or locale format).
  * @param {object} oControlEvent.getParameters.dateValue The value of control as JavaScript Date Object or null if value is empty.
  * @public
@@ -228,7 +225,7 @@ sap.m.DateTimeInput.M_EVENTS = {'change':'change'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.DateTimeInput</code>.<br/> itself. 
  *  
- * This event gets fired when the selection has finished and the value has changed. 
+ * This event gets fired when the selection has finished and the value has changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -781,7 +778,7 @@ sap.m.DateTimeInput.prototype.onsapshow = function(oEvent) {
 				fnAutoCloseProxy = $.proxy(this._autoClose, this),
 				fnHandleResize = $.proxy(this._handleResize, this),
 				fnHandleBtnKeyDown = $.proxy(this._handleBtnKeyDown, this),
-				fnFocusInFirst, fnFocusInLast,
+				fnFocusInFirst, fnFocusInLast, fnClick,
 				$focusLeft = $("<span class='sapMFirstFE' tabindex='0'/>"),
 				$focusRight = $("<span class='sapMLastFE' tabindex='0'/>"),
 				fnKeyDown, $dialogToClean,
@@ -829,6 +826,15 @@ sap.m.DateTimeInput.prototype.onsapshow = function(oEvent) {
 
 							// Make sure, the first scroller column has initial focus
 							$.sap.focus($scrollerCont.firstFocusableDomRef());
+							
+							// CSN 0120061532 0001326801 2014: mobiscroll scrollers don't 
+							// get focus when clicked upon
+							fnClick = function(oEvent){
+								//The target itself is not focusable. Need to focus the 
+								//scroller parent marked by a 'dwww' class 
+								$.sap.focus($(oEvent.target).parents(".dwww"));
+							};
+							$dialog.click(fnClick);
 
 							// Support other keyboard events as well, e.g. LEFT, RIGHT
 							$dialogToClean = $dialog;
@@ -855,6 +861,7 @@ sap.m.DateTimeInput.prototype.onsapshow = function(oEvent) {
 						if ($dialogToClean) {
 							$dialogToClean.unbind('keydown', fnKeyDown);
 							$dialogToClean.unbind('keydown.dw', fnHandleBtnKeyDown);
+							$dialogToClean.unbind('click', fnClick);
 						}
 					},
 					onSelect : function() {

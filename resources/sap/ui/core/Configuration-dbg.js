@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -333,13 +333,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object', './Locale', 'sap/ui/th
 
 			config.theme = this._normalizeTheme(config.theme, sThemeRoot); 
 
-			// the following placeholder is replaced during the build with a list of locales supported by the UI5 core  
-			var aCoreLangs = ",ar,bg,ca,cs,da,de,el,en,es,et,fi,fr,hi,hr,hu,it,iw,ja,ko,lt,lv,nl,no,pl,pt,ro,ru,sh,sk,sl,sv,th,tr,uk,vi,zh_CN,zh_TW".split(/,/);
-			if ( aCoreLangs.length === 1 && aCoreLangs[0].slice(0,1) === '@' ) {
-				aCoreLangs = undefined;
-			}
-			config['languagesDeliveredWithCore'] = aCoreLangs;
-
+			var aCoreLangs = config['languagesDeliveredWithCore'] = Locale._coreI18nLocales;
 			var aLangs = config['xx-supportedLanguages'];
 			if ( aLangs.length === 0 || (aLangs.length === 1 && aLangs[0] === '*') ) {
 				aLangs = [];

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,19 +54,15 @@ sap.ui.define(['sap/ui/core/library','./SearchProvider','jquery.sap.encoder'], f
  * @class
  * A SearchProvider which uses the OpenSearch protocol (either JSON or XML).
  * @extends sap.ui.core.search.SearchProvider
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.search.OpenSearchProvider
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.search.SearchProvider.extend("sap.ui.core.search.OpenSearchProvider", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"suggestUrl" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
@@ -152,7 +148,7 @@ sap.ui.core.search.SearchProvider.extend("sap.ui.core.search.OpenSearchProvider"
  * @name sap.ui.core.search.SearchProvider.prototype.suggest
  * @function
  * @param {string} sValue The value for which suggestions are requested.
- * @param {function} fCallBack The callback function which is called when the suggestions are available.
+ * @param {function} fCallback The callback function which is called when the suggestions are available.
  * @type void
  * @public
  */

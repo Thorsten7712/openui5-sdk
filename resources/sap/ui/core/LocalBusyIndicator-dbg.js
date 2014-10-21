@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,25 +56,22 @@ sap.ui.define(['./library','./Control','./theming/Parameters','./LocalBusyIndica
  * control needs to be enabled via the 'LocalBusyIndicatorSupport'
  * accordingly to the ListBox control (see the init-function of the
  * ListBox).
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.11.0
  * @deprecated Since version 1.14.2. 
  * The LocalBusyIndicator Control is not needed anymore by the new implementation of the LBI. Hence, it is not used anymore.
  * @name sap.ui.core.LocalBusyIndicator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.core.LocalBusyIndicator", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Misc", defaultValue : '100px'},
@@ -105,7 +102,6 @@ sap.ui.core.Control.extend("sap.ui.core.LocalBusyIndicator", { metadata : {
  * This property is the width of the control that has to
  * be covered. With this width the position of the animation can be
  * properly set.
- * 
  *
  * Default value is <code>100px</code>
  *
@@ -133,7 +129,6 @@ sap.ui.core.Control.extend("sap.ui.core.LocalBusyIndicator", { metadata : {
  * This property is the height of the control that has to
  * be covered. With this height the position of the animation can be
  * properly set.
- * 
  *
  * Default value is <code>100px</code>
  *

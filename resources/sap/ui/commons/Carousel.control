@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Carousel</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.8.0</since>
 	<documentation>Carousel holds multiple controls and displays them vertical or horizontal next to each other. You can define how many content items should be displayed at once or let the carousel determine that for you. Navigation is done through buttons or keys.</documentation>
 

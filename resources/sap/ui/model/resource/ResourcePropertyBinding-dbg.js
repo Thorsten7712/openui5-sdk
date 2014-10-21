@@ -1,12 +1,12 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
 // Provides the Resource model implementation of a property binding
-sap.ui.define(['jquery.sap.global', 'sap/ui/model/PropertyBinding'],
-	function(jQuery, PropertyBinding) {
+sap.ui.define(['jquery.sap.global', 'sap/ui/model/PropertyBinding', 'sap/ui/model/ChangeReason'],
+	function(jQuery, PropertyBinding, ChangeReason) {
 	"use strict";
 
 
@@ -53,7 +53,22 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/PropertyBinding'],
 	 * @function
 	 */
 	ResourcePropertyBinding.prototype.getValue = function(){
-		return this.oModel.getProperty(this.sPath);
+		return this.oValue;
+	};
+	
+	/**
+	 * @see sap.ui.model.PropertyBinding.prototype.checkUpdate
+	 * @name sap.ui.model.resource.ResourcePropertyBinding#checkUpdate
+	 * @function
+	 */
+	ResourcePropertyBinding.prototype.checkUpdate = function(bForceUpdate) {
+		if (!this.bSuspended) {
+			var oValue = this.oModel.getProperty(this.sPath);
+			if(bForceUpdate || oValue != this.oValue){
+				this.oValue = oValue;
+				this._fireChange({reason: ChangeReason.Change});
+			}
+		}
 	};
 
 	return ResourcePropertyBinding;

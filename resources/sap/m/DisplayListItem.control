@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>DisplayListItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The display list item consists of a label and a value.</documentation>
 
 	<baseType>sap.m/ListItemBase</baseType>

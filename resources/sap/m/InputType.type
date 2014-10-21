@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>InputType</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A subset of input types that fit to a simple API returning one string.
 Not available on purpose: button, checkbox, hidden, image, password, radio, range, reset, search, submit. </documentation>
 	<baseType>sap.ui.core/string</baseType>

@@ -16,6 +16,7 @@
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 	
 	<style>
@@ -197,7 +198,7 @@
 		var aCommonFunctions = ["renderControl", "write", "writeEscaped", "translate", "writeAcceleratorKey", "writeControlData", 
 			   	              "writeElementData", "writeAttribute", "writeAttributeEscaped", "addClass", "writeClasses", 
 			   	              "addStyle", "writeStyles", "writeAccessibilityState", "writeIcon",
-			   	              "getConfiguration", "getHTML"];
+			   	              "getConfiguration", "getHTML", "cleanupControlWithoutRendering"];
 		var aNonRendererFunctions = ["render", "flush", "destroy"];
 
 		test("Full Interface", function() {

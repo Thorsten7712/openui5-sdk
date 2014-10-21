@@ -1,5 +1,38 @@
 { "key": "devguide", "text": "", "links": [
     {"text":"SAPUI5 Developer Guide", "ref":"docs/guide/95d113be50ae40d5b0b562b84d715227.html", "alias":"docs/guide/Documentation.html,docs/guide/RTConcepts.html", "key":"95d113be50ae40d5b0b562b84d715227", "links":[
+        {"text":"Before you Start", "ref":"docs/guide/167193ced54c41c3961d7df3479d7bbe.html", "key":"167193ced54c41c3961d7df3479d7bbe", "links":[
+            {"text":"Naming Conventions for Control and Application Development", "ref":"docs/guide/91f299336f4d1014b6dd926db0e91070.html", "alias":"docs/guide/NamingConventions.html", "key":"91f299336f4d1014b6dd926db0e91070", "links":[
+                {"text":"Naming Conventions for Control Artifacts", "ref":"docs/guide/0093def6af41484e9174152521d58c40.html", "key":"0093def6af41484e9174152521d58c40"}, 
+                {"text":"Reserved Characters for Control IDs", "ref":"docs/guide/14da916bca354c70bb43e11ba94dc951.html", "key":"14da916bca354c70bb43e11ba94dc951"}, 
+                {"text":"Reserved IDs for DOM Nodes and Elements", "ref":"docs/guide/84b5a100a18141dbb540980ecd05acef.html", "key":"84b5a100a18141dbb540980ecd05acef"}, 
+                {"text":"Reserved DOM Attributes", "ref":"docs/guide/77b503cd4b27403ea18057ec33c26117.html", "key":"77b503cd4b27403ea18057ec33c26117"}, 
+                {"text":"Reserved URL Parameters", "ref":"docs/guide/37ffd6526f174875ae9edf93889714c5.html", "key":"37ffd6526f174875ae9edf93889714c5"}, 
+                {"text":"Control CSS", "ref":"docs/guide/49df9da72ae0405fb37f91ca486c1fe2.html", "key":"49df9da72ae0405fb37f91ca486c1fe2"}
+            ]}, 
+            {"text":"Compatibility Rules", "ref":"docs/guide/91f087396f4d1014b6dd926db0e91070.html", "alias":"docs/guide/CompatibilityRules.html", "key":"91f087396f4d1014b6dd926db0e91070"}, 
+            {"text":"Experimental Flag", "ref":"docs/guide/9c33b30b931d49c596b9f0a35e5ebd0e.html", "key":"9c33b30b931d49c596b9f0a35e5ebd0e"}, 
+            {"text":"Browser and Platform Matrixes", "ref":"docs/guide/74b59efa0eef48988d3b716bd0ecc933.html", "alias":"docs/guide/BrowserSupport.html", "key":"74b59efa0eef48988d3b716bd0ecc933", "links":[
+                {"text":"sap.ui.core, sap.ui.layout, sap.ui.unified", "ref":"docs/guide/1a06ab4e73f041f5a00b0d55c03677dc.html", "key":"1a06ab4e73f041f5a00b0d55c03677dc"}, 
+                {"text":"sap.ui.commons, sap.ui.ux3, sap.ui.table", "ref":"docs/guide/91f072cf6f4d1014b6dd926db0e91070.html", "key":"91f072cf6f4d1014b6dd926db0e91070"}, 
+                {"text":"sap.m", "ref":"docs/guide/91f079dc6f4d1014b6dd926db0e91070.html", "key":"91f079dc6f4d1014b6dd926db0e91070", "links":[
+                    {"text":"Device Specific Policies", "ref":"docs/guide/13bd97d591d64dce84af5225039dacf8.html", "key":"13bd97d591d64dce84af5225039dacf8"}, 
+                    {"text":"Visual Degradations", "ref":"docs/guide/f08f29636be1472dac8f35fe7918ee08.html", "key":"f08f29636be1472dac8f35fe7918ee08"}
+                ]}, 
+                {"text":"sap.suite.ui.commons", "ref":"docs/guide/e20a29f6b8aa4b2393102132563d49c0.html", "key":"e20a29f6b8aa4b2393102132563d49c0"}
+            ]}, 
+            {"text":"Security Information for SAPUI5", "ref":"docs/guide/91f3d8706f4d1014b6dd926db0e91070.html", "alias":"docs/guide/SecurityGuide.html", "key":"91f3d8706f4d1014b6dd926db0e91070", "links":[
+                {"text":"Browser Security", "ref":"docs/guide/91f3b66b6f4d1014b6dd926db0e91070.html", "key":"91f3b66b6f4d1014b6dd926db0e91070"}, 
+                {"text":"Transport Security", "ref":"docs/guide/91f3e6056f4d1014b6dd926db0e91070.html", "key":"91f3e6056f4d1014b6dd926db0e91070"}, 
+                {"text":"Server Security", "ref":"docs/guide/91f3cac16f4d1014b6dd926db0e91070.html", "key":"91f3cac16f4d1014b6dd926db0e91070"}, 
+                {"text":"Third-Party Libraries", "ref":"docs/guide/91f3df4a6f4d1014b6dd926db0e91070.html", "key":"91f3df4a6f4d1014b6dd926db0e91070"}, 
+                {"text":"Secure Programming Guide", "ref":"docs/guide/91f3c4016f4d1014b6dd926db0e91070.html", "key":"91f3c4016f4d1014b6dd926db0e91070"}, 
+                {"text":"Security Concepts", "ref":"docs/guide/91f3298b6f4d1014b6dd926db0e91070.html", "key":"91f3298b6f4d1014b6dd926db0e91070", "links":[
+                    {"text":"Cross-Site Scripting", "ref":"docs/guide/91f0bd316f4d1014b6dd926db0e91070.html", "alias":"docs/guide/XSSinAppDev.html", "key":"91f0bd316f4d1014b6dd926db0e91070"}, 
+                    {"text":"URL White List Filtering", "ref":"docs/guide/91f3768f6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/URLWhiteList.html", "key":"91f3768f6f4d1014b6dd926db0e91070"}, 
+                    {"text":"HTML5 Sanitizer", "ref":"docs/guide/2315f02c34a04ed9b7ff6e79db44c701.html", "alias":"docs/guide/HTML5Sanitizer.html", "key":"2315f02c34a04ed9b7ff6e79db44c701"}
+                ]}
+            ]}
+        ]}, 
         {"text":"Getting Started with SAPUI5", "ref":"docs/guide/8b49fc198bf04b2d9800fc37fecbb218.html", "key":"8b49fc198bf04b2d9800fc37fecbb218", "links":[
             {"text":"Create Your First SAPUI5 Application", "ref":"docs/guide/5b9a170d9f6a4d5784e8ab2ded3d8517.html", "key":"5b9a170d9f6a4d5784e8ab2ded3d8517"}, 
             {"text":"Create Your First Mobile SAPUI5 Application", "ref":"docs/guide/592f36fd077b45349a67dcb3efb46ab1.html", "key":"592f36fd077b45349a67dcb3efb46ab1", "links":[
@@ -7,14 +40,6 @@
                 {"text":"Initialize the Mobile App", "ref":"docs/guide/2b5ce162e26044fe88c3f1206f895ba3.html", "key":"2b5ce162e26044fe88c3f1206f895ba3"}, 
                 {"text":"Add Content Pages", "ref":"docs/guide/43d4c8b86c8c42f3a825f2e0c3acbc6c.html", "key":"43d4c8b86c8c42f3a825f2e0c3acbc6c"}, 
                 {"text":"Run Your First Mobile App", "ref":"docs/guide/4d6701b4e4864f4299acd91d22f626ef.html", "key":"4d6701b4e4864f4299acd91d22f626ef"}
-            ]}, 
-            {"text":"Browser and Platform Matrixes", "ref":"docs/guide/74b59efa0eef48988d3b716bd0ecc933.html", "alias":"docs/guide/BrowserSupport.html", "key":"74b59efa0eef48988d3b716bd0ecc933", "links":[
-                {"text":"sap.ui.core, sap.ui.layout, sap.ui.unified", "ref":"docs/guide/1a06ab4e73f041f5a00b0d55c03677dc.html", "key":"1a06ab4e73f041f5a00b0d55c03677dc"}, 
-                {"text":"sap.ui.commons, sap.ui.ux3, sap.ui.table", "ref":"docs/guide/91f072cf6f4d1014b6dd926db0e91070.html", "key":"91f072cf6f4d1014b6dd926db0e91070"}, 
-                {"text":"sap.m", "ref":"docs/guide/91f079dc6f4d1014b6dd926db0e91070.html", "key":"91f079dc6f4d1014b6dd926db0e91070", "links":[
-                    {"text":"Device Specific Policies", "ref":"docs/guide/13bd97d591d64dce84af5225039dacf8.html", "key":"13bd97d591d64dce84af5225039dacf8"}
-                ]}, 
-                {"text":"sap.suite.ui.commons", "ref":"docs/guide/e20a29f6b8aa4b2393102132563d49c0.html", "key":"e20a29f6b8aa4b2393102132563d49c0"}
             ]}
         ]}, 
         {"text":"Concepts", "ref":"docs/guide/ec699e0817fb46a0817b0fa276a249f8.html", "key":"ec699e0817fb46a0817b0fa276a249f8", "links":[
@@ -39,8 +64,7 @@
                 {"text":"HTML Fragments", "ref":"docs/guide/08d220676c1c4de38fa8bbc515e2477f.html", "key":"08d220676c1c4de38fa8bbc515e2477f"}, 
                 {"text":"XML Fragments", "ref":"docs/guide/2c677b574ea2486a8d5f5414d15e21c5.html", "key":"2c677b574ea2486a8d5f5414d15e21c5"}, 
                 {"text":"JS Fragments", "ref":"docs/guide/9c069828d0064136ac6a499aa2cdace3.html", "key":"9c069828d0064136ac6a499aa2cdace3"}
-            ]}, 
-            {"text":"Extending SAPUI5 Applications", "ref":"docs/guide/a264a9abf98d4caabbf9b027bc1005d8.html", "alias":"docs/guide/Customization.html", "key":"a264a9abf98d4caabbf9b027bc1005d8"}
+            ]}
         ]}, 
         {"text":"Application Best Practices", "ref":"docs/guide/5ca68e6e62e6464a8103297fbc19cd9c.html", "key":"5ca68e6e62e6464a8103297fbc19cd9c", "links":[
             {"text":"Preparing", "ref":"docs/guide/f377376842914da7a6716192ecffc9d0.html", "key":"f377376842914da7a6716192ecffc9d0"}, 
@@ -74,6 +98,12 @@
             ]}, 
             {"text":"Configuration of the SAPUI5 Runtime", "ref":"docs/guide/91f08de06f4d1014b6dd926db0e91070.html", "key":"91f08de06f4d1014b6dd926db0e91070", "links":[
                 {"text":"Configuration Options", "ref":"docs/guide/91f2d03b6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/Configuration.html", "key":"91f2d03b6f4d1014b6dd926db0e91070"}, 
+                {"text":"Using Runtime Default Values for Configuration", "ref":"docs/guide/47bf167913f64d74b992a59ee5de1126.html", "key":"47bf167913f64d74b992a59ee5de1126"}, 
+                {"text":"Using Script Tag Attributes for Configuration", "ref":"docs/guide/22ab02edc8d54f989139bbfccd5860dc.html", "key":"22ab02edc8d54f989139bbfccd5860dc"}, 
+                {"text":"Using Single and Complex Attributes for Configuration", "ref":"docs/guide/f5d8f9f2f5b54f81aa7ae5391898b61a.html", "key":"f5d8f9f2f5b54f81aa7ae5391898b61a"}, 
+                {"text":"Using the Global Configuration Object for Configuration", "ref":"docs/guide/a0fd75b756a04d058f7b5ac2b40b526e.html", "key":"a0fd75b756a04d058f7b5ac2b40b526e"}, 
+                {"text":"Using URL Parameters for Configuration", "ref":"docs/guide/b52d0020d45b4b1687689bd43b55fc34.html", "key":"b52d0020d45b4b1687689bd43b55fc34"}, 
+                {"text":"Using a Runtime Configuration Object for Configuration", "ref":"docs/guide/d9147e2db9d8498bad257ec2bcad4066.html", "key":"d9147e2db9d8498bad257ec2bcad4066"}, 
                 {"text":"Compatibility Version Information", "ref":"docs/guide/9feb96da02c2429bb1afcf6534d77c79.html", "key":"9feb96da02c2429bb1afcf6534d77c79"}
             ]}
         ]}, 
@@ -182,11 +212,10 @@
                 {"text":"Example: Use of HTML Templating in SAPUI5", "ref":"docs/guide/312c097c9c7e4df58eee1f121c5490b4.html", "key":"312c097c9c7e4df58eee1f121c5490b4"}
             ]}, 
             {"text":"Navigation", "ref":"docs/guide/3d18f20bd2294228acb6910d8e8a5fb5.html", "key":"3d18f20bd2294228acb6910d8e8a5fb5", "links":[
-                {"text":"Routing in UI Components", "ref":"docs/guide/acdb6cd408ec4b9eb5e1fe45e607abdd.html", "key":"acdb6cd408ec4b9eb5e1fe45e607abdd"}, 
                 {"text":"Configuration Parameters for Navigation", "ref":"docs/guide/902313063d6f45aeaa3388cc4c13c34e.html", "key":"902313063d6f45aeaa3388cc4c13c34e"}, 
+                {"text":"Routing in Components", "ref":"docs/guide/acdb6cd408ec4b9eb5e1fe45e607abdd.html", "key":"acdb6cd408ec4b9eb5e1fe45e607abdd"}, 
                 {"text":"Methods and Events for Navigation", "ref":"docs/guide/516e477e7e0b4e188b19a406e7528c1e.html", "key":"516e477e7e0b4e188b19a406e7528c1e"}, 
-                {"text":"Route Matching", "ref":"docs/guide/ae68fae6571146ee9e5aac1dd317124e.html", "key":"ae68fae6571146ee9e5aac1dd317124e"}, 
-                {"text":"Building a Catchall Route", "ref":"docs/guide/ec165265ce394490b20dadb2e45a6185.html", "key":"ec165265ce394490b20dadb2e45a6185"}
+                {"text":"Navigation with Multiple Apps Inside the Launchpad", "ref":"docs/guide/02ebc7bea0b74cc7bace2381bcd6ccb2.html", "key":"02ebc7bea0b74cc7bace2381bcd6ccb2"}
             ]}, 
             {"text":"Working with Controls in SAPUI5", "ref":"docs/guide/91f0a22d6f4d1014b6dd926db0e91070.html", "key":"91f0a22d6f4d1014b6dd926db0e91070", "links":[
                 {"text":"Developing UI5 Controls in JavaScript", "ref":"docs/guide/91f1703b6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/OnTheFlyControlExample.html,docs/guide/OnTheFlyControlDefinition.html", "key":"91f1703b6f4d1014b6dd926db0e91070", "links":[
@@ -197,13 +226,12 @@
                     {"text":"Adding Method Implementations", "ref":"docs/guide/91f0a8dc6f4d1014b6dd926db0e91070.html", "key":"91f0a8dc6f4d1014b6dd926db0e91070", "links":[
                         {"text":"Normal Methods", "ref":"docs/guide/85738e3ac3bb407d9e1cfeb8bb9268cb.html", "key":"85738e3ac3bb407d9e1cfeb8bb9268cb"}, 
                         {"text":"init() Method", "ref":"docs/guide/6d6b5bda5727419eadcc9cbac1f6e6a1.html", "key":"6d6b5bda5727419eadcc9cbac1f6e6a1"}, 
+                        {"text":"exit() Method", "ref":"docs/guide/d4ac0edbc467483585d0c53a282505a5.html", "key":"d4ac0edbc467483585d0c53a282505a5"}, 
                         {"text":"Event Handler Methods", "ref":"docs/guide/bdf3e9818cd84d37a18ee5680e97e1c1.html", "key":"bdf3e9818cd84d37a18ee5680e97e1c1"}, 
+                        {"text":"Browser Events", "ref":"docs/guide/91f1b3856f4d1014b6dd926db0e91070.html", "alias":"docs/guide/EventsInControls.html", "key":"91f1b3856f4d1014b6dd926db0e91070"}, 
                         {"text":"Renderer Methods", "ref":"docs/guide/c9ab34570cc14ea5ab72a6d1a4a03e3f.html", "key":"c9ab34570cc14ea5ab72a6d1a4a03e3f"}
                     ]}, 
                     {"text":"Defining Control Properties", "ref":"docs/guide/ac56d92162ed47ff858fdf1ce26c18c4.html", "key":"ac56d92162ed47ff858fdf1ce26c18c4"}, 
-                    {"text":"Custom Data - Attaching Data Objects to Controls", "ref":"docs/guide/91f0c3ee6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/CustomData.html", "key":"91f0c3ee6f4d1014b6dd926db0e91070", "links":[
-                        {"text":"Writing Data to the HTML DOM as DATA-* Attribute", "ref":"docs/guide/1ef9fefa2a574735957dcf52502ab8d0.html", "key":"1ef9fefa2a574735957dcf52502ab8d0"}
-                    ]}, 
                     {"text":"Examples for Creating and Extending Controls", "ref":"docs/guide/91f184586f4d1014b6dd926db0e91070.html", "key":"91f184586f4d1014b6dd926db0e91070", "links":[
                         {"text":"Creating a Simple Control", "ref":"docs/guide/91f02ece6f4d1014b6dd926db0e91070.html", "key":"91f02ece6f4d1014b6dd926db0e91070"}, 
                         {"text":"Creating a Simple Square Control", "ref":"docs/guide/9a6100ba15564561b5439b7e7ba554a9.html", "key":"9a6100ba15564561b5439b7e7ba554a9"}, 
@@ -211,22 +239,22 @@
                         {"text":"Extending Buttons with Additional Events", "ref":"docs/guide/d5b756bf4e9a4d67961fa21e1ba12c9e.html", "key":"d5b756bf4e9a4d67961fa21e1ba12c9e"}, 
                         {"text":"Extending TextField Rendering", "ref":"docs/guide/bcee26a4801748f39bf5698d83d903aa.html", "key":"bcee26a4801748f39bf5698d83d903aa"}
                     ]}, 
-                    {"text":"Definining New Subclasses", "ref":"docs/guide/91f04a166f4d1014b6dd926db0e91070.html", "key":"91f04a166f4d1014b6dd926db0e91070"}, 
-                    {"text":"Handling Events in Controls", "ref":"docs/guide/91f1b3856f4d1014b6dd926db0e91070.html", "alias":"docs/guide/EventsInControls.html", "key":"91f1b3856f4d1014b6dd926db0e91070"}, 
                     {"text":"Writing a Control Renderer", "ref":"docs/guide/91f393916f4d1014b6dd926db0e91070.html", "alias":"docs/guide/ControlRenderer.html", "key":"91f393916f4d1014b6dd926db0e91070", "links":[
                         {"text":"Prevention of Cross-site Scripting", "ref":"docs/guide/4de64e2e191f4a7297d4fd2d1e233a2d.html", "key":"4de64e2e191f4a7297d4fd2d1e233a2d"}
+                    ]}, 
+                    {"text":"Implementing Focus Handling", "ref":"docs/guide/91f19f036f4d1014b6dd926db0e91070.html", "alias":"docs/guide/FocusHandling.html", "key":"91f19f036f4d1014b6dd926db0e91070", "links":[
+                        {"text":"Convenience Functionality", "ref":"docs/guide/1f2d73b86e414d35970e405986f07e76.html", "key":"1f2d73b86e414d35970e405986f07e76"}
+                    ]}, 
+                    {"text":"Item Navigation - Supporting Keyboard Handling in List-like Controls", "ref":"docs/guide/91f203236f4d1014b6dd926db0e91070.html", "alias":"docs/guide/KeyboardNavigation.html", "key":"91f203236f4d1014b6dd926db0e91070", "links":[
+                        {"text":"Integrating the ItemNavigation in your Control", "ref":"docs/guide/7e245247aef949ac84785c56deb8baac.html", "key":"7e245247aef949ac84785c56deb8baac"}
+                    ]}, 
+                    {"text":"Right-to-Left Support in Controls", "ref":"docs/guide/91f2c24b6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/RightToLeft.html", "key":"91f2c24b6f4d1014b6dd926db0e91070", "links":[
+                        {"text":"Programmatic Access to RTL", "ref":"docs/guide/8bb4723002ef4dc19a065b2e30c5498f.html", "key":"8bb4723002ef4dc19a065b2e30c5498f"}, 
+                        {"text":"Impact on the Applications", "ref":"docs/guide/e5ac7883b6034f279c6dfc6beb4e29a2.html", "key":"e5ac7883b6034f279c6dfc6beb4e29a2"}
                     ]}
                 ]}, 
-                {"text":"Implementing Focus Handling", "ref":"docs/guide/91f19f036f4d1014b6dd926db0e91070.html", "alias":"docs/guide/FocusHandling.html", "key":"91f19f036f4d1014b6dd926db0e91070", "links":[
-                    {"text":"Convenience Functionality", "ref":"docs/guide/1f2d73b86e414d35970e405986f07e76.html", "key":"1f2d73b86e414d35970e405986f07e76"}
-                ]}, 
-                {"text":"Item Navigation - Supporting Keyboard Handling in List-like Controls", "ref":"docs/guide/91f203236f4d1014b6dd926db0e91070.html", "alias":"docs/guide/KeyboardNavigation.html", "key":"91f203236f4d1014b6dd926db0e91070", "links":[
-                    {"text":"Integrating the ItemNavigation in your Control", "ref":"docs/guide/7e245247aef949ac84785c56deb8baac.html", "key":"7e245247aef949ac84785c56deb8baac"}
-                ]}, 
-                {"text":"Right-to-Left Support in Controls", "ref":"docs/guide/91f2c24b6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/RightToLeft.html", "key":"91f2c24b6f4d1014b6dd926db0e91070", "links":[
-                    {"text":"SAPUI5 Theming Concept: Right-to-left Support", "ref":"docs/guide/cb65d9e75bef4f239c26a9f9c294f5a1.html", "key":"cb65d9e75bef4f239c26a9f9c294f5a1"}, 
-                    {"text":"Programmatic Access to RTL", "ref":"docs/guide/8bb4723002ef4dc19a065b2e30c5498f.html", "key":"8bb4723002ef4dc19a065b2e30c5498f"}, 
-                    {"text":"Impact on the Applications", "ref":"docs/guide/e5ac7883b6034f279c6dfc6beb4e29a2.html", "key":"e5ac7883b6034f279c6dfc6beb4e29a2"}
+                {"text":"Custom Data - Attaching Data Objects to Controls", "ref":"docs/guide/91f0c3ee6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/CustomData.html", "key":"91f0c3ee6f4d1014b6dd926db0e91070", "links":[
+                    {"text":"Writing Data to the HTML DOM as DATA-* Attribute", "ref":"docs/guide/1ef9fefa2a574735957dcf52502ab8d0.html", "key":"1ef9fefa2a574735957dcf52502ab8d0"}
                 ]}, 
                 {"text":"CSS Classes for Theme Parameters", "ref":"docs/guide/ea08f53503da42c19afd342f4b0c9ec7.html", "key":"ea08f53503da42c19afd342f4b0c9ec7", "links":[
                     {"text":"List of Supported CSS Classes", "ref":"docs/guide/91a4946b0dcf4356aaaedc4e502864f4.html", "key":"91a4946b0dcf4356aaaedc4e502864f4"}
@@ -304,7 +332,9 @@
             ]}, 
             {"text":"Controller Replacement", "ref":"docs/guide/b0b14bf4dcdb476fb0d63877c1beff7c.html", "key":"b0b14bf4dcdb476fb0d63877c1beff7c"}, 
             {"text":"I18n Resource Text Customization", "ref":"docs/guide/2edc3f99883e4a068f040d9e844f14fa.html", "key":"2edc3f99883e4a068f040d9e844f14fa"}, 
-            {"text":"Supportability and Limitations", "ref":"docs/guide/c44813ddee80464985d62c1f852b4a17.html", "key":"c44813ddee80464985d62c1f852b4a17"}
+            {"text":"Limitations", "ref":"docs/guide/73dcff612c9b4463a4d8cddaff2fe015.html", "key":"73dcff612c9b4463a4d8cddaff2fe015"}, 
+            {"text":"Caveats Regarding Stability Across Application Upgrades", "ref":"docs/guide/aef3384510724522a07df94ec90d1351.html", "key":"aef3384510724522a07df94ec90d1351"}, 
+            {"text":"Supportability", "ref":"docs/guide/c44813ddee80464985d62c1f852b4a17.html", "key":"c44813ddee80464985d62c1f852b4a17"}
         ]}, 
         {"text":"Building Mobile Applications with SAPUI5", "ref":"docs/guide/bee96bfcb24b4d679b91242a165e655f.html", "alias":"docs/guide/Mobile.html", "key":"bee96bfcb24b4d679b91242a165e655f", "links":[
             {"text":"Handling Navigation and Lifecycle Events", "ref":"docs/guide/a4afb138acf64a61a038aa5b91a4f082.html", "alias":"docs/guide/AppNavigationEvents.html", "key":"a4afb138acf64a61a038aa5b91a4f082", "links":[
@@ -375,46 +405,39 @@
             ]}, 
             {"text":"Performance Behavior", "ref":"docs/guide/f6a1a0ad49ca4d9facac222c4d372726.html", "key":"f6a1a0ad49ca4d9facac222c4d372726"}
         ]}, 
-        {"text":"References", "ref":"docs/guide/7cf1fedbccc54b91b835a1b1beea1207.html", "key":"7cf1fedbccc54b91b835a1b1beea1207", "links":[
-            {"text":"Security Information for SAPUI5", "ref":"docs/guide/91f3d8706f4d1014b6dd926db0e91070.html", "alias":"docs/guide/SecurityGuide.html", "key":"91f3d8706f4d1014b6dd926db0e91070", "links":[
-                {"text":"Browser Security", "ref":"docs/guide/91f3b66b6f4d1014b6dd926db0e91070.html", "key":"91f3b66b6f4d1014b6dd926db0e91070"}, 
-                {"text":"Transport Security", "ref":"docs/guide/91f3e6056f4d1014b6dd926db0e91070.html", "key":"91f3e6056f4d1014b6dd926db0e91070"}, 
-                {"text":"Server Security", "ref":"docs/guide/91f3cac16f4d1014b6dd926db0e91070.html", "key":"91f3cac16f4d1014b6dd926db0e91070"}, 
-                {"text":"Third-Party Libraries", "ref":"docs/guide/91f3df4a6f4d1014b6dd926db0e91070.html", "key":"91f3df4a6f4d1014b6dd926db0e91070"}, 
-                {"text":"Secure Programming Guide", "ref":"docs/guide/91f3c4016f4d1014b6dd926db0e91070.html", "key":"91f3c4016f4d1014b6dd926db0e91070"}, 
-                {"text":"Security Concepts", "ref":"docs/guide/91f3298b6f4d1014b6dd926db0e91070.html", "key":"91f3298b6f4d1014b6dd926db0e91070", "links":[
-                    {"text":"Cross-Site Scripting", "ref":"docs/guide/91f0bd316f4d1014b6dd926db0e91070.html", "alias":"docs/guide/XSSinAppDev.html", "key":"91f0bd316f4d1014b6dd926db0e91070"}, 
-                    {"text":"URL White List Filtering", "ref":"docs/guide/91f3768f6f4d1014b6dd926db0e91070.html", "alias":"docs/guide/URLWhiteList.html", "key":"91f3768f6f4d1014b6dd926db0e91070"}, 
-                    {"text":"HTML5 Sanitizer", "ref":"docs/guide/2315f02c34a04ed9b7ff6e79db44c701.html", "alias":"docs/guide/HTML5Sanitizer.html", "key":"2315f02c34a04ed9b7ff6e79db44c701"}
+        {"text":"Troubleshooting", "ref":"docs/guide/615d9e4aaa34447fbd4aa5f19dfde9b8.html", "alias":"docs/guide/troubleshootingguide.html", "key":"615d9e4aaa34447fbd4aa5f19dfde9b8", "links":[
+            {"text":"Debugging", "ref":"docs/guide/c9b0f8cca852443f9b8d3bf8ba5626ab.html", "alias":"docs/guide/DebugMode.html", "key":"c9b0f8cca852443f9b8d3bf8ba5626ab"}, 
+            {"text":"Logging and Tracing", "ref":"docs/guide/9f4d62c6648a423d85aaf2bfc2c7ddfe.html", "key":"9f4d62c6648a423d85aaf2bfc2c7ddfe"}, 
+            {"text":"Troubleshooting: Common Issues", "ref":"docs/guide/55356e6b3b9c4c8d89114553b5d86635.html", "key":"55356e6b3b9c4c8d89114553b5d86635"}, 
+            {"text":"Browser Debugging for ABAP Developers", "ref":"docs/guide/1e52fde5444649748809a78fd8a645da.html", "alias":"docs/guide/debuggingjsforabapdevs.html", "key":"1e52fde5444649748809a78fd8a645da"}, 
+            {"text":"SAPUI5 Diagnostics", "ref":"docs/guide/6ec18e80b0ce47f290bc2645b0cc86e6.html", "alias":"docs/guide/supporttool.html", "key":"6ec18e80b0ce47f290bc2645b0cc86e6"}, 
+            {"text":"SAPUI5 Mobile Diagnostics", "ref":"docs/guide/616a3ef07f554e20a3adf749c11f64e9.html", "key":"616a3ef07f554e20a3adf749c11f64e9"}
+        ]}, 
+        {"text":"Testing in SAPUI5", "ref":"docs/guide/09d145cd86ee4f8e9d08715f1b364c51.html", "key":"09d145cd86ee4f8e9d08715f1b364c51", "links":[
+            {"text":"QUnit Testing Fundamentals", "ref":"docs/guide/708002929ea548fd9433954a9275eb5f.html", "key":"708002929ea548fd9433954a9275eb5f"}, 
+            {"text":"QUnit Testing for SAPUI5 Controls", "ref":"docs/guide/a6b0657d226343da81ad96632cd1bd83.html", "key":"a6b0657d226343da81ad96632cd1bd83"}, 
+            {"text":"One Page Acceptance Tests (OPA5)", "ref":"docs/guide/2696ab50faad458f9b4027ec2f9b884d.html", "key":"2696ab50faad458f9b4027ec2f9b884d", "links":[
+                {"text":"Getting Started with OPA5", "ref":"docs/guide/22f175e7084247bc896c15280af9d1dc.html", "key":"22f175e7084247bc896c15280af9d1dc"}, 
+                {"text":"Cookbook for OPA5", "ref":"docs/guide/ce4b180d97064ad088a901b53ed48b21.html", "key":"ce4b180d97064ad088a901b53ed48b21"}
+            ]}
+        ]}, 
+        {"text":"Developing Content for SAPUI5", "ref":"docs/guide/8dcab0011d274051808f959800cabf9f.html", "key":"8dcab0011d274051808f959800cabf9f", "links":[
+            {"text":"Development Conventions and Guidelines", "ref":"docs/guide/753b32617807462d9af483a437874b36.html", "key":"753b32617807462d9af483a437874b36", "links":[
+                {"text":"JavaScript Coding Guidelines", "ref":"docs/guide/eded636b85584cd586b1fe231d2b5dac.html", "key":"eded636b85584cd586b1fe231d2b5dac", "links":[
+                    {"text":"JavaScript Namespaces", "ref":"docs/guide/5a978fe3504e4dd39f5db0a46438ba64.html", "key":"5a978fe3504e4dd39f5db0a46438ba64"}, 
+                    {"text":"Example for Defining a Class", "ref":"docs/guide/f6fba4c6e1cb49c7b355319ac9c8d1cd.html", "key":"f6fba4c6e1cb49c7b355319ac9c8d1cd"}, 
+                    {"text":"Common Pitfalls in JSDoc", "ref":"docs/guide/30671a0ce976438aaddf32a2455ffb61.html", "key":"30671a0ce976438aaddf32a2455ffb61"}
+                ]}, 
+                {"text":"SAPUI5 Control Development Guidelines", "ref":"docs/guide/4549da61e2d949d6a3d20ad8a9d17a6f.html", "key":"4549da61e2d949d6a3d20ad8a9d17a6f"}, 
+                {"text":"Product Standards and Acceptance Criteria", "ref":"docs/guide/bafc6867041644a9b596370e48a106ee.html", "key":"bafc6867041644a9b596370e48a106ee", "links":[
+                    {"text":"Annotations in Translation Files", "ref":"docs/guide/831039835e7c4da3a8a0b49567573afe.html", "key":"831039835e7c4da3a8a0b49567573afe"}
+                ]}, 
+                {"text":"File Names and Encoding", "ref":"docs/guide/104135dda5524696ba641001f54c3a95.html", "key":"104135dda5524696ba641001f54c3a95"}, 
+                {"text":"Git Guidelines", "ref":"docs/guide/b2f563900ed2492b9b9003560e00ea9d.html", "key":"b2f563900ed2492b9b9003560e00ea9d"}, 
+                {"text":"Tools", "ref":"docs/guide/41de83f642224556b8716dec2b41ce86.html", "key":"41de83f642224556b8716dec2b41ce86", "links":[
+                    {"text":"ESLint Code Checks", "ref":"docs/guide/1ba0e44f1036439b95f25527664f14f7.html", "key":"1ba0e44f1036439b95f25527664f14f7"}, 
+                    {"text":"ESLint Configuration File", "ref":"docs/guide/ccfe35638f1d46e2bbcf06fa60ccc6ef.html", "key":"ccfe35638f1d46e2bbcf06fa60ccc6ef"}
                 ]}
-            ]}, 
-            {"text":"Troubleshooting", "ref":"docs/guide/615d9e4aaa34447fbd4aa5f19dfde9b8.html", "alias":"docs/guide/troubleshootingguide.html", "key":"615d9e4aaa34447fbd4aa5f19dfde9b8", "links":[
-                {"text":"Debugging", "ref":"docs/guide/c9b0f8cca852443f9b8d3bf8ba5626ab.html", "alias":"docs/guide/DebugMode.html", "key":"c9b0f8cca852443f9b8d3bf8ba5626ab"}, 
-                {"text":"Logging and Tracing", "ref":"docs/guide/9f4d62c6648a423d85aaf2bfc2c7ddfe.html", "key":"9f4d62c6648a423d85aaf2bfc2c7ddfe"}, 
-                {"text":"Troubleshooting: Common Issues", "ref":"docs/guide/55356e6b3b9c4c8d89114553b5d86635.html", "key":"55356e6b3b9c4c8d89114553b5d86635"}, 
-                {"text":"Browser Debugging for ABAP Developers", "ref":"docs/guide/1e52fde5444649748809a78fd8a645da.html", "alias":"docs/guide/debuggingjsforabapdevs.html", "key":"1e52fde5444649748809a78fd8a645da"}, 
-                {"text":"SAPUI5 Diagnostics", "ref":"docs/guide/6ec18e80b0ce47f290bc2645b0cc86e6.html", "alias":"docs/guide/supporttool.html", "key":"6ec18e80b0ce47f290bc2645b0cc86e6"}
-            ]}, 
-            {"text":"An MVC Demo Application", "ref":"docs/guide/4dfd24d8de314254987e611a156bdea6.html", "alias":"docs/guide/MVC.1.html", "key":"4dfd24d8de314254987e611a156bdea6", "links":[
-                {"text":"The HTML Page", "ref":"docs/guide/41f0f51dcdc04e3c85c0368797fcd743.html", "key":"41f0f51dcdc04e3c85c0368797fcd743"}, 
-                {"text":"The Root (App-) View", "ref":"docs/guide/dfee14eec48d4299af4b64a1a9b167b5.html", "key":"dfee14eec48d4299af4b64a1a9b167b5"}, 
-                {"text":"The Root (App-) Controller", "ref":"docs/guide/a8e25c7c23cd4073959f0528de528ff2.html", "key":"a8e25c7c23cd4073959f0528de528ff2"}, 
-                {"text":"The HomePage View", "ref":"docs/guide/37153bd4ff334018bd1292e180ae3cb5.html", "key":"37153bd4ff334018bd1292e180ae3cb5"}, 
-                {"text":"The HomePage Controller", "ref":"docs/guide/e63ab0a2891648109993b5a71a65ab5c.html", "key":"e63ab0a2891648109993b5a71a65ab5c"}, 
-                {"text":"The DetailPage View", "ref":"docs/guide/5d13fd472e5b432b92848b7e46f6b648.html", "key":"5d13fd472e5b432b92848b7e46f6b648"}, 
-                {"text":"The DetailPage Controller", "ref":"docs/guide/ce44f6ca1fdb46b2a99201d63d832e0e.html", "key":"ce44f6ca1fdb46b2a99201d63d832e0e"}
-            ]}, 
-            {"text":"Compatibility Rules", "ref":"docs/guide/91f087396f4d1014b6dd926db0e91070.html", "alias":"docs/guide/CompatibilityRules.html", "key":"91f087396f4d1014b6dd926db0e91070", "links":[
-                {"text":"Third Party Open Source Libraries", "ref":"docs/guide/848424c1f24a424d99a88cab7d769d63.html", "key":"848424c1f24a424d99a88cab7d769d63"}, 
-                {"text":"Exceptions: Important to Know", "ref":"docs/guide/506b4f10e6554bba89980c7f137dc7b6.html", "key":"506b4f10e6554bba89980c7f137dc7b6"}
-            ]}, 
-            {"text":"Naming Conventions for Control and Application Development", "ref":"docs/guide/91f299336f4d1014b6dd926db0e91070.html", "alias":"docs/guide/NamingConventions.html", "key":"91f299336f4d1014b6dd926db0e91070", "links":[
-                {"text":"Naming Conventions for Control Artifacts", "ref":"docs/guide/0093def6af41484e9174152521d58c40.html", "key":"0093def6af41484e9174152521d58c40"}, 
-                {"text":"Reserved Characters for Control IDs", "ref":"docs/guide/14da916bca354c70bb43e11ba94dc951.html", "key":"14da916bca354c70bb43e11ba94dc951"}, 
-                {"text":"Reserved IDs for DOM Nodes and Elements", "ref":"docs/guide/84b5a100a18141dbb540980ecd05acef.html", "key":"84b5a100a18141dbb540980ecd05acef"}, 
-                {"text":"Reserved DOM Attributes", "ref":"docs/guide/77b503cd4b27403ea18057ec33c26117.html", "key":"77b503cd4b27403ea18057ec33c26117"}, 
-                {"text":"Reserved URL Parameters", "ref":"docs/guide/37ffd6526f174875ae9edf93889714c5.html", "key":"37ffd6526f174875ae9edf93889714c5"}, 
-                {"text":"Control CSS", "ref":"docs/guide/49df9da72ae0405fb37f91ca486c1fe2.html", "key":"49df9da72ae0405fb37f91ca486c1fe2"}
             ]}
         ]}
     ]}

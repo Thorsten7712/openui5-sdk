@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>layout/PositionContainer</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Is used to specify the position of a control in the AbsoluteLayout</documentation>
 
 	<baseType>sap.ui.core/Element</baseType>

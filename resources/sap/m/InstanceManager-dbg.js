@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -31,7 +31,7 @@ sap.m.InstanceManager = {};
 		sDialogCategoryId = "_DIALOG_";
 
 	/**
-	 * Adds an instance to the given category.
+	 * Adds an instance to the given category. If the instance is already added to the same category, it won't be added again.
 	 *
 	 * @param {string} sCategoryId The category's id.
 	 * @param {object} oInstance The instance that will be added to the given category.
@@ -47,7 +47,9 @@ sap.m.InstanceManager = {};
 			mRegistry[sCategoryId] = [];
 		}
 
-		mRegistry[sCategoryId].push(oInstance);
+		if (mRegistry[sCategoryId].indexOf(oInstance) === -1) {
+			mRegistry[sCategoryId].push(oInstance);
+		}
 
 		return this;
 	};
@@ -167,7 +169,7 @@ sap.m.InstanceManager = {};
 	/**
 	 * Removes control from predefined popover category in instance manager.
 	 *
-	 * @param {sap.ui.core.Control} Popover to be removed from instance manager.
+	 * @param {sap.ui.core.Control} oPopover to be removed from instance manager.
 	 * @returns The removed popover or null. If the popover isn't managed, this method returns null instead of the removed popover.
 	 * @protected
 	 * @function
@@ -179,7 +181,7 @@ sap.m.InstanceManager = {};
 	/**
 	 * Removes control from predefined dialog category in instance manager.
 	 *
-	 * @param {sap.ui.core.Control} Dialog to be removed from instance manager.
+	 * @param {sap.ui.core.Control} oDialog to be removed from instance manager.
 	 * @returns The removed popover or null. If the popover isn't managed, this method returns null instead of the removed popover.
 	 * @protected
 	 * @function
@@ -284,6 +286,7 @@ sap.m.InstanceManager = {};
 	/**
 	 * Closes all of the open dialogs.
 	 *
+	 * @param {Function} fnCallback
 	 * @public
 	 * @returns {sap.m.InstanceManager} Enable method chaining.
 	 * @function

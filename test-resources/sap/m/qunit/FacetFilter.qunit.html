@@ -11,6 +11,7 @@
 
 <!-- QUnit libraries -->
 <script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 <script type="text/javascript">
 	
@@ -68,6 +69,7 @@
 		strictEqual(oFFL1.getGrowing(), true, 'Growing is enabled by default');
         strictEqual(oFFL1.getShowRemoveFacetIcon(), true, "Remove icon should be shown by default");
         strictEqual(oFFL1.getRetainListSequence(), false, "List sequence should not be retained by default when list is inactive and made active again"); 
+		strictEqual(oFFL1.getDataType(), sap.m.FacetFilterListDataType.String, 'Data Type is String by default');
         oFFL1.destroy();
 		
 		// Test overrides
@@ -352,6 +354,13 @@
 		equal(oSearchField.getWidth(), "100%", "Search field width should be 100%");	
 		
 		equal(oFFL1.getAssociation("search"), oSearchField.getId(), "The list should have an association with the search field");
+		equal(oSearchField.getEnabled(), true, "the search field is enabled");
+		var oFFL2 = new sap.m.FacetFilterList();
+		oFFL2.setDataType(sap.m.FacetFilterListDataType.Date);
+		oFF.addList(oFFL2);
+		var oBar2 = oFF._createFilterItemsSearchFieldBar(oFFL2);
+		var oSearchField2 = oBar2.getContentMiddle()[0];
+		equal(oSearchField2.getEnabled(), false, "the search field is not enabled");
 		oFF.destroy();
 	});	
 	

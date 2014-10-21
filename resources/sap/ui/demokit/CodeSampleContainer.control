@@ -18,6 +18,7 @@ The container provides a sub container that can be used in calls to sap.ui.setRo
 			<documentation>Id of the container for the running code. This Id can be used in calls to sap.ui.setRoot as if it would be a normal UIArea. Internally, a container UIElement is created with that Id.</documentation>
 		</property>
 		<property group="Misc" name="title" type="sap.ui.core/string">
+			<documentation>A title to be displayed above the code.</documentation>
 		</property>
 		<property group="Misc" name="sourceVisible" type="sap.ui.core/boolean" defaultValue="false">
 			<documentation>Whether the source code is visible or not.</documentation>
@@ -33,8 +34,10 @@ The container provides a sub container that can be used in calls to sap.ui.setRo
 	</aggregations>
 	<events>
 		<event name="apply">
+			<documentation>Fired when the user decides to apply his/her changes to the sample code</documentation>
 			<parameters>
 				<parameter name="code" type="sap.ui.core/string">
+					<documentation>the current code that will be applied</documentation>
 				</parameter>
 			</parameters>
 		</event>

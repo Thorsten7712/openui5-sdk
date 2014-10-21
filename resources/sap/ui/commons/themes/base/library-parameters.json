@@ -209,6 +209,7 @@
     "sapUiUx3ShellHoverColor": "#000000",
     "sapUiUx3ShellSideBarBaseWidth": "40px",
     "sapUiUx3ShellPaneOverflowButtonHeight": "120px",
+    "sapUiUx3ShellToolPaletteIconFontColor": "#8899aa",
     "sapUiUx3ExactLstExpandOffset": "0 0",
     "sapUiUx3ExactLstRootExpandOffset": "0 3",
     "sapUiUx3ExactLstCollapseWidth": "24px",
@@ -264,6 +265,7 @@
     "sapUiPositiveBG": "#b5e7a8",
     "sapUiShadowTint": "#000000",
     "sapUiShadow": "5px 5px 10px rgba(0, 0, 0, 0.5)",
+    "sapUiThemeDesignerCustomCss": "false",
     "sapUiButtonHeight": "21px",
     "sapUiListBoxBorderRadius": "0",
     "sapUiPanelBorderRadius": "0",
@@ -273,15 +275,5 @@
     "sapUiTextFieldHeight": "16px",
     "sapUiValueHelpIconRegularUrl": "/img/valuehelpfield/F4-Help_icon_regular.png",
     "sapUiValueHelpIconHoverUrl": "/img/valuehelpfield/F4-Help_icon_hover.png",
-    "sapUiValueHelpIconDsblUrl": "/img/valuehelpfield/F4-Help_icon_dsbl.png",
-    "sap.ui.commons.Button:sapUiButtonHeight": "21px",
-    "sap.ui.commons.ListBox:sapUiListBoxBorderRadius": "0",
-    "sap.ui.commons.Panel:sapUiPanelBorderRadius": "0",
-    "sap.ui.commons.RatingIndicator:sapUiRatingSymbolHovered": "img/rating/star_hover.png",
-    "sap.ui.commons.RatingIndicator:sapUiRatingSymbolSelected": "img/rating/star_selected.png",
-    "sap.ui.commons.RatingIndicator:sapUiRatingSymbolUnselected": "img/rating/star_unselected.png",
-    "sap.ui.commons.TextField:sapUiTextFieldHeight": "16px",
-    "sap.ui.commons.ValueHelpField:sapUiValueHelpIconDsblUrl": "/img/valuehelpfield/F4-Help_icon_dsbl.png",
-    "sap.ui.commons.ValueHelpField:sapUiValueHelpIconHoverUrl": "/img/valuehelpfield/F4-Help_icon_hover.png",
-    "sap.ui.commons.ValueHelpField:sapUiValueHelpIconRegularUrl": "/img/valuehelpfield/F4-Help_icon_regular.png"
+    "sapUiValueHelpIconDsblUrl": "/img/valuehelpfield/F4-Help_icon_dsbl.png"
 }

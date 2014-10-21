@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -257,6 +257,12 @@ sap.ui.table.TableRenderer.renderTable = function(rm, oTable) {
 	rm.writeClasses();
 	rm.write(">");
 
+	rm.write("<div");
+	rm.addClass("sapUiTableCtrlBefore");
+	rm.writeClasses();
+	rm.writeAttribute("tabindex", "0");
+	rm.write("></div>");
+	
 	this.renderRowHdr(rm, oTable);
 	this.renderTableCtrl(rm, oTable);
 	this.renderVSb(rm, oTable);
@@ -338,6 +344,9 @@ sap.ui.table.TableRenderer.renderColHdr = function(rm, oTable) {
 						} else {
 							iSpan = aCols[i].getHeaderSpan() + 1;
 						}
+					} else {
+						//Render column header but this is invisible because of the span
+						this.renderCol(rm, oTable, aCols[i], i, h, true);
 					}
 					if (h == 0) {
 						this.renderColRsz(rm, oTable, aCols[i], i);
@@ -387,6 +396,9 @@ sap.ui.table.TableRenderer.renderColHdr = function(rm, oTable) {
 					} else {
 						iSpan = aCols[i].getHeaderSpan() + 1;
 					}
+				} else {
+					//Render column header but this is invisible because of the span
+					this.renderCol(rm, oTable, aCols[i], i, h, true);
 				}
 				if (h == 0) {
 					this.renderColRsz(rm, oTable, aCols[i], i);
@@ -410,9 +422,10 @@ sap.ui.table.TableRenderer.renderColRowHdr = function(rm, oTable) {
 	rm.write("<div");
 	rm.writeAttribute("id", oTable.getId() + "-selall");
 	var oSelMode = oTable.getSelectionMode();
-	if (oSelMode == "Multi" || oSelMode == "MultiToggle") {
+	if ((oSelMode == "Multi" || oSelMode == "MultiToggle") && oTable.getEnableSelectAll()) {
 		rm.writeAttributeEscaped("title", oTable._oResBundle.getText("TBL_SELECT_ALL"));
 		rm.addClass("sapUiTableSelAll");
+		rm.addClass("sapUiTableSelAllEnabled");
 	}
 	rm.addClass("sapUiTableColRowHdr");
 	rm.writeClasses();
@@ -434,7 +447,7 @@ sap.ui.table.TableRenderer.renderColRowHdr = function(rm, oTable) {
 	rm.write("</div>");
 };
 
-sap.ui.table.TableRenderer.renderCol = function(rm, oTable, oColumn, iIndex, iHeader) {
+sap.ui.table.TableRenderer.renderCol = function(rm, oTable, oColumn, iIndex, iHeader, bInvisible) {
 	var oLabel;
 	if (oColumn.getMultiLabels().length > 0) {
 		oLabel = oColumn.getMultiLabels()[iHeader];
@@ -466,6 +479,9 @@ sap.ui.table.TableRenderer.renderCol = function(rm, oTable, oColumn, iIndex, iHe
 	if (oTable.getColumnHeaderHeight() > 0) {
 		rm.addStyle("height", oTable.getColumnHeaderHeight() + "px");
 	}
+	if (bInvisible) {
+		rm.addStyle("display", "none");
+	}
 	rm.writeStyles();
 	var sTooltip = oColumn.getTooltip_AsString();
 	if (sTooltip) {
@@ -474,6 +490,11 @@ sap.ui.table.TableRenderer.renderCol = function(rm, oTable, oColumn, iIndex, iHe
 	rm.write("><div");
 	rm.addClass("sapUiTableColCell");
 	rm.writeClasses();
+	var sHAlign = this.getHAlign(oColumn.getHAlign(), oTable._bRtlMode);
+	if (sHAlign) {
+		rm.addStyle("text-align", sHAlign);
+	}
+	rm.writeStyles();
 	rm.write(">");
 
 	// TODO: rework column sort / filter status integration
@@ -555,12 +576,6 @@ sap.ui.table.TableRenderer.renderRowHdrRow = function(rm, oTable, oRow, iRowInde
 };
 
 sap.ui.table.TableRenderer.renderTableCtrl = function(rm, oTable) {
-
-	rm.write("<div");
-	rm.addClass("sapUiTableCtrlBefore");
-	rm.writeClasses();
-	rm.writeAttribute("tabindex", "0");
-	rm.write("></div>");
 
 	if (oTable.getFixedColumnCount() > 0) {
 		rm.write("<div");
@@ -674,8 +689,8 @@ sap.ui.table.TableRenderer.renderTableControlCnt = function(rm, oTable, bFixedTa
 	rm.addClass("sapUiTableCtrl");
 	rm.writeClasses();
 	rm.addStyle("min-width", oTable._getColumnsWidth(iStartColumn, iEndColumn) + "px");
-	//Firefox and chrome need a defined width for the fixed table
-	if (bFixedTable && (!!sap.ui.Device.browser.firefox || !!sap.ui.Device.browser.chrome)) {
+	//Firefox and chrome and safari need a defined width for the fixed table
+	if (bFixedTable && (!!sap.ui.Device.browser.firefox || !!sap.ui.Device.browser.chrome || !!sap.ui.Device.browser.safari)) {
 		rm.addStyle("width", oTable._getColumnsWidth(iStartColumn, iEndColumn) + "px");
 	}
 	rm.writeStyles();
@@ -858,7 +873,15 @@ sap.ui.table.TableRenderer.renderTableCell = function(rm, oTable, oRow, oCell, i
 			// correct would be aria-labelledby but doesn't work for JAWS
 			rm.writeAttribute("headers", oTable.getId() + "_col" + iColIndex);
 			rm.writeAttribute("role", "gridcell");
-			rm.writeAttribute("aria-labelledby", oTable.getId() + "-ariadesc " + oColumn.getId() + " " + oCell.getId());
+			var sLabelledBy = oTable.getId() + "-ariadesc " + oColumn.getId();
+			var iMultiLabels = oColumn.getMultiLabels().length;
+			if (iMultiLabels > 1) {
+				for (var i = 1; i < iMultiLabels; i++) {
+					sLabelledBy +=  " " + oColumn.getId() + "_" + i;
+				}
+			}
+			sLabelledBy +=  " " + oCell.getId();
+			rm.writeAttribute("aria-labelledby", sLabelledBy);
 			rm.writeAttribute("aria-describedby", oTable.getId() + "-toggleedit");
 			rm.writeAttribute("aria-activedescendant", oCell.getId());
 			rm.writeAttribute("tabindex", "-1");

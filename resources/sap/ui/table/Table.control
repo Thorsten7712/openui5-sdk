@@ -92,6 +92,12 @@
 		<property group="Appearance" name="showOverlay" type="sap.ui.core/boolean" defaultValue="false" since="1.21.2">
 			<documentation>Setting this property to true will show an overlay on top of the Table content and users cannot click anymore on the Table content.</documentation>
 		</property>
+		<property group="Behavior" name="enableSelectAll" type="sap.ui.core/boolean" defaultValue="true" since="1.23.0">
+			<documentation>Specifies if a select all button should be displayed in the top left corner.</documentation>
+		</property>
+		<property group="Behavior" name="enableCustomFilter" type="sap.ui.core/boolean" defaultValue="false" since="1.23.0">
+			<documentation>Set this parameter to true to implement your own filter behaviour. Instead of the filter input box a button will be rendered for which' press event (customFilter) you can register an event handler.</documentation>
+		</property>
 	</properties>
 	<events>
 		<event name="rowSelectionChange">
@@ -217,6 +223,9 @@
 					<documentation>reference to the column to freeze</documentation>
 				</parameter>
 			</parameters>
+		</event>
+		<event name="customFilter" since="1.23.0">
+			<documentation>This event is triggered when the custom filter item of the column menu is pressed. The column on which the event was triggered is passed as parameter.</documentation>
 		</event>
 	</events>
 	<aggregations default="columns">

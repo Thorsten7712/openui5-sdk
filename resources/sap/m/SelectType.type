@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>SelectType</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16</since>
 	<documentation>Enumeration for different Select types.</documentation>
 	<baseType>sap.ui.core/string</baseType>

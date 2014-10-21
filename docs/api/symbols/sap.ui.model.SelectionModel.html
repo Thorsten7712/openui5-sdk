@@ -158,8 +158,13 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Returns true if the specified index is selected."><a href="../symbols/sap.ui.model.SelectionModel.html#isSelectedIndex">isSelectedIndex</a></b><span class='signature'>()</span>
+									<b class="icon" title="Returns true if the specified index is selected."><a href="../symbols/sap.ui.model.SelectionModel.html#isSelectedIndex">isSelectedIndex</a></b><span class='signature'>(<span title="(int) int">iIndex</span>)</span>
 									<span class='description'>Returns true if the specified index is selected.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Moves all selected indices starting at the position iStartIndex iMove items."><a href="../symbols/sap.ui.model.SelectionModel.html#moveSelectionInterval">moveSelectionInterval</a></b><span class='signature'>(<span title="(int) start at this position">iStartIndex</span>, <span title="(int) int">iMove</span>)</span>
+									<span class='description'>Moves all selected indices starting at the position <code>iStartIndex</code> <code>iMove</code> items.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -575,7 +580,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireSelectionChanged"> </a>
 										<div class="itemTitle icon protected">
 											fireSelectionChanged<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span>)</span>
@@ -778,7 +783,7 @@ setSelectionInterval(), addSelectionInterval() or removeSelectionInterval().
 									<div class='sectionItem classMethod'>
 										<a name="isSelectedIndex"> </a>
 										<div class="itemTitle icon">
-											isSelectedIndex<span class="signature">()</span>
+											isSelectedIndex<span class="signature">(<span title="(int) int">iIndex</span>)</span>
 											<span class="light" title="returns boolean">: boolean</span>
 										</div>
 										<div class="full-description">
@@ -790,6 +795,23 @@ setSelectionInterval(), addSelectionInterval() or removeSelectionInterval().
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iIndex</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										
@@ -804,6 +826,80 @@ setSelectionInterval(), addSelectionInterval() or removeSelectionInterval().
 													</td>
 													<td class="methodItemDesc">
 														true if the specified index is selected.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="moveSelectionInterval"> </a>
+										<div class="itemTitle icon">
+											moveSelectionInterval<span class="signature">(<span title="(int) start at this position">iStartIndex</span>, <span title="(int) int">iMove</span>)</span>
+											<span class="light" title="returns sap.ui.model.SelectionModel">: <a href="../symbols/sap.ui.model.SelectionModel.html">sap.ui.model.SelectionModel</a></span>
+										</div>
+										<div class="full-description">
+											Moves all selected indices starting at the position <code>iStartIndex</code> <code>iMove</code>
+items.
+</p><p>
+This can be used if new items are inserted to the item set and you want to keep the selection.
+To handle a deletion of items use <code>sliceSelectionInterval</code>.
+</p><p>
+If this call results in a change to the current selection or lead selection, then a
+<code>SelectionChanged</code> event is fired.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iStartIndex</b>
+													</td>
+													<td class="methodItemDesc">
+												    start at this position
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iMove</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.model.SelectionModel.html">sap.ui.model.SelectionModel</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
 													</td>
 												</tr>
 											

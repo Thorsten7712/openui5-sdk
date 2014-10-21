@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>PopinDisplay</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.13.2</since>
 	<documentation>Defines the display of table pop-ins</documentation>
 	<baseType>sap.ui.core/string</baseType>

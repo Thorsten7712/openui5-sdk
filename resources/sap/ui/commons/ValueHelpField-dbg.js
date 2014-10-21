@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,18 +58,16 @@ jQuery.sap.require("sap.ui.commons.TextField");
  * A TextField with an attached icon which triggeres an event.
  * @extends sap.ui.commons.TextField
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ValueHelpField
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.ValueHelpField", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"iconURL" : {type : "sap.ui.core.URI", group : "Appearance", defaultValue : null},
@@ -180,14 +178,13 @@ sap.ui.commons.ValueHelpField.M_EVENTS = {'valueHelpRequest':'valueHelpRequest'}
 
 
 /**
- * Event which is fired when the ValueHelp is requested. 
+ * Event which is fired when the ValueHelp is requested.
  *
  * @name sap.ui.commons.ValueHelpField#valueHelpRequest
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -196,7 +193,7 @@ sap.ui.commons.ValueHelpField.M_EVENTS = {'valueHelpRequest':'valueHelpRequest'}
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ValueHelpField</code>.<br/> itself. 
  *  
- * Event which is fired when the ValueHelp is requested. 
+ * Event which is fired when the ValueHelp is requested.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

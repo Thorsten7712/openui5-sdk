@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,26 +61,23 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * 
  * Is used for labeling other controls. The API provides formatting options, for example for bold display or alignment. A label can have an icon.
- * 
  * @extends sap.ui.core.Control
  * @implements sap.ui.commons.ToolbarItem,sap.ui.core.Label
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Label
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem",
 		"sap.ui.core.Label"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"design" : {type : "sap.ui.commons.LabelDesign", group : "Appearance", defaultValue : sap.ui.commons.LabelDesign.Standard},
@@ -121,7 +118,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>design</code>.
  * 
  * Labels can have bold format.
- * 
  *
  * Default value is <code>sap.ui.commons.LabelDesign.Standard</code>
  *
@@ -148,7 +144,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>textDirection</code>.
  * 
  * Options for the text direction are RTL and LTR. Alternatively, the control can inherit the text direction from its parent container.
- * 
  *
  * Default value is <code>sap.ui.core.TextDirection.Inherit</code>
  *
@@ -200,7 +195,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>width</code>.
  * 
  * Control width as common CSS-size (px or % as unit, for example).
- * 
  *
  * Default value is <code>''</code>
  *
@@ -227,7 +221,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>text</code>.
  * 
  * Text to be displayed.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -254,7 +247,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>visible</code>.
  * 
  * Invisible labels are not rendered.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -309,7 +301,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Label", { metadata : {
  * Getter for property <code>textAlign</code>.
  * 
  * Available alignment settings are "Begin", "Center", "End", "Left", and "Right".
- * 
  *
  * Default value is <code>sap.ui.core.TextAlign.Begin</code>
  *

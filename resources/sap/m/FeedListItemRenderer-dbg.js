@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,29 +60,11 @@ sap.m.FeedListItemRenderer.renderLIContent = function (rm, oFeedListItem) {
 
 	// icon
 	if (!!oFeedListItem.getShowIcon()) {
-		rm.write('<figure id="' + sMyId + '-figure" class ="sapMFeedListItemFigure');
-		if (!!oFeedListItem.getIcon()) {
-			rm.write('">');
-		} else {
-			rm.write(' sapMFeedListItemIsDefaultIcon">');
-		}
-		if (!!oFeedListItem.getIconActive()) {
-			
-			rm.write('<a id="' + sMyId + '-iconRef" ');
-			rm.writeAttribute('href', 'javascript:void(0);');
-			rm.write('>');
-		} 
-		rm.renderControl(oFeedListItem._getImageControl());	
-		if (!!oFeedListItem.getIconActive()) {
-			rm.write('</a>');
-		}
-		rm.write('</figure>');
+		this._writeImageControl(rm, oFeedListItem, sMyId);
 	}
 
 	// text (starting with sender)
-	
 
-	
 	if (bIsPhone) {
 		rm.write('<div class= "sapMFeedListItemHeader ');
 		if (!!oFeedListItem.getShowIcon()) {
@@ -106,13 +88,20 @@ sap.m.FeedListItemRenderer.renderLIContent = function (rm, oFeedListItem) {
 		
 		rm.write('</div>');
 		rm.write('<p class="sapMFeedListItemText">');
-		rm.writeEscaped(oFeedListItem.getText(), true);
+		rm.write('<span id="' + sMyId + '-realtext" class="sapMFeedListItemText">');
+		if (!!oFeedListItem._checkTextIsExpandable()) {
+			this._writeCollapsedText(rm, oFeedListItem, sMyId);
+		}
+		else {
+			rm.writeEscaped(oFeedListItem.getText(), true);
+		}
+		rm.write('</span>');
 		rm.write('</p>');
 		if (!!oFeedListItem.getInfo()) {
 			// info
 			rm.write('<p class="sapMFeedListItemFooter">');
 			if (!!oFeedListItem.getInfo()) {
-				rm.write('<span class="sapMFeedListItemInfo">');
+				rm.write('<span id="' + sMyId + '-info" class="sapMFeedListItemInfo">');
 				rm.writeEscaped(oFeedListItem.getInfo());
 				rm.write('</span>');
 			}
@@ -123,40 +112,45 @@ sap.m.FeedListItemRenderer.renderLIContent = function (rm, oFeedListItem) {
 			rm.write('sapMFeedListItemHasFigure ');
 		}
 		rm.write('" >');
-		rm.write('<p id="' + sMyId + '-text" class="sapMFeedListItemTextText">');
+		rm.write('<p id="' + sMyId + '-text" class="sapMFeedListItemTextText" >');
 		if (!!oFeedListItem.getSender()) {
 			rm.write('<span id="' + sMyId + '-name" class="sapMFeedListItemTextName">');
 			rm.renderControl(oFeedListItem._getLinkControl());
 			rm.write(': ');
 			rm.write('</span>');
 		}
-		rm.writeEscaped(oFeedListItem.getText(), true);
+		rm.write('<span id="' + sMyId + '-realtext" class="sapMFeedListItemTextString">');
+		if (!!oFeedListItem._checkTextIsExpandable()) {
+			this._writeCollapsedText(rm, oFeedListItem, sMyId);
+		}
+		else {
+			rm.writeEscaped(oFeedListItem.getText(), true);
+		}
+		rm.write('</span>');
 		if (!!oFeedListItem.getInfo() || !!oFeedListItem.getTimestamp()) {
+			// info and date
+			rm.write('<p class="sapMFeedListItemFooter">');
 			if(!sap.ui.getCore().getConfiguration().getRTL()){
-				// info and date
-				rm.write('<p class="sapMFeedListItemFooter">');
 				if (!!oFeedListItem.getInfo()) {
-					rm.writeEscaped(oFeedListItem.getInfo());
+					this._writeInfo(rm, oFeedListItem, sMyId);
 					//Write Interpunct separator if necessary (with spaces before and after)
 					if (!!oFeedListItem.getTimestamp()) {
 						rm.write("<span>&#160&#160&#x00B7&#160&#160</span>");
 					}
 				}
 				if (!!oFeedListItem.getTimestamp()) {
-					rm.writeEscaped(oFeedListItem.getTimestamp());
+					this._writeTimestamp(rm, oFeedListItem, sMyId);
 				}
 			} else {
-				// info and date
-				rm.write('<p class="sapMFeedListItemFooter">');
 				if (!!oFeedListItem.getTimestamp()) {
-					rm.writeEscaped(oFeedListItem.getTimestamp());
+					this._writeTimestamp(rm, oFeedListItem, sMyId);
 				}
 				if (!!oFeedListItem.getInfo()) {
 					//Write Interpunct separator if necessary (with spaces before and after)
 					if (!!oFeedListItem.getTimestamp()) {
 						rm.write("<span>&#160&#160&#x00B7&#160&#160</span>");
 					}
-					rm.writeEscaped(oFeedListItem.getInfo());
+					this._writeInfo(rm, oFeedListItem, sMyId);
 				}
 				
 			}
@@ -166,4 +160,48 @@ sap.m.FeedListItemRenderer.renderLIContent = function (rm, oFeedListItem) {
 		rm.write('</div>');
 	}
 	rm.write('</article>');
+};
+
+sap.m.FeedListItemRenderer._writeImageControl = function(rm, oFeedListItem, sMyId) {
+		rm.write('<figure id="' + sMyId + '-figure" class ="sapMFeedListItemFigure');
+		if (!!oFeedListItem.getIcon()) {
+			rm.write('">');
+		} else {
+			rm.write(' sapMFeedListItemIsDefaultIcon">');
+		}
+		if (!!oFeedListItem.getIconActive()) {
+			
+			rm.write('<a id="' + sMyId + '-iconRef" ');
+			rm.write('tabindex="-1"'); // according to design there should be never a tab stop on the icon 
+			rm.writeAttribute('href', 'javascript:void(0);');
+			rm.write('>');
+		} 
+		rm.renderControl(oFeedListItem._getImageControl());	
+		if (!!oFeedListItem.getIconActive()) {
+			rm.write('</a>');
+		}
+		rm.write('</figure>');
+};
+
+sap.m.FeedListItemRenderer._writeCollapsedText = function(rm, oFeedListItem, sMyId) {
+	rm.writeEscaped(oFeedListItem._getCollapsedText(), true);
+	rm.write('</span>');
+	rm.write('<span id="' + sMyId + '-threeDots" class ="sapMFeedListItemTextString">');
+	rm.write("&#32&#46&#46&#46&#32"); // space + three dots + space
+	rm.write('</span>');
+	var oLinkExpandCollapse = oFeedListItem._getLinkExpandCollapse();
+	oLinkExpandCollapse.addStyleClass("sapMFeedListItemLinkExpandCollapse");
+	rm.renderControl(oLinkExpandCollapse);
+};
+
+sap.m.FeedListItemRenderer._writeTimestamp = function(rm, oFeedListItem, sMyId) {
+	rm.write('<span id="' + sMyId + '-timestamp">');
+	rm.writeEscaped(oFeedListItem.getTimestamp());
+	rm.write('</span>');
+};
+
+sap.m.FeedListItemRenderer._writeInfo = function(rm, oFeedListItem, sMyId) {
+	rm.write('<span id="' + sMyId + '-info">');
+	rm.writeEscaped(oFeedListItem.getInfo());
+	rm.write('</span>');
 };

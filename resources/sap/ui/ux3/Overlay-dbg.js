@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,16 +57,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.PopupInterface
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.Overlay
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Overlay", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.PopupInterface"
 	],
@@ -74,8 +74,6 @@ sap.ui.core.Control.extend("sap.ui.ux3.Overlay", { metadata : {
 		// methods
 		"open", "close", "isOpen"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"openButtonVisible" : {type : "boolean", group : "Misc", defaultValue : true},
@@ -159,14 +157,13 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 
 
 /**
- * Event is fired when the ThingInspector is closed 
+ * Event is fired when the ThingInspector is closed
  *
  * @name sap.ui.ux3.Overlay#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The Id of the Thing which is inspected in this ThingInspector instance
  * @public
  */
@@ -176,7 +173,7 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Overlay</code>.<br/> itself. 
  *  
- * Event is fired when the ThingInspector is closed 
+ * Event is fired when the ThingInspector is closed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -225,14 +222,13 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 
 
 /**
- * Event is fired when the 'Open' button of the ThingInspector is clicked 
+ * Event is fired when the 'Open' button of the ThingInspector is clicked
  *
  * @name sap.ui.ux3.Overlay#openNew
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The Id of the Thing which is inspected in this ThingInspector instance
  * @public
  */
@@ -242,7 +238,7 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Overlay</code>.<br/> itself. 
  *  
- * Event is fired when the 'Open' button of the ThingInspector is clicked 
+ * Event is fired when the 'Open' button of the ThingInspector is clicked
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -289,14 +285,13 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 
 
 /**
- * Event is fired when the ThingInspector is opened 
+ * Event is fired when the ThingInspector is opened
  *
  * @name sap.ui.ux3.Overlay#open
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id The Id of the Thing which is inspected in this ThingInspector instance
  * @public
  */
@@ -306,7 +301,7 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Overlay</code>.<br/> itself. 
  *  
- * Event is fired when the ThingInspector is opened 
+ * Event is fired when the ThingInspector is opened
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -355,36 +350,35 @@ sap.ui.ux3.Overlay.M_EVENTS = {'close':'close','openNew':'openNew','open':'open'
 /**
  * Opens Overlay as pop up
  *
- * @name sap.ui.ux3.Overlay.prototype.open
+ * @name sap.ui.ux3.Overlay#open
  * @function
- * @param {string} 
- *         sInitialFocusId
+ * @param {string} sInitialFocusId
  *         ID of the control that gets focused when the overlay is openend
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes Overlay
  *
- * @name sap.ui.ux3.Overlay.prototype.close
+ * @name sap.ui.ux3.Overlay#close
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Checks whether Overlay is open
  *
- * @name sap.ui.ux3.Overlay.prototype.isOpen
+ * @name sap.ui.ux3.Overlay#isOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -413,13 +407,31 @@ sap.ui.ux3.Overlay.prototype.init = function() {
 			jQuery.sap.focus(domRef);
 		}
 	});
+	
 	this._overridePopupEventing();
+};
+
+/**
+ * Override Popup Events. Don't put Overlay to the front on mousedown. Existing 
+ * ToolPopups should always be in front of the Overlay.
+ *
+ * @private
+ */
+sap.ui.ux3.Overlay.prototype._overridePopupEventing = function() {
+	this._oPopup.onmousedown = function(oEvent) {
+		return;
+	}
 };
 
 /**
  * Returns the Shell (if both Overlay and Shell are rendered)
  */
 sap.ui.ux3.Overlay.prototype._getShell = function() {
+	var oShell = jQuery(".sapUiUx3Shell").control();
+	
+	if (oShell.length > 0 && !this._oShell) {
+		this._oShell = oShell.length ? oShell[0] : null;
+	}
 	return this._oShell;
 };
 
@@ -505,6 +517,7 @@ sap.ui.ux3.Overlay.prototype.exit = function() {
 /**
  * Opens this instance of Overlay
  *
+ * @param {string} [initialFocusId]
  * @public
  */
 sap.ui.ux3.Overlay.prototype.open = function(initialFocusId) {
@@ -595,19 +608,6 @@ sap.ui.ux3.Overlay.prototype._getText = function(sKey, aArgs) {
 		}
 	}
 	return sText ? sText : sKey;
-};
-
-/**
- * Override Popup Events
- *
- * @private
- */
-sap.ui.ux3.Overlay.prototype._overridePopupEventing = function() {
-	// don't bring Overlay to the front on mouse down. Existing
-	// Toolpopups should always be in front
-	this._oPopup.onmousedown = function(oEvent) {
-		return;
-	};
 };
 
 /**

@@ -3,7 +3,7 @@
 
 	<name>ComboBox</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>
 	   The control provides a field that allows end users to either enter some text, or to choose an entry out of a list of pre-defined items. The choosable items can be provided in the form of complete list boxes, single listbox items, or text strings defined for the current application.
 	</documentation>

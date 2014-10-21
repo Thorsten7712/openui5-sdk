@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Grid</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.15.0</since>
 	<documentation>The Grid control is a layout which positions its child controls in a 12 column flow layout. Its children can be specified to take on a variable amount of columns depending on available screen size. With this control it is possible to achieve flexible layouts and line-breaks for large-, medium- and small-sized screens, such as desktop, tablet, and mobile. The Grid control's width can be percentage- or pixel-based and the spacing between its columns can be set to various pre-defined values.</documentation>
 
@@ -11,11 +11,11 @@
 	    <property group="Dimension" name="width" type="sap.ui.core/CSSSize" defaultValue="100%">
 			<documentation>Optional. Width of the Grid. If not specified, then 100%.</documentation>
 		</property>
-		<property group="Dimension" name="vSpacing" type="sap.ui.core/int" defaultValue="1">
-			<documentation>Optional. Vertical spacing between the rows in the Grid.  In rem, can be 0, 1 and 2.</documentation>
+		<property group="Dimension" name="vSpacing" type="sap.ui.core/float" defaultValue="1">
+			<documentation>Optional. Vertical spacing between the rows in the Grid. In rem, allowed values are 0,  0.5, 1 and 2.</documentation>
 		</property>
-		<property group="Dimension" name="hSpacing" type="sap.ui.core/int" defaultValue="1">
-			<documentation>Optional. Horizontal spacing between the content in the Grid. In rem, can be 0, 1 rem or 2 rem.</documentation>
+		<property group="Dimension" name="hSpacing" type="sap.ui.core/float" defaultValue="1">
+			<documentation>Optional. Horizontal spacing between the content in the Grid. In rem, allowed values are 0, 0.5 , 1 or 2.</documentation>
 		</property>
 		<property group="Dimension" name="position" type="GridPosition" defaultValue='"Left"'>
 			<documentation>Optional. Position of the Grid in the window or surrounding container. Possible values are &quot;Center&quot;, &quot;Left&quot; and &quot;Right&quot;.</documentation>

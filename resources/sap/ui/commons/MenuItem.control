@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>MenuItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Smallest unit in the menu hierarchy. An item can be a direct part of a menu bar, of a menu, or of a sub menu.								
 	</documentation>
 	<baseType>sap.ui.unified/MenuItem</baseType>

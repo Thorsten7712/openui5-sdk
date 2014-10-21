@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,18 +60,16 @@ jQuery.sap.require("sap.ui.commons.TextField");
  * Since version 1.22 the unified.Calendar is used inside the datePicker. So applications using the DatePicker should load the unified library. Otherwise it will be loaded the first time a DatePicker is opened.
  * @extends sap.ui.commons.TextField
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.DatePicker
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.DatePicker", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"locale" : {type : "string", group : "Misc", defaultValue : null},
@@ -100,7 +98,6 @@ sap.ui.commons.TextField.extend("sap.ui.commons.DatePicker", { metadata : {
 /**
  * Getter for property <code>locale</code>.
  * Defines the locale (language and country), e.g. "en-US", whose translations and Date formatters should be used to render the DatePicker.If the value property is bound to a model using a Date type the locale will be ignored, because the locale information of the model are used.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -217,11 +214,15 @@ jQuery.sap.require("sap.ui.model.type.Date");
 
 	};
 
+	sap.ui.commons.DatePicker.prototype.onsaphide = sap.ui.commons.DatePicker.prototype.onsapshow;
+
 	sap.ui.commons.DatePicker.prototype.onsappageup = function(oEvent){
 
 		//increase by one day
 		var that = this;
 		_incraseDate(that, 1, "day");
+
+		oEvent.preventDefault(); // do not move cursor
 
 	};
 
@@ -236,6 +237,8 @@ jQuery.sap.require("sap.ui.model.type.Date");
 			_incraseDate(that, 1, "year");
 		}
 
+		oEvent.preventDefault(); // do not move cursor
+
 	};
 
 	sap.ui.commons.DatePicker.prototype.onsappagedown = function(oEvent){
@@ -243,6 +246,8 @@ jQuery.sap.require("sap.ui.model.type.Date");
 		//decrease by one day
 		var that = this;
 		_incraseDate(that, -1, "day");
+
+		oEvent.preventDefault(); // do not move cursor
 
 	};
 
@@ -256,6 +261,8 @@ jQuery.sap.require("sap.ui.model.type.Date");
 			// decrease by one year
 			_incraseDate(that, -1, "year");
 		}
+
+		oEvent.preventDefault(); // do not move cursor
 
 	};
 
@@ -285,7 +292,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 
 		var sOldValue = this.getValue();
 		if (sValue == sOldValue) {
-			return;
+			return this;
 		}
 
 		var that = this;
@@ -330,7 +337,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 
 		var sOldYyyymmdd = this.getYyyymmdd();
 		if (sYyyymmdd == sOldYyyymmdd) {
-			return;
+			return this;
 		}
 
 		this.setProperty("yyyymmdd", sYyyymmdd, true);
@@ -498,14 +505,14 @@ jQuery.sap.require("sap.ui.model.type.Date");
 	/**
 	 * Fire event change to attached listeners.
 	 *
-	 * Expects following event parameters:
+	 * Provides the following event parameters:
 	 * <ul>
 	 * <li>'newValue' of type <code>string</code> The new / changed value of the DatePicker.</li>
 	 * <li>'newYyyymmdd' of type <code>string</code> The new / changed Yyyymmdd of the DatePicker. </li>
 	 * <li>'invalidValue' of type <code>boolean</code> The new / changed value of the DatePicker is not a valid date. </li>
 	 * </ul>
 	 *
-	 * @param {Map} [mArguments] the arguments to pass along with the event.
+	 * @param {boolean} bInvalidValue true is value is invalid
 	 * @return {sap.ui.commons.DatePicker} <code>this</code> to allow method chaining
 	 * @protected
 	 * @name sap.ui.commons.DatePicker#fireChange
@@ -574,7 +581,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 
 		return oThis._oFormat;
 
-	};
+	}
 
 	function _getUsedLocale(oThis) {
 
@@ -589,7 +596,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 
 		return oLocale;
 
-	};
+	}
 
 	function _checkLocaleAllowed(oThis) {
 
@@ -601,7 +608,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 			oThis._bIgnoreLocale = true;
 		}
 
-	};
+	}
 
 	function _open(oThis){
 
@@ -652,7 +659,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 		var eDock = sap.ui.core.Popup.Dock;
 		oThis._oPopup.open(0, eDock.BeginTop, eDock.BeginBottom, oThis, null, null, true);
 
-	};
+	}
 
 	function _toggleOpen(oThis){
 
@@ -665,7 +672,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 			}
 		}
 
-	};
+	}
 
 	function _selectDate(oEvent){
 
@@ -696,7 +703,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 
 		this.fireChange();
 
-	};
+	}
 
 	function _cancel(oEvent) {
 
@@ -705,7 +712,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 			this.focus();
 		}
 
-	};
+	}
 
 	function _handleClosed(oEvent) {
 
@@ -714,7 +721,7 @@ jQuery.sap.require("sap.ui.model.type.Date");
 			this.getRenderer().onblur(this);
 		}
 
-	};
+	}
 
 	function _incraseDate(oThis, iNumber, sUnit) {
 
@@ -722,7 +729,9 @@ jQuery.sap.require("sap.ui.model.type.Date");
 
 		if (oOldDate && oThis.getEditable() && oThis.getEnabled()) {
 			// use a new date object to have a real updated property
-			var oDate = new Date (oOldDate.getTime());
+			var oDate = new Date(oOldDate.getTime());
+			var $Input = jQuery(oThis.getInputDomRef());
+			var iPos = $Input.cursorPos();
 
 			switch (sUnit) {
 			case "day":
@@ -742,12 +751,12 @@ jQuery.sap.require("sap.ui.model.type.Date");
 			oThis._oDate = oDate;
 
 			// update value in input field
-			var $Input = jQuery(oThis.getInputDomRef());
 			var sOutputValue = oThis._formatValue(oDate);
 			$Input.val(sOutputValue);
+			$Input.cursorPos(iPos);
 
 		}
 
-	};
+	}
 
 }());

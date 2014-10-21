@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,21 +54,19 @@ jQuery.sap.require("sap.ui.unified.FileUploader");
  * The framework generates an input field and a button with text "Browse ...". The API supports features such as on change uploads (the upload starts immediately after a file has been selected), file uploads with explicit calls, adjustable control sizes, text display after uploads, or tooltips containing complete file paths.
  * @extends sap.ui.unified.FileUploader
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.21.0. 
  * Please use the control sap.ui.unified.FileUploader of the library sap.ui.unified instead.
  * @name sap.ui.commons.FileUploader
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.FileUploader.extend("sap.ui.commons.FileUploader", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.commons"
 }});
 
@@ -94,7 +92,7 @@ sap.ui.unified.FileUploader.extend("sap.ui.commons.FileUploader", { metadata : {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
  * 
- * (c) Copyright 2009-2014 SAP AG. All rights reserved
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
  */
 
 jQuery.sap.declare("sap.ui.commons.FileUploader");

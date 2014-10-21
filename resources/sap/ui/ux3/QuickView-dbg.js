@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -74,21 +74,18 @@ jQuery.sap.require("sap.ui.commons.CalloutBase");
  * @class
  * QuickView is a small popup with a short overview of a Thing.
  * QuickView is shown when a user holds the mouse pointer over a related screen element.
- * 
  * @extends sap.ui.commons.CalloutBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.QuickView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.CalloutBase.extend("sap.ui.ux3.QuickView", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"type" : {type : "string", group : "Misc", defaultValue : null},
@@ -108,9 +105,9 @@ sap.ui.commons.CalloutBase.extend("sap.ui.ux3.QuickView", { metadata : {
 		"openActionEnabled" : {type : "boolean", group : "Misc", defaultValue : true}
 	},
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Element", multiple : true, singularName : "content"}, 
-    	"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
-    	"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}
+		"content" : {type : "sap.ui.core.Element", multiple : true, singularName : "content"}, 
+		"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
+		"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}
 	},
 	events : {
 		"actionSelected" : {}, 
@@ -709,14 +706,13 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Action is selected in Action Bar 
+ * Action is selected in Action Bar
  *
  * @name sap.ui.ux3.QuickView#actionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected ThingAction
  * @param {sap.ui.ux3.ThingAction} oControlEvent.getParameters.action Selected ThingAction
  * @param {string} oControlEvent.getParameters.newState New State of the selected action. Only filled if the respective action maintains a state property, for example 'FollowUp' or 'Favorite'
@@ -728,7 +724,7 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.QuickView</code>.<br/> itself. 
  *  
- * Action is selected in Action Bar 
+ * Action is selected in Action Bar
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -777,14 +773,13 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.QuickView#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Feed text
  * @public
  */
@@ -794,7 +789,7 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.QuickView</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -841,14 +836,13 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
 
 
 /**
- * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation. 
+ * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation.
  *
  * @name sap.ui.ux3.QuickView#navigate
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.href URI of the Thing Inspector application.
  * @public
  */
@@ -858,7 +852,7 @@ sap.ui.ux3.QuickView.M_EVENTS = {'actionSelected':'actionSelected','feedSubmit':
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.QuickView</code>.<br/> itself. 
  *  
- * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation. 
+ * Event is fired when a user clicks on the firstTitle link. Call the preventDefault method of the event object to cancel browser navigation.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

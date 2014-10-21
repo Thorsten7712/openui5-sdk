@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8464128779025074"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7166464656694448"/>
 <title>Prevention of Cross-site Scripting</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -28,9 +30,9 @@
 <div class="body"><p class="shortdesc"/>
 <p class="p">To prevent cross-site scripting (XSS), ensure that it is <span class="ph emphasis emphasis">not</span> possible to
 			inject script code into an application page that runs in a browser. Controls must,
-			therefore, prohibited to write scripts to the page that comes from the application or
-			from business data saved by a different user. To ensure this, the following two measures
-			must be combined:</p>
+			therefore, prohibit writing scripts to the page that comes from the application or from
+			business data saved by a different user. To ensure this, the following two measures must
+			be combined:</p>
 <ul class="ul" id="loio4de64e2e191f4a7297d4fd2d1e233a2d__ul_hl4_qrn_bn"><li class="li">
 				<p class="p">Validation of typed control properties</p>
 
@@ -39,14 +41,16 @@
 						<samp class="ph codeph">int</samp>, and a <samp class="ph codeph">sap.ui.core/CSSSize</samp> is a string
 					representing a CSS size and does <span class="ph emphasis emphasis">not</span> contain a script tag.
 					This also applies to enumerations and control IDs. The control renderer can rely
-					on this check when writing the HTML.</p>
+					on this check when writing the HTML. Property values that are typed in this way
+					can be written without escaping.</p>
 
 			</li>
 <li class="li">
 				<p class="p">Escaping</p>
 
 				<p class="p">Control developers must ensure that string control properties and other values coming from
-					the application are escaped wheen they create the renderer. For this, the
+					the application and not sufficiently typed to rule out script tags being
+					contained are escaped when written to the HTML. For this, the
 						<samp class="ph codeph">RenderManager</samp> and SAPUI5 core provide helper methods.</p>
 
 			</li>
@@ -58,8 +62,8 @@
 			<ul class="ul" id="loio4de64e2e191f4a7297d4fd2d1e233a2d__ul_xvc_xrn_bn"><li class="li">
 					<p class="p">For control properties, always use the most specific type that ist available. For example,
 						use <samp class="ph codeph">sap.ui.core/CSSSize</samp> instead of <samp class="ph codeph">string</samp>
-						(or <samp class="ph codeph">sap.ui.core/string</samp>) for control properties that refer
-						to a CSS size.</p>
+						and instead of <samp class="ph codeph">sap.ui.core/string</samp>) for control properties
+						that refer to a CSS size.</p>
 
 				</li>
 <li class="li">
@@ -78,10 +82,9 @@
 
 						</li>
 <li class="li">
-							<p class="p">Use
-									<samp class="ph codeph">jQuery.sap.escapeHTML(oControl.getSomeStringProperty())</samp>
-								for string properties where none of the other twio options is
-								possible to escape the string and then process it further.</p>
+							<p class="p">Use <samp class="ph codeph">jQuery.sap.escapeHTML(oControl.getSomeStringProperty())</samp> for string
+								properties where none of the other two options is possible to escape
+								the string and then process it further.</p>
 
 						</li>
 </ul>
@@ -101,11 +104,6 @@
 </ul>
 
 		</div></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

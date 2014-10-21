@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -25,8 +25,8 @@ sap.ui.define(['jquery.sap.global', './ClientContextBinding', './ClientListBindi
 	 * @abstract
 	 * @extends sap.ui.model.Model
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 *
 	 * @param {object} oData URL where to load the data from
 	 * @constructor
@@ -218,8 +218,8 @@ sap.ui.define(['jquery.sap.global', './ClientContextBinding', './ClientListBindi
 	};
 	
 	/**
-	 * Force no caching
-	 * @param {boolean} force no cache true/false: Default = true  
+	 * Force no caching.
+	 * @param {boolean} [bForceNoCache=false] whether to force not to cache
 	 * @public
 	 * @name sap.ui.model.ClientModel#forceNoCache
 	 * @function

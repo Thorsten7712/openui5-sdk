@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,22 +61,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * by this, you provide a limited choice for the user. Triggers an Event when User makes a change.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.RadioButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.RadioButton", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setActiveState"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -316,14 +314,13 @@ sap.m.RadioButton.M_EVENTS = {'select':'select'};
 
 
 /**
- * Event is triggered when the user makes a change on the radio button (selecting or unselecting it). 
+ * Event is triggered when the user makes a change on the radio button (selecting or unselecting it).
  *
  * @name sap.m.RadioButton#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.selected Checks whether the RadioButton is active or not.
  * @public
  */
@@ -333,7 +330,7 @@ sap.m.RadioButton.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.RadioButton</code>.<br/> itself. 
  *  
- * Event is triggered when the user makes a change on the radio button (selecting or unselecting it). 
+ * Event is triggered when the user makes a change on the radio button (selecting or unselecting it).
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -382,14 +379,13 @@ sap.m.RadioButton.M_EVENTS = {'select':'select'};
 /**
  * Method to set a RadioButton's state to active or inactive.
  *
- * @name sap.m.RadioButton.prototype.setActiveState
+ * @name sap.m.RadioButton#setActiveState
  * @function
- * @param {boolean} 
- *         bActive
+ * @param {boolean} bActive
  *         boolean to set the active state to true or false
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -448,6 +444,7 @@ sap.m.RadioButton.prototype.ontouchend = function(oEvent) {
 // #############################################################################
 /**
 * Pseudo event for pseudo 'select' event... space, enter, ... without modifiers (Ctrl, Alt or Shift)
+* @param {object} oEvent
 * @public
 */
 sap.m.RadioButton.prototype.onsapselect = function(oEvent) {

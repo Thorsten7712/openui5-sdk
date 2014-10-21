@@ -1,8 +1,7 @@
 <html>
 	<head>
 		<title>TestSuite for sap.ui.core: GTP testcase CORE/CORE</title>
-	</head>
-	<body>
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/qunit-redirect.js"></script>
 		<script language="javascript">
 
 		/**
@@ -10,13 +9,14 @@
 		 * Please order alphabetically
 		 */
 		function suite() {
-			var suite = new top.jsUnitTestSuite();
+			var suite = new parent.jsUnitTestSuite();
 			var contextPath = "/" + window.location.pathname.split("/")[1];
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/AppCacheBuster.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/ControlDefinition.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Core.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/CoreLock.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Customizing.qunit.html");
+			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Customizing.qunit.html?sap-ui-xx-debugCustomizing");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Customizing_disabled.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/CustomStyleClassSupport.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Declarative.qunit.html");
@@ -42,15 +42,11 @@
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/HashChanger.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/History.qunit.html");
 			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Router.qunit.html");
-			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Opa.qunit.html");
-			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Opa5.qunit.html");
-			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/OpaPlugin.qunit.html");
-			suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/OpaIntegration.qunit.html");
 			return suite;
 		}
 		  
-		redirectToTestrunnerIfRequired();
-
 		</script>
+	</head>
+	<body>
 	</body>
 </html>

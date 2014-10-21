@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>Dialog</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The Dialog control is used to interrupt the current processing of an application to prompt the user for information or a response.</documentation>
 	<baseType>sap.ui.core/Control</baseType>
 	<interfaces>

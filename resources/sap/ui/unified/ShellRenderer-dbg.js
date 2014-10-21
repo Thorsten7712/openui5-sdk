@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -29,6 +29,9 @@ sap.ui.unified.ShellRenderer.render = function(rm, oShell){
 	}
 	if(oShell.getSearch()){
 		rm.addClass("sapUiUfdShellWithSearch");
+	}
+	if(!oShell.getHeaderVisible()){
+		rm.addClass("sapUiUfdShellNoHead");
 	}
 	rm.addClass("sapUiUfdShellHead"+ (oShell._showHeader ? "Visible" : "Hidden"));
 	if(oShell.getShowCurtain()){
@@ -103,6 +106,9 @@ sap.ui.unified.ShellRenderer.renderHeaderItems = function(rm, oShell, begin) {
 		rm.addClass("sapUiUfdShellHeadItm");
 		if(aItems[i].getStartsSection()){
 			rm.addClass("sapUiUfdShellHeadItmDelim");
+		}
+		if(aItems[i].getShowSeparator()){
+			rm.addClass("sapUiUfdShellHeadItmSep");
 		}
 		if(!aItems[i].getVisible()){
 			rm.addClass("sapUiUfdShellHidden");

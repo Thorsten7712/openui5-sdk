@@ -1,13 +1,16 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
-jQuery.sap.declare("sap.m.ColumnListItem");jQuery.sap.require("sap.m.library");jQuery.sap.require("sap.m.ListItemBase");sap.m.ListItemBase.extend("sap.m.ColumnListItem",{metadata:{library:"sap.m",properties:{"vAlign":{type:"sap.ui.core.VerticalAlign",group:"Appearance",defaultValue:sap.ui.core.VerticalAlign.Inherit}},defaultAggregation:"cells",aggregations:{"clonedHeaders":{type:"sap.ui.core.Control",multiple:true,singularName:"clonedHeader",visibility:"hidden"},"cells":{type:"sap.ui.core.Control",multiple:true,singularName:"cell",bindable:"bindable"}}}});sap.m.ColumnListItem.prototype._popinId="";
-sap.m.ColumnListItem.prototype.removePopin=function(){if(this.hasPopin()){jQuery.sap.byId(this._popinId).remove();this._popinId=""}return this};
+jQuery.sap.declare("sap.m.ColumnListItem");jQuery.sap.require("sap.m.library");jQuery.sap.require("sap.m.ListItemBase");sap.m.ListItemBase.extend("sap.m.ColumnListItem",{metadata:{library:"sap.m",properties:{"vAlign":{type:"sap.ui.core.VerticalAlign",group:"Appearance",defaultValue:sap.ui.core.VerticalAlign.Inherit}},defaultAggregation:"cells",aggregations:{"cells":{type:"sap.ui.core.Control",multiple:true,singularName:"cell",bindable:"bindable"}}}});sap.m.ColumnListItem.prototype._popinId="";
+sap.m.ColumnListItem.prototype.init=function(){sap.m.ListItemBase.prototype.init.call(this);this._aClonedHeaders=[]};
+sap.m.ColumnListItem.prototype.removePopin=function(){if(this.hasPopin()){jQuery.sap.byId(this._popinId).remove();this._popinId=""}};
+sap.m.ColumnListItem.prototype.addClonedHeader=function(h){return this._aClonedHeaders.push(h)};
+sap.m.ColumnListItem.prototype.destroyClonedHeaders=function(){this._aClonedHeaders.forEach(function(c){c.destroy(true)});this._aClonedHeaders.length=0};
 sap.m.ColumnListItem.prototype.hasPopin=function(){return!!(this._popinId)};
 sap.m.ColumnListItem.prototype.setVisible=function(){sap.m.ListItemBase.prototype.setVisible.apply(this,arguments);if(!this.getVisible()){this.removePopin()}return this};
-sap.m.ColumnListItem.prototype.exit=function(){sap.m.ListItemBase.prototype.exit.call(this);this.destroyAggregation("clonedHeaders",true);return this.removePopin()};
+sap.m.ColumnListItem.prototype.exit=function(){sap.m.ListItemBase.prototype.exit.call(this);this.destroyClonedHeaders();this.removePopin()};
 sap.m.ColumnListItem.prototype._activeHandlingInheritor=function(){this._toggleActiveClass(true)};
 sap.m.ColumnListItem.prototype._inactiveHandlingInheritor=function(){this._toggleActiveClass(false)};
 sap.m.ColumnListItem.prototype._toggleActiveClass=function(s){if(this.hasPopin()){jQuery.sap.byId(this._popinId).toggleClass("sapMLIBActive",s)}};

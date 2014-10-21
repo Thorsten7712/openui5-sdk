@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -36,7 +36,8 @@ sap.ui.ux3.QuickViewRenderer.renderContent = function(oRenderManager, oControl){
 		sDesc	= oControl.getSecondTitle(),
 		sWidth	= oControl.getWidth(),
 		sId = oControl.getId(),
-		tooltip = oControl.getTooltip_AsString();
+		tooltip = oControl.getTooltip_AsString(),
+		oIconAttr;
 
 	// container for the QuickView header and content
 	rm.write("<div");
@@ -76,18 +77,16 @@ sap.ui.ux3.QuickViewRenderer.renderContent = function(oRenderManager, oControl){
 		rm.write(">")
 
 		//icon
-		if(sIcon){
-			rm.write("<img alt=\"\"");
-			rm.addClass("sapUiUx3QVIcon");
-			rm.writeClasses();
-			rm.writeAttributeEscaped("src", sIcon);
-			rm.writeAttributeEscaped("title", sName);
-			if(bAcc){
-				// ARIA - icon is decorative
-				rm.writeAttribute("role", "presentation");
+		if (sIcon) {
+			if (sIcon.indexOf("sap-icon://") !== 0) {
+				//setting title & tabindex here
+				//alt, src and role=presentation are set by writeIcon
+				oIconAttr = {
+					title	: sName,
+					tabindex: "-1"
+				};
 			}
-			rm.write(" tabindex=\"-1\"");
-			rm.write("></img>"); 
+			rm.writeIcon(sIcon, "sapUiUx3QVIcon", oIconAttr);
 		}
 
 		//name 

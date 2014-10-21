@@ -215,43 +215,12 @@
 				text += "The application can now read the entered data and save or cancel and could close the popup.";
 				alert(text);
 			});
-			
-			
-			// theme-dependent icons
-			var mAllIcons = {
-					sap_goldreflection:{
-						contact_reg: "images/Contact_regular.png",
-						contact_hov: "images/Contact_hover.png",
-						appointment_reg: "images/Appointment_regular.png",
-						appointment_hov: "images/Appointment_hover.png"
-					},
-					sap_hcb:{
-						contact_reg: "images/Contact_hover.png", // use hover images (white) for both states in HCB theme
-						contact_hov: "images/Contact_hover.png",
-						appointment_reg: "images/Appointment_hover.png",
-						appointment_hov: "images/Appointment_hover.png"
-					}
-			};
-		
-			/**
-			 * Applies the icons fitting the current theme to both ToolPopups
-			 */
-			function applyThemeDependentIcons() {
-				var theme = sap.ui.getCore().getConfiguration().getTheme();
-				var Icons = (theme == "sap_hcb") ? mAllIcons[theme] : mAllIcons["sap_goldreflection"]; // use gold reflection as default for any other theme; use hcb only for hcb
-				
-				oContactTool.setIcon(Icons.contact_reg);
-				oContactTool.setIconHover(Icons.contact_hov);
-				oAppointmentTool.setIcon(Icons.appointment_reg);
-				oAppointmentTool.setIconHover(Icons.appointment_hov);
-			};
-			
-			// exchange application-specific icons when switching themes
-			sap.ui.getCore().attachThemeChanged(function(evt){
-				applyThemeDependentIcons();
-			});
-			applyThemeDependentIcons(); // also set the initial icons
-			
+
+			oContactTool.setIcon("sap-icon://contacts");
+			oContactTool.setIconHover("sap-icon://contacts");
+			oAppointmentTool.setIcon("sap-icon://appointment-2");
+			oAppointmentTool.setIconHover("sap-icon://appointment-2");
+
 			oShell.addPaneBarItem(new sap.ui.core.Item("pane_feed",{text:"Feed"}));
 			oShell.addPaneBarItem(new sap.ui.core.Item("pane_people",{text:"People"}));
 			oShell.addPaneBarItem(new sap.ui.core.Item("pane_news",{text:"News"}));

@@ -72,7 +72,7 @@ or by using createBindingContext.</p>
 								<div class="sectionItem classConstructor static abstract">
 									<div class="itemName">
 										<b class="icon" title="Constructor for Context class.">new <a href="../symbols/sap.ui.model.Context.html#constructor">sap.ui.model.Context</a></b>
-										<span class='signature'>(<span title="(sap.ui.model.Model) model">the</span>, <span title="(String) the path">sPath</span>, <span title="(Object) the context object">oContext</span>)</span>
+										<span class='signature'>(<span title="(sap.ui.model.Model) the model">oModel</span>, <span title="(String) the path">sPath</span>, <span title="(Object) the context object">oContext</span>)</span>
 										<span class='description'>Constructor for Context class.</span>
 									</div>
 								</div>
@@ -108,13 +108,13 @@ or by using createBindingContext.</p>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Gets the (model dependent) object the context points to"><a href="../symbols/sap.ui.model.Context.html#getObject">getObject</a></b><span class='signature'>()</span>
-									<span class='description'>Gets the (model dependent) object the context points to</span>
+									<b class="icon" title="Gets the (model dependent) object the context points to or the object with the given relative binding path"><a href="../symbols/sap.ui.model.Context.html#getObject">getObject</a></b><span class='signature'>(<span title="(String) the binding path">sPath</span>)</span>
+									<span class='description'>Gets the (model dependent) object the context points to or the object with the given relative binding path</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Getter for path"><a href="../symbols/sap.ui.model.Context.html#getPath">getPath</a></b><span class='signature'>()</span>
-									<span class='description'>Getter for path</span>
+									<b class="icon" title="Getter for path of the context itself or a subpath"><a href="../symbols/sap.ui.model.Context.html#getPath">getPath</a></b><span class='signature'>(<span title="(String) the binding path">sPath</span>)</span>
+									<span class='description'>Getter for path of the context itself or a subpath</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -141,7 +141,7 @@ or by using createBindingContext.</p>
 									<div class="details"><a name="constructor"> </a>
 										
 										<div class="icon">
-											new <b>sap.ui.model.Context</b>(<span title="(sap.ui.model.Model) model">the</span>, <span title="(String) the path">sPath</span>, <span title="(Object) the context object">oContext</span>)
+											new <b>sap.ui.model.Context</b>(<span title="(sap.ui.model.Model) the model">oModel</span>, <span title="(String) the path">sPath</span>, <span title="(Object) the context object">oContext</span>)
 										</div>
 										
 										<div class="full-description">
@@ -159,10 +159,10 @@ or by using createBindingContext.</p>
 													  <span class="light">{<a href="../symbols/sap.ui.model.Model.html">sap.ui.model.Model</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>the</b>
+													  <b>oModel</b>
 													</td>
 													<td class="methodItemDesc">
-												    model
+												    the model
 													</td>
 												</tr>
 											
@@ -344,11 +344,11 @@ see Object.extend.
 									<div class='sectionItem classMethod'>
 										<a name="getObject"> </a>
 										<div class="itemTitle icon">
-											getObject<span class="signature">()</span>
+											getObject<span class="signature">(<span title="(String) the binding path">sPath</span>)</span>
 											<span class="light" title="returns object">: object</span>
 										</div>
 										<div class="full-description">
-											Gets the (model dependent) object the context points to
+											Gets the (model dependent) object the context points to or the object with the given relative binding path
 											
 											
 											
@@ -356,6 +356,23 @@ see Object.extend.
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{String}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sPath</b>
+													</td>
+													<td class="methodItemDesc">
+												    the binding path
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										
@@ -382,11 +399,11 @@ see Object.extend.
 									<div class='sectionItem classMethod'>
 										<a name="getPath"> </a>
 										<div class="itemTitle icon">
-											getPath<span class="signature">()</span>
+											getPath<span class="signature">(<span title="(String) the binding path">sPath</span>)</span>
 											<span class="light" title="returns String">: String</span>
 										</div>
 										<div class="full-description">
-											Getter for path
+											Getter for path of the context itself or a subpath
 											
 											
 											
@@ -394,6 +411,23 @@ see Object.extend.
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{String}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sPath</b>
+													</td>
+													<td class="methodItemDesc">
+												    the binding path
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										

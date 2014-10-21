@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>TableSelectDialog</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16</since>
 	<documentation>A TableSelectDialog provides you a easier way to create a dialog that contains a list with grouping and search functionality.
 The Table used in a SelectDialog is a Table with Columns. After selecting an item, the dialog will be closed and a callback function will return the item being selected.</documentation>

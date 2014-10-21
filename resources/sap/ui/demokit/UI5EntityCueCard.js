@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.demokit.UI5EntityCueCard");jQuery.sap.require("sap.ui.demokit.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.demokit.UI5EntityCueCard",{metadata:{library:"sap.ui.demokit",properties:{"collapsible":{type:"boolean",group:"Misc",defaultValue:true},"expanded":{type:"boolean",group:"Misc",defaultValue:false},"navigable":{type:"boolean",group:"Misc",defaultValue:false},"entityName":{type:"string",group:"Misc",defaultValue:null},"style":{type:"sap.ui.demokit.UI5EntityCueCardStyle",group:"Misc",defaultValue:null}},events:{"navigate":{allowPreventDefault:true}}}});sap.ui.demokit.UI5EntityCueCard.M_EVENTS={'navigate':'navigate'};jQuery.sap.require("sap.ui.commons.Link");jQuery.sap.require("sap.ui.demokit.EntityInfo");

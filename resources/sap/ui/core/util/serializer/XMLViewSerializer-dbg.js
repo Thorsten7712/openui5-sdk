@@ -1,6 +1,6 @@
 /*
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24,8 +24,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './delegate/XML
 	 * @public
 	 * @class XMLViewSerializer class.
 	 * @extends sap.ui.base.EventProvider
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @name sap.ui.core.util.serializer.XMLViewSerializer
 	 * @experimental Since 1.15.1. The XMLViewSerializer is still under construction, so some implementation details can be changed in future.
 	 */
@@ -92,8 +92,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './delegate/XML
 		}
 		
 		// write view namespaces ... after running serializer
-		if (jQuery.inArray('sap.ui.core', mPackages) === -1) {
-			mPackages.push('sap.ui.core');
+		if (jQuery.inArray('sap.ui.core.mvc', mPackages) === -1) {
+			mPackages.push('sap.ui.core.mvc');
 		}
 		for (var i = 0 ; i < mPackages.length ; i++) {
 			if (this._sDefaultNamespace && this._sDefaultNamespace === mPackages[i]) {

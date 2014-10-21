@@ -4,7 +4,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>Dialog - sap.m</title>
 		<style type="text/css">
-			label.sapMLabel {
+			.sapMLabel.specialLabelDialogPage {
 				display: block;
 				margin: 0.5em 0 0 0;
 			}
@@ -424,7 +424,7 @@
 					oButton4,
 					new sap.ui.core.HTML({content:"<br>"}),
 					oButton5,
-					new sap.m.Label({text: "How many days?"}),
+					new sap.m.Label({text: "How many days?"}).addStyleClass("specialLabelDialogPage"),
 					new sap.m.Slider({
 						value: 5,
 						min: 1,
@@ -432,9 +432,9 @@
 						width: "100%",
 						progress : true
 					}),
-					new sap.m.Label({text: "Starting on"}),
+					new sap.m.Label({text: "Starting on"}).addStyleClass("specialLabelDialogPage"),
 					new sap.m.DateTimeInput({type: sap.m.DateTimeInputType.Date, displayFormat: sDateFormat, valueFormat: sDateFormat, width: "150px"}),
-					new sap.m.Label({text: "E-mail address for confirmation"}),
+					new sap.m.Label({text: "E-mail address for confirmation"}).addStyleClass("specialLabelDialogPage"),
 					new sap.m.Input({type: sap.m.InputType.Email, placeholder: "E-mail", change: function(){
 						oDialog1.open();
 					}})

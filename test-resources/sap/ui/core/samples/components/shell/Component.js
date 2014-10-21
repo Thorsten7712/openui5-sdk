@@ -33,8 +33,21 @@ sap.ui.core.UIComponent.extend("samples.components.shell.Component", {
 samples.components.shell.Component.prototype.createContent = function() {
 	this.firstTime = true;
 	// model to share beetween the child components
-	var sServiceUrl = "/databinding/proxy/http/ldcigiq.wdf.sap.corp:50015/sap/bc/sepm_odata_srv/purchase/";
-	this.oModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true, "anzeiger", "display");
+	
+	var sServiceUrl = "http://epmdemo.corp/sap/bc/sepm_odata_srv/purchase";
+	
+	jQuery.sap.require("sap.ui.core.util.MockServer");
+	var oMockServer = new sap.ui.core.util.MockServer({
+		rootUri: sServiceUrl+"/"
+	});
+	
+	var path = jQuery.sap.getModulePath("samples.components.shell") + "/../../epmdata/";
+	
+	oMockServer.simulate(path+"metadata.xml", path);
+	oMockServer.start();
+
+	// Data Model
+	this.oModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
 	this.oShell = new sap.ui.ux3.Shell(this.createId("myShell"), {
 		appTitle:"SAPUI5 Gold Reflection Shell",
 		paneWidth: 300});

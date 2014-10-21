@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,19 +60,17 @@ jQuery.sap.require("sap.ui.core.Control");
  * Base control for Input fields.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12.0
  * @name sap.m.InputBase
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.InputBase", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"value" : {type : "string", group : "Data", defaultValue : null, bindable : "bindable"},
@@ -334,14 +332,13 @@ sap.m.InputBase.M_EVENTS = {'change':'change'};
 
 
 /**
- * This event gets fired when the input operation has finished and the value has changed. 
+ * This event gets fired when the input operation has finished and the value has changed.
  *
  * @name sap.m.InputBase#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The new value of the input.
  * @public
  */
@@ -351,7 +348,7 @@ sap.m.InputBase.M_EVENTS = {'change':'change'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.InputBase</code>.<br/> itself. 
  *  
- * This event gets fired when the input operation has finished and the value has changed. 
+ * This event gets fired when the input operation has finished and the value has changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -403,6 +400,19 @@ jQuery.sap.require("sap.ui.core.IconPool");
 sap.ui.core.EnabledPropagator.call(sap.m.InputBase.prototype);
 sap.ui.core.IconPool.insertFontFaceStyle();
 
+/* Android browser does not scroll a focused input into the view correctly */
+if (sap.ui.Device.os.android && sap.ui.Device.os.version >= 4){
+	jQuery(window).on("resize", function(){
+		var active = document.activeElement;
+		if(active.tagName == "INPUT" && active.classList.contains("sapMInputBaseInner")){
+			window.setTimeout(function(){
+				active.scrollIntoViewIfNeeded();
+			}, 0);
+		}
+	});
+}
+
+
 /* =========================================================== */
 /* Private methods and properties                              */
 /* =========================================================== */
@@ -430,10 +440,10 @@ sap.m.InputBase.prototype._bShowLabelAsPlaceholder = (function(oDevice) {
 
 	// we exclude not right alignable placeholders
 	// check test page : http://jsfiddle.net/89FhB/
-	if (oDevice.os.android && oDevice.os.android.version < 4.4) {
+	if (oDevice.os.android && oDevice.os.version < 4.4) {
 		return true;
 	}
-	
+
 }(sap.ui.Device));
 
 /* ----------------------------------------------------------- */
@@ -587,6 +597,70 @@ sap.m.InputBase.prototype.ontouchstart = function(oEvent) {
 	// mark the event for components that needs to know if the event was handled
 	oEvent.setMarked();
 };
+/**
+ * Sets up at focus a touch listener on mobile devices.
+ *
+ * @private
+ */
+sap.m.InputBase.prototype.onfocusin = function() {
+	if (sap.ui.Device.support.touch) {
+		// listen to all touch events
+		jQuery(document).on('touchstart.sapMIBtouchstart', jQuery.proxy(this._touchstartHandler, this));
+	}
+};
+
+/**
+ * Captures the initial touch position and sets up listeners for touchmove, touchcancel and touchend
+ *
+ * @private
+ */
+sap.m.InputBase.prototype._touchstartHandler = function (oEvent) {
+	if (oEvent.target != this._$input[0]) {
+		this._touchX = oEvent.targetTouches[0].pageX;
+		this._touchY = oEvent.targetTouches[0].pageY;
+		this._touchT = oEvent.timestamp;
+		jQuery(oEvent.target)
+			.on(  'touchmove.sapMIBtouch', jQuery.proxy(this._touchmoveHandler,this))
+			.on(   'touchend.sapMIBtouch', jQuery.proxy(this._touchendHandler ,this))
+			.on('touchcancel.sapMIBtouch', this._removeTouchHandler);
+	}
+};
+
+/**
+ * Calculates if a touch session is a click event or something else (scoll, longtouch)
+ *
+ * @private
+ */
+sap.m.InputBase.prototype._isClick = function(oEvent) {
+	return Math.abs(oEvent.changedTouches[0].pageX-this._touchX) < 10 && Math.abs(oEvent.changedTouches[0].pageY - this._touchY) < 10 &&  oEvent.timestamp - this._touchT < jQuery.event.special.tap.tapholdThreshold; // 750ms
+};
+
+/**
+ * Cancels the action if the touch session is a long tap or scroll
+ *
+ * @private
+ */
+sap.m.InputBase.prototype._touchmoveHandler = function(oEvent){
+	if (!this._isClick(oEvent)) {
+		jQuery(oEvent.target).off('.sapMIBtouch');
+	}
+};
+
+/**
+ * Sends an early change event to the input if a tap has happened outside the input - e.g. on a button
+ *
+ * @private
+ */
+sap.m.InputBase.prototype._touchendHandler = function(oEvent) {
+	// cancel if scrolling or long tap
+	if (this._isClick(oEvent)) {
+		// simulate change event
+		this.onChange(oEvent);
+	}
+
+	// remove all touch handlers
+	jQuery(oEvent.target).off('.sapMIBtouch');
+};
 
 /**
  * Handles the focusout event of the Input.
@@ -595,6 +669,8 @@ sap.m.InputBase.prototype.ontouchstart = function(oEvent) {
  * @private
  */
 sap.m.InputBase.prototype.onfocusout = function(oEvent) {
+	// remove touch handler from document for mobile devices
+	jQuery(document).off('.sapMIBtouchstart');
 
 	// because dom is replaced during the rendering
 	// onfocusout event is triggered probably focus goes to the document
@@ -603,7 +679,7 @@ sap.m.InputBase.prototype.onfocusout = function(oEvent) {
 		return;
 	}
 
-	// handle change event on blur
+	// handle change event on focusout
 	this.onChange(oEvent);
 };
 
@@ -611,7 +687,7 @@ sap.m.InputBase.prototype.onfocusout = function(oEvent) {
  * Handles the change event.
  *
  * @protected
- * @param {jQuery.Event} oEvent
+ * @param {object} oEvent
  * @name sap.m.InputBase#onChange
  * @returns {true|undefined} true when change event is fired
  * @function
@@ -631,6 +707,9 @@ sap.m.InputBase.prototype.onChange = function(oEvent) {
 
 		// save the value on change
 		this.setValue(sValue);
+
+		// get the value back maybe formatted
+		sValue = this.getValue();
 
 		// remember the last value on change
 		this._lastValue = sValue;
@@ -777,7 +856,8 @@ sap.m.InputBase.prototype.oncut = function(oEvent) {
 /* ----------------------------------------------------------- */
 
 /**
- * Sets the start and end positions of the current text selection.
+ * Selects the text within the input field between the specified start and end positions.
+ * Only supported for input control’s type of Text, Url, Tel and Password.
  *
  * @param {integer} iSelectionStart The index into the text at which the first selected character is located.
  * @param {integer} iSelectionEnd The index into the text at which the last selected character is located.
@@ -790,31 +870,6 @@ sap.m.InputBase.prototype.oncut = function(oEvent) {
 sap.m.InputBase.prototype.selectText = function(iSelectionStart, iSelectionEnd) {
 	jQuery(this.getFocusDomRef()).selectText(iSelectionStart, iSelectionEnd);
 	return this;
-};
-
-/**
- * Detect whether the key pressed is a "special" key.
- *
- * @param {jQuery.Event} oEvent The event fired on the input field.
- * @returns {boolean}
- * @protected
- * @since 1.22.1
- * @name sap.m.InputBase#isSpecialKey
- * @static
- */
-sap.m.InputBase.isSpecialKey = function(oEvent) {
-	var mKeyCodes = jQuery.sap.KeyCodes,
-		iKeyCode = oEvent.which;	// jQuery oEvent.which normalizes oEvent.keyCode and oEvent.charCode
-
-	return (oEvent.type === "keypress" && oEvent.ctrlKey) ||
-			(iKeyCode >= 16 && iKeyCode <= 20) || 	// SHIFT, CONTROL, ALT, BREAK, CAPS_LOCK
-			(iKeyCode >= 33 && iKeyCode <= 40) || 	// PAGE_UP, PAGE_DOWN, END, HOME, ARROW_LEFT, ARROW_UP, ARROW_RIGHT, ARROW_DOWN
-			(iKeyCode >= 44 && iKeyCode <= 46) || 	// PRINT, INSERT, DELETE
-			(iKeyCode >= 112 && iKeyCode <= 123) ||	// F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12
-			(iKeyCode === mKeyCodes.BACKSPACE) || 	// BACKSPACE
-			(iKeyCode === mKeyCodes.TAB) ||			// TAB
-			(iKeyCode === mKeyCodes.ENTER) ||		// ENTER
-			(iKeyCode === mKeyCodes.ESCAPE);		// ESCAPE
 };
 
 /**

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,23 +58,19 @@ sap.ui.define(['sap/ui/core/library','sap/ui/core/Control'], function() {
  * @class
  * View
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.mvc.View
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.core.mvc.View", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getController"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
@@ -83,7 +79,7 @@ sap.ui.core.Control.extend("sap.ui.core.mvc.View", { metadata : {
 		"displayBlock" : {type : "boolean", group : "Appearance", defaultValue : false}
 	},
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	events : {
 		"afterInit" : {}, 
@@ -297,14 +293,13 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 
 
 /**
- * Fired when the View has parsed the UI description and instantiated the contained controls (/control tree). 
+ * Fired when the View has parsed the UI description and instantiated the contained controls (/control tree).
  *
  * @name sap.ui.core.mvc.View#afterInit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -313,7 +308,7 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.core.mvc.View</code>.<br/> itself. 
  *  
- * Fired when the View has parsed the UI description and instantiated the contained controls (/control tree). 
+ * Fired when the View has parsed the UI description and instantiated the contained controls (/control tree).
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -355,14 +350,13 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 
 
 /**
- * Fired when the view has received the request to destroy itself, but before it has destroyed anything. 
+ * Fired when the view has received the request to destroy itself, but before it has destroyed anything.
  *
  * @name sap.ui.core.mvc.View#beforeExit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -371,7 +365,7 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.core.mvc.View</code>.<br/> itself. 
  *  
- * Fired when the view has received the request to destroy itself, but before it has destroyed anything. 
+ * Fired when the view has received the request to destroy itself, but before it has destroyed anything.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -413,14 +407,13 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 
 
 /**
- * Fired when the View has been (re-)rendered and its HTML is present in the DOM. 
+ * Fired when the View has been (re-)rendered and its HTML is present in the DOM.
  *
  * @name sap.ui.core.mvc.View#afterRendering
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -429,7 +422,7 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.core.mvc.View</code>.<br/> itself. 
  *  
- * Fired when the View has been (re-)rendered and its HTML is present in the DOM. 
+ * Fired when the View has been (re-)rendered and its HTML is present in the DOM.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -471,14 +464,13 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 
 
 /**
- * Fired before this View is re-rendered. Use to unbind event handlers from HTML elements etc. 
+ * Fired before this View is re-rendered. Use to unbind event handlers from HTML elements etc.
  *
  * @name sap.ui.core.mvc.View#beforeRendering
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -487,7 +479,7 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.core.mvc.View</code>.<br/> itself. 
  *  
- * Fired before this View is re-rendered. Use to unbind event handlers from HTML elements etc. 
+ * Fired before this View is re-rendered. Use to unbind event handlers from HTML elements etc.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -531,11 +523,11 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 /**
  * Returns the view's Controller instance (if any)
  *
- * @name sap.ui.core.mvc.View.prototype.getController
+ * @name sap.ui.core.mvc.View#getController
  * @function
-
  * @type object
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -589,8 +581,9 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 	};
 
 	/**
-	 * returns an Element by its id in the context of the View
+	 * Returns an Element by its id in the context of the View
 	 *
+	 * @param {string} sId view local Id of the Element
 	 * @return Element by its id
 	 * @public
 	 */
@@ -599,8 +592,10 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 	};
 
 	/**
-	 * creates an id for an Element prefixed with the view id
+	 * Convert the given view local Element id to a globally unique id 
+	 * by prefixing it with the view Id.
 	 *
+	 * @param {string} sId view local Id of the Element
 	 * @return prefixed id
 	 * @public
 	 */
@@ -787,6 +782,8 @@ sap.ui.core.mvc.View.M_EVENTS = {'afterInit':'afterInit','beforeExit':'beforeExi
 			if (customViewConfig) {
 				jQuery.sap.log.info("Customizing: View replacement for view '" + oView.viewName + "' found and applied: " + customViewConfig.viewName + " (type: " + customViewConfig.type + ")");
 				jQuery.extend(oView, customViewConfig);
+			} else {
+				jQuery.sap.log.debug("Customizing: no View replacement found for view '" + oView.viewName + "'.");
 			}
 		}
 

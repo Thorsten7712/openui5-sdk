@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55,21 +55,20 @@ jQuery.sap.require("sap.ui.commons.ComboBox");
  * @class
  * 
  * Textfield with list based text completion.
- * 
  * @extends sap.ui.commons.ComboBox
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.10.0
  * @name sap.ui.commons.AutoComplete
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.ComboBox.extend("sap.ui.commons.AutoComplete", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
@@ -77,8 +76,6 @@ sap.ui.commons.ComboBox.extend("sap.ui.commons.AutoComplete", { metadata : {
 		// methods
 		"setFilterFunction"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"enableScrolling" : {type : "boolean", group : "Misc", defaultValue : true}
@@ -135,14 +132,13 @@ sap.ui.commons.AutoComplete.M_EVENTS = {'suggest':'suggest'};
 
 
 /**
- * Fired when the user has changed the value and a suggestion list update should occur. 
+ * Fired when the user has changed the value and a suggestion list update should occur.
  *
  * @name sap.ui.commons.AutoComplete#suggest
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.suggestValue The current value which was typed in.
  * @public
  */
@@ -152,7 +148,7 @@ sap.ui.commons.AutoComplete.M_EVENTS = {'suggest':'suggest'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.AutoComplete</code>.<br/> itself. 
  *  
- * Fired when the user has changed the value and a suggestion list update should occur. 
+ * Fired when the user has changed the value and a suggestion list update should occur.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -201,11 +197,11 @@ sap.ui.commons.AutoComplete.M_EVENTS = {'suggest':'suggest'};
 /**
  * Sets a custom filter function for items. Default is to check whether the item text begins with the typed value.
  *
- * @name sap.ui.commons.AutoComplete.prototype.setFilterFunction
+ * @name sap.ui.commons.AutoComplete#setFilterFunction
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

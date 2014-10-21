@@ -103,9 +103,14 @@
 							<div class="sectionTitle">Method Summary</div>
 							<div class="sectionItems">
 							
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Returns the reference to the router instance."><a href="../symbols/sap.ui.core.UIComponent.html#.getRouterFor">sap.ui.core.UIComponent.getRouterFor</a></b><span class='signature'>(<span title="(sap.ui.core.mvc.View|sap.ui.core.mvc.Controller) either a view or controller">oControllerOrView</span>)</span>
+									<span class='description'>Returns the reference to the router instance.</span>
+								</div>
+							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="returns an Element by its id in the context of the Component"><a href="../symbols/sap.ui.core.UIComponent.html#byId">byId</a></b><span class='signature'>()</span>
-									<span class='description'>returns an Element by its id in the context of the Component</span>
+									<b class="icon" title="Returns an Element by its id in the context of the Component"><a href="../symbols/sap.ui.core.UIComponent.html#byId">byId</a></b><span class='signature'>(<span title="(string) string">sId</span>)</span>
+									<span class='description'>Returns an Element by its id in the context of the Component</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -114,8 +119,8 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="creates an id for an Element prefixed with the component id"><a href="../symbols/sap.ui.core.UIComponent.html#createId">createId</a></b><span class='signature'>()</span>
-									<span class='description'>creates an id for an Element prefixed with the component id</span>
+									<b class="icon" title="Creates an id for an Element prefixed with the component id"><a href="../symbols/sap.ui.core.UIComponent.html#createId">createId</a></b><span class='signature'>(<span title="(string) string">sId</span>)</span>
+									<span class='description'>Creates an id for an Element prefixed with the component id</span>
 								</div>
 							
 								<div class="sectionItem classMethod protected">
@@ -131,11 +136,6 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Returns the reference to the router instance which has been created by the UIComponent once the routes in the routing metadata has been defined."><a href="../symbols/sap.ui.core.UIComponent.html#getRouter">getRouter</a></b><span class='signature'>()</span>
 									<span class='description'>Returns the reference to the router instance which has been created by the UIComponent once the routes in the routing metadata has been defined.</span>
-								</div>
-							
-								<div class="sectionItem classMethod static">
-									<b class="icon" title="Returns the reference to the router instance."><a href="../symbols/sap.ui.core.UIComponent.html#.getRouterFor">sap.ui.core.UIComponent.getRouterFor</a></b><span class='signature'>(<span title="(sap.ui.core.mvc.View|sap.ui.core.mvc.Controller) a view or controller">either</span>)</span>
-									<span class='description'>Returns the reference to the router instance.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -281,14 +281,84 @@ for a general description of this argument.
 							</div>
 							<div class="sectionItems">
 								
+									<div class='sectionItem classMethod static'>
+										<a name=".getRouterFor"> </a>
+										<div class="itemTitle icon">
+											sap.ui.core.UIComponent.getRouterFor<span class="signature">(<span title="(sap.ui.core.mvc.View|sap.ui.core.mvc.Controller) either a view or controller">oControllerOrView</span>)</span>
+											<span class="light" title="returns sap.ui.core.routing.Router">: <a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a></span>
+										</div>
+										<div class="full-description">
+											Returns the reference to the router instance. The passed controller or view
+have to be created in the context of a UIComponent to return the router 
+instance. Otherwise this function will return undefined.
+You may define the routerClass property in the config section of the routing to make the Component create your router extension.
+eg: 
+routing: {
+	config: {
+		routerClass : myAppNamespace.MyRouterClass
+		...
+}
+...
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{<a href="../symbols/sap.ui.core.mvc.View.html">sap.ui.core.mvc.View</a>|<a href="../symbols/sap.ui.core.mvc.Controller.html">sap.ui.core.mvc.Controller</a>}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oControllerOrView</b>
+													</td>
+													<td class="methodItemDesc">
+												    either a view or controller
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.16.1</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the router instance
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
 									<div class='sectionItem classMethod'>
 										<a name="byId"> </a>
 										<div class="itemTitle icon">
-											byId<span class="signature">()</span>
-											
+											byId<span class="signature">(<span title="(string) string">sId</span>)</span>
+											<span class="light" title="returns sap.ui.core.Element">: <a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a></span>
 										</div>
 										<div class="full-description">
-											returns an Element by its id in the context of the Component
+											Returns an Element by its id in the context of the Component
 											
 											
 											
@@ -296,6 +366,23 @@ for a general description of this argument.
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sId</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										
@@ -306,7 +393,7 @@ for a general description of this argument.
 											
 												<tr>
 													<td class="methodItemType">
-														
+														<span class="light">{<a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a>}</span> 
 													</td>
 													<td class="methodItemDesc">
 														Element by its id
@@ -348,11 +435,11 @@ if the root view is not declared in the component metadata.
 									<div class='sectionItem classMethod'>
 										<a name="createId"> </a>
 										<div class="itemTitle icon">
-											createId<span class="signature">()</span>
-											
+											createId<span class="signature">(<span title="(string) string">sId</span>)</span>
+											<span class="light" title="returns string">: string</span>
 										</div>
 										<div class="full-description">
-											creates an id for an Element prefixed with the component id
+											Creates an id for an Element prefixed with the component id
 											
 											
 											
@@ -360,6 +447,23 @@ if the root view is not declared in the component metadata.
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sId</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										
@@ -370,7 +474,7 @@ if the root view is not declared in the component metadata.
 											
 												<tr>
 													<td class="methodItemType">
-														
+														<span class="light">{string}</span> 
 													</td>
 													<td class="methodItemDesc">
 														prefixed id
@@ -383,7 +487,7 @@ if the root view is not declared in the component metadata.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getAutoPrefixId"> </a>
 										<div class="itemTitle icon protected">
 											getAutoPrefixId<span class="signature">()</span>
@@ -432,7 +536,7 @@ prefixing.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="getEventingParent"> </a>
 										<div class="itemTitle icon protected">
 											getEventingParent<span class="signature">()</span>
@@ -511,76 +615,6 @@ the UIComponent once the routes in the routing metadata has been defined.
 										
 									</div>
 								
-									<div class='sectionItem classMethod static'>
-										<a name=".getRouterFor"> </a>
-										<div class="itemTitle icon">
-											sap.ui.core.UIComponent.getRouterFor<span class="signature">(<span title="(sap.ui.core.mvc.View|sap.ui.core.mvc.Controller) a view or controller">either</span>)</span>
-											<span class="light" title="returns sap.ui.core.routing.Router">: <a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a></span>
-										</div>
-										<div class="full-description">
-											Returns the reference to the router instance. The passed controller or view
-have to be created in the context of a UIComponent to return the router 
-instance. Otherwise this function will return undefined.
-You may define the routerClass property in the config section of the routing to make the Component create your router extension.
-eg: 
-routing: {
-	config: {
-		routerClass : myAppNamespace.MyRouterClass
-		...
-}
-...
-											
-											
-											
-										
-											
-										</div>
-										
-										
-											<div class="heading">Parameters:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{<a href="../symbols/sap.ui.core.mvc.View.html">sap.ui.core.mvc.View</a>|<a href="../symbols/sap.ui.core.mvc.Controller.html">sap.ui.core.mvc.Controller</a>}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>either</b>
-													</td>
-													<td class="methodItemDesc">
-												    a view or controller
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-											<dl class="detailList since">
-												<dt class="heading since">Since:</dt>
-												<dd>1.16.1</dd>
-											</dl>
-										
-										
-										
-											<div class="heading">Returns:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a>}</span> 
-													</td>
-													<td class="methodItemDesc">
-														the router instance
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-									</div>
-								
 									<div class='sectionItem classMethod'>
 										<a name="getUIArea"> </a>
 										<div class="itemTitle icon">
@@ -619,7 +653,7 @@ routing: {
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="onAfterRendering"> </a>
 										<div class="itemTitle icon protected">
 											onAfterRendering<span class="signature">()</span>
@@ -647,7 +681,7 @@ Subclasses of UIComponent override this hook to implement any necessary actions 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="onBeforeRendering"> </a>
 										<div class="itemTitle icon protected">
 											onBeforeRendering<span class="signature">()</span>

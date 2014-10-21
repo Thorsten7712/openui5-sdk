@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>Tile</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A tile to be displayed in the tile container. Use this
 		tile as the base class for
 		specialized tile implementations.

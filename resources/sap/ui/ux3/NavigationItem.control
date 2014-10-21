@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>NavigationItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Is the item to be used within the NavigationBar</documentation>
 
 	<baseType>sap.ui.core/Item</baseType>

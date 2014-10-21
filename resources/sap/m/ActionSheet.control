@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ActionSheet</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>ActionSheet is a special kind of control which contains one or more sap.m.Button(s) and the ActionSheet will be closed when one of the buttons is tapped. It looks similar as a sap.m.Dialog in iPhone and Android while as a sap.m.Popover in iPad.</documentation>
 	<since>1.9.1</since>
 	
@@ -18,8 +18,7 @@
 			<documentation>This is the text displayed in the cancelButton. Default value is &quot;Cancel&quot;, and it's translated according to the current locale setting. This property will be ignored when running either in iPad or showCancelButton is set to false.</documentation>
 		</property>
 		<property group="Appearance" name="title" type="sap.ui.core/string">
-			<documentation>Title will be shown in the header area in iPhone and every Android
-devices. This property will be ignored in tablets and desktop browser.</documentation>
+			<documentation>Title will be shown in the header area in iPhone and every Android devices. This property will be ignored in tablets and desktop browser.</documentation>
 		</property>
 	</properties>
 	<events>

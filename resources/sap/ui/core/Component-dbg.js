@@ -1,6 +1,6 @@
 /*
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -31,8 +31,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './ComponentMet
 	 * @class Base Class for Component.
 	 * @extends sap.ui.base.ManagedObject
 	 * @abstract
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @name sap.ui.core.Component
 	 * @since 1.9.2
 	 */
@@ -247,7 +247,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './ComponentMet
 	/**
 	 * Returns user specific data object
 	 *
-	 * @return object componentData
+	 * @return {object} componentData
 	 * @public
 	 * @since 1.15.0
 	 * @name sap.ui.core.Component#getComponentData

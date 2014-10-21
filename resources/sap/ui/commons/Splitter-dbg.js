@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,19 +61,15 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Allows to split the screen into two areas. Make sure that the container for the splitter has an absolute height or set an absolute height for the splitter using the height property. Otherwise the height of the splitter is calculated by the height of its contents.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Splitter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"splitterOrientation" : {type : "sap.ui.core.Orientation", group : "Behavior", defaultValue : sap.ui.core.Orientation.Vertical},
@@ -87,8 +83,8 @@ sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 		"splitterBarVisible" : {type : "boolean", group : "Behavior", defaultValue : true}
 	},
 	aggregations : {
-    	"firstPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "firstPaneContent"}, 
-    	"secondPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "secondPaneContent"}
+		"firstPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "firstPaneContent"}, 
+		"secondPaneContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "secondPaneContent"}
 	}
 }});
 
@@ -164,7 +160,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 /**
  * Getter for property <code>minSizeFirstPane</code>.
  * The minimum size (width for vertical splitter or height for horizontal splitter) of the first Pane
- * 
  *
  * Default value is <code>0%</code>
  *
@@ -190,7 +185,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Splitter", { metadata : {
 /**
  * Getter for property <code>minSizeSecondPane</code>.
  * The minimum size (width for vertical splitter or height for horizontal splitter) of the second Pane
- * 
  *
  * Default value is <code>0%</code>
  *
@@ -638,7 +632,7 @@ sap.ui.commons.Splitter.prototype.resizeSplitterElements = function() {
 
 	// fix height if splitterdiv height is 0 we set it to 100 px to show something at least
 	// further resizing should then work correctly
-	if (jQuery(this.splitterDIV).height() == 0){
+	if (jQuery(this.splitterDIV).height() == 0 && !this.splitterDIV.style.height){
 		jQuery(this.splitterDIV).css("height", "100px");
 		jQuery(this.splitterBar).css("height", "100px");
 	}

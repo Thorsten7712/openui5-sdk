@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,19 +53,15 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Provides navigation between pages within a list of numbered pages.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Paginator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Paginator", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"currentPage" : {type : "int", group : "Misc", defaultValue : 1},
@@ -147,14 +143,13 @@ sap.ui.commons.Paginator.M_EVENTS = {'page':'page'};
 
 
 /**
- * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward. 
+ * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward.
  *
  * @name sap.ui.commons.Paginator#page
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.srcPage The page which is the current one before the page event is fired (and another page is displayed)
  * @param {int} oControlEvent.getParameters.targetPage The page that shall be displayed next after the page event is fired.
  * 
@@ -170,7 +165,7 @@ sap.ui.commons.Paginator.M_EVENTS = {'page':'page'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Paginator</code>.<br/> itself. 
  *  
- * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward. 
+ * Event is fired when the user navigates to another page by selecting it directly, or by jumping forward/backward.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

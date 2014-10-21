@@ -21,6 +21,7 @@
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 	<script type="text/javascript">
 
@@ -225,8 +226,8 @@
 		module("Overflow by addItems", { 
 			setup: function() {
 				oCtrl = sap.ui.getCore().getControl("Toolbar");	
-				notStrictEqual("oCtrl must exist", null, oCtrl);
-				notStrictEqual("Toolbar DomRef must exist", null, jQuery.sap.domById("Toolbar"));  
+				notStrictEqual(oCtrl, null, "oCtrl must exist");
+				notStrictEqual(jQuery.sap.domById("Toolbar"), null, "Toolbar DomRef must exist");  
 			},
 			teardown: function() {
 				oCtrl = null;
@@ -239,7 +240,7 @@
 		 */
 		asyncTest("AddItemsUntilOverflowButtonAppears", function() {
 			oCtrl = sap.ui.getCore().getControl("Toolbar");	
-			notStrictEqual("oCtrl must exist", null, oCtrl);
+			notStrictEqual(oCtrl, null, "oCtrl must exist");
 
 			strictEqual(oCtrl.getDomRef().offsetWidth, 300, "Toolbar width should be 300px");
 			setTimeout(function() {
@@ -290,8 +291,8 @@
 		module("Overflow due to resizing", { 
 			setup: function() {
 				oCtrl = sap.ui.getCore().getControl("Toolbar");	
-				notStrictEqual("oCtrl must exist", null, oCtrl);
-				notStrictEqual("Toolbar DomRef must exist", null, jQuery.sap.domById("Toolbar"));  
+				notStrictEqual(oCtrl, null, "oCtrl must exist");
+				notStrictEqual(jQuery.sap.domById("Toolbar"), null, "Toolbar DomRef must exist");  
 			},
 			teardown: function() {
 				oCtrl = null;

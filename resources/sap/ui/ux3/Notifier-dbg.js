@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -58,30 +58,28 @@ jQuery.sap.require("sap.ui.core.Element");
  * This element can be docked to a notification bar to show notification items
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.Notifier
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.Notifier", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"hasItems"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"icon" : {type : "sap.ui.core.URI", group : "Misc", defaultValue : null},
 		"title" : {type : "string", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-    	"messages" : {type : "sap.ui.core.Message", multiple : true, singularName : "message"}, 
-    	"views" : {type : "sap.ui.core.Control", multiple : true, singularName : "view", visibility : "hidden"}
+		"messages" : {type : "sap.ui.core.Message", multiple : true, singularName : "message"}, 
+		"views" : {type : "sap.ui.core.Control", multiple : true, singularName : "view", visibility : "hidden"}
 	},
 	events : {
 		"messageSelected" : {}
@@ -240,14 +238,13 @@ sap.ui.ux3.Notifier.M_EVENTS = {'messageSelected':'messageSelected'};
 
 
 /**
- * Event is fired when a message of the notifiers was selected. 
+ * Event is fired when a message of the notifiers was selected.
  *
  * @name sap.ui.ux3.Notifier#messageSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Message} oControlEvent.getParameters.message The message that was selected
  * @param {sap.ui.ux3.Notifier} oControlEvent.getParameters.notifier The notifier that contains the selected message
  * @public
@@ -258,7 +255,7 @@ sap.ui.ux3.Notifier.M_EVENTS = {'messageSelected':'messageSelected'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Notifier</code>.<br/> itself. 
  *  
- * Event is fired when a message of the notifiers was selected. 
+ * Event is fired when a message of the notifiers was selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -308,11 +305,11 @@ sap.ui.ux3.Notifier.M_EVENTS = {'messageSelected':'messageSelected'};
 /**
  * This method checks if the notifier has any items.
  *
- * @name sap.ui.ux3.Notifier.prototype.hasItems
+ * @name sap.ui.ux3.Notifier#hasItems
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -341,6 +338,9 @@ jQuery.sap.require("sap.ui.commons.Callout");
 		if (oEvent.getSource()) {
 			oEvent.getSource().destroyContent();
 		}
+		if (this._oCallout) {
+			this._oCallout.$().css("display", "none");
+		}
 	};
 
 	sap.ui.ux3.Notifier.prototype.hasItems = function() {
@@ -360,7 +360,10 @@ jQuery.sap.require("sap.ui.commons.Callout");
 			beforeOpen : jQuery.proxy(fBeforeOpen, this),
 			open : function(oEvent) {
 				// to prevent that the Callout moves if the window is scrolled
-				this.$().css("position", "fixed");
+				this.$().css({
+					position : "fixed",
+					display  : "block"
+				});
 			},
 			close : jQuery.proxy(fCalloutClosed, this),
 			collision : "none"

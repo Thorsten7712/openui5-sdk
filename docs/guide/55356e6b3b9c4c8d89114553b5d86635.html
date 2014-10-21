@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3694053350198896"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5122925726096339"/>
 <title>Troubleshooting: Common Issues</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -111,11 +113,15 @@
 				where it has started.</p>
 
 		</div></div>
-</div>
-<div class="related-links"> 
+<div class="section"><div class="section_title">Application Overrides the Native Context Menu Although want to Display it</div><div type="Application Overrides the Native Context Menu Although want to Display it">
+			
+			<p class="p">In Internet Explorer 8, the native browser's context menu is not displayed if the
+				handler of the contenx menu control manipulates the DOM. The context menu control
+				also can prevent the native context menu. For this, SAPUI5 provides the possibility
+				to disable dispatching the context menu event to the controls to show up the native
+				context menu: Press CTRL+SHIFT+ALT and right click.</p>
 
-<div class="familylinks">
-</div>
+		</div></div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

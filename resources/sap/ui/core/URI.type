@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>URI</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A string type that represents an RFC 3986 conformant URI.</documentation>
 	<baseType>string</baseType>
 	

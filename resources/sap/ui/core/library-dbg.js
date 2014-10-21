@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.core (1.22.4)
+ * Initialization Code and shared classes of library sap.ui.core (1.24.2)
  */
 sap.ui.define(['./Core'], function() {
 
@@ -103,11 +103,11 @@ sap.ui.getCore().initLibrary({
     "sap.ui.core.search.SearchProvider",
     "sap.ui.core.tmpl.DOMAttribute"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -125,9 +125,10 @@ sap.ui.define("sap/ui/core/AccessibleRole", function() {
  * For more information, goto "Roles for Accessible Rich Internet Applications (WAI-ARIA Roles)" at the www.w3.org homepage.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.AccessibleRole = {
 
@@ -523,7 +524,7 @@ sap.ui.core.AccessibleRole = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -539,9 +540,10 @@ sap.ui.define("sap/ui/core/BarColor", function() {
 /**
  * @class Configuration options for the colors of a progress bar
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.BarColor = {
 
@@ -576,7 +578,7 @@ sap.ui.core.BarColor = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -594,9 +596,11 @@ sap.ui.define('sap/ui/core/CSSColor',['sap/ui/base/DataType'], function(DataType
  * 	names like "green" and "darkblue" and values like "inherit" and "transparent".
  * 	The empty string is also allowed and has the same effect as setting no color.
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.CSSColor = DataType.createType('sap.ui.core.CSSColor', {
 	    isValid : function(vValue) {
@@ -611,7 +615,7 @@ sap.ui.define('sap/ui/core/CSSColor',['sap/ui/base/DataType'], function(DataType
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -627,9 +631,11 @@ sap.ui.define('sap/ui/core/CSSSize',['sap/ui/base/DataType'], function(DataType)
  * @class A string type that represents CSS size values. Allowed values are CSS sizes like "1px" or "2em" or "50%", but also the special values "auto" and "inherit". 
  * Note that CSS does not allow all of these values for every CSS property representing a size. E.g. "auto" is not an allowed value for a padding size.
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.CSSSize = DataType.createType('sap.ui.core.CSSSize', {
 	    isValid : function(vValue) {
@@ -644,7 +650,7 @@ sap.ui.define('sap/ui/core/CSSSize',['sap/ui/base/DataType'], function(DataType)
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -661,10 +667,12 @@ sap.ui.define('sap/ui/core/CSSSizeShortHand',['sap/ui/base/DataType'], function(
  * 		padding definition. E.g. "1px 1px" or up to four values are allowed.
  * 	
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
  * @since 1.11.0
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.CSSSizeShortHand = DataType.createType('sap.ui.core.CSSSizeShortHand', {
 	    isValid : function(vValue) {
@@ -679,7 +687,7 @@ sap.ui.define('sap/ui/core/CSSSizeShortHand',['sap/ui/base/DataType'], function(
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -697,9 +705,11 @@ sap.ui.define('sap/ui/core/Collision',['sap/ui/base/DataType'], function(DataTyp
  * directions this can be "flip", "fit" or "none". If only one behavior is provided it is applied to both directions.
  * Examples: "flip", "fit none".
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.Collision = DataType.createType('sap.ui.core.Collision', {
 	    isValid : function(vValue) {
@@ -714,7 +724,7 @@ sap.ui.define('sap/ui/core/Collision',['sap/ui/base/DataType'], function(DataTyp
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -730,9 +740,10 @@ sap.ui.define("sap/ui/core/Design", function() {
 /**
  * @class Font design for texts
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Design = {
 
@@ -755,7 +766,7 @@ sap.ui.core.Design = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -775,9 +786,11 @@ sap.ui.define('sap/ui/core/Dock',['sap/ui/base/DataType'], function(DataType) {
  * dependent on the text direction. For the vertical position possible values are "top", "center" and "bottom".
  * Examples: "left top", "end bottom", "center center".
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.Dock = DataType.createType('sap.ui.core.Dock', {
 	    isValid : function(vValue) {
@@ -792,7 +805,7 @@ sap.ui.define('sap/ui/core/Dock',['sap/ui/base/DataType'], function(DataType) {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -808,9 +821,10 @@ sap.ui.define("sap/ui/core/HorizontalAlign", function() {
 /**
  * @class Configuration options for horizontal alignments of controls
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.HorizontalAlign = {
 
@@ -851,7 +865,7 @@ sap.ui.core.HorizontalAlign = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -866,9 +880,11 @@ sap.ui.define('sap/ui/core/ID',['sap/ui/base/DataType'], function(DataType) {
 	/**
  * @class A string type representing an Id or a name.
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.ID = DataType.createType('sap.ui.core.ID', {
 	    isValid : function(vValue) {
@@ -883,7 +899,7 @@ sap.ui.define('sap/ui/core/ID',['sap/ui/base/DataType'], function(DataType) {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -899,9 +915,10 @@ sap.ui.define("sap/ui/core/IconColor", function() {
 /**
  * @class Semantic Colors of an icon.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.IconColor = {
 
@@ -942,7 +959,7 @@ sap.ui.core.IconColor = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -958,9 +975,10 @@ sap.ui.define("sap/ui/core/ImeMode", function() {
 /**
  * @class State of the Input Method Editor (IME) for the control. Depending on its value, it allows users to enter and edit for example Chinese characters.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.ImeMode = {
 
@@ -1002,11 +1020,12 @@ sap.ui.core.ImeMode = {
  * @name sap.ui.core.Label
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1022,9 +1041,10 @@ sap.ui.define("sap/ui/core/MessageType", function() {
 /**
  * @class Defines the different message types of a message
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.MessageType = {
 
@@ -1065,7 +1085,7 @@ sap.ui.core.MessageType = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1081,9 +1101,10 @@ sap.ui.define("sap/ui/core/OpenState", function() {
 /**
  * @class Defines the different possible states of an element that can be open or closed and does not only toggle between these states, but also spends some time in between (e.g. because of an animation).
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.OpenState = {
 
@@ -1118,7 +1139,7 @@ sap.ui.core.OpenState = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1134,10 +1155,11 @@ sap.ui.define("sap/ui/core/Orientation", function() {
 /**
  * @class Orientation of an UI element
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.22
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Orientation = {
 
@@ -1160,7 +1182,7 @@ sap.ui.core.Orientation = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1175,9 +1197,11 @@ sap.ui.define('sap/ui/core/Percentage',['sap/ui/base/DataType'], function(DataTy
 	/**
  * @class A string type that represents a percentage value.
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.Percentage = DataType.createType('sap.ui.core.Percentage', {
 	    isValid : function(vValue) {
@@ -1201,11 +1225,12 @@ sap.ui.define('sap/ui/core/Percentage',['sap/ui/base/DataType'], function(DataTy
  * @name sap.ui.core.PopupInterface
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1221,9 +1246,10 @@ sap.ui.define("sap/ui/core/ScrollBarAction", function() {
 /**
  * @class Actions are: Click on track, button, drag of thumb, or mouse wheel click
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.ScrollBarAction = {
 
@@ -1258,7 +1284,7 @@ sap.ui.core.ScrollBarAction = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1274,9 +1300,10 @@ sap.ui.define("sap/ui/core/Scrolling", function() {
 /**
  * @class Defines the possible values for horizontal and vertical scrolling behavior.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Scrolling = {
 
@@ -1311,7 +1338,7 @@ sap.ui.core.Scrolling = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1327,9 +1354,10 @@ sap.ui.define("sap/ui/core/TextAlign", function() {
 /**
  * @class Configuration options for text alignments.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.TextAlign = {
 
@@ -1370,7 +1398,7 @@ sap.ui.core.TextAlign = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1386,9 +1414,10 @@ sap.ui.define("sap/ui/core/TextDirection", function() {
 /**
  * @class Configuration options for the direction of texts.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.TextDirection = {
 
@@ -1417,7 +1446,7 @@ sap.ui.core.TextDirection = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1433,10 +1462,11 @@ sap.ui.define("sap/ui/core/TitleLevel", function() {
 /**
  * @class Level of a title.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.9.1
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.TitleLevel = {
 
@@ -1492,16 +1522,17 @@ sap.ui.core.TitleLevel = {
  * 	Marker interface for toolbar controls.
  * 	
  *
- * @author SAP AG
+ * @author SAP SE
  * @since 1.21.0
  * @name sap.ui.core.Toolbar
  * @interface
  * @public
+ * @ui5-metamodel This interface also will be described in the UI5 (legacy) designtime metamodel
  */
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1516,9 +1547,11 @@ sap.ui.define('sap/ui/core/URI',['sap/ui/base/DataType'], function(DataType) {
 	/**
  * @class A string type that represents an RFC 3986 conformant URI.
 	 *
-	 * @author SAP AG
+	 * @author SAP SE
+	 * @final
 	 * @static
 	 * @public
+	 * @ui5-metamodel This simple type also will be described in the UI5 (legacy) designtime metamodel
 	 */
 	sap.ui.core.URI = DataType.createType('sap.ui.core.URI', {
 	    isValid : function(vValue) {
@@ -1533,7 +1566,7 @@ sap.ui.define('sap/ui/core/URI',['sap/ui/base/DataType'], function(DataType) {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1549,9 +1582,10 @@ sap.ui.define("sap/ui/core/ValueState", function() {
 /**
  * @class Marker for the correctness of the current value.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.ValueState = {
 
@@ -1586,7 +1620,7 @@ sap.ui.core.ValueState = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1604,9 +1638,10 @@ sap.ui.define("sap/ui/core/VerticalAlign", function() {
  * Configuration options for vertical alignments, for example of a layout cell content within the borders.
  * 
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.VerticalAlign = {
 
@@ -1649,7 +1684,7 @@ sap.ui.core.VerticalAlign = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1665,9 +1700,10 @@ sap.ui.define("sap/ui/core/Wrapping", function() {
 /**
  * @class Configuration options for text wrapping.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Wrapping = {
 
@@ -1702,7 +1738,7 @@ sap.ui.core.Wrapping = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1718,9 +1754,10 @@ sap.ui.define("sap/ui/core/mvc/ViewType", function() {
 /**
  * @class Specifies possible view types
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.mvc.ViewType = {
 
@@ -1761,7 +1798,7 @@ sap.ui.core.mvc.ViewType = {
 }, /* bExport = */ true);
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -1777,9 +1814,10 @@ sap.ui.define("sap/ui/core/routing/HistoryDirection", function() {
 /**
  * @class Enumaration for different HistoryDirections
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.routing.HistoryDirection = {
 

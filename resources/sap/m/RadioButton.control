@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>RadioButton</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>Generally, you would create at least two radio button controls which should have the same GroupName; 
 	by this, you provide a limited choice for the user. Triggers an Event when User makes a change.</documentation>

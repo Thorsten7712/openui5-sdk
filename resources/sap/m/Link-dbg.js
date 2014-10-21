@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,19 +61,17 @@ jQuery.sap.require("sap.ui.core.Control");
  * A hyperlink control which can be used to trigger actions or to navigate to other applications or web pages.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.Link
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Link", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"text" : {type : "string", group : "Data", defaultValue : ''},
@@ -341,14 +339,13 @@ sap.m.Link.M_EVENTS = {'press':'press'};
 
 
 /**
- * Event is fired when the user triggers the link control. 
+ * Event is fired when the user triggers the link control.
  *
  * @name sap.m.Link#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -357,7 +354,7 @@ sap.m.Link.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Link</code>.<br/> itself. 
  *  
- * Event is fired when the user triggers the link control. 
+ * Event is fired when the user triggers the link control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

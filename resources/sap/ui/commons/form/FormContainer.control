@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>form/FormContainer</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.9.1</since>
 	<documentation>Used to group form elements.
 Can contain other form elements or containers.</documentation>

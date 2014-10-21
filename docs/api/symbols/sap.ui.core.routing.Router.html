@@ -105,6 +105,11 @@
 									<span class='description'>Creates a new subclass of class sap.ui.core.routing.Router with name <code>sClassName</code> and enriches it with the information contained in <code>oClassInfo</code>.</span>
 								</div>
 							
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Get a registered router"><a href="../symbols/sap.ui.core.routing.Router.html#.getRouter">sap.ui.core.routing.Router.getRouter</a></b><span class='signature'>(<span title="(string) Name of the router">sName</span>)</span>
+									<span class='description'>Get a registered router</span>
+								</div>
+							
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Adds a route to the router"><a href="../symbols/sap.ui.core.routing.Router.html#addRoute">addRoute</a></b><span class='signature'>(<span title="(object) configuration object for the route @see sap.ui.core.routing.Route#constructor">oConfig</span>, <span title="(sap.ui.core.routing.Route) the parent of the route">oParent</span>)</span>
 									<span class='description'>Adds a route to the router</span>
@@ -160,13 +165,8 @@
 									<span class='description'>Fire event viewCreated to attached listeners.</span>
 								</div>
 							
-								<div class="sectionItem classMethod static">
-									<b class="icon" title="Get a registered router"><a href="../symbols/sap.ui.core.routing.Router.html#.getRouter">sap.ui.core.routing.Router.getRouter</a></b><span class='signature'>(<span title="(string) of the router">Name</span>)</span>
-									<span class='description'>Get a registered router</span>
-								</div>
-							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Returns the URL for the route and replaces the placeholders with the values in oParameters"><a href="../symbols/sap.ui.core.routing.Router.html#getURL">getURL</a></b><span class='signature'>(<span title="(string) of the route">Name</span>, <span title="(object) for the route">Parameters</span>)</span>
+									<b class="icon" title="Returns the URL for the route and replaces the placeholders with the values in oParameters"><a href="../symbols/sap.ui.core.routing.Router.html#getURL">getURL</a></b><span class='signature'>(<span title="(string) Name of the route">sName</span>, <span title="(object) Parameters for the route">oParameters</span>)</span>
 									<span class='description'>Returns the URL for the route and replaces the placeholders with the values in oParameters</span>
 								</div>
 							
@@ -186,7 +186,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Registers the router to access it from another context."><a href="../symbols/sap.ui.core.routing.Router.html#register">register</a></b><span class='signature'>(<span title="(string) of the router">Name</span>)</span>
+									<b class="icon" title="Registers the router to access it from another context."><a href="../symbols/sap.ui.core.routing.Router.html#register">register</a></b><span class='signature'>(<span title="(string) Name of the router">sName</span>)</span>
 									<span class='description'>Registers the router to access it from another context.</span>
 								</div>
 							
@@ -399,6 +399,61 @@ see <a href="../symbols/sap.ui.base.Object.html#.extend">Object.extend</a>.
 													</td>
 													<td class="methodItemDesc">
 														the created class / constructor function
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static'>
+										<a name=".getRouter"> </a>
+										<div class="itemTitle icon">
+											sap.ui.core.routing.Router.getRouter<span class="signature">(<span title="(string) Name of the router">sName</span>)</span>
+											<span class="light" title="returns sap.ui.core.routing.Router">: <a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a></span>
+										</div>
+										<div class="full-description">
+											Get a registered router
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sName</b>
+													</td>
+													<td class="methodItemDesc">
+												    Name of the router
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														The router with the specified name, else undefined
 													</td>
 												</tr>
 											
@@ -948,7 +1003,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireRouteMatched"> </a>
 										<div class="itemTitle icon protected">
 											fireRouteMatched<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1003,7 +1058,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireRoutePatternMatched"> </a>
 										<div class="itemTitle icon protected">
 											fireRoutePatternMatched<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1059,7 +1114,7 @@ This event is similar to route matched. But it will only fire for the route that
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireViewCreated"> </a>
 										<div class="itemTitle icon protected">
 											fireViewCreated<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1114,65 +1169,10 @@ This event is similar to route matched. But it will only fire for the route that
 										
 									</div>
 								
-									<div class='sectionItem classMethod static'>
-										<a name=".getRouter"> </a>
-										<div class="itemTitle icon">
-											sap.ui.core.routing.Router.getRouter<span class="signature">(<span title="(string) of the router">Name</span>)</span>
-											<span class="light" title="returns sap.ui.core.routing.Router">: <a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a></span>
-										</div>
-										<div class="full-description">
-											Get a registered router
-											
-											
-											
-										
-											
-										</div>
-										
-										
-											<div class="heading">Parameters:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{string}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>Name</b>
-													</td>
-													<td class="methodItemDesc">
-												    of the router
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-										
-										
-											<div class="heading">Returns:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.ui.core.routing.Router.html">sap.ui.core.routing.Router</a>}</span> 
-													</td>
-													<td class="methodItemDesc">
-														The router with the specified name, else undefined
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-									</div>
-								
 									<div class='sectionItem classMethod'>
 										<a name="getURL"> </a>
 										<div class="itemTitle icon">
-											getURL<span class="signature">(<span title="(string) of the route">Name</span>, <span title="(object) for the route">Parameters</span>)</span>
+											getURL<span class="signature">(<span title="(string) Name of the route">sName</span>, <span title="(object) Parameters for the route">oParameters</span>)</span>
 											<span class="light" title="returns string">: string</span>
 										</div>
 										<div class="full-description">
@@ -1193,10 +1193,10 @@ This event is similar to route matched. But it will only fire for the route that
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>Name</b>
+													  <b>sName</b>
 													</td>
 													<td class="methodItemDesc">
-												    of the route
+												    Name of the route
 													</td>
 												</tr>
 											
@@ -1205,10 +1205,10 @@ This event is similar to route matched. But it will only fire for the route that
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>Parameters</b>
+													  <b>oParameters</b>
 													</td>
 													<td class="methodItemDesc">
-												    for the route
+												    Parameters for the route
 													</td>
 												</tr>
 											
@@ -1435,7 +1435,7 @@ This event is similar to route matched. But it will only fire for the route that
 									<div class='sectionItem classMethod'>
 										<a name="register"> </a>
 										<div class="itemTitle icon">
-											register<span class="signature">(<span title="(string) of the router">Name</span>)</span>
+											register<span class="signature">(<span title="(string) Name of the router">sName</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -1456,10 +1456,10 @@ This event is similar to route matched. But it will only fire for the route that
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>Name</b>
+													  <b>sName</b>
 													</td>
 													<td class="methodItemDesc">
-												    of the router
+												    Name of the router
 													</td>
 												</tr>
 											

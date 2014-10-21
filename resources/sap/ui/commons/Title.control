@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Title</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Represents a title element that can be used for aggregation with other controls</documentation>
 
 	<baseType>sap.ui.core/Title</baseType>

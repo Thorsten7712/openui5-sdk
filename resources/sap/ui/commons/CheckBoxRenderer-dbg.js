@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10,7 +10,7 @@ jQuery.sap.require("sap.ui.core.ValueStateSupport");
 
 /**
  * @class
- * @author SAP AG
+ * @author SAP SE
  * @version 0.1
  * @static
  */
@@ -117,7 +117,9 @@ sap.ui.commons.CheckBoxRenderer.render = function(rm, oCheckBox) {
 		rm.writeAttributeEscaped("title", tooltip);
 	}
 	if(bReadOnly) {
-		rm.write(" readOnly='readOnly'");
+		//'readonly' property is not supported by input type=checkbox
+		//In order to make readonly checkbox unresponsive, we need to apply 'disabled' property - only affects HCB theme
+		rm.write(" disabled='disabled'");
 	}
 	rm.write(" />"); // close checkbox-input-element
 

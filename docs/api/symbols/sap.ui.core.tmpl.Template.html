@@ -113,7 +113,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Creates an anonymous TemplateControl for the Template."><a href="../symbols/sap.ui.core.tmpl.Template.html#createControl">createControl</a></b><span class='signature'>(<span title="(string) the control ID">sId</span>, <span title="(object) the context for the renderer/templating">oContext</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Creates an anonymous TemplateControl for the Template."><a href="../symbols/sap.ui.core.tmpl.Template.html#createControl">createControl</a></b><span class='signature'>(<span title="(string) the control ID">sId</span>, <span title="(object) the context for the renderer/templating">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.mvc.View) sap.ui.core.mvc.View">oView</span>)</span>
 									<span class='description'>Creates an anonymous TemplateControl for the Template.</span>
 								</div>
 							
@@ -133,7 +133,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Creates an anonymous TemplateControl for the Template and places the control into the specified DOM element."><a href="../symbols/sap.ui.core.tmpl.Template.html#placeAt">placeAt</a></b><span class='signature'>(<span title="(string|DomRef) the id or the DOM reference where to render the template">oRef</span>, <span title="(object) The context to use to evaluate the Template.">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(string|int) Describes the position where the control should be put into the container">oPosition</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Creates an anonymous TemplateControl for the Template and places the control into the specified DOM element."><a href="../symbols/sap.ui.core.tmpl.Template.html#placeAt">placeAt</a></b><span class='signature'>(<span title="(string|DomRef) the id or the DOM reference where to render the template">oRef</span>, <span title="(object) The context to use to evaluate the Template.">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(string|int) Describes the position where the control should be put into the container">vPosition</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) boolean">bInline</span>)</span>
 									<span class='description'>Creates an anonymous TemplateControl for the Template and places the control into the specified DOM element.</span>
 								</div>
 							
@@ -334,7 +334,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected static protected'>
+									<div class='sectionItem classMethod static protected'>
 										<a name=".parsePath"> </a>
 										<div class="itemTitle icon protected">
 											sap.ui.core.tmpl.Template.parsePath<span class="signature">(<span title="(string) the path">sPath</span>)</span>
@@ -392,7 +392,7 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 									<div class='sectionItem classMethod'>
 										<a name="createControl"> </a>
 										<div class="itemTitle icon">
-											createControl<span class="signature">(<span title="(string) the control ID">sId</span>, <span title="(object) the context for the renderer/templating">oContext</span><i class="help" title="Optional parameter">?</i>)</span>
+											createControl<span class="signature">(<span title="(string) the control ID">sId</span>, <span title="(object) the context for the renderer/templating">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(sap.ui.core.mvc.View) sap.ui.core.mvc.View">oView</span>)</span>
 											<span class="light" title="returns sap.ui.core.tmpl.TemplateControl">: <a href="../symbols/sap.ui.core.tmpl.TemplateControl.html">sap.ui.core.tmpl.TemplateControl</a></span>
 										</div>
 										<div class="full-description">
@@ -429,6 +429,18 @@ and enriches it with the information contained in <code>oClassInfo</code>.
 													</td>
 													<td class="methodItemDesc">
 												    the context for the renderer/templating
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{<a href="../symbols/sap.ui.core.mvc.View.html">sap.ui.core.mvc.View</a>}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oView</b>
+													</td>
+													<td class="methodItemDesc">
+												    
 													</td>
 												</tr>
 											
@@ -593,7 +605,7 @@ Default value is empty/<code>undefined</code>
 									<div class='sectionItem classMethod'>
 										<a name="placeAt"> </a>
 										<div class="itemTitle icon">
-											placeAt<span class="signature">(<span title="(string|DomRef) the id or the DOM reference where to render the template">oRef</span>, <span title="(object) The context to use to evaluate the Template.">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(string|int) Describes the position where the control should be put into the container">oPosition</span><i class="help" title="Optional parameter">?</i>)</span>
+											placeAt<span class="signature">(<span title="(string|DomRef) the id or the DOM reference where to render the template">oRef</span>, <span title="(object) The context to use to evaluate the Template.">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(string|int) Describes the position where the control should be put into the container">vPosition</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) boolean">bInline</span>)</span>
 											<span class="light" title="returns sap.ui.core.tmpl.TemplateControl">: <a href="../symbols/sap.ui.core.tmpl.TemplateControl.html">sap.ui.core.tmpl.TemplateControl</a></span>
 										</div>
 										<div class="full-description">
@@ -639,10 +651,22 @@ into the specified DOM element.
 													  <span class="light">{string|int}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>oPosition</b><i class="help" title="Optional parameter">?</i>
+													  <b>vPosition</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    Describes the position where the control should be put into the container
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bInline</b>
+													</td>
+													<td class="methodItemDesc">
+												    
 													</td>
 												</tr>
 											

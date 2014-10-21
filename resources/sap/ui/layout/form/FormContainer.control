@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>form/FormContainer</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16.0</since>
 	<documentation>Used to group form elements.
 Can contain other form elements or containers.</documentation>
@@ -14,7 +14,8 @@ Can contain other form elements or containers.</documentation>
 This property works only if the Container is expandable.</documentation>
 		</property>
 		<property group="Misc" name="expandable" type="sap.ui.core/boolean" defaultValue="false">
-			<documentation>Defines if the Container is expandable.</documentation>
+			<documentation>Defines if the Container is expandable.
+The expander icon will only be shown if a title is set for the Container.</documentation>
 		</property>
 		<property group="Misc" name="visible" type="sap.ui.core/boolean" defaultValue="true">
 			<documentation>Invisible FormContainers are not rendered.</documentation>

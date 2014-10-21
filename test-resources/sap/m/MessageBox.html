@@ -86,6 +86,42 @@
 			oHL1.addContent(oSelect);
 			oHL1.addContent(oSwitch);
 
+			oVL.addContent(new sap.m.Button({
+				text: "MessageBox with Layout",
+				press: function(){
+					var oLayout = new sap.ui.layout.VerticalLayout({
+						width: "100%",
+						content: [
+							new sap.m.Text({
+								text: "Wanna see the status of the CheckBox in an additional MessageBox?",
+							}),
+							new sap.m.CheckBox("checkBoxId", {
+								text: "The CheckBox this is me",
+								checked: false
+							})
+						]
+					});
+
+					// MessageBox.show(message, icon, title, [oActions], fnCallback, oDefaultAaction, sDialogId)
+					sap.m.MessageBox.show(oLayout, 
+			    		sap.m.MessageBox.Icon.WARNING,
+			    	    "Title of first MessageBox",
+			    	    [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+			    	    function(oAction) { 
+							if ( oAction === sap.m.MessageBox.Action.YES ) {
+								var oCheck = sap.ui.getCore().byId("checkBoxId");
+								var sText = "Checkbox is " + (oCheck.getSelected() ? "" : "not ") + "checked";
+
+								// alert(sMessage, fnCallBack, sTitle)
+								sap.m.MessageBox.alert(sText, null, "Result of CheckBox");
+							}
+						},
+						sap.m.MessageBox.Action.NO,
+						"messageBoxId"
+				    );
+				}
+			}));
+
 			app.addPage(page1).placeAt("content");
 		</script>
 

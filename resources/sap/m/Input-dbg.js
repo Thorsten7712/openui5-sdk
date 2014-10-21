@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -42,7 +42,10 @@ jQuery.sap.require("sap.m.InputBase");
  * <li>{@link #getFilterSuggests filterSuggests} : boolean (default: true)</li>
  * <li>{@link #getMaxSuggestionWidth maxSuggestionWidth} : sap.ui.core.CSSSize</li>
  * <li>{@link #getStartSuggestion startSuggestion} : int (default: 1)</li>
- * <li>{@link #getShowTableSuggestionValueHelp showTableSuggestionValueHelp} : boolean (default: true)</li></ul>
+ * <li>{@link #getShowTableSuggestionValueHelp showTableSuggestionValueHelp} : boolean (default: true)</li>
+ * <li>{@link #getDescription description} : string</li>
+ * <li>{@link #getFieldWidth fieldWidth} : sap.ui.core.CSSSize (default: '50%')</li>
+ * <li>{@link #getValueLiveUpdate valueLiveUpdate} : boolean (default: false)</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
@@ -73,22 +76,20 @@ jQuery.sap.require("sap.m.InputBase");
  * Enables users to input data.
  * @extends sap.m.InputBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.Input
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.InputBase.extend("sap.m.Input", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setFilterFunction", "setRowResultFunction"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"type" : {type : "sap.m.InputType", group : "Data", defaultValue : sap.m.InputType.Text},
@@ -102,13 +103,16 @@ sap.m.InputBase.extend("sap.m.Input", { metadata : {
 		"filterSuggests" : {type : "boolean", group : "Behavior", defaultValue : true},
 		"maxSuggestionWidth" : {type : "sap.ui.core.CSSSize", group : "Appearance", defaultValue : null},
 		"startSuggestion" : {type : "int", group : "Behavior", defaultValue : 1},
-		"showTableSuggestionValueHelp" : {type : "boolean", group : "Behavior", defaultValue : true}
+		"showTableSuggestionValueHelp" : {type : "boolean", group : "Behavior", defaultValue : true},
+		"description" : {type : "string", group : "Misc", defaultValue : null},
+		"fieldWidth" : {type : "sap.ui.core.CSSSize", group : "Appearance", defaultValue : '50%'},
+		"valueLiveUpdate" : {type : "boolean", group : "Behavior", defaultValue : false}
 	},
 	defaultAggregation : "suggestionItems",
 	aggregations : {
-    	"suggestionItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "suggestionItem"}, 
-    	"suggestionColumns" : {type : "sap.m.Column", multiple : true, singularName : "suggestionColumn", bindable : "bindable"}, 
-    	"suggestionRows" : {type : "sap.m.ColumnListItem", multiple : true, singularName : "suggestionRow", bindable : "bindable"}
+		"suggestionItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "suggestionItem"}, 
+		"suggestionColumns" : {type : "sap.m.Column", multiple : true, singularName : "suggestionColumn", bindable : "bindable"}, 
+		"suggestionRows" : {type : "sap.m.ColumnListItem", multiple : true, singularName : "suggestionRow", bindable : "bindable"}
 	},
 	events : {
 		"liveChange" : {}, 
@@ -460,6 +464,83 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
 
 
 /**
+ * Getter for property <code>description</code>.
+ * The description is a text after the input field, e.g. units of measurement, currencies.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>description</code>
+ * @public
+ * @name sap.m.Input#getDescription
+ * @function
+ */
+
+/**
+ * Setter for property <code>description</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sDescription  new value for property <code>description</code>
+ * @return {sap.m.Input} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.m.Input#setDescription
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>fieldWidth</code>.
+ * This property only takes effect if the description property is set. It controls the distribution of space between the input field and the description text. The default value is 50% leaving the other 50% for the description.
+ *
+ * Default value is <code>50%</code>
+ *
+ * @return {sap.ui.core.CSSSize} the value of property <code>fieldWidth</code>
+ * @public
+ * @name sap.m.Input#getFieldWidth
+ * @function
+ */
+
+/**
+ * Setter for property <code>fieldWidth</code>.
+ *
+ * Default value is <code>50%</code> 
+ *
+ * @param {sap.ui.core.CSSSize} sFieldWidth  new value for property <code>fieldWidth</code>
+ * @return {sap.m.Input} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.m.Input#setFieldWidth
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>valueLiveUpdate</code>.
+ * Indicates when the value gets updated with the user changes: At each keystroke (true) or first when the user presses enter or tabs out (false).
+ *
+ * Default value is <code>false</code>
+ *
+ * @return {boolean} the value of property <code>valueLiveUpdate</code>
+ * @public
+ * @since 1.24
+ * @name sap.m.Input#getValueLiveUpdate
+ * @function
+ */
+
+/**
+ * Setter for property <code>valueLiveUpdate</code>.
+ *
+ * Default value is <code>false</code> 
+ *
+ * @param {boolean} bValueLiveUpdate  new value for property <code>valueLiveUpdate</code>
+ * @return {sap.m.Input} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.24
+ * @name sap.m.Input#setValueLiveUpdate
+ * @function
+ */
+
+
+/**
  * Getter for aggregation <code>suggestionItems</code>.<br/>
  * SuggestItems are the items which will be shown in the suggestion popup. Changing this aggregation (by calling addSuggestionItem, insertSuggestionItem, removeSuggestionItem, removeAllSuggestionItems, destroySuggestionItems) after input is rendered will open/close the suggestion popup. o display suggestions with two text values, it is also possible to add sap.ui.core/ListItems as SuggestionItems (since 1.21.1). For the selected ListItem, only the first value is returned to the input field.
  * 
@@ -777,14 +858,13 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
 
 
 /**
- * This event is fired when the value of the input is changed - e.g. at each keypress 
+ * This event is fired when the value of the input is changed - e.g. at each keypress
  *
  * @name sap.m.Input#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The new value of the input.
  * @public
  */
@@ -794,7 +874,7 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Input</code>.<br/> itself. 
  *  
- * This event is fired when the value of the input is changed - e.g. at each keypress 
+ * This event is fired when the value of the input is changed - e.g. at each keypress
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -841,7 +921,7 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
 
 
 /**
- * When the value help indicator is clicked, this event will be fired. 
+ * When the value help indicator is clicked, this event will be fired.
  *
  * @name sap.m.Input#valueHelpRequest
  * @event
@@ -849,7 +929,6 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.fromSuggestions The event parameter is set to true, when the button at the end of the suggestion table is clicked, otherwise false. It can be used to determine whether the "value help" trigger or the "show all items" trigger has been pressed.
  * @public
  */
@@ -859,7 +938,7 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Input</code>.<br/> itself. 
  *  
- * When the value help indicator is clicked, this event will be fired. 
+ * When the value help indicator is clicked, this event will be fired.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -909,7 +988,7 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
 
 
 /**
- * This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup. 
+ * This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup.
  *
  * @name sap.m.Input#suggest
  * @event
@@ -917,7 +996,6 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.suggestValue The current value which has been typed in the input.
  * @param {sap.m.ListBase} oControlEvent.getParameters.suggestionColumns The suggestion list is passed to this event for convenience. If you use list-based or tabular suggestions, fill the suggestionList with the items you want to suggest. Otherwise, directly add the suggestions to the "suggestionItems" aggregation of the input control.
  * @public
@@ -928,7 +1006,7 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Input</code>.<br/> itself. 
  *  
- * This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup. 
+ * This event is fired when user types in the input and showSuggestion is set to true. Changing the suggestItems aggregation will show the suggestions within a popup.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -979,7 +1057,7 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
 
 
 /**
- * This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup. 
+ * This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup.
  *
  * @name sap.m.Input#suggestionItemSelected
  * @event
@@ -987,7 +1065,6 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Item} oControlEvent.getParameters.selectedItem This is the item selected in the suggestion popup for one and two-value suggestions. For tabular suggestions, this value will not be set.
  * @param {sap.m.ColumnListItem} oControlEvent.getParameters.selectedRow This is the row selected in the tabular suggestion popup represented as a ColumnListItem. For one and two-value suggestions, this value will not be set.
  * 
@@ -1000,7 +1077,7 @@ sap.m.Input.M_EVENTS = {'liveChange':'liveChange','valueHelpRequest':'valueHelpR
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.Input</code>.<br/> itself. 
  *  
- * This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup. 
+ * This event is fired when suggestionItem shown in suggestion popup are selected. This event is only fired when showSuggestion is set to true and there are suggestionItems shown in the suggestion popup.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1057,15 +1134,14 @@ Note: The row result function to select a result value for the string is already
  * 
  * The filter function is called when displaying suggestion items and has two input parameters: the first one is the string that is currently typed in the input field and the second one is the suggestionItem that is being filtered. Returning true will add this item to the popup, returning false will not display it.
  *
- * @name sap.m.Input.prototype.setFilterFunction
+ * @name sap.m.Input#setFilterFunction
  * @function
- * @param {object} 
- *         oFnFilter
+ * @param {object} oFnFilter
  *         The filter function is called when displaying suggestion items and has two input parameters: the first one is the string that is currently typed in the input field and the second one is the item that is being filtered. Returning true will add this item to the popup, returning false will not display it.
-
  * @type sap.m.Input
  * @public
  * @since 1.16.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1074,15 +1150,14 @@ Note: The row result function to select a result value for the string is already
  * 
  * The result function is called with one parameter: the sap.m.ColumnListItem that is selected. The function must return a result string that will be displayed as the input field's value.
  *
- * @name sap.m.Input.prototype.setRowResultFunction
+ * @name sap.m.Input#setRowResultFunction
  * @function
- * @param {object} 
- *         oFnFilter
+ * @param {object} oFnFilter
  *         The result function is called with one parameter: the sap.m.ColumnListItem that is selected. The function must return a result string that will be displayed as the input field's value.
-
  * @type sap.m.Input
  * @public
  * @since 1.21.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1170,6 +1245,12 @@ sap.m.Input.prototype.exit = function() {
 		this._oSuggestionPopup = null;
 	}
 
+	// CSN# 1404088/2014: list is not destroyed when it has not been attached to the popup yet
+	if (this._oList) {
+		this._oList.destroy();
+		this._oList = null;
+	}
+
 	if (this._oValueHelpIcon) {
 		this._oValueHelpIcon.destroy();
 		this._oValueHelpIcon = null;
@@ -1178,6 +1259,16 @@ sap.m.Input.prototype.exit = function() {
 	if (this._oSuggestionTable) {
 		this._oSuggestionTable.destroy();
 		this._oSuggestionTable = null;
+	}
+
+	if (this._oButtonToolbar) {
+		this._oButtonToolbar.destroy();
+		this._oButtonToolbar = null;
+	}
+
+	if (this._oShowMoreButton) {
+		this._oShowMoreButton.destroy();
+		this._oShowMoreButton = null;
 	}
 };
 
@@ -1369,6 +1460,14 @@ sap.m.Input.prototype._scrollToItem = function(iIndex, sDir) {
 	}
 };
 
+// helper method for keyboard navigation in suggestion items
+sap.m.Input.prototype._isSuggestionItemSelectable = function(oItem) {
+	// CSN# 1390866/2014: The default for ListItemBase type is "Inactive", therefore disabled entries are only supported for single and two-value suggestions
+	// for tabular suggestions: only check visible
+	// for two-value and single suggestions: check also if item is not inactive
+	return oItem.getVisible() && (this._hasTabularSuggestions() || oItem.getType() !== sap.m.ListType.Inactive);
+};
+
 sap.m.Input.prototype._onsaparrowkey = function(oEvent, sDir) {
 	if (!this.getEnabled() || !this.getEditable()) {
 		return;
@@ -1400,9 +1499,9 @@ sap.m.Input.prototype._onsaparrowkey = function(oEvent, sDir) {
 	// always select the first item from top when nothing is selected so far
 	if (iSelectedIndex === -1) {
 		iSelectedIndex = 0;
-		iOldIndex = iSelectedIndex;
-		if (aListItems[iSelectedIndex].getVisible()) {
+		if (this._isSuggestionItemSelectable(aListItems[iSelectedIndex])) {
 			// if first item is visible, don't go into while loop
+			iOldIndex = iSelectedIndex;
 			bFirst = true;
 		} else {
 			// detect first visible item with while loop
@@ -1411,22 +1510,24 @@ sap.m.Input.prototype._onsaparrowkey = function(oEvent, sDir) {
 	}
 
 	if (sDir === "down") {
-		while (iSelectedIndex < aListItems.length - 1 && (!bFirst || aListItems[iSelectedIndex].getVisible() === false)) {
+		while (iSelectedIndex < aListItems.length - 1 && (!bFirst || !this._isSuggestionItemSelectable(aListItems[iSelectedIndex]))) {
 			aListItems[iSelectedIndex].setSelected(false);
 			iSelectedIndex = iSelectedIndex + 1;
 			bFirst = true;
 		}
 	} else {
-		while (iSelectedIndex > 0 && (!bFirst || aListItems[iSelectedIndex].getVisible() === false)) {
+		while (iSelectedIndex > 0 && (!bFirst || !aListItems[iSelectedIndex].getVisible() || !this._isSuggestionItemSelectable(aListItems[iSelectedIndex]))) {
 			aListItems[iSelectedIndex].setSelected(false);
 			iSelectedIndex = iSelectedIndex - 1;
 			bFirst = true;
 		}
 	}
 
-	if (!aListItems[iSelectedIndex].getVisible()) {
+	if (!this._isSuggestionItemSelectable(aListItems[iSelectedIndex])) {
 		// if no further visible item can be found -> do nothing (e.g. set the old item as selected again)
-		aListItems[iOldIndex].setSelected(true);
+		if (iOldIndex >= 0) {
+			aListItems[iOldIndex].setSelected(true);
+		}
 		return;
 	} else {
 		aListItems[iSelectedIndex].setSelected(true);
@@ -1492,37 +1593,54 @@ sap.m.Input.prototype.onsapenter = function(oEvent) {
 		sap.m.InputBase.prototype.onsapenter.apply(this, arguments);
 	}
 
-	if (this._oSuggestionPopup && this._oSuggestionPopup.isOpen() && this._iPopupListSelectedIndex >= 0) {
-		var oSelectedListItem = this._oList.getItems()[this._iPopupListSelectedIndex];
-		this._changeProxy(oEvent);
-		this._oSuggestionPopup.close();
-		this._doSelect();
+	// when enter is pressed before the timeout of suggestion delay, suggest event is cancelled
+	if (this._iSuggestDelay) {
+		jQuery.sap.clearDelayedCall(this._iSuggestDelay);
+		this._iSuggestDelay = null;
+	}
 
-		if (oSelectedListItem) {
-			this._fireSuggestionItemSelectedEvent(oSelectedListItem);
+	if (this._oSuggestionPopup && this._oSuggestionPopup.isOpen()) {
+		if (this._iPopupListSelectedIndex >= 0) {
+			var oSelectedListItem = this._oList.getItems()[this._iPopupListSelectedIndex];
+			
+
+			if (oSelectedListItem) {
+				this._fireSuggestionItemSelectedEvent(oSelectedListItem);
+			}
+
+			this._doSelect();
+
+			this._iPopupListSelectedIndex = -1;
 		}
-
-		this._iPopupListSelectedIndex = -1;
+		this._oSuggestionPopup.close();
 	}
 };
 
 sap.m.Input.prototype.onsapfocusleave = function(oEvent) {
 	var oPopup = this._oSuggestionPopup;
 
-	if (!(oPopup instanceof sap.m.Popover)) {
-		return;
+	if (oPopup instanceof sap.m.Popover) {
+		if (oEvent.relatedControlId && jQuery.sap.containsOrEquals(oPopup.getDomRef(), sap.ui.getCore().byId(oEvent.relatedControlId).getFocusDomRef())) {
+			// Force the focus to stay in input
+			this.focus();
+		} else {
+			// When the input still has the value of the last jQuery.val call, a change event has to be
+			// fired manually because browser doesn't fire an input event in this case.
+			if (this._$input.val() === this._sSelectedSuggViaKeyboard) {
+				this._sSelectedSuggViaKeyboard = null;
+			}
+		}
 	}
 
-	if (oEvent.relatedControlId && jQuery.sap.containsOrEquals(oPopup.getFocusDomRef(), sap.ui.getCore().byId(oEvent.relatedControlId).getFocusDomRef())) {
-		// force the focus to stay in input
-		this.focus();
-	} else {
-		// when the input still has the value of the last jQuery.val call, a change event has to be
-		// fired manually because browser doesn't fire an input event in this case.
-		if (this._$input.val() === this._sSelectedSuggViaKeyboard) {
-			this._sSelectedSuggViaKeyboard = null;
-			this._$input.change();
-		}
+	// Inform InputBase to fire the change event on Input only when focus doesn't go into the suggestion popup
+	var oFocusedControl = sap.ui.getCore().byId(oEvent.relatedControlId);
+	if (!(oPopup
+			&& oFocusedControl
+			&& jQuery.sap.containsOrEquals(oPopup.getDomRef(), oFocusedControl.getFocusDomRef())
+		)) {
+		// This keeps the inheritance chain to the InputBase
+		// sap.m.Input connects onsapfocusleave to InputBase's onfocusout because only in onsapfocusleave the document.activeElement is updated and the needed check can be done
+		sap.m.InputBase.prototype.onfocusout.apply(this, [oEvent]);
 	}
 };
 
@@ -1576,7 +1694,8 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 		});
 	} else if (sap.ui.Device.system.phone) {
 		if (this._oList instanceof sap.m.Table) {
-			this._oList.setVisible(false);
+			// CSN# 1421140/2014: hide the table for empty/initial results to not show the table columns
+			this._oList.addStyleClass("sapMInputSuggestionTableHidden");
 		} else {
 			this._oList.destroyItems();
 		}
@@ -1587,7 +1706,7 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 
 (function(){
 	sap.m.Input.prototype.setShowSuggestion = function(bValue){
-		this.setProperty("showSuggestion", bValue);
+		this.setProperty("showSuggestion", bValue, true);
 		this._iPopupListSelectedIndex = -1;
 		if (bValue) {
 			this._lazyInitializeSuggestionPopup(this);
@@ -1598,7 +1717,7 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 	};
 	
 	sap.m.Input.prototype.setShowTableSuggestionValueHelp = function(bValue) {
-		this.setProperty("showTableSuggestionValueHelp", bValue);
+		this.setProperty("showTableSuggestionValueHelp", bValue, true);
 
 		if (!this._oSuggestionPopup) {
 			return this;
@@ -1629,6 +1748,7 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 
 	sap.m.Input.prototype._getButtonToolbar = function() {
 		var oShowMoreButton = this._getShowMoreButton();
+
 		return this._oButtonToolbar || (this._oButtonToolbar = new sap.m.Toolbar({
 			content: [
 				new sap.m.ToolbarSpacer(),
@@ -1675,24 +1795,25 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 			this._$input.val(value);
 		}
 
-		if (value !== this.getProperty("value")) {
-			this.setProperty("value", value, true);
-			this._setLabelVisibility();
-			this.fireLiveChange({
-				value: value,
+		if (this.getValueLiveUpdate()){
+			this.setProperty("value",value, true);
+		}
 
-				// backwards compatibility
-				newValue: value
-			});
+		this.fireLiveChange({
+			value: value,
+			// backwards compatibility
+			newValue: value
+		});
 
-			// No need to fire suggest event when suggestion feature isn't enabled or runs on the phone.
-			// Because suggest event should only be fired by the input in dialog when runs on the phone.
-			if (!this.getShowSuggestion() || sap.ui.Device.system.phone) {
-				return;
-			}
-
+		// No need to fire suggest event when suggestion feature isn't enabled or runs on the phone.
+		// Because suggest event should only be fired by the input in dialog when runs on the phone.
+		if (this.getShowSuggestion() && !sap.ui.Device.system.phone) {
 			this._triggerSuggest(value);
 		}
+	}
+
+	sap.m.Input.prototype.getValue = function(){
+		return this.getDomRef("inner") ? this._$input.val() : this.getProperty("value");
 	};
 
 	sap.m.Input.prototype._refreshItemsDelayed = function() {
@@ -1733,33 +1854,35 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 	};
 
 	sap.m.Input.prototype.addSuggestionRow = function(oItem) {
-		this.addAggregation("suggestionRows", oItem, true);
+		oItem.setType(sap.m.ListType.Active);
+		this.addAggregation("suggestionRows", oItem);
 		this._refreshItemsDelayed();
 		createSuggestionPopupContent(this);
 		return this;
 	};
 
 	sap.m.Input.prototype.insertSuggestionRow = function(oItem, iIndex) {
-		this.insertAggregation("suggestionRows", iIndex, oItem, true);
+		oItem.setType(sap.m.ListType.Active);
+		this.insertAggregation("suggestionRows", iIndex, oItem);
 		this._refreshItemsDelayed();
 		createSuggestionPopupContent(this);
 		return this;
 	};
 
 	sap.m.Input.prototype.removeSuggestionRow = function(oItem) {
-		var res = this.removeAggregation("suggestionRows", oItem, true);
+		var res = this.removeAggregation("suggestionRows", oItem);
 		this._refreshItemsDelayed();
 		return res;
 	};
 
 	sap.m.Input.prototype.removeAllSuggestionRows = function() {
-		var res = this.removeAllAggregation("suggestionRows", true);
+		var res = this.removeAllAggregation("suggestionRows");
 		this._refreshItemsDelayed();
 		return res;
 	};
 
 	sap.m.Input.prototype.destroySuggestionRows = function() {
-		this.destroyAggregation("suggestionRows", true);
+		this.destroyAggregation("suggestionRows");
 		this._refreshItemsDelayed();
 		return this;
 	};
@@ -1797,9 +1920,13 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 		if (sap.ui.Device.system.phone) {
 			oInput._oPopupInput = new sap.m.Input(oInput.getId() + "-popup-input", {
 				width : "100%",
+				valueLiveUpdate: true,
 				liveChange : function(oEvent) {
 					var sValue = oEvent.getParameter("newValue");
-					oInput.setValue(sValue);
+					// call _getInputValue to apply the maxLength to the typed value
+					oInput._$input.val(oInput
+							._getInputValue(oInput._oPopupInput
+									.getValue()));
 
 					oInput._triggerSuggest(sValue);
 
@@ -1849,15 +1976,15 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 				// set the same placeholder and maxLength as the original input
 				oInput._oPopupInput.setPlaceholder(oInput.getPlaceholder());
 				oInput._oPopupInput.setMaxLength(oInput.getMaxLength());
-			}).attachAfterClose(function() {
+			}).attachBeforeClose(function(){
 				// call _getInputValue to apply the maxLength to the typed value
-				oInput._$input.val(oInput
-						._getInputValue(oInput._oPopupInput
-								.getValue()));
-				oInput._changeProxy();
+					oInput._$input.val(oInput
+							._getInputValue(oInput._oPopupInput
+									.getValue()));
+					oInput._changeProxy();
+			}).attachAfterClose(function() {
 				// only destroy items in simple suggestion mode
-				if (sap.m.Table
-						&& !(oInput._oList instanceof sap.m.Table)) {
+				if (sap.m.Table && !(oInput._oList instanceof sap.m.Table)) {
 					oInput._oList.destroyItems();
 				} else {
 					oInput._oList.removeSelections(true);
@@ -1923,9 +2050,21 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 	}
 
 	function destroySuggestionPopup(oInput) {
+		// if the table is not removed before destroying the popup the table is also destroyed (table needs to stay because we forward the column and row aggregations to the table directly, they would be destroyed as well)
+		if (oInput._oList instanceof sap.m.Table) {
+			oInput._oSuggestionPopup.removeAllContent();
+			// also remove the button/toolbar aggregation
+			oInput._removeShowMoreButton();
+		}
+
 		if (oInput._oSuggestionPopup) {
 			oInput._oSuggestionPopup.destroy();
 			oInput._oSuggestionPopup = null;
+		}
+		// CSN# 1404088/2014: list is not destroyed when it has not been attached to the popup yet
+		if (oInput._oList instanceof sap.m.List) {
+			oInput._oList.destroy();
+			oInput._oList = null;
 		}
 	}
 
@@ -1996,7 +2135,7 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 			} else {
 				// hide table on phone when value is empty
 				if (oInput._hasTabularSuggestions() && oInput._oList) {
-					oInput._oList.setVisible(false);
+					oInput._oList.addStyleClass("sapMInputSuggestionTableHidden");
 				}
 			}
 			return false;
@@ -2006,8 +2145,8 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 
 		if (oInput._hasTabularSuggestions()) {
 			// show list on phone (is hidden when search string is empty)
-			if (sap.ui.Device.system.phone && oInput._oList && !oInput._oList.getVisible()) {
-				oInput._oList.setVisible(true);
+			if (sap.ui.Device.system.phone && oInput._oList) {
+				oInput._oList.removeStyleClass("sapMInputSuggestionTableHidden");
 			}
 
 			// filter tabular items
@@ -2103,7 +2242,7 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 			} else {
 				// hide table on phone when there are no items to display
 				if (oInput._hasTabularSuggestions() && oInput._oList) {
-					oInput._oList.setVisible(false);
+					oInput._oList.addStyleClass("sapMInputSuggestionTableHidden");
 				}
 			}
 		}
@@ -2196,6 +2335,7 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 	};
 
 	sap.m.Input.prototype.onfocusin = function(oEvent) {
+		sap.m.InputBase.prototype.onfocusin.apply(this, arguments);
 		this.$().addClass("sapMInputFocused");
 		openMessage(this);
 
@@ -2231,7 +2371,6 @@ sap.m.Input.prototype._triggerSuggest = function(sValue) {
 	sap.m.Input.prototype.onfocusout = function(oEvent) {
 		this.$().removeClass("sapMInputFocused");
 		closeMessage(this);
-		sap.m.InputBase.prototype.onfocusout.apply(this, arguments);
 	};
 
 })();
@@ -2251,8 +2390,6 @@ sap.m.Input.prototype._getSuggestionsTable = function() {
 			showSeparators: "All",
 			width: "100%",
 			enableBusyIndicator: false,
-			// set table to invisible by default on phone to hide columns and preloaded rows
-			visible: (sap.ui.Device.system.phone ? false : true),
 			selectionChange: function (oEvent) {
 				var oSelectedListItem = oEvent.getParameter("listItem"),
 					// for tabular suggestions we call a result filter function
@@ -2275,6 +2412,10 @@ sap.m.Input.prototype._getSuggestionsTable = function() {
 				});
 			}
 		});
+		// initially hide the table on phone
+		if (sap.ui.Device.system.phone) {
+			this._oSuggestionTable.addStyleClass("sapMInputSuggestionTableHidden");
+		}
 
 		this._oSuggestionTable.updateItems = function() {
 			sap.m.Table.prototype.updateItems.apply(this, arguments);

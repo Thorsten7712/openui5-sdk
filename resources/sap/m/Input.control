@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 
 	<name>Input</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Enables users to input data. </documentation>
 	<baseType>sap.m/InputBase</baseType>
 	<properties>
@@ -47,6 +47,15 @@ Note: The value will be ignored if the actual width of the input field is larger
 			<documentation>For tabular suggestions, this flag will show/hide the button at the end of the suggestion table that triggers the event &quot;valueHelpRequest&quot; when pressed. The default value is true. 
 
 NOTE: If suggestions are not tabular or no suggestions are used, the button will not be displayed and this flag is without effect.</documentation>
+		</property>
+		<property group="Misc" name="description" type="sap.ui.core/string">
+			<documentation>The description is a text after the input field, e.g. units of measurement, currencies.</documentation>
+		</property>
+		<property group="Appearance" name="fieldWidth" type="sap.ui.core/CSSSize" defaultValue="50%">
+			<documentation>This property only takes effect if the description property is set. It controls the distribution of space between the input field and the description text. The default value is 50% leaving the other 50% for the description.</documentation>
+		</property>
+		<property group="Behavior" name="valueLiveUpdate" type="sap.ui.core/boolean" defaultValue="false" since="1.24">
+			<documentation>Indicates when the value gets updated with the user changes: At each keystroke (true) or first when the user presses enter or tabs out (false).</documentation>
 		</property>
 	</properties>
 	<events>

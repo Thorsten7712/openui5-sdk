@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.unified (1.22.4)
+ * Initialization Code and shared classes of library sap.ui.unified (1.24.2)
  */
 jQuery.sap.declare("sap.ui.unified.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -31,11 +31,13 @@ sap.ui.getCore().initLibrary({
   name : "sap.ui.unified",
   dependencies : ["sap.ui.core"],
   types: [
+    "sap.ui.unified.CalendarDayType",
     "sap.ui.unified.ContentSwitcherAnimation"
   ],
   interfaces: [],
   controls: [
     "sap.ui.unified.Calendar",
+    "sap.ui.unified.CalendarLegend",
     "sap.ui.unified.ContentSwitcher",
     "sap.ui.unified.Currency",
     "sap.ui.unified.FileUploader",
@@ -45,7 +47,9 @@ sap.ui.getCore().initLibrary({
     "sap.ui.unified.SplitContainer"
   ],
   elements: [
+    "sap.ui.unified.CalendarLegendItem",
     "sap.ui.unified.DateRange",
+    "sap.ui.unified.DateTypeRange",
     "sap.ui.unified.FileUploaderParameter",
     "sap.ui.unified.MenuItem",
     "sap.ui.unified.MenuItemBase",
@@ -53,11 +57,98 @@ sap.ui.getCore().initLibrary({
     "sap.ui.unified.ShellHeadItem",
     "sap.ui.unified.ShellHeadUserItem"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+
+/* ----------------------------------------------------------------------------------
+ * Hint: This is a derived (generated) file. Changes should be done in the underlying 
+ * source files only (*.type, *.js) or they will be lost after the next generation.
+ * ---------------------------------------------------------------------------------- */
+
+// Provides enumeration sap.ui.unified.CalendarDayType.
+jQuery.sap.declare("sap.ui.unified.CalendarDayType");
+
+
+/**
+ * @class Type of a calendar day used for visualization.
+ *
+ * @version 1.24.2
+ * @static
+ * @public
+ * @since 1.24.0
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
+ */
+sap.ui.unified.CalendarDayType = {
+
+	/**
+	 * Type 01: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type01 : "Type01",
+
+	/**
+	 * Type 02: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type02 : "Type02",
+
+	/**
+	 * Type 03: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type03 : "Type03",
+
+	/**
+	 * Type 04: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type04 : "Type04",
+
+	/**
+	 * Type 05: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type05 : "Type05",
+
+	/**
+	 * Type 06: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type06 : "Type06",
+
+	/**
+	 * Type 07: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type07 : "Type07",
+
+	/**
+	 * Type 08: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type08 : "Type08",
+
+	/**
+	 * Type 09: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type09 : "Type09",
+
+	/**
+	 * Type 10: The semantic meaning must be defined by the application. It can be shown in a legend.
+	 * @public
+	 */
+	Type10 : "Type10"
+
+};
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -73,12 +164,13 @@ jQuery.sap.declare("sap.ui.unified.ContentSwitcherAnimation");
 /**
  * @class Predefined animations for the ContentSwitcher
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
  * @since 1.16.0
  * @experimental Since version 1.16.0. 
  * API is not yet finished and might change completely
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.unified.ContentSwitcherAnimation = {
 

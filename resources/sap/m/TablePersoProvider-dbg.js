@@ -1,6 +1,6 @@
 /*
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -19,7 +19,7 @@ jQuery.sap.require("sap.ui.base.ManagedObject");
  * @extends sap.ui.base.ManagedObject
  * @abstract
  * @author SAP
- * @version 1.22.4
+ * @version 1.24.2
  * @name sap.m.TablePersoProvider
  */
 sap.ui.base.ManagedObject.extend("sap.m.TablePersoProvider", /** @lends sap.m.TablePersoProvider */
@@ -68,6 +68,7 @@ sap.m.TablePersoProvider.prototype.getPersData = function() {
  * Stores the personalization bundle, overwriting any
  * previous bundle completely
  * This must return a jQuery promise (see http://api.jquery.com/promise/)
+ * @param {object} oBundle
  * @public
  */
 sap.m.TablePersoProvider.prototype.setPersData = function(oBundle) {
@@ -103,7 +104,7 @@ sap.m.TablePersoProvider.prototype.delPersData = function() {
  * In case neither the callback delivers null and neither 'text' nor ' title' property are at hand,
  * the TablePersoDialog will display the column id and a warning message is logged.
  * 
- * @param oColumn sap.m.Column control instance whose caption shall be determined
+ * @param {sap.m.Column} oColumn column whose caption shall be determined
  * @public
  */
 sap.m.TablePersoProvider.prototype.getCaption = function(oColumn) {
@@ -117,7 +118,7 @@ sap.m.TablePersoProvider.prototype.getCaption = function(oColumn) {
  * This information is used to group the columns within the TablePersoDialog if the TablePersoController's
  * 'group' flag is set, otherwise, the groups are ignored. 
  * 
- * @param oColumn sap.m.Column control instance whose group shall be determined
+ * @param {sap.m.Column} oColumn column whose group shall be determined
  * @public
  */
 sap.m.TablePersoProvider.prototype.getGroup = function(oColumn) {

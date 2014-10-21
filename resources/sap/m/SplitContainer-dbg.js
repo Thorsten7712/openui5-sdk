@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -73,23 +73,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * 
  * This control must be rendered as a full screen control in order to make the show/hide master area work properly.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.SplitContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.SplitContainer", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"to", "backToPage", "toMaster", "toDetail", "backMaster", "backDetail", "showMaster", "hideMaster", "getCurrentPage", "getCurrentMasterPage", "getCurrentDetailPage", "backToTopMaster", "backToTopDetail", "addPage", "getMasterPage", "getDetailPage", "getPage", "insertPreviousPage", "getPreviousPage", "isMasterShown"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"defaultTransitionNameDetail" : {type : "string", group : "Appearance", defaultValue : "slide"},
@@ -102,11 +98,11 @@ sap.ui.core.Control.extend("sap.m.SplitContainer", { metadata : {
 		"backgroundOpacity" : {type : "float", group : "Appearance", defaultValue : 1}
 	},
 	aggregations : {
-    	"masterPages" : {type : "sap.ui.core.Control", multiple : true, singularName : "masterPage"}, 
-    	"detailPages" : {type : "sap.ui.core.Control", multiple : true, singularName : "detailPage"}, 
-    	"_navMaster" : {type : "sap.m.NavContainer", multiple : false, visibility : "hidden"}, 
-    	"_navDetail" : {type : "sap.m.NavContainer", multiple : false, visibility : "hidden"}, 
-    	"_navPopover" : {type : "sap.m.Popover", multiple : false, visibility : "hidden"}
+		"masterPages" : {type : "sap.ui.core.Control", multiple : true, singularName : "masterPage"}, 
+		"detailPages" : {type : "sap.ui.core.Control", multiple : true, singularName : "detailPage"}, 
+		"_navMaster" : {type : "sap.m.NavContainer", multiple : false, visibility : "hidden"}, 
+		"_navDetail" : {type : "sap.m.NavContainer", multiple : false, visibility : "hidden"}, 
+		"_navPopover" : {type : "sap.m.Popover", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"initialDetail" : {type : "sap.ui.core.Control", multiple : false}, 
@@ -574,14 +570,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 	
 /**
  * The event is fired when navigation between two pages in master area has been triggered. The transition (if any) to the new page has not started yet.
- * This event can be aborted by the application with preventDefault(), which means that there will be no navigation. 
+ * This event can be aborted by the application with preventDefault(), which means that there will be no navigation.
  *
  * @name sap.m.SplitContainer#masterNavigate
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.from The page which was shown before the current navigation.
  * @param {string} oControlEvent.getParameters.fromId The ID of the page which was shown before the current navigation.
  * @param {sap.ui.core.Control} oControlEvent.getParameters.to The page which will be shown after the current navigation.
@@ -601,7 +596,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
  * The event is fired when navigation between two pages in master area has been triggered. The transition (if any) to the new page has not started yet.
- * This event can be aborted by the application with preventDefault(), which means that there will be no navigation. 
+ * This event can be aborted by the application with preventDefault(), which means that there will be no navigation.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -657,14 +652,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 
 /**
- * The event is fired when navigation between two pages in master area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event. 
+ * The event is fired when navigation between two pages in master area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event.
  *
  * @name sap.m.SplitContainer#afterMasterNavigate
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.from The page which had been shown before navigation.
  * @param {string} oControlEvent.getParameters.fromId The ID of the page which had been shown before navigation.
  * @param {sap.ui.core.Control} oControlEvent.getParameters.to The page which is now shown after navigation.
@@ -683,7 +677,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
- * The event is fired when navigation between two pages in master area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event. 
+ * The event is fired when navigation between two pages in master area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -739,14 +733,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 
 /**
- * Event gets triggered when a Master Button needs to be shown or hidden. This is necessary for custom headers when the SplitContainer control does not handle the placement of the master button automatically. 
+ * Event gets triggered when a Master Button needs to be shown or hidden. This is necessary for custom headers when the SplitContainer control does not handle the placement of the master button automatically.
  *
  * @name sap.m.SplitContainer#masterButton
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -755,7 +748,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
- * Event gets triggered when a Master Button needs to be shown or hidden. This is necessary for custom headers when the SplitContainer control does not handle the placement of the master button automatically. 
+ * Event gets triggered when a Master Button needs to be shown or hidden. This is necessary for custom headers when the SplitContainer control does not handle the placement of the master button automatically.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -797,14 +790,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 
 /**
- * This event is fired before the master area is opened. 
+ * This event is fired before the master area is opened.
  *
  * @name sap.m.SplitContainer#beforeMasterOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -813,7 +805,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
- * This event is fired before the master area is opened. 
+ * This event is fired before the master area is opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -855,14 +847,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 
 /**
- * This event is fired when the master area is fully opened after animation if there is. 
+ * This event is fired when the master area is fully opened after animation if there is.
  *
  * @name sap.m.SplitContainer#afterMasterOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -871,7 +862,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
- * This event is fired when the master area is fully opened after animation if there is. 
+ * This event is fired when the master area is fully opened after animation if there is.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -913,14 +904,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 
 /**
- * This event is fired before the master area is closed. 
+ * This event is fired before the master area is closed.
  *
  * @name sap.m.SplitContainer#beforeMasterClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -929,7 +919,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
- * This event is fired before the master area is closed. 
+ * This event is fired before the master area is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -971,14 +961,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 
 /**
- * This event is fired when the master area is fully closed after the animation when there is. 
+ * This event is fired when the master area is fully closed after the animation when there is.
  *
  * @name sap.m.SplitContainer#afterMasterClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -987,7 +976,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
- * This event is fired when the master area is fully closed after the animation when there is. 
+ * This event is fired when the master area is fully closed after the animation when there is.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1030,14 +1019,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 /**
  * The event is fired when navigation between two pages in detail area has been triggered. The transition (if any) to the new page has not started yet.
- * This event can be aborted by the application with preventDefault(), which means that there will be no navigation. 
+ * This event can be aborted by the application with preventDefault(), which means that there will be no navigation.
  *
  * @name sap.m.SplitContainer#detailNavigate
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.from The page which was shown before the current navigation.
  * @param {string} oControlEvent.getParameters.fromId The ID of the page which was shown before the current navigation.
  * @param {sap.ui.core.Control} oControlEvent.getParameters.to The page which will be shown after the current navigation.
@@ -1057,7 +1045,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
  * The event is fired when navigation between two pages in detail area has been triggered. The transition (if any) to the new page has not started yet.
- * This event can be aborted by the application with preventDefault(), which means that there will be no navigation. 
+ * This event can be aborted by the application with preventDefault(), which means that there will be no navigation.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1113,14 +1101,13 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 
 
 /**
- * The event is fired when navigation between two pages in detail area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event. 
+ * The event is fired when navigation between two pages in detail area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event.
  *
  * @name sap.m.SplitContainer#afterDetailNavigate
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.from The page which had been shown before navigation.
  * @param {string} oControlEvent.getParameters.fromId The ID of the page which had been shown before navigation.
  * @param {sap.ui.core.Control} oControlEvent.getParameters.to The page which is now shown after navigation.
@@ -1139,7 +1126,7 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitContainer</code>.<br/> itself. 
  *  
- * The event is fired when navigation between two pages in detail area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event. 
+ * The event is fired when navigation between two pages in detail area has completed. In case of animated transitions this event is fired with some delay after the "navigate" event.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1197,36 +1184,32 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
 /**
  * Navigate to given page inside the SplitContainer. The navigation is done inside the master area if the page has been added, otherwise it tries to do the page navigation in the detail area.
  *
- * @name sap.m.SplitContainer.prototype.to
+ * @name sap.m.SplitContainer#to
  * @function
- * @param {string} 
- *         sPageId
+ * @param {string} sPageId
  *         The screen to which drilldown should happen. The ID or the control itself can be given.
- * @param {string} 
- *         sTransitionName
+ * @param {string} sTransitionName
  *         The type of the transition/animation to apply. This parameter can be omitted; then the default is "slide" (horizontal movement from the right).
  *         Other options are: "fade", "flip", and "show" and the names of any registered custom transitions.
  * 
  *         None of the standard transitions is currently making use of any given transition parameters.
- * @param {object} 
- *         oData
+ * @param {object} oData
  *         This optional object can carry any payload data which should be made available to the target page. The "beforeShow" event on the target page will contain this data object as "data" property.
  * 
  *         Use case: in scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameters
+ * @param {object} oTransitionParameters
  *         This optional object can contain additional information for the transition function, like the DOM element which triggered the transition or the desired transition duration.
  * 
  *         For a proper parameter order, the "data" parameter must be given when the "transitionParameters" parameter is used. (it can be given as "null")
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
  *         The "show", "slide" and "fade" transitions do not use any parameter.
-
  * @type sap.m.SplitContainer
  * @public
  * @since 1.10.0
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1236,177 +1219,161 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * 
  * Calling this navigation method triggers first the (cancelable) "navigate" event on the SplitContainer, then the "beforeHide" pseudo event on the source page and "beforeFirstShow" (if applicable) and"beforeShow" on the target page. Later - after the transition has completed - the "afterShow" pseudo event is triggered on the target page and "afterHide" on the page which has been left. The given backData object is available in the "beforeFirstShow", "beforeShow" and "afterShow" event object as "data" property. The original "data" object from the "to" navigation is also available in these event objects.
  *
- * @name sap.m.SplitContainer.prototype.backToPage
+ * @name sap.m.SplitContainer#backToPage
  * @function
- * @param {string} 
- *         sPageId
+ * @param {string} sPageId
  *         The screen to which drilldown should happen. The ID or the control itself can be given.
- * @param {object} 
- *         oBackData
+ * @param {object} oBackData
  *         This optional object can carry any payload data which should be made available to the target page of the back navigation. The event on the target page will contain this data object as "backData" property. (The original data from the "to()" navigation will still be available as "data" property.)
  * 
  *         In scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  *         For back navigation this can be used e.g. when returning from a detail page to transfer any settings done there.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameters
+ * @param {object} oTransitionParameters
  *         This optional object can give additional information to the transition function, like the DOM element which triggered the transition or the desired transition duration.
  *         The animation type can NOT be selected here - it is always the inverse of the "to" navigation.
  * 
  *         In order to use the "transitionParameters" property, the "data" property must be used (at least "null" must be given) for a proper parameter order.
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
-
  * @type sap.m.SplitContainer
  * @public
  * @since 1.10.0
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * navigate to given master page
  *
- * @name sap.m.SplitContainer.prototype.toMaster
+ * @name sap.m.SplitContainer#toMaster
  * @function
- * @param {string} 
- *         sPageId
+ * @param {string} sPageId
  *         The screen to which drilldown should happen. The ID or the control itself can be given.
- * @param {string} 
- *         sTransitionName
+ * @param {string} sTransitionName
  *         The type of the transition/animation to apply. This parameter can be omitted; then the default is "slide" (horizontal movement from the right).
  *         Other options are: "fade", "flip", and "show" and the names of any registered custom transitions.
  * 
  *         None of the standard transitions is currently making use of any given transition parameters.
- * @param {object} 
- *         oData
+ * @param {object} oData
  *         Since version 1.7.1. This optional object can carry any payload data which should be made available to the target page. The "beforeShow" event on the target page will contain this data object as "data" property.
  * 
  *         Use case: in scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameters
+ * @param {object} oTransitionParameters
  *         Since version 1.7.1. This optional object can contain additional information for the transition function, like the DOM element which triggered the transition or the desired transition duration.
  * 
  *         For a proper parameter order, the "data" parameter must be given when the "transitionParameters" parameter is used. (it can be given as "null")
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
  *         The "show", "slide" and "fade" transitions do not use any parameter.
-
  * @type sap.m.SplitContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * navigate to given detail page
  *
- * @name sap.m.SplitContainer.prototype.toDetail
+ * @name sap.m.SplitContainer#toDetail
  * @function
- * @param {string} 
- *         sPageId
- * 
- * @param {string} 
- *         sTransitionName
+ * @param {string} sPageId
+ * @param {string} sTransitionName
  *         The type of the transition/animation to apply. This parameter can be omitted; then the default is "slide" (horizontal movement from the right).
  *         Other options are: "fade", "flip", and "show" and the names of any registered custom transitions.
  * 
  *         None of the standard transitions is currently making use of any given transition parameters.
- * @param {object} 
- *         oData
+ * @param {object} oData
  *         This optional object can carry any payload data which should be made available to the target page. The "beforeShow" event on the target page will contain this data object as "data" property.
  * 
  *         Use case: in scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameter
+ * @param {object} oTransitionParameter
  *         This optional object can contain additional information for the transition function, like the DOM element which triggered the transition or the desired transition duration.
  * 
  *         For a proper parameter order, the "data" parameter must be given when the "transitionParameters" parameter is used. (it can be given as "null")
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
  *         The "show", "slide" and "fade" transitions do not use any parameter.
-
  * @type sap.m.SplitContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * navigate back within MasterView
  *
- * @name sap.m.SplitContainer.prototype.backMaster
+ * @name sap.m.SplitContainer#backMaster
  * @function
- * @param {object} 
- *         oBackData
+ * @param {object} oBackData
  *         This optional object can carry any payload data which should be made available to the target page of the back navigation. The event on the target page will contain this data object as "backData" property. (The original data from the "to()" navigation will still be available as "data" property.)
  * 
  *         In scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  *         For back navigation this can be used e.g. when returning from a detail page to transfer any settings done there.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameter
+ * @param {object} oTransitionParameter
  *         This optional object can give additional information to the transition function, like the DOM element which triggered the transition or the desired transition duration.
  *         The animation type can NOT be selected here - it is always the inverse of the "to" navigation.
  * 
  *         In order to use the "transitionParameters" property, the "data" property must be used (at least "null" must be given) for a proper parameter order.
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
-
  * @type sap.m.SplitContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * navigate back within DetailView
  *
- * @name sap.m.SplitContainer.prototype.backDetail
+ * @name sap.m.SplitContainer#backDetail
  * @function
- * @param {object} 
- *         oBackData
+ * @param {object} oBackData
  *         This optional object can carry any payload data which should be made available to the target page of the back navigation. The event on the target page will contain this data object as "backData" property. (The original data from the "to()" navigation will still be available as "data" property.)
  * 
  *         In scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  *         For back navigation this can be used e.g. when returning from a detail page to transfer any settings done there.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameter
+ * @param {object} oTransitionParameter
  *         This optional object can give additional information to the transition function, like the DOM element which triggered the transition or the desired transition duration.
  *         The animation type can NOT be selected here - it is always the inverse of the "to" navigation.
  * 
  *         In order to use the "transitionParameters" property, the "data" property must be used (at least "null" must be given) for a proper parameter order.
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
-
  * @type sap.m.SplitContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * When in ShowHideMode and the device is in portrait mode, this function can be used to make the master page visible.
  *
- * @name sap.m.SplitContainer.prototype.showMaster
+ * @name sap.m.SplitContainer#showMaster
  * @function
-
  * @type sap.m.SplitContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * When in ShowHideMode and the device is in portrait mode, this function can be used to hide the master page.
  *
- * @name sap.m.SplitContainer.prototype.hideMaster
+ * @name sap.m.SplitContainer#hideMaster
  * @function
-
  * @type sap.m.SplitContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1415,37 +1382,36 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * 
  * This method is provided mainly for providing API consistency between sap.m.SplitContainer and sap.m.App. So that the same code line can be reused.
  *
- * @name sap.m.SplitContainer.prototype.getCurrentPage
+ * @name sap.m.SplitContainer#getCurrentPage
  * @function
- * @param {boolean} 
- *         bMaster
+ * @param {boolean} bMaster
  *         States if this function returns the current page in master area. If it's set to false, the current page in detail area will be returned.
-
  * @type sap.ui.core.Control
  * @public
  * @since 1.11.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the current shown master page.
  *
- * @name sap.m.SplitContainer.prototype.getCurrentMasterPage
+ * @name sap.m.SplitContainer#getCurrentMasterPage
  * @function
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the current shown detail page.
  *
- * @name sap.m.SplitContainer.prototype.getCurrentDetailPage
+ * @name sap.m.SplitContainer#getCurrentDetailPage
  * @function
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1453,27 +1419,25 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * Navigates back to the initial/top level of Master (this is the element aggregated as "initialPage", or the first added element). If already on the initial page, nothing happens.
  * The transition effect which had been used to get to the current page is inverted and used for this navigation.
  *
- * @name sap.m.SplitContainer.prototype.backToTopMaster
+ * @name sap.m.SplitContainer#backToTopMaster
  * @function
- * @param {object} 
- *         oBackData
+ * @param {object} oBackData
  *         This optional object can carry any payload data which should be made available to the target page of the back navigation. The event on the target page will contain this data object as "backData" property. (The original data from the "to()" navigation will still be available as "data" property.)
  * 
  *         In scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  *         For back navigation this can be used e.g. when returning from a detail page to transfer any settings done there.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameter
+ * @param {object} oTransitionParameter
  *         This optional object can give additional information to the transition function, like the DOM element which triggered the transition or the desired transition duration.
  *         The animation type can NOT be selected here - it is always the inverse of the "to" navigation.
  * 
  *         In order to use the "transitionParameters" property, the "data" property must be used (at least "null" must be given) for a proper parameter order.
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1481,27 +1445,25 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * Navigates back to the initial/top level of Detail (this is the element aggregated as "initialPage", or the first added element). If already on the initial page, nothing happens.
  * The transition effect which had been used to get to the current page is inverted and used for this navigation.
  *
- * @name sap.m.SplitContainer.prototype.backToTopDetail
+ * @name sap.m.SplitContainer#backToTopDetail
  * @function
- * @param {object} 
- *         oBackData
+ * @param {object} oBackData
  *         This optional object can carry any payload data which should be made available to the target page of the back navigation. The event on the target page will contain this data object as "backData" property. (The original data from the "to()" navigation will still be available as "data" property.)
  * 
  *         In scenarios where the entity triggering the navigation can or should not directly initialize the target page, it can fill this object and the target page itself (or a listener on it) can take over the initialization, using the given data.
  *         For back navigation this can be used e.g. when returning from a detail page to transfer any settings done there.
  * 
  *         When the "transitionParameters" object is used, this "data" object must also be given (either as object or as null) in order to have a proper parameter order.
- * @param {object} 
- *         oTransitionParameter
+ * @param {object} oTransitionParameter
  *         This optional object can give additional information to the transition function, like the DOM element which triggered the transition or the desired transition duration.
  *         The animation type can NOT be selected here - it is always the inverse of the "to" navigation.
  * 
  *         In order to use the "transitionParameters" property, the "data" property must be used (at least "null" must be given) for a proper parameter order.
  * 
  *         NOTE: it depends on the transition function how the object should be structured and which parameters are actually used to influence the transition.
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1510,66 +1472,60 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * 
  * This method is provided mainly for providing API consistency between sap.m.SplitContainer and sap.m.App. So that the same code line can be reused.
  *
- * @name sap.m.SplitContainer.prototype.addPage
+ * @name sap.m.SplitContainer#addPage
  * @function
- * @param {sap.ui.core.Control} 
- *         oPage
+ * @param {sap.ui.core.Control} oPage
  *         The content entities between which this SplitContainer navigates in either master area or detail area depending on the master parameter. These can be of type sap.m.Page, sap.ui.core.View, sap.m.Carousel or any other control with fullscreen/page semantics.
- * @param {boolean} 
- *         bMaster
+ * @param {boolean} bMaster
  *         States if the page should be added to the master area. If it's set to false, the page is added to detail area.
-
  * @type sap.m.SplitContainer
  * @public
  * @since 1.11.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the page with the given id in master area. If there's no page that has the given id, null is returned.
  *
- * @name sap.m.SplitContainer.prototype.getMasterPage
+ * @name sap.m.SplitContainer#getMasterPage
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The id of the page that needs to be fetched.
-
  * @type sap.ui.core.Control
  * @public
  * @since 1.11.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the page with the given id in detail area. If there's no page that has the given id, null is returned.
  *
- * @name sap.m.SplitContainer.prototype.getDetailPage
+ * @name sap.m.SplitContainer#getDetailPage
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The id of the page that needs to be fetched.
-
  * @type sap.ui.core.Control
  * @public
  * @since 1.11.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the page with the given id from either master area or detail area depending on the master parameter. If there's no page that has the given id, null is returned.
  *
- * @name sap.m.SplitContainer.prototype.getPage
+ * @name sap.m.SplitContainer#getPage
  * @function
- * @param {string} 
- *         sId
+ * @param {string} sId
  *         The id of the page that needs to be fetched.
- * @param {boolean} 
- *         bMaster
+ * @param {boolean} bMaster
  *         If the page with given id should be fetched from the master area. If it's set to false, the page will be fetched from detail area.
-
  * @type sap.ui.core.Control
  * @public
  * @since 1.11.1
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1578,21 +1534,18 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * 
  * This can be used for deep-linking when the user directly reached a drilldown detail page using a bookmark and then wants to navigate up in the drilldown hierarchy. Normally such a back navigation would not be possible because there is no previous page in the SplitContainer's history stack.
  *
- * @name sap.m.SplitContainer.prototype.insertPreviousPage
+ * @name sap.m.SplitContainer#insertPreviousPage
  * @function
- * @param {string} 
- *         sPageId
+ * @param {string} sPageId
  *         The ID of the control/page/screen which is inserted into the history stack. The respective control must be aggregated by the SplitContainer, otherwise this will cause an error.
- * @param {string} 
- *         sTransitionName
+ * @param {string} sTransitionName
  *         The type of the transition/animation which would have been used to navigate from the (inserted) previous page to the current page. When navigating back, the inverse animation will be applied.
  *         This parameter can be omitted; then the default is "slide" (horizontal movement from the right).
- * @param {object} 
- *         oData
+ * @param {object} oData
  *         This optional object can carry any payload data which would have been given to the inserted previous page if the user would have done a normal forward navigation to it.
-
  * @type sap.m.SplitContainer
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1601,28 +1554,26 @@ sap.m.SplitContainer.M_EVENTS = {'masterNavigate':'masterNavigate','afterMasterN
  * Note: this is not the page which the user has seen before, but the page which is the target of the next "back()" navigation.
  * If there is no previous page, "undefined" is returned.
  *
- * @name sap.m.SplitContainer.prototype.getPreviousPage
+ * @name sap.m.SplitContainer#getPreviousPage
  * @function
- * @param {boolean} 
- *         bMaster
+ * @param {boolean} bMaster
  *         States if this function returns the previous page in master area. If it's set to false, the previous page in detail area will be returned.
-
  * @type sap.ui.core.Control
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * 
  * Returns whether master area is currently shown on the screen. In desktop browser or tablet, this method returns true when master area is shown on the screen no matter in portrait or landscape mode. And on mobile phone devices, this method returns true when the current shown page is from the pages which are added to the master area, otherwise it returns false.
- * 
  *
- * @name sap.m.SplitContainer.prototype.isMasterShown
+ * @name sap.m.SplitContainer#isMasterShown
  * @function
-
  * @type boolean
  * @public
  * @since 1.16.5
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1636,7 +1587,6 @@ jQuery.sap.require("sap.ui.core.IconPool");
 sap.m.SplitContainer.prototype.init = function() {
 	var oSplitContainer = this;
 	this._isMie9 = false;
-	this._isPlatformDependent = sap.ui.core.theming.Parameters.get("sapMPlatformDependent") == "true";
 	//Check for IE9
 	if(sap.ui.Device.browser.internet_explorer && sap.ui.Device.browser.version < 10) {
 		this._isMie9 = true;
@@ -1686,7 +1636,7 @@ sap.m.SplitContainer.prototype.init = function() {
 				oSplitContainer.fireBeforeMasterOpen();
 			},
 			beforeClose: function(){
-				oSplitContainer.fireAfterMasterOpen();
+				oSplitContainer.fireBeforeMasterClose();
 			},
 			afterOpen: function(){
 				oSplitContainer.fireAfterMasterOpen();
@@ -1714,7 +1664,7 @@ sap.m.SplitContainer.prototype.init = function() {
 	var fnPatchRemoveChild = function(fnRemoveChild, sNavContainerProperty, sPagesArrayProperty) {
 		return function(oChild, sAggregationName, bSuppressInvalidate) {
 			fnRemoveChild.apply(that[sNavContainerProperty], arguments);
-			if (sAggregationName === "pages" && jQuery.inArray(oChild, that[sPagesArrayProperty])) {
+			if (sAggregationName === "pages" && jQuery.inArray(oChild, that[sPagesArrayProperty]) !== -1) {
 				that._removePageFromArray(that[sPagesArrayProperty], oChild);
 			}
 		};
@@ -1730,8 +1680,8 @@ sap.m.SplitContainer.prototype.init = function() {
 };
 
 sap.m.SplitContainer.prototype.onBeforeRendering = function() {
-	if(this._fnOrientationChange) {
-		sap.ui.Device.resize.detachHandler(this._fnOrientationChange);
+	if(this._fnResize) {
+		sap.ui.Device.resize.detachHandler(this._fnResize);
 	}
 	
 	//if SplitContainer is rerendered while the master is open, clear the status.
@@ -1742,8 +1692,8 @@ sap.m.SplitContainer.prototype.onBeforeRendering = function() {
 };
 
 sap.m.SplitContainer.prototype.exit = function() {
-	if(this._fnOrientationChange){
-		sap.ui.Device.resize.detachHandler(this._fnOrientationChange);
+	if(this._fnResize){
+		sap.ui.Device.resize.detachHandler(this._fnResize);
 	}
 	delete this._aMasterPages;
 	delete this._aDetailPages;
@@ -1758,12 +1708,13 @@ sap.m.SplitContainer.prototype.onAfterRendering = function() {
 		if(this._oPopOver && this._oPopOver.isOpen()){
 			this._oPopOver.close();
 		}
-		if(!this._fnOrientationChange){
-			this._fnOrientationChange = jQuery.proxy(this._handleOrientationChange, this);
-		}
-		sap.ui.Device.resize.attachHandler(this._fnOrientationChange);
 	}
-	
+
+	if(!this._fnResize){
+		this._fnResize = jQuery.proxy(this._handleResize, this);
+	}
+	sap.ui.Device.resize.attachHandler(this._fnResize);
+
 	if(sap.ui.Device.browser.internet_explorer){
 		this._oMasterNav.$().append('<iframe class="sapMSplitContainerMasterBlindLayer" src="about:blank"></iframe>');
 	}
@@ -1924,8 +1875,6 @@ sap.m.SplitContainer.prototype.backToTopDetail = function(backData, oTransitionP
 };
 
 sap.m.SplitContainer.prototype.addMasterPage = function(oPage) {
-	var oRealPage = this._getRealPage(oPage);
-
 	if(this._hasPageInArray(this._aMasterPages, oPage)) {
 		return;
 	}
@@ -1934,7 +1883,7 @@ sap.m.SplitContainer.prototype.addMasterPage = function(oPage) {
 	// aggregated by this NavContainer, but in the other "virtual" aggregation of this SplitContainer (i.e. moved from detailPages to masterPages).
 	// This would lead to the page being added to the "master" array, but not removed from the "detail" array because the patched method
 	// in the NavContainer (removePage) is not called. Hence, remove it directly from the detail array.
-	if (this._oMasterNav === this._oDetailNav && jQuery.inArray(oPage, this._oDetailNav.getPages())) {
+	if (this._oMasterNav === this._oDetailNav && jQuery.inArray(oPage, this._oDetailNav.getPages()) !== -1) {
 		this._removePageFromArray(this._aDetailPages, oPage);
 	}
 	this._oMasterNav.addPage(oPage);
@@ -1979,26 +1928,27 @@ sap.m.SplitContainer.prototype.addDetailPage = function(oPage) {
 					// 3: Android: Icon isn't shown directly in header, the icon is added to the showMasterButton.
 					// 4: Android: show title in portrait mode, hide title in landscape
 					if((oSplitContainer._portraitHide() || oSplitContainer._hideMode() || oSplitContainer._portraitPopover()) && (!oSplitContainer._bMasterisOpen || oSplitContainer._bMasterClosing)) {
-						oSplitContainer._setMasterButton(oRealPage, jQuery.proxy(oSplitContainer._setTitleVisibility, oSplitContainer));
-					}else{
-						oSplitContainer._setTitleVisibility(oRealPage);
+						oSplitContainer._setMasterButton(oRealPage);
 					}
 				}
 			}
 		}
 	});
-	
+
 	if(oRealPage){
 		oRealPage.addDelegate({
 			//before rendering is used in order to avoid invalidate in renderer (set button to the header in page)
 			onBeforeRendering: function(){
-				if(!sap.ui.Device.system.phone) {
+				// Maintain the masterButton only when the page is still the current page in detail NavContainer.
+				// If the rerendering occurs after the page navigation, it's not needed to maintain the master button anymore.
+				// This check is needed otherwise it may cause endless rerendering of the last page and the current page.
+				if(!sap.ui.Device.system.phone && (oSplitContainer._oDetailNav.getCurrentPage() === oRealPage)) {
 					if(oSplitContainer._portraitHide() || oSplitContainer._hideMode()) {
 						if(!oSplitContainer._bMasterisOpen || oSplitContainer._bMasterClosing){
-							oSplitContainer._setMasterButton(oRealPage);
+							oSplitContainer._setMasterButton(oRealPage, true);
 						}
 					}else if(oSplitContainer._portraitPopover()) {
-						oSplitContainer._setMasterButton(oRealPage);
+						oSplitContainer._setMasterButton(oRealPage, true);
 					}else {
 						oSplitContainer._removeMasterButton(oRealPage);
 					}
@@ -2006,12 +1956,12 @@ sap.m.SplitContainer.prototype.addDetailPage = function(oPage) {
 			}
 		});
 	}
-	
+
 	// When the same NavContainer is used for both aggregations, calling "addPage()" will not do anything in case the oPage is already
 	// aggregated by this NavContainer, but in the other "virtual" aggregation of this SplitContainer (i.e. moved from masterPages to detailPages).
 	// This would lead to the page being added to the "detail" array, but not removed from the "master" array because the patched method
 	// in the NavContainer (removePage) is not called. Hence, remove it directly from the master array.
-	if (this._oMasterNav === this._oDetailNav && jQuery.inArray(oPage, this._oMasterNav.getPages())) {
+	if (this._oMasterNav === this._oDetailNav && jQuery.inArray(oPage, this._oMasterNav.getPages()) !== -1) {
 		this._removePageFromArray(this._aMasterPages, oPage);
 	}
 	
@@ -2037,7 +1987,7 @@ sap.m.SplitContainer.prototype.indexOfDetailPage = function(oPage) {
 };
 
 sap.m.SplitContainer.prototype.insertMasterPage = function(oPage, iIndex, bSuppressInvalidate) {
-	return this._insertPage(this._aMasterPages, "masterPages", oPage, iIndex, bSuppressInvalidate)
+	return this._insertPage(this._aMasterPages, "masterPages", oPage, iIndex, bSuppressInvalidate);
 };
 
 sap.m.SplitContainer.prototype.removeMasterPage = function(oPage, bSuppressInvalidate) {
@@ -2050,7 +2000,7 @@ sap.m.SplitContainer.prototype.removeAllMasterPages = function(bSuppressInvalida
 };
 
 sap.m.SplitContainer.prototype.insertDetailPage = function(oPage, iIndex, bSuppressInvalidate) {
-	return this._insertPage(this._aDetailPages, "detailPages", oPage, iIndex, bSuppressInvalidate)
+	return this._insertPage(this._aDetailPages, "detailPages", oPage, iIndex, bSuppressInvalidate);
 };
 
 sap.m.SplitContainer.prototype.removeDetailPage = function(oPage, bSuppressInvalidate) {
@@ -2073,20 +2023,21 @@ sap.m.SplitContainer.prototype.addPage = function(oPage, bMaster){
 sap.m.SplitContainer.prototype.showMaster = function() {
 	var _this$ = this._oMasterNav.$(),
 		that = this,
+		fnAnimationEnd = jQuery.proxy(this._afterShowMasterAnimation, this),
 		_curPage = this._getRealPage(this._oDetailNav.getCurrentPage());
 	if(this._portraitPopover()) {
-        if(!this._oPopOver.isOpen()){
-        	function afterPopoverOpen(){
-        		this._oPopOver.detachAfterOpen(afterPopoverOpen, this);
-        		this._bMasterOpening = false;
-        		this._bMasterisOpen = true;
-        		this.fireAfterMasterOpen();
-        	}
-        	this._oPopOver.attachAfterOpen(afterPopoverOpen, this);
-        	this.fireBeforeMasterOpen();
-        	this._oPopOver.openBy(this._oShowMasterBtn, true);
-        	this._bMasterOpening = true;
-        }
+		if(!this._oPopOver.isOpen()){
+			function afterPopoverOpen(){
+				this._oPopOver.detachAfterOpen(afterPopoverOpen, this);
+				this._bMasterOpening = false;
+				this._bMasterisOpen = true;
+				this.fireAfterMasterOpen();
+			}
+			this._oPopOver.attachAfterOpen(afterPopoverOpen, this);
+			this.fireBeforeMasterOpen();
+			this._oPopOver.openBy(this._oShowMasterBtn, true);
+			this._bMasterOpening = true;
+		}
 	}else{
 		if((this._portraitHide() || this._hideMode()) 
 			&& (!this._bMasterisOpen || this._bMasterClosing)) {
@@ -2095,25 +2046,22 @@ sap.m.SplitContainer.prototype.showMaster = function() {
 				_this$.animate({
 					left: "+=320"
 				}, {
-					duration: 300
+					duration: 300,
+					complete: fnAnimationEnd
 				});
 				this._bMasterisOpen = true;
 				that._bMasterOpening = false;
-				this._removeMasterButton(_curPage, jQuery.proxy(this._setTitleVisibility, this));
+				this._removeMasterButton(_curPage);
+			} else {
+				_this$.bind("webkitTransitionEnd transitionend", fnAnimationEnd);
 			}
-			_this$.bind((sap.ui.Device.os.ios || !this._isPlatformDependent) ? "webkitTransitionEnd transitionend" : "webkitAnimationEnd animationend", function(){
-				jQuery(this).unbind("webkitTransitionEnd transitionend");
-				jQuery(this).unbind("webkitAnimationEnd animationend");
-				that._bMasterOpening = false;
-				that._bMasterisOpen = true;
-				that._removeMasterButton(_curPage, jQuery.proxy(that._setTitleVisibility, that));
-				that.fireAfterMasterOpen();
-			});
+
 			this.fireBeforeMasterOpen();
 			_this$.toggleClass("sapMSplitContainerMasterVisible", true);
 			_this$.toggleClass("sapMSplitContainerMasterHidden", false);
 			this._bMasterOpening = true;
-			
+			that._removeMasterButton(_curPage);
+
 			// workaround for bug in current webkit versions: in slided-in elements the z-order may be wrong and will be corrected once a re-layout is enforced 
 			// see http://code.google.com/p/chromium/issues/detail?id=246965
 			if (sap.ui.Device.browser.webkit) {
@@ -2132,8 +2080,7 @@ sap.m.SplitContainer.prototype.showMaster = function() {
 
 sap.m.SplitContainer.prototype.hideMaster = function() {
 	var _this$ = this._oMasterNav.$(),
-		that = this,
-		_curPage = that._getRealPage(that._oDetailNav.getCurrentPage());
+		fnAnimationEnd = jQuery.proxy(this._afterHideMasterAnimation, this);
 	if (this._portraitPopover()) {
 		if (this._oPopOver.isOpen()) {
 			this._oPopOver.close();
@@ -2146,10 +2093,10 @@ sap.m.SplitContainer.prototype.hideMaster = function() {
 					left: "-=320"
 				}, {
 					duration: 300,
-					complete: jQuery.proxy(this._afterHideMasterAnimation, this)
+					complete: fnAnimationEnd
 				});
 			} else {
-				_this$.bind((sap.ui.Device.os.ios || !this._isPlatformDependent) ? "webkitTransitionEnd transitionend" : "webkitAnimationEnd animationend", jQuery.proxy(this._afterHideMasterAnimation, this));
+				_this$.bind("webkitTransitionEnd transitionend", fnAnimationEnd);
 			}
 
 			this.fireBeforeMasterClose();
@@ -2161,19 +2108,35 @@ sap.m.SplitContainer.prototype.hideMaster = function() {
 	return this;
 };
 
+sap.m.SplitContainer.prototype._afterShowMasterAnimation = function() {
+	if (this._portraitHide() || this._hideMode()) {
+		if (!this._isMie9) {
+			var $MasterNav = this._oMasterNav.$();
+			$MasterNav.unbind("webkitTransitionEnd transitionend", this._afterShowMasterAnimation);
+		}
+		this._bMasterOpening = false;
+		this._bMasterisOpen = true;
+		this.fireAfterMasterOpen();
+	}
+};
+
 sap.m.SplitContainer.prototype._afterHideMasterAnimation = function() {
 	if (this._portraitHide() || this._hideMode()) {
 		if (!this._isMie9) {
 			var $MasterNav = this._oMasterNav.$();
 			$MasterNav.unbind("webkitTransitionEnd transitionend", this._afterHideMasterAnimation);
-			$MasterNav.unbind("webkitAnimationEnd animationend", this._afterHideMasterAnimation);
 		}
 	}
 	var oCurPage = this._getRealPage(this._oDetailNav.getCurrentPage());
-	this._setMasterButton(oCurPage, jQuery.proxy(this._setTitleVisibility, this));
+	this._setMasterButton(oCurPage);
 
 	this._bMasterClosing = false;
 	this._bMasterisOpen = false;
+	// If the focus is still inside the master area after master is open, the focus should be removed.
+	// Otherwise user can still type something on mobile device and the browser will show the master area again.
+	if (jQuery.sap.containsOrEquals(this._oMasterNav.getDomRef(), document.activeElement)) {
+		document.activeElement.blur();
+	}
 	this.fireAfterMasterClose();
 };
 
@@ -2272,7 +2235,7 @@ sap.m.SplitContainer.prototype.setDefaultTransitionNameMaster = function(sTransi
 };
 
 sap.m.SplitContainer.prototype.setMasterButtonText = function(sText) {
-	if((sap.ui.Device.os.ios || !this._isPlatformDependent) && !sap.ui.Device.system.phone){
+	if(!sap.ui.Device.system.phone){
 		if(!sText){
 			sText = this._rb.getText("SplitContainer_NAVBUTTON_TEXT");
 		}
@@ -2293,7 +2256,7 @@ sap.m.SplitContainer.prototype.setMode = function(sMode) {
 	if(!sap.ui.Device.system.phone && this.getDomRef()){
 		if(sOldMode === "HideMode" && this._oldIsLandscape){
 			//remove the master button
-			this._removeMasterButton(this._oDetailNav.getCurrentPage(), jQuery.proxy(this._setTitleVisibility, this));
+			this._removeMasterButton(this._oDetailNav.getCurrentPage());
 			if(this._isMie9) {
 				this._oMasterNav.$().css({
 					left: 0,
@@ -2309,7 +2272,7 @@ sap.m.SplitContainer.prototype.setMode = function(sMode) {
 				if(this._oPopOver.getContent().length === 0){
 					this._updateMasterPosition("popover");
 				}
-				this._setMasterButton(this._oDetailNav.getCurrentPage(), jQuery.proxy(this._setTitleVisibility, this));
+				this._setMasterButton(this._oDetailNav.getCurrentPage());
 			}
 			this.$().toggleClass("sapMSplitContainerShowHide", false);
 			this.$().toggleClass("sapMSplitContainerStretchCompress", false);
@@ -2322,7 +2285,7 @@ sap.m.SplitContainer.prototype.setMode = function(sMode) {
 			this.$().toggleClass("sapMSplitContainerPopover", false);
 			this.$().toggleClass("sapMSplitContainerHideMode", false);
 			this.$().toggleClass("sapMSplitContainerStretchCompress", true);
-			this._removeMasterButton(this._oDetailNav.getCurrentPage(), jQuery.proxy(this._setTitleVisibility, this));
+			this._removeMasterButton(this._oDetailNav.getCurrentPage());
 		}
 		
 		if(sMode == "ShowHideMode") {
@@ -2331,7 +2294,7 @@ sap.m.SplitContainer.prototype.setMode = function(sMode) {
 			this.$().toggleClass("sapMSplitContainerHideMode", false);
 			this.$().toggleClass("sapMSplitContainerShowHide", true);
 			if(!sap.ui.Device.orientation.landscape){
-				this._setMasterButton(this._oDetailNav.getCurrentPage(), jQuery.proxy(this._setTitleVisibility, this));
+				this._setMasterButton(this._oDetailNav.getCurrentPage());
 			}
 		}
 		
@@ -2340,7 +2303,7 @@ sap.m.SplitContainer.prototype.setMode = function(sMode) {
 			this.$().toggleClass("sapMSplitContainerStretchCompress", false);
 			this.$().toggleClass("sapMSplitContainerShowHide", false);
 			this.$().toggleClass("sapMSplitContainerHideMode", true);
-			this._setMasterButton(this._oDetailNav.getCurrentPage(), jQuery.proxy(this._setTitleVisibility, this));
+			this._setMasterButton(this._oDetailNav.getCurrentPage());
 			if(this._isMie9) {
 				this._oMasterNav.$().css({
 					left: "",
@@ -2427,7 +2390,7 @@ sap.m.SplitContainer.prototype._handleNavigationEvent = function(oEvent, bAfter,
 	this.fireEvent(sEventName, oEvent.mParameters);
 };
 
-sap.m.SplitContainer.prototype._handleOrientationChange = function() {
+sap.m.SplitContainer.prototype._handleResize = function() {
 	var isLandscape = sap.ui.Device.orientation.landscape,
 		_currentPage = this._oDetailNav.getCurrentPage(),
 		mode = this.getMode();
@@ -2495,28 +2458,16 @@ sap.m.SplitContainer.prototype._handleOrientationChange = function() {
 			
 			_currentPage = this._getRealPage(_currentPage);
 			if(!this._oldIsLandscape && mode != "StretchCompressMode") {
-				this._setMasterButton(_currentPage, jQuery.proxy(this._setTitleVisibility, this));
+				this._setMasterButton(_currentPage);
 			}else {
-				this._removeMasterButton(_currentPage, jQuery.proxy(this._setTitleVisibility, this));
+				this._removeMasterButton(_currentPage);
 			}			
 		}
-	}
-};
-
-sap.m.SplitContainer.prototype._setTitleVisibility = function(oPage){
-	var oRealPage = oPage || this._getRealPage(this._oDetailNav.getCurrentPage()),
-		oCore = this.oCore,
-		sPageId = oRealPage ? oRealPage.getId() : "";
-	if(sPageId){
-		var oTitle = oCore.byId(sPageId + "-title");
-		if(!sap.ui.Device.os.ios && this._isPlatformDependent){
-			if((this._portraitHide() || this._portraitPopover() || this._hideMode()) && (!this._bMasterisOpen || this._bMasterClosing)){
-				oTitle && oTitle.removeStyleClass("sapMSplitContainerHiddenChild");
-			}else{
-				oTitle && oTitle.addStyleClass("sapMSplitContainerHiddenChild");
-			}
+		// execute the code after SplitContainer has changed itself due to orientation change event
+		if (this._onOrientationChange) {
+			this._onOrientationChange();
 		}
-	};
+	}
 };
 
 sap.m.SplitContainer.prototype._handlePopClose = function(oEvent) {
@@ -2614,18 +2565,22 @@ sap.m.SplitContainer.prototype._createShowMasterButton = function() {
 	}
 
 	this._oShowMasterBtn = new sap.m.Button(this.getId() + "-MasterBtn", {
-		text: (sap.ui.Device.os.ios && this._isPlatformDependent) ? this._rb.getText("SPLITCONTAINER_NAVBUTTON_TEXT") : "",
-		icon: !this._isPlatformDependent ? sap.ui.core.IconPool.getIconURI("menu2") : "",
-		type: (sap.ui.Device.os.ios || !this._isPlatformDependent) ? sap.m.ButtonType.Default : sap.m.ButtonType.Up,
+		icon: sap.ui.core.IconPool.getIconURI("menu2"),
+		type: sap.m.ButtonType.Default,
 		press: jQuery.proxy(this._onMasterButtonTap, this)
 	}).addStyleClass("sapMSplitContainerMasterBtn");
 };
 
-sap.m.SplitContainer.prototype._setMasterButton = function(oPage, fnCallBack) {
+sap.m.SplitContainer.prototype._setMasterButton = function(oPage, fnCallBack, bSuppressRerendering) {
 	if(!oPage){
 		return;
 	}
-	
+
+	if (typeof fnCallBack === 'boolean') {
+		bSuppressRerendering = fnCallBack;
+		fnCallBack = undefined;
+	}
+
 	oPage = this._getRealPage(oPage);
 	var aHeaderContent = oPage._getAnyHeader().getContentLeft();
 	for(var i=0; i < aHeaderContent.length; i++) {
@@ -2635,11 +2590,10 @@ sap.m.SplitContainer.prototype._setMasterButton = function(oPage, fnCallBack) {
 		}
 	}
 	this._bDetailNavButton = false;
-	
+
 	if(oPage /*&& !this._checkCustomHeader(oPage)*/) {
 		var oPageHeader = oPage._getAnyHeader(),
-			oContentLeft = oPageHeader.getContentLeft(),
-			sIcon = oPage.getIcon();
+			oContentLeft = oPageHeader.getContentLeft();
 		var bIsSet = false;
 		if(oContentLeft){
 			for(var i=0; i<oContentLeft.length; i++) {
@@ -2655,27 +2609,18 @@ sap.m.SplitContainer.prototype._setMasterButton = function(oPage, fnCallBack) {
 
 			this._oShowMasterBtn.removeStyleClass("sapMSplitContainerMasterBtnHidden");
 
-			if(!sap.ui.Device.os.ios && sIcon && this._isPlatformDependent){
-				sap.ui.getCore().byId(oPage.getId() + "-icon").addStyleClass("sapMSplitContainerHiddenChild");
-				this._oShowMasterBtn.setIcon(sIcon);
-			}
-
 			if(oPageHeader){
-				//if the header is empty in android, the title index has to be 1 since the back button needs to be the first item in the header
-				if(!sap.ui.Device.os.ios && this._isPlatformDependent && oContentLeft.length === 0) {
-					oPage._titleIndex = 1;
-				}
-				oPageHeader.insertContentLeft(this._oShowMasterBtn, 0);
+				oPageHeader.insertAggregation("contentLeft", this._oShowMasterBtn, 0, bSuppressRerendering);
 			}
 		} else {
 			if(this._isMie9) {
 				this._oShowMasterBtn.$().fadeIn();
 			}
-			this._oShowMasterBtn.$().parent().toggleClass("sapMSplitContainerMasterBtnHide", false);	
-			this._oShowMasterBtn.removeStyleClass("sapMSplitContainerMasterBtnHidden");	
-			this._oShowMasterBtn.$().parent().toggleClass("sapMSplitContainerMasterBtnShow", true);		
+			this._oShowMasterBtn.$().parent().toggleClass("sapMSplitContainerMasterBtnHide", false);
+			this._oShowMasterBtn.removeStyleClass("sapMSplitContainerMasterBtnHidden");
+			this._oShowMasterBtn.$().parent().toggleClass("sapMSplitContainerMasterBtnShow", true);
 		}
-		
+
 		if(fnCallBack){
 			fnCallBack(oPage);
 		}
@@ -2687,9 +2632,9 @@ sap.m.SplitContainer.prototype._removeMasterButton = function(oPage, fnCallBack)
 	if(!oPage){
 		return;
 	}
-	
+
 	var oSplitContainer = this, oHeader;
-	
+
 	if(!this._oShowMasterBtn.$().is(":hidden")) {
 		oPage = this._getRealPage(oPage);
 		oHeader = oPage._getAnyHeader();
@@ -2718,6 +2663,9 @@ sap.m.SplitContainer.prototype._removeMasterButton = function(oPage, fnCallBack)
 		}
 		this.fireMasterButton({show: false});
 	}else{
+		// The master button is invisible even without this CSS class because the page in which the master button is can be out of the viewport.
+		// Therefore this class has to be set here.
+		this._oShowMasterBtn.addStyleClass("sapMSplitContainerMasterBtnHidden");
 		if(fnCallBack){
 			fnCallBack(oPage);
 		}
@@ -2823,14 +2771,14 @@ sap.m.SplitContainer._mFunctionMapping = {
  */
 sap.m.SplitContainer.prototype._hasPageInArray= function (array, oPage) {
 	var bFound = false;
-	
+
 	array.forEach(function(oArrayEntry) {
 		if(oPage === oArrayEntry) {
 			bFound = true;
 		}
-	})
+	});
 	return bFound;
-}
+};
 
 /**************************************************************
 * END - Static methods

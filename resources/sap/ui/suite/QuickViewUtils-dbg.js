@@ -1,6 +1,13 @@
+/*!
+ * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+
+ // Provides 
 jQuery.sap.declare("sap.ui.suite.QuickViewUtils");
 /**
- * Create a Quickview Instance. This Method is only working with the UI2 QuickViewserice.
+ * Create a Quickview Instance. This Method is only working with the UI2 QuickView service.
  * 
  * @param {string} sServiceUrl
  * @param {string} sConfigName
@@ -18,7 +25,7 @@ jQuery.sap.declare("sap.ui.suite.QuickViewUtils");
 			oQV.setModel(oModel);
 			oQV.bindElement("/QuickviewConfigs(name='"+sConfigName+"',thingKey='"+sThingKey+"')",{expand:"Thing,QVAttributes/Attribute,QVActions/Action"});
 			
-			oMQVC = new sap.ui.suite.hcm.QvContent();
+			var oMQVC = new sap.ui.suite.hcm.QvContent();
 			oMQVC.bindAggregation("items",{path:"QVAttributes",factory: function(sId, oContext) {
 				var oQVItem = new sap.ui.suite.hcm.QvItem(sId, {label:"{Attribute/label}",link: "{valueLinkURL}",order:"{order}"});
 				oQVItem.bindProperty("value","value",mFormatter && mFormatter[oContext.getProperty("Attribute/name")]);
@@ -38,7 +45,7 @@ jQuery.sap.declare("sap.ui.suite.QuickViewUtils");
 			oQV.bindProperty("icon", "imageURL");
 			oQV.bindElement("/QuickviewConfigs(name='"+sConfigName+"',thingKey='"+sThingKey+"')",{expand:"Thing,QVAttributes/Attribute,QVActions/Action"});
 			
-			oMQVC = new sap.ui.suite.hcm.QvContent();
+			var oMQVC = new sap.ui.suite.hcm.QvContent();
 			oMQVC.bindAggregation("items",{path:"QVAttributes",factory: function(sId, oContext) {
 				var oQVItem = new sap.ui.suite.hcm.QvItem(sId, {label:"{Attribute/label}",link: "{valueLinkURL}",order:"{order}"});
 				oQVItem.bindProperty("value","value",mFormatter && mFormatter[oContext.getProperty("Attribute/name")]);

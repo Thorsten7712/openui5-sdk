@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>RowRepeater</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>This control displays items in a stacked list format, allowing the user to page in order to see more items or to use the offered filtering and sorting capabilities in order to manipulate the displayed data.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

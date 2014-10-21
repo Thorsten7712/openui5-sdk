@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -46,6 +46,10 @@ sap.ui.commons.CalloutBaseRenderer.render = function(oRenderManager, oControl){
 	if (oControl.getTooltip_AsString()) {
 		rm.writeAttributeEscaped("title", oControl.getTooltip_AsString());
 	}
+	
+	rm.addStyle("display", "none");
+	rm.writeStyles();
+	
 	rm.write(">");
 
 	//first focusable control to provide tab loop

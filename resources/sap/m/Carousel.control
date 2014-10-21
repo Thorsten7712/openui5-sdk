@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Carousel</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The Carousel control can be used to navigate through a list of sap.m controls just like flipping through the pages of a book by swiping right or left.  An indicator shows the current position within the control list. When displayed in a desktop browser, a left- and right-arrow button is displayed on the carousel's sides, which can be used to navigate through the carousel.
 	
 Note: when displa Internet Explorer 9, page changes are not animated.</documentation>

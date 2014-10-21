@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -78,23 +78,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * The unit that is embedded - single-wise or in a multiple way - into a Feed control.
  * The control provides a set of properties for text, sender information, time stamp,
  * comments, and functions such as flagging the entry to be favorite, shared, or flagged.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.
  * @name sap.ui.ux3.FeedChunk
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.FeedChunk", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"thumbnailSrc" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -115,8 +112,8 @@ sap.ui.core.Control.extend("sap.ui.ux3.FeedChunk", { metadata : {
 		"enableFavorite" : {type : "boolean", group : "Appearance", defaultValue : true}
 	},
 	aggregations : {
-    	"comments" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "comment", bindable : "bindable"}, 
-    	"actionMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "actionMenuItem", bindable : "bindable"}
+		"comments" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "comment", bindable : "bindable"}, 
+		"actionMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "actionMenuItem", bindable : "bindable"}
 	},
 	events : {
 		"deleted" : {}, 
@@ -767,14 +764,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when the deletion button is pressed. 
+ * Event is fired when the deletion button is pressed.
  *
  * @name sap.ui.ux3.FeedChunk#deleted
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -783,7 +779,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when the deletion button is pressed. 
+ * Event is fired when the deletion button is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -825,14 +821,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when a comment is added to the entry. This event is not supported for comment chunks. 
+ * Event is raised when a comment is added to the entry. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#commentAdded
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.FeedChunk} oControlEvent.getParameters.comment New comment chunk
  * @public
  */
@@ -842,7 +837,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when a comment is added to the entry. This event is not supported for comment chunks. 
+ * Event is raised when a comment is added to the entry. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -889,14 +884,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#toggleFlagged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.flagged Current flagged state
  * @public
  */
@@ -906,7 +900,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to flag the entry. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -953,14 +947,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when the thumbnail or the name of the sender is clicked. 
+ * Event is fired when the thumbnail or the name of the sender is clicked.
  *
  * @name sap.ui.ux3.FeedChunk#senderClicked
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -969,7 +962,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when the thumbnail or the name of the sender is clicked. 
+ * Event is fired when the thumbnail or the name of the sender is clicked.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1011,14 +1004,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Click on a @-reference 
+ * Click on a @-reference
  *
  * @name sap.ui.ux3.FeedChunk#referenceClicked
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Text of the @-reference
  * @public
  */
@@ -1028,7 +1020,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Click on a @-reference 
+ * Click on a @-reference
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1075,14 +1067,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#toggleFavorite
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.favorite Current favorite state
  * @public
  */
@@ -1092,7 +1083,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to set the entry as favorite. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1139,14 +1130,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when the inspect button was pressed 
+ * Event is fired when the inspect button was pressed
  *
  * @name sap.ui.ux3.FeedChunk#inspect
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -1155,7 +1145,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when the inspect button was pressed 
+ * Event is fired when the inspect button was pressed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1197,14 +1187,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks.
  *
  * @name sap.ui.ux3.FeedChunk#toggleShared
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.shareed Current shared state
  * @public
  */
@@ -1214,7 +1203,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks. 
+ * Event is raised when the user clicks to share the entry. This event is not supported for comment chunks.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1261,14 +1250,13 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
 
 
 /**
- * Event is fired when an item from the action menu button was selected. 
+ * Event is fired when an item from the action menu button was selected.
  *
  * @name sap.ui.ux3.FeedChunk#actionItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The Id of the selected item
  * @param {sap.ui.commons.MenuItemBase} oControlEvent.getParameters.item The selected item
  * @public
@@ -1279,7 +1267,7 @@ sap.ui.ux3.FeedChunk.M_EVENTS = {'deleted':'deleted','commentAdded':'commentAdde
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.FeedChunk</code>.<br/> itself. 
  *  
- * Event is fired when an item from the action menu button was selected. 
+ * Event is fired when an item from the action menu button was selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

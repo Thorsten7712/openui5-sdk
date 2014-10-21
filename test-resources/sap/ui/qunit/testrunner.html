@@ -2,9 +2,9 @@
 <html>
 <head>
 
-	<title>SAPUI5 Selenium-based QUnit Tests</title>
+	<title>SAPUI5 QUnit TestRunner</title>
 
-	<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/jquery/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/handlebars.js"></script>
 	<script type="text/javascript" src="TestRunner.js"></script>
 	<link rel="stylesheet" href="testrunner.css"/>
@@ -14,14 +14,11 @@
 			{{#pages}}
 				<option value={{page}}>{{page}}</option>
 			{{/pages}}
-	    </select>
+		</select>
 	</script>
 	
-	
 	<script>
-		var oContext = { pages:[]};
-	</script>
-	<script>
+	var oContext = { pages:[] };
 	jQuery.fn.filterByText = function(textbox){
 		return this.each(function(){
 			var selectbox = this;
@@ -62,10 +59,12 @@
 	
 	jQuery(function() {
 		
-		jQuery("#showResults").click(function(){
+		jQuery("#testPageLabel").text(window.location.origin);
+		
+		function showResults(){
 			jQuery("div.test-reporting").attr("style", "padding: 0px; display: block; border: 1px solid rgb(170, 170, 170); margin: 10px;");
 			jQuery("#openReporting").attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width:0 12px 12px 12px;border-color:transparent transparent #007dc0 transparent;float: right;position: relative;left: -10px;cursor: pointer;");
-			var $this = jQuery(this);
+			var $this = jQuery("#showResults");
 			if($this.val() === "Show all results") {
 				$("div.testResult").show();
 				$this.val("Show errors only");
@@ -74,11 +73,13 @@
 				$("div.testResult.fail").show();
 				$this.val("Show all results");
 			}
-		});
+		}
+		jQuery("#showResults").click(showResults);
 		
 		jQuery("#testPage").val(sap.ui.qunit.TestRunner.getTestPageUrl());
 		
-		jQuery("#find").click(function() {
+		function find() {
+			var oDeferred = jQuery.Deferred();
 			sap.ui.qunit.TestRunner.checkTestPage(jQuery("#testPage").val()).done(function(aTestPages) {
 				window.aTestPages = aTestPages;
 				for (var i = 0; i < aTestPages.length; i++){
@@ -88,7 +89,7 @@
 				var sHTML = fnTemplate(oContext);
 				jQuery("#testPageSelectDiv").html(sHTML);
 				jQuery("#testPageSelect > option").dblclick(function () {
-					$("#selectedTests").append(jQuery(this).clone());
+					$("#selectedTests").append(jQuery("#find").clone());
 				});
 				jQuery("#copyButtons").show();
 				jQuery("#selectedTestsDiv").show();
@@ -96,37 +97,42 @@
 				jQuery("#testPageSelect").filterByText(jQuery("#filter"));
 				jQuery("#filter").show();
 				jQuery("#console").val(aTestPages.join("\n"));
+				oDeferred.resolve();
 			});
-		});
+			return oDeferred.promise();
+		}
+		jQuery("#find").click(find);
 		
-		jQuery("#copy").click(function() {
+		function copy() {
 			var aSelectedTests = jQuery("#testPageSelect")[0].selectedOptions;
 			for (var i = 0; i < aSelectedTests.length; i++){
 				$("#selectedTests").append($("<option>").text(aSelectedTests[i].innerText).val(aSelectedTests[i].innerText));
 			};
-		});
+		}jQuery("#copy").click(copy);
 		
-		jQuery("#copyall").click(function() {
+		function copyAll() {
 			jQuery("#selectedTests").append(jQuery("#testPageSelect > option").clone());
-		});
+		}
+		jQuery("#copyall").click(copyAll);
 		
-		jQuery("#remove").click(function() {
+		function remove() {
 			var aSelectedTests = jQuery("#selectedTests")[0].selectedOptions;
 			for (var i = aSelectedTests.length-1; i >= 0; i--){
 				jQuery(aSelectedTests[i]).remove();
 			};
-		});
+		}jQuery("#remove").click(remove);
 		
-		jQuery("#removeall").click(function() {
+		function removeAll() {
 			jQuery("#selectedTests > option").remove();
-		});
+		}
+		jQuery("#removeall").click(removeAll);
 				
-		jQuery("#run").click(function() {
+		function run() {
 			if(jQuery("#selectedTests>option").length === 0){
 				alert("Please select at least on test to execute");
 			} else {
 				prepareNewRun();
-				var $this = jQuery(this);
+				var $this = jQuery("#run");
 				if ($this.val() === "Run") {
 					//$this.val("Stop");
 					var aTests = [];
@@ -162,53 +168,58 @@
 					sap.ui.qunit.TestRunner.stopTests();
 				}
 			}
-		});
+		}
+		jQuery("#run").click(run);
 		
-		jQuery("#open").click(function(){
+		function open(){
 			if(jQuery("div#test-selection").css("height")=== "300px"){
 				jQuery("div#elements").toggle();
 				jQuery("div#test-selection").animate({height: "40px"}, 500);
-				jQuery(this).attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width: 12px 12px 0 12px;border-color:#007dc0 transparent transparent transparent;float: right;position: relative;left: -10px;cursor: pointer;");
+				jQuery("#open").attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width: 12px 12px 0 12px;border-color:#007dc0 transparent transparent transparent;float: right;position: relative;left: -10px;cursor: pointer;");
 			} else {
 				jQuery("div#test-selection").animate({height: "300px"}, 500, function(){
 					jQuery("div#elements").toggle();
 				});
-				jQuery(this).attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width:0 12px 12px 12px;border-color:transparent transparent #007dc0 transparent;float: right;position: relative;left: -10px;cursor: pointer;");
+				jQuery("#open").attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width:0 12px 12px 12px;border-color:transparent transparent #007dc0 transparent;float: right;position: relative;left: -10px;cursor: pointer;");
 			}
-		});
+		}
+		jQuery("#open").click(open);
 		
 		
-		jQuery("#openCoverage").click(function(){
+		function openCoverage(){
 			if(jQuery("div.test-coverage").css("height") === "570px"){
 				jQuery("#coverageFrame").hide();
 				jQuery("div.test-coverage").animate({height: "40px"}, 500);
-				jQuery(this).attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width: 12px 12px 0 12px;border-color:#007dc0 transparent transparent transparent;float: right;position: relative;left: -10px;cursor: pointer;");
+				jQuery("#openCoverage").attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width: 12px 12px 0 12px;border-color:#007dc0 transparent transparent transparent;float: right;position: relative;left: -10px;cursor: pointer;");
 			} else {
 				jQuery("div.test-coverage").animate({height: "570px"}, 500);
 				jQuery("#coverageFrame").show();
-				jQuery(this).attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width:0 12px 12px 12px;border-color:transparent transparent #007dc0 transparent;float: right;position: relative;left: -10px;cursor: pointer;");
+				jQuery("#openCoverage").attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width:0 12px 12px 12px;border-color:transparent transparent #007dc0 transparent;float: right;position: relative;left: -10px;cursor: pointer;");
 			}
-		});
+		}
+		jQuery("#openCoverage").click(openCoverage);
 		
-		jQuery("#openReporting").click(function(){
+		function openReporting(){
 			jQuery("#showResults").toggle();
 			if(jQuery("#showResults").css("display") === "none"){
 				jQuery("div.testResult").hide();
 				jQuery("div.test-reporting").attr("style", "padding: 0px; display: block; border: 1px solid rgb(170, 170, 170); margin: 10px; height: 40px;");
-				jQuery(this).attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width: 12px 12px 0 12px;border-color:#007dc0 transparent transparent transparent;float: right;position: relative;left: -10px;cursor: pointer;");
+				jQuery("#openReporting").attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width: 12px 12px 0 12px;border-color:#007dc0 transparent transparent transparent;float: right;position: relative;left: -10px;cursor: pointer;");
 			} else {
 				jQuery("div.test-reporting").attr("style", "padding: 0px; display: block; border: 1px solid rgb(170, 170, 170); margin: 10px;");
 				$("div.testResult").show();
 				jQuery("#showResults").val("Show errors only");
-				jQuery(this).attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width:0 12px 12px 12px;border-color:transparent transparent #007dc0 transparent;float: right;position: relative;left: -10px;cursor: pointer;");
+				jQuery("#openReporting").attr("style", "width:0px;height:0px;margin:5px;border-style:solid;border-width:0 12px 12px 12px;border-color:transparent transparent #007dc0 transparent;float: right;position: relative;left: -10px;cursor: pointer;");
 			}
-		});
+		}
+		jQuery("#openReporting").click(openReporting);
 		
-		jQuery("#stop").click(function(){
+		function stop(){
 			sap.ui.qunit.TestRunner.stopTests();
-		});
+		}
+		jQuery("#stop").click(stop);
 		
-		jQuery("#coverage").click(function() {
+		function coverage() {
 		    /* var $coverframe = jQuery("<iframe>").css({
 				height: "80%",
 				width: "100%",
@@ -218,13 +229,21 @@
 			$coverframe.attr("id", "coverageFrame");
 			$coverframe.appendTo("div.test-coverage");
 			jQuery("div.test-coverage").toggle(); */
-		});
+		}
+		jQuery("#coverage").click(coverage);
 		
 		setInterval(function() {
 			if (window.aTestPages) {
 				jQuery("#run").show();
 			}
 		}, 500);
+		
+		if (sap.ui.qunit.TestRunner.getAutoStart()) {
+			find().done(function() {
+				copyAll();
+				run();
+			})
+		}
 		
 	});
 	
@@ -250,6 +269,7 @@
 			</div>
 			<div id="elements">
 				<!-- test-resources/qunit/testsuite.qunit.html -->
+				<label id="testPageLabel" for="testPage"></label>
 				<input id="testPage" type="text" size="50">
 				<input id="find" type="button" value="Find">
 				<input id="run" type="button" value="Run" style="display: none;">

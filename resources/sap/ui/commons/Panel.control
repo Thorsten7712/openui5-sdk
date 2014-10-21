@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Panel</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Represents a container with scroll functionality, the control can be used for text and controls. The Panel does not layout the embedded controls.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -32,8 +32,8 @@ jQuery.sap.require("sap.ui.core.Control");
  * <li>Properties
  * <ul>
  * <li>{@link #getWidth width} : sap.ui.core.CSSSize (default: '100%')</li>
- * <li>{@link #getVSpacing vSpacing} : int (default: 1)</li>
- * <li>{@link #getHSpacing hSpacing} : int (default: 1)</li>
+ * <li>{@link #getVSpacing vSpacing} : float (default: 1)</li>
+ * <li>{@link #getHSpacing hSpacing} : float (default: 1)</li>
  * <li>{@link #getPosition position} : sap.ui.layout.GridPosition (default: "Left")</li>
  * <li>{@link #getDefaultSpan defaultSpan} : sap.ui.layout.GridSpan (default: "L3 M6 S12")</li>
  * <li>{@link #getDefaultIndent defaultIndent} : sap.ui.layout.GridIndent (default: "L0 M0 S0")</li>
@@ -59,24 +59,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * The Grid control is a layout which positions its child controls in a 12 column flow layout. Its children can be specified to take on a variable amount of columns depending on available screen size. With this control it is possible to achieve flexible layouts and line-breaks for large-, medium- and small-sized screens, such as desktop, tablet, and mobile. The Grid control's width can be percentage- or pixel-based and the spacing between its columns can be set to various pre-defined values.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.15.0
  * @name sap.ui.layout.Grid
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.layout.Grid", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
-		"vSpacing" : {type : "int", group : "Dimension", defaultValue : 1},
-		"hSpacing" : {type : "int", group : "Dimension", defaultValue : 1},
+		"vSpacing" : {type : "float", group : "Dimension", defaultValue : 1},
+		"hSpacing" : {type : "float", group : "Dimension", defaultValue : 1},
 		"position" : {type : "sap.ui.layout.GridPosition", group : "Dimension", defaultValue : "Left"},
 		"defaultSpan" : {type : "sap.ui.layout.GridSpan", group : "Behavior", defaultValue : "L3 M6 S12"},
 		"defaultIndent" : {type : "sap.ui.layout.GridIndent", group : "Behavior", defaultValue : "L0 M0 S0"},
@@ -84,7 +82,7 @@ sap.ui.core.Control.extend("sap.ui.layout.Grid", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -133,11 +131,11 @@ sap.ui.core.Control.extend("sap.ui.layout.Grid", { metadata : {
 
 /**
  * Getter for property <code>vSpacing</code>.
- * Optional. Vertical spacing between the rows in the Grid. In rem, can be 0, 1 and 2.
+ * Optional. Vertical spacing between the rows in the Grid. In rem, allowed values are 0, 0.5, 1 and 2.
  *
  * Default value is <code>1</code>
  *
- * @return {int} the value of property <code>vSpacing</code>
+ * @return {float} the value of property <code>vSpacing</code>
  * @public
  * @name sap.ui.layout.Grid#getVSpacing
  * @function
@@ -148,7 +146,7 @@ sap.ui.core.Control.extend("sap.ui.layout.Grid", { metadata : {
  *
  * Default value is <code>1</code> 
  *
- * @param {int} iVSpacing  new value for property <code>vSpacing</code>
+ * @param {float} fVSpacing  new value for property <code>vSpacing</code>
  * @return {sap.ui.layout.Grid} <code>this</code> to allow method chaining
  * @public
  * @name sap.ui.layout.Grid#setVSpacing
@@ -158,11 +156,11 @@ sap.ui.core.Control.extend("sap.ui.layout.Grid", { metadata : {
 
 /**
  * Getter for property <code>hSpacing</code>.
- * Optional. Horizontal spacing between the content in the Grid. In rem, can be 0, 1 rem or 2 rem.
+ * Optional. Horizontal spacing between the content in the Grid. In rem, allowed values are 0, 0.5 , 1 or 2.
  *
  * Default value is <code>1</code>
  *
- * @return {int} the value of property <code>hSpacing</code>
+ * @return {float} the value of property <code>hSpacing</code>
  * @public
  * @name sap.ui.layout.Grid#getHSpacing
  * @function
@@ -173,7 +171,7 @@ sap.ui.core.Control.extend("sap.ui.layout.Grid", { metadata : {
  *
  * Default value is <code>1</code> 
  *
- * @param {int} iHSpacing  new value for property <code>hSpacing</code>
+ * @param {float} fHSpacing  new value for property <code>hSpacing</code>
  * @return {sap.ui.layout.Grid} <code>this</code> to allow method chaining
  * @public
  * @name sap.ui.layout.Grid#setHSpacing

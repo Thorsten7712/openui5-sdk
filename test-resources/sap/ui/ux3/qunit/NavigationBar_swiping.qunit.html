@@ -14,8 +14,16 @@
     
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
+		<style>
+			.sapUiUx3NavBarArrow {
+				/* Enable testing of the arrow, even though it is not used outside the shell in BC */
+				display: inline-block !important; 
+			}
+			
+		</style>
 		<script language="javascript">
 
 		// to make NavigationBar believe the device supports touch

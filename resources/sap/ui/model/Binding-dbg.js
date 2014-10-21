@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -38,15 +38,14 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './ChangeReason
 			this.oContext = oContext;
 			this.mParameters = mParameters;
 			this.bInitial = false;
-			
+			this.bSuspended = false;
 		},
 	
 		metadata : {
 			"abstract" : true,
 			publicMethods : [
 				// methods
-				"getPath", "getContext", "getModel", "attachChange", "detachChange", "refresh", "isInitial","attachDataRequested","detachDataRequested","attachDataReceived","detachDataReceived"
-			]
+				"getPath", "getContext", "getModel", "attachChange", "detachChange", "refresh", "isInitial","attachDataRequested","detachDataRequested","attachDataReceived","detachDataReceived","suspend","resume"]
 		}
 	
 	});
@@ -253,7 +252,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './ChangeReason
 	 * @function
 	 */
 	Binding.prototype.checkUpdate = function(bForceUpdate) {
-		this._fireChange({reason: ChangeReason.Change});
+		if (!this.bSuspended) {
+			this._fireChange({reason: ChangeReason.Change});
+		}
 	};
 	
 	/**
@@ -282,6 +283,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './ChangeReason
 	 */
 	Binding.prototype.initialize = function() {
 		this.checkUpdate(true);
+		return this;
 	};
 	
 	/**
@@ -318,7 +320,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './ChangeReason
 	};
 	
 	/**
-	 * attach multiple events
+	 * Attach multiple events.
+	 *
+	 * @param {object} oEvents
 	 * @protected
 	 * @name sap.ui.model.Binding#attachEvents
 	 * @function
@@ -340,7 +344,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './ChangeReason
 	};
 	
 	/**
-	 * detach multiple events
+	 * Detach multiple events-
+	 *
+	 * @param {object} oEvents
 	 * @protected
 	 * @name sap.ui.model.Binding#detachEvents
 	 * @function
@@ -394,6 +400,21 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider', './ChangeReason
 	 */
 	Binding.prototype._fireRefresh = function(mArguments) {
 		this.fireEvent("refresh", mArguments);
+	};
+	
+	/**
+	 * Suspends the binding update. No change Events will be fired
+	 */
+	Binding.prototype.suspend = function() {
+		this.bSuspended = true;
+	};
+	
+	/**
+	 * Resumes the binding update. Change events will be fired again.
+	 */
+	Binding.prototype.resume = function() {
+		this.bSuspended = false;
+		this.checkUpdate();
 	};
 
 	return Binding;

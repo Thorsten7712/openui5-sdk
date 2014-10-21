@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>CalloutBase</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>CalloutBase is a building block for Callout. Do not use it directly. Use the Callout control instead</documentation>
 

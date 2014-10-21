@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Overlay</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Overlay Control</documentation>
 	
 	<baseType>sap.ui.core/Control</baseType>

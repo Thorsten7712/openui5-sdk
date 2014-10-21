@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.Bar");jQuery.sap.require("sap.m.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.m.Bar",{metadata:{interfaces:["sap.m.IBar"],library:"sap.m",properties:{"enableFlexBox":{type:"boolean",group:"Misc",defaultValue:false,deprecated:true},"translucent":{type:"boolean",group:"Appearance",defaultValue:false,deprecated:true},"design":{type:"sap.m.BarDesign",group:"Appearance",defaultValue:sap.m.BarDesign.Auto},"visible":{type:"boolean",group:"Appearance",defaultValue:true}},aggregations:{"contentLeft":{type:"sap.ui.core.Control",multiple:true,singularName:"contentLeft"},"contentMiddle":{type:"sap.ui.core.Control",multiple:true,singularName:"contentMiddle"},"contentRight":{type:"sap.ui.core.Control",multiple:true,singularName:"contentRight"}}}});jQuery.sap.require("sap.m.BarInPageEnabler");

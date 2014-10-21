@@ -31,7 +31,7 @@
 				title="Delivery On"
 				maxContainerCols="2" >
 					<Label text="Plant"/>
-					<Text text="SAP AG"/>
+					<Text text="SAP SE"/>
 					<Label text="Street"/>
 					<Text text="Dietmar-Hopp-Allee"/>
 					<Label text="City"/>

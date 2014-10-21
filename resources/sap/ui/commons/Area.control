@@ -3,7 +3,7 @@
 
 	<name>Area</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Used for defining areas in an image map. At runtime, the user can trigger an action, or start a URL, from the single image areas.</documentation>
 
 	<baseType>sap.ui.core/Element</baseType>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,26 +53,21 @@ jQuery.sap.require("sap.ui.core.Control");
  *
  * @class
  * Allows to use a limited set of HTML tags for display
- * 
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.0
  * @name sap.ui.commons.FormattedTextView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.FormattedTextView", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"setContent"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -80,7 +75,7 @@ sap.ui.core.Control.extend("sap.ui.commons.FormattedTextView", { metadata : {
 		"htmlText" : {type : "string", group : "Misc", defaultValue : ""}
 	},
 	aggregations : {
-    	"controls" : {type : "sap.ui.commons.FormattedTextViewControl", multiple : true, singularName : "control"}
+		"controls" : {type : "sap.ui.commons.FormattedTextViewControl", multiple : true, singularName : "control"}
 	}
 }});
 
@@ -261,17 +256,15 @@ sap.ui.core.Control.extend("sap.ui.commons.FormattedTextView", { metadata : {
 /**
  * Sets text with placeholders and given array of controls
  *
- * @name sap.ui.commons.FormattedTextView.prototype.setContent
+ * @name sap.ui.commons.FormattedTextView#setContent
  * @function
- * @param {string} 
- *         sHtmlText
+ * @param {string} sHtmlText
  *         Contains the corresponding HTML-text
- * @param {sap.ui.commons.FormattedTextViewControl} 
- *         oControls
+ * @param {sap.ui.commons.FormattedTextViewControl} oControls
  *         Array of controls that should be used within given HTML-text
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

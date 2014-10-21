@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>FlexBox</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The FlexBox control builds the container for a flexible box layout.
 
 Browser support:

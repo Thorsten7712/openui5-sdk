@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -66,18 +66,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * Available value states are "Error", "None", "Success", "Warning".
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RadioButton
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RadioButton", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"text" : {type : "string", group : "Data", defaultValue : null},
@@ -174,7 +172,6 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * Getter for property <code>enabled</code>.
  * 
  * Disabled controls are displayed in another color, depending on the customer settings.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -251,7 +248,6 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * Getter for property <code>valueState</code>.
  * 
  * Enumeration sap.ui.core.ValueState provides state values Error, Success, Warning, None
- * 
  *
  * Default value is <code>None</code>
  *
@@ -303,7 +299,6 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * Getter for property <code>textDirection</code>.
  * 
  * Available options are LTR and RTL. Alternatively, the control can inherit the text direction from its parent container.
- * 
  *
  * Default value is <code>Inherit</code>
  *
@@ -453,14 +448,13 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is triggered when the user makes a change on the radio button. 
+ * Event is triggered when the user makes a change on the radio button.
  *
  * @name sap.ui.commons.RadioButton#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -469,7 +463,7 @@ sap.ui.commons.RadioButton.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RadioButton</code>.<br/> itself. 
  *  
- * Event is triggered when the user makes a change on the radio button. 
+ * Event is triggered when the user makes a change on the radio button.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

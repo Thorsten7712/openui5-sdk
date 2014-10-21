@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64,18 +64,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * image icons which shall be used as rating symbols. When the user performs a rating, an event is fired.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.RatingIndicator
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.RatingIndicator", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -443,14 +441,13 @@ sap.ui.commons.RatingIndicator.M_EVENTS = {'change':'change'};
 
 	
 /**
- * The event is fired when the user has done a rating. 
+ * The event is fired when the user has done a rating.
  *
  * @name sap.ui.commons.RatingIndicator#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.value The rated value
  * @public
  */
@@ -460,7 +457,7 @@ sap.ui.commons.RatingIndicator.M_EVENTS = {'change':'change'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.RatingIndicator</code>.<br/> itself. 
  *  
- * The event is fired when the user has done a rating. 
+ * The event is fired when the user has done a rating.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

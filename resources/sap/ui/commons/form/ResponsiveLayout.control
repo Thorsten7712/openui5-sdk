@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>form/ResponsiveLayout</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.10.0</since>
 
 	<documentation>Renders a form with responsive layout. Internally the ResponsiveFlowLayout is used.</documentation>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -18,7 +18,7 @@
  * The <code>sap.ui.test.qunit</code> namespace contains helper functionality for
  * QUnit tests.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @namespace
  * @name sap.ui.test.qunit
  * @public
@@ -191,6 +191,11 @@ sap.ui.define('sap/ui/qunit/QUnitUtils', ['jquery.sap.global'],
 	
 	
 	/**
+	 * @param {object} oTarget
+	 * @param {string} sKey
+	 * @param {boolean} bShiftKey
+	 * @param {boolean} bAltKey
+	 * @param {boolean} bCtrlKey
 	 * @deprecated Use <code>sap.ui.test.qunit.triggerKeydown</code> instead.
 	 * @see sap.ui.test.qunit.triggerKeydown
 	 * @public

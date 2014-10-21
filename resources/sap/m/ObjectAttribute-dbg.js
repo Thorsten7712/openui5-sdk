@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55,20 +55,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * ObjectAttribute displays a text field that can be normal or active. Object attribute fires a press event when the user selects active text.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.ObjectAttribute
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ObjectAttribute", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"visible" : {type : "boolean", group : "Appearance", defaultValue : true},
@@ -77,7 +73,7 @@ sap.ui.core.Control.extend("sap.m.ObjectAttribute", { metadata : {
 		"active" : {type : "boolean", group : "Misc", defaultValue : null}
 	},
 	aggregations : {
-    	"_textControl" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
+		"_textControl" : {type : "sap.ui.core.Control", multiple : false, visibility : "hidden"}
 	},
 	events : {
 		"press" : {}
@@ -205,14 +201,13 @@ sap.m.ObjectAttribute.M_EVENTS = {'press':'press'};
 
 
 /**
- * Event is fired when the user clicks active text 
+ * Event is fired when the user clicks active text
  *
  * @name sap.m.ObjectAttribute#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.domRef Dom reference of the object attributes' text to be used for positioning.
  * @public
  */
@@ -222,7 +217,7 @@ sap.m.ObjectAttribute.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.ObjectAttribute</code>.<br/> itself. 
  *  
- * Event is fired when the user clicks active text 
+ * Event is fired when the user clicks active text
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -304,6 +299,28 @@ sap.m.ObjectAttribute.prototype.ontap = function(oEvent) {
 	//event should only be fired if the click is on the text
 	if(!!this.getActive() && (oEvent.target.id != this.getId())) {
 		this.firePress({domRef: this.getDomRef()});
+	}
+};
+
+/**
+ * @private
+ */
+sap.m.ObjectAttribute.prototype.onsapenter = function(oEvent) {
+	if (!!this.getActive()) {
+		this.firePress({
+			domRef : this.getDomRef()
+		});
+	}
+};
+
+/**
+ * @private
+ */
+sap.m.ObjectAttribute.prototype.onsapspace = function(oEvent) {
+	if (!!this.getActive()) {
+		this.firePress({
+			domRef : this.getDomRef()
+		});
 	}
 };
 

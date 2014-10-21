@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -108,8 +108,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Element', 'j
 	 * information to them.
 	 *
 	 * @extends sap.ui.base.ManagedObject
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @param {sap.ui.Core} oCore internal API of the <core>Core</code> that manages this UIArea
 	 * @param {object} [oRootNode] reference to the Dom Node that should be 'hosting' the UI Area.
 	 * @public
@@ -340,7 +340,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Element', 'j
 	 * @name sap.ui.core.UIArea#removeContent
 	 * @function
 	 */
-	UIArea.prototype.removeContent = function(vContent, _bSuppressInvalidate) {
+	UIArea.prototype.removeContent = function(vContent, /* internal only */ _bSuppressInvalidate) {
 		var oContent = this.removeAggregation("content", vContent, _bSuppressInvalidate);
 		if ( !_bSuppressInvalidate ) {
 			var oDomRef;
@@ -599,7 +599,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Element', 'j
 	 * controls or the complete content. It also informs the Core when it
 	 * becomes invalid the first time.
 	 *
-	 * @protected
+	 * @param {object} oControl
+	 * @private
 	 * @name sap.ui.core.UIArea#addInvalidatedControl
 	 * @function
 	 */
@@ -639,7 +640,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Element', 'j
 	 * 
 	 * Either renders the whole UIArea or a set of descendent controls that have been invalidated.
 	 * 
-	 * @param force {boolean} true, if the rerendering of the UI area should be forced
+	 * @param {boolean} force true, if the rerendering of the UI area should be forced
 	 * @return {boolean} whether a redraw was necessary or not
 	 * @private
 	 * @name sap.ui.core.UIArea#rerender
@@ -698,7 +699,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Element', 'j
 						}
 					}
 					return len;
-				}
+				};
 	
 				//First remove the old Dom nodes and then render the controls again
 				cleanUpDom(aContentToRemove);
@@ -733,7 +734,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Element', 'j
 					oAncestor = oAncestor.getParent();
 				}
 				return false;
-			}
+			};
 			
 			for (var n in mInvalidatedControls) { // TODO for in skips some names in IE8!
 				var oControl = this.oCore.byId(n);
@@ -776,7 +777,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Element', 'j
 		if ( this.mInvalidatedControls[sId] ) {
 			delete this.mInvalidatedControls[sId];
 		}
-	}
+	};
 
 	/**
 	 * Rerenders the given control

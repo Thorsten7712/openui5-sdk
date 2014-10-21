@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -20,7 +20,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * Context elements are created either by the ListBinding for each list entry
 	 * or by using createBindingContext.
 	 *
-	 * @param {sap.ui.model.Model} the model
+	 * @param {sap.ui.model.Model} oModel the model
 	 * @param {String} sPath the path
 	 * @param {Object} oContext the context object
 	 * @abstract
@@ -77,14 +77,15 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	};
 	
 	/**
-	 * Getter for path
+	 * Getter for path of the context itself or a subpath
 	 * @public
+	 * @param {String} sPath the binding path
 	 * @return {String} the binding path
 	 * @name sap.ui.model.Context#getPath
 	 * @function
 	 */
-	Context.prototype.getPath = function() {
-		return this.sPath;
+	Context.prototype.getPath = function(sPath) {
+		return this.sPath + (sPath ? "/" + sPath : "");
 	};
 	
 	/**
@@ -100,14 +101,15 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	};
 	
 	/**
-	 * Gets the (model dependent) object the context points to
+	 * Gets the (model dependent) object the context points to or the object with the given relative binding path
 	 * @public
+	 * @param {String} sPath the binding path
 	 * @return {object} the context object
 	 * @name sap.ui.model.Context#getObject
 	 * @function
 	 */
-	Context.prototype.getObject = function() {
-		return this.oModel.getObject(this.sPath);
+	Context.prototype.getObject = function(sPath) {
+		return this.oModel.getObject(sPath, this);
 	};
 	
 	/** 

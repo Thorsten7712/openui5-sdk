@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.require("sap.m.FlexBoxCssPropertyMap");
@@ -93,22 +93,18 @@ sap.m.FlexBoxStylingHelper.setFlexBoxStyles = function(oRm, oControl) {
  * @param {sap.m.FlexItemData} oLayoutData an object representation of the layout data
  */
 sap.m.FlexBoxStylingHelper.setFlexItemStyles = function(oRm, oLayoutData) {
-	var order = "";
-	var growFactor = "";
-	var alignSelf = "";
-
 	// Set values if different from default
-	order = oLayoutData.getOrder();
+	var order = oLayoutData.getOrder();
 	if(order) {
 		sap.m.FlexBoxStylingHelper.setStyle(oRm, null, "order", order);
 	}
 
-	growFactor = oLayoutData.getGrowFactor();
+	var growFactor = oLayoutData.getGrowFactor();
 	if(growFactor !== undefined) {
 		sap.m.FlexBoxStylingHelper.setStyle(oRm, null, "flex-grow", growFactor);
 	}
 
-	alignSelf = oLayoutData.getAlignSelf().toLowerCase();
+	var alignSelf = oLayoutData.getAlignSelf().toLowerCase();
 
 	// Add flex prefix to start and end values to create CSS value
 	if(alignSelf === "start" || alignSelf === "end") {
@@ -119,20 +115,17 @@ sap.m.FlexBoxStylingHelper.setFlexItemStyles = function(oRm, oLayoutData) {
 		sap.m.FlexBoxStylingHelper.setStyle(oRm, null, "align-self", alignSelf);
 	}
 
-//	if(jQuery.support.newFlexBoxLayout) {
-//		var shrinkFactor = "";
-// 		var baseSize = "";
-//
-//		shrinkFactor = oLayoutData.getShrinkFactor();
-//		if(shrinkFactor !== 1) {
-//			sap.m.FlexBoxStylingHelper.setStyle(oRm, null, "flex-shrink", shrinkFactor);
-//		}
-//
-//		baseSize = oLayoutData.getBaseSize().toLowerCase();
+	if(jQuery.support.newFlexBoxLayout) {
+		var shrinkFactor = oLayoutData.getShrinkFactor();
+		if(shrinkFactor !== 1) {
+			sap.m.FlexBoxStylingHelper.setStyle(oRm, null, "flex-shrink", shrinkFactor);
+		}
+
+//		var baseSize = oLayoutData.getBaseSize().toLowerCase();
 //		if(baseSize !== undefined) {
 //			sap.m.FlexBoxStylingHelper.setStyle(oRm, null, "flex-basis", baseSize);
 //		}
-//	}
+	}
 };
 
 /**
@@ -216,9 +209,14 @@ sap.m.FlexBoxStylingHelper.setOldSpecStyle = function(oRm, oControl, sProperty, 
 		var mLegacyMap = null;
 		if(typeof(sap.m.FlexBoxCssPropertyMap[sSpec][sProperty]) === "object") {
 			if(sap.m.FlexBoxCssPropertyMap[sSpec][sProperty]["<number>"]) {
-				mLegacyMap = sap.m.FlexBoxCssPropertyMap[sSpec][sProperty]["<number>"];
-				for(var key in mLegacyMap) {
-					mLegacyMap[key] = sValue;
+				mLegacyMap = {};
+				for(var key in sap.m.FlexBoxCssPropertyMap[sSpec][sProperty]["<number>"]) {
+					// Check if the target is also a number, otherwise assume it's a literal
+					if(sap.m.FlexBoxCssPropertyMap[sSpec][sProperty]["<number>"][key] === "<number>") {
+						mLegacyMap[key] = sValue;
+					} else {
+						mLegacyMap[key] = sap.m.FlexBoxCssPropertyMap[sSpec][sProperty]["<number>"][key];
+					}
 				}
 			} else {
 				mLegacyMap = sap.m.FlexBoxCssPropertyMap[sSpec][sProperty][sValue];

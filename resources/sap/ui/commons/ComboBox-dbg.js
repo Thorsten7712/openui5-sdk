@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,25 +59,22 @@ jQuery.sap.require("sap.ui.commons.TextField");
  * @class
  * 
  * The control provides a field that allows end users to either enter some text, or to choose an entry out of a list of pre-defined items. The choosable items can be provided in the form of complete list boxes, single listbox items, or text strings defined for the current application.
- * 
  * @extends sap.ui.commons.TextField
  * @implements sap.ui.commons.ToolbarItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ComboBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.commons.ToolbarItem"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"maxPopupItems" : {type : "int", group : "Behavior", defaultValue : 10},
@@ -87,8 +84,8 @@ sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "item", bindable : "bindable"}, 
-    	"myListBox" : {type : "sap.ui.commons.ListBox", multiple : false, visibility : "hidden"}
+		"items" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "item", bindable : "bindable"}, 
+		"myListBox" : {type : "sap.ui.commons.ListBox", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"listBox" : {type : "sap.ui.commons.ListBox", multiple : false}
@@ -117,7 +114,6 @@ sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
  * Getter for property <code>maxPopupItems</code>.
  * 
  * Defines the number of items that shall be displayed at once. If the overall number of list items is higher than the setting, a scrollbar is provided.
- * 
  *
  * Default value is <code>10</code>
  *
@@ -223,7 +219,6 @@ sap.ui.commons.TextField.extend("sap.ui.commons.ComboBox", { metadata : {
  * Getter for aggregation <code>items</code>.<br/>
  * 
  * Getter for aggregation items. Allows setting ListItems (see sap.ui.core.ListBox) that shall be displayed in the list.
- * 
  * 
  * <strong>Note</strong>: this is the default aggregation for ComboBox.
  * @return {sap.ui.core.ListItem[]}

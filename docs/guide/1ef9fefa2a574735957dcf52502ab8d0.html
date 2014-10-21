@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7729011738734094"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=6351780636365125"/>
 <title>Writing Data to the HTML DOM as DATA-* Attribute</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -62,14 +64,17 @@
 &lt;/Button&gt;</pre></div>
 <p class="p">This results in the following HTML:</p>
 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;button ...  data-myData="Hello"  ... &gt;</pre></div>
+<div class="p">This is done similarly in HTML
+			views:<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;div data-sap-ui-type="sap.m.Button" data-text="This button has custom data written to the DOM"&gt;
+   &lt;div data-sap-ui-aggregation="customData"&gt;
+      &lt;div data-sap-ui-type="sap.ui.core.CustomData" data-key="mydata" data-value="Hello" data-write-to-dom="true"/&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
 <p class="p">The CSS can now use attribute selectors to check the presence or the value of the custom data
 			attribute:</p>
 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">button[data-mydata="Hello"] { border: 3px solid red !important; }</pre></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

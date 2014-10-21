@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -32,6 +32,7 @@ jQuery.sap.require("sap.ui.core.Element");
  * <li>Properties
  * <ul>
  * <li>{@link #getStartsSection startsSection} : boolean (default: false)</li>
+ * <li>{@link #getShowSeparator showSeparator} : boolean (default: true)</li>
  * <li>{@link #getSelected selected} : boolean (default: false)</li>
  * <li>{@link #getShowMarker showMarker} : boolean (default: false)</li>
  * <li>{@link #getIcon icon} : sap.ui.core.URI</li>
@@ -60,22 +61,21 @@ jQuery.sap.require("sap.ui.core.Element");
  * Header Action item of the Shell.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.15.1
  * @name sap.ui.unified.ShellHeadItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.unified.ShellHeadItem", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.unified",
 	properties : {
 		"startsSection" : {type : "boolean", group : "Appearance", defaultValue : false, deprecated: true},
+		"showSeparator" : {type : "boolean", group : "Appearance", defaultValue : true},
 		"selected" : {type : "boolean", group : "Appearance", defaultValue : false},
 		"showMarker" : {type : "boolean", group : "Appearance", defaultValue : false, deprecated: true},
 		"icon" : {type : "sap.ui.core.URI", group : "Appearance", defaultValue : null},
@@ -131,6 +131,33 @@ sap.ui.unified.ShellHeadItem.M_EVENTS = {'press':'press'};
  * @deprecated Since version 1.18. 
  * Dividers are not supported anymore.
  * @name sap.ui.unified.ShellHeadItem#setStartsSection
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>showSeparator</code>.
+ * If set to true, a separator is displayed after the item.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>showSeparator</code>
+ * @public
+ * @since 1.22.5
+ * @name sap.ui.unified.ShellHeadItem#getShowSeparator
+ * @function
+ */
+
+/**
+ * Setter for property <code>showSeparator</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bShowSeparator  new value for property <code>showSeparator</code>
+ * @return {sap.ui.unified.ShellHeadItem} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.22.5
+ * @name sap.ui.unified.ShellHeadItem#setShowSeparator
  * @function
  */
 
@@ -242,14 +269,13 @@ sap.ui.unified.ShellHeadItem.M_EVENTS = {'press':'press'};
 
 
 /**
- * Event is fired when the user presses the item. 
+ * Event is fired when the user presses the item.
  *
  * @name sap.ui.unified.ShellHeadItem#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -258,7 +284,7 @@ sap.ui.unified.ShellHeadItem.M_EVENTS = {'press':'press'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.unified.ShellHeadItem</code>.<br/> itself. 
  *  
- * Event is fired when the user presses the item. 
+ * Event is fired when the user presses the item.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -306,11 +332,21 @@ sap.ui.unified.ShellHeadItem.prototype.onclick = function(oEvent){
 	this.firePress();
 };
 
+sap.ui.unified.ShellHeadItem.prototype.onsapspace = sap.ui.unified.ShellHeadItem.prototype.onclick;
+
 
 sap.ui.unified.ShellHeadItem.prototype.setStartsSection = function(bStartsSection){
 	bStartsSection = !!bStartsSection;
 	this.setProperty("startsSection", bStartsSection, true);
 	this.$().toggleClass("sapUiUfdShellHeadItmDelim", bStartsSection);
+	return this;
+};
+
+
+sap.ui.unified.ShellHeadItem.prototype.setShowSeparator = function(bShowSeparator){
+	bShowSeparator = !!bShowSeparator;
+	this.setProperty("showSeparator", bShowSeparator, true);
+	this.$().toggleClass("sapUiUfdShellHeadItmSep", bShowSeparator);
 	return this;
 };
 

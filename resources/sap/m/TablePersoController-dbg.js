@@ -1,6 +1,6 @@
 /*
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -27,7 +27,7 @@ jQuery.sap.require("sap.m.TablePersoDialog");
  * @class Table Personalization Controller
  * @extends sap.ui.base.ManagedObject
  * @author SAP
- * @version 1.22.4
+ * @version 1.24.2
  * @name sap.m.TablePersoController
  */
 sap.ui.base.ManagedObject.extend("sap.m.TablePersoController", /** @lends sap.m.TablePersoController */
@@ -156,6 +156,7 @@ sap.m.TablePersoController.prototype.getTablePersoDialog = function() {
  * Applies the personalizations by getting the existing personalizations
  * and adjusting to the table.
  *
+ * @param {object} oTable
  * @public
  */
 sap.m.TablePersoController.prototype.applyPersonalizations = function(oTable) {
@@ -326,7 +327,8 @@ sap.m.TablePersoController.prototype.savePersonalizations = function() {
 
 
 /**
- * Refresh the personalizations
+ * Refresh the personalizations: reloads the personalization information from the table perso 
+ * provider, applies it to the controller's table and updates the controller's table perso dialog.
  *
  * @public
  */
@@ -364,6 +366,7 @@ sap.m.TablePersoController.prototype.openDialog = function() {
 
 /**
  * Reflector for the controller's 'contentWidth' property.
+ * @param {sap.ui.core.CSSSize} sWidth
  * @public
  */
 sap.m.TablePersoController.prototype.setContentWidth = function(sWidth) {
@@ -377,6 +380,7 @@ sap.m.TablePersoController.prototype.setContentWidth = function(sWidth) {
 
 /**
  * Reflector for the controller's 'contentHeight' property.
+ * @param {sap.ui.core.CSSSize} sHeight
  * @public
  */
 sap.m.TablePersoController.prototype.setContentHeight = function(sHeight) {
@@ -390,6 +394,7 @@ sap.m.TablePersoController.prototype.setContentHeight = function(sHeight) {
 
 /**
  * Reflector for the controller's 'hasGrouping' property.
+ * @param {boolean} bHasGrouping
  * @public
  */
 sap.m.TablePersoController.prototype.setHasGrouping = function(bHasGrouping) {
@@ -403,6 +408,7 @@ sap.m.TablePersoController.prototype.setHasGrouping = function(bHasGrouping) {
 
 /**
  * Reflector for the controller's 'showSelectAll' property.
+ * @param {boolean} bShowSelectAll
  * @public
  */
 sap.m.TablePersoController.prototype.setShowSelectAll = function(bShowSelectAll) {
@@ -416,6 +422,7 @@ sap.m.TablePersoController.prototype.setShowSelectAll = function(bShowSelectAll)
 
 /**
  * Reflector for the controller's 'showResetAll' property.
+ * @param {boolean} bShowResetAll
  * @public
  */
 sap.m.TablePersoController.prototype.setShowResetAll = function(bShowResetAll) {
@@ -434,6 +441,7 @@ sap.m.TablePersoController.prototype.setShowResetAll = function(bShowResetAll) {
  * If a component name is set using this method, it will be used, regardless of
  * whether the table's app has a different component name or not.
  * 
+ * @param {string} sCompName
  * @public
  */
 sap.m.TablePersoController.prototype.setComponentName = function(sCompName) {

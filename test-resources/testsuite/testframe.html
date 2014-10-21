@@ -176,7 +176,7 @@
 			}
 			
 			function editInSnippix() {
-				var snippixBaseUrl = "http://veui5infra.dhcp.wdf.sap.corp:8080/snippix/"; /* always use the central snippix to avoid spreading snippets across multiple servers */
+				var snippixBaseUrl = "http://veui5infra:8080/snippix/"; /* always use the central snippix to avoid spreading snippets across multiple servers */
 				var url = window.frames['sap-ui-ContentWindow'].document.location.href;
 				url = url.replace(/%/g, "%25").replace(/\?/g, "%3F").replace(/&/g, "%26").replace(/#/g, "%23"); // escape special characters in URL
 				window.open(snippixBaseUrl + "?url=" + url, '_blank');
@@ -192,23 +192,17 @@
 				window.open(baseUrl + "?url=" + url, '_blank');
 			}
 			
-			function redirectToJSUnit() {
-				var path,
-					baseUrl = window.location.protocol + "//" + window.location.host + "",
-				    contentUrl = sap.ui.testfwk.TestFWK.getContentURL();
-				if ( jQuery.sap.syncHead(baseUrl + "/jsunit-testrunner/") ) {
-					
-					if(contentUrl && contentUrl.indexOf(".qunit.") !== -1){ // User is currently viewing a single qunit page
-						window.open(baseUrl + "/jsunit-testrunner/testRunner.html?testpage=" + window.location.host +contentUrl);
-					}else{ //run everything
-						path = window.location.pathname;
-					  	window.open(baseUrl + path.substring(0, path.substring(1).indexOf("/") + 1) + "/jsunit.jsp");
-					}
-				} else {
-					alert("JSUnit Testrunner is not deployed on your server!");
-				}
+			function redirectToTestrunner() {
+				
+				var sContentUrl = sap.ui.testfwk.TestFWK.getContentURL(),
+				    aMatches = /.*\/test-resources\/(.*\.qunit\.html)$/i.exec(sContentUrl)
+				    sTestPage = aMatches && aMatches[0],
+				    sTestrunnerUrl = "../sap/ui/qunit/testrunner.html" + (sTestPage ? "?testpage=" + encodeURIComponent(sTestPage) : ""),
+				
+				window.open(sTestrunnerUrl);
+				
 			}
-							
+			
 		</script>
 	</head>
 

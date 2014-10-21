@@ -14,6 +14,7 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 	
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
@@ -101,20 +102,20 @@
 				ok(oActionSheet.isOpen(), "ActionSheet is already open");
 				setTimeout(function(){
 					var $actionSheet = jQuery.sap.byId("actionsheet"),
-						$parentControl = (jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)) ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
-						$header = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $parentControl.children("header.sapMBar") : $parentControl.children("header"),
-						$cancelButton = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $actionSheet.children("button.sapMActionSheetCancelButton") : $parentControl.find("footer button.sapMActionSheetCancelButton");
+						$parentControl = !sap.ui.Device.system.phone ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
+						$header = $parentControl.children("header.sapMBar"),
+						$cancelButton = $actionSheet.children("button.sapMActionSheetCancelButton");
 					expect(8);
 					ok(jQuery.sap.domById("actionsheet"), "ActionSheet is rendered after it's opened.");
 					ok($actionSheet.closest("#sap-ui-static")[0], "ActionSheet should be rendered inside the static uiArea.");
 					ok($parentControl[0], "ActionSheet is wrapped either in Popover or Dialog");
 
-					if(jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)){
+					if(!sap.ui.Device.system.phone){
 						ok(!($header[0]), "Title is always ignored when doesn't run on phone");
 					}else{
 						ok($header[0], "Title is rendered");
 					}
-					if(jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)){
+					if(!sap.ui.Device.system.phone){
 						ok(!($cancelButton[0]), "Cancel button is never rendered when doesn't run on phone");
 					}else{
 						ok($cancelButton[0], "Cancel button is rendered");
@@ -135,15 +136,15 @@
 				ok(oActionSheet.isOpen(), "ActionSheet is already open");
 				setTimeout(function(){
 					var $actionSheet = jQuery.sap.byId("actionsheet"),
-						$parentControl = (jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)) ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
-						$header = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $parentControl.children("header.sapMBar") : $parentControl.children("header"),
-						$cancelButton = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $actionSheet.children("button.sapMActionSheetCancelButton") : $parentControl.find("footer button.sapMActionSheetCancelButton");
+						$parentControl = !sap.ui.Device.system.phone ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
+						$header = $parentControl.children("header.sapMBar"),
+						$cancelButton = $actionSheet.children("button.sapMActionSheetCancelButton");
 					expect(8);
 					ok(jQuery.sap.domById("actionsheet"), "ActionSheet is rendered after it's opened.");
 					ok($actionSheet.closest("#sap-ui-static")[0], "ActionSheet should be rendered inside the static uiArea.");
 					ok($parentControl[0], "ActionSheet is wrapped either in Popover or Dialog");
 					
-					if(jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)){
+					if(!sap.ui.Device.system.phone){
 						ok(!($header[0]), "Title is always ignored in iPad");
 					}else{
 						ok($header[0], "Title is rendered");
@@ -166,9 +167,9 @@
 				ok(oActionSheet.isOpen(), "ActionSheet is already open");
 				setTimeout(function(){
 					var $actionSheet = jQuery.sap.byId("actionsheet"),
-						$parentControl = (jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)) ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
-						$header = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $parentControl.children("div.sapMBar") : $parentControl.children("header"),
-						$cancelButton = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $actionSheet.children("button.sapMActionSheetCancelButton") : $parentControl.find("footer button.sapMActionSheetCancelButton");
+						$parentControl = !sap.ui.Device.system.phone ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
+						$header = $parentControl.children("div.sapMBar"),
+						$cancelButton = $actionSheet.children("button.sapMActionSheetCancelButton");
 					expect(8);
 					ok(jQuery.sap.domById("actionsheet"), "ActionSheet is rendered after it's opened.");
 					ok($actionSheet.closest("#sap-ui-static")[0], "ActionSheet should be rendered inside the static uiArea.");
@@ -176,7 +177,7 @@
 					
 					ok(!($header[0]), "There is no title because title property is set to null");
 					
-					if(jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)){
+					if(!sap.ui.Device.system.phone){
 						ok(!($cancelButton[0]), "Cancel button is never rendered in iPad");
 					}else{
 						ok($cancelButton[0], "Cancel button is rendered");
@@ -198,9 +199,9 @@
 				ok(oActionSheet.isOpen(), "ActionSheet is already open");
 				setTimeout(function(){
 					var $actionSheet = jQuery.sap.byId("actionsheet"),
-						$parentControl = (jQuery.device.is.ipad || (sap.m.Popover._bOneDesign && !sap.ui.Device.system.phone)) ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
-						$header = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $parentControl.children("div.sapMBar") : $parentControl.children("header"),
-						$cancelButton = (sap.ui.Device.os.ios || sap.m.Popover._bOneDesign) ? $actionSheet.children("button.sapMActionSheetCancelButton") : $parentControl.find("footer button.sapMActionSheetCancelButton");
+						$parentControl = !sap.ui.Device.system.phone ? $actionSheet.closest(".sapMActionSheetPopover") : $actionSheet.closest(".sapMActionSheetDialog"),
+						$header = $parentControl.children("div.sapMBar"),
+						$cancelButton = $actionSheet.children("button.sapMActionSheetCancelButton");
 					expect(8);
 					ok(jQuery.sap.domById("actionsheet"), "ActionSheet is rendered after it's opened.");
 					ok($actionSheet.closest("#sap-ui-static")[0], "ActionSheet should be rendered inside the static uiArea.");

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,25 +56,22 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * 
  * A container for tab controls which contain the content and generally other controls. The user switches between the tabs then to display the content.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.TabStrip
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.TabStrip", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"createTab", "closeTab"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"height" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -83,7 +80,7 @@ sap.ui.core.Control.extend("sap.ui.commons.TabStrip", { metadata : {
 	},
 	defaultAggregation : "tabs",
 	aggregations : {
-    	"tabs" : {type : "sap.ui.commons.Tab", multiple : true, singularName : "tab"}
+		"tabs" : {type : "sap.ui.commons.Tab", multiple : true, singularName : "tab"}
 	},
 	events : {
 		"select" : {}, 
@@ -269,14 +266,13 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
 
 
 /**
- * Event is fired when the user selects a tab. 
+ * Event is fired when the user selects a tab.
  *
  * @name sap.ui.commons.TabStrip#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.index Index of the selected tab.
  * @public
  */
@@ -286,7 +282,7 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TabStrip</code>.<br/> itself. 
  *  
- * Event is fired when the user selects a tab. 
+ * Event is fired when the user selects a tab.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -333,14 +329,13 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
 
 
 /**
- * Event is fired when the user closes a tab. 
+ * Event is fired when the user closes a tab.
  *
  * @name sap.ui.commons.TabStrip#close
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.index Index of the closed tab.
  * @public
  */
@@ -350,7 +345,7 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.TabStrip</code>.<br/> itself. 
  *  
- * Event is fired when the user closes a tab. 
+ * Event is fired when the user closes a tab.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -399,32 +394,29 @@ sap.ui.commons.TabStrip.M_EVENTS = {'select':'select','close':'close'};
 /**
  * Convenient method to add a tab with a text as title and a root control as content.
  *
- * @name sap.ui.commons.TabStrip.prototype.createTab
+ * @name sap.ui.commons.TabStrip#createTab
  * @function
- * @param {string} 
- *         sText
+ * @param {string} sText
  *         Defines the title text of the newly created tab.
- * @param {sap.ui.core.Control} 
- *         oContent
+ * @param {sap.ui.core.Control} oContent
  *         Defines the root control of the content area.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
- * This method closes a atb. If the tab is selecte thenext one will be selected. (If it's the last the previous one will be selected,)
+ * This method closes a tab. If the tab is selecte thenext one will be selected. (If it's the last the previous one will be selected,)
  * This method should be called if the close event is fired. It can not be called automatically because the consumer might need to run some logic before the tab is closed.
  *
- * @name sap.ui.commons.TabStrip.prototype.closeTab
+ * @name sap.ui.commons.TabStrip#closeTab
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index of the tab that should be closed.
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

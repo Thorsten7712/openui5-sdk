@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>RowRepeaterSorter</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>This element is used by the RowRepeater and allows to define a sorter in this context along with the related data such as a text and an icon.</documentation>
 
 	<baseType>sap.ui.core/Element</baseType>

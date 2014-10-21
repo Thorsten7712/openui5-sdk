@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,23 +61,20 @@ jQuery.sap.require("sap.ui.core.Control");
  *
  * @class
  * A container control representing a full feed page, including feeder and updates.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.2. 
  * The whole Feed/Feeder API is still under discussion, significant changes are likely. Especially text presentation (e.g. @-references and formatted text) is not final. Also the Feed model topic is still open.
  * @name sap.ui.ux3.Feed
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.ux3.Feed", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"feederThumbnailSrc" : {type : "sap.ui.core.URI", group : "Data", defaultValue : null},
@@ -86,9 +83,9 @@ sap.ui.core.Control.extend("sap.ui.ux3.Feed", { metadata : {
 		"title" : {type : "string", group : "Data", defaultValue : null}
 	},
 	aggregations : {
-    	"filterItems" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "filterItem", bindable : "bindable"}, 
-    	"chunks" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "chunk", bindable : "bindable"}, 
-    	"toolsMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "toolsMenuItem", bindable : "bindable"}
+		"filterItems" : {type : "sap.ui.core.ListItem", multiple : true, singularName : "filterItem", bindable : "bindable"}, 
+		"chunks" : {type : "sap.ui.ux3.FeedChunk", multiple : true, singularName : "chunk", bindable : "bindable"}, 
+		"toolsMenuItems" : {type : "sap.ui.commons.MenuItem", multiple : true, singularName : "toolsMenuItem", bindable : "bindable"}
 	},
 	events : {
 		"filterChange" : {}, 
@@ -532,14 +529,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when the filter is changed 
+ * Event is fired when the filter is changed
  *
  * @name sap.ui.ux3.Feed#filterChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.newValue The new/changed value of the filter
  * @public
  */
@@ -549,7 +545,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when the filter is changed 
+ * Event is fired when the filter is changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -596,14 +592,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when the search function on SearchField is triggered 
+ * Event is fired when the search function on SearchField is triggered
  *
  * @name sap.ui.ux3.Feed#search
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.query The search query
  * @public
  */
@@ -613,7 +608,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when the search function on SearchField is triggered 
+ * Event is fired when the search function on SearchField is triggered
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -660,14 +655,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when a new chunk is added 
+ * Event is fired when a new chunk is added
  *
  * @name sap.ui.ux3.Feed#chunkAdded
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.ux3.FeedChunk} oControlEvent.getParameters.chunk New chunk
  * @public
  */
@@ -677,7 +671,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when a new chunk is added 
+ * Event is fired when a new chunk is added
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -724,14 +718,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when an item from the tools MenuButton was selected 
+ * Event is fired when an item from the tools MenuButton was selected
  *
  * @name sap.ui.ux3.Feed#toolsItemSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.itemId The Id of the selected item
  * @param {sap.ui.commons.MenuItemBase} oControlEvent.getParameters.item The selected item
  * @public
@@ -742,7 +735,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when an item from the tools MenuButton was selected 
+ * Event is fired when an item from the tools MenuButton was selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -790,14 +783,13 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
 
 
 /**
- * Event is fired when the live mode has changed 
+ * Event is fired when the live mode has changed
  *
  * @name sap.ui.ux3.Feed#toggleLive
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.live Current live indicator
  * @public
  */
@@ -807,7 +799,7 @@ sap.ui.ux3.Feed.M_EVENTS = {'filterChange':'filterChange','search':'search','chu
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Feed</code>.<br/> itself. 
  *  
- * Event is fired when the live mode has changed 
+ * Event is fired when the live mode has changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd">
 
 	<name>CSSSizeShortHand</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>This type checks the short hand form of a margin or
 		padding definition. E.g. "1px 1px" or up to four values are allowed.

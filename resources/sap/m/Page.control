@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Page</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A page is a basic container for a mobile application screen. Usually one page is displayed at a time (in landscape mode or on tablets depending on the layout two pages might be displayed side-by-side).</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

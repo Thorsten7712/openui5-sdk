@@ -33,8 +33,6 @@
 			<ObjectHeader
 				title="{ID}"
 				number="{Amount}"
-				responsive="true"
-				backgroundDesign="Translucent"
 				numberUnit="{CurrencyCode}" >
 				<attributes>
 					<ObjectAttribute
@@ -56,30 +54,28 @@
 							formatter:'sap.ui.demo.poa.util.formatter.StatusState'
 						}" />
 				</firstStatus>
-				<headerContainer>
-					<IconTabBar
-						expanded="{device>/isNoPhone}"
-						select="handleTabSelect" >
-						<items>
-							<IconTabFilter
-								key="Info"
-								text="{i18n>detailTabInfo}">
-								<mvc:XMLView viewName="sap.ui.demo.poa.view.DetailInfo"></mvc:XMLView>
-							</IconTabFilter>
-							<IconTabFilter
-								key="Notes"
-								text="{i18n>detailTabNotes}">
-								<!-- content is lazy loaded -->
-							</IconTabFilter>
-							<IconTabFilter
-								key="Attachments"
-								text="{i18n>detailTabAttachments}">
-								<!-- content is lazy loaded -->
-							</IconTabFilter>
-						</items>
-					</IconTabBar>
-				</headerContainer>
 			</ObjectHeader>
+			<IconTabBar
+				expanded="{device>/isNoPhone}"
+				select="handleTabSelect" >
+				<items>
+					<IconTabFilter
+						key="Info"
+						text="{i18n>detailTabInfo}">
+						<mvc:XMLView viewName="sap.ui.demo.poa.view.DetailInfo"></mvc:XMLView>
+					</IconTabFilter>
+					<IconTabFilter
+						key="Notes"
+						text="{i18n>detailTabNotes}">
+						<!-- content is lazy loaded -->
+					</IconTabFilter>
+					<IconTabFilter
+						key="Attachments"
+						text="{i18n>detailTabAttachments}">
+						<!-- content is lazy loaded -->
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
 			<Table
 				id="lineItemList"
 				items="{path:'PurchaseOrder_Items'}" >

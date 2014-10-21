@@ -15,9 +15,14 @@
 
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
+		<script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 
 		<script>
+		
+		sinon.config.useFakeTimers = false;
 
 		jQuery.sap.require("sap.m.TablePersoDialog");
 
@@ -248,19 +253,19 @@
 			var length = oDataList.getItems().length;
 			
 //			nothing is selected => both buttons have to be disabled!
-			ok(oButtonUp.$("inner").hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Up is disabled => OK!");
-			ok(oButtonDown.$("inner").hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Down is disabled => OK!");
+			ok(oButtonUp.$().hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Up is disabled => OK!");
+			ok(oButtonDown.$().hasClass('sapMBtnDisabled'), "Nothing is selected: Button Arrow Down is disabled => OK!");
 			
 			if (length > 0) {
 				oDataList.setSelectedItem(oDataList.getItems()[0], true, true);	
 				sap.ui.getCore().applyChanges();
-				ok(oButtonUp.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Up is disabled => OK!");
-				ok(!oButtonDown.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Down is enabled => OK!");
+				ok(oButtonUp.$().hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Up is disabled => OK!");
+				ok(!oButtonDown.$().hasClass('sapMBtnDisabled'), "More than one item in List, first item is selected: Button Arrow Down is enabled => OK!");
 	
 				oDataList.setSelectedItem(oDataList.getItems()[length - 1], true, true);			
 				sap.ui.getCore().applyChanges();
-				ok(oButtonDown.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Down is disabled => OK!");
-				ok(!oButtonUp.$("inner").hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Up is enabled => OK!");	
+				ok(oButtonDown.$().hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Down is disabled => OK!");
+				ok(!oButtonUp.$().hasClass('sapMBtnDisabled'), "More than one item in List, last item is selected: Button Arrow Up is enabled => OK!");	
 			};
 			
 			oTablePersoDialog1 = oTPC1.getTablePersoDialog();			
@@ -273,8 +278,8 @@
 			if (oDataList1.getItems().length == 1) {
 				oDataList1.setSelectedItem(oDataList1.getItems()[0], true, true);	
 				sap.ui.getCore().applyChanges();			
-				ok(oButtonUp1.$("inner").hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Up is disabled => OK!");
-				ok(oButtonDown1.$("inner").hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Down is disabled => OK!");							
+				ok(oButtonUp1.$().hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Up is disabled => OK!");
+				ok(oButtonDown1.$().hasClass('sapMBtnDisabled'), "One item available(selected): Button Arrow Down is disabled => OK!");							
 			};
 			var oButtonCancel1 = sap.ui.getCore().byId(oTablePersoDialog1._oDialog.getRightButton());
 			oButtonCancel1.firePress();
@@ -312,7 +317,7 @@
 			strictEqual(oPersData.aColumns[2].text, "Modified Color", "Column 2 (Number) is now 1");
 		});
 		
-		module("More than 100 columns");
+		module("Many columns");
 		test("Table has more than 100 columns", function(){
 			//Arrange
 			var oData2 = {
@@ -359,6 +364,128 @@
 			
 			//Clean up
 			oTPC2.destroy();
+		});
+		
+		test("Arrow buttons and scrolling", function(){
+			//Arrange
+			var oData3 = {
+					cols: function(){
+						var cols = [];
+						for ( var i = 0; i < 20; i++) {
+							cols.push("Cols" + i);
+						}
+						return cols;
+					}()
+				},
+				oTable3 = new sap.m.Table("idRandomDataTable3", {
+					headerToolbar: new sap.m.Toolbar({
+						content: [
+							new sap.m.Label({text: "Random Data"}),
+							new sap.m.ToolbarSpacer({}),
+							new sap.m.Button("idPersonalizationButton3", {
+								icon: "sap-icon://person-placeholder"
+							})
+						]
+					}),
+					columns: oData3.cols.map(function (colname) {
+						return new sap.m.Column( "column3" + colname, { header: new sap.m.Label({ text: colname })})
+					})
+				}).setModel(new sap.ui.model.json.JSONModel(oData3), "dataModel3"),
+				oTPC3 = new sap.m.TablePersoController({
+					table: oTable3,
+					persoService: oPersoService,
+					hasGrouping: false
+				}).activate();
+			
+			
+			page.addContent(oTable3);
+			sap.ui.getCore().applyChanges();
+			oTPC3.openDialog();
+			sap.ui.getCore().applyChanges();
+			var oTablePersoDialog3 = oTPC3.getTablePersoDialog(),
+				oList = oTablePersoDialog3._oList,
+				oScrollCont = oTablePersoDialog3._oScrollContainer,
+				oButtonUp = oTablePersoDialog3._oButtonUp,
+				oButtonDown = oTablePersoDialog3._oButtonDown;
+				
+			
+			//Act
+			//Select first item
+			oTablePersoDialog3._oList.setSelectedItem(oTablePersoDialog3._oList.getItems()[0]);
+			sap.ui.getCore().applyChanges();
+			
+			
+			var spyScrollTo = this.spy(oScrollCont, "scrollTo");
+			//press 'Down button 7 times to trigger scroll down
+			for(var i=0; i<7; i++) {
+				oButtonDown.firePress();
+				sap.ui.getCore().applyChanges();
+			}
+			equal(spyScrollTo.callCount, 1, "scrollTo should be called once when moving down");
+			//now press Up button 5 times to trigger scroll up
+		    for(var i=0; i<5; i++) {
+				oButtonUp.firePress();
+				sap.ui.getCore().applyChanges();
+			}
+		    equal(spyScrollTo.callCount, 2, "scrollTo should be called once when moving up");
+		    oTPC3.destroy();			
+		});
+		
+		module("Reset All");
+		
+		
+		test("Check column captions after Reset All", function(){
+			//Arrange
+			var oData4 = {
+					cols: function(){
+						var cols = [];
+						for ( var i = 0; i < 4; i++) {
+							cols.push("Cols" + i);
+						}
+						return cols;
+					}()
+				},
+				oTable4 = new sap.m.Table("idRandomDataTable4", {
+					headerToolbar: new sap.m.Toolbar({
+						content: [
+							new sap.m.Label({text: "Random Data"}),
+							new sap.m.ToolbarSpacer({}),
+							new sap.m.Button("idPersonalizationButton4", {
+								icon: "sap-icon://person-placeholder"
+							})
+						]
+					}),
+					columns: oData4.cols.map(function (colname) {
+						return new sap.m.Column( "column4" + colname, { header: new sap.m.Label({ text: colname })})
+					})
+				}).setModel(new sap.ui.model.json.JSONModel(oData4), "dataModel4"),
+				oTPC4 = new sap.m.TablePersoController({
+					table: oTable4,
+					persoService: oPersoService,
+					hasGrouping: false
+				}).activate();
+			
+			
+			page.addContent(oTable4);
+			sap.ui.getCore().applyChanges();
+			
+			//Change title of first table column
+			oTable4.getColumns()[0].getHeader().setText('Bingo!');
+			sap.ui.getCore().applyChanges();
+			
+			oTPC4.openDialog();
+			sap.ui.getCore().applyChanges();
+			var oTablePersoDialog4 = oTPC4.getTablePersoDialog(),
+				oResetButton = oTablePersoDialog4._oDialog.getContent()[0].getContent()[1];
+				oList = oTablePersoDialog4._oList;
+			
+			//Act
+			//Press 'Reset All'
+			oResetButton.firePress();
+			sap.ui.getCore().applyChanges();
+			equal(oList.getItems()[0].getLabel(), 'Bingo!', 'Even after reset, label should be the last rendered column name');
+			
+		    oTPC4.destroy();			
 		});
 		
 		

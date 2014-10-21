@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -26,8 +26,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ClientModel', './JSONListBindi
 	 *
 	 * @extends sap.ui.model.Model
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 *
 	 * @param {object} oData either the URL where to load the JSON from or a JS object
 	 * @constructor
@@ -128,11 +128,11 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ClientModel', './JSONListBindi
 	 * the request can not successfully retrieve data from a different domain, subdomain, or protocol.
 	 *
 	 * @param {string} sURL A string containing the URL to which the request is sent.
-	 * @param {object | string}[oParameters] A map or string that is sent to the server with the request.
+	 * @param {object | string} [oParameters] A map or string that is sent to the server with the request.
 	 * Data that is sent to the server is appended to the URL as a query string.
 	 * If the value of the data parameter is an object (map), it is converted to a string and
 	 * url-encoded before it is appended to the URL.
-	 * @param {boolean} [async=true] By default, all requests are sent asynchronous
+	 * @param {boolean} [bAsync=true] By default, all requests are sent asynchronous
 	 * (i.e. this is set to true by default). If you need synchronous requests, set this option to false.
 	 * Cross-domain requests do not support synchronous operation. Note that synchronous requests may
 	 * temporarily lock the browser, disabling any actions while the request is active.
@@ -141,7 +141,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ClientModel', './JSONListBindi
 	 * they are not supported by all browsers.
 	 * @param {boolean} [bMerge=false] whether the data should be merged instead of replaced
 	 * @param {string} [bCache=false] force no caching if false. Default is false
-	 * @param {object} mHeaders An object of additional header key/value pairs to send along with the request
+	 * @param {object} [mHeaders] An object of additional header key/value pairs to send along with the request
 	 *
 	 * @public
 	 * @name sap.ui.model.json.JSONModel#loadData

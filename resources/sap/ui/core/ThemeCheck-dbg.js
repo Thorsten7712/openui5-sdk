@@ -1,8 +1,10 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
+
+/*global URI*/// declare unusual global vars for JSLint/SAPUI5 validation
 
 // Provides class sap.ui.core.ThemeCheck
 sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/base/Object', 'jquery.sap.script'],
@@ -25,7 +27,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/base/Object', 'jque
 	 *
 	 * @extends sap.ui.base.Object
 	 * @since 1.10.0
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @constructor
 	 * @private
 	 * @name sap.ui.core.ThemeCheck
@@ -109,7 +111,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/base/Object', 'jque
 		if (!!oThemeCheck._customCSSAdded && oThemeCheck._themeCheckedForCustom === sThemeName){
 			// include custom style sheet here because it has already been added using jQuery.sap.includeStyleSheet
 			// hence, needs to be checked for successful inclusion, too
-			mLibs["sap-ui-theme-"+oThemeCheck._CUSTOMID] = {};
+			mLibs[oThemeCheck._CUSTOMID] = {};
 		}
 
 		function checkLib(lib) {
@@ -145,12 +147,24 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/base/Object', 'jque
 							} else {
 								oBaseStyleSheet = oStyle;
 							}
+							// parse original href
+							var oHref = new URI(oBaseStyleSheet.getAttribute("href"));
+							var sSuffix = oHref.suffix();
+							// get filename without suffix
+							var sFileName = oHref.filename();
+							if (sSuffix.length > 0) {
+								sSuffix = "." + sSuffix;
+								sFileName = sFileName.slice(0, - sSuffix.length);
+							}
+							// change filename only (to keep URI parameters)
+							oHref.filename(sFileName + "_" + sAdditionalLibSuffix + sSuffix);
+							// build final href
+							var sHref = oHref.toString();
 							// create the new link element
 							var oLink = document.createElement("link");
 							oLink.type = "text/css";
 							oLink.rel = "stylesheet";
-							oLink.href = oBaseStyleSheet.getAttribute("href").substr(0, oBaseStyleSheet.getAttribute("href").length - 4 /* length of .css */) +
-								"_" + sAdditionalLibSuffix + ".css";
+							oLink.href = sHref;
 							oLink.id = sLinkId;
 
 							jQuery(oLink)
@@ -172,7 +186,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/base/Object', 'jque
 				if(oThemeCheck._themeCheckedForCustom != sThemeName){
 					if (checkCustom(oThemeCheck, lib)){
 							//load custom css available at sap/ui/core/themename/library.css
-						jQuery.sap.includeStyleSheet(sPath,  oThemeCheck._CUSTOMID);
+						jQuery.sap.includeStyleSheet(sPath, oThemeCheck._CUSTOMID);
 						oThemeCheck._customCSSAdded = true;
 						jQuery.sap.log.warning("ThemeCheck delivered custom CSS needs to be loaded, Theme not yet applied");
 						oThemeCheck._themeCheckedForCustom = sThemeName;
@@ -207,28 +221,28 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device', 'sap/ui/base/Object', 'jque
 	/* checks if a particular class is available at the beginning of the core styles
 	 */
 	function checkCustom (oThemeCheck, lib){
-		var ruleName = null,
-		bSuccess = false;
-	 var lib = new RegExp(lib);
-		//get the core styles
-		jQuery.each(document.styleSheets, function(iIndex, oStyleSheet) {
-				if (!!oStyleSheet.ownerNode && lib.test(oStyleSheet.ownerNode.id) && oStyleSheet.cssRules && oStyleSheet.cssRules.length > 0){
-					ruleName = oStyleSheet.cssRules[0].selectorText;
-					if(oThemeCheck._CUSTOMCSSCHECK.test(ruleName)){
-						bSuccess = true;
-						return false;
-					}
-				}
-				else if(!!oStyleSheet.owningElement && lib.test(oStyleSheet.owningElement.id) && oStyleSheet.rules && oStyleSheet.rules.length > 0){
-						//ie8 doesn't know ownerNode
-					ruleName = oStyleSheet.rules[0].selectorText;
-					if(oThemeCheck._CUSTOMCSSCHECK.test(ruleName)){
-						bSuccess = true;
-						return false;
-					}
-				}
-		});
+		var iRulesToCheck = 2,
+			bSuccess = false,
+			aRules = Array();
+		if (jQuery.sap.domById("sap-ui-theme-"+lib)){
+			var cssFile = jQuery.sap.domById("sap-ui-theme-"+lib);
+			if (cssFile.sheet){
+				aRules = cssFile.sheet.cssRules;
+			} else if (cssFile.styleSheet){
+				//we're in an old IE version
+				aRules = cssFile.styleSheet.rules;
+			}
+		}
+		if(aRules.length == 0){
+			jQuery.sap.log.warning("Custom check: Failed retrieving a CSS rule from stylesheet " + lib);
+			return false;
+		}
 		// we should now have some rule name ==> try to match against custom check
+		for(var i=0; (i < iRulesToCheck && i < aRules.length) ; i++){
+			if(oThemeCheck._CUSTOMCSSCHECK.test(aRules[i].selectorText)){
+				bSuccess = true;
+			}			
+		}
 		return bSuccess;
 	}
 	

@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5920575115481933"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9480241824768965"/>
 <title>Defining Control Properties</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -33,18 +35,18 @@
    "showLogoutButton" : {type : "boolean", defaultValue : true},   // a boolean property where a default value is given
    "width" : {type : "sap.ui.core.CSSSize", defaultValue : "50px"} // a CSS size property where a default value is given
 }</pre></div>
-<p class="p">To display and group properties, control developers can define a group, that is, the property's
-			category. This has no impact outside the development tools.</p>
 <p class="p">After the property is defined, the control automatically has the
 				<samp class="ph codeph">setShowLogoutButton</samp> and <samp class="ph codeph">getShowLogoutButton</samp>
 			methods for storing data. It is possible to assign custom definitions to these methods
-			by calling the generic property methods <samp class="ph codeph">setProperty</samp> and
-				<samp class="ph codeph">getProperty</samp>.</p>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
+			by overriding them and calling the generic property methods <samp class="ph codeph">setProperty</samp>
+			and <samp class="ph codeph">getProperty</samp>:</p>
+<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">MyControl.prototype.setShowLogoutButton = function(show) {
+	// …here anything in addition to the default handling can be done…
+	// then do the default handling:
+	this.setProperty(“showLogoutButton”, show); // this validates and stores the new value
+	return this; // return “this” to allow method chaining
+};
+</pre></div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

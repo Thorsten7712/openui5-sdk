@@ -26,6 +26,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<script type="text/javascript">
@@ -118,7 +119,7 @@
 		}
 
 
-		var oCtrl = new sap.ui.commons.Toolbar("Toolbar", {width:"500px"}).placeAt("uiArea1");
+		var oCtrl = new sap.ui.commons.Toolbar("Toolbar", {width:"490px"}).placeAt("uiArea1");
 		addManyItems(oCtrl);
 
 
@@ -151,12 +152,12 @@
 		 * Tests accessor method for property width of the whole Toolbar.
 		 */
 		test("WidthOk", function() {
-			strictEqual(oCtrl.getWidth(), "500px");
+			strictEqual(oCtrl.getWidth(), "490px");
 		});
 
 		asyncTest("VisibleItems calculation with item size change", function() {
 			expect(3);
-			strictEqual(oCtrl.getWidth(), "500px");
+			strictEqual(oCtrl.getWidth(), "490px");
 			oCtrl.setWidth("350px");
 		    sap.ui.getCore().applyChanges();
 			setTimeout(function(){ // give the Toolbar some time to recognize the change

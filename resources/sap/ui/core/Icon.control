@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Icon</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.11.1</since>
 	<documentation>Icon uses embeded font instead of pixel image. Comparing to image, Icon is easily scalable, color can be altered live and various effects can be added using css.
 

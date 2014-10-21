@@ -10,6 +10,13 @@
 	};
 	window.jsUnitTestSuite.prototype.addTestPage = function(sTestPage) {
 		this.aPages = this.aPages || [];
+		// in case of running in the root context the testsuites right now
+		// generate an invalid URL because it assumes that test-resources is 
+		// the context path - this section makes sure to remove the duplicate
+		// test-resources segments in the path
+		if (sTestPage.indexOf("/test-resources/test-resources") === 0) {
+			sTestPage = sTestPage.substr("/test-resources".length);
+		}
 		this.aPages.push(sTestPage);
 	};
 	
@@ -54,14 +61,13 @@
 			
 			var oDeferred = jQuery.Deferred();
 			
-			if (window.console && typeof window.console.log === "function") {
-				window.console.log("QUnit: checking test page: " + sTestPage);
+			if (typeof sTestPage !== "string") {
+				window.console.log("QUnit: invalid test page specified");
+				return;
 			}
 			
-			// make the test pages server absolute!
-			if (sTestPage && sTestPage.slice(0, 1) !== "/") {
-				var contextPath = "/" + window.location.pathname.split("/")[1];
-				sTestPage = contextPath + "/" + sTestPage;
+			if (window.console && typeof window.console.log === "function") {
+				window.console.log("QUnit: checking test page: " + sTestPage);
 			}
 			
 			// check for an existing test page and check for test suite or page
@@ -181,14 +187,21 @@
 				
 			} else {
 				
+				// we could make this configurable
 				var $frame = jQuery("<iframe>").css({
-					height: "400px",
-					width: "100%"
+					height: "1024px",
+					width: "1280px"
 				});
 				
 				$frame.attr("src", sTestPage);
-				$frame.appendTo("div.test-execution");
-
+				var $framediv = jQuery("<div>").css({
+					height: "400px",
+					width: "100%",
+					overflow: "scroll"
+				});
+				$frame.appendTo($framediv);
+				$framediv.appendTo("div.test-execution");
+				
 				var tBegin = new Date();
 				var fnCheckSuccess = function() {
 					var doc = $frame[0].contentWindow.document;
@@ -198,7 +211,7 @@
 						var $results = jQuery(doc).find("ol#qunit-tests > li");
 						var oContext = oInst.fnGetTestResults($testName, $results);
 						
-						$frame.remove();
+						$framediv.remove();
 
 						var fnTemplate = Handlebars.compile(sResultsTemplate);
 						var sHTML = fnTemplate(oContext);
@@ -218,7 +231,7 @@
 					if (new Date() - tBegin < 300000) {
 						setTimeout(fnCheckSuccess, 100);
 					} else {
-						$frame.remove();
+						$framediv.remove();
 						// TODO: set Test overview visibile
 						oDeferred.resolve();
 						// TODO: error handling
@@ -246,13 +259,27 @@
 		},
 		
 		getTestPageUrl: function() {
-			var sTestPageUrlParam = window.location.search.substring(1);
-			var sURLVariables = sTestPageUrlParam.split("=");
-			if (sURLVariables[0] === "testpage") {
-				return sURLVariables[1];
-			} else {
-				//return "test-resources/sap/ui/core/qunit/testsuite.qunit.html";
-				return "test-resources/qunit/testsuite.qunit.html";
+			var sTestPageUrl = this.getUrlParameter("testpage");
+			var sOrigin = window.location.origin ? window.location.origin : (window.location.protocol + "//" + window.location.host);
+			var sContextPath = window.location.href.substr(sOrigin.length);
+			sContextPath = sContextPath.substring(0, sContextPath.indexOf("/test-resources/sap/ui/qunit/testrunner.html"));
+			return sTestPageUrl || sContextPath + "/test-resources/qunit/testsuite.qunit.html";
+		},
+		
+		getAutoStart: function() {
+			var sAutoStart = this.getUrlParameter("autostart");
+			return sAutoStart == "true";
+		},
+		
+		getUrlParameter: function(sName) {
+			var sTestPageUrlParam = window.location.search.substring(1),
+				aUrlParameters = sTestPageUrlParam.split("&"),
+				aParameter;
+			for (var i = 0; i < aUrlParameters.length; i++) {
+				aParameter = aUrlParameters[i].split("=");
+				if (aParameter[0] == sName) {
+					return decodeURIComponent(aParameter[1]);
+				}
 			}
 		},
 		

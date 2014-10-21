@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -10,7 +10,7 @@
  * ----------------------------------------------------------------------------------- */
 
 /**
- * Initialization Code and shared classes of library sap.ui.demokit (1.22.4)
+ * Initialization Code and shared classes of library sap.ui.demokit (1.24.2)
  */
 jQuery.sap.declare("sap.ui.demokit.library");
 jQuery.sap.require("sap.ui.core.Core");
@@ -49,11 +49,11 @@ sap.ui.getCore().initLibrary({
     "sap.ui.demokit.Tag",
     "sap.ui.demokit.UIAreaSubstitute"
   ],
-  version: "1.22.4"});
+  version: "1.24.2"});
 
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -69,9 +69,10 @@ jQuery.sap.declare("sap.ui.demokit.UI5EntityCueCardStyle");
 /**
  * @class different styles for an entity cue card.
  *
- * @version 1.22.4
+ * @version 1.24.2
  * @static
  * @public
+ * @ui5-metamodel This enumeration also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.demokit.UI5EntityCueCardStyle = {
 
@@ -193,7 +194,7 @@ sap.ui.demokit._getAppInfo = function(fnCallback) {
 		},
 		success : function(oAppInfo, sStatus, oXHR) {
 			if(!oAppInfo){
-				jQuery.sap.log.error("failed to load library list from '" + sUrl + "': " + sStatus + ", Data: " + aLibraries);
+				jQuery.sap.log.error("failed to load library list from '" + sUrl + "': " + sStatus + ", Data: " + oAppInfo);
 				fnCallback(null);
 				return;
 			}

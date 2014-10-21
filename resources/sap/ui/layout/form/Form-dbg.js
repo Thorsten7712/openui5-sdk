@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,19 +59,17 @@ jQuery.sap.require("sap.ui.core.Control");
  * A Form supports VariantLayoutData for it's content to allow a simple switching of Layouts.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.form.Form
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.layout.form.Form", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -80,9 +78,9 @@ sap.ui.core.Control.extend("sap.ui.layout.form.Form", { metadata : {
 	},
 	defaultAggregation : "formContainers",
 	aggregations : {
-    	"formContainers" : {type : "sap.ui.layout.form.FormContainer", multiple : true, singularName : "formContainer"}, 
-    	"title" : {type : "sap.ui.core.Title", altTypes : ["string"], multiple : false}, 
-    	"layout" : {type : "sap.ui.layout.form.FormLayout", multiple : false}
+		"formContainers" : {type : "sap.ui.layout.form.FormContainer", multiple : true, singularName : "formContainer"}, 
+		"title" : {type : "sap.ui.core.Title", altTypes : ["string"], multiple : false}, 
+		"layout" : {type : "sap.ui.layout.form.FormLayout", multiple : false}
 	}
 }});
 
@@ -388,5 +386,18 @@ sap.ui.core.Control.extend("sap.ui.layout.form.Form", { metadata : {
 		return this;
 
 	};
+
+	/*
+	 * Overwrite of INVALIDATE
+	 * do not invalidate Form during rendering. Because there the Layout may update the content
+	 * otherwise the Form will render twice
+	*/
+	sap.ui.layout.form.Form.prototype.invalidate = function(oOrigin) {
+
+	if (!this._bNoInvalidate) {
+		sap.ui.core.Control.prototype.invalidate.apply(this, arguments);
+	}
+
+};
 
 }());

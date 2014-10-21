@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -50,27 +50,23 @@ jQuery.sap.require("sap.ui.core.Control");
  * @param {object} [mSettings] initial settings for the new control
  *
  * @class
- * Add your documentation for the new HexagonButtonGroup
+ * A group of HexagonButtons, aligned in a packed grid
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.demokit.HexagonButtonGroup
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.demokit.HexagonButtonGroup", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.demokit",
 	properties : {
 		"colspan" : {type : "int", group : "Misc", defaultValue : 3}
 	},
 	aggregations : {
-    	"buttons" : {type : "sap.ui.demokit.HexagonButton", multiple : true, singularName : "button"}
+		"buttons" : {type : "sap.ui.demokit.HexagonButton", multiple : true, singularName : "button"}
 	}
 }});
 
@@ -94,7 +90,7 @@ sap.ui.core.Control.extend("sap.ui.demokit.HexagonButtonGroup", { metadata : {
 
 /**
  * Getter for property <code>colspan</code>.
- * 
+ * How many buttons might be placed in the same row of the grid
  *
  * Default value is <code>3</code>
  *
@@ -119,7 +115,7 @@ sap.ui.core.Control.extend("sap.ui.demokit.HexagonButtonGroup", { metadata : {
 
 /**
  * Getter for aggregation <code>buttons</code>.<br/>
- * 
+ * The buttons to layout in a grid
  * 
  * @return {sap.ui.demokit.HexagonButton[]}
  * @public

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>PullToRefresh</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>PullToRefresh control. Put it as the first control in contents of a scroll container or a scrollable page. Do not place it into a page with disabled scrolling.
 On touch devices it gets hidden by default and when the user pulls down the page far enough, it gets visible and triggers the &quot;refresh&quot; event.

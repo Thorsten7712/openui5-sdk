@@ -12,11 +12,13 @@
 <meta name="abstract" content="The sap.m library provides a control called App which is meant to be the root control of a mobile application. It provides the initialization of the HTML page, sets some meta tags to ensure an as-native-as-possible look&amp;feel, and can manage different pages and the animations between them."/>
 <meta name="description" content="The sap.m library provides a control called App which is meant to be the root control of a mobile application. It provides the initialization of the HTML page, sets some meta tags to ensure an as-native-as-possible look&amp;feel, and can manage different pages and the animations between them."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=2255292416810567"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9901600631874241"/>
 <title>Initialize the Mobile App</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,13 +31,13 @@
 		the root control of a mobile application. It provides the initialization of the HTML page,
 		sets some meta tags to ensure an as-native-as-possible look&amp;feel, and can manage
 		different pages and the animations between them.</p>
-<div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p" id="loio2b5ce162e26044fe88c3f1206f895ba3__step_N1003D_N1003A_N10011_N10001"><span class="ph cmd">Create the control and define the page that you want to display first:</span> 
+<div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p" id="loio2b5ce162e26044fe88c3f1206f895ba3__step_N1003D_N1003A_N10011_N10001"><span class="ph cmd">Create the control and define the page that you want to display first:</span><div class="itemgroup stepxmp">
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">  // create a mobile App
   // it initializes the HTML page for mobile use and provides animated page handling
     var app = new sap.m.App("myApp", {initialPage:"page1"}); 
   // page1 should be displayed first</pre></div>
 
-				<ul class="ul choices" id="loio2b5ce162e26044fe88c3f1206f895ba3__choices_vhk_5tf_zj"><li class="li choice">
+				</div><ul class="ul choices" id="loio2b5ce162e26044fe88c3f1206f895ba3__choices_vhk_5tf_zj"><li class="li choice">
 						<p class="p">Instead of using the <span class="keyword apiname">App</span> control, you can also use
 								<samp class="ph codeph">jQuery.sap.initMobile()</samp> to set up the HTML and use
 							other full screen controls, such as <samp class="ph codeph">sap.m.Page</samp> or
@@ -43,11 +45,6 @@
 
 					</li>
 </ul>
-</div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
 </div>
 </div>
 </div></div>

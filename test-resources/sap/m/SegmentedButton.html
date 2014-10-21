@@ -253,12 +253,37 @@
 		     Segmented5.addButton(oButton1);
 		     Segmented5.addButton(oButton2);
 		     Segmented5.addButton(oButton3);
-		     
+
 		     window.setTimeout(function(){
 		    	 oButton2.setEnabled(false);
 				},1000);
-		     
-		     
+
+			// segmented button in dialog (immediate function to not mess with scope)
+			(function () {
+				// System under Test
+				var oBar = new sap.m.Bar({
+					contentMiddle : [new sap.m.SegmentedButton({
+						width : "100%",
+						buttons : [new sap.m.Button({text: "Button1"}), new sap.m.Button({text: "Button2"}), new sap.m.Button({text: "Button3"})]
+					})]
+				});
+	
+				var oDialog = new sap.m.Dialog({
+					subHeader : oBar,
+					content : [new sap.m.Button({
+						text : "long button",
+						width : "600px"
+					})]
+				});
+	
+				page.addContent(new sap.m.Button({
+					text: "SegmentedButton in Dialog",
+					press: function (oEvent) {
+						oDialog.open();
+					}
+				}));
+			}) ();
+
 		</script>
 </head>
 <body id="body" class="sapUiBody">

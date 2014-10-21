@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,22 +59,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * Instead of implementing the default render method in the renderer implement
  * your content HTML in the _renderContent method of the specialized
  * tile.
- * 
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.Tile
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.Tile", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"removable" : {type : "boolean", group : "Misc", defaultValue : true}
@@ -131,14 +128,13 @@ sap.m.Tile.M_EVENTS = {'press':'press'};
 
 /**
  * Tap event is raised if the user tap or click to the
- * control. 
+ * control.
  *
  * @name sap.m.Tile#press
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -148,7 +144,7 @@ sap.m.Tile.M_EVENTS = {'press':'press'};
  * otherwise to this <code>sap.m.Tile</code>.<br/> itself. 
  *  
  * Tap event is raised if the user tap or click to the
- * control. 
+ * control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -269,7 +265,7 @@ sap.m.Tile.prototype.setSize = function(iWidth,iHeight){
  * Returns and optionally sets whether the tile is editable.
  * @param {boolean} optional The editable state of the tile.
  * @returns {boolean} whether the tile is editable
- * @see {sap.m.TileContainer}
+ * @see sap.m.TileContainer
  * @private
  */
 sap.m.Tile.prototype.isEditable = function(bIsEditable) {
@@ -284,7 +280,7 @@ sap.m.Tile.prototype.isEditable = function(bIsEditable) {
  * Returns and optionally sets whether the tile is dragged and applies or removes the drag styles.
  * @param {boolean} optional The editable state of the tile.
  * @returns {boolean} whether the tile is dragged
- * @see {sap.m.TileContainer}
+ * @see sap.m.TileContainer
  * @private
  */
 sap.m.Tile.prototype.isDragged = function(bIsDragged) {

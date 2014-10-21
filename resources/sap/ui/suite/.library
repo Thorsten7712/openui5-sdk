@@ -2,8 +2,8 @@
 <library xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>sap.ui.suite</name>
-  <vendor>SAP AG</vendor>
-  <version>1.22.4</version>
+  <vendor>SAP SE</vendor>
+  <version>1.24.2</version>
   
   <documentation>SAP UI library: sap.ui.suite (by SAP, Author)</documentation>
   

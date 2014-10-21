@@ -69,14 +69,14 @@ oTabStrip1.addTab(oTab2);
 
 // 3. tab: long text
 oTA = new sap.ui.commons.TextArea("TA-Text", {tooltip: 'Remarks', editable: false, wrapping: sap.ui.core.Wrapping.Off,
-	value: 'Max Mustermann is a very nice guy. He is very well known.\nEverybody loves him.\nYou can be lucky if you meet him.',
+	value: 'Max Mustermann is a very nice guy. He is very well known.\nEverybody loves him.\nYou would be lucky to meet him.',
 	width: '100%', height: '100%' });
 
 oTab3 = new sap.ui.commons.Tab("tab3", {title: new sap.ui.core.Title("Title3",{text:"Long Text"}), closable: true, content: [oTA]});
 oTabStrip1.addTab(oTab3);
 
 // 4. secret tab (inactive)
-oTab4 = new sap.ui.commons.Tab("tab4", {title: new sap.ui.core.Title("Title4",{text:"Top Sectret"}), enabled: false});
+oTab4 = new sap.ui.commons.Tab("tab4", {title: new sap.ui.core.Title("Title4",{text:"Top Secret"}), enabled: false});
 oTabStrip1.addTab(oTab4);
 
 // Attach the TabStrip to the page

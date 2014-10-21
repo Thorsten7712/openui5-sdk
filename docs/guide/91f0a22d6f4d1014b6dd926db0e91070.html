@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=48247738628506986"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3679600906215995"/>
 <title>Working with Controls in SAPUI5</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -29,9 +31,8 @@
 				<p class="p">Control name</p>
 
 				<p class="p">The control name is a string that consists of the library name and the control name,
-					separated by a dot. Duplicate entity namings within the same application should
-					be avoided. The library name can be omitted if there is no need to assign the
-					control to a library. It is possible, for example, to use
+					separated by a dot. The library name can be omitted if there is no need to
+					assign the control to a library. It is possible, for example, to use
 						<span class="keyword cmdname">Square</span> as control name. For controls that are reused by
 					others, we recommend to use a unique library name, for example
 						<span class="keyword cmdname">sap.byd.Square</span>.</p>
@@ -40,18 +41,17 @@
 <li class="li">
 				<p class="p">Control metadata</p>
 
-				<p class="p">The metadata define the properties, events, aggregations and associations of a
-					control.</p>
+				<p class="p">The metadata defines the properties, events, aggregations and associations of a control.</p>
 
-				<p class="p">Control properties, such as text or width, are used to modify the appearance or
-					to relate to data that is displayed by the control. The controls are defined by
-					the control metadata, which is the public API of the control. The API can be
-					queried at runtime and also contains information on runtime features such as
-					data binding and type validation checks.</p>
+				<p class="p">Control properties, such as text or width, are used to modify the appearance or to relate to
+					data that is displayed by the control. The controls are defined by the control
+					metadata, which is the public API of the control. The API can be used by
+					applications at runtime and also contains information on runtime features such
+					as data binding and type validation checks.</p>
 
-				<p class="p">Controls can aggregate other controls. These aggregations serve as a container or
-					layout control to which the application can add child controls. They can also
-					serve as composite controls if the control adds child controls and reuses
+				<p class="p">Controls can aggregate other controls. These controls with aggregations serve as a container
+					or layout control to which the application can add child controls. They can also
+					serve as composite controls if the control itself adds child controls and reuses
 					available components. In an aggregation, child controls are owned by the parent
 					control and are destroyed together with the parent control. A control can only
 					have one aggregation parent. Adding the control to another aggregation removes
@@ -76,7 +76,7 @@
 					Elements <span class="ph emphasis emphasis">cannot </span> be used standalone and do <strong class="ph b">not</strong> have
 					their own renderer. Instead, the control that uses the element does the
 					rendering: The <span class="keyword cmdname">ListBox</span> control, for example, renders the
-						<span class="keyword cmdname">ListItem</span> element. The information provided for controls
+						<span class="keyword cmdname">ListItem</span> elements. The information provided for controls
 					also applies to elements but not to the renderer. The
 						<samp class="ph codeph">sap.ui.core.Element</samp> class is the base class of
 						<samp class="ph codeph">sap.ui.core.Control</samp>.</p>
@@ -85,15 +85,17 @@
 <li class="li">
 				<p class="p">Methods</p>
 
-				<p class="p">Methods are public, unless their name starts with an underscore or if it is one of the
-					special method types. Public methods are the generated getter/setter methods for
-					properties, and so on.</p>
+				<p class="p">By convention, methods are public, unless their name starts with an underscore or if it is
+					one of the special method types. When developing control libraries, public
+					methods must be annotated with <samp class="ph codeph">@public</samp> in the JSDoc, and
+					private methods with <samp class="ph codeph">@private</samp> The generated getter/setter
+					methods for properties are also public methods.</p>
 
-				<p class="p">Methoads are added to a new control by simply providing the implementation. It is not
+				<p class="p">Methods are added to a new control by simply providing the implementation. It is not
 					necessary to add the method to the metadata. Other controls and the application
 					must only call public methods and the control ensures that they remain
 					compatible. There are no technical rules that prevent the call of private
-					methods.</p>
+					methods, but it is not allowed.</p>
 
 			</li>
 </ul>
@@ -102,13 +104,10 @@
 			or from another control.</p>
 </div>
 <div class="related-links"> 
-
-<div class="familylinks">
-</div>
 <div class="relinfo"><div class="relinfotitle ">Related Information</div>
 <div><a class="link" href="7b52540d9d8c4e00b9723151622bbb64.html">Defining the Control Metadata</a></div>
 <div><a class="link" href="91f0a8dc6f4d1014b6dd926db0e91070.html">Adding Method Implementations</a></div>
-<div><a class="link" href="91f1b3856f4d1014b6dd926db0e91070.html">Handling Events in Controls</a></div>
+<div><a class="link" href="91f1b3856f4d1014b6dd926db0e91070.html">Browser Events</a></div>
 <div><a class="link" href="91f393916f4d1014b6dd926db0e91070.html">Writing a Control Renderer</a></div>
 </div>
 </div></div></div>

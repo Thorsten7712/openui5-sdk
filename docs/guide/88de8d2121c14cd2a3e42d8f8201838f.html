@@ -12,11 +12,13 @@
 <meta name="abstract" content=""/>
 <meta name="description" content=""/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3027935841512903"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=7519512725480536"/>
 <title>Testing the SAPUI5 Application on an ABAP Server</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -87,7 +89,7 @@
 					repository load report, the application cache buster works fully
 					automatically.</li>
 <li class="li">As of UI AddOn 1.0 SP03 it may be necessary after system- and language imports for a SAPUI5
-					application into the SAP NetWeaver Web AS to reset its internal cache buster
+					application into the <span class="ph pname">SAP NetWeaver</span> Web AS to reset its internal cache buster
 					information. You may explicitly use or schedule the ABAP report
 						<samp class="ph codeph">/UI5/RESET_CACHEBUSTER</samp> to do so on all servers. As an
 					alternative you can trigger the reset for a specific SAPUI5 application from the

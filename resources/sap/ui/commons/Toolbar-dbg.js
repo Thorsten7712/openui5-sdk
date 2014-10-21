@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,21 +59,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.Toolbar
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Toolbar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Toolbar", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.Toolbar"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"visible" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -83,8 +81,8 @@ sap.ui.core.Control.extend("sap.ui.commons.Toolbar", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "item"}, 
-    	"rightItems" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "rightItem"}
+		"items" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "item"}, 
+		"rightItems" : {type : "sap.ui.commons.ToolbarItem", multiple : true, singularName : "rightItem"}
 	}
 }});
 
@@ -134,7 +132,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Toolbar", { metadata : {
 /**
  * Getter for property <code>width</code>.
  * When there is not enough space for the toolbar to display all items, the rightmost items are overflowing into a drop-down menu.
- * 
  *
  * Default value is <code>auto</code>
  *
@@ -405,7 +402,7 @@ sap.ui.commons.Toolbar.prototype.onBeforeRendering = function() {
 	sap.ui.commons.ToolbarRenderer.emptyOverflowPopup(this); // if rerendering happens while there are still items in the popup (and it is open), the items will be duplicated
 	this.cleanup();
 
-	this.$("mn").unbind("keyup", this._handleKeyUp);
+	this.$("mn").unbind("keydown", this._handleKeyDown);
 
 	this.bFirstTime = true;
 };
@@ -430,8 +427,8 @@ sap.ui.commons.Toolbar.prototype.onAfterRendering = function() {
 	}
 
 	// cannot use sapspace because this triggers onkeydown and sets the focus to the first button in the overflow popup
-	// and the subsequent keyup will make the browser fire a click event on that button
-	this.$("mn").bind("keyup", jQuery.proxy(this._handleKeyUp, this));
+	// and the subsequent keydown will make the browser fire a click event on that button
+	this.$("mn").bind("keydown", jQuery.proxy(this._handleKeyDown, this));
 
 	this.sResizeListenerId = sap.ui.core.ResizeHandler.register(this.oDomRef, jQuery.proxy(this.ontoolbarresize, this));
 	var iRightItemsLength =  this.getRightItems().length;
@@ -455,7 +452,7 @@ sap.ui.commons.Toolbar.prototype.onAfterRendering = function() {
  * @param {jQuery.EventObject} oEvent The forwarded browser event
  * @private
  */
-sap.ui.commons.Toolbar.prototype._handleKeyUp = function (oEvent) {
+sap.ui.commons.Toolbar.prototype._handleKeyDown = function (oEvent) {
 	if ((oEvent.keyCode == jQuery.sap.KeyCodes.SPACE)
 			&& (oEvent.target.id === this.getId() + "-mn")) {
 		this.handleOverflowButtonTriggered();
@@ -839,7 +836,7 @@ sap.ui.commons.Toolbar.prototype.openPopup = function() {
 
 	//Open popup with a little delay in IE8 to avoid focus calls when the popup is not yet opened
 	var iDuration = !!sap.ui.Device.browser.internet_explorer && (sap.ui.Device.browser.version == 7 || sap.ui.Device.browser.version == 8) ? 1 : 0;
-	this.popup.open(iDuration, sap.ui.core.Popup.Dock.EndTop, sap.ui.core.Popup.Dock.EndBottom, this.$("mn"));
+	this.popup.open(iDuration, sap.ui.core.Popup.Dock.EndTop, sap.ui.core.Popup.Dock.EndBottom, this.$("mn"),"", "fit", true );
 	this.bOpen = true;
 };
 
@@ -1250,4 +1247,3 @@ sap.ui.commons.Toolbar.prototype.cleanup = function() {
 	}
 
 };
-

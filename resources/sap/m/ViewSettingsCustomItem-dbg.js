@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,25 +56,23 @@ jQuery.sap.require("sap.m.ViewSettingsItem");
  * ViewSettingsCustomItem is used for modelling custom filters in the ViewSettingsDialog.
  * @extends sap.m.ViewSettingsItem
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16
  * @name sap.m.ViewSettingsCustomItem
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.ViewSettingsItem.extend("sap.m.ViewSettingsCustomItem", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"filterCount" : {type : "int", group : "Behavior", defaultValue : 0}
 	},
 	aggregations : {
-    	"customControl" : {type : "sap.ui.core.Control", multiple : false}
+		"customControl" : {type : "sap.ui.core.Control", multiple : false}
 	}
 }});
 
@@ -168,7 +166,7 @@ sap.m.ViewSettingsCustomItem.prototype.exit = function () {
 /*
  * Internally the control is handled as a managed object instead of an aggregation 
  * because this control is sometimes aggregated in other controls like a popover or a dialog
- * @overwrite
+ * @override
  * @public
  * @param {sap.ui.core.Control} oControl a control used for filtering purposes
  * @return {sap.m.ViewSettingsCustomItem} this pointer for chaining 
@@ -181,10 +179,34 @@ sap.m.ViewSettingsCustomItem.prototype.setCustomControl = function (oControl) {
 /*
  * Internally the control is handled as a managed object instead of an aggregation 
  * because this control is sometimes aggregated in other controls like a popover or a dialog
- * @overwrite
+ * @override
  * @public
  * @return {sap.ui.core.Control} oControl a control used for filtering purposes
  */
 sap.m.ViewSettingsCustomItem.prototype.getCustomControl = function () {
 	return this._control;
+};
+
+/*
+ * Sets the filterCount property without invalidating the control as it is never rendered directly 
+ * @override
+ * @param {integer} iValue the new value for property filterCount
+ * @public
+ * @return {sap.m.ViewSettingsItem} this pointer for chaining
+ */
+sap.m.ViewSettingsCustomItem.prototype.setFilterCount = function (iValue) {
+	this.setProperty("filterCount", iValue, true);
+	return this;
+};
+
+/*
+ * Sets the selected property without invalidating the control as it is never rendered directly 
+ * @override
+ * @param {boolean} bValue the new value for property selected
+ * @public
+ * @return {sap.m.ViewSettingsItem} this pointer for chaining
+ */
+sap.m.ViewSettingsCustomItem.prototype.setSelected = function (bValue) {
+	this.setProperty("selected", bValue, true);
+	return this;
 };

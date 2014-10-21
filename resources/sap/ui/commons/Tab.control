@@ -3,7 +3,7 @@
 
 	<name>Tab</name>
 
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A single page in a TabStrip control.</documentation>
 	<baseType>sap.ui.commons/Panel</baseType>
 	<properties>

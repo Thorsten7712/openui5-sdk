@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -63,21 +63,19 @@ jQuery.sap.require("sap.ui.core.Item");
  * @extends sap.ui.core.Item
  * @implements sap.m.IconTab
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.IconTabFilter
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Item.extend("sap.m.IconTabFilter", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.m.IconTab"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"count" : {type : "string", group : "Data", defaultValue : ''},
@@ -90,7 +88,7 @@ sap.ui.core.Item.extend("sap.m.IconTabFilter", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	}
 }});
 
@@ -400,6 +398,9 @@ sap.m.IconTabFilter.prototype._getImageControl = function(aCssClassesToAdd, oPar
 	};
 	if (mProperties.src) {
 		this._oImageControl = sap.m.ImageHelper.getImageControl(this.getId() + "-icon", this._oImageControl, oParent, mProperties, aCssClassesToAdd, aCssClassesToRemove);
+	} else if (this._oImageControl) {
+		this._oImageControl.destroy();
+		this._oImageControl = null;
 	}
 	
 	return this._oImageControl;

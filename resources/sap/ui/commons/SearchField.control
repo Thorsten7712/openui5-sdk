@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>SearchField</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Allows the user to type search queries and to trigger the search. Optionally, suggestions can be added.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

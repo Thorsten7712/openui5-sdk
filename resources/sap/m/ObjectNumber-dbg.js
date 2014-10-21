@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,20 +56,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * ObjectNumber displays number and number unit properties for an object. The number can be displayed using semantic colors to provide addition meaning about the object to the user.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.ObjectNumber
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.ObjectNumber", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"number" : {type : "string", group : "Misc", defaultValue : null},
@@ -272,7 +268,7 @@ sap.m.ObjectNumber.prototype._sCSSPrefixObjNumberStatus = 'sapMObjectNumberStatu
 /**
  * API method to set the object number's value state
  *
- * @param sState the Object Number's value state
+ * @param {string} sState the Object Number's value state
  * @public
  */
 sap.m.ObjectNumber.prototype.setState = function(sState) {

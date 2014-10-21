@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<link rel="stylesheet" id="sap-ui-theme-sap.ui.layout" href="../../../../../resources/sap/ui/layout/themes/sap_bluecrystal/library.css" type="text/css" data-marker="42" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript">
 		
@@ -145,6 +146,88 @@
 				equal($link.attr("data-marker"), "42", "after loadLibrary, the link object still should be the old one");
 			});
 			
+			//****************************************************
+			// loadResource tests
+			//****************************************************
+
+			module("loadResource");
+			
+			test("synchronous - basic", function(){
+				var sText = jQuery.sap.loadResource({
+					url: "testdata/test.properties",
+					dataType: 'text',
+					failOnError: false
+				});
+				ok(sText && sText.length > 0, "Resource loaded successfully");
+			});
+			
+			test("synchronous - no fail on error", function(){
+				var sText = jQuery.sap.loadResource({
+					url: "testdata/testDoesNotExist.properties",
+					dataType: 'text',
+					failOnError: false
+				});
+				ok(!sText, "Resource cannot be found but no error occured");
+			});
+			
+			test("synchronous - fail on error", function(){
+				try {
+					var sText = jQuery.sap.loadResource({
+						url: "testdata/testDoesNotExist.properties",
+						dataType: 'text',
+						failOnError: true
+					});
+					ok(false, "Resource cannot be found but no error occured");
+				}catch(e){
+					ok(true, "Resource cannot be found and an error occured");
+				}
+			});
+			
+			asyncTest("asynchronous - basic", function(){
+				jQuery.sap.loadResource({
+					url: "testdata/test.properties",
+					dataType: 'text',
+					failOnError: false,
+					async: true
+				}).then(function(sText){
+					ok(sText && sText.length > 0, "Promise.done: Resource loaded successfully");
+					start();
+				}, function(oError){
+					ok(false, "Promise.catch should not be called");
+					start();
+				});
+			});
+			
+			asyncTest("asynchronous - no fail on error", function(){
+				jQuery.sap.loadResource({
+					url: "testdata/testDoesNotExist.properties",
+					dataType: 'text',
+					failOnError: false,
+					async: true
+				}).then(function(sText){
+					ok(!sText, "Promise.done: Resource cannot be found but no error occured");
+					start();
+				}, function(oError){
+					ok(false, "Promise.catch should not be called");
+					start();
+				});
+			});
+			
+			asyncTest("asynchronous - fail on error", function(){
+				jQuery.sap.loadResource({
+					url: "testdata/testDoesNotExist.properties",
+					dataType: 'text',
+					failOnError: true,
+					async: true
+				}).then(function(sText){
+					ok(false, "Promise.done should not be called");
+					start();
+				}, function(oError){
+					ok(oError instanceof Error, "Promise.catch: Resource cannot be found and an error occured");
+					start();
+				});
+			});
+
 		</script>
 		
 	</head>

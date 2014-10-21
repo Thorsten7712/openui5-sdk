@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -55,8 +55,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Core', './El
 	 *
 	 * @class Base Class for Elements.
 	 * @extends sap.ui.base.ManagedObject
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @public
 	 * @name sap.ui.core.Element
 	 */
@@ -1006,6 +1006,15 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Core', './El
 	};
 	
 	/**
+	 * Destroys the tooltip in the aggregation 
+	 * named <code>tooltip</code>.
+	 * @return {sap.ui.core.Element} <code>this</code> to allow method chaining
+	 * @public
+	 * @name sap.ui.core.Element#destroyTooltip
+	 * @function
+	 */	
+	
+	/**
 	 * Returns the runtime metadata for this UI element.
 	 *
 	 * When using the defineClass method, this function is automatically created and returns
@@ -1196,6 +1205,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Core', './El
 	 * Sets the {@link sap.ui.core.LayoutData} defining the layout constraints 
 	 * for this control when it is used inside a layout.
 	 *
+	 * @param {sap.ui.core.LayoutData} oLayoutData
 	 * @function
 	 * @name sap.ui.core.Element.prototype.setLayoutData
 	 * @public
@@ -1220,6 +1230,15 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Core', './El
 	 * @public
 	 */
 	
+	/**
+	 * Destroys the layoutData in the aggregation 
+	 * named <code>layoutData</code>.
+	 * @return {sap.ui.core.Element} <code>this</code> to allow method chaining
+	 * @public
+	 * @name sap.ui.core.Element#destroyLayoutData
+	 * @function
+	 */	
+
 	/**
 	 * Allows the parent of a control to enhance the aria information during rendering
 	 *
@@ -1256,6 +1275,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/ManagedObject', './Core', './El
 	 * Removes the defined binding context of this object, all bindings will now resolve
 	 * relative to the parent context again.
 	 *
+	 * @param {string} sModelName
 	 * @return {sap.ui.base.ManagedObject} reference to the instance itself
 	 * @public
 	 * @name sap.ui.core.Element#unbindElement

@@ -20,6 +20,7 @@
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 	<script src="../resources/ExactData.js"></script>
 	
@@ -59,8 +60,6 @@
 	<!-- Test helper functions -->
 	<script language="javascript">
 
-		var ASYNC_TIMEOUT = 10000;
-	
 		function getListItemRefs(oListBox) {
 			return jQuery(jQuery("#"+oListBox.getId()).children()[0]).children();
 		};
@@ -88,19 +87,18 @@
 				equals(calculateSelectionCount(oExactBrowser1._attributeRoot), iTotalSelectedAtts, "Number of selected attributes (Attributes):");
 
 				setTimeout(function(){
-					start();
 					var aSubLists = oExactBrowser1._rootList.getSubLists();
 					equals(aSubLists.length, aVisibleFirstLevelLists.length, "Number of visible 1st level lists:");
 					for(var i=0; i<aVisibleFirstLevelLists.length; i++){
 						equals(aSubLists[i].getData(), aVisibleFirstLevelLists[i], "List at position "+i+":");
 					}
+					start();
 				}, 1000);
 				
 				oExactBrowser1.detachAttributeSelected(handler);
 			};
 			oExactBrowser1.attachAttributeSelected(handler);
-			stop(ASYNC_TIMEOUT);
-			
+
 			var aRootListItemRefs = getListItemRefs(oExactBrowser1._rootList._lb);
 			return aRootListItemRefs;
 		};
@@ -235,7 +233,6 @@
 				}, 1000);
 			}, 1000);
 
-			stop();
 		});
 		
 		
@@ -257,7 +254,6 @@
 				}, 1000);
 			}, 1000);
 
-			stop();
 		});
 		
 
@@ -314,8 +310,7 @@
 			var oListBox = oExactBrowser1._rootList.getSubLists()[0]._lb;
 			var sExpanderId = oExactBrowser1._rootList.getSubLists()[0].getId()+"-exp";
 			var iInitialHeight = jQuery(oListBox.getDomRef()).height();
-			
-			stop();
+
 			setTimeout(function(){
 				ok(iInitialHeight != jQuery(oListBox.getDomRef()).height(), "List height increased ("+iInitialHeight+" != "+(jQuery(oListBox.getDomRef()).height())+")");
 				setTimeout(function(){
@@ -344,8 +339,7 @@
 			var oListBox = oExactBrowser1._rootList.getSubLists()[0]._lb;
 			var aItemRefs = getListItemRefs(oListBox);
 			var iInitialWidth = jQuery(oListBox.getDomRef()).width();
-			
-			stop();
+
 			setTimeout(function(){
 				ok(iInitialWidth != jQuery(oListBox.getDomRef()).width(), "List width increased ("+iInitialWidth+" != "+(jQuery(oListBox.getDomRef()).width())+")");
 				setTimeout(function(){
@@ -362,8 +356,7 @@
 			var oSubList = oExactBrowser1._rootList.getSubLists()[0];
 			var aItemRefs = getListItemRefs(oSubList._lb);
 			ok(!jQuery(oSubList.getDomRef()).hasClass("sapUiUx3ExactLstCollapsed"), "List is not collapsed");
-			
-			stop();
+
 			setTimeout(function(){
 				ok(jQuery(oSubList.getDomRef()).hasClass("sapUiUx3ExactLstCollapsed"), "List is collapsed");
 				setTimeout(function(){
@@ -380,8 +373,7 @@
 			var oSubList = oExactBrowser1._rootList.getSubLists()[0];
 			var sExpanderId = oSubList.getId()+"-hide";
 			ok(!jQuery(oSubList.getDomRef()).hasClass("sapUiUx3ExactLstCollapsed"), "List is not collapsed");
-			
-			stop();
+
 			setTimeout(function(){
 				ok(jQuery(oSubList.getDomRef()).hasClass("sapUiUx3ExactLstCollapsed"), "List is collapsed");
 				setTimeout(function(){
@@ -419,8 +411,7 @@
 			var oAtt = oExactBrowser1.getAttributes()[1];
 			oAtt.setSelected(true);
 			oAtt.getAttributes()[0].setSelected(true);
-			
-			stop();
+
 			setTimeout(function(){
 				start();
 				equals(calculateSelectionCount(oExactBrowser1._attributeRoot), 2, "Number of selected attributes (Attributes):");
@@ -433,8 +424,7 @@
 		asyncTest("Deselect via API", function() {
 			var oAtt = oExactBrowser1.getAttributes()[1];
 			oAtt.setSelected(false);
-			
-			stop();
+
 			setTimeout(function(){
 				start();
 				equals(calculateSelectionCount(oExactBrowser1._attributeRoot), 0, "Number of selected attributes (Attributes):");

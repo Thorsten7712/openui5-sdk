@@ -1,8 +1,8 @@
 <html>
 	<head>
 		<title>TestSuite for sap.ui.core: GTP testcase CORE/UTILS</title>
-	</head>
-	<body>
+		<script type="text/javascript" src="../../../../../../resources/sap/ui/qunit/qunit-redirect.js"></script>
+		<script src="../../../../../../resources/sap/ui/Device.js"></script>
 		<script language="javascript">
 
 			/**
@@ -11,7 +11,7 @@
 			 */
 
 			function suite() {
-				var suite = new top.jsUnitTestSuite();
+				var suite = new parent.jsUnitTestSuite();
 				var contextPath = "/" + window.location.pathname.split("/")[1];
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/BusyIndicator.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/Device.qunit.html");
@@ -19,10 +19,16 @@
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/HTMLSanitizer.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.dom.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.logger.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.promise.qunit.html");
+				if(sap.ui.Device.browser.firefox && sap.ui.Device.browser.version > 28 || sap.ui.Device.browser.chrome && sap.ui.Device.browser.version > 32){
+					//Let the test run against the native browser API to early detect changes
+					suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.promise.qunit.html?native=x");
+				}
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.properties.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.resources.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.script.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.strings.qunit.html");
+				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.storage.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jQuery.sap.Version.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/jquery.sap.xml.qunit.html");
 				suite.addTestPage(contextPath + "/test-resources/sap/ui/core/qunit/PerformanceMeasurement.qunit.html");
@@ -39,7 +45,8 @@
 				return suite;
 			}
 
-			redirectToTestrunnerIfRequired();
 		</script>
+	</head>
+	<body>
 	</body>
 </html>

@@ -72,7 +72,7 @@
 								<div class="sectionItem classConstructor static">
 									<div class="itemName">
 										<b class="icon" title="!!! EXPERIMENTAL !!!">new <a href="../symbols/sap.ui.model.odata.ODataAnnotations.html#constructor">sap.ui.model.odata.ODataAnnotations</a></b>
-										<span class='signature'>(<span title="(string) string">sAnnotationURI</span>, <span title="(sap.ui.model.odata.ODataMetadata) sap.ui.model.odata.ODataMetadata">oMetadata</span>, <span title="(object) object">mParams</span>)</span>
+										<span class='signature'>(<span title="(string|string[]) The annotation-URL or an array of URLS that should be parsed and merged">aAnnotationURI</span>, <span title="(sap.ui.model.odata.ODataMetadata) sap.ui.model.odata.ODataMetadata">oMetadata</span>, <span title="(object) object">mParams</span>)</span>
 										<span class='description'>!!! EXPERIMENTAL !!!</span>
 									</div>
 								</div>
@@ -98,7 +98,7 @@
 							<div class="sectionItems">
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Sets an XML document"><a href="../symbols/sap.ui.model.odata.ODataAnnotations.html#setXML">setXML</a></b><span class='signature'>()</span>
+									<b class="icon" title="Sets an XML document"><a href="../symbols/sap.ui.model.odata.ODataAnnotations.html#setXML">setXML</a></b><span class='signature'>(<span title="(object) object">oXMLDocument</span>, <span title="(string) string">sXMLContent</span>, <span title="(map) Additional options">mOptions</span>)</span>
 									<span class='description'>Sets an XML document</span>
 								</div>
 							
@@ -131,7 +131,7 @@
 									<div class="details"><a name="constructor"> </a>
 										
 										<div class="icon">
-											new <b>sap.ui.model.odata.ODataAnnotations</b>(<span title="(string) string">sAnnotationURI</span>, <span title="(sap.ui.model.odata.ODataMetadata) sap.ui.model.odata.ODataMetadata">oMetadata</span>, <span title="(object) object">mParams</span>)
+											new <b>sap.ui.model.odata.ODataAnnotations</b>(<span title="(string|string[]) The annotation-URL or an array of URLS that should be parsed and merged">aAnnotationURI</span>, <span title="(sap.ui.model.odata.ODataMetadata) sap.ui.model.odata.ODataMetadata">oMetadata</span>, <span title="(object) object">mParams</span>)
 										</div>
 										
 										<div class="full-description">
@@ -146,13 +146,13 @@
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string}</span> 
+													  <span class="light">{string|string[]}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sAnnotationURI</b>
+													  <b>aAnnotationURI</b>
 													</td>
 													<td class="methodItemDesc">
-												    
+												    The annotation-URL or an array of URLS that should be parsed and merged
 													</td>
 												</tr>
 											
@@ -213,7 +213,7 @@
 									<div class='sectionItem classMethod'>
 										<a name="setXML"> </a>
 										<div class="itemTitle icon">
-											setXML<span class="signature">()</span>
+											setXML<span class="signature">(<span title="(object) object">oXMLDocument</span>, <span title="(string) string">sXMLContent</span>, <span title="(map) Additional options">mOptions</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -225,6 +225,75 @@
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oXMLDocument</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sXMLContent</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{map}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions</b>
+													</td>
+													<td class="methodItemDesc">
+												    Additional options
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{fuction}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions.success</b>
+													</td>
+													<td class="methodItemDesc">
+												    Success callback gets an objec as argument with the 
+                 properties "annotations" containing the parsed annotations and "xmlDoc"
+                 containing the XML-Document that was returned by the request.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{fuction}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>mOptions.error</b>
+													</td>
+													<td class="methodItemDesc">
+												    Error callback gets an objec as argument with the 
+                 property "xmlDoc" containing the XML-Document that was returned by the 
+                 request and could not be correctly parsed.
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										

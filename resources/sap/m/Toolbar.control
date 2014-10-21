@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>Toolbar</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16</since>
 	<documentation>The Toolbar control is a horizontal items container that can be used to get an input from user or just to display output.
 

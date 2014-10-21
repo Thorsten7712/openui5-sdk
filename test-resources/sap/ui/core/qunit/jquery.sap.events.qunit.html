@@ -17,6 +17,7 @@
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 	<style type="text/css">
@@ -531,6 +532,286 @@
 		value: "some-value"
 	});
 
+	module("");
+
+	/* ------------------------------ */
+	/* jQuery.sap.isSpecialKey()      */
+	/* ------------------------------ */
+
+	var fnIsSpecialKeyTestCase = function(sEventName, mOptions, bOuput, sDescription) {
+		test("jQuery.sap.isSpecialKey() " + sDescription, function() {
+
+			// arrange
+			var oEvent = new jQuery.Event(sEventName);
+			jQuery.extend(oEvent, mOptions);
+
+			// assertions
+			strictEqual(jQuery.sap.isSpecialKey(oEvent), bOuput);
+		});
+	};
+
+	// keydown
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.BREAK }, true, "Event: keydown, Key: BREAK");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.PAGE_UP }, true, "Event: keydown, Key: PAGE_UP");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.PAGE_DOWN }, true, "Event: keydown, Key: PAGE_DOWN");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.END }, true, "Event: keydown, Key: END");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.HOME }, true, "Event: keydown, Key: HOME");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.PRINT }, true, "Event: keydown, Key: PRINT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.INSERT }, true, "Event: keydown, Key: INSERT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DELETE }, true, "Event: keydown, Key: DELETE");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F1 }, true, "Event: keydown, Key: F1");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F2 }, true, "Event: keydown, Key: F2");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F3 }, true, "Event: keydown, Key: F3");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F4 }, true, "Event: keydown, Key: F4");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F5 }, true, "Event: keydown, Key: F5");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F6 }, true, "Event: keydown, Key: F6");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F7 }, true, "Event: keydown, Key: F7");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F8 }, true, "Event: keydown, Key: F8");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F9 }, true, "Event: keydown, Key: F9");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F10 }, true, "Event: keydown, Key: F10");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F11 }, true, "Event: keydown, Key: F11");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F12 }, true, "Event: keydown, Key: F12");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.BACKSPACE }, true, "Event: keydown, Key: BACKSPACE");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.TAB }, true, "Event: keydown, Key: TAB");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.ENTER }, true, "Event: keydown, Key: ENTER");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.ESCAPE }, true, "Event: keydown, Key: ESCAPE");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.SCROLL_LOCK }, true, "Event: keydown, Key: SCROLL_LOCK");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.A }, false, "Event: keydown, Key: A");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.B }, false, "Event: keydown, Key: B");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.BACKSLASH }, false, "Event: keydown, Key: BACKSLASH");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.C }, false, "Event: keydown, Key: C");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.COMMA }, false, "Event: keydown, Key: COMMA");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.D }, false, "Event: keydown, Key: D");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_0 }, false, "Event: keydown, Key: DIGIT_0");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_1 }, false, "Event: keydown, Key: DIGIT_1");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_2 }, false, "Event: keydown, Key: DIGIT_2");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_3 }, false, "Event: keydown, Key: DIGIT_3");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_4 }, false, "Event: keydown, Key: DIGIT_4");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_5 }, false, "Event: keydown, Key: DIGIT_5");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_6 }, false, "Event: keydown, Key: DIGIT_6");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_7 }, false, "Event: keydown, Key: DIGIT_7");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_8 }, false, "Event: keydown, Key: DIGIT_8");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DIGIT_9 }, false, "Event: keydown, Key: DIGIT_9");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.DOT }, false, "Event: keydown, Key: DOT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.E }, false, "Event: keydown, Key: E");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.EQUALS }, false, "Event: keydown, Key: EQUALS");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.F }, false, "Event: keydown, Key: F");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.G }, false, "Event: keydown, Key: G");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.GREAT_ACCENT }, false, "Event: keydown, Key: GREAT_ACCENT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.H }, false, "Event: keydown, Key: H");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.I }, false, "Event: keydown, Key: I");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.J }, false, "Event: keydown, Key: J");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.K }, false, "Event: keydown, Key: K");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.L }, false, "Event: keydown, Key: L");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.M }, false, "Event: keydown, Key: M");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.MINUS }, false, "Event: keydown, Key: MINUS");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.N }, false, "Event: keydown, Key: N");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_0 }, false, "Event: keydown, Key: NUMPAD_0");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_1 }, false, "Event: keydown, Key: NUMPAD_1");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_2 }, false, "Event: keydown, Key: NUMPAD_2");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_3 }, false, "Event: keydown, Key: NUMPAD_3");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_4 }, false, "Event: keydown, Key: NUMPAD_4");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_5 }, false, "Event: keydown, Key: NUMPAD_5");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_6 }, false, "Event: keydown, Key: NUMPAD_6");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_7 }, false, "Event: keydown, Key: NUMPAD_7");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_8 }, false, "Event: keydown, Key: NUMPAD_8");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_9 }, false, "Event: keydown, Key: NUMPAD_9");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_ASTERISK }, false, "Event: keydown, Key: NUMPAD_ASTERISK");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_COMMA }, false, "Event: keydown, Key: NUMPAD_COMMA");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_MINUS }, false, "Event: keydown, Key: NUMPAD_MINUS");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_PLUS }, false, "Event: keydown, Key: NUMPAD_PLUS");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUMPAD_SLASH }, false, "Event: keydown, Key: NUMPAD_SLASH");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.OPEN_BRACKET }, false, "Event: keydown, Key: OPEN_BRACKET");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.P }, false, "Event: keydown, Key: P");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.PIPE }, false, "Event: keydown, Key: PIPE");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.PLUS }, false, "Event: keydown, Key: PLUS");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.Q }, false, "Event: keydown, Key: Q");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.R }, false, "Event: keydown, Key: R");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.S }, false, "Event: keydown, Key: S");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.SEMICOLON }, false, "Event: keydown, Key: SEMICOLON");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.SINGLE_QUOTE }, false, "Event: keydown, Key: SINGLE_QUOTE");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.SLASH }, false, "Event: keydown, Key: SLASH");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.SPACE }, false, "Event: keydown, Key: SPACE");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.T }, false, "Event: keydown, Key: T");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.U }, false, "Event: keydown, Key: U");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.V }, false, "Event: keydown, Key: V");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.W }, false, "Event: keydown, Key: W");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.X }, false, "Event: keydown, Key: X");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.Y }, false, "Event: keydown, Key: Y");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.Z }, false, "Event: keydown, Key: Z");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.SHIFT }, true, "Event: keydown, Key: SHIFT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.CONTROL }, true, "Event: keydown, Key: CONTROL");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.ALT }, true, "Event: keydown, Key: ALT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.CAPS_LOCK }, true, "Event: keydown, Key: CAPS_LOCK");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.NUM_LOCK }, true, "Event: keydown, Key: NUM_LOCK");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.ARROW_LEFT }, true, "Event: keydown, Key: ARROW_LEFT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.ARROW_UP }, true, "Event: keydown, Key: ARROW_UP");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.ARROW_RIGHT }, true, "Event: keydown, Key: ARROW_RIGHT");
+	fnIsSpecialKeyTestCase("keydown", { which: jQuery.sap.KeyCodes.ARROW_DOWN }, true, "Event: keydown, Key: ARROW_DOWN");
+
+	// keyup
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.BREAK }, true, "Event: keyup, Key: BREAK");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.PAGE_UP }, true, "Event: keyup, Key: PAGE_UP");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.PAGE_DOWN }, true, "Event: keyup, Key: PAGE_DOWN");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.END }, true, "Event: keyup, Key: END");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.HOME }, true, "Event: keyup, Key: HOME");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.PRINT }, true, "Event: keyup, Key: PRINT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.INSERT }, true, "Event: keyup, Key: INSERT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DELETE }, true, "Event: keyup, Key: DELETE");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F1 }, true, "Event: keyup, Key: F1");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F2 }, true, "Event: keyup, Key: F2");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F3 }, true, "Event: keyup, Key: F3");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F4 }, true, "Event: keyup, Key: F4");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F5 }, true, "Event: keyup, Key: F5");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F6 }, true, "Event: keyup, Key: F6");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F7 }, true, "Event: keyup, Key: F7");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F8 }, true, "Event: keyup, Key: F8");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F9 }, true, "Event: keyup, Key: F9");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F10 }, true, "Event: keyup, Key: F10");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F11 }, true, "Event: keyup, Key: F11");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F12 }, true, "Event: keyup, Key: F12");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.BACKSPACE }, true, "Event: keyup, Key: BACKSPACE");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.TAB }, true, "Event: keyup, Key: TAB");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.ENTER }, true, "Event: keyup, Key: ENTER");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.ESCAPE }, true, "Event: keyup, Key: ESCAPE");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.SCROLL_LOCK }, true, "Event: keyup, Key: SCROLL_LOCK");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.A }, false, "Event: keyup, Key: A");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.B }, false, "Event: keyup, Key: B");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.BACKSLASH }, false, "Event: keyup, Key: BACKSLASH");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.C }, false, "Event: keyup, Key: C");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.COMMA }, false, "Event: keyup, Key: COMMA");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.D }, false, "Event: keyup, Key: D");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_0 }, false, "Event: keyup, Key: DIGIT_0");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_1 }, false, "Event: keyup, Key: DIGIT_1");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_2 }, false, "Event: keyup, Key: DIGIT_2");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_3 }, false, "Event: keyup, Key: DIGIT_3");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_4 }, false, "Event: keyup, Key: DIGIT_4");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_5 }, false, "Event: keyup, Key: DIGIT_5");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_6 }, false, "Event: keyup, Key: DIGIT_6");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_7 }, false, "Event: keyup, Key: DIGIT_7");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_8 }, false, "Event: keyup, Key: DIGIT_8");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DIGIT_9 }, false, "Event: keyup, Key: DIGIT_9");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.DOT }, false, "Event: keyup, Key: DOT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.E }, false, "Event: keyup, Key: E");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.EQUALS }, false, "Event: keyup, Key: EQUALS");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.F }, false, "Event: keyup, Key: F");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.G }, false, "Event: keyup, Key: G");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.GREAT_ACCENT }, false, "Event: keyup, Key: GREAT_ACCENT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.H }, false, "Event: keyup, Key: H");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.I }, false, "Event: keyup, Key: I");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.J }, false, "Event: keyup, Key: J");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.K }, false, "Event: keyup, Key: K");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.L }, false, "Event: keyup, Key: L");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.M }, false, "Event: keyup, Key: M");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.MINUS }, false, "Event: keyup, Key: MINUS");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.N }, false, "Event: keyup, Key: N");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_0 }, false, "Event: keyup, Key: NUMPAD_0");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_1 }, false, "Event: keyup, Key: NUMPAD_1");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_2 }, false, "Event: keyup, Key: NUMPAD_2");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_3 }, false, "Event: keyup, Key: NUMPAD_3");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_4 }, false, "Event: keyup, Key: NUMPAD_4");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_5 }, false, "Event: keyup, Key: NUMPAD_5");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_6 }, false, "Event: keyup, Key: NUMPAD_6");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_7 }, false, "Event: keyup, Key: NUMPAD_7");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_8 }, false, "Event: keyup, Key: NUMPAD_8");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_9 }, false, "Event: keyup, Key: NUMPAD_9");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_ASTERISK }, false, "Event: keyup, Key: NUMPAD_ASTERISK");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_COMMA }, false, "Event: keyup, Key: NUMPAD_COMMA");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_MINUS }, false, "Event: keyup, Key: NUMPAD_MINUS");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_PLUS }, false, "Event: keyup, Key: NUMPAD_PLUS");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUMPAD_SLASH }, false, "Event: keyup, Key: NUMPAD_SLASH");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.OPEN_BRACKET }, false, "Event: keyup, Key: OPEN_BRACKET");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.P }, false, "Event: keyup, Key: P");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.PIPE }, false, "Event: keyup, Key: PIPE");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.PLUS }, false, "Event: keyup, Key: PLUS");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.Q }, false, "Event: keyup, Key: Q");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.R }, false, "Event: keyup, Key: R");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.S }, false, "Event: keyup, Key: S");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.SEMICOLON }, false, "Event: keyup, Key: SEMICOLON");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.SINGLE_QUOTE }, false, "Event: keyup, Key: SINGLE_QUOTE");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.SLASH }, false, "Event: keyup, Key: SLASH");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.SPACE }, false, "Event: keyup, Key: SPACE");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.T }, false, "Event: keyup, Key: T");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.U }, false, "Event: keyup, Key: U");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.V }, false, "Event: keyup, Key: V");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.W }, false, "Event: keyup, Key: W");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.X }, false, "Event: keyup, Key: X");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.Y }, false, "Event: keyup, Key: Y");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.Z }, false, "Event: keyup, Key: Z");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.SHIFT }, true, "Event: keyup, Key: SHIFT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.CONTROL }, true, "Event: keyup, Key: CONTROL");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.ALT }, true, "Event: keyup, Key: ALT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.CAPS_LOCK }, true, "Event: keyup, Key: CAPS_LOCK");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.NUM_LOCK }, true, "Event: keyup, Key: NUM_LOCK");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.ARROW_LEFT }, true, "Event: keyup, Key: ARROW_LEFT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.ARROW_UP }, true, "Event: keyup, Key: ARROW_UP");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.ARROW_RIGHT }, true, "Event: keyup, Key: ARROW_RIGHT");
+	fnIsSpecialKeyTestCase("keyup", { which: jQuery.sap.KeyCodes.ARROW_DOWN }, true, "Event: keyup, Key: ARROW_DOWN");
+
+	// keypress
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.A  }, false, "Event: keypress, Key: A");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.B }, false, "Event: keypress, Key: B");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.BACKSLASH }, false, "Event: keypress, Key: BACKSLASH");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.C }, false, "Event: keypress, Key: C");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.COMMA }, false, "Event: keypress, Key: COMMA");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.D }, false, "Event: keypress, Key: D");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_0 }, false, "Event: keypress, Key: DIGIT_0");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_1 }, false, "Event: keypress, Key: DIGIT_1");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_2 }, false, "Event: keypress, Key: DIGIT_2");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_3 }, false, "Event: keypress, Key: DIGIT_3");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_4 }, false, "Event: keypress, Key: DIGIT_4");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_5 }, false, "Event: keypress, Key: DIGIT_5");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_6 }, false, "Event: keypress, Key: DIGIT_6");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_7 }, false, "Event: keypress, Key: DIGIT_7");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_8 }, false, "Event: keypress, Key: DIGIT_8");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DIGIT_9 }, false, "Event: keypress, Key: DIGIT_9");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.DOT }, false, "Event: keypress, Key: DOT");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.E }, false, "Event: keypress, Key: E");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.EQUALS }, false, "Event: keypress, Key: EQUALS");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.F }, false, "Event: keypress, Key: F");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.G }, false, "Event: keypress, Key: G");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.GREAT_ACCENT }, false, "Event: keypress, Key: GREAT_ACCENT");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.H }, false, "Event: keypress, Key: H");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.I }, false, "Event: keypress, Key: I");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.J }, false, "Event: keypress, Key: J");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.K }, false, "Event: keypress, Key: K");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.L }, false, "Event: keypress, Key: L");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.M }, false, "Event: keypress, Key: M");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.MINUS }, false, "Event: keypress, Key: MINUS");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.N }, false, "Event: keypress, Key: N");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_0 }, false, "Event: keypress, Key: NUMPAD_0");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_1 }, false, "Event: keypress, Key: NUMPAD_1");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_2 }, false, "Event: keypress, Key: NUMPAD_2");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_3 }, false, "Event: keypress, Key: NUMPAD_3");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_4 }, false, "Event: keypress, Key: NUMPAD_4");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_5 }, false, "Event: keypress, Key: NUMPAD_5");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_6 }, false, "Event: keypress, Key: NUMPAD_6");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_7 }, false, "Event: keypress, Key: NUMPAD_7");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_8 }, false, "Event: keypress, Key: NUMPAD_8");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_9 }, false, "Event: keypress, Key: NUMPAD_9");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_ASTERISK }, false, "Event: keypress, Key: NUMPAD_ASTERISK");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_COMMA }, false, "Event: keypress, Key: NUMPAD_COMMA");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_MINUS }, false, "Event: keypress, Key: NUMPAD_MINUS");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_PLUS }, false, "Event: keypress, Key: NUMPAD_PLUS");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.NUMPAD_SLASH }, false, "Event: keypress, Key: NUMPAD_SLASH");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.OPEN_BRACKET }, false, "Event: keypress, Key: OPEN_BRACKET");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.P }, false, "Event: keypress, Key: P");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.PIPE }, false, "Event: keypress, Key: PIPE");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.PLUS }, false, "Event: keypress, Key: PLUS");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.Q }, false, "Event: keypress, Key: Q");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.R }, false, "Event: keypress, Key: R");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.S }, false, "Event: keypress, Key: S");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.SEMICOLON }, false, "Event: keypress, Key: SEMICOLON");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.SINGLE_QUOTE }, false, "Event: keypress, Key: SINGLE_QUOTE");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.SLASH }, false, "Event: keypress, Key: SLASH");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.SPACE }, false, "Event: keypress, Key: SPACE");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.T }, false, "Event: keypress, Key: T");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.U }, false, "Event: keypress, Key: U");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.V }, false, "Event: keypress, Key: V");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.W }, false, "Event: keypress, Key: W");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.X }, false, "Event: keypress, Key: X");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.Y }, false, "Event: keypress, Key: Y");
+	fnIsSpecialKeyTestCase("keypress", { which: jQuery.sap.KeyCodes.Z }, false, "Event: keypress, Key: Z");
 	</script>
 </head>
 <body>

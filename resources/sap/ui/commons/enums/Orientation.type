@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>enums/Orientation</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Orientation of a UI element</documentation>
 	<enumeration>
 		<value name="horizontal">

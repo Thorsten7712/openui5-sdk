@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>ContentSwitcherAnimation</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16.0</since>
 	<developmentState state="experimental" since="1.16.0">API is not yet finished and might change completely</developmentState>
 	<documentation>Predefined animations for the ContentSwitcher</documentation>

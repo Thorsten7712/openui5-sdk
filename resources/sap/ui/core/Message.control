@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Message</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>This element used to provide messages. Rendering must be done within the control that uses this kind of element.
 
 Its default level is none.</documentation>

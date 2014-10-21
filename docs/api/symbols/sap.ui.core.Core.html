@@ -365,7 +365,7 @@ It registers the Browser Eventing.</p>
 								</div>
 							
 								<div class="sectionItem classMethod protected">
-									<b class="icon protected" title="Used to find out whether a certain DOM element is the static area"><a href="../symbols/sap.ui.core.Core.html#isStaticAreaRef">isStaticAreaRef</a></b><span class='signature'>()</span>
+									<b class="icon protected" title="Used to find out whether a certain DOM element is the static area"><a href="../symbols/sap.ui.core.Core.html#isStaticAreaRef">isStaticAreaRef</a></b><span class='signature'>(<span title="(object) object">oDomRef</span>)</span>
 									<span class='description'>Used to find out whether a certain DOM element is the static area</span>
 								</div>
 							
@@ -2405,7 +2405,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireFormatError"> </a>
 										<div class="itemTitle icon protected">
 											fireFormatError<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2470,7 +2470,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireParseError"> </a>
 										<div class="itemTitle icon protected">
 											fireParseError<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2535,7 +2535,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireValidationError"> </a>
 										<div class="itemTitle icon protected">
 											fireValidationError<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2600,7 +2600,7 @@ Expects following event parameters:
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireValidationSuccess"> </a>
 										<div class="itemTitle icon protected">
 											fireValidationSuccess<span class="signature">(<span title="(Map) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -3073,6 +3073,20 @@ If it is not yet available, a DIV is created and appended to the body.
 										
 										
 										
+											<div class="heading">Exceptions:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{Error}</span>  <b></b>
+													</td>
+													<td class="methodItemDesc">
+														an Error if the document is not yet ready
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
 										
 											<div class="heading">Returns:</div>
 											<table class="methodItem"><tbody>
@@ -3510,10 +3524,10 @@ of RenderManager etc. do already exist and the init event has already been fired
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="isStaticAreaRef"> </a>
 										<div class="itemTitle icon protected">
-											isStaticAreaRef<span class="signature">()</span>
+											isStaticAreaRef<span class="signature">(<span title="(object) object">oDomRef</span>)</span>
 											<span class="light" title="returns boolean">: boolean</span>
 										</div>
 										<div class="full-description">
@@ -3525,6 +3539,23 @@ of RenderManager etc. do already exist and the init event has already been fired
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oDomRef</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										
@@ -4024,7 +4055,7 @@ by calling <a href="#isInitialized">#isInitialized</a>.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													since 1.13.2 Register to the more convenient <a href="../symbols/sap.ui.core.Core.html#attachInit">init event</a> instead
 												</dt>
@@ -4072,7 +4103,7 @@ by calling <a href="#isInitialized">#isInitialized</a>.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Use <code>setRoot()</code> instead!
 												</dt>
@@ -4117,7 +4148,7 @@ by calling <a href="#isInitialized">#isInitialized</a>.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since 1.15.1. The Component class is enhanced to take care about the Application code.
 												</dt>
@@ -4179,7 +4210,7 @@ by calling <a href="#isInitialized">#isInitialized</a>.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													use <code>sap.ui.core.Core.byId</code> instead!
 												</dt>
@@ -4241,7 +4272,7 @@ by calling <a href="#isInitialized">#isInitialized</a>.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													use <code>sap.ui.core.Core.byId</code> instead!
 												</dt>
@@ -4286,7 +4317,7 @@ by calling <a href="#isInitialized">#isInitialized</a>.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 0.15.0. Replaced by <code>createRenderManager()</code>
 												</dt>
@@ -4347,7 +4378,7 @@ adds the given control reference to the UIAreas content (existing content will b
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Use function <code>oControl.placeAt(oDomRef, "only")</code> of <code>sap.ui.core.Control</code> instead.
 												</dt>

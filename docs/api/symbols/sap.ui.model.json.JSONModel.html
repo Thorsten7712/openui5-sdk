@@ -81,6 +81,11 @@
 
 
 					
+						
+						
+						
+						
+					
 		
 
 
@@ -127,7 +132,7 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Load JSON-encoded data from the server using a GET HTTP request and store the resulting JSON data in the model."><a href="../symbols/sap.ui.model.json.JSONModel.html#loadData">loadData</a></b><span class='signature'>(<span title="(string) A string containing the URL to which the request is sent.">sURL</span>, <span title="(object | string) A map or string that is sent to the server with the request.">oParameters</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) By default, all requests are sent asynchronous (i.e.">async</span><i class="help" title="Optional parameter">?</i>, <span title="(string) The type of request to make (&quot;POST&quot; or &quot;GET&quot;), default is &quot;GET&quot;.">sType</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) whether the data should be merged instead of replaced">bMerge</span><i class="help" title="Optional parameter">?</i>, <span title="(string) force no caching if false.">bCache</span><i class="help" title="Optional parameter">?</i>, <span title="(object) An object of additional header key/value pairs to send along with the request">mHeaders</span>)</span>
+									<b class="icon" title="Load JSON-encoded data from the server using a GET HTTP request and store the resulting JSON data in the model."><a href="../symbols/sap.ui.model.json.JSONModel.html#loadData">loadData</a></b><span class='signature'>(<span title="(string) A string containing the URL to which the request is sent.">sURL</span>, <span title="(object | string) A map or string that is sent to the server with the request.">oParameters</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) By default, all requests are sent asynchronous (i.e.">bAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(string) The type of request to make (&quot;POST&quot; or &quot;GET&quot;), default is &quot;GET&quot;.">sType</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) whether the data should be merged instead of replaced">bMerge</span><i class="help" title="Optional parameter">?</i>, <span title="(string) force no caching if false.">bCache</span><i class="help" title="Optional parameter">?</i>, <span title="(object) An object of additional header key/value pairs to send along with the request">mHeaders</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Load JSON-encoded data from the server using a GET HTTP request and store the resulting JSON data in the model.</span>
 								</div>
 							
@@ -157,6 +162,13 @@
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.model.Model.html">sap.ui.model.Model</a></div>
 									<div class="sectionItems">
 									<a href="../symbols/sap.ui.model.Model.html#attachParseError">attachParseError</a>, <a href="../symbols/sap.ui.model.Model.html#attachRequestCompleted">attachRequestCompleted</a>, <a href="../symbols/sap.ui.model.Model.html#attachRequestFailed">attachRequestFailed</a>, <a href="../symbols/sap.ui.model.Model.html#attachRequestSent">attachRequestSent</a>, <a href="../symbols/sap.ui.model.Model.html#bindContext">bindContext</a>, <a href="../symbols/sap.ui.model.Model.html#createBindingContext">createBindingContext</a>, <a href="../symbols/sap.ui.model.Model.html#destroy">destroy</a>, <a href="../symbols/sap.ui.model.Model.html#destroyBindingContext">destroyBindingContext</a>, <a href="../symbols/sap.ui.model.Model.html#detachParseError">detachParseError</a>, <a href="../symbols/sap.ui.model.Model.html#detachRequestCompleted">detachRequestCompleted</a>, <a href="../symbols/sap.ui.model.Model.html#detachRequestFailed">detachRequestFailed</a>, <a href="../symbols/sap.ui.model.Model.html#detachRequestSent">detachRequestSent</a>, <a href="../symbols/sap.ui.model.Model.html#fireParseError">fireParseError</a>, <a href="../symbols/sap.ui.model.Model.html#fireRequestCompleted">fireRequestCompleted</a>, <a href="../symbols/sap.ui.model.Model.html#fireRequestFailed">fireRequestFailed</a>, <a href="../symbols/sap.ui.model.Model.html#fireRequestSent">fireRequestSent</a>, <a href="../symbols/sap.ui.model.Model.html#getDefaultBindingMode">getDefaultBindingMode</a>, <a href="../symbols/sap.ui.model.Model.html#getObject">getObject</a>, <a href="../symbols/sap.ui.model.Model.html#isBindingModeSupported">isBindingModeSupported</a>, <a href="../symbols/sap.ui.model.Model.html#isLegacySyntax">isLegacySyntax</a>, <a href="../symbols/sap.ui.model.Model.html#refresh">refresh</a>, <a href="../symbols/sap.ui.model.Model.html#setDefaultBindingMode">setDefaultBindingMode</a>, <a href="../symbols/sap.ui.model.Model.html#setLegacySyntax">setLegacySyntax</a>, <a href="../symbols/sap.ui.model.Model.html#setSizeLimit">setSizeLimit</a>
+									</div>
+								</div>
+							
+								<div class="summary section">
+									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a></div>
+									<div class="sectionItems">
+									<a href="../symbols/sap.ui.base.EventProvider.html#attachEvent">attachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#attachEventOnce">attachEventOnce</a>, <a href="../symbols/sap.ui.base.EventProvider.html#detachEvent">detachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#getEventingParent">getEventingParent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#toString">toString</a>
 									</div>
 								</div>
 							
@@ -422,7 +434,7 @@ Note: May not work in Internet Explorer 8 because of lacking JSON support (works
 									<div class='sectionItem classMethod'>
 										<a name="loadData"> </a>
 										<div class="itemTitle icon">
-											loadData<span class="signature">(<span title="(string) A string containing the URL to which the request is sent.">sURL</span>, <span title="(object | string) A map or string that is sent to the server with the request.">oParameters</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) By default, all requests are sent asynchronous (i.e.">async</span><i class="help" title="Optional parameter">?</i>, <span title="(string) The type of request to make (&quot;POST&quot; or &quot;GET&quot;), default is &quot;GET&quot;.">sType</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) whether the data should be merged instead of replaced">bMerge</span><i class="help" title="Optional parameter">?</i>, <span title="(string) force no caching if false.">bCache</span><i class="help" title="Optional parameter">?</i>, <span title="(object) An object of additional header key/value pairs to send along with the request">mHeaders</span>)</span>
+											loadData<span class="signature">(<span title="(string) A string containing the URL to which the request is sent.">sURL</span>, <span title="(object | string) A map or string that is sent to the server with the request.">oParameters</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) By default, all requests are sent asynchronous (i.e.">bAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(string) The type of request to make (&quot;POST&quot; or &quot;GET&quot;), default is &quot;GET&quot;.">sType</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) whether the data should be merged instead of replaced">bMerge</span><i class="help" title="Optional parameter">?</i>, <span title="(string) force no caching if false.">bCache</span><i class="help" title="Optional parameter">?</i>, <span title="(object) An object of additional header key/value pairs to send along with the request">mHeaders</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -472,7 +484,7 @@ url-encoded before it is appended to the URL.
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>async</b><i class="help" title="Optional parameter">?, Default: true</i>
+													  <b>bAsync</b><i class="help" title="Optional parameter">?, Default: true</i>
 													</td>
 													<td class="methodItemDesc">
 												    By default, all requests are sent asynchronous
@@ -525,7 +537,7 @@ they are not supported by all browsers.
 													  <span class="light">{object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mHeaders</b>
+													  <b>mHeaders</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
 												    An object of additional header key/value pairs to send along with the request

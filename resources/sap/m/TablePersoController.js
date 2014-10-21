@@ -1,6 +1,6 @@
 /*
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.TablePersoController");jQuery.sap.require("sap.ui.base.ManagedObject");jQuery.sap.require("sap.m.TablePersoDialog");sap.ui.base.ManagedObject.extend("sap.m.TablePersoController",{constructor:function(i,s){sap.ui.base.ManagedObject.apply(this,arguments)},metadata:{properties:{"contentWidth":{type:"sap.ui.core.CSSSize"},"contentHeight":{type:"sap.ui.core.CSSSize",defaultValue:"20rem",since:"1.22"},"componentName":{type:"string",since:"1.20.2"},"hasGrouping":{type:"boolean",defaultValue:false,since:"1.22"},"showSelectAll":{type:"boolean",defaultValue:true,since:"1.22"},"showResetAll":{type:"boolean",defaultValue:true,since:"1.22"},},aggregations:{"_tablePersoDialog":{type:"sap.m.TablePersoDialog",multiple:false,visibility:"hidden"},"persoService":{type:"Object",multiple:false}},associations:{"table":{type:"sap.m.Table",multiple:false},"tables":{type:"sap.m.Table",multiple:true}},events:{personalizationsDone:{}},library:"sap.m"}});

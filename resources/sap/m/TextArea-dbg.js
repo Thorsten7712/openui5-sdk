@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,19 +60,17 @@ jQuery.sap.require("sap.m.InputBase");
  * Enable users to input multi-line text.
  * @extends sap.m.InputBase
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.0
  * @name sap.m.TextArea
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.InputBase.extend("sap.m.TextArea", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"rows" : {type : "int", group : "Appearance", defaultValue : 2},
@@ -232,14 +230,13 @@ sap.m.TextArea.M_EVENTS = {'liveChange':'liveChange'};
 
 
 /**
- * This event is fired when the value of the input is changed - e.g. at each keypress 
+ * This event is fired when the value of the input is changed - e.g. at each keypress
  *
  * @name sap.m.TextArea#liveChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.value The new value of the textarea.
  * @public
  */
@@ -249,7 +246,7 @@ sap.m.TextArea.M_EVENTS = {'liveChange':'liveChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TextArea</code>.<br/> itself. 
  *  
- * This event is fired when the value of the input is changed - e.g. at each keypress 
+ * This event is fired when the value of the input is changed - e.g. at each keypress
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

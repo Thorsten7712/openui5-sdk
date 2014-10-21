@@ -47,7 +47,10 @@
 			
 
 					<div class="full-description">
-						<p>The Shell</p>
+						<p>The shell control is meant as root control (full-screen) of an application.
+It was build as root control of the Fiori Launchpad application and provides the basic capabilities
+for this purpose. Do not use this control within applications which run inside the Fiori Lauchpad and
+do not use it for other scenarios than the root control usecase.</p>
 						
 						
 						
@@ -201,6 +204,11 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Getter for property headerHiding."><a href="../symbols/sap.ui.unified.Shell.html#getHeaderHiding">getHeaderHiding</a></b><span class='signature'>()</span>
 									<span class='description'>Getter for property <code>headerHiding</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Getter for property headerVisible."><a href="../symbols/sap.ui.unified.Shell.html#getHeaderVisible">getHeaderVisible</a></b><span class='signature'>()</span>
+									<span class='description'>Getter for property <code>headerVisible</code>.</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -364,6 +372,11 @@
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Setter for property headerVisible."><a href="../symbols/sap.ui.unified.Shell.html#setHeaderVisible">setHeaderVisible</a></b><span class='signature'>(<span title="(boolean) new value for property headerVisible">bHeaderVisible</span>)</span>
+									<span class='description'>Setter for property <code>headerVisible</code>.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Setter for property icon."><a href="../symbols/sap.ui.unified.Shell.html#setIcon">setIcon</a></b><span class='signature'>(<span title="(sap.ui.core.URI) new value for property icon">sIcon</span>)</span>
 									<span class='description'>Setter for property <code>icon</code>.</span>
 								</div>
@@ -425,7 +438,7 @@
 								<div class="summary section">
 									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.core.Element.html">sap.ui.core.Element</a></div>
 									<div class="sectionItems">
-									<a href="../symbols/sap.ui.core.Element.html#$">$</a>, <a href="../symbols/sap.ui.core.Element.html#addCustomData">addCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#addDependent">addDependent</a>, <a href="../symbols/sap.ui.core.Element.html#addEventDelegate">addEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#applyFocusInfo">applyFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#bindElement">bindElement</a>, <a href="../symbols/sap.ui.core.Element.html#data">data</a>, <a href="../symbols/sap.ui.core.Element.html#destroy">destroy</a>, <a href="../symbols/sap.ui.core.Element.html#destroyCustomData">destroyCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyDependents">destroyDependents</a>, <a href="../symbols/sap.ui.core.Element.html#enhanceAccessibilityState">enhanceAccessibilityState</a>, <a href="../symbols/sap.ui.core.Element.html#exit">exit</a>, <a href="../symbols/sap.ui.core.Element.html#findElements">findElements</a>, <a href="../symbols/sap.ui.core.Element.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.core.Element.html#getCustomData">getCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#getDependents">getDependents</a>, <a href="../symbols/sap.ui.core.Element.html#getDomRef">getDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getElementBinding">getElementBinding</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusDomRef">getFocusDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusInfo">getFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#getInterface">getInterface</a>, <a href="../symbols/sap.ui.core.Element.html#getLayoutData">getLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#getMetadata">getMetadata</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip">getTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_AsString">getTooltip_AsString</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_Text">getTooltip_Text</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfCustomData">indexOfCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfDependent">indexOfDependent</a>, <a href="../symbols/sap.ui.core.Element.html#init">init</a>, <a href="../symbols/sap.ui.core.Element.html#insertCustomData">insertCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#insertDependent">insertDependent</a>, <a href="../symbols/sap.ui.core.Element.html#prop">prop</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllCustomData">removeAllCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllDependents">removeAllDependents</a>, <a href="../symbols/sap.ui.core.Element.html#removeCustomData">removeCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeDependent">removeDependent</a>, <a href="../symbols/sap.ui.core.Element.html#removeEventDelegate">removeEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#setLayoutData">setLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#setTooltip">setTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#toString">toString</a>, <a href="../symbols/sap.ui.core.Element.html#unbindElement">unbindElement</a>
+									<a href="../symbols/sap.ui.core.Element.html#$">$</a>, <a href="../symbols/sap.ui.core.Element.html#addCustomData">addCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#addDependent">addDependent</a>, <a href="../symbols/sap.ui.core.Element.html#addEventDelegate">addEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#applyFocusInfo">applyFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#bindElement">bindElement</a>, <a href="../symbols/sap.ui.core.Element.html#data">data</a>, <a href="../symbols/sap.ui.core.Element.html#destroy">destroy</a>, <a href="../symbols/sap.ui.core.Element.html#destroyCustomData">destroyCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyDependents">destroyDependents</a>, <a href="../symbols/sap.ui.core.Element.html#destroyLayoutData">destroyLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#destroyTooltip">destroyTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#enhanceAccessibilityState">enhanceAccessibilityState</a>, <a href="../symbols/sap.ui.core.Element.html#exit">exit</a>, <a href="../symbols/sap.ui.core.Element.html#findElements">findElements</a>, <a href="../symbols/sap.ui.core.Element.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.core.Element.html#getCustomData">getCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#getDependents">getDependents</a>, <a href="../symbols/sap.ui.core.Element.html#getDomRef">getDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getElementBinding">getElementBinding</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusDomRef">getFocusDomRef</a>, <a href="../symbols/sap.ui.core.Element.html#getFocusInfo">getFocusInfo</a>, <a href="../symbols/sap.ui.core.Element.html#getInterface">getInterface</a>, <a href="../symbols/sap.ui.core.Element.html#getLayoutData">getLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#getMetadata">getMetadata</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip">getTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_AsString">getTooltip_AsString</a>, <a href="../symbols/sap.ui.core.Element.html#getTooltip_Text">getTooltip_Text</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfCustomData">indexOfCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#indexOfDependent">indexOfDependent</a>, <a href="../symbols/sap.ui.core.Element.html#init">init</a>, <a href="../symbols/sap.ui.core.Element.html#insertCustomData">insertCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#insertDependent">insertDependent</a>, <a href="../symbols/sap.ui.core.Element.html#prop">prop</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllCustomData">removeAllCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeAllDependents">removeAllDependents</a>, <a href="../symbols/sap.ui.core.Element.html#removeCustomData">removeCustomData</a>, <a href="../symbols/sap.ui.core.Element.html#removeDependent">removeDependent</a>, <a href="../symbols/sap.ui.core.Element.html#removeEventDelegate">removeEventDelegate</a>, <a href="../symbols/sap.ui.core.Element.html#setLayoutData">setLayoutData</a>, <a href="../symbols/sap.ui.core.Element.html#setTooltip">setTooltip</a>, <a href="../symbols/sap.ui.core.Element.html#toString">toString</a>, <a href="../symbols/sap.ui.core.Element.html#unbindElement">unbindElement</a>
 									</div>
 								</div>
 							
@@ -482,6 +495,7 @@ The supported settings are:
 <li><a href="#getShowCurtain">showCurtain</a> : boolean</li>
 <li><a href="#getShowCurtainPane">showCurtainPane</a> : boolean</li>
 <li><a href="#getHeaderHiding">headerHiding</a> : boolean</li>
+<li><a href="#getHeaderVisible">headerVisible</a> : boolean (default: true)</li>
 <li><a href="#getSearchVisible">searchVisible</a> : boolean (default: true)</li></ul>
 </li>
 <li>Aggregations
@@ -1489,6 +1503,52 @@ Default value is empty/<code>undefined</code>
 													</td>
 													<td class="methodItemDesc">
 														the value of property <code>headerHiding</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="getHeaderVisible"> </a>
+										<div class="itemTitle icon">
+											getHeaderVisible<span class="signature">()</span>
+											<span class="light" title="returns boolean">: boolean</span>
+										</div>
+										<div class="full-description">
+											Getter for property <code>headerVisible</code>.
+If set to false, no header (and no items, search, ...) is shown.
+</p><p>
+Default value is <code>true</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the value of property <code>headerVisible</code>
 													</td>
 												</tr>
 											
@@ -3165,6 +3225,68 @@ Default value is empty/<code>undefined</code>
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="setHeaderVisible"> </a>
+										<div class="itemTitle icon">
+											setHeaderVisible<span class="signature">(<span title="(boolean) new value for property headerVisible">bHeaderVisible</span>)</span>
+											<span class="light" title="returns sap.ui.unified.Shell">: <a href="../symbols/sap.ui.unified.Shell.html">sap.ui.unified.Shell</a></span>
+										</div>
+										<div class="full-description">
+											Setter for property <code>headerVisible</code>.
+</p><p>
+Default value is <code>true</code>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bHeaderVisible</b>
+													</td>
+													<td class="methodItemDesc">
+												    new value for property <code>headerVisible</code>
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.23</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.unified.Shell.html">sap.ui.unified.Shell</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="setIcon"> </a>
 										<div class="itemTitle icon">
 											setIcon<span class="signature">(<span title="(sap.ui.core.URI) new value for property icon">sIcon</span>)</span>
@@ -3476,7 +3598,7 @@ Default value is empty/<code>undefined</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.16.3. 
 Curtain is deprecated and replaced by ShellOverlay mechanism.
@@ -3525,7 +3647,7 @@ Default value is empty/<code>undefined</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.16.3. 
 Curtain is deprecated and replaced by ShellOverlay mechanism.
@@ -3590,7 +3712,7 @@ Default value is empty/<code>undefined</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.16.3. 
 Curtain is deprecated and replaced by ShellOverlay mechanism.
@@ -3655,7 +3777,7 @@ Default value is empty/<code>undefined</code>
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 1.16.3. 
 Curtain is deprecated and replaced by ShellOverlay mechanism.

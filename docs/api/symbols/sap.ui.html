@@ -111,6 +111,11 @@ point for UI related JavaScript functionality provided by SAP.</p>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
+										<b class="icon" title=""><a href="../symbols/sap.ui.test.html">test</a></b>
+										<span class='description'></span>
+									</div>
+								
+									<div class="sectionItem itemName namespace static">
 										<b class="icon" title="Unified controls intended for both, mobile and desktop scenarios"><a href="../symbols/sap.ui.unified.html">unified</a></b>
 										<span class='description'>Unified controls intended for both, mobile and desktop scenarios</span>
 									</div>
@@ -157,8 +162,18 @@ point for UI related JavaScript functionality provided by SAP.</p>
 								</div>
 							
 								<div class="sectionItem classMethod static">
+									<b class="icon" title="Defines a controller class or creates an instance of an already defined controller class."><a href="../symbols/sap.ui.html#.controller">sap.ui.controller</a></b><span class='signature'>(<span title="(string) The Controller name">sName</span>, <span title="(object) An object literal defining the methods and properties of the Controller">oControllerImpl</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Defines a controller class or creates an instance of an already defined controller class.</span>
+								</div>
+							
+								<div class="sectionItem classMethod static">
 									<b class="icon" title="Instantiate a Fragment - this method loads the Fragment content, instantiates it, and returns this content."><a href="../symbols/sap.ui.html#.fragment">sap.ui.fragment</a></b><span class='signature'>(<span title="(string) the Fragment name">sName</span>, <span title="(string) the Fragment type, e.g.">sType</span>, <span title="(sap.ui.core.Controller) the Controller which should be used by the controls in the Fragment.">oController</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Instantiate a Fragment - this method loads the Fragment content, instantiates it, and returns this content.</span>
+								</div>
+							
+								<div class="sectionItem classMethod static">
+									<b class="icon" title="Retrieve the sap.ui.core.Core SAPUI5 Core instance for the current window."><a href="../symbols/sap.ui.html#.getCore">sap.ui.getCore</a></b><span class='signature'>()</span>
+									<span class='description'>Retrieve the <a href="../symbols/sap.ui.core.Core.html">SAPUI5 Core</a> instance for the current window.</span>
 								</div>
 							
 								<div class="sectionItem classMethod static">
@@ -167,7 +182,7 @@ point for UI related JavaScript functionality provided by SAP.</p>
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Instantiates an HTML-based Fragment."><a href="../symbols/sap.ui.html#.htmlfragment">sap.ui.htmlfragment</a></b><span class='signature'>(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">sFragmentName</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Instantiates an HTML-based Fragment."><a href="../symbols/sap.ui.html#.htmlfragment">sap.ui.htmlfragment</a></b><span class='signature'>(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">vFragment</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Instantiates an HTML-based Fragment.</span>
 								</div>
 							
@@ -202,7 +217,7 @@ point for UI related JavaScript functionality provided by SAP.</p>
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Returns the URL of a resource that belongs to the given library and has the given relative location within the library."><a href="../symbols/sap.ui.html#.resource">sap.ui.resource</a></b><span class='signature'>(<span title="the name of a library, like &quot;sap.ui.commons&quot;">sLibraryName</span>, <span title="the relative path of a resource inside this library, like &quot;img/mypic.png&quot; or &quot;themes/my_theme/img/mypic.png&quot;">sResourcePath</span>)</span>
+									<b class="icon" title="Returns the URL of a resource that belongs to the given library and has the given relative location within the library."><a href="../symbols/sap.ui.html#.resource">sap.ui.resource</a></b><span class='signature'>(<span title="(string) the name of a library, like &quot;sap.ui.commons&quot;">sLibraryName</span>, <span title="(string) the relative path of a resource inside this library, like &quot;img/mypic.png&quot; or &quot;themes/my_theme/img/mypic.png&quot;">sResourcePath</span>)</span>
 									<span class='description'>Returns the URL of a resource that belongs to the given library and has the given relative location within the library.</span>
 								</div>
 							
@@ -222,7 +237,7 @@ point for UI related JavaScript functionality provided by SAP.</p>
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Instantiates an XML-based Fragment."><a href="../symbols/sap.ui.html#.xmlfragment">sap.ui.xmlfragment</a></b><span class='signature'>(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">sFragmentName</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Instantiates an XML-based Fragment."><a href="../symbols/sap.ui.html#.xmlfragment">sap.ui.xmlfragment</a></b><span class='signature'>(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">vFragment</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Instantiates an XML-based Fragment.</span>
 								</div>
 							
@@ -231,18 +246,8 @@ point for UI related JavaScript functionality provided by SAP.</p>
 									<span class='description'>Instantiates an XMLView of the given name and with the given id.</span>
 								</div>
 							
-								<div class="sectionItem classMethod static">
-									<b class="icon" title="Defines a controller class or creates an instance of an already defined controller class."><a href="../symbols/sap.ui.html#.controller">sap.ui.controller</a></b><span class='signature'>(<span title="(string) The Controller name">sName</span>, <span title="(object) An object literal defining the methods and properties of the Controller">oControllerImpl</span><i class="help" title="Optional parameter">?</i>)</span>
-									<span class='description'>Defines a controller class or creates an instance of an already defined controller class.</span>
-								</div>
-							
-								<div class="sectionItem classMethod static">
-									<b class="icon" title="Retrieve the sap.ui.core.Core SAPUI5 Core instance for the current window."><a href="../symbols/sap.ui.html#.getCore">sap.ui.getCore</a></b><span class='signature'>()</span>
-									<span class='description'>Retrieve the <a href="../symbols/sap.ui.core.Core.html">SAPUI5 Core</a> instance for the current window.</span>
-								</div>
-							
 								<div class="sectionItem classMethod static deprecated">
-									<b class="icon" title="Ensures that a given a namespace or hierarchy of nested namespaces exists in the current window."><a href="../symbols/sap.ui.html#.namespace">sap.ui.namespace</a></b><span class='signature'>(<span>sNamespace</span>)</span>
+									<b class="icon" title="Ensures that a given a namespace or hierarchy of nested namespaces exists in the current window."><a href="../symbols/sap.ui.html#.namespace">sap.ui.namespace</a></b><span class='signature'>(<span title="(string) string">sNamespace</span>)</span>
 									<span class='description'>Ensures that a given a namespace or hierarchy of nested namespaces exists in the current <code>window</code>.</span>
 								</div>
 							
@@ -418,6 +423,83 @@ object into this function:
 									</div>
 								
 									<div class='sectionItem classMethod static'>
+										<a name=".controller"> </a>
+										<div class="itemTitle icon">
+											sap.ui.controller<span class="signature">(<span title="(string) The Controller name">sName</span>, <span title="(object) An object literal defining the methods and properties of the Controller">oControllerImpl</span><i class="help" title="Optional parameter">?</i>)</span>
+											<span class="light" title="returns void | sap.ui.core.mvc.Controller">: void | sap.ui.core.mvc.Controller</span>
+										</div>
+										<div class="full-description">
+											Defines a controller class or creates an instance of an already defined controller class.
+</p><p>
+When a name and a controller implementation object is given, a new controller class
+of the given name is created. The members of the implementation object will be copied
+into each new instance of that controller class (shallow copy).
+<b>Note</b>: as the members are shallow copied, controller instances will share all object values.
+This might or might not be what applications expect.
+</p><p>
+If only a name is given, a new instance of the named Controller class is returned.
+											
+												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;sap\ui\core\mvc\Controller.js&gt;.</span></p>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sName</b>
+													</td>
+													<td class="methodItemDesc">
+												    The Controller name
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oControllerImpl</b><i class="help" title="Optional parameter">?</i>
+													</td>
+													<td class="methodItemDesc">
+												    An object literal defining the methods and properties of the Controller
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{void | sap.ui.core.mvc.Controller}</span> 
+													</td>
+													<td class="methodItemDesc">
+														void or the new controller instance, depending on the use case
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static'>
 										<a name=".fragment"> </a>
 										<div class="itemTitle icon">
 											sap.ui.fragment<span class="signature">(<span title="(string) the Fragment name">sName</span>, <span title="(string) the Fragment type, e.g.">sType</span>, <span title="(sap.ui.core.Controller) the Controller which should be used by the controls in the Fragment.">oController</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -528,6 +610,46 @@ all contained controls.
 									</div>
 								
 									<div class='sectionItem classMethod static'>
+										<a name=".getCore"> </a>
+										<div class="itemTitle icon">
+											sap.ui.getCore<span class="signature">()</span>
+											<span class="light" title="returns sap.ui.core.Core">: <a href="../symbols/sap.ui.core.Core.html">sap.ui.core.Core</a></span>
+										</div>
+										<div class="full-description">
+											Retrieve the <a href="../symbols/sap.ui.core.Core.html">SAPUI5 Core</a> instance for the current window.
+											
+												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;sap\ui\core\Core.js&gt;.</span></p>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/sap.ui.core.Core.html">sap.ui.core.Core</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														the API of the current SAPUI5 Core instance.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static'>
 										<a name=".getVersionInfo"> </a>
 										<div class="itemTitle icon">
 											sap.ui.getVersionInfo<span class="signature">(<span title="(string) name of the library (e.g.">sLibName</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -590,7 +712,7 @@ calling this function.
 									<div class='sectionItem classMethod static'>
 										<a name=".htmlfragment"> </a>
 										<div class="itemTitle icon">
-											sap.ui.htmlfragment<span class="signature">(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">sFragmentName</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.ui.htmlfragment<span class="signature">(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">vFragment</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns sap.ui.core.Control|sap.ui.core.Control[]">: <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>|<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>[]</span>
 										</div>
 										<div class="full-description">
@@ -643,7 +765,7 @@ Again, if oController is given, the methods referenced in the Fragment will be c
 													  <span class="light">{string|object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sFragmentName</b>
+													  <b>vFragment</b>
 													</td>
 													<td class="methodItemDesc">
 												    name of the Fragment (or Fragment configuration as described above, in this case no sId may be given. Instead give the id inside the config object, if desired.)
@@ -1200,7 +1322,7 @@ the assumed application root folder.
 									<div class='sectionItem classMethod static'>
 										<a name=".resource"> </a>
 										<div class="itemTitle icon">
-											sap.ui.resource<span class="signature">(<span title="the name of a library, like &quot;sap.ui.commons&quot;">sLibraryName</span>, <span title="the relative path of a resource inside this library, like &quot;img/mypic.png&quot; or &quot;themes/my_theme/img/mypic.png&quot;">sResourcePath</span>)</span>
+											sap.ui.resource<span class="signature">(<span title="(string) the name of a library, like &quot;sap.ui.commons&quot;">sLibraryName</span>, <span title="(string) the relative path of a resource inside this library, like &quot;img/mypic.png&quot; or &quot;themes/my_theme/img/mypic.png&quot;">sResourcePath</span>)</span>
 											<span class="light" title="returns string">: string</span>
 										</div>
 										<div class="full-description">
@@ -1223,7 +1345,7 @@ location outside the normal library location is configured.
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sLibraryName</b>
@@ -1235,7 +1357,7 @@ location outside the normal library location is configured.
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sResourcePath</b>
@@ -1567,7 +1689,7 @@ during the whole lifecycle of the view and the controller</li>
 									<div class='sectionItem classMethod static'>
 										<a name=".xmlfragment"> </a>
 										<div class="itemTitle icon">
-											sap.ui.xmlfragment<span class="signature">(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">sFragmentName</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.ui.xmlfragment<span class="signature">(<span title="(string) id of the newly created Fragment">sId</span><i class="help" title="Optional parameter">?</i>, <span title="(string | object) name of the Fragment (or Fragment configuration as described above, in this case no sId may be given.">vFragment</span>, <span title="(sap.ui.core.mvc.Controller) a Controller to be used for event handlers in the Fragment">oController</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns sap.ui.core.Control|sap.ui.core.Control[]">: <a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>|<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>[]</span>
 										</div>
 										<div class="full-description">
@@ -1620,7 +1742,7 @@ Again, if oController is given, the methods referenced in the Fragment will be c
 													  <span class="light">{string|object}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sFragmentName</b>
+													  <b>vFragment</b>
 													</td>
 													<td class="methodItemDesc">
 												    name of the Fragment (or Fragment configuration as described above, in this case no sId may be given. Instead give the id inside the config object, if desired)
@@ -1743,127 +1865,10 @@ Like with any other control, id is optional and one will be created automaticall
 										
 									</div>
 								
-									<div class='sectionItem classMethod static'>
-										<a name=".controller"> </a>
-										<div class="itemTitle icon">
-											sap.ui.controller<span class="signature">(<span title="(string) The Controller name">sName</span>, <span title="(object) An object literal defining the methods and properties of the Controller">oControllerImpl</span><i class="help" title="Optional parameter">?</i>)</span>
-											<span class="light" title="returns void | sap.ui.core.mvc.Controller">: void | sap.ui.core.mvc.Controller</span>
-										</div>
-										<div class="full-description">
-											Defines a controller class or creates an instance of an already defined controller class.
-</p><p>
-When a name and a controller implementation object is given, a new controller class
-of the given name is created. The members of the implementation object will be copied
-into each new instance of that controller class (shallow copy).
-<b>Note</b>: as the members are shallow copied, controller instances will share all object values.
-This might or might not be what applications expect.
-</p><p>
-If only a name is given, a new instance of the named Controller class is returned.
-											
-												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;sap\ui\core\mvc\Controller.js&gt;.</span></p>
-											
-											
-											
-										
-											
-										</div>
-										
-										
-											<div class="heading">Parameters:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{string}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>sName</b>
-													</td>
-													<td class="methodItemDesc">
-												    The Controller name
-													</td>
-												</tr>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{object}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>oControllerImpl</b><i class="help" title="Optional parameter">?</i>
-													</td>
-													<td class="methodItemDesc">
-												    An object literal defining the methods and properties of the Controller
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-										
-										
-											<div class="heading">Returns:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-														<span class="light">{void | sap.ui.core.mvc.Controller}</span> 
-													</td>
-													<td class="methodItemDesc">
-														void or the new controller instance, depending on the use case
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-									</div>
-								
-									<div class='sectionItem classMethod static'>
-										<a name=".getCore"> </a>
-										<div class="itemTitle icon">
-											sap.ui.getCore<span class="signature">()</span>
-											<span class="light" title="returns sap.ui.core.Core">: <a href="../symbols/sap.ui.core.Core.html">sap.ui.core.Core</a></span>
-										</div>
-										<div class="full-description">
-											Retrieve the <a href="../symbols/sap.ui.core.Core.html">SAPUI5 Core</a> instance for the current window.
-											
-												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;sap\ui\core\Core.js&gt;.</span></p>
-											
-											
-											
-										
-											
-										</div>
-										
-										
-										
-										
-										
-										
-											<div class="heading">Returns:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-														<span class="light">{<a href="../symbols/sap.ui.core.Core.html">sap.ui.core.Core</a>}</span> 
-													</td>
-													<td class="methodItemDesc">
-														the API of the current SAPUI5 Core instance.
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-									</div>
-								
 									<div class='sectionItem classMethod static deprecated'>
 										<a name=".namespace"> </a>
 										<div class="itemTitle icon">
-											sap.ui.namespace<span class="signature">(<span>sNamespace</span>)</span>
+											sap.ui.namespace<span class="signature">(<span title="(string) string">sNamespace</span>)</span>
 											<span class="light" title="returns object">: object</span>
 										</div>
 										<div class="full-description">
@@ -1882,7 +1887,7 @@ current <code>window</code>.
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sNamespace</b>
@@ -1896,7 +1901,7 @@ current <code>window</code>.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Use jQuery.sap.declare or jQuery.sap.getObject(...,0) instead
 												</dt>
@@ -1990,7 +1995,7 @@ and the given control is added.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Use function <code>placeAt</code> of <code>sap.ui.core.Control</code> instead.
 												</dt>

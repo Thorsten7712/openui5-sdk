@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -61,23 +61,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * Simple tree to display item in a hierarchical way
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Tree
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Tree", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"expandAll", "collapseAll"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"title" : {type : "string", group : "Misc", defaultValue : null},
@@ -91,7 +87,7 @@ sap.ui.core.Control.extend("sap.ui.commons.Tree", { metadata : {
 	},
 	defaultAggregation : "nodes",
 	aggregations : {
-    	"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node", bindable : "bindable"}
+		"nodes" : {type : "sap.ui.commons.TreeNode", multiple : true, singularName : "node", bindable : "bindable"}
 	},
 	events : {
 		"select" : {allowPreventDefault : true}, 
@@ -425,14 +421,13 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 
 
 /**
- * Event is fired when a tree node is selected. 
+ * Event is fired when a tree node is selected.
  *
  * @name sap.ui.commons.Tree#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.commons.TreeNode} oControlEvent.getParameters.node The node which has been selected.
  * @param {object} oControlEvent.getParameters.nodeContext The binding context of the selected node.
  * @public
@@ -443,7 +438,7 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Tree</code>.<br/> itself. 
  *  
- * Event is fired when a tree node is selected. 
+ * Event is fired when a tree node is selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -493,14 +488,13 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 
 
 /**
- * fired when the selection of the tree has been changed 
+ * fired when the selection of the tree has been changed
  *
  * @name sap.ui.commons.Tree#selectionChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.commons.TreeNode[]} oControlEvent.getParameters.nodes The nodes which has been selected.
  * @param {object[]} oControlEvent.getParameters.nodeContexts The binding context of the selected nodes.
  * @public
@@ -511,7 +505,7 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.Tree</code>.<br/> itself. 
  *  
- * fired when the selection of the tree has been changed 
+ * fired when the selection of the tree has been changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -561,22 +555,22 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 /**
  * Expands all nodes in the tree
  *
- * @name sap.ui.commons.Tree.prototype.expandAll
+ * @name sap.ui.commons.Tree#expandAll
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Collapses all nodes in the tree
  *
- * @name sap.ui.commons.Tree.prototype.collapseAll
+ * @name sap.ui.commons.Tree#collapseAll
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -584,20 +578,18 @@ sap.ui.commons.Tree.M_EVENTS = {'select':'select','selectionChange':'selectionCh
 sap.ui.commons.Tree.prototype.resizeListenerId;
 
 sap.ui.commons.Tree.prototype.init = function(){
-   this.bAllCollapsed = false;
-   this.allowTextSelection(false);
+	this.bAllCollapsed = false;
+	this.allowTextSelection(false);
 
-   this.oSelectedNode = null;
-   this.oSelectedContext = null;
+	this.iOldScrollTop = null;
 
-//STS
-   this.oSelectedNodeMap = {};
-   this.oSelectedContextMap = {}; 
-//STS
-      
-   this.iOldScrollTop = null;
+	this.oSelectedNodeMap = {};
+	this.oSelectedContextMap = {};
+	this.aLeadSelection = null;
+	this.bDelFlag = null;
+	this.aExpandedTree = [];
 
-   //Create Buttons for Header
+	//Create Buttons for Header
 
 	var oResourceBundle = sap.ui.getCore().getLibraryResourceBundle("sap.ui.commons");
 	this.oCollapseAllButton = new sap.ui.commons.Button(this.getId() + "-CollapseAll", { icon: this.getIconPrefix() + "CollapseAll.png", tooltip: oResourceBundle.getText("TREE_COLLAPSE_ALL"), lite: true });
@@ -630,7 +622,6 @@ sap.ui.commons.Tree.SelectionType = {
 	Toggle: "Toggle",
 	Range: "Range"
 }
-
 /***********************************************************************************
 * EVENTS HANDLING
 ***********************************************************************************/
@@ -887,10 +878,12 @@ sap.ui.commons.Tree.prototype.adjustFocus = function(){
 		var aDomVisiblePrecedingNodes = aDomPrecedingNodes.filter(":visible");
 		var oNewFocusNode		= aDomVisiblePrecedingNodes[aDomVisiblePrecedingNodes.length-1];
 
-		oNewFocusNode.setAttribute("tabindex", "0");
+		if(oNewFocusNode) {
+			oNewFocusNode.setAttribute("tabindex", "0");
 
-		if( jQuery(".sapUiTreeNode:focus").is(":not(:visible)")){
-			oNewFocusNode.focus();
+			if( jQuery(".sapUiTreeNode:focus").is(":not(:visible)")){
+				oNewFocusNode.focus();
+			}
 		}
 
 	}
@@ -961,7 +954,7 @@ sap.ui.commons.Tree.prototype.adjustSelectionOnExpanding = function(oExpandingDo
  * @private
  */
 sap.ui.commons.Tree.prototype.adjustSelectionOnCollapsing = function(oDomCollapsingNode){
-
+	var that = this
 	if (this.getSelectionMode() != sap.ui.commons.TreeSelectionMode.Multi) {
 		var $DomCollapsingNode = jQuery(oDomCollapsingNode),
 		sChildrenId = "#" + $DomCollapsingNode.attr("id") + "-children",
@@ -979,7 +972,14 @@ sap.ui.commons.Tree.prototype.adjustSelectionOnCollapsing = function(oDomCollaps
 		var $DomCollapsingNode = jQuery(oDomCollapsingNode),
 		sChildrenId = "#" + $DomCollapsingNode.attr("id") + "-children",
 		$DomActualSelSubNode = $DomCollapsingNode.siblings(sChildrenId).find(".sapUiTreeNodeSelected");
-		$DomActualSelSubNode.removeClass("sapUiTreeNodeSelected");		
+		var aSelNode = $DomActualSelSubNode.control();
+		if (aSelNode){
+			if (jQuery.isEmptyObject(aSelNode) == false) {
+				jQuery.each(aSelNode, function(sId, oNode){
+					that._delMultiSelection(oNode);
+				});
+			}
+		}
 	}
 };
 
@@ -998,15 +998,12 @@ sap.ui.commons.Tree.prototype.isTreeBinding = function(sName) {
 sap.ui.commons.Tree.prototype.updateNodes = function(){
 	var oContext = this.oSelectedContext, 
 		oNode;
-	this.oSelectedNode = null;
-	this.oSelectedContext = null;
 	this.updateAggregation("nodes");
 	if (oContext) {
 		oNode = this.getNodeByContext(oContext);
 		this.setSelection(oNode, true);
- 	}
+	}
 };
-
 
 /**
  * Returns the node with the given context, or null if no such node currently exists
@@ -1043,40 +1040,58 @@ sap.ui.commons.Tree.prototype.findNode = function(oNode, fnMatch) {
 	return oFoundNode;
 };
 
+sap.ui.commons.Tree.prototype.setSelectionMode = function(oMode){
+	oMode = this.validateProperty("selectionMode", oMode);
+	if (this.getSelectionMode() != oMode) {
+		this.setProperty("selectionMode", oMode);
+		// Clear current selection, whenever the selectionmode changes
+		this._delSelection();
+	}
+};
+
 /**Returns the selected node in the tree. If not selection, returns false.
  * @returns The selected node
  * @private
  */
 sap.ui.commons.Tree.prototype.getSelection = function(){
-	return this.oSelectedNode;
+	for (var sId in this.oSelectedNodeMap) {
+		return this.oSelectedNodeMap[sId];
+	}
+	return null;
 };
 
 /**Sets the selected node reference of the Tree
  * @private
  */
-sap.ui.commons.Tree.prototype.setSelection = function(oNode, sType, bSuppressEvent){
-	var bDoSelected = true;
-	switch (this.getSelectionMode()) {
-	case sap.ui.commons.TreeSelectionMode.Single:
-		this._setSelectedNode(oNode, bSuppressEvent)
-		break;	
-	case sap.ui.commons.TreeSelectionMode.Multi:
-		if (sType == sap.ui.commons.Tree.SelectionType.Range) {
-			this._setSelectedNodeMap(oNode, bSuppressEvent)
-		}
-		else if (sType == sap.ui.commons.Tree.SelectionType.Toggle) {
-			this._setSelectedNodeMap(oNode, bSuppressEvent)
-		}
-		else {
+sap.ui.commons.Tree.prototype.setSelection = function(oNode, bSuppressEvent, sType, bDeselectOtherNodes){
+	var bDoSelect = true;
+	if (!bSuppressEvent) {
+		bDoSelect = this.fireSelect({node: oNode, nodeContext: oNode && oNode.getBindingContext()});
+	}
+	
+	if (bDoSelect) {
+		switch (this.getSelectionMode()) {
+		case sap.ui.commons.TreeSelectionMode.Single:
 			this._setSelectedNode(oNode, bSuppressEvent)
+			break;
+		case sap.ui.commons.TreeSelectionMode.Multi:
+			if (sType == sap.ui.commons.Tree.SelectionType.Range) {
+				this._setSelectedNodeMapRange(oNode, bSuppressEvent)
+			}
+			else if (sType == sap.ui.commons.Tree.SelectionType.Toggle) {
+				this._setSelectedNodeMapToggle(oNode, bSuppressEvent)
+			}
+			else {
+				this._setSelectedNode(oNode, bSuppressEvent)
+			}
+			break;
+		case sap.ui.commons.TreeSelectionMode.None:
+			break;
 		}
-		break;
-	case sap.ui.commons.TreeSelectionMode.None:
-		break;	
 	}
 };
 
-/**Rerendering handling. Sets the scroll position so that the selected node stays on the position it 
+/**Rerendering handling. Sets the scroll position so that the selected node stays on the position it
  * was before rerendering, for example after the expand and adding the nodes dynamically.
  * @private
  */
@@ -1086,6 +1101,54 @@ sap.ui.commons.Tree.prototype.onAfterRendering = function () {
 	}
 };
 
+/**
+ * Whenever nodes are added ore removed from the tree, the selection needs to be adapted, 
+ * so that the selected node map is in sync with the isSelected properties of the contained
+ * nodes
+ * @private
+ */
+sap.ui.commons.Tree.prototype.invalidate = function () {
+	sap.ui.core.Control.prototype.invalidate.apply(this, arguments);
+	this.oSelectedNodeMap = {};
+	this.oSelectedContextMap = {};
+	this.updateSelection(this, true);
+};
+
+/**
+ * Loop through all tree nodes and collect the selected state
+ * @private
+ */
+sap.ui.commons.Tree.prototype.updateSelection = function (oNode, bExpanded) {
+	var that = this;
+	jQuery.each(oNode.getNodes(), function(i, oNode) {
+		if (oNode.getIsSelected()) {
+			switch (that.getSelectionMode()) {
+				case sap.ui.commons.TreeSelectionMode.None:
+					jQuery.sap.log.warning("Added selected nodes in a tree with disabled selection");
+					oNode.setIsSelected(false);
+					break;
+				case sap.ui.commons.TreeSelectionMode.Single:
+					if (jQuery.isEmptyObject(that.oSelectedNodeMap) == false) {
+						jQuery.sap.log.warning("Added multiple selected nodes in single select tree");
+						oNode.setIsSelected(false);
+					} else {
+						that.oSelectedNodeMap[oNode.getId()] = oNode;
+					}
+					break;
+				case sap.ui.commons.TreeSelectionMode.Multi:
+					if (!bExpanded) {
+						jQuery.sap.log.warning("Added selected node inside collapsed node in multi select tree");
+						oNode.setIsSelected(false);
+					} else {
+						that.oSelectedNodeMap[oNode.getId()] = oNode;
+					}
+					break;
+			}
+		}
+		that.updateSelection(oNode, bExpanded && oNode.getExpanded());
+	});
+};
+
 /**Rerendering handling. Remembers the scroll position of the selected node.
  * @private
  */
@@ -1093,60 +1156,130 @@ sap.ui.commons.Tree.prototype.onBeforeRendering = function() {
 	this.iOldScrollTop = this.$("TreeCont").scrollTop();
 };
 
-// STS
 sap.ui.commons.Tree.prototype._setSelectedNode = function(oNode, bSuppressEvent) {
-	var bDoSelect = true;
+	var that = this;
+
+	jQuery.each(this.oSelectedNodeMap, function(sId, oNode){
+		that._delMultiSelection(oNode, bSuppressEvent);
+	});
+
+	if (oNode) {
+		oNode._select(bSuppressEvent, true);
+	}
+
+	this.oSelectedNodeMap[oNode.getId()] = oNode;
+	this.oSelectedContextMap[oNode.getId()] = oNode && oNode.getBindingContext();
+	this.oLeadSelection = oNode;
 	if (!bSuppressEvent) {
-		bDoSelect = this.fireSelect({node: oNode, nodeContext: oNode && oNode.getBindingContext()});
-	}	
-	if (bDoSelect) {
-		if (this.oSelectedNode) {
-			this.oSelectedNode.deselect();
-		}
-		if (oNode) {
-			oNode.select(bSuppressEvent, true);
-		}
-		this.oSelectedNode = oNode;
-		this.oSelectedContext = oNode && oNode.getBindingContext();
-		if (this.getSelectionMode() == sap.ui.commons.TreeSelectionMode.Multi) {
-			this.oSelectedNodeMap = {};
-			this.oSelectedNodeMap[this.oSelectedNode.getId()] = this.oSelectedNode;
-			this.oSelectedContextMap = {};
-			this.oSelectedContextMap[this.oSelectedNode.getId()] = this.oSelectedContext;
-		}
-//		this.fireSelectionChange({nodes: [this.oSelectedNode], nodeContexts: [this.oSelectedContext]});
+		this.fireSelectionChange({nodes: [oNode], nodeContexts: [oNode && oNode.getBindingContext()]});
 	}
 };
 
-sap.ui.commons.Tree.prototype._setSelectedNodeMap = function(oNode, bSuppressEvent) {
+sap.ui.commons.Tree.prototype._setSelectedNodeMapToggle = function(oNode, bSuppressEvent) {
+	this._setNodeSelection(oNode, !oNode.getIsSelected(), bSuppressEvent);
+};
+
+sap.ui.commons.Tree.prototype._setSelectedNodeMapRange = function(oNode, bSuppressEvent) {
 	var aNodes = [], aNodeContexts = [];
-	this.oSelectedNode = oNode;
-	if (this.oSelectedNodeMap[this.oSelectedNode.getId()] != this.oSelectedNode) {
-		if (oNode) {
-			oNode.select(bSuppressEvent, false);
-		}
-		this.oSelectedNode = oNode;
-		this.oSelectedContext = oNode && oNode.getBindingContext();
-		this.oSelectedNodeMap[this.oSelectedNode.getId()] = this.oSelectedNode;
-		this.oSelectedContextMap[this.oSelectedNode.getId()] = this.oSelectedContext;
+	var that = this;
+
+	if (this.bDelFlag == true) {
+		jQuery.each(this.oSelectedNodeMap, function(sId, oNode){
+			that._delMultiSelection(oNode, bSuppressEvent);
+		});
+	};
+
+	if (this.oSelectedNodeMap[oNode.getId()] == oNode) {
+		return; //Nothing to do!
 	}
-	else {
-		delete this.oSelectedNodeMap[this.oSelectedNode.getId()];
-		delete this.oSelectedContextMap[this.oSelectedNode.getId()];
-		if (this.oSelectedNode) {
-			this.oSelectedNode.deselect();
+	else{
+		this.aExpandedTree.length = 0;
+		var aNodes = oNode.getTree().getNodes();
+		var i, a, b;
+		if (aNodes.length>0){
+			this._getSelectableNodes(aNodes);
+			var oStartIndex = this.aExpandedTree.indexOf(this.oLeadSelection);
+			var oEndIndex = this.aExpandedTree.indexOf(oNode);
+			if (oStartIndex < oEndIndex){
+				a = oStartIndex, b = oEndIndex
+			}
+			else {
+				a = oEndIndex, b = oStartIndex
+			};
+			for (i=a;i<=b;i++) {
+				var oSelNode = this.aExpandedTree[i]
+				this._setMultiSelection(oSelNode, bSuppressEvent);
+			};
 		}
-//		if (oNode) {
-//			oNode.select(bSuppressEvent)
-//		}
-//		this.oSelectedNode = oNode;
-//		this.oSelectedContext = oNode && oNode.getBindingContext();
-	}
+	};
+
 	if (!bSuppressEvent) {
 		jQuery.map(this.oSelectedNodeMap, function(sId, oNode) {aNodes.push(oNode)});
 		jQuery.map(this.oSelectedContextMap, function(sId, oNode) {aNodeContexts.push(oNode)});
 		this.fireSelectionChange({nodes: aNodes, nodeContexts: aNodeContexts});
-	}
-
+	};
 };
-// STS
+
+sap.ui.commons.Tree.prototype._getSelectableNodes = function(aNodes) {
+	if (aNodes.length>0){
+		var i;
+		for (i=0;i<aNodes.length;i++) {
+			var oNode = aNodes[i];
+			if (oNode.getSelectable()){
+				this.aExpandedTree.push(oNode);
+			};
+			if (oNode.getExpanded()){
+				var aSubNodes = oNode.getNodes();
+				this._getSelectableNodes(aSubNodes);
+			};
+		}
+	};
+};
+
+sap.ui.commons.Tree.prototype._setNodeSelection = function(oNode, bIsSelected, bSuppressEvent) {
+	var aNodes = [], aNodeContexts = [];
+	this.bDelFlag = true;
+
+	if (bIsSelected) {
+		this._setMultiSelection(oNode, bSuppressEvent);
+		this.oLeadSelection = oNode;
+	} else {
+		this._delMultiSelection(oNode, bSuppressEvent);
+		this.oLeadSelection = oNode;
+	}
+	if (!bSuppressEvent) {
+		jQuery.map(this.oSelectedNodeMap, function(sId, oNode) {aNodes.push(oNode);});
+		jQuery.map(this.oSelectedContextMap, function(sId, oNode) {aNodeContexts.push(oNode);});
+		this.fireSelectionChange({nodes: aNodes, nodeContexts: aNodeContexts});
+	}
+};
+
+sap.ui.commons.Tree.prototype._setMultiSelection = function(oSelNode, bSuppressEvent) {
+	if (!oSelNode) {
+		return;
+	}
+	oSelNode._select(bSuppressEvent);
+	this.oSelectedNodeMap[oSelNode.getId()] = oSelNode;
+	this.oSelectedContextMap[oSelNode.getId()] = oSelNode.getBindingContext();
+};
+
+sap.ui.commons.Tree.prototype._delMultiSelection = function(oSelNode, bSuppressEvent) {
+	if (!oSelNode) {
+		return;
+	}
+	oSelNode._deselect();
+	delete this.oSelectedNodeMap[oSelNode.getId()];
+	delete this.oSelectedContextMap[oSelNode.getId()];
+};
+
+sap.ui.commons.Tree.prototype._delSelection = function() {
+	var that = this;
+	if (this.oSelectedNode) {
+		this.oSelectedNode._deselect();
+	}
+	if (jQuery.isEmptyObject(this.oSelectedNodeMap) == false) {
+		jQuery.each(this.oSelectedNodeMap, function(sId, oNode){
+			that._delMultiSelection(oNode);
+		});
+	};
+};

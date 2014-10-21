@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>PlacementType</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Types for the placement of popover control.</documentation>
 	<baseType>sap.ui.core/string</baseType>
 	<enumeration>

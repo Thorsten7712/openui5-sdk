@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,7 +57,9 @@ jQuery.sap.require("sap.ui.core.Control");
  * <li>{@link #getEnableColumnFreeze enableColumnFreeze} : boolean (default: false)</li>
  * <li>{@link #getEnableCellFilter enableCellFilter} : boolean (default: false)</li>
  * <li>{@link #getNoDataText noDataText} : string</li>
- * <li>{@link #getShowOverlay showOverlay} : boolean (default: false)</li></ul>
+ * <li>{@link #getShowOverlay showOverlay} : boolean (default: false)</li>
+ * <li>{@link #getEnableSelectAll enableSelectAll} : boolean (default: true)</li>
+ * <li>{@link #getEnableCustomFilter enableCustomFilter} : boolean (default: false)</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
@@ -85,7 +87,8 @@ jQuery.sap.require("sap.ui.core.Control");
  * <li>{@link sap.ui.table.Table#event:columnVisibility columnVisibility} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
  * <li>{@link sap.ui.table.Table#event:cellClick cellClick} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
  * <li>{@link sap.ui.table.Table#event:cellContextmenu cellContextmenu} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
- * <li>{@link sap.ui.table.Table#event:columnFreeze columnFreeze} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
+ * <li>{@link sap.ui.table.Table#event:columnFreeze columnFreeze} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li>
+ * <li>{@link sap.ui.table.Table#event:customFilter customFilter} : fnListenerFunction or [fnListenerFunction, oListenerObject] or [oData, fnListenerFunction, oListenerObject]</li></ul>
  * </li>
  * </ul> 
 
@@ -96,23 +99,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * The Table control provides a set of sophisticated and comfort functions for table design. For example, you can make settings for the number of visible rows. The first visible row can be explicitly set. For the selection of rows, a Multi, a Single, and a None mode are available.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.table.Table
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.table.Table", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getSelectedIndices", "addSelectionInterval", "setSelectionInterval", "removeSelectionInterval", "isIndexSelected", "clearSelection", "selectAll", "getContextByIndex", "sort", "filter"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.table",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : 'auto'},
@@ -141,17 +140,19 @@ sap.ui.core.Control.extend("sap.ui.table.Table", { metadata : {
 		"enableColumnFreeze" : {type : "boolean", group : "Behavior", defaultValue : false},
 		"enableCellFilter" : {type : "boolean", group : "Behavior", defaultValue : false},
 		"noDataText" : {type : "string", group : "Appearance", defaultValue : null, deprecated: true},
-		"showOverlay" : {type : "boolean", group : "Appearance", defaultValue : false}
+		"showOverlay" : {type : "boolean", group : "Appearance", defaultValue : false},
+		"enableSelectAll" : {type : "boolean", group : "Behavior", defaultValue : true},
+		"enableCustomFilter" : {type : "boolean", group : "Behavior", defaultValue : false}
 	},
 	defaultAggregation : "columns",
 	aggregations : {
-    	"title" : {type : "sap.ui.core.Control", altTypes : ["string"], multiple : false}, 
-    	"footer" : {type : "sap.ui.core.Control", altTypes : ["string"], multiple : false}, 
-    	"toolbar" : {type : "sap.ui.core.Toolbar", multiple : false}, 
-    	"extension" : {type : "sap.ui.core.Control", multiple : true, singularName : "extension"}, 
-    	"columns" : {type : "sap.ui.table.Column", multiple : true, singularName : "column", bindable : "bindable"}, 
-    	"rows" : {type : "sap.ui.table.Row", multiple : true, singularName : "row", bindable : "bindable"}, 
-    	"noData" : {type : "sap.ui.core.Control", altTypes : ["string"], multiple : false}
+		"title" : {type : "sap.ui.core.Control", altTypes : ["string"], multiple : false}, 
+		"footer" : {type : "sap.ui.core.Control", altTypes : ["string"], multiple : false}, 
+		"toolbar" : {type : "sap.ui.core.Toolbar", multiple : false}, 
+		"extension" : {type : "sap.ui.core.Control", multiple : true, singularName : "extension"}, 
+		"columns" : {type : "sap.ui.table.Column", multiple : true, singularName : "column", bindable : "bindable"}, 
+		"rows" : {type : "sap.ui.table.Row", multiple : true, singularName : "row", bindable : "bindable"}, 
+		"noData" : {type : "sap.ui.core.Control", altTypes : ["string"], multiple : false}
 	},
 	associations : {
 		"groupBy" : {type : "sap.ui.table.Column", multiple : false}
@@ -167,7 +168,8 @@ sap.ui.core.Control.extend("sap.ui.table.Table", { metadata : {
 		"columnVisibility" : {allowPreventDefault : true}, 
 		"cellClick" : {allowPreventDefault : true}, 
 		"cellContextmenu" : {allowPreventDefault : true}, 
-		"columnFreeze" : {allowPreventDefault : true}
+		"columnFreeze" : {allowPreventDefault : true}, 
+		"customFilter" : {}
 	}
 }});
 
@@ -188,7 +190,7 @@ sap.ui.core.Control.extend("sap.ui.table.Table", { metadata : {
  * @function
  */
 
-sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','columnSelect':'columnSelect','columnResize':'columnResize','columnMove':'columnMove','sort':'sort','filter':'filter','group':'group','columnVisibility':'columnVisibility','cellClick':'cellClick','cellContextmenu':'cellContextmenu','columnFreeze':'columnFreeze'};
+sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','columnSelect':'columnSelect','columnResize':'columnResize','columnMove':'columnMove','sort':'sort','filter':'filter','group':'group','columnVisibility':'columnVisibility','cellClick':'cellClick','cellContextmenu':'cellContextmenu','columnFreeze':'columnFreeze','customFilter':'customFilter'};
 
 
 /**
@@ -887,6 +889,60 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
+ * Getter for property <code>enableSelectAll</code>.
+ * Specifies if a select all button should be displayed in the top left corner.
+ *
+ * Default value is <code>true</code>
+ *
+ * @return {boolean} the value of property <code>enableSelectAll</code>
+ * @public
+ * @since 1.23.0
+ * @name sap.ui.table.Table#getEnableSelectAll
+ * @function
+ */
+
+/**
+ * Setter for property <code>enableSelectAll</code>.
+ *
+ * Default value is <code>true</code> 
+ *
+ * @param {boolean} bEnableSelectAll  new value for property <code>enableSelectAll</code>
+ * @return {sap.ui.table.Table} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.23.0
+ * @name sap.ui.table.Table#setEnableSelectAll
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>enableCustomFilter</code>.
+ * Set this parameter to true to implement your own filter behaviour. Instead of the filter input box a button will be rendered for which' press event (customFilter) you can register an event handler.
+ *
+ * Default value is <code>false</code>
+ *
+ * @return {boolean} the value of property <code>enableCustomFilter</code>
+ * @public
+ * @since 1.23.0
+ * @name sap.ui.table.Table#getEnableCustomFilter
+ * @function
+ */
+
+/**
+ * Setter for property <code>enableCustomFilter</code>.
+ *
+ * Default value is <code>false</code> 
+ *
+ * @param {boolean} bEnableCustomFilter  new value for property <code>enableCustomFilter</code>
+ * @return {sap.ui.table.Table} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.23.0
+ * @name sap.ui.table.Table#setEnableCustomFilter
+ * @function
+ */
+
+
+/**
  * Getter for aggregation <code>title</code>.<br/>
  * Control or text of title section of the Table (if not set it will be hidden)
  * 
@@ -1324,14 +1380,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 	
 /**
- * fired when the row selection of the table has been changed (the event parameters can be used to determine selection changes - to find out the selected rows you should better use the table selection API) 
+ * fired when the row selection of the table has been changed (the event parameters can be used to determine selection changes - to find out the selected rows you should better use the table selection API)
  *
  * @name sap.ui.table.Table#rowSelectionChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.rowIndex row index which has been clicked so that the selection has been changed (either selected or deselected)
  * @param {object} oControlEvent.getParameters.rowContext binding context of the row which has been clicked so that selection has been changed
  * @param {int[]} oControlEvent.getParameters.rowIndices array of row indices which selection has been changed (either selected or deselected)
@@ -1343,7 +1398,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when the row selection of the table has been changed (the event parameters can be used to determine selection changes - to find out the selected rows you should better use the table selection API) 
+ * fired when the row selection of the table has been changed (the event parameters can be used to determine selection changes - to find out the selected rows you should better use the table selection API)
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1392,14 +1447,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when a column of the table has been selected 
+ * fired when a column of the table has been selected
  *
  * @name sap.ui.table.Table#columnSelect
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column reference to the selected column
  * @public
  */
@@ -1409,7 +1463,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when a column of the table has been selected 
+ * fired when a column of the table has been selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1458,14 +1512,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when a table column is resized. 
+ * fired when a table column is resized.
  *
  * @name sap.ui.table.Table#columnResize
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column resized column.
  * @param {int} oControlEvent.getParameters.width new width of the table in pixel.
  * @public
@@ -1476,7 +1529,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when a table column is resized. 
+ * fired when a table column is resized.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1526,14 +1579,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when a table column is moved. 
+ * fired when a table column is moved.
  *
  * @name sap.ui.table.Table#columnMove
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column moved column.
  * @param {int} oControlEvent.getParameters.newPos new position of the column.
  * @public
@@ -1544,7 +1596,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when a table column is moved. 
+ * fired when a table column is moved.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1594,14 +1646,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when the table is sorted. 
+ * fired when the table is sorted.
  *
  * @name sap.ui.table.Table#sort
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column sorted column.
  * @param {sap.ui.table.SortOrder} oControlEvent.getParameters.sortOrder Sort Order
  * @param {boolean} oControlEvent.getParameters.columnAdded If column was added to sorter this is true. If new sort is started this is set to false
@@ -1613,7 +1664,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when the table is sorted. 
+ * fired when the table is sorted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1664,14 +1715,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when the table is filtered. 
+ * fired when the table is filtered.
  *
  * @name sap.ui.table.Table#filter
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column filtered column.
  * @param {string} oControlEvent.getParameters.value filter value.
  * @public
@@ -1682,7 +1732,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when the table is filtered. 
+ * fired when the table is filtered.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1732,14 +1782,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when the table is grouped (experimental!). 
+ * fired when the table is grouped (experimental!).
  *
  * @name sap.ui.table.Table#group
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column grouped column.
  * @public
  */
@@ -1749,7 +1798,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when the table is grouped (experimental!). 
+ * fired when the table is grouped (experimental!).
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1798,14 +1847,13 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when the visibility of a table column is changed. 
+ * fired when the visibility of a table column is changed.
  *
  * @name sap.ui.table.Table#columnVisibility
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column affected column.
  * @param {boolean} oControlEvent.getParameters.visible new value of the visible property.
  * @public
@@ -1816,7 +1864,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when the visibility of a table column is changed. 
+ * fired when the visibility of a table column is changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1866,7 +1914,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when the user clicks a cell of the table (experimental!). 
+ * fired when the user clicks a cell of the table (experimental!).
  *
  * @name sap.ui.table.Table#cellClick
  * @event
@@ -1874,7 +1922,6 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.cellControl The control of the cell.
  * @param {int} oControlEvent.getParameters.rowIndex Row index of the selected cell.
  * @param {int} oControlEvent.getParameters.columnIndex Column index of the selected cell.
@@ -1886,7 +1933,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when the user clicks a cell of the table (experimental!). 
+ * fired when the user clicks a cell of the table (experimental!).
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1940,7 +1987,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when the user clicks a cell of the table (experimental!). 
+ * fired when the user clicks a cell of the table (experimental!).
  *
  * @name sap.ui.table.Table#cellContextmenu
  * @event
@@ -1948,7 +1995,6 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.Control} oControlEvent.getParameters.cellControl The control of the cell.
  * @param {int} oControlEvent.getParameters.rowIndex Row index of the selected cell.
  * @param {int} oControlEvent.getParameters.columnIndex Column index of the selected cell.
@@ -1960,7 +2006,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when the user clicks a cell of the table (experimental!). 
+ * fired when the user clicks a cell of the table (experimental!).
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2014,7 +2060,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
- * fired when a column of the table should be freezed 
+ * fired when a column of the table should be freezed
  *
  * @name sap.ui.table.Table#columnFreeze
  * @event
@@ -2022,7 +2068,6 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.table.Column} oControlEvent.getParameters.column reference to the column to freeze
  * @public
  */
@@ -2032,7 +2077,7 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
  *  
- * fired when a column of the table should be freezed 
+ * fired when a column of the table should be freezed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -2084,148 +2129,197 @@ sap.ui.table.Table.M_EVENTS = {'rowSelectionChange':'rowSelectionChange','column
 
 
 /**
+ * This event is triggered when the custom filter item of the column menu is pressed. The column on which the event was triggered is passed as parameter.
+ *
+ * @name sap.ui.table.Table#customFilter
+ * @event
+ * @since 1.23.0
+ * @param {sap.ui.base.Event} oControlEvent
+ * @param {sap.ui.base.EventProvider} oControlEvent.getSource
+ * @param {object} oControlEvent.getParameters
+ * @public
+ */
+ 
+/**
+ * Attach event handler <code>fnFunction</code> to the 'customFilter' event of this <code>sap.ui.table.Table</code>.<br/>.
+ * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
+ * otherwise to this <code>sap.ui.table.Table</code>.<br/> itself. 
+ *  
+ * This event is triggered when the custom filter item of the column menu is pressed. The column on which the event was triggered is passed as parameter.
+ *
+ * @param {object}
+ *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.  
+ * @param {object}
+ *            [oListener] Context object to call the event handler with. Defaults to this <code>sap.ui.table.Table</code>.<br/> itself.
+ *
+ * @return {sap.ui.table.Table} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.23.0
+ * @name sap.ui.table.Table#attachCustomFilter
+ * @function
+ */
+
+/**
+ * Detach event handler <code>fnFunction</code> from the 'customFilter' event of this <code>sap.ui.table.Table</code>.<br/>
+ *
+ * The passed function and listener object must match the ones used for event registration.
+ *
+ * @param {function}
+ *            fnFunction The function to call, when the event occurs.
+ * @param {object}
+ *            oListener Context object on which the given function had to be called.
+ * @return {sap.ui.table.Table} <code>this</code> to allow method chaining
+ * @public
+ * @since 1.23.0
+ * @name sap.ui.table.Table#detachCustomFilter
+ * @function
+ */
+
+/**
+ * Fire event customFilter to attached listeners.
+ *
+ * @param {Map} [mArguments] the arguments to pass along with the event.
+ * @return {sap.ui.table.Table} <code>this</code> to allow method chaining
+ * @protected
+ * @since 1.23.0
+ * @name sap.ui.table.Table#fireCustomFilter
+ * @function
+ */
+
+
+/**
  * Zero-based indices of selected items, wrapped in an array. An empty array means "no selection".
  *
- * @name sap.ui.table.Table.prototype.getSelectedIndices
+ * @name sap.ui.table.Table#getSelectedIndices
  * @function
-
  * @type int[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds the given selection interval to the selection. In case of single selection the "indexTo" value will be used for as selected index.
  *
- * @name sap.ui.table.Table.prototype.addSelectionInterval
+ * @name sap.ui.table.Table#addSelectionInterval
  * @function
- * @param {int} 
- *         iIndexFrom
+ * @param {int} iIndexFrom
  *         Index from which .
- * @param {int} 
- *         iIndexTo
+ * @param {int} iIndexTo
  *         Indices of the items that shall additionally be selected.
-
  * @type sap.ui.table.Table
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the given selection interval as selection. In case of single selection the "indexTo" value will be used for as selected index.
  *
- * @name sap.ui.table.Table.prototype.setSelectionInterval
+ * @name sap.ui.table.Table#setSelectionInterval
  * @function
- * @param {int} 
- *         iIndexFrom
+ * @param {int} iIndexFrom
  *         Index from which .
- * @param {int} 
- *         iIndexTo
+ * @param {int} iIndexTo
  *         Indices of the items that shall additionally be selected.
-
  * @type sap.ui.table.Table
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the given selection interval from the selection. In case of single selection this call removeSelectedIndex with the "indexTo" value.
  *
- * @name sap.ui.table.Table.prototype.removeSelectionInterval
+ * @name sap.ui.table.Table#removeSelectionInterval
  * @function
- * @param {int} 
- *         iIndexFrom
+ * @param {int} iIndexFrom
  *         Index from which .
- * @param {int} 
- *         iIndexTo
+ * @param {int} iIndexTo
  *         Indices of the items that shall additionally be selected.
-
  * @type sap.ui.table.Table
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether the given index is selected.
  *
- * @name sap.ui.table.Table.prototype.isIndexSelected
+ * @name sap.ui.table.Table#isIndexSelected
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index which is checked for selection state.
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes complete selection.
  *
- * @name sap.ui.table.Table.prototype.clearSelection
+ * @name sap.ui.table.Table#clearSelection
  * @function
-
  * @type sap.ui.table.Table
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Add all rows to the selection.
  *
- * @name sap.ui.table.Table.prototype.selectAll
+ * @name sap.ui.table.Table#selectAll
  * @function
-
  * @type sap.ui.table.Table
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the context of a row by its index.
  *
- * @name sap.ui.table.Table.prototype.getContextByIndex
+ * @name sap.ui.table.Table#getContextByIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index of the row to return the context from.
-
  * @type object
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * sorts the given column ascending or descending
  *
- * @name sap.ui.table.Table.prototype.sort
+ * @name sap.ui.table.Table#sort
  * @function
- * @param {sap.ui.table.Column} 
- *         oColumn
+ * @param {sap.ui.table.Column} oColumn
  *         column to be sorted
- * @param {sap.ui.table.SortOrder} 
- *         oSortOrder
+ * @param {sap.ui.table.SortOrder} oSortOrder
  *         sort order of the column (if undefined the default will be ascending)
-
  * @type sap.ui.table.Table
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * filter the given column by the given value
  *
- * @name sap.ui.table.Table.prototype.filter
+ * @name sap.ui.table.Table#filter
  * @function
- * @param {sap.ui.table.Column} 
- *         oColumn
+ * @param {sap.ui.table.Column} oColumn
  *         column to be filtered
- * @param {string} 
- *         sValue
+ * @param {string} sValue
  *         filter value as string (will be converted)
-
  * @type sap.ui.table.Table
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -3437,6 +3531,17 @@ sap.ui.table.Table.prototype._updateCellBindingContext = function(oCell, oContex
 		}
 };
 
+/**
+ * check if data is available in the table
+ * @private
+ */
+sap.ui.table.Table.prototype._hasData = function() {
+	var oBinding = this.getBinding("rows");
+	if (!oBinding || (oBinding.getLength() || 0) === 0) {
+		return false;
+	}
+	return true;
+};
 
 /**
  * show or hide the no data container
@@ -3446,7 +3551,7 @@ sap.ui.table.Table.prototype._updateNoData = function() {
 	// no data?
 	if (this.getShowNoData()) {
 		var oBinding = this.getBinding("rows");
-		if (!oBinding || (oBinding.getLength() || 0) === 0) {
+		if (!this._hasData()) {
 			if (!this.$().hasClass("sapUiTableEmpty")) {
 				this.$().addClass("sapUiTableEmpty");
 			}
@@ -3476,16 +3581,28 @@ sap.ui.table.Table.prototype._determineVisibleCols = function() {
 
 	if ($this.hasClass("sapUiTableHScr")) {
 
+		var bRtl = this._bRtlMode;
+
 		// calculate the view port
 		var iScrollLeft = this._oHSb.getNativeScrollPosition();
+		if(bRtl && sap.ui.Device.browser.firefox && iScrollLeft < 0) {
+			// Firefox deals with negative scrollPosition in RTL mode
+			iScrollLeft = iScrollLeft * -1;
+		}
 		var iScrollRight = iScrollLeft + this._getScrollWidth();
 
 		// has the view port changed?
 		if (this._iOldScrollLeft !== iScrollLeft || this._iOldScrollRight !== iScrollRight || this._bForceVisibleColCalc) {
 
 			// calculate the first and last visible column
-			var bRtl = this._bRtlMode;
 			var iLeft = bRtl ? $this.find(".sapUiTableCtrlScroll").width() : 0;
+
+			if((sap.ui.Device.browser.internet_explorer || sap.ui.Device.browser.firefox) && bRtl) {
+				// Assume ScrollWidth=100px, Scroll to the very left in RTL mode
+				// IE has reverse scroll position (Chrome = 0, IE = 100, FF = -100)
+				iLeft = 0;
+			}
+
 			this._aVisibleColumns = [];
 			for (var i = 0, l = this.getFixedColumnCount(); i < l; i++) {
 				this._aVisibleColumns.push(i);
@@ -3493,13 +3610,13 @@ sap.ui.table.Table.prototype._determineVisibleCols = function() {
 			var $ths = $this.find(".sapUiTableCtrl.sapUiTableCtrlScroll .sapUiTableCtrlFirstCol > th[data-sap-ui-headcolindex]");
 			$ths.each(function(iIndex, oElement) {
 				var iWidth = jQuery(oElement).width();
-				if (bRtl) {
+				if (bRtl && sap.ui.Device.browser.chrome) {
 					iLeft -= iWidth;
 				}
 				if (iLeft + iWidth >= iScrollLeft && iLeft <= iScrollRight) {
 					that._aVisibleColumns.push(parseInt(jQuery(oElement).data('sap-ui-headcolindex'),10));
 				}
-				if (!bRtl) {
+				if (!bRtl || (sap.ui.Device.browser.internet_explorer || sap.ui.Device.browser.firefox)) {
 					iLeft += iWidth;
 				}
 			});
@@ -3509,7 +3626,6 @@ sap.ui.table.Table.prototype._determineVisibleCols = function() {
 			this._iOldScrollRight = iScrollRight;
 			this._bForceVisibleColCalc = false;
 		}
-
 	} else {
 		this._aVisibleColumns = [];
 		var aCols = this.getColumns();
@@ -3674,7 +3790,7 @@ sap.ui.table.Table.prototype._getColumnsWidth = function(iStartColumn, iEndColum
 	}
 	
 	for (var i = iStartColumn, l = iEndColumn; i < l; i++) {
-		if (aCols[i] && aCols[i].getVisible()) {
+		if (aCols[i] && aCols[i].shouldRender()) {
 			var sWidth = aCols[i].getWidth();
 			var iWidth = parseInt(sWidth, 10);
 			if (jQuery.sap.endsWith(sWidth, "px")) {
@@ -3835,10 +3951,23 @@ sap.ui.table.Table.prototype._updateColumnHeader = function(bUpdateResizeHandler
 		$ths.each(function(iIndex, oElement) {
 			// apply the width of the column
 			var iWidth = (oElement.getBoundingClientRect().right - oElement.getBoundingClientRect().left), //get real width (with decimal values),
-				vHeaderSpan = aCols[iIndex].getHeaderSpan(),
-				vHeaderSpan = (vHeaderSpan + iIndex > aCols.length) ? iIndex + vHeaderSpan - aCols.length : vHeaderSpan,
+				vHeaderSpan = aCols[iIndex] ? aCols[iIndex].getHeaderSpan() : 1,
 				aHeaderWidths = [],
-				aSpans = vHeaderSpan ? jQuery.isArray(vHeaderSpan) ? vHeaderSpan : [vHeaderSpan] : [1];
+				aSpans;
+				
+			if (vHeaderSpan) {
+				if (jQuery.isArray(vHeaderSpan)) {
+					jQuery.each(vHeaderSpan, function(iSpanIndex, iSpan) {
+						vHeaderSpan[iSpanIndex] = Math.max((iSpan + iIndex > aCols.length) ? Math.min(iSpan, aCols.length - iIndex) : iSpan, 1);
+					});
+					aSpans = vHeaderSpan;
+				} else {
+					vHeaderSpan = Math.max((vHeaderSpan + iIndex > aCols.length) ? Math.min(vHeaderSpan, aCols.length - iIndex) : vHeaderSpan, 1);
+					aSpans = [vHeaderSpan];
+				}
+			} else {
+				aSpans = [1];
+			}
 
 			//for the first column also calculate the width of the hidden column
 			if (iIndex == 0) {
@@ -4189,23 +4318,22 @@ sap.ui.table.Table.prototype.oncontextmenu = function(oEvent) {
 sap.ui.table.Table.prototype._oncellcontextmenu = function(mParams) {
 
 	if (this.getEnableCellFilter()) {
-	
+
 		// create the contextmenu instance the first time it is needed
 		if (!this._oContextMenu) {
 
 			jQuery.sap.require("sap.ui.unified.Menu");
 			jQuery.sap.require("sap.ui.unified.MenuItem");
-	
+
 			this._oContextMenu = new sap.ui.unified.Menu(this.getId() + "-contextmenu");
 			this.addDependent(this._oContextMenu);
-			
-		} 
-	
+		}
+
 		// does the column support filtering?
-		var oColumn = this.getColumns()[mParams.columnIndex];
+		var oColumn = this._getVisibleColumns()[mParams.columnIndex];
 		var sProperty = oColumn.getFilterProperty();
-		if (sProperty) {
-			
+		if (sProperty && oColumn.getShowFilterMenuEntry()) {
+
 			// destroy all items of the menu and recreate
 			this._oContextMenu.destroyItems();
 			this._oContextMenu.addItem(new sap.ui.unified.MenuItem({
@@ -4221,9 +4349,7 @@ sap.ui.table.Table.prototype._oncellcontextmenu = function(mParams) {
 			var eDock = sap.ui.core.Popup.Dock;
 			this._oContextMenu.open(false, mParams.cellDomRef, eDock.BeginTop, eDock.BeginBottom, mParams.cellDomRef, "none none");
 			return true;
-
 		}
-
 	}
 };
 
@@ -4372,7 +4498,7 @@ sap.ui.table.Table.prototype._onSelect = function(oEvent) {
 
 	// select all?
 	if (jQuery.sap.containsOrEquals(this.getDomRef("selall"), oEvent.target)) {
-		if (this._getRowCount() === this.getSelectedIndices().length) {
+		if (!jQuery(this.getDomRef("selall")).hasClass("sapUiTableSelAll")) {
 			this.clearSelection();
 		} else {
 			this.selectAll();
@@ -4784,30 +4910,30 @@ sap.ui.table.Table.prototype._onColumnResizeStart = function(oEvent) {
  * @private
  */
 sap.ui.table.Table.prototype._onColumnResize = function(oEvent) {
-	
+
 	if (this._iColumnResizeStart && oEvent.pageX < this._iColumnResizeStart + 3 && oEvent.pageX > this._iColumnResizeStart - 3) {
 		return;
 	}
-	
+
 	this._$colResize.addClass("sapUiTableColRszActive");
 	this._iColumnResizeStart = null;
-	
+
 	var $this = this.$();
 
 	var bRtl = this._bRtlMode;
 	var iColIndex = parseInt(this._$colResize.attr("data-sap-ui-colindex"), 10);
 	var oColumn = this.getColumns()[iColIndex];
 	var $col = $this.find(".sapUiTableCtrlFirstCol > th[data-sap-ui-headcolindex='" + iColIndex + "']");
-	
+
 	// get the left position of the column to calculate the new width
 	// relative to the parent container (sapUiTableCnt)!
 	var iColLeft = $col.position().left;
-	
+
 	var iWidth;
 	if (!bRtl) {
 		// find the total left offset from the document (required for pageX info)
 		var iOffsetLeft = $this.find(".sapUiTableCtrlFirstCol > th:first").offset().left;
-		
+
 		// relative left position within the table scroll container
 		var iRelLeft = oEvent.pageX - iOffsetLeft;
 
@@ -4815,9 +4941,19 @@ sap.ui.table.Table.prototype._onColumnResize = function(oEvent) {
 		iWidth = iRelLeft - iColLeft;
 	} else {
 		var $ScrollArea = $this.find('.sapUiTableCtrlScr');
-		
+		var iScrollAreaScrollLeft = $ScrollArea.scrollLeft();
+
+		if(sap.ui.Device.browser.internet_explorer) {
+			// Assume ScrollWidth=100px, Scroll to the very left in RTL mode
+			// IE has reverse scroll position (Chrome = 0, IE = 100, FF = -100)
+			iScrollAreaScrollLeft = $ScrollArea[0].scrollWidth - iScrollAreaScrollLeft - $ScrollArea[0].clientWidth;
+		}else if(sap.ui.Device.browser.firefox) {
+			// FF has negative reverse scroll position (Chrome = 0, IE = 100, FF = -100)
+			iScrollAreaScrollLeft = iScrollAreaScrollLeft + $ScrollArea[0].scrollWidth - $ScrollArea[0].clientWidth;
+		}
+
 		//get the difference between where mouse was released and left side of the table
-		var iDiff = iColLeft - $ScrollArea.scrollLeft() - oEvent.pageX + $ScrollArea.offset().left;
+		var iDiff = iColLeft - iScrollAreaScrollLeft - oEvent.pageX + $ScrollArea.offset().left;
 		iWidth = $col.outerWidth() + iDiff;
 	}
 
@@ -4832,7 +4968,6 @@ sap.ui.table.Table.prototype._onColumnResize = function(oEvent) {
 
 	// store the width of the column to apply later
 	oColumn._iNewWidth = iWidth;
-
 };
 
 /**
@@ -5014,6 +5149,7 @@ sap.ui.table.Table.prototype._updateColumnWidth = function(oColumn, sWidth) {
 	// set the width of the column (when not cancelled)
 	if (bExecuteDefault) {
 		oColumn.setProperty("width", sWidth, true);
+		this.$().find('th[aria-owns="' + oColumn.getId() + '"]').css('width', sWidth);
 	}
 };
 
@@ -5226,7 +5362,7 @@ sap.ui.table.Table.prototype.clearSelection = function() {
  */
 sap.ui.table.Table.prototype.selectAll = function() {
 	var oSelMode = this.getSelectionMode();
-	if (oSelMode != "Multi" && oSelMode != "MultiToggle") {
+	if (!this.getEnableSelectAll() || (oSelMode != "Multi" && oSelMode != "MultiToggle")) {
 		return this;
 	}
 	var oBinding = this.getBinding("rows");
@@ -5903,6 +6039,13 @@ sap.ui.table.Table.prototype.setEnableGrouping = function(bEnableGrouping) {
 	return this;
 }; 
 
+sap.ui.table.Table.prototype.setEnableCustomFilter = function(bEnableCustomFilter) {
+	this.setProperty("enableCustomFilter", bEnableCustomFilter);
+	// update the column headers
+	this._invalidateColumnMenus();
+	return this;
+};
+
 sap.ui.table.Table.prototype.setEnableColumnFreeze = function(bEnableColumnFreeze) {
 	this.setProperty("enableColumnFreeze", bEnableColumnFreeze);
 	this._invalidateColumnMenus();
@@ -6033,8 +6176,12 @@ sap.ui.table.Table.prototype.setNoDataText = function(sText) {
 /**
  * Creates a new {@link sap.ui.core.util.Export} object and fills row/column information from the table if not provided. For the cell content, the column's "sortProperty" will be used (experimental!)
  *
+ * <p><b>Please note: The return value was changed from jQuery Promises to standard ES6 Promises.
+ * jQuery specific Promise methods ('done', 'fail', 'always', 'pipe' and 'state') are still available but should not be used. 
+ * Please use only the standard methods 'then' and 'catch'!</b></p>
+ *
  * @param {object} [mSettings] settings for the new Export, see {@link sap.ui.core.util.Export} <code>constructor</code>
- * @return {jQuery.Promise} Promise object
+ * @return {Promise} Promise object
  *
  * @experimental Experimental because the property for the column/cell definitions (sortProperty) could change in future.
  * @public
@@ -6050,11 +6197,13 @@ sap.ui.table.Table.prototype.exportData = function(mSettings) {
 		var oBinding = this.getBinding("rows"),
 			oBindingInfo = this.getBindingInfo("rows");
 
+		var aFilters = oBinding.aFilters.concat(oBinding.aApplicationFilters);
+
 		mSettings.rows = {
 			path: oBindingInfo.path,
 			model: oBindingInfo.model,
 			sorter: oBinding.aSorters,
-			filters: oBinding.aFilters,
+			filters: aFilters,
 			parameters: oBindingInfo.parameters
 		};
 	}

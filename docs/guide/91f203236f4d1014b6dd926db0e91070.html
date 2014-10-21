@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=06936460608176664"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3957762342459351"/>
 <title>Item Navigation - Supporting Keyboard Handling in List-like Controls</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -26,10 +28,10 @@
 <div class="body"><p class="p">To support item navigation in lists, SAPUI5 provides the helper class
 				<samp class="ph codeph">sap.ui.core.delegate.ItemNavigation</samp>. The helper class can be used
 			for keyboard events in controls that need the ability to navigate with arrow keys over a
-			one dimensional list of DOM nodes. The delegate hooks into the browser events for arrow
-			up/down/left/right, page up/down and home/end keys. With a list of DOM nodes provided by
-			the control, it sets the focus to the relevant DOM node in the list while handling the
-			events.</p>
+			one- or two-dimensional list of DOM nodes. The delegate hooks into the browser events
+			for arrow up/down/left/right, page up/down and home/end keys. With a list of DOM nodes
+			provided by the control, it sets the focus to the relevant DOM node in the list while
+			handling the events.</p>
 <p class="p">For item navigation handling, the control has to provide a DOM node that surrounds the DOM nodes
 			of all items and a list of the DOM nodes of the items. When the control is entered, the
 			initial focus should be set on the surrounding DOM node. The <samp class="ph codeph">setCycling</samp>
@@ -48,11 +50,6 @@
         delegate in your control.</p>
 
     </div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

@@ -47,7 +47,8 @@
 			
 
 					<div class="full-description">
-						<p></p>
+						<p>Class for manipulating and receiving changes of the browserhash with the hasher framework.
+Fires a "hashChanged" event if the browser hash changes.</p>
 						
 						
 						
@@ -69,9 +70,9 @@
 							<div class="sectionItems">
 								<div class="sectionItem classConstructor static">
 									<div class="itemName">
-										<b class="icon" title="Class for manipulating and receiving changes of the browserhash with the hasher framework.">new <a href="../symbols/sap.ui.core.routing.HashChanger.html#constructor">sap.ui.core.routing.HashChanger</a></b>
+										<b class="icon" title="">new <a href="../symbols/sap.ui.core.routing.HashChanger.html#constructor">sap.ui.core.routing.HashChanger</a></b>
 										<span class='signature'>()</span>
-										<span class='description'>Class for manipulating and receiving changes of the browserhash with the hasher framework.</span>
+										<span class='description'></span>
 									</div>
 								</div>
 							</div>
@@ -101,8 +102,13 @@
 							<div class="sectionItems">
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Gets a global singleton of the HashChanger."><a href="../symbols/sap.ui.core.routing.HashChanger.html#.getInstance">sap.ui.core.routing.HashChanger.getInstance</a></b><span class='signature'>(<span title="{sap.ui.core.routing.HashChanger} The instance for the global singleton.">oHashChanger</span>)</span>
+									<b class="icon" title="Gets a global singleton of the HashChanger."><a href="../symbols/sap.ui.core.routing.HashChanger.html#.getInstance">sap.ui.core.routing.HashChanger.getInstance</a></b><span class='signature'>()</span>
 									<span class='description'>Gets a global singleton of the HashChanger.</span>
+								</div>
+							
+								<div class="sectionItem classMethod static protected">
+									<b class="icon protected" title="Sets the hashChanger to a new instance, destroys the old one and copies all its event listeners to the new one"><a href="../symbols/sap.ui.core.routing.HashChanger.html#.replaceHashChanger">sap.ui.core.routing.HashChanger.replaceHashChanger</a></b><span class='signature'>(<span title="(sap.ui.core.routing.HashChanger) the new instance for the global singleton">oHashChanger</span>)</span>
+									<span class='description'>Sets the hashChanger to a new instance, destroys the old one and copies all its event listeners to the new one</span>
 								</div>
 							
 								<div class="sectionItem classMethod protected">
@@ -128,11 +134,6 @@
 								<div class="sectionItem classMethod">
 									<b class="icon" title="Replaces the hash to a certain value."><a href="../symbols/sap.ui.core.routing.HashChanger.html#replaceHash">replaceHash</a></b><span class='signature'>(<span title="(string) the hash">sHash</span>)</span>
 									<span class='description'>Replaces the hash to a certain value.</span>
-								</div>
-							
-								<div class="sectionItem classMethod static protected">
-									<b class="icon protected" title="Sets the hashChanger to a new instance, destroys the old one and copies all its event listeners to the new one"><a href="../symbols/sap.ui.core.routing.HashChanger.html#.replaceHashChanger">sap.ui.core.routing.HashChanger.replaceHashChanger</a></b><span class='signature'>(<span title="{sap.ui.core.routing.HashChanger} the new instance for the global singleton">oHashChanger</span>)</span>
-									<span class='description'>Sets the hashChanger to a new instance, destroys the old one and copies all its event listeners to the new one</span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -180,8 +181,7 @@
 										</div>
 										
 										<div class="full-description">
-											Class for manipulating and receiving changes of the browserhash with the hasher framework.
-Fires a "hashChanged" event if the browser hash changes.
+											
 										</div>
 										
 										
@@ -218,11 +218,35 @@ Fires a "hashChanged" event if the browser hash changes.
 									<div class='sectionItem classMethod static'>
 										<a name=".getInstance"> </a>
 										<div class="itemTitle icon">
-											sap.ui.core.routing.HashChanger.getInstance<span class="signature">(<span title="{sap.ui.core.routing.HashChanger} The instance for the global singleton.">oHashChanger</span>)</span>
+											sap.ui.core.routing.HashChanger.getInstance<span class="signature">()</span>
 											
 										</div>
 										<div class="full-description">
 											Gets a global singleton of the HashChanger. The singleton will get created when this function is invoked for the first time.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod static protected'>
+										<a name=".replaceHashChanger"> </a>
+										<div class="itemTitle icon protected">
+											sap.ui.core.routing.HashChanger.replaceHashChanger<span class="signature">(<span title="(sap.ui.core.routing.HashChanger) the new instance for the global singleton">oHashChanger</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											Sets the hashChanger to a new instance, destroys the old one and copies all its event listeners to the new one
 											
 											
 											
@@ -236,13 +260,13 @@ Fires a "hashChanged" event if the browser hash changes.
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{<a href="../symbols/sap.ui.core.routing.HashChanger.html">sap.ui.core.routing.HashChanger</a>}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>oHashChanger</b>
 													</td>
 													<td class="methodItemDesc">
-												    {sap.ui.core.routing.HashChanger} The instance for the global singleton.
+												    the new instance for the global singleton
 													</td>
 												</tr>
 											
@@ -256,7 +280,7 @@ Fires a "hashChanged" event if the browser hash changes.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="destroy"> </a>
 										<div class="itemTitle icon protected">
 											destroy<span class="signature">()</span>
@@ -291,7 +315,7 @@ Fires a "hashChanged" event if the browser hash changes.
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireHashChanged"> </a>
 										<div class="itemTitle icon protected">
 											fireHashChanged<span class="signature">(<span title="(string) the new hash of the browser">newHash</span>, <span title="(string) - the previous hash">oldHash</span>)</span>
@@ -450,47 +474,6 @@ If you want to have an entry in the browser history, please use set setHash func
 													</td>
 													<td class="methodItemDesc">
 												    the hash
-													</td>
-												</tr>
-											
-											</tbody></table>
-										
-										
-										
-										
-										
-										
-										
-									</div>
-								
-									<div class='sectionItem classMethod protected static protected'>
-										<a name=".replaceHashChanger"> </a>
-										<div class="itemTitle icon protected">
-											sap.ui.core.routing.HashChanger.replaceHashChanger<span class="signature">(<span title="{sap.ui.core.routing.HashChanger} the new instance for the global singleton">oHashChanger</span>)</span>
-											
-										</div>
-										<div class="full-description">
-											Sets the hashChanger to a new instance, destroys the old one and copies all its event listeners to the new one
-											
-											
-											
-										
-											
-										</div>
-										
-										
-											<div class="heading">Parameters:</div>
-											<table class="methodItem"><tbody>
-											
-												<tr>
-													<td class="methodItemType">
-													  
-													</td>
-													<td class="methodItemName">
-													  <b>oHashChanger</b>
-													</td>
-													<td class="methodItemDesc">
-												    {sap.ui.core.routing.HashChanger} the new instance for the global singleton
 													</td>
 												</tr>
 											

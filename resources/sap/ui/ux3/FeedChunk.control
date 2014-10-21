@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>FeedChunk</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The unit that is embedded - single-wise or in a multiple way - into a Feed control.
 	The control provides a set of properties for text, sender information, time stamp, 
 	comments, and functions such as flagging the entry to be favorite, shared, or flagged.

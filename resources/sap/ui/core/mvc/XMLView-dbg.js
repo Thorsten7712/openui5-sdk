@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52,19 +52,15 @@ sap.ui.define(['sap/ui/core/library','./View','jquery.sap.xml','sap/ui/base/Data
  * @class
  * A View defined using (P)XML and HTML markup.
  * @extends sap.ui.core.mvc.View
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.mvc.XMLView
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.mvc.View.extend("sap.ui.core.mvc.XMLView", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.core"
 }});
 
@@ -217,6 +213,10 @@ sap.ui.core.mvc.View.extend("sap.ui.core.mvc.XMLView", { metadata : {
 			var aChildren = this.getAggregation("content");
 			if ( aChildren ) {
 				for(var i=0; i<aChildren.length; i++) {
+					if (aChildren[i].getDomRef() === null) {
+						// Do not replace if there is no dom to replace it with...
+						continue;
+					}
 					var $childDOM = aChildren[i].$();
 					// jQuery.sap.log.debug("replacing placeholder for " + aChildren[i] + " with content");
 					jQuery.sap.byId("sap-ui-dummy-" + aChildren[i].getId(), this._$oldContent).replaceWith($childDOM);

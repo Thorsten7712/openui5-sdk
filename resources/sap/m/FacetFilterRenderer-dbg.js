@@ -93,6 +93,12 @@ sap.m.FacetFilterRenderer.renderSimpleFlow = function(oRm, oControl) {
 			}			
 		}
 		
+		// dummy after focusable area - for keyboard F6
+		oRm.write("<span tabindex='-1'");
+		oRm.writeAttribute("id", oControl.getId() + "-after");
+		oRm.write("></span>")
+		oRm.write("</span>"); 
+		
 		if (oControl.getShowPersonalization()) {
 			oRm.renderControl(oControl.getAggregation("addFacetButton"));
 		}		

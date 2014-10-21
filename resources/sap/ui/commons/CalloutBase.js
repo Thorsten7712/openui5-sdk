@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.CalloutBase");jQuery.sap.require("sap.ui.commons.library");jQuery.sap.require("sap.ui.core.TooltipBase");sap.ui.core.TooltipBase.extend("sap.ui.commons.CalloutBase",{metadata:{publicMethods:["adjustPosition","close","setPosition"],library:"sap.ui.commons",events:{"open":{},"close":{},"beforeOpen":{allowPreventDefault:true},"opened":{}}}});sap.ui.commons.CalloutBase.M_EVENTS={'open':'open','close':'close','beforeOpen':'beforeOpen','opened':'opened'};
@@ -17,7 +17,7 @@ sap.ui.commons.CalloutBase.prototype.close=function(){if(this.oPopup&&this.oPopu
 sap.ui.commons.CalloutBase.prototype.closePopup=function(){var w=this.oPopup!==undefined&&this.oPopup.isOpen();if(this.fAnyEventHandlerProxy){jQuery.sap.unbindAnyEvent(this.onAnyEvent)}sap.ui.core.TooltipBase.prototype.closePopup.call(this);if(w&&this._currentControl&&this.bFocused){this._currentControl.applyFocusInfo(this.oParentFocusInfo);this.bFocused=false}this.fireClose()};
 sap.ui.commons.CalloutBase.prototype.handleClosed=function(){if(this.oPopup){this.oPopup.detachEvent("closed",this.handleClosed,this);this.fireClosed()}};
 sap.ui.commons.CalloutBase.prototype.onkeydown=function(e){var c=e.ctrlKey&&e.which==jQuery.sap.KeyCodes.I;var E=e.which==jQuery.sap.KeyCodes.ESCAPE;if(!c&&!E){if(jQuery(e.target).control(0)===this._currentControl){this.close()}return}if(c){if(this.oPopup&&this.oPopup.isOpen()){return}this.bDoFocus=true}sap.ui.core.TooltipBase.prototype.onkeydown.call(this,e)};
-sap.ui.commons.CalloutBase.prototype.handleOpened=function(){this.oPopup.detachEvent("opened",this.handleOpened,this);if(this.bDoFocus){this.focus();this.bDoFocus=false;this.bFocused=true}this.fireOpened();jQuery.sap.bindAnyEvent(this.fAnyEventHandlerProxy)};
+sap.ui.commons.CalloutBase.prototype.handleOpened=function(){this.oPopup.detachEvent("opened",this.handleOpened,this);if(this.bDoFocus){this.focus();this.bDoFocus=false;this.bFocused=true}this.$().css("display:","");this.fireOpened();jQuery.sap.bindAnyEvent(this.fAnyEventHandlerProxy)};
 sap.ui.commons.CalloutBase.prototype.onfocusin=function(e){this.bFocused=true;var s=e.target;if(s.id===this.getId()+"-fhfe"){jQuery.sap.focus(this.$("cont").lastFocusableDomRef())}else if(s.id===this.getId()+"-fhee"){jQuery.sap.focus(this.$("cont").firstFocusableDomRef())}};
 sap.ui.commons.CalloutBase.prototype.onfocusout=function(e){return};
 sap.ui.commons.CalloutBase.prototype.onmouseover=function(e){if(this.oPopup&&(this.oPopup.isOpen()&&this.oPopup.getContent()==this)){if(this.sCloseNowTimeout){jQuery.sap.clearDelayedCall(this.sCloseNowTimeout);this.sCloseNowTimeout=null}return}else{sap.ui.core.TooltipBase.prototype.onmouseover.call(this,e)}};

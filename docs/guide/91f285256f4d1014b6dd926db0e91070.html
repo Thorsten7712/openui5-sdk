@@ -9,12 +9,16 @@
 
 
 
+<meta name="abstract" content="Explains the creation and use of JSON views in SAPUI5 including aggregation handling and data binding in JSON views"/>
+<meta name="description" content="Explains the creation and use of JSON views in SAPUI5 including aggregation handling and data binding in JSON views"/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=0261762361747514"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=917555877375826"/>
 <title>JSON Views</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -23,10 +27,12 @@
 <body class="sap_bluecrystal" id="loio91f285256f4d1014b6dd926db0e91070">
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">JSON Views</h1>
-<div class="body conbody"><p class="p">The JSON view type is defined in a file. The file name has to either end with
+<div class="body conbody"><p class="shortdesc">Explains the creation and use of JSON views in SAPUI5 including aggregation handling
+		and data binding in JSON views</p>
+<p class="p">The JSON view type is defined in a file. The file name has to either end with
 				<samp class="ph codeph">.view.json</samp> or as a JSON string. The file name and the folder
 			structure together specify the name of the view that equals the SAPUI5 module name
-			within the modularization concept. </p>
+			within the modularization concept.</p>
 <p class="p">For the file <samp class="ph codeph">resources/sap/hcm/Address.view.json</samp>, the view name is
 				<samp class="ph codeph">sap.hcm.Address</samp>. The application uses this view name for displaying
 			an instance of this view. </p>
@@ -47,10 +53,13 @@
    }]
 
 }</pre></div>
-<p class="p">You nest the JSON objects analogous to the nesting of SAPUI5 controls and add the
-			property values as attributes. The syntax is the same as the syntax of a JSON
-			constructor for any control. </p>
-<div class="note note" id="loio91f285256f4d1014b6dd926db0e91070__note_N10031_N10013_N10001"><span class="notetitle">Note</span> You can use strings, boolean and null in your JSON view. </div>
+<p class="p">Nest the JSON objects analogous to the nesting of SAPUI5 controls and add the property values
+			as attributes. The syntax is the same as the syntax of a JSON constructor for any
+			control.</p>
+<div class="note note" id="loio91f285256f4d1014b6dd926db0e91070__note_N10031_N10013_N10001"><span class="notetitle">Note</span> 
+			<p class="p">You can use strings, boolean, and null in your JSON view.</p>
+
+		</div>
 <div class="section" id="loio91f285256f4d1014b6dd926db0e91070__section_37BCAE29E4604ABBA78979649D54CF04"><div class="section_title">Aggregation Handling in JSON Views</div><div type="Aggregation Handling in JSON Views">
 			
 			<p class="p">You add child controls as arrays. This is shown in the example above where an image
@@ -98,9 +107,6 @@
 		</div></div>
 </div>
 <div class="related-links"> 
-
-<div class="familylinks">
-</div>
 <div class="relinfo"><div class="relinfotitle ">Related Information</div>
 <div><a class="link" href="b065f0eade564a5093ebba37ac7041ba.html" title="Event handlers are used as attributes with the attribute name as event name like &#34;press&#34; for a button and the attribute value as event handler name. The event handler must be defined as a function in the view's controller.">Handling Events in JSON Views</a></div>
 </div>

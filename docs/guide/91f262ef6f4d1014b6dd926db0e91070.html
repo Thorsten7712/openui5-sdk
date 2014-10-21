@@ -9,12 +9,16 @@
 
 
 
+<meta name="abstract" content="Explains the creation and use of JS Views in SAPUI5"/>
+<meta name="description" content="Explains the creation and use of JS Views in SAPUI5"/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=013295765744642862"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=41613429434406124"/>
 <title>JS Views</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -23,13 +27,12 @@
 <body class="sap_bluecrystal" id="loio91f262ef6f4d1014b6dd926db0e91070">
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">JS Views</h1>
-<div class="body conbody"><p class="p">You create a JS (JavaScript) view in the same way as a controller and use the suffix
-				<samp class="ph codeph">.view.js</samp>. for the file. SAPUI5 provides the following two default
+<div class="body conbody"><p class="shortdesc">Explains the creation and use of JS Views in SAPUI5</p>
+<p class="p">You create a JS (JavaScript) view in the same way as a controller and use the suffix
+				<samp class="ph codeph">.view.js</samp> for the file. SAPUI5 provides the following two default
 			methods for implementation: </p>
 <ul class="ul"><li class="li"> 
-		  <p class="p"><samp class="ph codeph">
-				getControllerName()</samp>: Specifies the controller belonging to this view 
-		  </p>
+		  <p class="p"><samp class="ph codeph">getControllerName()</samp>: Specifies the controller belonging to this view </p>
  
 		  <p class="p">If this method is not implemented or returns 
 			 <samp class="ph codeph">NULL</samp>, the view has
@@ -38,8 +41,8 @@
  
 		</li>
 <li class="li">
-				<p class="p"><samp class="ph codeph"> createContent()</samp>: Called initially once after the controller has
-					been instantiated </p>
+				<p class="p"><samp class="ph codeph">createContent()</samp>: Called initially once after the controller has been
+					instantiated </p>
 
 				<p class="p">This method is used to create the UI. As the method knows the controller, it can
 					directly attach the event handlers. </p>
@@ -101,11 +104,6 @@
 				automatically, see <a class="xref" href="91f28be26f4d1014b6dd926db0e91070.html">Support for Unique IDs</a>.</p>
 
 		</div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

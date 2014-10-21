@@ -12,11 +12,13 @@
 <meta name="abstract" content="You include style sheets like plain HTML. You can add further CSS classes to SAPUI5 controls by using the class attribute."/>
 <meta name="description" content="You include style sheets like plain HTML. You can add further CSS classes to SAPUI5 controls by using the class attribute."/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=9778590007378157"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=22941366546628983"/>
 <title>Using CSS Style Sheets in XML Views</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -34,7 +36,7 @@
 				elements that you style as the CSS always affects the whole page and is <strong class="ph b">not</strong>
 				restricted to the view. </div>
 
-		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p"><span class="ph cmd">To add a style sheet, add the style definition. </span> To add a style class and define a button that uses it, add the following
+		</div><div class="tasklabel"><h2 class="sectiontitle tasklabel">Procedure</h2></div><div class="li step p"><span class="ph cmd">To add a style sheet, add the style definition. </span><div class="itemgroup stepxmp">To add a style class and define a button that uses it, add the following
 					coding:
 					<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">&lt;core:View controllerName="sap.hcm.Address" xmlns="sap.ui.commons" xmlns:core="sap.ui.core"
            xmlns:html="http://www.w3.org/1999/xhtml"&gt;
@@ -47,12 +49,7 @@
       &lt;Button class="mySuperRedButton" text="Press Me"/&gt;
    &lt;/Panel&gt;
 &lt;core:View&gt;</pre></div>
-</div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
+</div></div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

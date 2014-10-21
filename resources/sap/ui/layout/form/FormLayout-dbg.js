@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -52,19 +52,17 @@ jQuery.sap.require("sap.ui.core.Control");
  * Other Layouts must inherit from this one.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.form.FormLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.layout.form.FormLayout", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout"
 }});
 
@@ -632,9 +630,10 @@ jQuery.sap.require("sap.ui.layout.form.Form");
 		while (!oNewDomRef && i < iLength) {
 			var oContainer = aContainers[i];
 			if (oContainer.getExpandable() && bTabOver) {
-				oNewDomRef = oContainer._oExpandButton;
-				return oNewDomRef;
-				break;
+				oNewDomRef = oContainer._oExpandButton.getFocusDomRef();
+				if (oNewDomRef) {
+					break;
+				}
 			}
 			if (!oContainer.getExpandable() || oContainer.getExpanded()) {
 				if (bTabOver == true){
@@ -739,8 +738,9 @@ jQuery.sap.require("sap.ui.layout.form.Form");
 					var oForm = oContainer.getParent();
 					iCurrentIndex = oForm.indexOfFormContainer(oContainer);
 					if (oContainer.getExpandable()) {
-						oNewDomRef = oContainer._oExpandButton;
-					} else {
+						oNewDomRef = oContainer._oExpandButton.getFocusDomRef();
+					}
+					if (!oNewDomRef) {
 						oNewDomRef = this.findLastFieldOfLastElementInPrevContainer(oForm, iCurrentIndex-1, true);
 					}
 				}
@@ -817,9 +817,10 @@ jQuery.sap.require("sap.ui.layout.form.Form");
 		while (!oNewDomRef && i >= 0) {
 			var oContainer = aContainers[i];
 			if (oContainer.getExpandable() && !oContainer.getExpanded() && bTabOver) {
-				oNewDomRef = oContainer._oExpandButton;
-				return oNewDomRef;
-				break;
+				oNewDomRef = oContainer._oExpandButton.getFocusDomRef();
+				if (oNewDomRef) {
+					break;
+				}
 			}
 			if (!oContainer.getExpandable() || oContainer.getExpanded()) {
 				var iLength = oContainer.getFormElements().length;

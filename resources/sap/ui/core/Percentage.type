@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Percentage</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A string type that represents a percentage value.</documentation>
 	<baseType>string</baseType>
 

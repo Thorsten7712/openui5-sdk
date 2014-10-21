@@ -17,6 +17,7 @@
 	</script>
 	<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 	<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 	<script  language="javascript">
@@ -328,6 +329,27 @@
 		qutils.triggerMouseEvent(resizer, "click");
 		var newSize = oTable._calculateAutomaticColumnWidth(1);
 		equals(oColumn.getWidth(), newSize + "px", "check column width after resize");
+	});
+	
+	module("Column filtering", {
+		setup: function() {
+			createTable({
+				visibleRowCount: 5
+			}, function(oTable) {
+				var oControl = new sap.ui.commons.TextView().bindProperty("text", "lastName");
+				oTable.addColumn(new sap.ui.table.Column({label: new sap.ui.commons.Label({text: "Last Name"}), template: oControl, sortProperty: "lastName", filterProperty: "lastName", filterValue:"Dente", filtered: true}));
+			})
+		},
+		teardown: destroyTable
+	});
+	
+	test("Menu & initial filter: references", 4, function() {
+		var oColumn = oTable.getColumns()[0];
+		var oMenu = oColumn.getMenu();
+		ok(oMenu !== null, "Column menu is not null");
+		ok(oMenu instanceof sap.ui.table.ColumnMenu, "Column menu is instance of sap.ui.table.ColumnMenu");
+		ok(oMenu._oColumn instanceof sap.ui.table.Column, "Internal reference to column is set");
+		ok(oMenu._oTable instanceof sap.ui.table.Table, "Internal reference to table is set");
 	});
 
 	module("Multi selection", {

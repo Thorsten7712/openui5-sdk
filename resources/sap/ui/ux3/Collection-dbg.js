@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,20 +60,16 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * Collection
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.9.0
  * @name sap.ui.ux3.Collection
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.ux3.Collection", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"title" : {type : "string", group : "Appearance", defaultValue : null},
@@ -81,7 +77,7 @@ sap.ui.core.Element.extend("sap.ui.ux3.Collection", { metadata : {
 		"multiSelection" : {type : "boolean", group : "Accessibility", defaultValue : false}
 	},
 	aggregations : {
-    	"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
+		"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
 	},
 	associations : {
 		"selectedItems" : {type : "sap.ui.core.Item", multiple : true, singularName : "selectedItem"}
@@ -306,14 +302,13 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
 
 	
 /**
- * Fired when ever the selected items changer 
+ * Fired when ever the selected items changer
  *
  * @name sap.ui.ux3.Collection#selectionChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -322,7 +317,7 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Collection</code>.<br/> itself. 
  *  
- * Fired when ever the selected items changer 
+ * Fired when ever the selected items changer
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -364,14 +359,13 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
 
 
 /**
- * Fires if a property has changed, and the collection inspector needs to do something after that 
+ * Fires if a property has changed, and the collection inspector needs to do something after that
  *
  * @name sap.ui.ux3.Collection#propertyChanged
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -380,7 +374,7 @@ sap.ui.ux3.Collection.M_EVENTS = {'selectionChanged':'selectionChanged','propert
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.Collection</code>.<br/> itself. 
  *  
- * Fires if a property has changed, and the collection inspector needs to do something after that 
+ * Fires if a property has changed, and the collection inspector needs to do something after that
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -432,6 +426,7 @@ sap.ui.ux3.Collection.prototype.init = function() {
 /**
  * Set multi selection for selection model
  *
+ * @param {boolean} bMultiSelection
  * @public
  */
 sap.ui.ux3.Collection.prototype.setMultiSelection = function(bMultiSelection) {
@@ -447,6 +442,7 @@ sap.ui.ux3.Collection.prototype.setMultiSelection = function(bMultiSelection) {
 /**
  * Set editable
  *
+ * @param {boolean} bEditable
  * @public
  */
 sap.ui.ux3.Collection.prototype.setEditable = function(bEditable) {
@@ -457,6 +453,7 @@ sap.ui.ux3.Collection.prototype.setEditable = function(bEditable) {
 /**
  * Set title
  *
+ * @param {string} sTitle
  * @public
  */
 sap.ui.ux3.Collection.prototype.setTitle = function(sTitle) {

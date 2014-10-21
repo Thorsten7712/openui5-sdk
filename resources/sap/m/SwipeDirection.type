@@ -2,7 +2,7 @@
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>SwipeDirection</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Directions for swipe event.</documentation>
 	<baseType>sap.ui.core/string</baseType>
 	<enumeration>

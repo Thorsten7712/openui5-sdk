@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -296,9 +296,16 @@ sap.ui.ux3.ShellRenderer.renderToolPalette = function(rm, oControl) {
 					rm.writeEscaped(sTooltip);
 					rm.write("' ");
 				}
-				rm.write(" tabindex='0' role='button' aria-pressed='false'><img src='");
-				rm.writeEscaped(oToolItem.getIcon());
-				rm.write("' alt='' role='presentation'/></a>");
+				rm.write(" tabindex='0' role='button' aria-pressed='false'>");
+				var sIconUrl = oToolItem.getIcon();
+				if (sap.ui.core.IconPool.isIconURI(sIconUrl)) {
+					rm.writeIcon(sIconUrl, ["sapUiUx3ShellToolFontIcon"], {});
+				} else {
+					rm.write("<img src='");
+					rm.writeEscaped(sIconUrl);
+					rm.write("' alt='' role='presentation'/>")
+				}
+				rm.write("</a>");
 			}
 		}
 		rm.write("</div>");

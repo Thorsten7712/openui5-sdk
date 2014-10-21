@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -11,7 +11,7 @@ sap.ui.define(['jquery.sap.global'],
 
 	/*
 	 * Encoding according to the Secure Programming Guide
-	 * https://wiki.wdf.sap.corp/wiki/display/NWCUIAMSIM/XSS+Secure+Programming+Guide
+	 * <SAPWIKI>/wiki/display/NWCUIAMSIM/XSS+Secure+Programming+Guide
 	 */
 
 	/**

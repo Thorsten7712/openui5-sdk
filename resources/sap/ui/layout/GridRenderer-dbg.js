@@ -1,15 +1,15 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.layout.GridRenderer");
 
 /**
  * @class
- * @author SAP AG
+ * @author SAP SE
  * @version
- * 1.22.4
+ * 1.24.2
  * @static
  */
 sap.ui.layout.GridRenderer = {};
@@ -28,6 +28,7 @@ sap.ui.layout.GridRenderer = {};
 sap.ui.layout.GridRenderer.render = function(oRm, oControl) {
 	var INDENTPATTERN = /^([L](?:[0-9]|1[0-1]))? ?([M](?:[0-9]|1[0-1]))? ?([S](?:[0-9]|1[0-1]))?$/i;
 	var SPANPATTERN = /^([L](?:[1-9]|1[0-2]))? ?([M](?:[1-9]|1[0-2]))? ?([S](?:[1-9]|1[0-2]))?$/i;
+	
 	// write the HTML into the render manager
 	oRm.write("<div");
 	oRm.writeControlData(oControl);
@@ -35,18 +36,26 @@ sap.ui.layout.GridRenderer.render = function(oRm, oControl) {
 	
 	var  sMedia = sap.ui.Device.media.getCurrentRange(sap.ui.Device.media.RANGESETS.SAP_STANDARD).name;
 	oRm.addClass("sapUiRespGridMedia-Std-" + sMedia);
-		
-	var iHSpacing = oControl.getHSpacing();
-	if (!((iHSpacing >= 0) && (iHSpacing <= 2))) {
-		iHSpacing = 1;
+	
+	var fHSpacing = oControl.getHSpacing();
+	// Check for allowed values, if not matching, set to to default 1 rem.
+	if (fHSpacing == 0.5) {
+		fHSpacing = "05";
+	} else if ((fHSpacing !== 0) && (fHSpacing !== 1) && (fHSpacing !== 2)) {
+		fHSpacing = 1;
 	}
-	oRm.addClass("sapUiRespGridHSpace" + iHSpacing);
+	
+	oRm.addClass("sapUiRespGridHSpace" + fHSpacing);
 
-	var iVSpacing = oControl.getVSpacing();
-	if (!((iVSpacing >= 0) && (iVSpacing <= 2))) {
-		iVSpacing = 1;
-	}
-	oRm.addClass("sapUiRespGridVSpace" + iVSpacing);
+	var fVSpacing = oControl.getVSpacing();
+	// Check for allowed values, if not matching, set to to default 1 rem.
+	if (fVSpacing == 0.5) {
+		fVSpacing = "05";
+	} else if ((fVSpacing !== 0) && (fVSpacing !== 1) && (fVSpacing !== 2)) {
+		fVSpacing = 1;
+	} 
+	
+	oRm.addClass("sapUiRespGridVSpace" + fVSpacing);
 
 	var sPosition = oControl.getPosition();
 	if (sPosition) {
@@ -61,12 +70,12 @@ sap.ui.layout.GridRenderer.render = function(oRm, oControl) {
 	oRm.writeClasses();
 	var sWidth = oControl.getWidth();
 	if (sWidth !== "100%" && sWidth !== "auto" && sWidth !== "inherit") {
-		if (iHSpacing == 0) {
+		if (fHSpacing == 0) {
 			sWidth = "width: " + sWidth;
 		} else {
-			sWidth="width: -webkit-calc(" + sWidth + " - " + iHSpacing  + "rem); width: calc(" + sWidth + " - " + iHSpacing  + "rem); ";
-		} 
-	    oRm.writeAttribute("style", sWidth);
+			sWidth = "width: -webkit-calc(" + sWidth + " - " + fHSpacing  + "rem); width: calc(" + sWidth + " - " + fHSpacing  + "rem); ";
+		}
+		oRm.writeAttribute("style", sWidth);
 	}
 	oRm.write(">");
 

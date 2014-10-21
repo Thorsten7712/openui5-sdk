@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -65,20 +65,16 @@ jQuery.sap.require("sap.ui.layout.form.FormLayout");
  * On the FormContainers, Labels and Fields GridData can be used to change the default rendering. On FormElements GridDada are not supported.
  * If own GridData are used this may be much more complex than the default. So in some cases the calculation for the other content may nor bring the expected result. In this case GridData should be used at all content to disable the default behaviour.
  * @extends sap.ui.layout.form.FormLayout
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.16.0
  * @name sap.ui.layout.form.ResponsiveGridLayout
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.layout.form.FormLayout.extend("sap.ui.layout.form.ResponsiveGridLayout", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.layout",
 	properties : {
 		"labelSpanL" : {type : "int", group : "Misc", defaultValue : 4},
@@ -198,7 +194,6 @@ sap.ui.layout.form.FormLayout.extend("sap.ui.layout.form.ResponsiveGridLayout", 
 /**
  * Getter for property <code>emptySpanL</code>.
  * Number of grid cells that are empty at the end of each line on large size.
- * 
  *
  * Default value is <code>0</code>
  *
@@ -226,7 +221,6 @@ sap.ui.layout.form.FormLayout.extend("sap.ui.layout.form.ResponsiveGridLayout", 
 /**
  * Getter for property <code>emptySpanM</code>.
  * Number of grid cells that are empty at the end of each line on medium size.
- * 
  *
  * Default value is <code>0</code>
  *
@@ -254,7 +248,6 @@ sap.ui.layout.form.FormLayout.extend("sap.ui.layout.form.ResponsiveGridLayout", 
 /**
  * Getter for property <code>emptySpanS</code>.
  * Number of grid cells that are empty at the end of each line on small size.
- * 
  *
  * Default value is <code>0</code>
  *
@@ -543,9 +536,11 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 			return;
 		}
 
+		oForm._bNoInvalidate = true; // don't invalidate Form if only the Grids, Panels and LayoutData are created or changed)
 		var that = this;
 		_createPanels(that, oForm);
 		_createMainGrid(that, oForm);
+		oForm._bNoInvalidate = false;
 
 	};
 
@@ -560,6 +555,17 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 				sMedia = "Tablet";
 			}else if (this._mainGrid.$().hasClass("sapUiRespGridMedia-Std-Phone")) {
 				sMedia = "Phone";
+			}
+		}
+
+		// if main grid is used, deregister resize listeners of container grids. Because resize is triggered from main grid
+		// container grids can't resize if main grid is not resized.
+		if (this._mainGrid && this._mainGrid.__bIsUsed ) {
+			for ( var sContainerId in this.mContainers) {
+				if (this.mContainers[sContainerId][1]._sContainerResizeListener) {
+					sap.ui.core.ResizeHandler.deregister(this.mContainers[sContainerId][1]._sContainerResizeListener);
+					this.mContainers[sContainerId][1]._sContainerResizeListener = null;
+				}
 			}
 		}
 
@@ -625,19 +631,34 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 		this.onsapright(oEvent);
 	};
 
-	var _createPanels = function( oLayout, oForm ) {
+	function _createPanels( oLayout, oForm ) {
 
 		var aContainers = oForm.getFormContainers();
 		var iLength = aContainers.length;
 		var iVisibleContainers = 0;
-		for ( var i = 0; i < iLength; i++) {
-			var oContainer = aContainers[i];
+		var iVisibleContainer = 0;
+		var aVisibleContainers = [];
+		var oPanel;
+		var oGrid;
+		var oContainer;
+		var sContainerId;
+		var i = 0;
+		for ( i = 0; i < iLength; i++) {
+			oContainer = aContainers[i];
+			oContainer._checkProperties();
 			if (oContainer.getVisible()) {
 				iVisibleContainers++;
-				var sContainerId = oContainer.getId();
-				var oPanel = undefined;
-				var oGrid = undefined;
-				var oContainerNext = aContainers[i+1];
+				aVisibleContainers.push(oContainer);
+			}
+		}
+		for ( i = 0; i < iVisibleContainers; i++) {
+			oContainer = aVisibleContainers[i];
+			if (oContainer.getVisible()) {
+				iVisibleContainer++;
+				sContainerId = oContainer.getId();
+				oPanel = undefined;
+				oGrid = undefined;
+				var oContainerNext = aVisibleContainers[i + 1];
 				if (oLayout.mContainers[sContainerId] && oLayout.mContainers[sContainerId][1]) {
 					// Grid already created
 					oGrid = oLayout.mContainers[sContainerId][1];
@@ -655,14 +676,14 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 						oPanel = _createPanel(oLayout, oContainer, oGrid);
 						_changeGetLayoutDataOfGrid(oGrid, true);
 					}
-					_setLayoutDataForLinebreak(oPanel, oContainer, iVisibleContainers, oContainerNext);
+					_setLayoutDataForLinebreak(oPanel, oContainer, iVisibleContainer, oContainerNext, iVisibleContainers);
 				}else{
 					if (oLayout.mContainers[sContainerId] && oLayout.mContainers[sContainerId][0]) {
 						// panel not longer needed
 						_deletePanel(oLayout.mContainers[sContainerId][0]);
 					}
 					_changeGetLayoutDataOfGrid(oGrid, false);
-					_setLayoutDataForLinebreak(oGrid, oContainer, iVisibleContainers, oContainerNext);
+					_setLayoutDataForLinebreak(oGrid, oContainer, iVisibleContainer, oContainerNext, iVisibleContainers);
 				}
 
 				oLayout.mContainers[sContainerId] = [oPanel, oGrid];
@@ -672,10 +693,10 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 		var iObjectLength = _objectLength(oLayout.mContainers);
 		if (iVisibleContainers < iObjectLength) {
 			// delete old containers panels
-			for ( var sContainerId in oLayout.mContainers) {
+			for ( sContainerId in oLayout.mContainers) {
 				var bFound = false;
-				for ( var i = 0; i < iLength; i++) {
-					var oContainer = aContainers[i];
+				for ( i = 0; i < iLength; i++) {
+					oContainer = aContainers[i];
 					if (sContainerId == oContainer.getId() && oContainer.getVisible()) {
 						bFound = true;
 						break;
@@ -687,9 +708,9 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 			}
 		}
 
-	};
+	}
 
-	var _createPanel = function( oLayout, oContainer, oGrid ) {
+	function _createPanel( oLayout, oContainer, oGrid ) {
 
 		var sContainerId = oContainer.getId();
 		var oPanel = new sap.ui.layout.form.ResponsiveGridLayoutPanel(sContainerId+"---Panel", {
@@ -700,12 +721,12 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 
 		return oPanel;
 
-	};
+	}
 
 	/*
 	 * clear variables before delete it
 	 */
-	var _deletePanel = function( oPanel ) {
+	function _deletePanel( oPanel ) {
 
 		oPanel.setContent("");
 		oPanel.setLayout("");
@@ -713,9 +734,9 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 		oPanel.destroy();
 		delete oPanel;
 
-	};
+	}
 
-	var _createGrid = function( oLayout, oContainer ) {
+	function _createGrid( oLayout, oContainer ) {
 
 		var sId = oContainer.getId()+"--Grid";
 
@@ -887,7 +908,7 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 		}
 
 		// change resize handler so that the container Grids always get the same Media size like the main grid
-		oGrid._onParentResizeOrg = oGrid._onParentResize;
+		oGrid._onParentResizeOrig = oGrid._onParentResize;
 		oGrid._onParentResize = function() {
 
 			// Prove if Dom reference exist, and if not - clean up the references.
@@ -924,7 +945,7 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 				}else {
 					this._setBreakPointTablet(oLayout.getBreakpointM());
 					this._setBreakPointDesktop(oLayout.getBreakpointL());
-					this._onParentResizeOrg();
+					this._onParentResizeOrig();
 				}
 			} else {
 				var $DomRefMain = oLayout._mainGrid.$();
@@ -941,12 +962,12 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 
 		return oGrid;
 
-	};
+	}
 
 	/*
 	 * clear variables before delete it
 	 */
-	var _deleteGrid = function( oGrid ) {
+	function _deleteGrid( oGrid ) {
 
 		if (oGrid.__myParentContainerId) {
 			oGrid.__myParentContainerId = undefined;
@@ -956,9 +977,9 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 		oGrid.destroy();
 		delete oGrid;
 
-	};
+	}
 
-	var _changeGetLayoutDataOfGrid = function( oGrid, bOriginal ) {
+	function _changeGetLayoutDataOfGrid( oGrid, bOriginal ) {
 		// only GridData are from interest
 
 		if (bOriginal) {
@@ -985,11 +1006,11 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 			};
 		}
 
-	};
+	}
 
 	// every second container gets a Linebreak for large screens
 	// oControl could be a Panel or a Grid( if no panel used)
-	var _setLayoutDataForLinebreak = function( oControl, oContainer, iVisibleContainers, oContainerNext ) {
+	function _setLayoutDataForLinebreak( oControl, oContainer, iVisibleContainer, oContainerNext, iVisibleContainers ) {
 
 		var oLayout;
 		if (oControl instanceof sap.ui.layout.form.ResponsiveGridLayoutPanel) {
@@ -1003,30 +1024,46 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 		var oLD = oLayout.getLayoutDataForElement(oContainer, "sap.ui.layout.GridData");
 		if (!oLD) {
 			// only needed if container has no own LayoutData
-			var bLinebreakL = (iVisibleContainers % iColumnsL) == 1;
-			var bLastL = (iVisibleContainers % iColumnsL) == 0;
-			var bLinebreakM = (iVisibleContainers % iColumnsM) == 1;
-			var bLastM = (iVisibleContainers % iColumnsM) == 0;
+			var bLinebreakL = (iVisibleContainer % iColumnsL) == 1;
+			var bLastL = (iVisibleContainer % iColumnsL) == 0;
+			var bLastRowL = iVisibleContainer > (iVisibleContainers - iColumnsL + (iVisibleContainers % iColumnsL));
+			var bLinebreakM = (iVisibleContainer % iColumnsM) == 1;
+			var bLastM = (iVisibleContainer % iColumnsM) == 0;
+			var bLastRowM = iVisibleContainer > (iVisibleContainers - iColumnsM + (iVisibleContainers % iColumnsM));
 
 			if (oContainerNext) {
 				var oLDNext = oLayout.getLayoutDataForElement(oContainerNext, "sap.ui.layout.GridData");
 				if (oLDNext && ( oLDNext.getLinebreak() || oLDNext.getLinebreakL() )) {
 					bLastL = true;
+					bLastRowL = false;
 				}
 				if (oLDNext && ( oLDNext.getLinebreak() || oLDNext.getLinebreakM() )) {
 					bLastM = true;
+					bLastRowM = false;
 				}
 			}
 
-			var bStyle = "";
+			var sStyle = "";
 			if (bLastL) {
-				bStyle = "sapUiFormResGridLastContL";
+				sStyle = "sapUiFormResGridLastContL";
 			}
 			if (bLastM) {
-				if (bStyle) {
-					bStyle = bStyle + " ";
+				if (sStyle) {
+					sStyle = sStyle + " ";
 				}
-				bStyle = bStyle + "sapUiFormResGridLastContM";
+				sStyle = sStyle + "sapUiFormResGridLastContM";
+			}
+			if (bLastRowL) {
+				if (sStyle) {
+					sStyle = sStyle + " ";
+				}
+				sStyle = sStyle + "sapUiFormResGridLastRowL";
+			}
+			if (bLastRowM) {
+				if (sStyle) {
+					sStyle = sStyle + " ";
+				}
+				sStyle = sStyle + "sapUiFormResGridLastRowM";
 			}
 
 			oLD = oControl.getLayoutData();
@@ -1037,12 +1074,12 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 				oLD.setLinebreakL(bLinebreakL);
 				oLD.setLinebreakM(bLinebreakM);
 			}
-			oLD._setStylesInternal(bStyle);
+			oLD._setStylesInternal(sStyle);
 		}
 
-	};
+	}
 
-	var _cleanContainer = function( oLayout, sContainerId ) {
+	function _cleanContainer( oLayout, sContainerId ) {
 
 		var aContainerContent = oLayout.mContainers[sContainerId];
 
@@ -1060,17 +1097,19 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 
 		delete oLayout.mContainers[sContainerId];
 
-	};
+	}
 
-	var _createMainGrid = function( oLayout, oForm ) {
+	function _createMainGrid( oLayout, oForm ) {
 
 		var aContainers = oForm.getFormContainers();
+		var oContainer;
 		var iLength = 0;
 		var iContentLenght = 0;
+		var i = 0;
 
 		// count only visible containers
-		for ( var i = 0; i < aContainers.length; i++) {
-			var oContainer = aContainers[i];
+		for ( i = 0; i < aContainers.length; i++) {
+			oContainer = aContainers[i];
 			if (oContainer.getVisible()) {
 				iLength++;
 			}
@@ -1088,6 +1127,16 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 					containerQuery: true
 					}).setParent(oLayout);
 				oLayout._mainGrid.addStyleClass("sapUiFormResGridMain");
+				// change resize handler so that the main grid triggers the resize of it's children
+				oLayout._mainGrid._onParentResizeOrig = oLayout._mainGrid._onParentResize;
+				oLayout._mainGrid._onParentResize = function() {
+					this._onParentResizeOrig();
+
+					for ( var sContainerId in oLayout.mContainers) {
+						oLayout.mContainers[sContainerId][1]._onParentResize();
+					}
+
+				};
 			}else{
 				oLayout._mainGrid.setDefaultSpan("L"+iSpanL+" M"+iSpanM+" S12");
 				// update containers
@@ -1095,9 +1144,9 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 				iContentLenght = aLayoutContent.length;
 				var bExchangeContent = false;
 				// check if content has changed
-				for ( var i = 0; i < iContentLenght; i++) {
+				for ( i = 0; i < iContentLenght; i++) {
 					var oContentElement = aLayoutContent[i];
-					var oContainer = undefined;
+					oContainer = undefined;
 					if (oContentElement.getContainer) {
 						// it's a panel
 						oContainer = sap.ui.getCore().byId(oContentElement.getContainer());
@@ -1134,8 +1183,8 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 
 			if (iContentLenght < iLength) {
 				// new containers added
-				for ( var i = 0; i < aContainers.length; i++) {
-					var oContainer = aContainers[i];
+				for ( i = 0; i < aContainers.length; i++) {
+					oContainer = aContainers[i];
 					if (oContainer.getVisible()) {
 						var sContainerId = oContainer.getId();
 						if (oLayout.mContainers[sContainerId]) {
@@ -1154,9 +1203,9 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 			oLayout._mainGrid.__bIsUsed = false;
 		}
 
-	};
+	}
 
-	var _objectLength = function(oObject){
+	function _objectLength(oObject){
 
 		var iLength = 0;
 
@@ -1169,6 +1218,5 @@ sap.ui.core.Control.extend("sap.ui.layout.form.ResponsiveGridLayoutPanel", {
 		return iLength;
 
 	}
-
 
 }());

@@ -135,6 +135,11 @@ The convention for renderers belonging to some controls is the following:
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Cleans up the rendering state of the given control with rendering it."><a href="../symbols/sap.ui.core.RenderManager.html#cleanupControlWithoutRendering">cleanupControlWithoutRendering</a></b><span class='signature'>(<span title="(sap.ui.core.Control) the control that should be cleaned up">oControl</span>)</span>
+									<span class='description'>Cleans up the rendering state of the given control with rendering it.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Cleans up the resources associated with this instance."><a href="../symbols/sap.ui.core.RenderManager.html#destroy">destroy</a></b><span class='signature'>()</span>
 									<span class='description'>Cleans up the resources associated with this instance.</span>
 								</div>
@@ -180,7 +185,7 @@ The convention for renderers belonging to some controls is the following:
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Writes the attribute and its value into the HTML  The value is properly escaped to avoid XSS attacks."><a href="../symbols/sap.ui.core.RenderManager.html#writeAttributeEscaped">writeAttributeEscaped</a></b><span class='signature'>(<span title="the name of the attribute">sName</span>, <span title="the value of the attribute">vValue</span>)</span>
+									<b class="icon" title="Writes the attribute and its value into the HTML  The value is properly escaped to avoid XSS attacks."><a href="../symbols/sap.ui.core.RenderManager.html#writeAttributeEscaped">writeAttributeEscaped</a></b><span class='signature'>(<span title="(string) the name of the attribute">sName</span>, <span title="(any) the value of the attribute">vValue</span>)</span>
 									<span class='description'>Writes the attribute and its value into the HTML </p><p> The value is properly escaped to avoid XSS attacks.</span>
 								</div>
 							
@@ -215,7 +220,7 @@ The convention for renderers belonging to some controls is the following:
 								</div>
 							
 								<div class="sectionItem classMethod deprecated">
-									<b class="icon" title=""><a href="../symbols/sap.ui.core.RenderManager.html#translate">translate</a></b><span class='signature'>()</span>
+									<b class="icon" title=""><a href="../symbols/sap.ui.core.RenderManager.html#translate">translate</a></b><span class='signature'>(<span title="(string) string">sKey</span>)</span>
 									<span class='description'></span>
 								</div>
 							
@@ -642,6 +647,83 @@ The style collection is flushed if it is written to the buffer using <a href="#w
 												</tr>
 											
 											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="cleanupControlWithoutRendering"> </a>
+										<div class="itemTitle icon">
+											cleanupControlWithoutRendering<span class="signature">(<span title="(sap.ui.core.Control) the control that should be cleaned up">oControl</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											Cleans up the rendering state of the given control with rendering it.
+</p><p>
+A control is responsible for the rendering of all its child controls.
+But in some cases it makes sense that a control does not render all its
+children based on a filter condition. For example a Carousel control only renders
+the current visible parts (and maybe some parts before and after the visible area)
+for performance reasons.
+If a child was rendered but should not be rendered anymore because the filter condition
+does not apply anymore this child must be cleaned up correctly (e.g deregistering eventhandlers, ...).
+</p><p>
+The following example shows how renderControl and cleanupControlWithoutRendering should
+be used:
+</p><p>
+render = function(rm, ctrl){
+  //...
+  var aAggregatedControls = //...
+  for(var i=0; i<aAgrregatedControls.length; i++){
+  	if(//... some filter expression){
+        rm.renderControl(aAggregatedControls[i]);
+     }else{
+        rm.cleanupControlWithoutRendering(aAggregatedControls[i]);
+     }
+  }
+  //...
+}
+</p><p>
+Note:
+The method does not remove DOM of the given control. The callee of this method has to take over the
+responsibility to cleanup the DOM of the control afterwards.
+For parents which are rendered with the normal mechanism as shown in the example above this requirement
+is fulfilled, because the control is not added to the rendering buffer (renderControl is not called) and
+the DOM is replaced when the rendering cycle is finalized.
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oControl</b>
+													</td>
+													<td class="methodItemDesc">
+												    the control that should be cleaned up
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.22.9</dd>
+											</dl>
+										
+										
 										
 										
 										
@@ -1178,7 +1260,7 @@ is the auto-generated part based on the association <code>ariaDescribedBy</code>
 									<div class='sectionItem classMethod'>
 										<a name="writeAttributeEscaped"> </a>
 										<div class="itemTitle icon">
-											writeAttributeEscaped<span class="signature">(<span title="the name of the attribute">sName</span>, <span title="the value of the attribute">vValue</span>)</span>
+											writeAttributeEscaped<span class="signature">(<span title="(string) the name of the attribute">sName</span>, <span title="(any) the value of the attribute">vValue</span>)</span>
 											<span class="light" title="returns sap.ui.core.RenderManager">: <a href="../symbols/sap.ui.core.RenderManager.html">sap.ui.core.RenderManager</a></span>
 										</div>
 										<div class="full-description">
@@ -1198,7 +1280,7 @@ The value is properly escaped to avoid XSS attacks.
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>sName</b>
@@ -1210,7 +1292,7 @@ The value is properly escaped to avoid XSS attacks.
 											
 												<tr>
 													<td class="methodItemType">
-													  
+													  <span class="light">{any}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>vValue</b>
@@ -1556,7 +1638,7 @@ Ensures the buffer is restored to the state before calling this method.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Since version 0.15.0. Use <code>flush()</code> instead render content outside the rendering phase.
 												</dt>
@@ -1586,7 +1668,7 @@ Ensures the buffer is restored to the state before calling this method.
 									<div class='sectionItem classMethod deprecated'>
 										<a name="translate"> </a>
 										<div class="itemTitle icon">
-											translate<span class="signature">()</span>
+											translate<span class="signature">(<span title="(string) string">sKey</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -1599,9 +1681,26 @@ Ensures the buffer is restored to the state before calling this method.
 										</div>
 										
 										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sKey</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Not implemented - DO NOT USE
 												</dt>
@@ -1632,7 +1731,7 @@ Ensures the buffer is restored to the state before calling this method.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													Not implemented - DO NOT USE
 												</dt>

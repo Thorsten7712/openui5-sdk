@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -74,19 +74,15 @@ jQuery.sap.require("sap.ui.ux3.Overlay");
  * @class
  * Thing Inspector
  * @extends sap.ui.ux3.Overlay
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.ux3.ThingInspector
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.ux3.Overlay.extend("sap.ui.ux3.ThingInspector", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.ux3",
 	properties : {
 		"firstTitle" : {type : "string", group : "Misc", defaultValue : null},
@@ -103,12 +99,12 @@ sap.ui.ux3.Overlay.extend("sap.ui.ux3.ThingInspector", { metadata : {
 		"headerType" : {type : "sap.ui.ux3.ThingViewerHeaderType", group : "Misc", defaultValue : sap.ui.ux3.ThingViewerHeaderType.Standard}
 	},
 	aggregations : {
-    	"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
-    	"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
-    	"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
-    	"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
-    	"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
-    	"thingViewer" : {type : "sap.ui.ux3.ThingViewer", multiple : false, visibility : "hidden"}
+		"actions" : {type : "sap.ui.ux3.ThingAction", multiple : true, singularName : "action"}, 
+		"headerContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "headerContent"}, 
+		"facets" : {type : "sap.ui.ux3.NavigationItem", multiple : true, singularName : "facet"}, 
+		"facetContent" : {type : "sap.ui.ux3.ThingGroup", multiple : true, singularName : "facetContent"}, 
+		"actionBar" : {type : "sap.ui.ux3.ActionBar", multiple : false}, 
+		"thingViewer" : {type : "sap.ui.ux3.ThingViewer", multiple : false, visibility : "hidden"}
 	},
 	associations : {
 		"selectedFacet" : {type : "sap.ui.ux3.NavigationItem", multiple : false}
@@ -799,7 +795,6 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 /**
  * The Facet that is currently selected.
- * 
  *
  * @return {string} Id of the element which is the current target of the <code>selectedFacet</code> association, or null
  * @public
@@ -809,7 +804,6 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 /**
  * The Facet that is currently selected.
- * 
  *
  * @param {string | sap.ui.ux3.NavigationItem} vSelectedFacet 
  *    Id of an element which becomes the new target of this <code>selectedFacet</code> association.
@@ -823,14 +817,13 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 	
 /**
- * Further thing related Action selected 
+ * Further thing related Action selected
  *
  * @name sap.ui.ux3.ThingInspector#actionSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected ThingAction
  * @param {sap.ui.ux3.ThingAction} oControlEvent.getParameters.action Selected ThingAction
  * @public
@@ -841,7 +834,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingInspector</code>.<br/> itself. 
  *  
- * Further thing related Action selected 
+ * Further thing related Action selected
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -889,14 +882,13 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 
 /**
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @name sap.ui.ux3.ThingInspector#facetSelected
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id Id of selected NavigationItem
  * @param {sap.ui.ux3.NavigationItem} oControlEvent.getParameters.item The selected NavigationItem
  * @param {string} oControlEvent.getParameters.key Key of selected NavigationItem
@@ -908,7 +900,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingInspector</code>.<br/> itself. 
  *  
- * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected. 
+ * Event for facet selection. The application is responsible for displaying the correct content for the selected one. The ThingInspector will currently always mark the first facet as selected.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -959,14 +951,13 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
 
 
 /**
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @name sap.ui.ux3.ThingInspector#feedSubmit
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.text Feed text
  * @public
  */
@@ -976,7 +967,7 @@ sap.ui.ux3.ThingInspector.M_EVENTS = {'actionSelected':'actionSelected','facetSe
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.ux3.ThingInspector</code>.<br/> itself. 
  *  
- * Fired when a new feed entry is submitted. 
+ * Fired when a new feed entry is submitted.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -1121,6 +1112,7 @@ jQuery.sap.require("sap.ui.ux3.ThingViewer");
 	/**
 	 * Opens this instance of ThingIspector
 	 *
+	 * @param {string} [initialFocusId]
 	 * @public
 	 */
 	sap.ui.ux3.ThingInspector.prototype.open = function(initialFocusId) {

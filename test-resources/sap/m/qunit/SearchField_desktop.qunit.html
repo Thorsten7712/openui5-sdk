@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 <script type="text/javascript" src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+<script type="text/javascript" src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 
 <script type="text/javascript" src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
@@ -82,6 +83,15 @@
 		visible: true
 	}).placeAt("content");
 
+	new sap.m.SearchField("sf4", {
+		placeholder: sPlaceholder,
+		value: sValue,
+		enabled: true,
+		showRefreshButton: true,
+		showSearchButton: false,
+		visible: true
+	}).placeAt("content");
+
 	qutils.delayTestStart();
 
 	module("Basic", {
@@ -121,6 +131,10 @@
 		// Button icons
 		ok(/\uE00D/.test(getIconId(sf1, "search")), "First button icon is magnifier");
 		ok(/\uE00A/.test(getIconId(sf3, "search")), "Third button icon is synchronize");
+		// showSearchButton:false :
+		ok(jQuery("#sf4-search").length == 0, "Search button is not rendered if showSearchButton == false");
+		var rightOffset = window.getComputedStyle(jQuery("#sf4-reset")[0]).getPropertyValue("right");
+		strictEqual(rightOffset, "0px", "Reset button is right aligned if showSearchButton == false");
 	});
 
 	

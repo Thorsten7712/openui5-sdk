@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.Label");jQuery.sap.require("sap.ui.commons.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.ui.commons.Label",{metadata:{interfaces:["sap.ui.commons.ToolbarItem","sap.ui.core.Label"],library:"sap.ui.commons",properties:{"design":{type:"sap.ui.commons.LabelDesign",group:"Appearance",defaultValue:sap.ui.commons.LabelDesign.Standard},"textDirection":{type:"sap.ui.core.TextDirection",group:"Appearance",defaultValue:sap.ui.core.TextDirection.Inherit},"wrapping":{type:"boolean",group:"Appearance",defaultValue:false},"width":{type:"sap.ui.core.CSSSize",group:"Dimension",defaultValue:''},"text":{type:"string",group:"Misc",defaultValue:''},"visible":{type:"boolean",group:"Behavior",defaultValue:true},"icon":{type:"sap.ui.core.URI",group:"Appearance",defaultValue:null},"textAlign":{type:"sap.ui.core.TextAlign",group:"Appearance",defaultValue:sap.ui.core.TextAlign.Begin},"required":{type:"boolean",group:"Appearance",defaultValue:false},"requiredAtBegin":{type:"boolean",group:"Misc",defaultValue:null}},associations:{"labelFor":{type:"sap.ui.core.Control",multiple:false}}}});jQuery.sap.require("sap.ui.core.Popup");

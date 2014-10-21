@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>form/GridContainerData</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.9.1</since>
 	<documentation>Grid layout specific properties for FormContainers.
 The width and height properties of the elements are ignored since the witdh and heights are defined by the grid cells.</documentation>

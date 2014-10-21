@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -117,7 +117,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {int | jQuery} The cursor position (or the jQuery collection if the position has been set)
 	 * @public
 	 * @name jQuery#cursorPos
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
@@ -223,7 +223,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {jQuery} The jQuery collection
 	 * @public
 	 * @name jQuery#selectText
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
@@ -272,7 +272,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {string} outer HTML
 	 * @public
 	 * @name jQuery#outerHTML
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
@@ -304,7 +304,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @param {Element} oDomRefChild The child element (must not be a text node, must be an element)
 	 * @return {boolean} 'true' if oDomRefChild is contained in oDomRefContainer or oDomRefChild is oDomRefContainer
 	 * @public
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 */
 	jQuery.sap.containsOrEquals = function containsOrEquals(oDomRefContainer, oDomRefChild) {
@@ -322,7 +322,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {object} An object with left, top, width and height
 	 * @public
 	 * @name jQuery#rect
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
@@ -360,7 +360,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {boolean} Whether X and Y are inside this Rectangle's boundaries
 	 * @public
 	 * @name jQuery#rectContains
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.18.0
 	 * @function
 	 */
@@ -388,12 +388,18 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {boolean} If the first element has a set tabindex
 	 * @public
 	 * @name jQuery#hasTabIndex
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
 	jQuery.fn.hasTabIndex = function hasTabIndex() {
 		var iTabIndex = this.prop("tabIndex");
+
+		if (this.attr("disabled") && !this.attr("tabindex")) {
+			// disabled field with not explicit set tabindex -> not in tab chain (bug of jQuery prop function)
+			iTabIndex = -1;
+		}
+
 		return !isNaN(iTabIndex) && iTabIndex >= 0;
 	};
 
@@ -404,7 +410,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {Element} The domRef
 	 * @public
 	 * @name jQuery#firstFocusableDomRef
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
@@ -445,7 +451,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {Element} The last domRef
 	 * @public
 	 * @name jQuery#lastFocusableDomRef
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
@@ -490,10 +496,11 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 *
 	 * Returns "undefined" if no element and no iPos is given.
 	 *
+	 * @param {int} iPos
 	 * @return {jQuery | int} The jQuery collection if iPos is given, otherwise the scroll position, counted from the leftmost position
 	 * @public
 	 * @name jQuery#scrollLeftRTL
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.20.0
 	 * @function
 	 */
@@ -523,6 +530,50 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 		}
 	};
 
+	/*
+	 * The following methods are taken from jQuery UI core but modified.
+	 *
+	 * jQuery UI Core
+	 * http://jqueryui.com
+	 *
+	 * Copyright 2014 jQuery Foundation and other contributors
+	 * Released under the MIT license.
+	 * http://jquery.org/license
+	 *
+	 * http://api.jqueryui.com/category/ui-core/
+	 */
+	jQuery.support.selectstart = "onselectstart" in document.createElement("div");
+	jQuery.fn.extend({
+
+		/**
+		 * Disable HTML elements selection.
+		 *
+		 * @return {jQuery} <code>this</code> to allow method chaining.
+		 * @public
+		 * @methodOf jQuery.prototype
+		 * @name disableSelection
+		 * @since 1.24.0
+		 */
+		disableSelection: function() {
+			return this.on((jQuery.support.selectstart ? "selectstart" : "mousedown") + ".sapui5-disableSelection", function(oEvent) {
+				oEvent.preventDefault();
+			});
+		},
+
+		/**
+		 * Enable HTML elements to get selected.
+		 *
+		 * @return {jQuery} <code>this</code> to allow method chaining.
+		 * @public
+		 * @methodOf jQuery.prototype
+		 * @name enableSelection
+		 * @since 1.24.0
+		 */
+		enableSelection: function() {
+			return this.off(".sapui5-disableSelection");
+		}
+	});
+
 	/**
 	 * Returns the MIRRORED scrollLeft value of the first element in the given jQuery collection in right-to-left mode.
 	 * Precondition: The element is rendered in RTL mode.
@@ -536,7 +587,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @return {int} The scroll position, counted from the rightmost position
 	 * @public
 	 * @name jQuery#scrollRightRTL
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.20.0
 	 * @function
 	 */
@@ -575,7 +626,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	 * @param {Element} oDomRef The DOM Element to which scrollLeft will be applied
 	 * @return {int} The scroll position that must be set for the DOM element
 	 * @public
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.20.0
 	 */
 	jQuery.sap.denormalizeScrollLeftRTL = function(iNormalizedScrollLeft, oDomRef) {
@@ -764,12 +815,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 	/**
 	 * Gets the next parent DOM element with a given attribute and attribute value starting above the first given element
 	 *
-	 * @param {string} sAttibute Name of the attribute
+	 * @param {string} sAttribute Name of the attribute
 	 * @param {string} sValue Value of the attribute (optional)
 	 * @return {Element} null or the DOM reference
 	 * @public
 	 * @name jQuery#parentByAttribute
-	 * @author SAP AG
+	 * @author SAP SE
 	 * @since 0.9.0
 	 * @function
 	 */
@@ -857,7 +908,15 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/Device'],
 		var iHeight = oDomRef.offsetHeight - oDomRef.scrollHeight;
 
 		$Area.remove();
-		
+
+		// due to a bug in FireFox when hiding iframes via an outer DIV element
+		// the height and width calculation is not working properly - by not storing
+		// height and width when one value is 0 we make sure that once the iframe
+		// gets visible the height calculation will be redone (see snippix: #64049)
+		if (iWidth === 0 || iHeight === 0) {
+			return {width: iWidth, height: iHeight};
+		}
+
 		_oScrollbarSize[sKey] = {width: iWidth, height: iHeight};
 
 		return _oScrollbarSize[sKey];

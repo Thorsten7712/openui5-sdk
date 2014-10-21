@@ -18,6 +18,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript" charset="utf-8">
 
@@ -87,10 +88,9 @@
 			Truth3: 'Beauty',
 			fruits: 'apple, banana, pear, cantaloupe, watermelon, kiwi, mango',
 			cheeses: ''
-		};		
-					 
-		test("ParseAndAccess", function () {
-			var oProps = jQuery.sap.properties({url : "testdata/test.properties"});
+		};	
+		
+		function checkProperties(oProps){
 			// check that the expected content is available 
 			for(var sKey in expected) {
 				var sValue = oProps.getProperty(sKey, "Default given");
@@ -111,13 +111,56 @@
 			oProps.setProperty("initially-undefined","New Value added");
 			var sValue = oProps.getProperty("initially-undefined","Default given");
 			strictEqual(sValue, "New Value added", "initially-undefined accessed");
+		};
+					 
+		test("ParseAndAccess (sync)", function () {
+			var oProps = jQuery.sap.properties({url : "testdata/test.properties"});
+			checkProperties(oProps);
+		});
+		
+		asyncTest("ParseAndAccess (async)", function () {
+			var oPromise = jQuery.sap.properties({url : "testdata/test.properties", async: true});
+			oPromise.then(function(oProps){
+				checkProperties(oProps);
+				start();
+			}, function(){
+				ok(false, "Fail should not be called");
+				start();
+			});
+		});
+		
+		test("Access non existing (sync)", function () {
+			var oProps = jQuery.sap.properties({url : "testdata/doesnotexist.properties"});
+			equal(oProps.getKeys().length, 0, "Non-existing Properties file results in empty properties list.");
+		});
+		
+		asyncTest("Access non existing (async)", function () {
+			var oPromise = jQuery.sap.properties({url : "testdata/doesnotexist.properties", async: true});
+			oPromise.then(function(oProps){
+				equal(oProps.getKeys().length, 0, "Non-existing Properties file results in empty properties list.");
+				start();
+			}, function(){
+				ok(false, "Fail should not be called");
+				start();
+			});
 		});
 
-		test("IncompleteUnicodeEscape", function () {
+		test("IncompleteUnicodeEscape (sync)", function () {
 			QUnit.raises(function() {
 				jQuery.sap.properties({url : "testdata/broken.properties"});
 				
 			}, "broken unicode escape");
+		});
+		
+		asyncTest("IncompleteUnicodeEscape (async)", function () {
+			var oPromise = jQuery.sap.properties({url : "testdata/broken.properties", async: true});
+			oPromise.then(function(oProps){
+				ok(false, "Success should not be called");
+				start();
+			}, function(oError){
+				ok(oError instanceof Error, "Fail due to broken unicode escape error.");
+				start();
+			});
 		});
 
 		test("getKeys", function () {

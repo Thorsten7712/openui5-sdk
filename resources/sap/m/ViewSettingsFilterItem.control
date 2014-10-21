@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ViewSettingsFilterItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16</since>
 	<documentation>A ViewSettingsFilterItem is used for modelling filter behaviour in the ViewSettingsDialog.</documentation>
 	<baseType>sap.m/ViewSettingsItem</baseType>

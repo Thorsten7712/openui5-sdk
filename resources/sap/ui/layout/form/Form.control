@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>form/Form</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.16.0</since>
 	<documentation>Form control.
 Holder for form control to be rendered in a specific form layout.

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -37,8 +37,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 		 * @param {string} sLocaleId the locale identifier, in format en-US or en_US.
 		 *
 		 * @extends sap.ui.base.Object
-		 * @author SAP AG
-		 * @version 1.22.4
+		 * @author SAP SE
+		 * @version 1.24.2
 		 * @constructor
 		 * @public
 		 * @name sap.ui.core.Locale
@@ -271,7 +271,17 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 				"in" : "id", 
 				"sh" : "sr"
 		};
-	
+
+		/**
+		 * Helper to analyze and parse designtime variables
+		 * 
+		 * @private
+		 */
+		function getDesigntimePropertyAsArray(sValue) {
+			var m = /\$([-a-z0-9A-Z._]+)(?::([^$]*))?\$/.exec(sValue);
+			return (m && m[2]) ? m[2].split(/,/) : null;
+		}
+		
 		/**
 		 * A list of locales for which the CLDR specifies "right-to-left"
 		 * as the character orientation.
@@ -280,8 +290,20 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 		 * The value is determined from the CLDR JSON files which are 
 		 * bundled with the UI5 runtime.
 		 */ 
-		var A_RTL_LOCALES = "ar,fa,he".split(",");
+		var A_RTL_LOCALES = getDesigntimePropertyAsArray("$cldr-rtl-locales:ar,fa,he$") || [];
 	
+		/**
+		 * A list of locales for which CLDR data is bundled wit the UI5 runtime.
+		 * @private
+		 */
+		Locale._cldrLocales = getDesigntimePropertyAsArray("$cldr-locales:ar,ar_EG,ar_SA,bg,br,ca,cs,da,de,de_AT,de_CH,el,el_CY,en,en_AU,en_GB,en_HK,en_IE,en_IN,en_NZ,en_PG,en_SG,en_ZA,es,es_AR,es_BO,es_CL,es_CO,es_MX,es_PE,es_UY,es_VE,et,fa,fi,fr,fr_BE,fr_CA,fr_CH,fr_LU,he,hi,hr,hu,id,it,it_CH,ja,ko,lt,lv,nb,nl,nl_BE,nn,pl,pt,pt_PT,ro,ru,ru_UA,sk,sl,sr,sv,th,tr,uk,vi,zh_CN,zh_HK,zh_SG,zh_TW$"); 
+	
+		/**
+		 * List of locales for which translated texts have been bundled with the UI5 runtime.
+		 * @private
+		 */
+		Locale._coreI18nLocales = getDesigntimePropertyAsArray("$core-i18n-locales:,ar,bg,ca,cs,da,de,el,en,es,et,fi,fr,hi,hr,hu,it,iw,ja,ko,lt,lv,nl,no,pl,pt,ro,ru,sh,sk,sl,sv,th,tr,uk,vi,zh_CN,zh_TW$");
+
 		/**
 		 * Checks whether the given language tag implies a character orientation 
 		 * of 'right-to-left' ('RTL').
@@ -311,9 +333,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'],
 			return jQuery.inArray(sLanguage, A_RTL_LOCALES) >= 0;
 		};
 		
-	
-	
-
 	return Locale;
 
 }, /* bExport= */ true);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simple-type xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>VerticalAlign</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>
 	Configuration options for vertical alignments, for example of a layout cell content within the borders.
 	</documentation>

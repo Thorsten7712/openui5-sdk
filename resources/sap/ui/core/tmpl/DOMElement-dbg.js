@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -53,33 +53,29 @@ sap.ui.define(['sap/ui/core/library','sap/ui/core/Control'], function() {
  * @class
  * Represents a DOM element. It allows to use databinding for the properties and nested DOM attributes.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @experimental Since version 1.15. 
  * The templating might be changed in future versions.
  * @name sap.ui.core.tmpl.DOMElement
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.core.tmpl.DOMElement", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"attr", "removeAttr"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"text" : {type : "string", group : "Appearance", defaultValue : null},
 		"tag" : {type : "string", group : "Behavior", defaultValue : 'span'}
 	},
 	aggregations : {
-    	"attributes" : {type : "sap.ui.core.tmpl.DOMAttribute", multiple : true, singularName : "attribute"}, 
-    	"elements" : {type : "sap.ui.core.tmpl.DOMElement", multiple : true, singularName : "element"}
+		"attributes" : {type : "sap.ui.core.tmpl.DOMAttribute", multiple : true, singularName : "attribute"}, 
+		"elements" : {type : "sap.ui.core.tmpl.DOMElement", multiple : true, singularName : "element"}
 	}
 }});
 
@@ -316,31 +312,28 @@ sap.ui.core.Control.extend("sap.ui.core.tmpl.DOMElement", { metadata : {
 /**
  * Returns the value of a DOM attribute if available or undefined if the DOM attribute is not available when using this method with the parameter name only. When using the method with the parameter name and value the method acts as a setter and sets the value of a DOM attribute. Int this case the return value is the reference to this DOM element to support method chaining. If you pass null as value of the attribute the attribute will be removed.
  *
- * @name sap.ui.core.tmpl.DOMElement.prototype.attr
+ * @name sap.ui.core.tmpl.DOMElement#attr
  * @function
- * @param {string} 
- *         sName
+ * @param {string} sName
  *         The name of the DOM attribute.
- * @param {string} 
- *         sValue
+ * @param {string} sValue
  *         The value of the DOM attribute. If the value is undefined the DOM attribute will be removed.
-
  * @type string
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the DOM attribute for the given name and returns the reference to this DOM element to support method chaining.
  *
- * @name sap.ui.core.tmpl.DOMElement.prototype.removeAttr
+ * @name sap.ui.core.tmpl.DOMElement#removeAttr
  * @function
- * @param {string} 
- *         sName
+ * @param {string} sName
  *         The name of the DOM attribute.
-
  * @type sap.ui.core.tmpl.DOMElement
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

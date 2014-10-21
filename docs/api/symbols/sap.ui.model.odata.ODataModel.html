@@ -71,7 +71,7 @@ Binding to V4 metadata annotations is experimental!</p>
 								<div class="sectionItem classConstructor static">
 									<div class="itemName">
 										<b class="icon" title="Constructor for a new ODataModel.">new <a href="../symbols/sap.ui.model.odata.ODataModel.html#constructor">sap.ui.model.odata.ODataModel</a></b>
-										<span class='signature'>(<span title="(string) required - base uri of the service to request data from; additional URL parameters appended here will be appended to every request">sServiceUrl</span>, <span title="(string | object) (optional) true to request data as JSON or an object which contains the following parameter properties: json, user, password, headers, tokenHandling, withCredentials, loadMetadataAsync, maxDataServiceVersion (default = '2.0'; please use the following string format e.g.">bJSON</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) user">sUser</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) password">sPassword</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) map of custom headers which should be set in each request.">mHeaders</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) enable/disable XCSRF-Token handling">bTokenHandling</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional, experimental) true when user credentials are to be included in a cross-origin request.">bWithCredentials</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) determined if the service metadata request is sent synchronous or asynchronous.">bLoadMetadataAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) the URL from which the annotation metadata should be loaded">annotationURI</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) Whether or not to fire the metadataLoaded-event only after annotations have been loaded as well.">loadAnnotationsJoined</span><i class="help" title="Optional parameter">?</i>)</span>
+										<span class='signature'>(<span title="(string) required - base uri of the service to request data from; additional URL parameters appended here will be appended to every request">sServiceUrl</span>, <span title="(string | object) (optional) true to request data as JSON or an object which contains the following parameter properties: json, user, password, headers, tokenHandling, withCredentials, loadMetadataAsync, maxDataServiceVersion (default = '2.0'; please use the following string format e.g.">bJSON</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) user">sUser</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) password">sPassword</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) map of custom headers which should be set in each request.">mHeaders</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) enable/disable XCSRF-Token handling">bTokenHandling</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional, experimental) true when user credentials are to be included in a cross-origin request.">bWithCredentials</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) determined if the service metadata request is sent synchronous or asynchronous.">bLoadMetadataAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(string|string[]) (optional) The URL (or an array of URLs) from which the annotation metadata should be loaded">annotationURI</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) Whether or not to fire the metadataLoaded-event only after annotations have been loaded as well.">loadAnnotationsJoined</span><i class="help" title="Optional parameter">?</i>)</span>
 										<span class='description'>Constructor for a new ODataModel.</span>
 									</div>
 								</div>
@@ -81,6 +81,11 @@ Binding to V4 metadata annotations is experimental!</p>
 		
 
 
+					
+						
+						
+						
+						
 					
 		
 
@@ -168,6 +173,11 @@ Binding to V4 metadata annotations is experimental!</p>
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Creates the key from the given collection name and property map"><a href="../symbols/sap.ui.model.odata.ODataModel.html#createKey">createKey</a></b><span class='signature'>(<span title="(string) The name of the collection">sCollection</span>, <span title="(object) The object containing at least all the key properties of the entity type">oKeyParameters</span>, <span title="(boolean) Whether the URI decoding should be applied on the key">bDecode</span>)</span>
+									<span class='description'>Creates the key from the given collection name and property map</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Deletes a created entry from the request queue and the model."><a href="../symbols/sap.ui.model.odata.ODataModel.html#deleteCreatedEntry">deleteCreatedEntry</a></b><span class='signature'>(<span title="(sap.ui.model.Context) The context object pointing to the created entry">oContext</span>)</span>
 									<span class='description'>Deletes a created entry from the request queue and the model.</span>
 								</div>
@@ -223,8 +233,13 @@ Binding to V4 metadata annotations is experimental!</p>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Returns the value for the property with the given sPropertyName"><a href="../symbols/sap.ui.model.odata.ODataModel.html#getProperty">getProperty</a></b><span class='signature'>(<span title="(string) the path/name of the property">sPath</span>, <span title="(object) the context if available to access the property value">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) This parameter should be set when a URI or custom parameter with a $expand System Query Option was used to retrieve associated entries embedded/inline.">bIncludeExpandEntries</span><i class="help" title="Optional parameter">?</i>)</span>
-									<span class='description'>Returns the value for the property with the given <code>sPropertyName</code></span>
+									<b class="icon" title="Returns the key part from the entry URI or the given context or object"><a href="../symbols/sap.ui.model.odata.ODataModel.html#getKey">getKey</a></b><span class='signature'>(<span title="(object|sap.ui.model.Context) The context or object">oObject</span>, <span title="(boolean) Whether the URI decoding should be applied on the key">bDecode</span>)</span>
+									<span class='description'>Returns the key part from the entry URI or the given context or object</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Returns the value for the property with the given sPath"><a href="../symbols/sap.ui.model.odata.ODataModel.html#getProperty">getProperty</a></b><span class='signature'>(<span title="(string) the path/name of the property">sPath</span>, <span title="(object) the context if available to access the property value">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) This parameter should be set when a URI or custom parameter with a $expand System Query Option was used to retrieve associated entries embedded/inline.">bIncludeExpandEntries</span><i class="help" title="Optional parameter">?</i>)</span>
+									<span class='description'>Returns the value for the property with the given <code>sPath</code></span>
 								</div>
 							
 								<div class="sectionItem classMethod">
@@ -248,7 +263,7 @@ Binding to V4 metadata annotations is experimental!</p>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Refresh the model."><a href="../symbols/sap.ui.model.odata.ODataModel.html#refresh">refresh</a></b><span class='signature'>(<span title="(boolean) Update controlsODataModelanged">bForceUpdate</span>, <span title="(object) object">mChangedEntities</span>, <span title="(string) string">sEntityType</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Refresh the model."><a href="../symbols/sap.ui.model.odata.ODataModel.html#refresh">refresh</a></b><span class='signature'>(<span title="(boolean) Force update of controls">bForceUpdate</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) If set to true then the model data will be removed/cleared.">bRemoveData</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Refresh the model.</span>
 								</div>
 							
@@ -298,7 +313,7 @@ Binding to V4 metadata annotations is experimental!</p>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Submits the collected changes in the batch which were collected via addBatchReadOperations or addBatchChangeOperations."><a href="../symbols/sap.ui.model.odata.ODataModel.html#submitBatch">submitBatch</a></b><span class='signature'>(<span title="(function) a callback function which is called when the batch request has been successfully sent.">fnSuccess</span><i class="help" title="Optional parameter">?</i>, <span title="(function) a callback function which is called when the batch request failed.">fnError</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) true for asynchronous request.">bAsync</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Submits the collected changes in the batch which were collected via addBatchReadOperations or addBatchChangeOperations."><a href="../symbols/sap.ui.model.odata.ODataModel.html#submitBatch">submitBatch</a></b><span class='signature'>(<span title="(function) a callback function which is called when the batch request has been successfully sent.">fnSuccess</span><i class="help" title="Optional parameter">?</i>, <span title="(function) a callback function which is called when the batch request failed.">fnError</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) true for asynchronous request.">bAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) boolean">bImportData</span>)</span>
 									<span class='description'>Submits the collected changes in the batch which were collected via <code>addBatchReadOperations</code> or <code>addBatchChangeOperations</code>.</span>
 								</div>
 							
@@ -351,6 +366,13 @@ Binding to V4 metadata annotations is experimental!</p>
 									</div>
 								</div>
 							
+								<div class="summary section">
+									<div class="sectionTitle">Methods borrowed from class <a href="../symbols/sap.ui.base.EventProvider.html">sap.ui.base.EventProvider</a></div>
+									<div class="sectionItems">
+									<a href="../symbols/sap.ui.base.EventProvider.html#attachEvent">attachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#attachEventOnce">attachEventOnce</a>, <a href="../symbols/sap.ui.base.EventProvider.html#detachEvent">detachEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#fireEvent">fireEvent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#getEventingParent">getEventingParent</a>, <a href="../symbols/sap.ui.base.EventProvider.html#toString">toString</a>
+									</div>
+								</div>
+							
 						
 					
 		
@@ -366,7 +388,7 @@ Binding to V4 metadata annotations is experimental!</p>
 									<div class="details"><a name="constructor"> </a>
 										
 										<div class="icon">
-											new <b>sap.ui.model.odata.ODataModel</b>(<span title="(string) required - base uri of the service to request data from; additional URL parameters appended here will be appended to every request">sServiceUrl</span>, <span title="(string | object) (optional) true to request data as JSON or an object which contains the following parameter properties: json, user, password, headers, tokenHandling, withCredentials, loadMetadataAsync, maxDataServiceVersion (default = '2.0'; please use the following string format e.g.">bJSON</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) user">sUser</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) password">sPassword</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) map of custom headers which should be set in each request.">mHeaders</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) enable/disable XCSRF-Token handling">bTokenHandling</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional, experimental) true when user credentials are to be included in a cross-origin request.">bWithCredentials</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) determined if the service metadata request is sent synchronous or asynchronous.">bLoadMetadataAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) the URL from which the annotation metadata should be loaded">annotationURI</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) Whether or not to fire the metadataLoaded-event only after annotations have been loaded as well.">loadAnnotationsJoined</span><i class="help" title="Optional parameter">?</i>)
+											new <b>sap.ui.model.odata.ODataModel</b>(<span title="(string) required - base uri of the service to request data from; additional URL parameters appended here will be appended to every request">sServiceUrl</span>, <span title="(string | object) (optional) true to request data as JSON or an object which contains the following parameter properties: json, user, password, headers, tokenHandling, withCredentials, loadMetadataAsync, maxDataServiceVersion (default = '2.0'; please use the following string format e.g.">bJSON</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) user">sUser</span><i class="help" title="Optional parameter">?</i>, <span title="(string) (optional) password">sPassword</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) map of custom headers which should be set in each request.">mHeaders</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) enable/disable XCSRF-Token handling">bTokenHandling</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional, experimental) true when user credentials are to be included in a cross-origin request.">bWithCredentials</span><i class="help" title="Optional parameter">?</i>, <span title="(object) (optional) determined if the service metadata request is sent synchronous or asynchronous.">bLoadMetadataAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(string|string[]) (optional) The URL (or an array of URLs) from which the annotation metadata should be loaded">annotationURI</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) (optional) Whether or not to fire the metadataLoaded-event only after annotations have been loaded as well.">loadAnnotationsJoined</span><i class="help" title="Optional parameter">?</i>)
 										</div>
 										
 										<div class="full-description">
@@ -403,7 +425,9 @@ Binding to V4 metadata annotations is experimental!</p>
 							json, user, password, headers, tokenHandling, withCredentials, loadMetadataAsync, maxDataServiceVersion (default = '2.0';
 please use the following string format e.g. '2.0' or '3.0'. OData version supported by the ODataModel: '2.0'. '3.0' may work but is currently experimental.), 
 useBatch (all requests will be sent in batch requests default = false),
-refreshAfterChange (enable/disable automatic refresh after change operations: default = true).
+refreshAfterChange (enable/disable automatic refresh after change operations: default = true),
+serviceUrlParams (URL parameters for all requests),
+metadataUrlParams (additional URL parameters for Metadata requests).
 See below for descriptions of these parameters.
 													</td>
 												</tr>
@@ -483,13 +507,13 @@ Please note that if this is set to true attach to the metadataLoaded event to ge
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string}</span> 
+													  <span class="light">{string|string[]}</span> 
 													</td>
 													<td class="methodItemName">
 													  <b>annotationURI</b><i class="help" title="Optional parameter">?</i>
 													</td>
 													<td class="methodItemDesc">
-												    (optional) the URL from which the annotation metadata should be loaded
+												    (optional) The URL (or an array of URLs) from which the annotation metadata should be loaded
 													</td>
 												</tr>
 											
@@ -1442,6 +1466,71 @@ Please note that deep creates (including data defined by navigationproperties) a
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="createKey"> </a>
+										<div class="itemTitle icon">
+											createKey<span class="signature">(<span title="(string) The name of the collection">sCollection</span>, <span title="(object) The object containing at least all the key properties of the entity type">oKeyParameters</span>, <span title="(boolean) Whether the URI decoding should be applied on the key">bDecode</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											Creates the key from the given collection name and property map
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{string}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>sCollection</b>
+													</td>
+													<td class="methodItemDesc">
+												    The name of the collection
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oKeyParameters</b>
+													</td>
+													<td class="methodItemDesc">
+												    The object containing at least all the key properties of the entity type
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bDecode</b>
+													</td>
+													<td class="methodItemDesc">
+												    Whether the URI decoding should be applied on the key
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="deleteCreatedEntry"> </a>
 										<div class="itemTitle icon">
 											deleteCreatedEntry<span class="signature">(<span title="(sap.ui.model.Context) The context object pointing to the created entry">oContext</span>)</span>
@@ -1724,7 +1813,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireAnnotationsFailed"> </a>
 										<div class="itemTitle icon protected">
 											fireAnnotationsFailed<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1827,7 +1916,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireAnnotationsLoaded"> </a>
 										<div class="itemTitle icon protected">
 											fireAnnotationsLoaded<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1894,7 +1983,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireMetadataFailed"> </a>
 										<div class="itemTitle icon protected">
 											fireMetadataFailed<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -1997,7 +2086,7 @@ The passed function and listener object must match the ones previously used for 
 										
 									</div>
 								
-									<div class='sectionItem classMethod protected protected'>
+									<div class='sectionItem classMethod protected'>
 										<a name="fireMetadataLoaded"> </a>
 										<div class="itemTitle icon protected">
 											fireMetadataLoaded<span class="signature">(<span title="(object) the arguments to pass along with the event.">mArguments</span><i class="help" title="Optional parameter">?</i>)</span>
@@ -2146,13 +2235,66 @@ The passed function and listener object must match the ones previously used for 
 									</div>
 								
 									<div class='sectionItem classMethod'>
+										<a name="getKey"> </a>
+										<div class="itemTitle icon">
+											getKey<span class="signature">(<span title="(object|sap.ui.model.Context) The context or object">oObject</span>, <span title="(boolean) Whether the URI decoding should be applied on the key">bDecode</span>)</span>
+											
+										</div>
+										<div class="full-description">
+											Returns the key part from the entry URI or the given context or object
+											
+											
+											
+										
+											
+										</div>
+										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object|<a href="../symbols/sap.ui.model.Context.html">sap.ui.model.Context</a>}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oObject</b>
+													</td>
+													<td class="methodItemDesc">
+												    The context or object
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bDecode</b>
+													</td>
+													<td class="methodItemDesc">
+												    Whether the URI decoding should be applied on the key
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+										
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
 										<a name="getProperty"> </a>
 										<div class="itemTitle icon">
 											getProperty<span class="signature">(<span title="(string) the path/name of the property">sPath</span>, <span title="(object) the context if available to access the property value">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) This parameter should be set when a URI or custom parameter with a $expand System Query Option was used to retrieve associated entries embedded/inline.">bIncludeExpandEntries</span><i class="help" title="Optional parameter">?</i>)</span>
 											<span class="light" title="returns any">: any</span>
 										</div>
 										<div class="full-description">
-											Returns the value for the property with the given <code>sPropertyName</code>
+											Returns the value for the property with the given <code>sPath</code>
 											
 											
 											
@@ -2510,7 +2652,7 @@ additional error information.
 									<div class='sectionItem classMethod'>
 										<a name="refresh"> </a>
 										<div class="itemTitle icon">
-											refresh<span class="signature">(<span title="(boolean) Update controlsODataModelanged">bForceUpdate</span>, <span title="(object) object">mChangedEntities</span>, <span title="(string) string">sEntityType</span><i class="help" title="Optional parameter">?</i>)</span>
+											refresh<span class="signature">(<span title="(boolean) Force update of controls">bForceUpdate</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) If set to true then the model data will be removed/cleared.">bRemoveData</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -2532,34 +2674,23 @@ This will check all bindings for updated data and update the controls if data ha
 													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>bForceUpdate</b>
+													  <b>bForceUpdate</b><i class="help" title="Optional parameter">?, Default: false</i>
 													</td>
 													<td class="methodItemDesc">
-												    Update controlsODataModelanged
+												    Force update of controls
 													</td>
 												</tr>
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{object}</span> 
+													  <span class="light">{boolean}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>mChangedEntities</b>
+													  <b>bRemoveData</b><i class="help" title="Optional parameter">?, Default: false</i>
 													</td>
 													<td class="methodItemDesc">
-												    
-													</td>
-												</tr>
-											
-												<tr>
-													<td class="methodItemType">
-													  <span class="light">{string}</span> 
-													</td>
-													<td class="methodItemName">
-													  <b>sEntityType</b><i class="help" title="Optional parameter">?</i>
-													</td>
-													<td class="methodItemDesc">
-												    
+												    If set to true then the model data will be removed/cleared. 
+					Please note that the data might not be there when calling e.g. getProperty too early before the refresh call returned.
 													</td>
 												</tr>
 											
@@ -3181,7 +3312,7 @@ are removed unless they are specified again in the mCustomHeaders parameter.
 									<div class='sectionItem classMethod'>
 										<a name="submitBatch"> </a>
 										<div class="itemTitle icon">
-											submitBatch<span class="signature">(<span title="(function) a callback function which is called when the batch request has been successfully sent.">fnSuccess</span><i class="help" title="Optional parameter">?</i>, <span title="(function) a callback function which is called when the batch request failed.">fnError</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) true for asynchronous request.">bAsync</span><i class="help" title="Optional parameter">?</i>)</span>
+											submitBatch<span class="signature">(<span title="(function) a callback function which is called when the batch request has been successfully sent.">fnSuccess</span><i class="help" title="Optional parameter">?</i>, <span title="(function) a callback function which is called when the batch request failed.">fnError</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) true for asynchronous request.">bAsync</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) boolean">bImportData</span>)</span>
 											<span class="light" title="returns object">: object</span>
 										</div>
 										<div class="full-description">
@@ -3237,6 +3368,18 @@ additional error information.
 													</td>
 													<td class="methodItemDesc">
 												    true for asynchronous request. Default is true.
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{boolean}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>bImportData</b>
+													</td>
+													<td class="methodItemDesc">
+												    
 													</td>
 												</tr>
 											
@@ -3606,7 +3749,7 @@ and may not work. These should be done seperate on the entry directly.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													The caching should be controlled by the backend by setting the correct cache control header
 												</dt>
@@ -3623,7 +3766,7 @@ and may not work. These should be done seperate on the entry directly.
 										<a name="getData"> </a>
 										<div class="itemTitle icon">
 											getData<span class="signature">(<span title="(string) A string containing the path to the data object that should be returned.">sPath</span>, <span title="(object) the optional context which is used with the sPath to retrieve the requested data.">oContext</span><i class="help" title="Optional parameter">?</i>, <span title="(boolean) This parameter should be set when a URI or custom parameter with a $expand System Query Option was used to retrieve associated entries embedded/inline.">bIncludeExpandEntries</span><i class="help" title="Optional parameter">?</i>)</span>
-											
+											<span class="light" title="returns object">: object</span>
 										</div>
 										<div class="full-description">
 											Return requested data as object if the data has already been loaded and stored in the model.
@@ -3675,8 +3818,6 @@ with a $expand System Query Option was used to retrieve associated entries embed
 If true then the getProperty function returns a desired property value/entry and includes the associated expand entries (if any).
 If false the associated/expanded entry properties are removed and not included in the
 desired entry as properties at all. This is useful for performing updates on the base entry only. Note: A copy and not a reference of the entry will be returned.
-</p><p>
-return {object} oData Object containing the requested data if the path is valid.
 													</td>
 												</tr>
 											
@@ -3684,7 +3825,7 @@ return {object} oData Object containing the requested data if the path is valid.
 										
 										
 											<dl class="detailList deprecation">
-												<dt class="heading">Deprecated:</dt>
+												<dt class="heading deprecation">Deprecated:</dt>
 												<dt>
 													please use <a href="#getProperty">#getProperty</a> instead
 												</dt>
@@ -3692,6 +3833,20 @@ return {object} oData Object containing the requested data if the path is valid.
 										
 										
 										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{object}</span> 
+													</td>
+													<td class="methodItemDesc">
+														oData Object containing the requested data if the path is valid.
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										

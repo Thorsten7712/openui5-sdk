@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -49,7 +49,8 @@ jQuery.sap.require("sap.ui.core.Element");
  * <li>{@link #getShowFilterMenuEntry showFilterMenuEntry} : boolean (default: true)</li>
  * <li>{@link #getShowSortMenuEntry showSortMenuEntry} : boolean (default: true)</li>
  * <li>{@link #getHeaderSpan headerSpan} : any (default: 1)</li>
- * <li>{@link #getAutoResizable autoResizable} : boolean (default: false)</li></ul>
+ * <li>{@link #getAutoResizable autoResizable} : boolean (default: false)</li>
+ * <li>{@link #getDefaultFilterOperator defaultFilterOperator} : string</li></ul>
  * </li>
  * <li>Aggregations
  * <ul>
@@ -76,23 +77,19 @@ jQuery.sap.require("sap.ui.core.Element");
  * @class
  * The column allows to define column specific properties that will be applied when rendering the table.
  * @extends sap.ui.core.Element
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.table.Column
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.table.Column", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"sort", "toggleSort"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.table",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -113,14 +110,15 @@ sap.ui.core.Element.extend("sap.ui.table.Column", { metadata : {
 		"showFilterMenuEntry" : {type : "boolean", group : "Appearance", defaultValue : true},
 		"showSortMenuEntry" : {type : "boolean", group : "Appearance", defaultValue : true},
 		"headerSpan" : {type : "any", group : "Behavior", defaultValue : 1},
-		"autoResizable" : {type : "boolean", group : "Behavior", defaultValue : false}
+		"autoResizable" : {type : "boolean", group : "Behavior", defaultValue : false},
+		"defaultFilterOperator" : {type : "string", group : "Behavior", defaultValue : null}
 	},
 	defaultAggregation : "label",
 	aggregations : {
-    	"label" : {type : "sap.ui.core.Control", multiple : false}, 
-    	"multiLabels" : {type : "sap.ui.core.Control", multiple : true, singularName : "multiLabel"}, 
-    	"template" : {type : "sap.ui.core.Control", multiple : false}, 
-    	"menu" : {type : "sap.ui.unified.Menu", multiple : false}
+		"label" : {type : "sap.ui.core.Control", multiple : false}, 
+		"multiLabels" : {type : "sap.ui.core.Control", multiple : true, singularName : "multiLabel"}, 
+		"template" : {type : "sap.ui.core.Control", multiple : false}, 
+		"menu" : {type : "sap.ui.unified.Menu", multiple : false}
 	}
 }});
 
@@ -469,7 +467,7 @@ sap.ui.core.Element.extend("sap.ui.table.Column", { metadata : {
 
 /**
  * Getter for property <code>filterType</code>.
- * Type of Filter. This is used to transform the search term to the specified type, to make sure that the right columns are displayed. This should be the same as defined in binding for this column. Alternativly, you can pass a function which does the conversion or the classname of the type, e.g.: sap.ui.model.type.Date. The functions only parameter is the string to convert. By default the filter type is sap.ui.model.type.String.
+ * Type of Filter. This is used to transform the search term to the specified type, to make sure that the right columns are displayed. This should be the same as defined in binding for this column. As alternative you can pass a function which does the conversion. The function receives the entered filter value as parameter and returns the proper value for the filter expression. Another option is to pass the classname of the type, e.g.: sap.ui.model.type.Date or an expression similar to the binding syntax, e.g.: "\{type: 'sap.ui.model.type.Date', formatOptions: \{UTC: true\}, constraints: {} \}". Here the escaping is mandatory to avoid handling by the binding parser. By default the filter type is sap.ui.model.type.String.
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -623,6 +621,32 @@ sap.ui.core.Element.extend("sap.ui.table.Column", { metadata : {
  * @public
  * @since 1.21.1
  * @name sap.ui.table.Column#setAutoResizable
+ * @function
+ */
+
+
+/**
+ * Getter for property <code>defaultFilterOperator</code>.
+ * If this property is set the default filter operator of the column is overwritten.
+ * By default "Contains" is used for string and "EQ" for other types. A valid sap.ui.model.FilterOperator needs to be passed.
+ *
+ * Default value is empty/<code>undefined</code>
+ *
+ * @return {string} the value of property <code>defaultFilterOperator</code>
+ * @public
+ * @name sap.ui.table.Column#getDefaultFilterOperator
+ * @function
+ */
+
+/**
+ * Setter for property <code>defaultFilterOperator</code>.
+ *
+ * Default value is empty/<code>undefined</code> 
+ *
+ * @param {string} sDefaultFilterOperator  new value for property <code>defaultFilterOperator</code>
+ * @return {sap.ui.table.Column} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.ui.table.Column#setDefaultFilterOperator
  * @function
  */
 
@@ -812,29 +836,28 @@ sap.ui.core.Element.extend("sap.ui.table.Column", { metadata : {
 /**
  * sorts the current column ascending or descending
  *
- * @name sap.ui.table.Column.prototype.sort
+ * @name sap.ui.table.Column#sort
  * @function
- * @param {boolean} 
- *         bDescending
+ * @param {boolean} bDescending
  *         sort order of the column (if undefined the default will be ascending)
-
  * @type sap.ui.table.Column
  * @public
  * @deprecated Since version 1.5.1. 
  * Please use the function "sap.ui.Table.prototype.sort".
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * toggles the sort order of the column
  *
- * @name sap.ui.table.Column.prototype.toggleSort
+ * @name sap.ui.table.Column#toggleSort
  * @function
-
  * @type sap.ui.table.Column
  * @public
  * @deprecated Since version 1.5.1. 
  * Please use the function "sap.ui.Table.prototype.sort".
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -877,6 +900,17 @@ sap.ui.table.Column.prototype.exit = function() {
 	
 };
 
+/**
+ * called when the columns parent is set
+ */
+sap.ui.table.Column.prototype.setParent = function(oParent, sAggregationName, bSuppressRerendering) {
+	sap.ui.core.Element.prototype.setParent.apply(this, arguments);
+	var oMenu = this.getAggregation("menu");
+	if (oMenu && typeof oMenu._updateReferences === "function") {
+		//if menu is set update menus internal references
+		oMenu._updateReferences(this);
+	}
+};
 
 /*
  * @see JSDoc generated by SAPUI5 control API generator
@@ -1112,6 +1146,7 @@ sap.ui.table.Column.prototype.sort = function(bDescending, bAdd) {
 						aCols[i].setProperty("sorted", false, true);
 						aCols[i].setProperty("sortOrder", sap.ui.table.SortOrder.Ascending, true);
 						aCols[i]._renderSortIcon();
+						delete aCols[i]._oSorter;
 					}
 				}
 				// set the sort property of the current column
@@ -1241,11 +1276,15 @@ sap.ui.table.Column.prototype._getFilter = function() {
 				sOperator = sap.ui.model.FilterOperator.StartsWith;
 				sParsedValue = sValue.substr(0, sValue.length - 1);
 			} else {
-				if (bIsString) {
-					// Due to compatibility reason we need to use Contains for Strings instead of EQ as default!!
-					sOperator = sap.ui.model.FilterOperator.Contains;
+				if (this.getDefaultFilterOperator()) {
+					sOperator = this.getDefaultFilterOperator();
 				} else {
-					sOperator = sap.ui.model.FilterOperator.EQ;
+					if (bIsString) {
+						// Due to compatibility reason we need to use Contains for Strings instead of EQ as default!!
+						sOperator = sap.ui.model.FilterOperator.Contains;
+					} else {
+						sOperator = sap.ui.model.FilterOperator.EQ;
+					}
 				}
 				sParsedValue = sValue.substr(0);
 			}
@@ -1267,7 +1306,7 @@ sap.ui.table.Column.prototype._getFilter = function() {
 sap.ui.table.Column.prototype.filter = function(sValue) {
 
 	var oTable = this.getParent();
-	if (oTable.isBound("rows")) {
+	if (oTable && oTable.isBound("rows")) {
 	
 		// notify the event listeners
 		var bExecuteDefault = oTable.fireFilter({
@@ -1375,8 +1414,18 @@ sap.ui.table.Column.prototype.shouldRender = function() {
 sap.ui.table.Column.prototype.setFilterType = function(vType) {
 	var oType = vType;
 	if (typeof (vType) === "string") {
-		var fnType = jQuery.sap.getObject(vType);
-		oType = fnType && new fnType();
+		try {
+			// similar to BindingParser allow to specify formatOptions and constraints for types
+			var mConfig = jQuery.sap.parseJS(vType);
+			if (typeof (mConfig.type) === "string") {
+				var fnType = jQuery.sap.getObject(mConfig.type);
+				oType = fnType && new fnType(mConfig.formatOptions, mConfig.constraints);
+			}
+		} catch (ex) {
+			var fnType = jQuery.sap.getObject(vType);
+			oType = fnType && new fnType();
+		}
+		// check for a valid type
 		if (!(oType instanceof sap.ui.model.Type)) {
 			jQuery.sap.log.error("The filter type is not an instance of sap.ui.model.Type! Ignoring the filter type!");
 			oType = undefined;

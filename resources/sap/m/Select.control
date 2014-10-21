@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Select</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>The select control provides a menu of predefined items that allows users to select an item.</documentation>
 	<baseType>sap.ui.core/Control</baseType>
 	<properties>
@@ -52,8 +52,8 @@ Note: The width will be ignored if the &quot;autoAdjustWidth&quot; property is s
 		<aggregation cardinality="0..n" name="items" type="sap.ui.core/Item" bindable="bindable">
 			<documentation>Items of the  Item control.</documentation>
 		</aggregation>
-		<aggregation cardinality="0..1" name="popup" type="sap.ui.core/Control" visibility="hidden">
-			<documentation>Internal aggregation to hold the inner sap.m.Popover or sap.m.Dialog.</documentation>
+		<aggregation cardinality="0..1" name="picker" type="sap.ui.core/Control" visibility="hidden">
+			<documentation>Internal aggregation to hold the inner picker pop-up.</documentation>
 		</aggregation>
 	</aggregations>
 	<associations>

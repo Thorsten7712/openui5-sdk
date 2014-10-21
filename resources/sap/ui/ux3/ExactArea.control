@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ExactArea</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>Consists of two sections: A tool bar and a content area where arbitrary controls can be added. 
 	The ExactArea is intended to be used for the Exact design approach but alternatively also in a stand alone version.</documentation>

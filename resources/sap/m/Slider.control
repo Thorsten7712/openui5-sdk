@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Slider</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A slider is a user interface control that enables the user to adjust values in a specified numerical range.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

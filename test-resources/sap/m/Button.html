@@ -136,7 +136,7 @@
 	var oPage1 = new sap.m.Page("myPage1", {
 		title: "Mobile Button Control",
 		customHeader : new sap.m.Bar({
-			contentLeft: [ oButtonBarButtonSample = new sap.m.Button('myBarButtonSample', {text:"Test Button To Show Changes", type:sap.m.ButtonType.Default, press: function() {oHelper.alert("event: 'press' on " + oButtonBarButtonSample)} }) ],	
+			contentLeft: [ oButtonBarButtonSample = new sap.m.Button('myBarButtonSample', {text:"Test Button To Show Changes", tooltip:"Tooltip Test", type:sap.m.ButtonType.Default, press: function() {oHelper.alert("event: 'press' on " + oButtonBarButtonSample)} }) ],	
 			contentMiddle: [ new sap.m.Label("myBarLabel", {text: "Button Testpage"}) ],
 			contentRight: [ oButtonBarButtonIcon1 = new sap.m.Button('myBarButtonIcon1', {icon: sStoreIconURI}),
 							oButtonBarButtonIcon2 = new sap.m.Button('myBarButtonIcon2', {icon: sNotesIconURI, enabled: false}) ]
@@ -152,7 +152,8 @@
 							new sap.m.Button({text:"", type:sap.m.ButtonType.Default, icon: sNotesIconURI, enabled: false}) ]
 		}),
 		footer : new sap.m.Bar({
-			contentLeft: [ new sap.m.Button({text:"Default", type:sap.m.ButtonType.Default, icon: sStoreIconURI}) ],
+			contentLeft: [ new sap.m.Button({text:"Default", type:sap.m.ButtonType.Default, icon: sStoreIconURI}),
+							new sap.m.Button({text:"Emphasized", type:sap.m.ButtonType.Emphasized}) ],
 			contentMiddle:[ new sap.m.Button({text:"Back", type:sap.m.ButtonType.Back}),
 							new sap.m.Button({text:"Up", type:sap.m.ButtonType.Up}),
 							new sap.m.Button({text:"Yes", type:sap.m.ButtonType.Accept}),

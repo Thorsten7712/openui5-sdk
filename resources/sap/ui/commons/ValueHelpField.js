@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.ValueHelpField");jQuery.sap.require("sap.ui.commons.library");jQuery.sap.require("sap.ui.commons.TextField");sap.ui.commons.TextField.extend("sap.ui.commons.ValueHelpField",{metadata:{library:"sap.ui.commons",properties:{"iconURL":{type:"sap.ui.core.URI",group:"Appearance",defaultValue:null},"iconHoverURL":{type:"sap.ui.core.URI",group:"Appearance",defaultValue:null},"iconDisabledURL":{type:"sap.ui.core.URI",group:"Appearance",defaultValue:null}},events:{"valueHelpRequest":{}}}});sap.ui.commons.ValueHelpField.M_EVENTS={'valueHelpRequest':'valueHelpRequest'};jQuery.sap.require("sap.ui.core.theming.Parameters");jQuery.sap.require("sap.ui.core.IconPool");

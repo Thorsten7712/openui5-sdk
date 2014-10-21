@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,22 +57,18 @@ jQuery.sap.require("sap.ui.table.TreeTable");
  * @class
  * The DataTable control provides a set of sophisticated and comfort functions for table design. For example, you can make settings for the number of visible rows and a number for the displayed rows in the case the user expands the table. The first visible row can be explicitly set. For the selection of columns and rows, a Multi, a Single, a None, and an All mode are available. Setting the Editable property to true lets the user make changes on the table cell entries.
  * @extends sap.ui.table.TreeTable
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @deprecated Since version 1.5.1. 
  * The DataTable has been replaced via the Table/TreeTable control.
  * @name sap.ui.table.DataTable
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.table.TreeTable.extend("sap.ui.table.DataTable", { metadata : {
 
-	// ---- object ----
 	deprecated : true,
-
-	// ---- control specific ----
 	library : "sap.ui.table",
 	properties : {
 		"expandedVisibleRowCount" : {type : "int", group : "", defaultValue : null},
@@ -180,14 +176,13 @@ sap.ui.table.DataTable.M_EVENTS = {'rowSelect':'rowSelect'};
 
 
 /**
- * fired when the row selection of the table has been changed 
+ * fired when the row selection of the table has been changed
  *
  * @name sap.ui.table.DataTable#rowSelect
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.rowIndex row index which row has been selected or deselected
  * @param {object} oControlEvent.getParameters.rowContext binding context of the row index which row has been selected or deselected
  * @param {int[]} oControlEvent.getParameters.rowIndices array of row indices which selection has been changed (either selected or deselected)
@@ -199,7 +194,7 @@ sap.ui.table.DataTable.M_EVENTS = {'rowSelect':'rowSelect'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.table.DataTable</code>.<br/> itself. 
  *  
- * fired when the row selection of the table has been changed 
+ * fired when the row selection of the table has been changed
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.

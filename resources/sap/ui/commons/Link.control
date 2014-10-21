@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 
 	<name>Link</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>
 	Provides an absolute or relative reference to an internal or external URL. The classical target parameters are supported. 
 	Another usage scenario is triggering an action, for example to open a popup window. In both cases, the link is a hypertext link.

@@ -73,7 +73,7 @@ Example for usage of an instance method:
 								<div class="sectionTitle">Namespaces &amp; Classes</div>
 								<div class="sectionItems">
 								
-									<div class="sectionItem itemName namespace static">
+									<div class="sectionItem itemName namespace static deprecated">
 										<b class="icon" title=""><a href="../symbols/jQuery.device.html">device</a></b>
 										<span class='description'></span>
 									</div>
@@ -83,14 +83,14 @@ Example for usage of an instance method:
 										<span class='description'>Check the jQuery.Event class documentation available under "http://www.jquery.com"<br/> and "http://api.jquery.com/category/events/event-object/" for details.</span>
 									</div>
 								
-									<div class="sectionItem itemName namespace static">
+									<div class="sectionItem itemName namespace static deprecated">
 										<b class="icon" title="Holds information about the current operating system"><a href="../symbols/jQuery.os.html">os</a></b>
 										<span class='description'>Holds information about the current operating system</span>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
-										<b class="icon" title="Root Namespace for the jQuery plug-in provided by SAP AG."><a href="../symbols/jQuery.sap.html">sap</a></b>
-										<span class='description'>Root Namespace for the jQuery plug-in provided by SAP AG.</span>
+										<b class="icon" title="Root Namespace for the jQuery plug-in provided by SAP SE."><a href="../symbols/jQuery.sap.html">sap</a></b>
+										<span class='description'>Root Namespace for the jQuery plug-in provided by SAP SE.</span>
 									</div>
 								
 									<div class="sectionItem itemName namespace static">
@@ -140,6 +140,16 @@ Example for usage of an instance method:
 								</div>
 							
 								<div class="sectionItem classMethod">
+									<b class="icon" title="Disable HTML elements selection."><a href="../symbols/jQuery.html#disableSelection">disableSelection</a></b><span class='signature'>()</span>
+									<span class='description'>Disable HTML elements selection.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
+									<b class="icon" title="Enable HTML elements to get selected."><a href="../symbols/jQuery.html#enableSelection">enableSelection</a></b><span class='signature'>()</span>
+									<span class='description'>Enable HTML elements to get selected.</span>
+								</div>
+							
+								<div class="sectionItem classMethod">
 									<b class="icon" title="Returns the first focusable domRef in a given container (the first element of the collection)"><a href="../symbols/jQuery.html#firstFocusableDomRef">firstFocusableDomRef</a></b><span class='signature'>()</span>
 									<span class='description'>Returns the first focusable domRef in a given container (the first element of the collection)</span>
 								</div>
@@ -160,7 +170,7 @@ Example for usage of an instance method:
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Gets the next parent DOM element with a given attribute and attribute value starting above the first given element"><a href="../symbols/jQuery.html#parentByAttribute">parentByAttribute</a></b><span class='signature'>(<span title="(string) Name of the attribute">sAttibute</span>, <span title="(string) Value of the attribute (optional)">sValue</span>)</span>
+									<b class="icon" title="Gets the next parent DOM element with a given attribute and attribute value starting above the first given element"><a href="../symbols/jQuery.html#parentByAttribute">parentByAttribute</a></b><span class='signature'>(<span title="(string) Name of the attribute">sAttribute</span>, <span title="(string) Value of the attribute (optional)">sValue</span>)</span>
 									<span class='description'>Gets the next parent DOM element with a given attribute and attribute value starting above the first given element</span>
 								</div>
 							
@@ -175,12 +185,12 @@ Example for usage of an instance method:
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title=""><a href="../symbols/jQuery.html#root">root</a></b><span class='signature'>()</span>
+									<b class="icon" title=""><a href="../symbols/jQuery.html#root">root</a></b><span class='signature'>(<span title="(object) object">oRootControl</span>)</span>
 									<span class='description'></span>
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title="Sets or returns the scrollLeft value of the first element in the given jQuery collection in right-to-left mode."><a href="../symbols/jQuery.html#scrollLeftRTL">scrollLeftRTL</a></b><span class='signature'>()</span>
+									<b class="icon" title="Sets or returns the scrollLeft value of the first element in the given jQuery collection in right-to-left mode."><a href="../symbols/jQuery.html#scrollLeftRTL">scrollLeftRTL</a></b><span class='signature'>(<span title="(int) int">iPos</span>)</span>
 									<span class='description'>Sets or returns the scrollLeft value of the first element in the given jQuery collection in right-to-left mode.</span>
 								</div>
 							
@@ -195,7 +205,7 @@ Example for usage of an instance method:
 								</div>
 							
 								<div class="sectionItem classMethod">
-									<b class="icon" title=""><a href="../symbols/jQuery.html#uiarea">uiarea</a></b><span class='signature'>()</span>
+									<b class="icon" title=""><a href="../symbols/jQuery.html#uiarea">uiarea</a></b><span class='signature'>(<span title="(int) int">iIdx</span>)</span>
 									<span class='description'></span>
 								</div>
 							
@@ -336,6 +346,96 @@ Example for usage of an instance method:
 													</td>
 													<td class="methodItemDesc">
 														The cursor position (or the jQuery collection if the position has been set)
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="disableSelection"> </a>
+										<div class="itemTitle icon">
+											disableSelection<span class="signature">()</span>
+											<span class="light" title="returns jQuery">: <a href="../symbols/jQuery.html">jQuery</a></span>
+										</div>
+										<div class="full-description">
+											Disable HTML elements selection.
+											
+												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;jquery.sap.dom.js&gt;.</span></p>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.24.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/jQuery.html">jQuery</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining.
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
+										
+										
+									</div>
+								
+									<div class='sectionItem classMethod'>
+										<a name="enableSelection"> </a>
+										<div class="itemTitle icon">
+											enableSelection<span class="signature">()</span>
+											<span class="light" title="returns jQuery">: <a href="../symbols/jQuery.html">jQuery</a></span>
+										</div>
+										<div class="full-description">
+											Enable HTML elements to get selected.
+											
+												<p class="fileName itemName"><i>Defined in: </i> <span class="icon">&lt;jquery.sap.dom.js&gt;.</span></p>
+											
+											
+											
+										
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList since">
+												<dt class="heading since">Since:</dt>
+												<dd>1.24.0</dd>
+											</dl>
+										
+										
+										
+											<div class="heading">Returns:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+														<span class="light">{<a href="../symbols/jQuery.html">jQuery</a>}</span> 
+													</td>
+													<td class="methodItemDesc">
+														<code>this</code> to allow method chaining.
 													</td>
 												</tr>
 											
@@ -528,7 +628,7 @@ Example for usage of an instance method:
 									<div class='sectionItem classMethod'>
 										<a name="parentByAttribute"> </a>
 										<div class="itemTitle icon">
-											parentByAttribute<span class="signature">(<span title="(string) Name of the attribute">sAttibute</span>, <span title="(string) Value of the attribute (optional)">sValue</span>)</span>
+											parentByAttribute<span class="signature">(<span title="(string) Name of the attribute">sAttribute</span>, <span title="(string) Value of the attribute (optional)">sValue</span>)</span>
 											<span class="light" title="returns Element">: Element</span>
 										</div>
 										<div class="full-description">
@@ -551,7 +651,7 @@ Example for usage of an instance method:
 													  <span class="light">{string}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sAttibute</b>
+													  <b>sAttribute</b>
 													</td>
 													<td class="methodItemDesc">
 												    Name of the attribute
@@ -722,7 +822,7 @@ Example for usage of an instance method:
 									<div class='sectionItem classMethod'>
 										<a name="root"> </a>
 										<div class="itemTitle icon">
-											root<span class="signature">()</span>
+											root<span class="signature">(<span title="(object) object">oRootControl</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -737,6 +837,23 @@ Example for usage of an instance method:
 										</div>
 										
 										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{object}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>oRootControl</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
+										
 										
 										
 										
@@ -748,7 +865,7 @@ Example for usage of an instance method:
 									<div class='sectionItem classMethod'>
 										<a name="scrollLeftRTL"> </a>
 										<div class="itemTitle icon">
-											scrollLeftRTL<span class="signature">()</span>
+											scrollLeftRTL<span class="signature">(<span title="(int) int">iPos</span>)</span>
 											<span class="light" title="returns jQuery | int">: <a href="../symbols/jQuery.html">jQuery</a> | int</span>
 										</div>
 										<div class="full-description">
@@ -769,6 +886,23 @@ Returns "undefined" if no element and no iPos is given.
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iPos</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										
@@ -926,7 +1060,7 @@ Returns "undefined" if no element is given.
 									<div class='sectionItem classMethod'>
 										<a name="uiarea"> </a>
 										<div class="itemTitle icon">
-											uiarea<span class="signature">()</span>
+											uiarea<span class="signature">(<span title="(int) int">iIdx</span>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -940,6 +1074,23 @@ Returns "undefined" if no element is given.
 											
 										</div>
 										
+										
+											<div class="heading">Parameters:</div>
+											<table class="methodItem"><tbody>
+											
+												<tr>
+													<td class="methodItemType">
+													  <span class="light">{int}</span> 
+													</td>
+													<td class="methodItemName">
+													  <b>iIdx</b>
+													</td>
+													<td class="methodItemDesc">
+												    
+													</td>
+												</tr>
+											
+											</tbody></table>
 										
 										
 										

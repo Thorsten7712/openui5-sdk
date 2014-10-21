@@ -9,14 +9,16 @@
 
 
 
-<meta name="abstract" content="Fragments are pieces of UI, just like SAPUI5 MVC views, but without the view control around the content and without their own controller."/>
-<meta name="description" content="Fragments are pieces of UI, just like SAPUI5 MVC views, but without the view control around the content and without their own controller."/>
+<meta name="abstract" content="Introduces the concept and the types of fragments in SAPUI5"/>
+<meta name="description" content="Introduces the concept and the types of fragments in SAPUI5"/>
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=3833958850055509"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=02428468167180775"/>
 <title>Fragments</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -25,16 +27,17 @@
 <body class="sap_bluecrystal" id="loio36a5b130076e4b4aac2c27eebf324909">
 <div id="wrapper"><div id="container">
 <h1 class="title topictitle1">Fragments</h1>
-<div class="body conbody"><p class="shortdesc">Fragments are pieces of UI, just like SAPUI5 MVC views, but without the view control
-		around the content and without their own controller. </p>
+<div class="body conbody"><p class="shortdesc">Introduces the concept and the types of fragments in SAPUI5</p>
+<p class="p">Fragments are pieces of UI, just like SAPUI5 MVC views, but without the view control
+			around the content and without their own controller.</p>
 <p class="p">UI parts which are to be used in several views cannot be easily defined. Either they have
 			to be created as new controls, or they have to be created as views. Creating them as new
 			controls results in a development overhead, while creating them as separate views
 			results in a runtime overhead. In the latter case they would have a separate controller
 			instead of having the same controller as the view does. </p>
-<p class="p">Furthermore, views and popup controls like dialogs do not go well together - the dialog content
-			can be defined as a view but the dialog control itself always has to be written in the
-			program. </p>
+<p class="p">Furthermore, views and popup controls like dialogs do not go well together - the dialog
+			content can be defined as a view but the dialog control itself always has to be written
+			in the program. </p>
 <p class="p">To solve these issues, fragments have been introduced as a new concept. Fragments are
 			light-weight UI parts (UI sub-trees) which can be re-used, defined similar to views, but
 			do not have any controller or other behavior code involved. If source code is required,
@@ -63,11 +66,8 @@
 <p class="p">More fragment types can be implemented and plugged in.</p>
 </div>
 <div class="related-links"> 
-
-<div class="familylinks">
-</div>
 <div class="relinfo"><div class="relinfotitle ">Related Information</div>
-<div><a class="link" href="91f233476f4d1014b6dd926db0e91070.html">Model View Controller (MVC)</a></div>
+<div><a class="link" href="91f233476f4d1014b6dd926db0e91070.html" title="Gives a short introduction to the MVC concept and how it is used in SAPUI5">Model View Controller (MVC)</a></div>
 <div><a class="link" href="454b208d49cb4f169d483e4223674cfd.html">Fragments</a></div>
 </div>
 </div></div></div>

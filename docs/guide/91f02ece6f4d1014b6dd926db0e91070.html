@@ -10,11 +10,13 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="css/documentation.css?x=5990455419424056"/>
+<link rel="stylesheet" type="text/css" href="css/documentation.css?x=8293306498582922"/>
 <title>Creating a Simple Control</title>
 <!--[if lte IE 7]><style>
- .codeblock{overflow:visible;}
- </style><![endif]-->
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
 
   <script src="../../resources/sap/ui/thirdparty/jquery/jquery-1.10.2.js"></script>
     <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
@@ -41,14 +43,16 @@
         oRm.write("&lt;/span&gt;");
     }
 });</pre></div>
+<div class="note note"><span class="notetitle">Note</span> 
+            <p class="p">In this example, <samp class="ph codeph">writeControlData(oControl)</samp> and
+                    <samp class="ph codeph">writeClasses()</samp> are not called inside the root HTML element of
+                the control to keep the example simple. In productive controls this needs to be
+                done.</p>
+
+        </div>
 <p class="p">The new control is ready for use now. To instantiate and display the control, use the following
             code:</p>
 <div class="div_pre_codeblock"><pre class="pre codeblock prettyprint">new my.Hello({name:"UI5"}).placeAt("content");</pre></div>
-</div>
-<div class="related-links"> 
-
-<div class="familylinks">
-</div>
 </div>
 </div></div>
 <SCRIPT LANGUAGE="JavaScript"><!--

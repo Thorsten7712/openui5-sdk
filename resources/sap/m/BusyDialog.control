@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>BusyDialog</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Busy Dialog is used to indicate that the system is busy with some task and the user has to wait. During this time the UI is blocked.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>
@@ -42,6 +42,12 @@ If bandwidth is the key for the application, set this value to false.</documenta
 	<events>
 		<event name="close">
 			<documentation>This event will be fired when the busy dialog is closed.</documentation>
+			<parameters>
+				<parameter name="cancelPressed" type="sap.ui.core/boolean">
+					<documentation>this parameter is for an app to differ for a &quot;close&quot; event if it was fired because user pressed cancel button or because the operation was terminated.
+This parameter is set to true if the close event is fired by user interaction.</documentation>
+				</parameter>
+			</parameters>
 		</event>
 	</events>
 	<aggregations>

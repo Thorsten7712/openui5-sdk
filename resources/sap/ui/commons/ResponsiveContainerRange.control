@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>ResponsiveContainerRange</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Defines a range for the ResponsiveContainer</documentation>
 	
 	<baseType>sap.ui.core/Control</baseType>

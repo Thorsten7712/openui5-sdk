@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 	<name>Column</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.12</since>
 	<documentation>The column allows to define column specific properties that will be applied when rendering the List.</documentation>
 	<baseType>sap.ui.core/Element</baseType>

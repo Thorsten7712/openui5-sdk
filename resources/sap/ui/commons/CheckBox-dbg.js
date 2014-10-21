@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -64,22 +64,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * Provides a box which can be flagged, the box has a label. A check box can either stand alone, or in a group with other check boxes. As an option, the boxes can initially be set to status 'Not Editable'.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.CheckBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.CheckBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"toggle"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"checked" : {type : "boolean", group : "Data", defaultValue : false, bindable : "bindable"},
@@ -445,17 +443,14 @@ sap.ui.commons.CheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @name sap.ui.commons.CheckBox#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.checked
  *         Checks whether the box is flagged or not flagged.
- * 
  * @public
  */
  
@@ -466,7 +461,6 @@ sap.ui.commons.CheckBox.M_EVENTS = {'change':'change'};
  *  
  * 
  * Event is triggered when the control status is changed by the user by flagging or unflagging the checkbox.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -517,13 +511,12 @@ sap.ui.commons.CheckBox.M_EVENTS = {'change':'change'};
 /**
  * 
  * Inverts the current value of the control.
- * 
  *
- * @name sap.ui.commons.CheckBox.prototype.toggle
+ * @name sap.ui.commons.CheckBox#toggle
  * @function
-
  * @type sap.ui.commons.CheckBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

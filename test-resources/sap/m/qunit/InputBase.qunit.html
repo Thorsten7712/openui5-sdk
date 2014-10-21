@@ -12,13 +12,14 @@
 		</script>
 		<link rel="stylesheet" href="../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script src="../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script src="../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script src="../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon.js"></script>
 		<script src="../../../../resources/sap/ui/thirdparty/sinon-qunit.js"></script>
 		<script>
 			QUnit.config.autostart = false;
 			sap.ui.test.qunit.delayTestStart();
-			
+
 			var XSS = "~!@#$%^&*()_+{}:\"|<>?\'\"><script>alert('xss')<\/script>";
 
 			var fnTestControlProperty = function(mOptions) {
@@ -1209,6 +1210,61 @@
 				
 				// assertion
 				strictEqual($Input.cursorPos(), oFocusInfo.cursorPos, "Cursor position is set to the correct position after apply focus.");
+				
+				// cleanup
+				oInput.destroy();
+			});
+			
+			
+			module("TwowayBindingAndFormatters");
+			test("formatters should be applied for two-way binding formatters", function() {
+				// custom formatter
+				function smile(sValue) {
+					return sValue + " :)";
+				}
+				
+				// custom type
+				jQuery.sap.require("sap.ui.model.type.String");
+				sap.ui.model.type.String.extend("my.model.types.Smile", {
+					formatValue: smile
+				});
+				
+				// model
+				var sInitValue = "init";
+				var sTestValue = "test";
+				var oModel = new sap.ui.model.json.JSONModel({
+					value : sInitValue
+				});
+				sap.ui.getCore().setModel(oModel);
+				
+				// arrange
+				var oInput = new sap.m.InputBase({
+					value:{
+						path: "/value",
+						type: new my.model.types.Smile()
+					}
+				});
+				oInput.placeAt("content");
+				sap.ui.getCore().applyChanges();
+				
+				// assertion
+				strictEqual(oInput.getValue(), smile(sInitValue), "Initial formatter is applied correctly");
+				
+				// act
+				oInput.getFocusDomRef().focus();
+				oInput.updateDomValue(sTestValue);
+				oInput.getFocusDomRef().blur();
+				
+				// assertion
+				strictEqual(oInput.getValue(), smile(sTestValue), "Test value formatter is applied correctly on change");
+				
+				// set the value again to check last value is correct
+				oInput.getFocusDomRef().focus();
+				oInput.updateDomValue(sTestValue);
+				oInput.getFocusDomRef().blur();
+				
+				// assertion
+				strictEqual(oInput.getValue(), smile(sTestValue), "Test value formatter is applied correctly on change again");
 				
 				// cleanup
 				oInput.destroy();

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>ProgressIndicator</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<since>1.13.1</since>
 	<documentation>Shows the progress of a process in a graphical way. To indicate the progress, the inside of the ProgressIndicator is filled with a color.
 Additionally, a user defined string can be displayed on the ProgressIndicator. </documentation>

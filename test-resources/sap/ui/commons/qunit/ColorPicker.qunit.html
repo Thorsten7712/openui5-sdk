@@ -20,6 +20,7 @@
 
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 
 		<!-- Control initialization -->
@@ -156,12 +157,12 @@
 			test("Input Parameter 'hsv(270,44,88)' [Control 4]: ", function() {
 				expect(7);
 				equal(oColorPicker4.oRedField.getValue(), "175" , "Value of RED: ");
-				equal(oColorPicker4.oGreenField.getValue(), "126" , "Value of GREEN: ");
+				equal(oColorPicker4.oGreenField.getValue(), "125" , "Value of GREEN: ");
 				equal(oColorPicker4.oBlueField.getValue(), "224" , "Value of BLUE: ");
 				equal(oColorPicker4.oHueField.getValue(), "270" , "Value of HUE: ");
 				equal(oColorPicker4.oSatField.getValue(), "44" , "Value of SATURATION: ");
 				equal(oColorPicker4.oValField.getValue(), "88" , "Value of VALUE: ");
-				equal(oColorPicker4.oHexField.getValue(), "AF7EE0" , "Value of HEX: ");
+				equal(oColorPicker4.oHexField.getValue(), "AF7DE0" , "Value of HEX: ");
 			});
 
 			//Testcase 5: HEX Parameter
@@ -214,13 +215,13 @@
 				oColorPicker4.oSatField.setValue(4);
 				oColorPicker4.oSatField.fireChange({newValue:4});
 				expect(7);
-				equal(oColorPicker4.oRedField.getValue(), "220" , "RED changed from 175 -> 220: ");
+				equal(oColorPicker4.oRedField.getValue(), "219" , "RED changed from 175 -> 219: ");
 				equal(oColorPicker4.oGreenField.getValue(), "215" , "GREEN changed from 126 -> 215: ");
 				equal(oColorPicker4.oBlueField.getValue(), "224" , "BLUE not changed (224): ");
 				equal(oColorPicker4.oHueField.getValue(), "270" , "HUE not changed (270): ");
 				equal(oColorPicker4.oSatField.getValue(), "4" , "SATURATION manually changed from 44 -> 4: ");
 				equal(oColorPicker4.oValField.getValue(), "88" , "VALUE not changed (88): ");
-				equal(oColorPicker4.oHexField.getValue(), "DCD7E0" , "HEX changed from AF7EE0 -> DCD7E0: ");
+				equal(oColorPicker4.oHexField.getValue(), "DBD7E0" , "HEX changed from AF7EE0 -> DBD7E0: ");
 			});
 
 			//Testcase 9: Input a HEX-value
@@ -257,12 +258,12 @@
 				oColorPicker5.oSatField.fireChange({newValue:oColorPicker5.oSatField.getValue()});
 				expect(7);
 				equal(oColorPicker5.oRedField.getValue(), "0" , "RED changed from 17 -> 0: ");
-				equal(oColorPicker5.oGreenField.getValue(), "134" , "GREEN changed from 136 -> 134: ");
-				equal(oColorPicker5.oBlueField.getValue(), "171" , "BLUE changed from  170 -> 171: ");
+				equal(oColorPicker5.oGreenField.getValue(), "133" , "GREEN changed from 136 -> 133: ");
+				equal(oColorPicker5.oBlueField.getValue(), "170" , "BLUE not changed (170): ");
 				equal(oColorPicker5.oHueField.getValue(), "193" , "HUE not changed (193): ");
 				equal(oColorPicker5.oSatField.getValue(), "100" , "SATURATION manually changed to 120 => set to 100: ");
 				equal(oColorPicker5.oValField.getValue(), "67" , "VALUE not changed (67): ");
-				equal(oColorPicker5.oHexField.getValue(), "0086AB" , "HEX changed from 1188AA -> 0086AB: ");
+				equal(oColorPicker5.oHexField.getValue(), "0085AA" , "HEX changed from 1188AA -> 0085AA: ");
 			});
 
 			//Testcase 12: Input a wrong HUE - value

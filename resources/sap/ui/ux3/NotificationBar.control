@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>NotificationBar</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A NotificationBar is a &quot;toolbar&quot; that can be added to a page to show messages and notifications from the application.
 Its position, height and width is inherited from the element that the notification bar is added to.</documentation>
 

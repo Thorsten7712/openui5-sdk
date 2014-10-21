@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 sap.ui.define(['jquery.sap.global', './HashChanger'],
@@ -9,13 +9,13 @@ sap.ui.define(['jquery.sap.global', './HashChanger'],
 
 
 	/**
-	 * 
-	 * Used to determine the {sap.ui.core.HistoryDirection} of the current or a future navigation, done with a 
-	 * {sap.ui.core.routing.Router} or {sap.ui.core.routing.HashChanger}.
-	 * ATTENTION: this class will not be accurate if someone does hash-replacement without the named classes above
+	 * Used to determine the {@link sap.ui.core.HistoryDirection} of the current or a future navigation,
+	 * done with a {@link sap.ui.core.routing.Router} or {@link sap.ui.core.routing.HashChanger}.
+	 *
+	 * <strong>ATTENTION:</strong> this class will not be accurate if someone does hash-replacement without the named classes above
 	 * If you are manipulating the hash directly this class is not supported anymore.
 	 * 
-	 * @param {sap.ui.core.routing.HashChanger} hashChanger - required without a HashChanger this class cannot work. The class needs to be aware of the hash-changes.
+	 * @param {sap.ui.core.routing.HashChanger} oHashChanger required, without a HashChanger this class cannot work. The class needs to be aware of the hash-changes.
 	 * @public
 	 * @class
 	 * @name sap.ui.core.routing.History

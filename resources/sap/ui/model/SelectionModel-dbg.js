@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -18,8 +18,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	 * @class sap.ui.model.SelectionModel
 	 * @extends sap.ui.base.Object
 	 *
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 *
 	 * @param {int} iSelectionMode <code>sap.ui.model.SelectionModel.SINGLE_SELECTION</code> or <code>sap.ui.model.SelectionModel.MULTI_SELECTION</code>
 	 *
@@ -94,6 +94,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 	
 	/**
 	 * Returns true if the specified index is selected.
+	 * @param {int} iIndex
 	 * @return {boolean} true if the specified index is selected.
 	 * @public
 	 * @name sap.ui.model.SelectionModel#isSelectedIndex
@@ -264,6 +265,45 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 			}
 		}
 		this._update(aSelectedIndices, iTo, aChangedRowIndices);
+		return this;
+	};
+	
+	/**
+	 * Moves all selected indices starting at the position <code>iStartIndex</code> <code>iMove</code>
+	 * items.
+	 *
+	 * This can be used if new items are inserted to the item set and you want to keep the selection.
+	 * To handle a deletion of items use <code>sliceSelectionInterval</code>.
+	 *
+	 * If this call results in a change to the current selection or lead selection, then a
+	 * <code>SelectionChanged</code> event is fired.
+	 *
+	 * @param {int} iStartIndex start at this position
+	 * @param {int} iMove
+	 * @return {sap.ui.model.SelectionModel} <code>this</code> to allow method chaining
+	 * @public
+	 * @name sap.ui.model.SelectionModel#moveSelectionInterval
+	 * @function
+	 */
+	SelectionModel.prototype.moveSelectionInterval = function(iStartIndex, iMove) {
+		jQuery.sap.assert(typeof iStartIndex === "number", "iFromIndex must be an integer");
+		jQuery.sap.assert(typeof iMove === "number", "iToIndex must be an integer");
+
+		var aChangedRowIndices = [];
+		var aSelectedIndices = this.aSelectedIndices;
+		var iLeadIndex = this.iLeadIndex;
+		for (var i = 0; i < aSelectedIndices.length; i++) {
+			var iIndex = aSelectedIndices[i];
+			if (iIndex >= iStartIndex) {
+				aChangedRowIndices.push(aSelectedIndices[i]);
+				aSelectedIndices[i] += iMove;
+				aChangedRowIndices.push(aSelectedIndices[i]);
+				if (iIndex === this.iLeadIndex) {
+					iLeadIndex += iMove;
+				}
+			}
+		}
+		this._update(aSelectedIndices, iLeadIndex, aChangedRowIndices);
 		return this;
 	};
 	

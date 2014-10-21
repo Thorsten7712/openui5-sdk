@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <control xmlns="http://www.sap.com/sap.ui.library.xsd">
 	<name>DateTimeInput</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Allows end users to interact with date and/or time and select from a date and/or time pad.
 Note: Since 1.22, this control should not be used as a date picker(type property &quot;Date&quot;), instead please use dedicated sap.m.DatePicker control.</documentation>
 	<baseType>sap.m/InputBase</baseType>

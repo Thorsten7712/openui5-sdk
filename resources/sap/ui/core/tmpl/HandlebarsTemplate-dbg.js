@@ -1,12 +1,12 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 /*global Handlebars *///declare unusual global vars for JSLint/SAPUI5 validation
 
-sap.ui.define(['jquery.sap.global', './Template', 'sap/ui/thirdparty/handlebars'],
-	function(jQuery, Template, handlebars) {
+sap.ui.define(['jquery.sap.global', 'sap/ui/core/RenderManager', './Template', 'sap/ui/thirdparty/handlebars'],
+	function(jQuery, RenderManager, Template, handlebars) {
 	"use strict";
 
 
@@ -30,8 +30,8 @@ sap.ui.define(['jquery.sap.global', './Template', 'sap/ui/thirdparty/handlebars'
 	 * @class The class for Handlebars Templates.
 	 * @extends sap.ui.base.ManagedObject
 	 * @abstract
-	 * @author SAP AG
-	 * @version 1.22.4
+	 * @author SAP SE
+	 * @version 1.24.2
 	 * @name sap.ui.core.tmpl.HandlebarsTemplate
 	 * @experimental Since 1.15.0. The Template concept is still under construction, so some implementation details can be changed in future.
 	 */
@@ -77,8 +77,17 @@ sap.ui.define(['jquery.sap.global', './Template', 'sap/ui/thirdparty/handlebars'
 		    fnWith = Handlebars.helpers["with"],
 		    fnIf = Handlebars.helpers["if"],
 		    fnUnless = Handlebars.helpers["unless"],
-		    fnParsePath = Template.parsePath;
-		    
+		    fnParsePath = Template.parsePath,
+		    oRenderManager = new RenderManager();
+		
+		// this special RenderManager is used to write the controlData, classes
+		// and styles into the buffer and extract it later on via getHTML!
+		oRenderManager.renderControl = function(oControl) {
+			this.writeControlData(oControl);
+			this.writeClasses(oControl);
+			this.writeStyles(oControl);
+		};
+		
 		var oHelpers = {
 			
 			"each": function(context, options) {
@@ -363,6 +372,17 @@ sap.ui.define(['jquery.sap.global', './Template', 'sap/ui/thirdparty/handlebars'
 			
 			"event": function(context, options) {
 				options = options || context;
+			},
+			
+			"controlData": function(context, options) {
+				options = options || context;
+				
+				// extract the required info
+				var oRootControl = options.data.rootControl;
+				
+				// return the markup
+				return new Handlebars.SafeString(oRenderManager.getHTML(oRootControl));
+				
 			}
 				
 		};
@@ -412,6 +432,10 @@ sap.ui.define(['jquery.sap.global', './Template', 'sap/ui/thirdparty/handlebars'
 			},
 			"event": function(context, options) {
 				options = options || context;
+			},
+			"controlData": function(context, options) {
+				options = options || context;
+				oMetadata._hasControlData = true;
 			}
 		};
 		

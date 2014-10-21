@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -114,6 +114,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 					} else {
 						// FIXME: what to do for typed controllers?
 					}
+				} else {
+					jQuery.sap.log.debug("Customizing: no Controller extension found for Controller '" + sName + "'.");
 				}
 			}
 			return oController;
@@ -236,6 +238,29 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/EventProvider'],
 		 */
 		Controller.prototype.createId = function(sId) {
 			return this.oView ? this.oView.createId(sId): undefined;
+		};
+
+		/**
+		 * Gets the component of the Controllers view
+		 *
+		 * If there is no Component connected to the view or the view is not connected to the controller,
+		 * undefined is returned.
+		 * 
+		 * @return {sap.ui.core.Component} The Component instance
+		 * @since 1.23.0
+		 * @public
+		 * @name sap.ui.core.mvc.Controller#getOwnerComponent 
+		 * @function
+		 */
+		Controller.prototype.getOwnerComponent = function () {
+			jQuery.sap.require("sap.ui.core.Component");
+			var vComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
+
+			if(vComponentId === undefined) {
+				return undefined;
+			}
+
+			return sap.ui.component(vComponentId);
 		};
 	
 	

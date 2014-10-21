@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>RadioButton</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>Consists of a round element and a descriptive text. Generally, you would create at least two radio button controls; 
 	by this, you provide a limited choice for the user. Radio buttons can trigger events.
 	Available value states are "Error", "None", "Success", "Warning".</documentation>

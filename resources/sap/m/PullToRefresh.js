@@ -1,11 +1,11 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.m.PullToRefresh");jQuery.sap.require("sap.m.library");jQuery.sap.require("sap.ui.core.Control");sap.ui.core.Control.extend("sap.m.PullToRefresh",{metadata:{publicMethods:["hide"],library:"sap.m",properties:{"visible":{type:"boolean",group:"Appearance",defaultValue:true},"description":{type:"string",group:"Misc",defaultValue:null},"showIcon":{type:"boolean",group:"Appearance",defaultValue:false},"customIcon":{type:"sap.ui.core.URI",group:"Appearance",defaultValue:null},"iconDensityAware":{type:"boolean",group:"Appearance",defaultValue:true}},events:{"refresh":{}}}});sap.m.PullToRefresh.M_EVENTS={'refresh':'refresh'};jQuery.sap.require("sap.ui.core.theming.Parameters");
-sap.m.PullToRefresh.prototype.init=function(){this._bTouchMode=sap.ui.Device.support.touch||jQuery.sap.simulateMobileOnDesktop;this._bPltfDpndnt=sap.ui.core.theming.Parameters.get("sapMPlatformDependent")=="true";this._iState=0;this.oRb=sap.ui.getCore().getLibraryResourceBundle("sap.m")};
-sap.m.PullToRefresh.prototype._loadBI=function(){if(this.getVisible()&&!this._oBusyIndicator){jQuery.sap.require("sap.m.BusyIndicator");this._oBusyIndicator=new sap.m.BusyIndicator({size:this._bTouchMode?"2em":"1.7em",design:this._bPltfDpndnt?"light":"auto"});this._oBusyIndicator.setParent(this)}};
+sap.m.PullToRefresh.prototype.init=function(){this._bTouchMode=sap.ui.Device.support.touch||jQuery.sap.simulateMobileOnDesktop;this._iState=0;this.oRb=sap.ui.getCore().getLibraryResourceBundle("sap.m")};
+sap.m.PullToRefresh.prototype._loadBI=function(){if(this.getVisible()&&!this._oBusyIndicator){jQuery.sap.require("sap.m.BusyIndicator");this._oBusyIndicator=new sap.m.BusyIndicator({size:this._bTouchMode?"2em":"1.7em",design:"auto"});this._oBusyIndicator.setParent(this)}};
 sap.m.PullToRefresh.prototype.onBeforeRendering=function(){this._loadBI();if(this._bTouchMode){jQuery(window).off("resize.sapMP2R",this.calculateTopTrigger);var p=this.getParent();this._oScroller=p&&p.getScrollDelegate?p.getScrollDelegate():null;if(this._oScroller){this._oScroller.setBounce(true);this._oScroller.setPullDown(this.getVisible()?this:null)}}};
 sap.m.PullToRefresh.prototype.calculateTopTrigger=function(){this._iTopTrigger=1;if(this._oDomRef&&this._oDomRef.parentNode&&this._oDomRef.parentNode.parentNode&&this._oDomRef.parentNode.parentNode.offsetHeight<this._oDomRef.offsetHeight*1.5){this._iTopTrigger=this.getDomRef("T").offsetTop}};
 sap.m.PullToRefresh.prototype.onAfterRendering=function(){this._oDomRef=this.getDomRef();if(this._bTouchMode){if(this._oScroller){this._oScroller.refresh()}if(this.getVisible()&&this._oScroller&&this._oScroller._bIScroll){jQuery(window).on("resize.sapMP2R",jQuery.proxy(this.calculateTopTrigger,this));this.calculateTopTrigger()}}};
@@ -19,5 +19,7 @@ sap.m.PullToRefresh.prototype.setDescription=function(d){if(this._oDomRef){this.
 sap.m.PullToRefresh.prototype.getCustomIconImage=function(){var p={src:this.getCustomIcon(),densityAware:this.getIconDensityAware()};var c=['sapMPullDownCIImg'];this._oCustomImage=sap.m.ImageHelper.getImageControl(null,this._oCustomImage,this,p,c);return this._oCustomImage};
 sap.m.PullToRefresh.prototype.onclick=function(){if(!this._bTouchMode){this.setState(2);this.fireRefresh()}};
 sap.m.PullToRefresh.prototype.onkeydown=function(e){if(e.which==jQuery.sap.KeyCodes.F5){this.onclick();e.stopPropagation();e.preventDefault()}};
+sap.m.PullToRefresh.prototype.onsapenter=function(e){if(this._iState<1){this.setState(2);this.fireRefresh()}};
+sap.m.PullToRefresh.prototype.onsapspace=function(e){e.preventDefault();if(this._iState<1){this.setState(2);this.fireRefresh()}};
 sap.m.PullToRefresh.prototype.hide=function(){this.setState(0);if(this._oScroller){this._oScroller.refresh()}};
 sap.m.PullToRefresh.prototype.setVisible=function(v){if(this.getVisible()==v)return this;if(this._oDomRef&&this._oScroller&&this._oScroller._oControl){this._oScroller._oControl.invalidate()}return this.setProperty("visible",v)};

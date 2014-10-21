@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -49,6 +49,10 @@ sap.m.SwitchRenderer.render = function(oRm, oSwitch) {
 	oRm.writeStyles();
 	oRm.writeControlData(oSwitch);
 
+	if (bEnabled) {
+		oRm.writeAttribute("tabindex", "0");
+	}
+
 	if (sTooltip) {
 		oRm.writeAttributeEscaped("title", sTooltip);
 	}
@@ -68,10 +72,6 @@ sap.m.SwitchRenderer.render = function(oRm, oSwitch) {
 	}
 
 	oRm.writeClasses();
-
-	if (bEnabled) {
-		oRm.writeAttribute("tabindex", "0");
-	}
 
 	oRm.write(">");
 	oRm.write('<div class="' + CSS_CLASS + 'Inner">');

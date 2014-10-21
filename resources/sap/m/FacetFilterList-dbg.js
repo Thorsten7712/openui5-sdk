@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -38,7 +38,8 @@ jQuery.sap.require("sap.m.List");
  * <li>{@link #getSequence sequence} : int (default: -1)</li>
  * <li>{@link #getKey key} : string</li>
  * <li>{@link #getShowRemoveFacetIcon showRemoveFacetIcon} : boolean (default: true)</li>
- * <li>{@link #getRetainListSequence retainListSequence} : boolean (default: false)</li></ul>
+ * <li>{@link #getRetainListSequence retainListSequence} : boolean (default: false)</li>
+ * <li>{@link #getDataType dataType} : sap.m.FacetFilterListDataType (default: sap.m.FacetFilterListDataType.String)</li></ul>
  * </li>
  * <li>Aggregations
  * <ul></ul>
@@ -63,23 +64,19 @@ jQuery.sap.require("sap.m.List");
  * @class
  * FacetFilterList represents a list of values for the FacetFilter control.
  * @extends sap.m.List
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.FacetFilterList
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.List.extend("sap.m.FacetFilterList", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getSelectedKeys", "setSelectedKeys", "removeSelectedKey", "removeSelectedKeys"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"title" : {type : "string", group : "Appearance", defaultValue : null},
@@ -89,7 +86,8 @@ sap.m.List.extend("sap.m.FacetFilterList", { metadata : {
 		"sequence" : {type : "int", group : "Behavior", defaultValue : -1},
 		"key" : {type : "string", group : "Identification", defaultValue : null},
 		"showRemoveFacetIcon" : {type : "boolean", group : "Misc", defaultValue : true},
-		"retainListSequence" : {type : "boolean", group : "Misc", defaultValue : false}
+		"retainListSequence" : {type : "boolean", group : "Misc", defaultValue : false},
+		"dataType" : {type : "sap.m.FacetFilterListDataType", group : "Misc", defaultValue : sap.m.FacetFilterListDataType.String}
 	},
 	events : {
 		"listOpen" : {}, 
@@ -326,14 +324,38 @@ sap.m.FacetFilterList.M_EVENTS = {'listOpen':'listOpen','listClose':'listClose'}
 
 
 /**
- * Fired before the filter list is opened. 
+ * Getter for property <code>dataType</code>.
+ * FacetFilterList data type. Only String data type will provide search function.
+ *
+ * Default value is <code>sap.m.FacetFilterListDataType.String</code>
+ *
+ * @return {sap.m.FacetFilterListDataType} the value of property <code>dataType</code>
+ * @public
+ * @name sap.m.FacetFilterList#getDataType
+ * @function
+ */
+
+/**
+ * Setter for property <code>dataType</code>.
+ *
+ * Default value is <code>sap.m.FacetFilterListDataType.String</code> 
+ *
+ * @param {sap.m.FacetFilterListDataType} oDataType  new value for property <code>dataType</code>
+ * @return {sap.m.FacetFilterList} <code>this</code> to allow method chaining
+ * @public
+ * @name sap.m.FacetFilterList#setDataType
+ * @function
+ */
+
+
+/**
+ * Fired before the filter list is opened.
  *
  * @name sap.m.FacetFilterList#listOpen
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -342,7 +364,7 @@ sap.m.FacetFilterList.M_EVENTS = {'listOpen':'listOpen','listClose':'listClose'}
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.FacetFilterList</code>.<br/> itself. 
  *  
- * Fired before the filter list is opened. 
+ * Fired before the filter list is opened.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -384,14 +406,13 @@ sap.m.FacetFilterList.M_EVENTS = {'listOpen':'listOpen','listClose':'listClose'}
 
 
 /**
- * Triggered after the list of items is closed. 
+ * Triggered after the list of items is closed.
  *
  * @name sap.m.FacetFilterList#listClose
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.FacetFilterItem[]} oControlEvent.getParameters.selectedItems Array of selected items. Items returned are only copies and therefore can only be used to read properties, not set them.
  * @param {boolean} oControlEvent.getParameters.allSelected True if the select All checkbox is selected. This will be false if all items are actually selected (every FacetFilterItem.selected == true). In that case selectedItems will contain all selected items.
  * @param {object} oControlEvent.getParameters.selectedKeys Associative array containing the keys of selected FacetFilterItems. Unlike the selectedItems parameter, this contains only the keys for all selected items, not the items themselves. Being an associative array, each object property is the FacetFilterItem key value and the value of the property is the FacetFilterItem text.
@@ -403,7 +424,7 @@ sap.m.FacetFilterList.M_EVENTS = {'listOpen':'listOpen','listClose':'listClose'}
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.FacetFilterList</code>.<br/> itself. 
  *  
- * Triggered after the list of items is closed. 
+ * Triggered after the list of items is closed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -454,57 +475,54 @@ sap.m.FacetFilterList.M_EVENTS = {'listOpen':'listOpen','listClose':'listClose'}
 /**
  * Returns the keys of the selected elements as an associative array. An empty object is returned if no items are selected.
  *
- * @name sap.m.FacetFilterList.prototype.getSelectedKeys
+ * @name sap.m.FacetFilterList#getSelectedKeys
  * @function
-
  * @type object
  * @public
  * @since 1.20.3
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Use this method to pre-select FacetFilterItems, such as when restoring FacetFilterList selections from a variant. Keys are cached separately from the actual FacetFilterItems so that they remain even when the physical items are removed by filtering or sorting. If aKeys is undefined, null, or {} (empty object) then all keys are deleted. After this method completes only those items with matching keys will be selected. All other items in the list will be deselected.
  *
- * @name sap.m.FacetFilterList.prototype.setSelectedKeys
+ * @name sap.m.FacetFilterList#setSelectedKeys
  * @function
- * @param {object} 
- *         oAKeys
+ * @param {object} oAKeys
  *         Associative array indicating which FacetFilterItems should be selected in the list. Each property must be set to the value of a FacetFilterItem.key property. Each property value should be set to the FacetFilterItem.text property value. The text value is used to display the FacetFilterItem text when the FacetFilterList button or FacetFilter summary bar is displayed. If no property value is set then the property key is used for the text.
-
  * @type void
  * @public
  * @since 1.20.3
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Remove the specified key from the selected keys cache and deselect the item.
  *
- * @name sap.m.FacetFilterList.prototype.removeSelectedKey
+ * @name sap.m.FacetFilterList#removeSelectedKey
  * @function
- * @param {string} 
- *         sKey
+ * @param {string} sKey
  *         The key of the selected item to be removed from the cache. If null then the text parameter will be used as the key.
- * @param {string} 
- *         sText
+ * @param {string} sText
  *         The text of the selected item to be removed from the cache. If the key parameter is null then text will be used as the key.
-
  * @type void
  * @public
  * @since 1.20.4
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Remove all selected keys from the selected keys cache and deselect all items.
  *
- * @name sap.m.FacetFilterList.prototype.removeSelectedKeys
+ * @name sap.m.FacetFilterList#removeSelectedKeys
  * @function
-
  * @type void
  * @public
  * @since 1.20.4
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -520,7 +538,6 @@ sap.m.FacetFilterList.prototype.setTitle = function(sTitle) {
 	return this;
 };
 
-
 sap.m.FacetFilterList.prototype.setMultiSelect = function(bVal) {
 	
 	this.setProperty("multiSelect", bVal, true);
@@ -532,7 +549,7 @@ sap.m.FacetFilterList.prototype.setMultiSelect = function(bVal) {
 /**
  * Override to allow only MultiSelect and SingleSelectMaster list modes. If an invalid mode is given
  * then the mode will not be changed.
- * @param mode {sap.m.ListMode} The list mode
+ * @param {sap.m.ListMode} mode The list mode
  * @public
  */
 sap.m.FacetFilterList.prototype.setMode = function(mode) {
@@ -549,9 +566,9 @@ sap.m.FacetFilterList.prototype._applySearch = function() {
 	var searchVal = this._getSearchValue();
 	if (searchVal != null) {
 		this._search(searchVal, true);
+
 	}
 };
-
 
 
 sap.m.FacetFilterList.prototype.getSelectedItems = function() {
@@ -672,8 +689,8 @@ sap.m.FacetFilterList.prototype.removeItem = function(vItem) {
  * @private
  */
 sap.m.FacetFilterList.prototype.init = function(){
-  this._firstTime = true;
-  this._saveBindInfo;
+   this._firstTime = true;
+   this._saveBindInfo;
 
    	
 	// The internal associative array of keys for selected items.
@@ -739,20 +756,21 @@ sap.m.FacetFilterList.prototype._resetItemsBinding = function() {
 /**
  * @private
  */
+
 sap.m.FacetFilterList.prototype._fireListCloseEvent = function() {
 
-	var aSelectedItems = this.getSelectedItems();
-	var oSelectedKeys = this.getSelectedKeys();
-
-	var bAllSelected = aSelectedItems.length === 0;
-
-	this._firstTime = true;
-
-	this.fireListClose({
-		selectedItems : aSelectedItems,
-		selectedKeys : oSelectedKeys,
-		allSelected : bAllSelected
-	});
+              var aSelectedItems = this.getSelectedItems();
+       var oSelectedKeys = this.getSelectedKeys();
+       
+       var bAllSelected = aSelectedItems.length === 0;
+     
+       this._firstTime = true; 
+       
+       this.fireListClose({
+              selectedItems : aSelectedItems,
+              selectedKeys : oSelectedKeys,
+              allSelected : bAllSelected
+       });
 
 };
 
@@ -797,6 +815,7 @@ sap.m.FacetFilterList.prototype._handleSearchEvent = function(oEvent) {
  * 
  * @private
  */
+
 sap.m.FacetFilterList.prototype._search = function(sSearchVal, force) {
 
 	var bindingInfoaFilters;
@@ -846,6 +865,7 @@ sap.m.FacetFilterList.prototype._search = function(sSearchVal, force) {
 					this);
 		}
 	}
+
 };
 
 /**

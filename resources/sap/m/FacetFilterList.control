@@ -31,6 +31,9 @@
 		<property group="Misc" name="retainListSequence" type="sap.ui.core/boolean" defaultValue="false" since="1.22.1"> 
 			<documentation>Property to retain the list sequence if it is inactive and  made active again .</documentation>
 		</property>
+		<property group="Misc" name="dataType" type="sap.m/FacetFilterListDataType" defaultValue="sap.m.FacetFilterListDataType.String">
+			<documentation>FacetFilterList data type. Only String data type will provide search function.</documentation>
+		</property>
 	</properties>
 	<events>
 		<event name="listOpen">

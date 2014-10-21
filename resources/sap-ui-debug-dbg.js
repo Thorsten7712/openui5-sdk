@@ -3,7 +3,7 @@ jQuery.sap.declare('sap-ui-debug');
 if ( !jQuery.sap.isDeclared('sap.ui.debug.DebugEnv') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -13,7 +13,7 @@ jQuery.sap.require('jquery.sap.global'); // unlisted dependency retained
 if ( !jQuery.sap.isDeclared('sap.ui.debug.ControlTree') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -43,7 +43,7 @@ sap.ui.define("sap/ui/debug/ControlTree",['jquery.sap.global', 'sap/ui/base/Even
 	 * @class Control Tree used for the Debug Environment
 	 * @extends sap.ui.base.EventProvider
 	 * @author Martin Schaus, Frank Weigel
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @name sap.ui.debug.ControlTree
 	 * @private
 	 */
@@ -444,7 +444,7 @@ sap.ui.define("sap/ui/debug/ControlTree",['jquery.sap.global', 'sap/ui/base/Even
 if ( !jQuery.sap.isDeclared('sap.ui.debug.Highlighter') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -546,7 +546,7 @@ sap.ui.define("sap/ui/debug/Highlighter",['jquery.sap.global', 'jquery.sap.dom',
 if ( !jQuery.sap.isDeclared('sap.ui.debug.LogViewer') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -616,6 +616,7 @@ sap.ui.define("sap/ui/debug/LogViewer",['jquery.sap.global'],
 	};
 	/**
 	 * Renders a single log entry to the DOM. Could be overwritten in subclasses.
+	 * @param {object} oLogEntry
 	 * @protected
 	 * @name sap.ui.debug.LogViewer#addEntry
 	 * @function
@@ -741,7 +742,7 @@ sap.ui.define("sap/ui/debug/LogViewer",['jquery.sap.global'],
 if ( !jQuery.sap.isDeclared('sap.ui.debug.PropertyList') ) {
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -766,7 +767,7 @@ sap.ui.define("sap/ui/debug/PropertyList",['jquery.sap.global', 'sap/ui/base/Dat
 	 *
 	 * @extends sap.ui.base.EventProvider
 	 * @author Martin Schaus
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 *
 	 * @param {sap.ui.core.Core}
 	 *            oCore the core instance to use for analysis
@@ -1305,7 +1306,7 @@ sap.ui.define("sap/ui/debug/DebugEnv",['jquery.sap.global', './ControlTree', './
 	 * @class Central Class for the Debug Environment
 	 *
 	 * @author Martin Schaus, Frank Weigel
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @private
 	 * @name sap.ui.debug.DebugEnv
 	 */

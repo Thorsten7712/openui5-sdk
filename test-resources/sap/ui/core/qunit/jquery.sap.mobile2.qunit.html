@@ -18,6 +18,9 @@
 		var ua = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5";
 		var uaFaked;
 		
+		//TODO test fails with chrome v36. fix pending
+		//Reason: window.navigator is read-only since chrome v36, so 
+		//window.navigator = new Object(); has no impact
 		if (/msie/i.test(navigator.userAgent) || /Firefox\/10\./i.test(navigator.userAgent)) {
 			uaFaked = false; // cannot test some features
 			
@@ -26,7 +29,7 @@
 			var __originalNavigator = window.navigator;
 			
 			function fakeUserAgent(ua) {
-		 		if (/safari/i.test(navigator.userAgent)) {
+		 		if (/safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent)) {
 		 			var __originalNavigator = window.navigator;
 		 			window.navigator = new Object();
 		 			window.navigator.__proto__ = __originalNavigator;
@@ -56,6 +59,7 @@
 		</script>
 		<link rel="stylesheet" href="../../../../../resources/sap/ui/thirdparty/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="../../../../../resources/sap/ui/thirdparty/qunit.js"></script>
+		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-junit.js"></script>
 		<script type="text/javascript" src="../../../../../resources/sap/ui/qunit/QUnitUtils.js"></script>
 		<script type="text/javascript">
 
@@ -99,7 +103,7 @@
 		
 		if (uaFaked) {
 			test("Test reset user-agent", function(){
-				if (/safari/i.test(uaOri)) {
+				if (/safari/i.test(uaOri) && !/chrome/i.test(uaOri)) {
 		 			window.navigator = new Object();
 		 			window.navigator.__proto__ = __originalNavigator;
 		 			window.navigator.__defineGetter__('userAgent', function () { 

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -57,21 +57,19 @@ jQuery.sap.require("sap.ui.core.Control");
  * Provides a main content and a secondary content area
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.15.0
  * @experimental Since version 1.15.0. 
  * API is not yet finished and might change completely
  * @name sap.ui.unified.SplitContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.unified.SplitContainer", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.unified",
 	properties : {
 		"showSecondaryContent" : {type : "boolean", group : "Appearance", defaultValue : null},
@@ -81,8 +79,8 @@ sap.ui.core.Control.extend("sap.ui.unified.SplitContainer", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
-    	"secondaryContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "secondaryContent"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}, 
+		"secondaryContent" : {type : "sap.ui.core.Control", multiple : true, singularName : "secondaryContent"}
 	}
 }});
 
@@ -165,7 +163,6 @@ sap.ui.core.Control.extend("sap.ui.unified.SplitContainer", { metadata : {
  * @deprecated Since version 1.22. 
  * 
  * Only available for backwards compatibility.
- * 
  * @name sap.ui.unified.SplitContainer#getSecondaryContentWidth
  * @function
  */
@@ -181,7 +178,6 @@ sap.ui.core.Control.extend("sap.ui.unified.SplitContainer", { metadata : {
  * @deprecated Since version 1.22. 
  * 
  * Only available for backwards compatibility.
- * 
  * @name sap.ui.unified.SplitContainer#setSecondaryContentWidth
  * @function
  */

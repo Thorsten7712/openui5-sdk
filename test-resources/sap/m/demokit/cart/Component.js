@@ -116,6 +116,23 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.cart.Component", {
 		jQuery.sap.require("model.Config");
 		// set data model
 		var sUrl = model.Config.getServiceUrl();
+
+		// start mock server
+		if (model.Config.isMock) {
+			jQuery.sap.require("sap.ui.app.MockServer");
+			var oMockServer = new sap.ui.app.MockServer({
+				rootUri: sUrl
+			});
+			oMockServer.simulate("model/metadata.xml", "model/");
+			oMockServer.start();
+
+			jQuery.sap.require("sap.m.MessageToast");
+			var sMsg = "Running in demo mode with mock data.";
+			sap.m.MessageToast.show(sMsg, {
+				duration: 2000
+			});
+		}
+
 		var oModel = new sap.ui.model.odata.ODataModel(sUrl, true, model.Config.getUser(), model.Config.getPwd());
 		//if we do not set this property to false, this would lead to a synchronized request which blocks the ui
 		oModel.setCountSupported(false);
@@ -143,21 +160,6 @@ sap.ui.core.UIComponent.extend("sap.ui.demo.cart.Component", {
 		oDeviceModel.setDefaultBindingMode("OneWay");
 		oView.setModel(oDeviceModel, "device");
 
-		// start mock server
-		if (model.Config.isMock) {
-			jQuery.sap.require("sap.ui.app.MockServer");
-			var oMockServer = new sap.ui.app.MockServer({
-				rootUri: sUrl
-			});
-			oMockServer.simulate("model/metadata.xml", "model/");
-			oMockServer.start();
-
-			jQuery.sap.require("sap.m.MessageToast");
-			var sMsg = "Running in demo mode with mock data.";
-			sap.m.MessageToast.show(sMsg, {
-				duration: 2000
-			});
-		}
 
 		// done
 		return oView;

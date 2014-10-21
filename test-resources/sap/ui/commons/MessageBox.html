@@ -141,6 +141,42 @@
 			};
 
 			createControls();
+
+		var oButton = new sap.ui.commons.Button({
+			text : "MessageBox with Layout as Content",
+			press : function() {
+				var oLayout = new sap.ui.layout.VerticalLayout({
+					width: "100%",
+					content: [
+						new sap.ui.commons.TextView({
+							text: "Wanna see the status of the CheckBox in an additional MessageBox?",
+						}),
+						new sap.ui.commons.CheckBox("checkBoxId", {
+							text: "The CheckBox this is me",
+							checked: false
+						})
+					]
+				});
+
+				// MessageBox.show(message, icon, title, [oActions], fnCallback, oDefaultAaction, sDialogId)
+				sap.ui.commons.MessageBox.show(oLayout, 
+		    		sap.ui.commons.MessageBox.Icon.WARNING,
+		    	    "Title of first MessageBox",
+		    	    [sap.ui.commons.MessageBox.Action.YES, sap.ui.commons.MessageBox.Action.NO],
+		    	    function(oAction) { 
+						if ( oAction === sap.ui.commons.MessageBox.Action.YES ) {
+							var oCheck = sap.ui.getCore().byId("checkBoxId");
+							var sText = "Checkbox is " + (oCheck.getChecked() ? "" : "not ") + "checked";
+
+							// alert(sMessage, fnCallBack, sTitle)
+							sap.ui.commons.MessageBox.alert(sText, null, "Result of CheckBox");
+						}
+					},
+					sap.ui.commons.MessageBox.Action.NO,
+					"messageBoxId"
+			    );
+			}
+		}).placeAt("uiLayoutContent");
 		</script>
 	</head>
 	<body class="sapUiBody" role="application">
@@ -158,6 +194,9 @@
 		<br/>
 		<span>A slightly more complex use case: </span><br/>
 		<div id="uiComplex"></div><!-- <span id="uiComplex1"></span><br/> -->
+		<br/>
+		<span>A case with a control as "message": </span><br/>
+		<div id="uiLayoutContent"></div>
 		<br/>
 		<span id="uiOptions"></span><br/>
 		<br/>

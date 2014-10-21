@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -74,16 +74,16 @@ jQuery.sap.require("sap.ui.core.Control");
  * @extends sap.ui.core.Control
  * @implements sap.ui.core.PopupInterface
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.Dialog
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.Dialog", { metadata : {
 
-	// ---- object ----
 	interfaces : [
 		"sap.ui.core.PopupInterface"
 	],
@@ -91,8 +91,6 @@ sap.ui.core.Control.extend("sap.ui.commons.Dialog", { metadata : {
 		// methods
 		"open", "close", "isOpen", "getOpenState"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -115,8 +113,8 @@ sap.ui.core.Control.extend("sap.ui.commons.Dialog", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"buttons" : {type : "sap.ui.core.Control", multiple : true, singularName : "button"}, 
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	associations : {
 		"defaultButton" : {type : "sap.ui.commons.Button", multiple : false}, 
@@ -151,7 +149,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>width</code>.
  * 
  * Outer width of dialog window. When not set and not constrained by one of the width parameters (minWidth/maxWidth), the window size is automatically adapted to the content.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -178,7 +175,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>height</code>.
  * 
  * Outer height of dialog window. When not set and not constrained by one of the height parameters (minHeight/maxHeight), the window size is automatically adapted to the content.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -205,7 +201,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>scrollLeft</code>.
  * 
  * Scroll position from left to right. "0" means leftmost position.
- * 
  *
  * Default value is <code>0</code>
  *
@@ -232,7 +227,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>scrollTop</code>.
  * 
  * Scroll position from top to buttom. "0" means topmost position.
- * 
  *
  * Default value is <code>0</code>
  *
@@ -259,7 +253,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>title</code>.
  * 
  * Dialog title displayed in the header.
- * 
  *
  * Default value is <code>''</code>
  *
@@ -286,7 +279,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>applyContentPadding</code>.
  * 
  * Padding is theme-dependent. When set to "false", the content extends to the dialog borders.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -313,7 +305,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>showCloseButton</code>.
  * 
  * Displays a close button in the title bar.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -340,7 +331,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>resizable</code>.
  * 
  * Specifies whether the dialog window can be resized by the user. The dialog frame contains the visual symbol.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -367,7 +357,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>minWidth</code>.
  * 
  * Minimum outer width of the dialog window. When set, neither the user nor some layout settings can make the window smaller.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -394,7 +383,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>minHeight</code>.
  * 
  * Minimum outer height of the dialog window. When set, neither the user nor some layout settings can make the window smaller.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -421,7 +409,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>maxWidth</code>.
  * 
  * Maximum outer width of the dialog window. If set, neither the user nor some layout settings can make the window larger.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -448,7 +435,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>maxHeight</code>.
  * 
  * Maximum outer height of the dialog window. If set, neither the user nor some layout settings can make the window larger.
- * 
  *
  * Default value is empty/<code>undefined</code>
  *
@@ -475,7 +461,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  * Getter for property <code>contentBorderDesign</code>.
  * 
  * Border design is theme-dependent.
- * 
  *
  * Default value is <code>None</code>
  *
@@ -820,14 +805,12 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
 /**
  * 
  * Event is fired when the user closes the dialog window. Event parameters provide information about last position and last size.
- *  
  *
  * @name sap.ui.commons.Dialog#closed
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.width the width of the dialog when closed
  * @param {int} oControlEvent.getParameters.height the height of the dialog when closed
  * @param {int} oControlEvent.getParameters.top the top position of the dialog when closed
@@ -842,7 +825,6 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
  *  
  * 
  * Event is fired when the user closes the dialog window. Event parameters provide information about last position and last size.
- *  
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -894,44 +876,44 @@ sap.ui.commons.Dialog.M_EVENTS = {'closed':'closed'};
 /**
  * Opens the dialog control instance.
  *
- * @name sap.ui.commons.Dialog.prototype.open
+ * @name sap.ui.commons.Dialog#open
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Closes the dialog control instance.
  *
- * @name sap.ui.commons.Dialog.prototype.close
+ * @name sap.ui.commons.Dialog#close
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether the Dialog is open (this includes opening and closing animations). For more detailed information about the current state check Dialog.getOpenState().
  *
- * @name sap.ui.commons.Dialog.prototype.isOpen
+ * @name sap.ui.commons.Dialog#isOpen
  * @function
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether the Dialog is currently open, closed, or transitioning between these states.
  *
- * @name sap.ui.commons.Dialog.prototype.getOpenState
+ * @name sap.ui.commons.Dialog#getOpenState
  * @function
-
  * @type sap.ui.core.OpenState
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

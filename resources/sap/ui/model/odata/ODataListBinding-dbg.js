@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -38,21 +38,24 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			this.iStartIndex = 0;
 			this.bPendingChange = false;
 			this.aKeys = [];
-			this.bInitialized = false;
+			this.bInitial = true;
 			this.sCountMode = (mParameters && mParameters.countMode) || this.oModel.sDefaultCountMode;
 			this.bRefresh = false;
 			this.bNeedsUpdate = false;
 			this.bDataAvailable = false;
+			this.bIgnoreSuspend = false;
 			
 			// load the entity type for the collection only once and not e.g. every time when filtering
 			if (!this.oModel.getServiceMetadata()) {
 				var that = this,
 				fnCallback = function(oEvent) {
+					that.bInitial = false;
 					that._initSortersFilters();
 					that.oModel.detachMetadataLoaded(fnCallback);
 				}
 				this.oModel.attachMetadataLoaded(this, fnCallback);
 			} else {
+				this.bInitial = false;
 				this._initSortersFilters();
 			}
 	
@@ -60,13 +63,18 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			// use the data and don't send additional requests
 			// TODO: what if nested list is not complete, because it was too large?
 			var oRef = this.oModel._getObject(this.sPath, this.oContext);
+			this.aExpandRefs = oRef;
 			if (jQuery.isArray(oRef) && !aSorters && !aFilters) {
 				this.aKeys = oRef;
 				this.iLength = oRef.length;
 				this.bLengthFinal = true;
 				this.bDataAvailable = true;
-			}
-			else {
+			} else if (oRef === null && this.oModel.resolve(this.sPath, this.oContext)){ // means that expanded data has no data available e.g. for 0..n relations
+				this.aKeys = [];
+				this.iLength = 0
+				this.bLengthFinal = true;
+				this.bDataAvailable = true;
+			}	else {
 				// call getLength when metadata is already loaded or don't do anything
 				// if the the metadata gets loaded it will call a refresh on all bindings
 				if (this.oModel.getServiceMetadata()) {
@@ -74,12 +82,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 				}
 			}
 	
-		},
-	
-		metadata : {
-			publicMethods : [
-				"getLength"
-			]
 		}
 	
 	});
@@ -106,7 +108,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 	 *
 	 * @param {int} [iStartIndex=0] the start index of the requested contexts
 	 * @param {int} [iLength] the requested amount of contexts
-	 *
+	 * @param {int} [iThreshold=0]
 	 * @return {Array} the contexts array
 	 * @protected
 	 * @name sap.ui.model.odata.ODataListBinding#getContexts
@@ -114,7 +116,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 	 */
 	ODataListBinding.prototype.getContexts = function(iStartIndex, iLength, iThreshold) {	
 	
-		this.bInitialized = true;
+		if (this.bInitial) {
+			return [];
+		}
+		
 		this.iLastLength = iLength;
 		this.iLastStartIndex = iStartIndex;
 		this.iLastThreshold = iThreshold;
@@ -322,21 +327,57 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 				// get new entity type with new context and init filters now correctly
 				this._initSortersFilters();
 	
-				if (this.bInitialized){
+				if (!this.bInitial){
 					// if nested list is already available, use the data and don't send additional requests
 					// TODO: what if nested list is not complete, because it was too large?
 					var oRef = this.oModel._getObject(this.sPath, this.oContext);
-					if (jQuery.isArray(oRef)) {
+					this.aExpandRefs = oRef;
+					if (jQuery.isArray(oRef) && !this.aSorters.length > 0 && !this.aFilters.length > 0) {
 						this.aKeys = oRef;
 						this.iLength = oRef.length;
 						this.bLengthFinal = true;
 						this._fireChange();
-					}
-					else {
+					} else if (oRef === null && this.oModel.resolve(this.sPath, this.oContext)){ // means that expanded data has no data available e.g. for 0..n relations
+							this.aKeys = [];
+							this.iLength = 0
+							this.bLengthFinal = true;
+							this._fireChange();
+					} else {
 						this.refresh();
 					}
 				} 
 			}
+		}
+	};
+	
+	/**
+	 * Get download URL
+	 * @param {string} sFormat The required format for the download
+	 * @name sap.ui.model.odata.ODataListBinding#getDownloadUrl
+	 * @function
+	 * @since 1.24
+	 */
+	ODataListBinding.prototype.getDownloadUrl = function(sFormat) {
+		var aParams = [],
+			sPath;
+		
+		if (sFormat) {
+			aParams.push("$format=" + encodeURIComponent(sFormat));
+		}
+		if (this.sSortParams) {
+			aParams.push(this.sSortParams);
+		}
+		if (this.sFilterParams) {
+			aParams.push(this.sFilterParams);
+		}
+		if (this.sCustomParams) {
+			aParams.push(this.sCustomParams);
+		}
+		
+		sPath = this.oModel.resolve(this.sPath,this.oContext);
+
+		if (sPath) {
+			return this.oModel._createRequestUrl(sPath, null, aParams);
 		}
 	};
 	
@@ -394,7 +435,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			}
 	
 			// if we got data and the results + startindex is larger than the
-			// length we just apply this value to the length
+			// length we just apply this value to the length and add the requested
+			// length again to enable paging/scrolling
 			if (that.iLength < iStartIndex + oData.results.length) {
 				that.iLength = iStartIndex + oData.results.length;
 				that.bLengthFinal = false;
@@ -418,10 +460,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			
 			// If request is originating from this binding, change must be fired afterwards
 			that.bNeedsUpdate = true;
+			
+			that.bIgnoreSuspend = true;
 		}
 		
-		function fnCompleted() {
-			that.fireDataReceived();
+		function fnCompleted(oData) {
+			that.fireDataReceived({data: oData});
 		}
 		
 		function fnError(oError, bAborted) {
@@ -451,7 +495,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 		if (sPath) {
 			if (bPretend) {
 				// Pretend to send a request by firing the appropriate events
-				var sUrl = this.oModel._createRequestUrl(sPath, aParams);
+				var sUrl = this.oModel._createRequestUrl(sPath, null, aParams);
 				this.fireDataRequested();
 				this.oModel.fireRequestSent({url: sUrl, method: "GET", async: true});
 				setTimeout(function() {
@@ -472,17 +516,32 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 	};
 	
 	/**
-	 * Return the length of the list
+	 * @see sap.ui.model.ListBinding.prototype.getLength
 	 *
-	 * @return {number} the length
-	 * @protected
 	 * @name sap.ui.model.odata.ODataListBinding#getLength
 	 * @function
 	 */
 	ODataListBinding.prototype.getLength = function() {
-		return this.iLength;
+		// If length is not final, add some additional length to enable scrolling/paging for
+		// controls who only enable this if more items are available
+		if (this.bLengthFinal) {
+			return this.iLength;
+		} else {
+			var iAdditionalLength = this.iLastThreshold || this.iLastLength || 10;
+			return this.iLength + iAdditionalLength;
+		}
 	};
-	
+
+	/**
+	 * @see sap.ui.model.ListBinding.prototype.isLengthFinal
+	 *
+	 * @name sap.ui.model.odata.ODataListBinding#isLengthFinal
+	 * @function
+	 */
+	ODataListBinding.prototype.isLengthFinal = function() {
+		return this.bLengthFinal;
+	};
+
 	/**
 	 * Return the length of the list
 	 *
@@ -545,8 +604,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 	 * validation, please use the parameter bForceUpdate.
 	 * 
 	 * @param {boolean} [bForceUpdate] Update the bound control even if no data has been changed
-	 * @param {object} [mChangedEntities]
-	 * @param {string] [mEntityTypes]
 	 * @public
 	 * @name sap.ui.model.odata.ODataListBinding#refresh
 	 * @function
@@ -587,8 +644,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 	 * @function
 	 */
 	ODataListBinding.prototype._fireRefresh = function(mArguments) {
-		this.bRefresh = true;
-		this.fireEvent("refresh", mArguments);
+		 if (this.oModel.resolve(this.sPath, this.oContext)) {
+			 this.bRefresh = true;
+			 this.fireEvent("refresh", mArguments);
+		 }
 	};
 	
 	/**
@@ -623,11 +682,32 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 		var bChangeReason = this.sChangeReason ? this.sChangeReason : sap.ui.model.ChangeReason.Change,
 			bChangeDetected = false, 
 			oLastData, oCurrentData,
-			that = this;
+			that = this,
+			oRef, 
+			bRefChanged;
+		
+		if (this.bSuspended && !this.bIgnoreSuspend) return;
 		
 		if (!bForceUpdate && !this.bNeedsUpdate) {
-			//TODO: check if we can loop only the last requested contexts
-			if (mChangedEntities) {
+			
+			// check if data in listbinding contains data loaded via expand
+			// if yes and there was a change detected we:
+			// - set the new keys if there are no sortes/filters set
+			// - trigger a refresh if there are sorters/filters set
+			oRef = this.oModel._getObject(this.sPath, this.oContext); 
+			bRefChanged = jQuery.isArray(oRef) && !jQuery.sap.equal(oRef,this.aExpandRefs);
+			this.aExpandRefs = oRef;
+			if (bRefChanged) {
+				if (this.aSorters.length > 0 || this.aFilters.length > 0) {
+					this.refresh();
+					return;
+				} else {
+					this.aKeys = oRef;
+					this.iLength = oRef.length;
+					this.bLengthFinal = true;
+					bChangeDetected = true;
+				}
+			} else if (mChangedEntities) {
 				jQuery.each(this.aKeys, function(i, sKey) {
 					if (sKey in mChangedEntities) {
 						bChangeDetected = true;
@@ -640,6 +720,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			if (bChangeDetected && this.aLastContexts) {
 				// Reset bChangeDetected and compare actual data of entries
 				bChangeDetected = false;
+				
 				//Get contexts for visible area and compare with stored contexts
 				var aContexts = this._getContexts(this.iLastStartIndex, this.iLastLength, this.iLastThreshold);
 				if (this.aLastContexts.length != aContexts.length) {
@@ -663,6 +744,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			this._fireChange({reason: bChangeReason});
 		}
 		this.sChangeReason = undefined;
+		this.bIgnoreSuspend = false;
 	};
 	
 	/**
@@ -713,7 +795,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 	 * @function
 	 */
 	ODataListBinding.prototype.sort = function(aSorters) {
-	
+		
 		if (aSorters instanceof sap.ui.model.Sorter) {
 			aSorters = [aSorters];
 		}
@@ -725,7 +807,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 		this.abortPendingRequest();
 		this.aKeys = [];
 	
-		if (this.bInitialized) {
+		if (!this.bInitial) {
 			if (this.oRequestHandle) {
 				this.oRequestHandle.abort();
 				this.oRequestHandle = null;
@@ -762,7 +844,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 	 * @function
 	 */
 	ODataListBinding.prototype.filter = function(aFilters, sFilterType) {
-	
+		
 		if (!aFilters) {
 			aFilters = [];
 		}
@@ -777,18 +859,20 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 			this.aFilters = aFilters;
 		}
 		
-		aFilters = this.aFilters.concat(this.aApplicationFilters);
-		
 		if (!aFilters || !jQuery.isArray(aFilters) || aFilters.length == 0) {
 			this.aFilters = [];
+		}
+		//if no application-filters are present, or they are not in array form/empty array, init the filters with []
+		if (!this.aApplicationFilters || !jQuery.isArray(this.aApplicationFilters) || this.aApplicationFilters.length === 0) {
 			this.aApplicationFilters = [];
 		}
-	
-		this.createFilterParams(aFilters);
+		
+		//if we have some Application Filters, they will ANDed to the Control-Filters
+		this.createFilterParams(this.aFilters, this.aApplicationFilters);
 		this.abortPendingRequest();
 		this.resetData();
 		
-		if (this.bInitialized) {
+		if (!this.bInitial) {
 			if (this.oRequestHandle) {
 				this.oRequestHandle.abort();
 				this.oRequestHandle = null;
@@ -807,18 +891,57 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 		return this;
 	};
 
-	ODataListBinding.prototype.createFilterParams = function(aFilters) {
-		this.sFilterParams = ODataUtils.createFilterParams(aFilters, this.oModel.oMetadata, this.oEntityType);
+	/**
+	 * Creates a $filter query option string, which will be used
+	 * as an URL part for OData-Requests. If an Array of Application Filters is given as the second
+	 * Argument, the Control-Filters and Application-Filters are ANDed together.
+	 * @param {sap.ui.model.Filter[]|sap.ui.model.odata.Filter[]} aControlFilters An Array of control filters
+	 * @param {sap.ui.model.Filter[]|sap.ui.model.odata.Filter[]} [aApplicationFilters] An Array of application filters
+	 * @private
+	 * @name sap.ui.model.odata.ODataListBinding#createFilterParams
+	 * @function
+	 */
+	ODataListBinding.prototype.createFilterParams = function(aControlFilters, aApplicationFilters) {
+		// create URL Parameters for the Control- and Application-Filters
+		// either one or both may return undefined if the arrays given are wrong somehow
+		var sFilterParams,
+			sControlParams = ODataUtils._createFilterParams(aControlFilters, this.oModel.oMetadata, this.oEntityType),
+			sApplicationParams = ODataUtils._createFilterParams(aApplicationFilters, this.oModel.oMetadata, this.oEntityType);
+		
+		if (sControlParams) {
+			sFilterParams = sControlParams;
+		}
+		
+		if (sApplicationParams) {
+			//if there are control-filtes, AND the application filters
+			if (sControlParams) {
+				//Apply braces to the ANDed parts
+				sFilterParams = "(" + sFilterParams + ")" + "%20and%20" + "(" + sApplicationParams + ")";
+			} else {
+				//if the control-filters are undefined, we just use the application filter as a fallback
+				sFilterParams = sApplicationParams;
+			}
+		}
+		
+		//prepend the system query option "$filter=" to the parameters (if parameters are given...)
+		if (sFilterParams) {
+			this.sFilterParams = "$filter=" + sFilterParams;
+		} else {
+			// no filter params could be constructed, since no control/application filter are given
+			// reset the filter params to 'undefined', so following requests exclude the filter query
+			this.sFilterParams = undefined;
+		}
 	};
 	
-	ODataListBinding.prototype._initSortersFilters = function(){
+	
+	ODataListBinding.prototype._initSortersFilters = function() {
 		// if path could not be resolved entity type cannot be retrieved and
 		// also filters/sorters don't need to be set
 		var sResolvedPath = this.oModel.resolve(this.sPath, this.oContext);
 		if (!sResolvedPath) {
 			return;
 		}
-		this.oEntityType = this._getEntityType();	
+		this.oEntityType = this._getEntityType();
 		this.createSortParams(this.aSorters);
 		this.createFilterParams(this.aFilters.concat(this.aApplicationFilters));
 	};
@@ -835,7 +958,11 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/format/DateFormat', 'sap/ui/mod
 		return undefined;
 	};
 	
-
+	ODataListBinding.prototype.resume = function() {
+		this.bIgnoreSuspend = false;
+		ListBinding.prototype.resume.apply(this, arguments);
+	};
+	
 	return ODataListBinding;
 
 }, /* bExport= */ true);

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>StandardListItem</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 
 	<documentation>The StandardListItem is a list item providing image, titel and description.</documentation>
 
@@ -12,7 +12,7 @@
 			<documentation>List item text</documentation>
 		</property>
 		<property group="Misc" name="description" type="sap.ui.core/string">
-			<documentation>Description</documentation>
+			<documentation>Description gets only visible when the title property is not empty.</documentation>
 		</property>
 		<property group="Misc" type="sap.ui.core/URI" name="icon">
 			<documentation>List item icon</documentation>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 jQuery.sap.declare("sap.ui.commons.DropdownBox");jQuery.sap.require("sap.ui.commons.library");jQuery.sap.require("sap.ui.commons.ComboBox");sap.ui.commons.ComboBox.extend("sap.ui.commons.DropdownBox",{metadata:{publicMethods:["clearHistory"],library:"sap.ui.commons",properties:{"searchHelpEnabled":{type:"boolean",group:"Behavior",defaultValue:false},"searchHelpText":{type:"string",group:"Appearance",defaultValue:null},"searchHelpAdditionalText":{type:"string",group:"Appearance",defaultValue:null},"searchHelpIcon":{type:"sap.ui.core.URI",group:"Appearance",defaultValue:null},"maxHistoryItems":{type:"int",group:"Behavior",defaultValue:0}},events:{"searchHelp":{}}}});sap.ui.commons.DropdownBox.M_EVENTS={'searchHelp':'searchHelp'};jQuery.sap.require("sap.ui.core.History");jQuery.sap.require("sap.ui.core.SeparatorItem");

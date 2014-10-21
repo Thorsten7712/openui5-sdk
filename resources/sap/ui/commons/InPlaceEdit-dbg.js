@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,24 +56,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * @class
  * The InPlaceEdit is a functionality to have text in display mode that can be changed in place.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.8.0
  * @name sap.ui.commons.InPlaceEdit
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.InPlaceEdit", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"clearOldText"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"valueState" : {type : "sap.ui.core.ValueState", group : "Data", defaultValue : sap.ui.core.ValueState.None},
@@ -82,7 +78,7 @@ sap.ui.core.Control.extend("sap.ui.commons.InPlaceEdit", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : false}
+		"content" : {type : "sap.ui.core.Control", multiple : false}
 	},
 	events : {
 		"change" : {}, 
@@ -139,7 +135,6 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 /**
  * Getter for property <code>undoEnabled</code>.
  * If undo is enabled after changing the text an undo button appears.
- * 
  *
  * Default value is <code>true</code>
  *
@@ -225,14 +220,13 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed.
  *
  * @name sap.ui.commons.InPlaceEdit#change
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.newValue The new / changed value of the InPlaceEdit.
  * @public
  */
@@ -242,7 +236,7 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.InPlaceEdit</code>.<br/> itself. 
  *  
- * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed. 
+ * Event is fired when the text in the field has changed AND the focus leaves the InPlaceEdit or the Enter key is pressed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -289,7 +283,7 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 
 
 /**
- * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @name sap.ui.commons.InPlaceEdit#liveChange
  * @event
@@ -297,7 +291,6 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.liveValue Current value of the Textfield.
  * @public
  */
@@ -307,7 +300,7 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.InPlaceEdit</code>.<br/> itself. 
  *  
- * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control. 
+ * This event if fired during typing into the InPlaceEdit and returns the currently entered value. This is not the content of the value property. The value property is only updated by ENTER and by leaving the control.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -359,11 +352,11 @@ sap.ui.commons.InPlaceEdit.M_EVENTS = {'change':'change','liveChange':'liveChang
 /**
  * Clear the old text after a change to disable the undo functionality. If undoEnabled is false this has no effect.
  *
- * @name sap.ui.commons.InPlaceEdit.prototype.clearOldText
+ * @name sap.ui.commons.InPlaceEdit#clearOldText
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

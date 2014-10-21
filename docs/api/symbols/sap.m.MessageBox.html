@@ -119,17 +119,17 @@ must be explicitly executed before the class can be used. Example:
 							<div class="sectionItems">
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Displays an alert dialog with the given message and an OK button (no icons)."><a href="../symbols/sap.m.MessageBox.html#.alert">sap.m.MessageBox.alert</a></b><span class='signature'>(<span title="(string) Message to be displayed in the alert dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Displays an alert dialog with the given message and an OK button (no icons)."><a href="../symbols/sap.m.MessageBox.html#.alert">sap.m.MessageBox.alert</a></b><span class='signature'>(<span title="(string | sap.ui.core.Control) Message to be displayed in the alert dialog">vMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Displays an alert dialog with the given message and an OK button (no icons).</span>
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Displays a confirmation dialog with the given message, a QUESTION icon, an OK button and a Cancel button."><a href="../symbols/sap.m.MessageBox.html#.confirm">sap.m.MessageBox.confirm</a></b><span class='signature'>(<span title="(string) Message to display in the confirmation dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Displays a confirmation dialog with the given message, a QUESTION icon, an OK button and a Cancel button."><a href="../symbols/sap.m.MessageBox.html#.confirm">sap.m.MessageBox.confirm</a></b><span class='signature'>(<span title="(string | sap.ui.core.Control) Message to display in the confirmation dialog">vMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Displays a confirmation dialog with the given message, a QUESTION icon, an OK button and a Cancel button.</span>
 								</div>
 							
 								<div class="sectionItem classMethod static">
-									<b class="icon" title="Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts."><a href="../symbols/sap.m.MessageBox.html#.show">sap.m.MessageBox.show</a></b><span class='signature'>(<span title="(string) The message to be displayed.">sMessage</span>, <span title="(object) Optionally other options.">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
+									<b class="icon" title="Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts."><a href="../symbols/sap.m.MessageBox.html#.show">sap.m.MessageBox.show</a></b><span class='signature'>(<span title="(string | sap.ui.core.Control) The message to be displayed.">vMessage</span>, <span title="(object) Optionally other options.">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 									<span class='description'>Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts.</span>
 								</div>
 							
@@ -163,7 +163,7 @@ must be explicitly executed before the class can be used. Example:
 									<div class='sectionItem classMethod static'>
 										<a name=".alert"> </a>
 										<div class="itemTitle icon">
-											sap.m.MessageBox.alert<span class="signature">(<span title="(string) Message to be displayed in the alert dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.m.MessageBox.alert<span class="signature">(<span title="(string | sap.ui.core.Control) Message to be displayed in the alert dialog">vMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -203,10 +203,10 @@ user closed the alert dialog.
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string}</span> 
+													  <span class="light">{string|<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sMessage</b>
+													  <b>vMessage</b>
 													</td>
 													<td class="methodItemDesc">
 												    Message to be displayed in the alert dialog
@@ -286,7 +286,7 @@ user closed the alert dialog.
 									<div class='sectionItem classMethod static'>
 										<a name=".confirm"> </a>
 										<div class="itemTitle icon">
-											sap.m.MessageBox.confirm<span class="signature">(<span title="(string) Message to display in the confirmation dialog">sMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.m.MessageBox.confirm<span class="signature">(<span title="(string | sap.ui.core.Control) Message to display in the confirmation dialog">vMessage</span>, <span title="(object) Optionally other options">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
@@ -329,10 +329,10 @@ user closed the confirmation dialog
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string}</span> 
+													  <span class="light">{string|<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sMessage</b>
+													  <b>vMessage</b>
 													</td>
 													<td class="methodItemDesc">
 												    Message to display in the confirmation dialog
@@ -412,14 +412,15 @@ user closed the confirmation dialog
 									<div class='sectionItem classMethod static'>
 										<a name=".show"> </a>
 										<div class="itemTitle icon">
-											sap.m.MessageBox.show<span class="signature">(<span title="(string) The message to be displayed.">sMessage</span>, <span title="(object) Optionally other options.">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
+											sap.m.MessageBox.show<span class="signature">(<span title="(string | sap.ui.core.Control) The message to be displayed.">vMessage</span>, <span title="(object) Optionally other options.">mOptions</span><i class="help" title="Optional parameter">?</i>)</span>
 											
 										</div>
 										<div class="full-description">
 											Creates and displays a sap.m.Dialog with type sap.m.DialogType.Message with the given text and buttons, and optionally other parts.
 After the user has tapped a button, the <code>onClose</code> function is invoked when given.
 </p><p>
-The only mandatory parameter is <code>sMessage</code>.
+The only mandatory parameter is <code>vMessage</code>. Either a string with the corresponding text or even
+a layout control could be provided.
 </p><p>
 <pre>
 sap.m.MessageBox.show("This message should appear in the message box", {
@@ -456,10 +457,10 @@ a sap.m.MessageBox.Action.Close is returned.
 											
 												<tr>
 													<td class="methodItemType">
-													  <span class="light">{string}</span> 
+													  <span class="light">{string|<a href="../symbols/sap.ui.core.Control.html">sap.ui.core.Control</a>}</span> 
 													</td>
 													<td class="methodItemName">
-													  <b>sMessage</b>
+													  <b>vMessage</b>
 													</td>
 													<td class="methodItemDesc">
 												    The message to be displayed.

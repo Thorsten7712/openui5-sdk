@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -60,18 +60,16 @@ jQuery.sap.require("sap.ui.core.Element");
  * Represents a panel which is a container for other controls. The container does not have any layout function.
  * @extends sap.ui.core.Element
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.AccordionSection
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Element.extend("sap.ui.commons.AccordionSection", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"maxHeight" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : null},
@@ -81,7 +79,7 @@ sap.ui.core.Element.extend("sap.ui.commons.AccordionSection", { metadata : {
 	},
 	defaultAggregation : "content",
 	aggregations : {
-    	"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
+		"content" : {type : "sap.ui.core.Control", multiple : true, singularName : "content"}
 	},
 	events : {
 		"scroll" : {}
@@ -161,7 +159,6 @@ sap.ui.commons.AccordionSection.M_EVENTS = {'scroll':'scroll'};
 /**
  * Getter for property <code>collapsed</code>.
  * It is recommended to make some settings for the width when the section is set to 'collapsed'.
- * 
  *
  * Default value is <code>false</code>
  *
@@ -294,14 +291,13 @@ sap.ui.commons.AccordionSection.M_EVENTS = {'scroll':'scroll'};
 
 
 /**
- * Event is fired when the user scrolls the panel. 
+ * Event is fired when the user scrolls the panel.
  *
  * @name sap.ui.commons.AccordionSection#scroll
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {int} oControlEvent.getParameters.left Horizontal scroll position.
  * @param {int} oControlEvent.getParameters.top Vertical scroll position.
  * @public
@@ -312,7 +308,7 @@ sap.ui.commons.AccordionSection.M_EVENTS = {'scroll':'scroll'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.AccordionSection</code>.<br/> itself. 
  *  
- * Event is fired when the user scrolls the panel. 
+ * Event is fired when the user scrolls the panel.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -465,7 +461,7 @@ sap.ui.commons.AccordionSection.prototype.onBeforeRendering = function() {
 /**
  * Property setter for the "enabled" state
  *
- * @param bEnabled Whether the AccordionSection should be enabled, or not
+ * @param {boolean} bEnabled Whether the AccordionSection should be enabled, or not
  * @return {sap.ui.commons.AccordionSection} 'this' to allow method chaining
  * @public
  */
@@ -498,7 +494,7 @@ sap.ui.commons.AccordionSection.prototype._setCollapsed = function(bCollapsed) {
 /**
  * Property setter for the "collapsed" state
  *
- * @param bCollapsed Whether the AccordionSection should be collapsed, or not
+ * @param {boolean} bCollapsed Whether the AccordionSection should be collapsed, or not
  * @return {sap.ui.commons.AccordionSection} 'this' to allow method chaining
  * @public
  */

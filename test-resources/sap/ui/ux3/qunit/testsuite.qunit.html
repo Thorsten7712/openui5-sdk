@@ -1,8 +1,7 @@
 <html>
  <head>
   <title>QUnit TestSuite for sap.ui.ux3</title>
- </head>
- <body>
+  <script type="text/javascript" src="../../../../../resources/sap/ui/qunit/qunit-redirect.js"></script>
   <script language="javascript">
 
   /**
@@ -10,7 +9,7 @@
    * Please order alphabetically
    */
   function suite() {
-    var suite = new top.jsUnitTestSuite();
+    var suite = new parent.jsUnitTestSuite();
     var contextPath = "/" + window.location.pathname.split("/")[1];
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/ActionBar.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/CollectionInspector.qunit.html");
@@ -24,7 +23,7 @@
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/FeedChunk.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/Feeder.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/NavigationBar.qunit.html");
-    suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/NavigationBar_swiping.qunit.html");
+    //suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/NavigationBar_swiping.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/NotificationBar.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/Overlay.qunit.html");
     suite.addTestPage(contextPath + "/test-resources/sap/ui/ux3/qunit/OverlayContainer.qunit.html");
@@ -37,8 +36,8 @@
     return suite;
   }
   
-  redirectToTestrunnerIfRequired();
-
   </script>
+ </head>
+ <body>
  </body>
 </html>

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,18 +56,16 @@ jQuery.sap.require("sap.m.SplitContainer");
  * SplitApp is another root element of a UI5 mobile application besides App control. It maintains two NavContainers if runs in tablet and one NavContainer in phone. The display of master NavContainer depends on the portrait/landscape of the device and the mode of SplitApp.
  * @extends sap.m.SplitContainer
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.m.SplitApp
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.m.SplitContainer.extend("sap.m.SplitApp", { metadata : {
 
-	// ---- object ----
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"homeIcon" : {type : "any", group : "Misc", defaultValue : null}
@@ -144,14 +142,13 @@ sap.m.SplitApp.M_EVENTS = {'orientationChange':'orientationChange'};
 
 
 /**
- * This event will be fired when orientation (portrait/landscape) is changed. 
+ * This event will be fired when orientation (portrait/landscape) is changed.
  *
  * @name sap.m.SplitApp#orientationChange
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {boolean} oControlEvent.getParameters.landscape Returns true if the device is in landscape.
  * @public
  */
@@ -161,7 +158,7 @@ sap.m.SplitApp.M_EVENTS = {'orientationChange':'orientationChange'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.SplitApp</code>.<br/> itself. 
  *  
- * This event will be fired when orientation (portrait/landscape) is changed. 
+ * This event will be fired when orientation (portrait/landscape) is changed.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -210,11 +207,13 @@ sap.m.SplitApp.M_EVENTS = {'orientationChange':'orientationChange'};
 // Start of sap\m\SplitApp.js
 jQuery.sap.require("sap.m.SplitContainer");
 
-/**************************************************************
-* START - Life Cycle Methods
-**************************************************************/
+//**************************************************************
+//* START - Life Cycle Methods
+//**************************************************************/
 sap.m.SplitApp.prototype.init = function() {
-	sap.m.SplitContainer.prototype.init.apply(this, arguments);
+	if (sap.m.SplitContainer.prototype.init) {
+		sap.m.SplitContainer.prototype.init.apply(this, arguments);
+	}
 	this.addStyleClass("sapMSplitApp");
 	jQuery.sap.initMobile({
 		viewport: !this._debugZoomAndScroll,
@@ -226,44 +225,52 @@ sap.m.SplitApp.prototype.init = function() {
 };
 
 sap.m.SplitApp.prototype.onBeforeRendering = function() {
-	sap.m.SplitContainer.prototype.onBeforeRendering.apply(this, arguments);
-	jQuery(window).unbind("resize", this._fireOrientationChange);
+	if (sap.m.SplitContainer.prototype.onBeforeRendering) {
+		sap.m.SplitContainer.prototype.onBeforeRendering.apply(this, arguments);
+	}
 	jQuery.sap.initMobile({
 		homeIcon: this.getHomeIcon()
 	});
 };
 
 sap.m.SplitApp.prototype.onAfterRendering = function(){
-	sap.m.SplitContainer.prototype.onAfterRendering.apply(this, arguments);
+	if (sap.m.SplitContainer.prototype.onAfterRendering) {
+		sap.m.SplitContainer.prototype.onAfterRendering.apply(this, arguments);
+	}
 
-    var ref = this.getDomRef().parentNode;
-    // set all parent elements to 100% height this *should* be done by the application in CSS, but people tend to forget it...
-    if (ref && !ref._sapui5_heightFixed) {
-        ref._sapui5_heightFixed = true;
-        while (ref && ref !== document.documentElement) {
-            var $ref = jQuery(ref);
-            if ($ref.attr("data-sap-ui-root-content")) { // Shell as parent does this already
-                break;
-            }
-            if (!ref.style.height) ref.style.height = "100%";
-            ref = ref.parentNode;
-        }
-    }
-
-    jQuery(window).bind("resize", jQuery.proxy(this._fireOrientationChange, this));
+	var ref = this.getDomRef().parentNode;
+	// set all parent elements to 100% height this *should* be done by the application in CSS, but people tend to forget it...
+	if (ref && !ref._sapui5_heightFixed) {
+		ref._sapui5_heightFixed = true;
+		while (ref && ref !== document.documentElement) {
+			var $ref = jQuery(ref);
+			if ($ref.attr("data-sap-ui-root-content")) { // Shell as parent does this already
+				break;
+			}
+			if (!ref.style.height) {
+				ref.style.height = "100%";
+			}
+			ref = ref.parentNode;
+		}
+	}
 };
 
 sap.m.SplitApp.prototype.exit = function() {
-	sap.m.SplitContainer.prototype.exit.apply(this, arguments);
-	jQuery(window).unbind("resize", this._fireOrientationChange);
-};
-/**************************************************************
-* END - Life Cycle Methods
-**************************************************************/
-
-sap.m.SplitApp.prototype._fireOrientationChange = function() {
-	var isLandscape = sap.ui.Device.orientation.landscape;
-	if (this._oldIsLandscape !== isLandscape) {
-		this.fireOrientationChange({landscape: isLandscape});
+	if (sap.m.SplitContainer.prototype.exit) {
+		sap.m.SplitContainer.prototype.exit.apply(this, arguments);
 	}
+};
+//**************************************************************
+//* END - Life Cycle Methods
+//**************************************************************/
+
+/**
+ * Fires the orientationChange event after SplitApp has reacted to the browser orientationchange event.
+ * 
+ * @protected
+ */
+sap.m.SplitApp.prototype._onOrientationChange = function(){
+	this.fireOrientationChange({
+		landscape: sap.ui.Device.orientation.landscape
+	});
 };

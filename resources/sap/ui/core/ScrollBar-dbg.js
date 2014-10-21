@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -56,23 +56,19 @@ sap.ui.define(['./library','./Control'], function() {
  * The ScrollBar control can be used for virtual scrolling of a certain area.
  * This means: to simulate a very large scrollable area when technically the area is small and the control takes care of displaying the respective part only. E.g. a Table control can take care of only rendering the currently visible rows and use this ScrollBar control to make the user think he actually scrolls through a long list.
  * @extends sap.ui.core.Control
+ * @version 1.24.2
  *
- * @author  
- * @version 1.22.4
- *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.core.ScrollBar
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.core.ScrollBar", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"bind", "unbind", "pageUp", "pageDown"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.core",
 	properties : {
 		"vertical" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -232,14 +228,13 @@ sap.ui.core.ScrollBar.M_EVENTS = {'scroll':'scroll'};
 
 
 /**
- * Scroll event. 
+ * Scroll event.
  *
  * @name sap.ui.core.ScrollBar#scroll
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.ui.core.ScrollBarAction} oControlEvent.getParameters.action Actions are: Click on track, button, drag of thumb, or mouse wheel click.
  * @param {boolean} oControlEvent.getParameters.forward Direction of scrolling: back (up) or forward (down).
  * @param {int} oControlEvent.getParameters.newScrollPos Current Scroll position either in pixels or in steps.
@@ -252,7 +247,7 @@ sap.ui.core.ScrollBar.M_EVENTS = {'scroll':'scroll'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.core.ScrollBar</code>.<br/> itself. 
  *  
- * Scroll event. 
+ * Scroll event.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -304,50 +299,48 @@ sap.ui.core.ScrollBar.M_EVENTS = {'scroll':'scroll'};
 /**
  * Binds the mouse wheel scroll event of the control that has the scrollbar to the scrollbar itself.
  *
- * @name sap.ui.core.ScrollBar.prototype.bind
+ * @name sap.ui.core.ScrollBar#bind
  * @function
- * @param {string} 
- *         sOOwnerDomRef
+ * @param {string} sOOwnerDomRef
  *         Dom ref of the control that uses the scrollbar
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Unbinds the mouse wheel scroll event of the control that has the scrollbar
  *
- * @name sap.ui.core.ScrollBar.prototype.unbind
+ * @name sap.ui.core.ScrollBar#unbind
  * @function
- * @param {string} 
- *         sOOwnerDomRef
+ * @param {string} sOOwnerDomRef
  *         Dom ref of the Control that uses the scrollbar
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Page Up is used to scroll one page back.
  *
- * @name sap.ui.core.ScrollBar.prototype.pageUp
+ * @name sap.ui.core.ScrollBar#pageUp
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Page Down is used to scroll one page forward.
  *
- * @name sap.ui.core.ScrollBar.prototype.pageDown
+ * @name sap.ui.core.ScrollBar#pageDown
  * @function
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Exact</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A comprehensive UI design approach with graphical and functional elements for searching data, exploring data, and acting on the data 
 	("Explore and Act (Exact) Pattern").</documentation>
 	<developmentState state="experimental" since="1.2">API is not yet finished and might change completely</developmentState>

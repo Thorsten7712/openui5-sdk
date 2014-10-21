@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -54,6 +54,7 @@ sap.m.SliderRenderer.render = function(oRm, oSlider) {
 
 	oRm.write(">");
 	oRm.write('<div');
+	oRm.writeAttribute("id", oSlider.getId() + "-inner");
 	oRm.addClass(CSS_CLASS + "Inner");
 
 	if (!bEnabled) {
@@ -96,7 +97,7 @@ sap.m.SliderRenderer.renderHandle = function(oRm, oSlider) {
 	oRm.writeAttribute("id", oSlider.getId() + "-handle");
 	oRm.writeAttribute("title", fValue);
 	oRm.addClass(sap.m.SliderRenderer.CSS_CLASS + "Handle");
-	oRm.addStyle(sap.m.Slider._bRtl ? "right" : "left", oSlider._sProgressValue);
+	oRm.addStyle(sap.ui.getCore().getConfiguration().getRTL() ? "right" : "left", oSlider._sProgressValue);
 
 	// WAI-ARIA
 	oRm.writeAccessibilityState(oSlider, {

@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -122,7 +122,7 @@ sap.ui.demokit.UI5EntityCueCardRenderer.render = function(rm, oControl){
 		if ( oDoc ) {
 		    rm.write("<table>");
 		    if ( !bDemokit ) {
-		    	rm.write("<tr><td colspan='3' class='sapDkCueCdHd0", deprClass(o), "'>", oControl.getEntityName(), "</td></tr>");
+		    	rm.write("<tr><td colspan='3' class='sapDkCueCdHd0", deprClass(oDoc), "'>", oControl.getEntityName(), "</td></tr>");
 		    	rm.write("<tr><td colspan='3' class='sapDkCueCdDoc'>", oDoc.doc || '', deprDoc(oDoc), "</td></tr>");
 		    }
 	    	if ( oDoc.metatype === ".control" ) {

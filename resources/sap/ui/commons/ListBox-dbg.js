@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -71,22 +71,20 @@ jQuery.sap.require("sap.ui.core.Control");
  * are available.
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @name sap.ui.commons.ListBox
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.ui.commons.ListBox", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"getSelectedIndex", "setSelectedIndex", "addSelectedIndex", "removeSelectedIndex", "getSelectedIndices", "setSelectedIndices", "addSelectedIndices", "isIndexSelected", "getSelectedItem", "getSelectedItems", "clearSelection", "scrollToIndex", "setItems", "setSelectedKeys", "getSelectedKeys"
 	],
-
-	// ---- control specific ----
 	library : "sap.ui.commons",
 	properties : {
 		"editable" : {type : "boolean", group : "Behavior", defaultValue : true},
@@ -106,7 +104,7 @@ sap.ui.core.Control.extend("sap.ui.commons.ListBox", { metadata : {
 	},
 	defaultAggregation : "items",
 	aggregations : {
-    	"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
+		"items" : {type : "sap.ui.core.Item", multiple : true, singularName : "item"}
 	},
 	associations : {
 		"ariaDescribedBy" : {type : "sap.ui.core.Control", multiple : true, singularName : "ariaDescribedBy"}, 
@@ -318,7 +316,6 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * Defines whether the icons of the list items shall also be displayed. Enabling icons requires some space to be reserved for them. Displaying icons can also
  * influence the width and height of a single item, which affects the overall height of the ListBox when defined in number of items.
  * Note that the number of icons that can be displayed in the ListBox depends on the size of the icons themselves and of the total ListBox height.
- * 
  *
  * Default value is <code>false</code>
  *
@@ -653,14 +650,13 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
 
 	
 /**
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @name sap.ui.commons.ListBox#select
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {string} oControlEvent.getParameters.id ID of the ListBox which triggered the event.
  * @param {int} oControlEvent.getParameters.selectedIndex The currently selected index of the ListBox. In the case of multiple selection, this is exactly one of the selected indices - the one whose selection has triggered the selection change; to get all currently selected indices, use selectedIndices.
  * @param {sap.ui.core.Item} oControlEvent.getParameters.selectedItem The currently selected item of the ListBox. In the case of multiple selection, this is exactly one of the selected items - the one whose selection has triggered the selection change.
@@ -673,7 +669,7 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.ui.commons.ListBox</code>.<br/> itself. 
  *  
- * Event is fired when selection is changed by user interaction. 
+ * Event is fired when selection is changed by user interaction.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -725,64 +721,61 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
 /**
  * Zero-based index of selected item. Index value for no selection is -1. When multiple selection is enabled and multiple items are selected, the method returns the first selected item.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedIndex
+ * @name sap.ui.commons.ListBox#getSelectedIndex
  * @function
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Sets the zero-based index of the currently selected item. This method removes any previous selections. When the given index is invalid, the call is ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.setSelectedIndex
+ * @name sap.ui.commons.ListBox#setSelectedIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index to be selected
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds the given index to current selection. When multiple selection is disabled, this replaces the current selection. When the given index is invalid, the call is ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.addSelectedIndex
+ * @name sap.ui.commons.ListBox#addSelectedIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index to add to selection.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes the given index from this selection. When the index is invalid or not selected, the call is ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.removeSelectedIndex
+ * @name sap.ui.commons.ListBox#removeSelectedIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index that shall be removed from selection.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Zero-based indices of selected items, wrapped in an array. An empty array means "no selection".
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedIndices
+ * @name sap.ui.commons.ListBox#getSelectedIndices
  * @function
-
  * @type int[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -792,75 +785,72 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * Any invalid indices are ignored.
  * The previous selection is in any case replaced.
  *
- * @name sap.ui.commons.ListBox.prototype.setSelectedIndices
+ * @name sap.ui.commons.ListBox#setSelectedIndices
  * @function
- * @param {int[]} 
- *         aIndices
+ * @param {int[]} aIndices
  *         Indices of the items to be selected.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Adds the given indices to selection. Any invalid indices are ignored.
  *
- * @name sap.ui.commons.ListBox.prototype.addSelectedIndices
+ * @name sap.ui.commons.ListBox#addSelectedIndices
  * @function
- * @param {int[]} 
- *         aIndices
+ * @param {int[]} aIndices
  *         Indices of the items that shall additionally be selected.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns whether the given index is selected.
  *
- * @name sap.ui.commons.ListBox.prototype.isIndexSelected
+ * @name sap.ui.commons.ListBox#isIndexSelected
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         Index which is checked for selection state.
-
  * @type boolean
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns selected item. When no item is selected, "null" is returned. When multi-selection is enabled and multiple items are selected, only the first selected item is returned.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedItem
+ * @name sap.ui.commons.ListBox#getSelectedItem
  * @function
-
  * @type sap.ui.core.Item
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns an array containing the selected items. In the case of no selection, an empty array is returned.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedItems
+ * @name sap.ui.commons.ListBox#getSelectedItems
  * @function
-
  * @type sap.ui.core.Item[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Removes complete selection.
  *
- * @name sap.ui.commons.ListBox.prototype.clearSelection
+ * @name sap.ui.commons.ListBox#clearSelection
  * @function
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -868,34 +858,30 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * If the ListBox has a scroll bar because the number of items is larger than the number of visible items, this method scrolls to the item with the given index. If there are enough items, this item will then appear at the topmost visible position in the ListBox. If bLazy is true, it only scrolls as far as required to make the item visible.
  * Setting the scrollTop property and calling scrollToIndex are two operations influencing the same "physical" property, so the last call "wins".
  *
- * @name sap.ui.commons.ListBox.prototype.scrollToIndex
+ * @name sap.ui.commons.ListBox#scrollToIndex
  * @function
- * @param {int} 
- *         iIndex
+ * @param {int} iIndex
  *         The index to which the ListBox should scroll.
- * @param {boolean} 
- *         bLazy
+ * @param {boolean} bLazy
  *         If set to true, the ListBox only scrolls if the item is not completely visible, and it scrolls for exactly the space to make it fully visible. If set to false, the item is scrolled to the top position (if possible).
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Allows setting the list items as array for this instance of ListBox.
  *
- * @name sap.ui.commons.ListBox.prototype.setItems
+ * @name sap.ui.commons.ListBox#setItems
  * @function
- * @param {sap.ui.core.ListItem[]} 
- *         aItems
+ * @param {sap.ui.core.ListItem[]} aItems
  *         The items to set for this ListBox.
- * @param {boolean} 
- *         bDestroyItems
+ * @param {boolean} bDestroyItems
  *         Optional boolean parameter to indicate that the formerly set items should be destroyed, instead of just removed.
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -904,25 +890,24 @@ sap.ui.commons.ListBox.M_EVENTS = {'select':'select'};
  * and multiple keys are given, the selection is set to the item with the first valid key in the given array. Any invalid keys are ignored.
  * The previous selection is replaced in any case.
  *
- * @name sap.ui.commons.ListBox.prototype.setSelectedKeys
+ * @name sap.ui.commons.ListBox#setSelectedKeys
  * @function
- * @param {string[]} 
- *         aKeys
+ * @param {string[]} aKeys
  *         The keys of the items to be selected
-
  * @type sap.ui.commons.ListBox
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the keys of the selected items in an array. If a selected item does not have a key, the respective array entry will be undefined.
  *
- * @name sap.ui.commons.ListBox.prototype.getSelectedKeys
+ * @name sap.ui.commons.ListBox#getSelectedKeys
  * @function
-
  * @type string[]
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -1310,7 +1295,7 @@ sap.ui.commons.ListBox.prototype.setWidth = function(sWidth) {
 /**
  * Positions the ListBox contents that are scrolled-down by the given number of pixels
  *
- * @param {int} iScrollTip Vertical scroll position in pixels
+ * @param {int} iScrollTop Vertical scroll position in pixels
  * @return {sap.ui.commons.ListBox} <code>this</code> to allow method chaining
  * @public
  */

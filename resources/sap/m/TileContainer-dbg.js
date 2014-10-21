@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -59,23 +59,21 @@ jQuery.sap.require("sap.ui.core.Control");
  * A container that arranges same-size tiles nicely on carousel pages
  * @extends sap.ui.core.Control
  *
- * @author SAP AG 
- * @version 1.22.4
+ * @author SAP SE
+ * @version 1.24.2
  *
- * @constructor   
+ * @constructor
  * @public
  * @since 1.12
  * @name sap.m.TileContainer
+ * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
  */
 sap.ui.core.Control.extend("sap.m.TileContainer", { metadata : {
 
-	// ---- object ----
 	publicMethods : [
 		// methods
 		"moveTile", "scrollIntoView", "getPageFirstTileIndex"
 	],
-
-	// ---- control specific ----
 	library : "sap.m",
 	properties : {
 		"width" : {type : "sap.ui.core.CSSSize", group : "Dimension", defaultValue : '100%'},
@@ -85,7 +83,7 @@ sap.ui.core.Control.extend("sap.m.TileContainer", { metadata : {
 	},
 	defaultAggregation : "tiles",
 	aggregations : {
-    	"tiles" : {type : "sap.ui.core.Control", multiple : true, singularName : "tile"}
+		"tiles" : {type : "sap.ui.core.Control", multiple : true, singularName : "tile"}
 	},
 	events : {
 		"tileMove" : {}, 
@@ -297,14 +295,13 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
 
 
 /**
- * Fired if a tile was moved 
+ * Fired if a tile was moved
  *
  * @name sap.m.TileContainer#tileMove
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.Tile} oControlEvent.getParameters.tile The tile that has been moved
  * @param {int} oControlEvent.getParameters.newIndex The new index of the tile in the tiles aggregation
  * @public
@@ -315,7 +312,7 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TileContainer</code>.<br/> itself. 
  *  
- * Fired if a tile was moved 
+ * Fired if a tile was moved
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -363,16 +360,14 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
 
 
 /**
- * Fired if a tile is deleted during edit mode. 
+ * Fired if a tile is deleted during edit mode.
  *
  * @name sap.m.TileContainer#tileDelete
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @param {sap.m.Tile} oControlEvent.getParameters.tile The tile
- * 
  * @public
  */
  
@@ -381,7 +376,7 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TileContainer</code>.<br/> itself. 
  *  
- * Fired if a tile is deleted during edit mode. 
+ * Fired if a tile is deleted during edit mode.
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -429,14 +424,13 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
 
 
 /**
- * Fired if a Tile is added 
+ * Fired if a Tile is added
  *
  * @name sap.m.TileContainer#tileAdd
  * @event
  * @param {sap.ui.base.Event} oControlEvent
  * @param {sap.ui.base.EventProvider} oControlEvent.getSource
  * @param {object} oControlEvent.getParameters
-
  * @public
  */
  
@@ -445,7 +439,7 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
  * When called, the context of the event handler (its <code>this</code>) will be bound to <code>oListener<code> if specified
  * otherwise to this <code>sap.m.TileContainer</code>.<br/> itself. 
  *  
- * Fired if a Tile is added 
+ * Fired if a Tile is added
  *
  * @param {object}
  *            [oData] An application specific payload object, that will be passed to the event handler along with the event object when firing the event.
@@ -489,17 +483,15 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
 /**
  * Moves a given tile to the given index
  *
- * @name sap.m.TileContainer.prototype.moveTile
+ * @name sap.m.TileContainer#moveTile
  * @function
- * @param {int} 
- *         iTile
+ * @param {int} iTile
  *         The tile or tile index to move
- * @param {int} 
- *         iNewIndex
+ * @param {int} iNewIndex
  *         The new Tile position in the tiles aggregation
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -507,28 +499,26 @@ sap.m.TileContainer.M_EVENTS = {'tileMove':'tileMove','tileDelete':'tileDelete',
  * Scrolls to the page where the given tile or tile index is included.
  * Optionally this can be done animated or not. With IE9 the scroll is never animated.
  *
- * @name sap.m.TileContainer.prototype.scrollIntoView
+ * @name sap.m.TileContainer#scrollIntoView
  * @function
- * @param {int} 
- *         iTile
+ * @param {int} iTile
  *         The tile or tile index to be scrolled into view
- * @param {boolean} 
- *         bAnimated
+ * @param {boolean} bAnimated
  *         Whether the scroll should be animated
-
  * @type void
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
 /**
  * Returns the index of the first tile that is visible in the current page
  *
- * @name sap.m.TileContainer.prototype.getPageFirstTileIndex
+ * @name sap.m.TileContainer#getPageFirstTileIndex
  * @function
-
  * @type int
  * @public
+ * @ui5-metamodel This method also will be described in the UI5 (legacy) designtime metamodel
  */
 
 
@@ -840,7 +830,7 @@ sap.m.TileContainer.prototype.onAfterRendering = function() {
  * Sets the editable property to the tile container that allows to move icons.
  * This is currently also set with a long tap
  *
- * @param {boolean} Whether the container is in edit mode or not.
+ * @param {boolean} bValue Whether the container is in edit mode or not.
  * @returns {sap.m.TileContainer} This tile container.
  * @public
  */
@@ -989,8 +979,9 @@ sap.m.TileContainer.prototype.getPageFirstTileIndex = function() {
 /**
  * Moves a given tile to the given index.
  *
- * @param {sap.m.Tile} oTile The tile to move
- * @param {int} iIndex The new Tile position in the tiles aggregation.
+ * @param {sap.m.Tile} vTile The tile to move
+ * @param {int} iNewIndex The new Tile position in the tiles aggregation.
+
  * @returns {sap.m.TileContainer} This tile container.
  * @public
  */
@@ -1421,7 +1412,6 @@ sap.m.TileContainer.prototype._calculatePositions = function() {
 
 	this._iOffsetY = Math.floor(( oContentDimension.height - iPagerHeight - (this._oTileDimension.height * iNumTileY )) / 2);
 
-	jQuery.sap.log.debug("maxtiles "+ this._iMaxTiles +" on page " + this.getId());
 };
 
 /**

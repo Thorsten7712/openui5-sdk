@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
- * (c) Copyright 2009-2014 SAP AG or an SAP affiliate company. 
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company. 
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
  */
 
@@ -24,7 +24,7 @@ sap.ui.define(['jquery.sap.global', './Interface', './Metadata'],
 	 * @class Base class for all SAPUI5 Objects
 	 * @abstract
 	 * @author Malte Wedel
-	 * @version 1.22.4
+	 * @version 1.24.2
 	 * @public
 	 * @name sap.ui.base.Object
 	 */
@@ -153,7 +153,7 @@ sap.ui.define(['jquery.sap.global', './Interface', './Metadata'],
 	 * @param {object} oStaticInfo static info used to create the metadata object
 	 * @param {string} oStaticInfo.baseType qualified name of a base class
 	 * @param {string[]} oStaticInfo.publicMethods array of names of public methods
-	 * @param {function} [xMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.base.Metadata.
+	 * @param {function} [FNMetaImpl] constructor function for the metadata object. If not given, it defaults to sap.ui.base.Metadata.
 	 *
 	 * @return {sap.ui.base.Metadata} the created metadata object
 	 * @public

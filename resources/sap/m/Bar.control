@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
 	<name>Bar</name>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>A bar that may be used as a header of a page. It has the capability to center a content like a title, while having few controls on the left and right side.</documentation>
 
 	<baseType>sap.ui.core/Control</baseType>

@@ -2,7 +2,7 @@
 <control xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
   <name>Label</name>
-  <author>SAP AG</author>
+  <author>SAP SE</author>
   <documentation>
   	Is used for labeling other controls. The API provides formatting options, for example for bold display or alignment. A label can have an icon.
   </documentation>

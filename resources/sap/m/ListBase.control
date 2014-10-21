@@ -3,7 +3,7 @@
 
 	<name>ListBase</name>
 	<since>1.16</since>
-	<author>SAP AG</author>
+	<author>SAP SE</author>
 	<documentation>sap.m.ListBase Control provides a basic functionality of List and Table. Selection, deletion, unread states and inset style are also maintained here.
 
 Note: The ListBase including all contained items is completely re-rendered when the data of a bound model is changed. Due to the limited hardware resources of mobile devices this can lead to longer delays for lists with many items. As such the usage of a list is not recommended for these use cases.</documentation>
